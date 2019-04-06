@@ -7,5 +7,6 @@ install: yarn --frozen-lockfile --prefer-offline
 script:
   - yarn lint
   - yarn test
+  - yarn build
 
 cache: yarn
