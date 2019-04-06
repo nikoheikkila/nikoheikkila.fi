@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "11"
+
+install: yarn --frozen-lockfile --prefer-offline
+
+script:
+  - yarn lint
+  - yarn test
+
+cache: yarn
