@@ -1,6 +1,7 @@
 {
     "version": 2,
     "name": "gatsby",
+    "alias": ["gatsby.nikoheikkila.fi"],
     "builds": [{
         "src": "package.json",
         "use": "@now/static-build",
