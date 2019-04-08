@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
+import { formatCategories, formatPostDate } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -22,21 +23,37 @@ class BlogPostTemplate extends React.Component {
       }
     } = this.props
 
+    const categories = formatCategories(post.frontmatter.categories)
+
+    const styles = {
+      postMeta: {
+        display: `inline-block`,
+        paddingRight: rhythm(1 / 2)
+      }
+    }
+
     return (
       <Layout location={location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <header>
         <h1>{post.frontmatter.title}</h1>
+
+        <p style={styles.postMeta}>✏️ Conceived by {post.frontmatter.author}</p>
+          <p style={styles.postMeta}>🗂 Filed under <strong>{categories}</strong></p>
+
         <p
           style={{
-            ...scale(-1 / 5),
+            ...scale(-1 / 6),
             display: `block`,
             marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
+            marginTop: rhythm(-1 / 2),
           }}
         >
           {post.frontmatter.date}
         </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        </header>
+
+        <article dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -88,7 +105,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "DD.MM.YYYY")
+        author
+        categories
       }
     }
   }
