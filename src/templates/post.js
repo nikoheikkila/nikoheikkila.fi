@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
-import { formatCategories, formatPostDate } from '../utils/helpers'
+import { formatCategories } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
   render() {
