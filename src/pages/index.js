@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
+import Bio from '../components/bio'
 import SEO from '../components/seo'
-import { rhythm } from '../utils/typography'
 
 class BlogIndex extends React.Component {
   render() {
@@ -13,23 +13,19 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={location} title={siteTitle}>
-        <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
+        <aside><Bio /></aside>
+        <SEO title="All posts" />
+
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
+
           return (
             <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+              <h2 className="entry-title">
+                <Link to={node.fields.slug}>
                   {title}
                 </Link>
-              </h3>
+              </h2>
               <small>{node.frontmatter.date}</small>
               <p
                 dangerouslySetInnerHTML={{
@@ -39,6 +35,8 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <hr />
+        <aside><Bio /></aside>
       </Layout>
     )
   }
