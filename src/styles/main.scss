@@ -1,0 +1,32 @@
+@import "variables";
+
+@mixin linkDecoration {
+    border-bottom: dashed 1px $red;
+}
+
+a {
+    color: $red;
+    box-shadow: none;
+}
+
+.bio {
+    display: flex;
+    margin-bottom: 2.0rem;
+
+    img {
+        margin-right: 0.9rem;
+        margin-bottom: 0;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+    }
+
+    a {
+        @include linkDecoration();
+    }
+}
+
+.entry-title {
+    font-Family: 'Montserrat', sans-serif;
+
+}
