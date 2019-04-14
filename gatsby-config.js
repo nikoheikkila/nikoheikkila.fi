@@ -5,8 +5,11 @@ module.exports = {
     description: `Site under construction.`,
     siteUrl: `https://gatsby.nikoheikkila.fi`,
     social: {
-      twitter: `nikoheikkila`,
+      twitter: `nikoheikkila`
     },
+    github: {
+      url: `https://github.com/nikoheikkila/nikoheikkila.fi`
+    }
   },
   plugins: [
     {
@@ -68,12 +71,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
     `gatsby-plugin-sass`
   ],
 }

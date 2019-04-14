@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Bio from '../components/bio'
 import SEO from '../components/seo'
+import { formatReadingTime } from '../utils/helpers'
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,22 +15,22 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location} title={siteTitle}>
         <aside><Bio /></aside>
-        <SEO title="All posts" />
+        <SEO title="All Posts" />
 
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
 
           return (
             <div key={node.fields.slug}>
-              <h2 className="entry-title">
+              <h2 className="post-title">
                 <Link to={node.fields.slug}>
                   {title}
                 </Link>
               </h2>
-              <small>{node.frontmatter.date}</small>
-              <p
+              <p className="post-meta">📅 {node.frontmatter.date} {formatReadingTime(node.timeToRead)}</p>
+              <article className="post-spoiler"
                 dangerouslySetInnerHTML={{
-                  __html: node.excerpt,
+                  __html: node.frontmatter.excerpt,
                 }}
               />
             </div>
@@ -54,13 +55,15 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
+          timeToRead
           fields {
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            excerpt
+            date(formatString: "DD.MM.YYYY")
             title
+            categories
           }
         }
       }

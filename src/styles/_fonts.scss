@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Montserrat');
+
+@mixin bodyFont() {
+    font-family: 'Crimson Text', 'Helvetica', serif;
+    font-weight: 400;
+}
+
+@mixin headingFont() {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 2.5rem;
+}
+
+@mixin codeFont {
+    font-family: 'Dank Mono', 'Fira Code', 'Menlo', 'Monaco', monospace;
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-feature-settings: normal;
+    font-variant-ligatures: additional-ligatures;
+    line-height: 1.4em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+}
