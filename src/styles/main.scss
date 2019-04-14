@@ -1,21 +1,44 @@
 @import "variables";
+@import "fonts";
 @import "syntax";
 
-@mixin linkDecoration {
-    border-bottom: dashed 1px $teal;
+@mixin hr($color, $width) {
+    hr {
+        border-top: double $width $color;
+        opacity: 0.75;
+    }
+}
+
+body {
+    @include bodyFont();
+    font-size: 1.4em;
 }
 
 /* Light theme */
 body.light {
+    @include hr(#666666, 3px);
     background-color: $lightBg;
     color: $lightFg;
+
+    main {
+        a {
+            color: $teal;
+        }
+    }
 }
 
 /* Dark theme */
 body.dark {
+    @include hr(#aaaaaa, 3px);
     -webkit-font-smoothing: antialiased;
     background-color: $darkBg;
     color: $darkFg;
+
+    main {
+        a {
+            color: $pink;
+        }
+    }
 }
 
 .content {
@@ -26,23 +49,49 @@ body.dark {
 }
 
 a {
-    color: $teal;
+    text-decoration: none;
     box-shadow: none;
 }
 
-article p {
-    font-size: 1.25rem;
+article {
+    p {
+        font-size: 1.8rem;
+        line-height: 1.5rem;
+    }
+}
+
+.banner {
+    padding-bottom: 45px;
+}
+
+.post-title {
+    @include headingFont();
 }
 
 .post-meta {
+    margin: 10px auto;
+
     span {
         padding-right: 1.15rem;
     }
 }
 
+.post-meta:last-child {
+    margin-bottom: 25px;
+}
+
+.post-spoiler {
+    padding-bottom: 50px;
+}
+
 .bio {
     display: flex;
     margin-bottom: 2.0rem;
+    max-width: 325px;
+
+    p {
+        margin-top: 0;
+    }
 
     img {
         margin-right: 0.9rem;
@@ -51,12 +100,4 @@ article p {
         height: 3.5rem;
         border-radius: 50%;
     }
-
-    a {
-        @include linkDecoration();
-    }
-}
-
-.entry-title {
-    font-Family: 'Montserrat', sans-serif;
 }

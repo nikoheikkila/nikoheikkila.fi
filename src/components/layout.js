@@ -24,8 +24,8 @@ class Layout extends React.Component {
     const { theme } = this.state
 
     const header = (
-      <section>
-        <Link style={{ boxShadow: `none` }} to="/">
+      <section className="banner">
+        <Link  to="/">
           <img src={banner} alt={title} />
         </Link>
         <Toggle

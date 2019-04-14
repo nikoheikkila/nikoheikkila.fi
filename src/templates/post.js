@@ -3,8 +3,8 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { rhythm } from '../utils/typography'
-import { formatCategories } from '../utils/helpers'
+import Bio from '../components/bio'
+import { formatCategories, formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -14,7 +14,9 @@ class BlogPostTemplate extends React.Component {
         markdownRemark: post,
         site: {
           siteMetadata: {
-            title: siteTitle
+            siteUrl,
+            title: siteTitle,
+            github: repo
           }
         }
       },
@@ -24,29 +26,31 @@ class BlogPostTemplate extends React.Component {
     } = this.props
 
     const categories = formatCategories(post.frontmatter.categories)
+    const { slug } = post.fields
+    const editUrl = `${repo.url}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}.md`
+    const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
+      `${siteUrl}${slug}`
+    )}`;
 
     return (
       <Layout location={location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <header>
-        <h1>{post.frontmatter.title}</h1>
+          <h1 className="post-title">{post.frontmatter.title}</h1>
 
-        <p className="post-meta">
+          <p className="post-meta">
             <span>✏️ Conceived by {post.frontmatter.author}</span>
             <span>🗂 Filed under <strong>{categories}</strong></span>
-        </p>
+          </p>
 
-        <p>
-          {post.frontmatter.date}
-        </p>
+          <p className="post-meta">
+            <span>📅 {post.frontmatter.date}</span>
+            <span>{formatReadingTime(post.timeToRead)}</span>
+          </p>
+
         </header>
 
         <article dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
 
         <ul
           style={{
@@ -72,6 +76,21 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
+        <footer>
+          <p>
+            <a href={discussUrl} target="_blank" rel="noopener noreferrer">
+              Discuss on Twitter
+                </a>
+            {` • `}
+            <a href={editUrl} target="_blank" rel="noopener noreferrer">
+              Edit on GitHub
+                </a>
+          </p>
+        </footer>
+        <hr />
+        <aside>
+          <Bio />
+        </aside>
       </Layout>
     )
   }
@@ -83,14 +102,25 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
+        siteUrl
         title
         author
+        social {
+          twitter
+        }
+        github {
+          url
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      fields {
+        slug
+      }
       excerpt(pruneLength: 160)
       html
+      timeToRead
       frontmatter {
         title
         date(formatString: "DD.MM.YYYY")
