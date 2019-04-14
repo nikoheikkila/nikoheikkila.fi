@@ -1,32 +1,39 @@
-import React from 'react';
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
-class Footer extends React.Component {
-    render() {
-        return (
-            <footer>
-                <div style={{ float: 'right' }}>
-                    <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
-                        rss
-          </a>
-                </div>
-                <a
-                    href="https://twitter.com/nikoheikkila"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    twitter
-        </a>{' '}
-                &bull;{' '}
-                <a
-                    href="https://github.com/nikoheikkila"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    github
-        </a>
-            </footer>
-        );
-    }
+export default function Footer() {
+
+    const { site: { siteMetadata: {social, rss} } } = useStaticQuery(graphql`
+        query {
+            site {
+                siteMetadata {
+                    social {
+                        twitter
+                        github
+                    }
+                    rss
+                }
+            }
+        }
+    `)
+
+    return (
+        <footer>
+            <div className="feed">
+                <a href={rss} target="_blank" rel="noopener noreferrer">
+                    RSS
+                </a>
+            </div>
+
+            <a href={social.twitter} target="_blank" rel="noopener noreferrer">
+                Twitter
+            </a>{' '}
+
+            &bull;{' '}
+
+            <a href={social.github} target="_blank" rel="noopener noreferrer">
+                GitHub
+            </a>
+        </footer>
+    );
 }
-
-export default Footer;

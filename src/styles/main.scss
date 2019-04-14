@@ -20,10 +20,8 @@ body.light {
     background-color: $lightBg;
     color: $lightFg;
 
-    main {
-        a {
-            color: $teal;
-        }
+    a {
+        color: $teal;
     }
 }
 
@@ -34,10 +32,8 @@ body.dark {
     background-color: $darkBg;
     color: $darkFg;
 
-    main {
-        a {
-            color: $pink;
-        }
+    a {
+        color: $pink;
     }
 }
 
@@ -99,5 +95,15 @@ article {
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 50%;
+    }
+}
+
+footer {
+    a {
+        font-weight: 700;
+    }
+
+    .feed {
+        float: right;
     }
 }
