@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import banner from '../assets/banner.jpg'
 import Toggle from './toggle'
+import Footer from './footer'
 
 import '../styles/main.scss'
 import sun from '../assets/sun.png'
@@ -63,6 +64,7 @@ class Layout extends React.Component {
       <div className="content">
         <header>{header}</header>
         <main>{children}</main>
+        <Footer />
       </div>
     )
   }
