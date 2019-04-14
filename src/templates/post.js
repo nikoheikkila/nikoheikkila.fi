@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { rhythm, scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 import { formatCategories } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
@@ -25,30 +25,18 @@ class BlogPostTemplate extends React.Component {
 
     const categories = formatCategories(post.frontmatter.categories)
 
-    const styles = {
-      postMeta: {
-        display: `inline-block`,
-        paddingRight: rhythm(1 / 2)
-      }
-    }
-
     return (
       <Layout location={location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <header>
         <h1>{post.frontmatter.title}</h1>
 
-        <p style={styles.postMeta}>✏️ Conceived by {post.frontmatter.author}</p>
-          <p style={styles.postMeta}>🗂 Filed under <strong>{categories}</strong></p>
+        <p className="post-meta">
+            <span>✏️ Conceived by {post.frontmatter.author}</span>
+            <span>🗂 Filed under <strong>{categories}</strong></span>
+        </p>
 
-        <p
-          style={{
-            ...scale(-1 / 6),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1 / 2),
-          }}
-        >
+        <p>
           {post.frontmatter.date}
         </p>
         </header>

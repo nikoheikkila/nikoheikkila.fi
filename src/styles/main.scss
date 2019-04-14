@@ -1,12 +1,43 @@
 @import "variables";
+@import "syntax";
 
 @mixin linkDecoration {
-    border-bottom: dashed 1px $red;
+    border-bottom: dashed 1px $teal;
+}
+
+/* Light theme */
+body.light {
+    background-color: $lightBg;
+    color: $lightFg;
+}
+
+/* Dark theme */
+body.dark {
+    -webkit-font-smoothing: antialiased;
+    background-color: $darkBg;
+    color: $darkFg;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+    padding: 40px 60px;
 }
 
 a {
-    color: $red;
+    color: $teal;
     box-shadow: none;
+}
+
+article p {
+    font-size: 1.25rem;
+}
+
+.post-meta {
+    span {
+        padding-right: 1.15rem;
+    }
 }
 
 .bio {
@@ -28,5 +59,4 @@ a {
 
 .entry-title {
     font-Family: 'Montserrat', sans-serif;
-
 }
