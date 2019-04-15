@@ -51,8 +51,19 @@ a {
 
 article {
     p {
-        font-size: 1.8rem;
-        line-height: 1.5rem;
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+    }
+
+    blockquote {
+        border-left: 10px solid #ccc;
+        margin: 1.5em 0;
+        padding: 1.5em 25px;
+        quotes: "\201C""\201D""\2018""\2019";
+
+        p {
+            display: inline;
+        }
     }
 }
 
