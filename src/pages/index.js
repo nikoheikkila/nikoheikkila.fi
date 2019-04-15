@@ -17,25 +17,28 @@ class BlogIndex extends React.Component {
         <aside><Bio /></aside>
         <SEO title="All Posts" />
 
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+        {posts
+          .filter(({ node }) => node.frontmatter.type !== 'page')
+          .map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug
 
-          return (
-            <div key={node.fields.slug}>
-              <h2 className="post-title">
-                <Link to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h2>
-              <p className="post-meta">📅 {node.frontmatter.date} {formatReadingTime(node.timeToRead)}</p>
-              <article className="post-spoiler"
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.excerpt,
-                }}
-              />
-            </div>
-          )
-        })}
+            return (
+              <div key={node.fields.slug}>
+                <h2 className="post-title">
+                  <Link to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h2>
+                <p className="post-meta">📅 {node.frontmatter.date} {formatReadingTime(node.timeToRead)}</p>
+                <article className="post-spoiler"
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.excerpt,
+                  }}
+                />
+              </div>
+            )
+          })
+        }
         <hr />
         <aside><Bio /></aside>
       </Layout>
@@ -60,6 +63,7 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            type
             excerpt
             date(formatString: "DD.MM.YYYY")
             title
