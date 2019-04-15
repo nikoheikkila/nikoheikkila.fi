@@ -11,7 +11,13 @@ export const formatReadingTime = minutes => {
         .join('')} ${minutes} min read`
 }
 
-export const formatCategories = (categories, limit = 3) => categories
-    .slice(0, limit)
-    .map(c => `#${c.toLowerCase()}`)
-    .join(`, `)
+export const formatCategories = (categories, limit = 3) => {
+    if (!categories) {
+        return ''
+    }
+
+    return categories
+        .slice(0, limit)
+        .map(c => `#${c.toLowerCase()}`)
+        .join(`, `)
+}
