@@ -10,7 +10,7 @@ import moon from '../assets/moon.png'
 
 class Layout extends React.Component {
   state = {
-    theme: null,
+    theme: null
   }
 
   componentDidMount() {
