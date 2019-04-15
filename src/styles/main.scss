@@ -99,8 +99,19 @@ article {
 }
 
 footer {
+    div {
+        display: inline;
+    }
+
     a {
         font-weight: 700;
+        text-transform: lowercase;
+        margin-right: 15px;
+    }
+
+    svg {
+        color: $blue;
+        margin-right: 7px;
     }
 
     .feed {
