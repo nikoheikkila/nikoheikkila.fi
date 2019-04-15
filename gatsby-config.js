@@ -4,13 +4,14 @@ module.exports = {
     author: `Niko Heikkilä`,
     description: `Site under construction.`,
     siteUrl: `https://gatsby.nikoheikkila.fi`,
-    social: {
-      twitter: `https://twitter.com/nikoheikkila`,
-      github: `https://github.com/nikoheikkila`
-    },
-    github: {
-      url: `https://github.com/nikoheikkila/nikoheikkila.fi`
-    },
+    social: [
+      { name: `dev`, url: `https://dev.to/nikoheikkila` },
+      { name: `twitter`, url: `https://twitter.com/nikoheikkila` },
+      { name: `mastodon`, url: `https://mastodon.technology/@nikoheikkila` },
+      { name: `github`, url: `https://github.com/nikoheikkila` },
+      { name: `linkedin`, url: `https://www.linkedin.com/in/nikoheikkila` }
+    ],
+    repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
     rss: `/rss.xml`
   },
   plugins: [

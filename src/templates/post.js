@@ -15,8 +15,8 @@ class BlogPostTemplate extends React.Component {
         site: {
           siteMetadata: {
             siteUrl,
-            title: siteTitle,
-            github: repo
+            repository,
+            title: siteTitle
           }
         }
       },
@@ -27,7 +27,7 @@ class BlogPostTemplate extends React.Component {
 
     const categories = formatCategories(post.frontmatter.categories)
     const { slug } = post.fields
-    const editUrl = `${repo.url}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}.md`
+    const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}.md`
     const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
       `${siteUrl}${slug}`
     )}`;
@@ -76,17 +76,15 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-        <footer>
-          <p>
-            <a href={discussUrl} target="_blank" rel="noopener noreferrer">
-              Discuss on Twitter
-                </a>
-            {` • `}
-            <a href={editUrl} target="_blank" rel="noopener noreferrer">
-              Edit on GitHub
-                </a>
-          </p>
-        </footer>
+        <p>
+          <a href={discussUrl} target="_blank" rel="noopener noreferrer">
+            Discuss on Twitter
+              </a>
+          {` • `}
+          <a href={editUrl} target="_blank" rel="noopener noreferrer">
+            Edit on GitHub
+              </a>
+        </p>
         <hr />
         <aside>
           <Bio />
@@ -105,12 +103,7 @@ export const pageQuery = graphql`
         siteUrl
         title
         author
-        social {
-          twitter
-        }
-        github {
-          url
-        }
+        repository
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
