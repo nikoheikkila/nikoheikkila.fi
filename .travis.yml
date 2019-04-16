@@ -2,11 +2,19 @@ language: node_js
 node_js:
   - "11"
 
-install: yarn --frozen-lockfile --prefer-offline
+before_install:
+  - npm install -g yarn@latest
+
+install:
+  - yarn --frozen-lockfile --prefer-offline
+  - yarn build
+
+before_script:
+  - yarn serve
 
 script:
   - yarn lint
-  - yarn test
-  - yarn build
+  - yarn test:unit
+  - yarn test:a11y
 
 cache: yarn
