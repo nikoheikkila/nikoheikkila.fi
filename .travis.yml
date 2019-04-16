@@ -10,7 +10,7 @@ install:
   - yarn build
 
 before_script:
-  - yarn serve
+  - yarn serve &
 
 script:
   - yarn lint
