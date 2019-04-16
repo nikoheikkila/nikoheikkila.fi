@@ -1,6 +1,12 @@
 language: node_js
+
+os:
+  - linux
+  - osx
+
 node_js:
-  - "11"
+  - "node"
+  - "lts/*"
 
 before_install:
   - npm install -g yarn@latest
@@ -14,7 +20,6 @@ before_script:
 
 script:
   - yarn lint
-  - yarn test:unit
   - yarn test:a11y
 
 cache: yarn
