@@ -65,7 +65,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test:unit": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "test:a11y": "pa11y-ci --sitemap http://localhost:9000/sitemap.xml",
+    "test:a11y": "pa11y-ci -s http://localhost:9000/sitemap.xml -f https://gatsby.nikoheikkila.fi -r http://localhost:9000",
     "now-build": "yarn build"
   },
   "husky": {
