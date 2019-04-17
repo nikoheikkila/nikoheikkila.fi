@@ -34,7 +34,11 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <SEO
+          title={post.frontmatter.title}
+          description={post.excerpt}
+          lang={post.frontmatter.lang}
+        />
         <header>
           <h1 className="post-title">{post.frontmatter.title}</h1>
 
@@ -115,6 +119,7 @@ export const pageQuery = graphql`
       html
       timeToRead
       frontmatter {
+        lang
         title
         date(formatString: "DD.MM.YYYY")
         author
