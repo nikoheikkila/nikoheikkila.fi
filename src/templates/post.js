@@ -67,6 +67,10 @@ class BlogPostTemplate extends React.Component {
               </a>
         </p>
 
+        <aside>
+          <Bio />
+        </aside>
+
         <ul
           style={{
             display: `flex`,
@@ -91,10 +95,7 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-        <hr />
-        <aside>
-          <Bio />
-        </aside>
+
       </Layout>
     )
   }
