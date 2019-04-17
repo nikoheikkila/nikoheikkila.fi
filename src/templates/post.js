@@ -56,6 +56,16 @@ class BlogPostTemplate extends React.Component {
 
         <article dangerouslySetInnerHTML={{ __html: post.html }} />
 
+        <p>
+          <a href={discussUrl} target="_blank" rel="noopener noreferrer">
+            Discuss on Twitter
+              </a>
+          {` • `}
+          <a href={editUrl} target="_blank" rel="noopener noreferrer">
+            Edit on GitHub
+              </a>
+        </p>
+
         <ul
           style={{
             display: `flex`,
@@ -80,15 +90,6 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-        <p>
-          <a href={discussUrl} target="_blank" rel="noopener noreferrer">
-            Discuss on Twitter
-              </a>
-          {` • `}
-          <a href={editUrl} target="_blank" rel="noopener noreferrer">
-            Edit on GitHub
-              </a>
-        </p>
         <hr />
         <aside>
           <Bio />
