@@ -38,6 +38,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.excerpt}
           lang={post.frontmatter.lang}
+          keywords={post.frontmatter.categories}
         />
         <header>
           <h1 className="post-title">{post.frontmatter.title}</h1>
