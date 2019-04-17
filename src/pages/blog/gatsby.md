@@ -1,4 +1,5 @@
 ---
+lang: en
 title: Migrating to Gatsby
 author: Niko Heikkilä
 type: post
