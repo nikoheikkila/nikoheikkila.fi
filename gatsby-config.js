@@ -1,7 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Niko Heikkilä`,
-    author: `Niko Heikkilä`,
+    author: {
+      name: `Niko Heikkilä`,
+      twitter: `@nikoheikkila`
+    },
     description: `Site under construction.`,
     siteUrl: `https://gatsby.nikoheikkila.fi`,
     social: [
