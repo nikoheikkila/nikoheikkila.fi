@@ -51,11 +51,12 @@ pre[class*='language-'] ::selection {
 }
 
 /* Inline code */
-:not(pre) > code[class*='language-'] {
+:not(pre)>code[class*='language-'] {
   border-radius: 0.25em;
   background: $inlineCodeBg;
   color: $inlineCodeFg;
-  padding: 0.25em 0.35em;;
+  padding: 0.25em 0.35em;
+  ;
   white-space: normal;
 }
 
