@@ -6,7 +6,7 @@ module.exports = {
       twitter: `@nikoheikkila`
     },
     description: `Site under construction.`,
-    siteUrl: `https://gatsby.nikoheikkila.fi`,
+    siteUrl: `https://nikoheikkila.fi`,
     social: [
       { name: `dev`, url: `https://dev.to/nikoheikkila` },
       { name: `twitter`, url: `https://twitter.com/nikoheikkila` },
