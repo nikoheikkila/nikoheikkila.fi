@@ -4,8 +4,9 @@
 
 @mixin hr($color, $width) {
     hr {
-        border-top: double $width $color;
-        opacity: 0.75;
+        border-top: dashed $width $color;
+        opacity: 0.5;
+        margin: 45px 0;
     }
 }
 
@@ -60,6 +61,14 @@ article {
     p {
         font-size: 1.5rem;
         line-height: 2.25rem;
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
     }
 
     blockquote {
@@ -86,22 +95,16 @@ article {
 
 .post-title {
     @include headingFont();
+    margin: 5px 0;
 }
 
 .post-meta {
-    margin: 10px auto;
-
-    span {
-        padding-right: 1.15rem;
-    }
+    margin: 5px 0;
+    font-size: 0.8em;
 }
 
-.post-meta:last-child {
-    margin-bottom: 25px;
-}
-
-.post-spoiler {
-    padding-bottom: 50px;
+.post-content {
+    margin-bottom: 65px;
 }
 
 .bio {
