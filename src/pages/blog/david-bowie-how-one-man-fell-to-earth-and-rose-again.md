@@ -17,7 +17,7 @@ On Sunday, 10th January 2016 a great musical chameleon we have come to known as 
 
 This was no foul play, oh not this time, dear. David Bowie was certainly dead as his verifiedFacebook page stated.
 
-<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fdavidbowie%2Fposts%2F10153176666977665&width=500" width="500" height="211" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<iframe title="Facebook Post" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fdavidbowie%2Fposts%2F10153176666977665&width=500" width="500" height="211" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
 After three days I am still very much overwhelmed while writing this. The legacy of David Bowie is simply something too massive to write about in a simple blog post although I respect those who have taken their time to write several beautiful words out of it.
 
@@ -46,7 +46,7 @@ However, for Bowie the death was different. He had not been performing live sinc
 
 Of course, death and other permanent themes were never a strange ground for Bowie, but with _Blackstar_ he dropped us the final letter. Here lies a man who fell to earth only to rise again like the _Lazarus_.
 
-<span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' type='text/html' width='728' height='410' src='https://www.youtube.com/embed/y-JqH1M4Ya8?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span>
+<iframe title="YouTube 1" class='youtube-player' type='text/html' width='728' height='410' src='https://www.youtube.com/embed/y-JqH1M4Ya8?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
 
 If you think of it, both Lemmy and Bowie left respecting their style and career. Lemmy performing sonic attacks with his Rickenbacker on stage and Bowie staying off-stage dwelling on the musical exquisite. For an artist this is the only correct way to go , to keep on creating what you are known for.
 
@@ -54,6 +54,6 @@ Bowie might not need us anymore but we need him. Or actually, his music. As a pe
 
 Have a safe journey, **Ziggy**. Rest in peace, **Thin White Duke**. Farewell, **David**.
 
-<span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' type='text/html' width='728' height='410' src='https://www.youtube.com/embed/X9WSqQS1PJg?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span>
+<iframe title="Youtube 2" class='youtube-player' type='text/html' width='728' height='410' src='https://www.youtube.com/embed/X9WSqQS1PJg?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
 
 _Cover image by [**Hisshi**](http://hisshi.deviantart.com/art/The-Thin-White-Duke-349530610) under Creative Commons license._
