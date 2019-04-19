@@ -1,7 +1,10 @@
 {
     "version": 2,
     "name": "nikoheikkila.fi",
-    "alias": "nikoheikkila.fi",
+    "alias": [
+        "nikoheikkila.fi",
+        "www.nikoheikkila.fi"
+    ],
     "builds": [
         {
             "src": "package.json",
@@ -13,10 +16,25 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "https://www.nikoheikkila.fi/(.*)",
+            "dest": "https://nikoheikkila.fi/$1",
             "status": 301,
             "headers": {
                 "Location": "https://nikoheikkila.fi/$1"
+            }
+        },
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1",
+            "headers": {
+                "cache-control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "src": "/(.*\\.(js|json|css|ico|png)$)",
+            "dest": "/$1",
+            "headers": {
+                "cache-control": "public, max-age=31536000, immutable"
             }
         }
     ]
