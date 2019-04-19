@@ -23,13 +23,16 @@ class BlogIndex extends React.Component {
             const title = node.frontmatter.title || node.fields.slug
 
             return (
-              <div key={node.fields.slug}>
+              <div key={node.fields.slug} className="post-content">
                 <h2 className="post-title">
                   <Link to={node.fields.slug}>
                     {title}
                   </Link>
                 </h2>
-                <p className="post-meta">📅 {node.frontmatter.date} {formatReadingTime(node.timeToRead)}</p>
+                <p className="post-meta">
+                  {node.frontmatter.date} &bull;
+                  {' '}{formatReadingTime(node.timeToRead)}
+                </p>
                 <article className="post-spoiler"
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.excerpt,
@@ -39,7 +42,6 @@ class BlogIndex extends React.Component {
             )
           })
         }
-        <hr />
         <aside><Bio /></aside>
       </Layout>
     )

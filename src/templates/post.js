@@ -52,12 +52,12 @@ class BlogPostTemplate extends React.Component {
           <h1 className="post-title">{title}</h1>
 
           <p className="post-meta">
-            <span>✏️ Conceived by {author}</span>
+            <span>✏️ Conceived by {author} &bull; </span>
             <span>🗂 Filed under <strong>{formatCategories(categories)}</strong></span>
           </p>
 
           <p className="post-meta">
-            <span>📅 {date}</span>
+            <span>{date} &bull; </span>
             <span>{formatReadingTime(post.timeToRead)}</span>
           </p>
 
@@ -76,6 +76,8 @@ class BlogPostTemplate extends React.Component {
             Edit on GitHub
               </a>
         </p>
+
+        <hr />
 
         <aside>
           <Bio />
