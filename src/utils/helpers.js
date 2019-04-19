@@ -18,6 +18,7 @@ export const formatCategories = (categories, limit = 3) => {
 
     return categories
         .slice(0, limit)
+        .map(c => c.replace(/\s/g, ''))
         .map(c => `#${c.toLowerCase()}`)
         .join(`, `)
 }
