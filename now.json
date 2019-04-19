@@ -10,5 +10,14 @@
                 "distDir": "public"
             }
         }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "status": 301,
+            "headers": {
+                "Location": "https://nikoheikkila.fi/$1"
+            }
+        }
     ]
 }
