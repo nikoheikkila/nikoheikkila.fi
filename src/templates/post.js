@@ -4,6 +4,8 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Bio from '../components/bio'
+import Translation from '../components/translation'
+
 import { formatCategories, formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
@@ -25,8 +27,14 @@ class BlogPostTemplate extends React.Component {
       }
     } = this.props
 
-    const categories = formatCategories(post.frontmatter.categories)
+    const { author, date, lang, title, categories } = post.frontmatter
     const { slug } = post.fields
+
+    const translateUrl = `
+    https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(
+      `${siteUrl}${slug}`
+    )}
+    `
     const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}.md`
     const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
       `${siteUrl}${slug}`
@@ -35,25 +43,27 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={location} title={siteTitle}>
         <SEO
-          title={post.frontmatter.title}
+          title={title}
           description={post.excerpt}
-          lang={post.frontmatter.lang}
-          keywords={post.frontmatter.categories}
+          lang={lang}
+          keywords={post.categories}
         />
         <header>
-          <h1 className="post-title">{post.frontmatter.title}</h1>
+          <h1 className="post-title">{title}</h1>
 
           <p className="post-meta">
-            <span>✏️ Conceived by {post.frontmatter.author}</span>
-            <span>🗂 Filed under <strong>{categories}</strong></span>
+            <span>✏️ Conceived by {author}</span>
+            <span>🗂 Filed under <strong>{formatCategories(categories)}</strong></span>
           </p>
 
           <p className="post-meta">
-            <span>📅 {post.frontmatter.date}</span>
+            <span>📅 {date}</span>
             <span>{formatReadingTime(post.timeToRead)}</span>
           </p>
 
         </header>
+
+        {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
 
         <article dangerouslySetInnerHTML={{ __html: post.html }} />
 

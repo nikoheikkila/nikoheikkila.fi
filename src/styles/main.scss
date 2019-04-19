@@ -122,6 +122,17 @@ article {
     }
 }
 
+.language-info {
+    background: #ffffcb;
+    padding: 0 1.5rem;
+    border: dashed 2px #aaaaaa;
+
+    p {
+        color: #444444;
+        font-style: italic;
+    }
+}
+
 footer {
     div {
         display: inline;
