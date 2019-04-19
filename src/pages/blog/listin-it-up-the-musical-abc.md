@@ -105,4 +105,4 @@ Once your list is ready, ping back at me on your blog, leave a comment under thi
 
 ## Spotify
 
-<iframe src="https://embed.spotify.com/?uri=spotify:user:razorman:playlist:1D3e493CrlnHuDN0vFcC9r" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+<iframe title="Playlist" src="https://embed.spotify.com/?uri=spotify:user:razorman:playlist:1D3e493CrlnHuDN0vFcC9r" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
