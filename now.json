@@ -1,24 +1,13 @@
 {
     "version": 2,
     "name": "nikoheikkila.fi",
-    "alias": [
-        "nikoheikkila.fi"
-    ],
+    "alias": "nikoheikkila.fi",
     "builds": [
         {
             "src": "package.json",
             "use": "@now/static-build",
             "config": {
                 "distDir": "public"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "status": 301,
-            "headers": {
-                "Location": "https://nikoheikkila.fi/$1"
             }
         }
     ]
