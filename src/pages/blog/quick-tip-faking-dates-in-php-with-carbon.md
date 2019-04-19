@@ -4,7 +4,9 @@ title: 'Quick Tip: Faking Dates in PHP with Carbon'
 author: Niko Heikkilä
 type: post
 date: 2018-06-24
-excerpt: Often there are scenarios where our code depends on the current time. Most programming languages handle datetime parsing pretty eloquently but a demand for simpler more humane date libraries have arisen.
+excerpt: >
+  Often there are scenarios where our code depends on the current time.
+  Carbon handles this eloquently.
 categories:
   - PHP
   - Development
