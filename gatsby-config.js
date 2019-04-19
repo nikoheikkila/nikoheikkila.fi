@@ -5,20 +5,33 @@ module.exports = {
       name: `Niko Heikkilä`,
       twitter: `@nikoheikkila`
     },
-    description: `Site under construction.`,
+    description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
-    social: [
-      { name: `dev`, url: `https://dev.to/nikoheikkila` },
-      { name: `twitter`, url: `https://twitter.com/nikoheikkila` },
-      { name: `mastodon`, url: `https://mastodon.technology/@nikoheikkila` },
-      { name: `github`, url: `https://github.com/nikoheikkila` },
-      { name: `linkedin`, url: `https://www.linkedin.com/in/nikoheikkila` }
+    social: [{
+        name: `dev`,
+        url: `https://dev.to/nikoheikkila`
+      },
+      {
+        name: `twitter`,
+        url: `https://twitter.com/nikoheikkila`
+      },
+      {
+        name: `mastodon`,
+        url: `https://mastodon.technology/@nikoheikkila`
+      },
+      {
+        name: `github`,
+        url: `https://github.com/nikoheikkila`
+      },
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/nikoheikkila`
+      }
     ],
     repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
     rss: `/rss.xml`
   },
-  plugins: [
-    {
+  plugins: [{
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
@@ -35,8 +48,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          {
+        plugins: [{
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
@@ -76,18 +88,22 @@ module.exports = {
           }
         }
       `,
-      feeds: [
-        {
-          serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
-            description: edge.node.excerpt,
-            date: edge.node.frontmatter.date,
-            url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-            guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-            custom_elements: [
-              { 'content:encoded': edge.node.html }
-            ]
-          })),
-          query: `
+      feeds: [{
+        serialize: ({
+          query: {
+            site,
+            allMarkdownRemark
+          }
+        }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
+          description: edge.node.excerpt,
+          date: edge.node.frontmatter.date,
+          url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+          guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+          custom_elements: [{
+            'content:encoded': edge.node.html
+          }]
+        })),
+        query: `
             {
               allMarkdownRemark(
                 limit: 1000,
@@ -108,10 +124,9 @@ module.exports = {
               }
             }
           `,
-          output: `/rss.xml`,
-          title: `RSS Feed`,
-        },
-      ],
+        output: `/rss.xml`,
+        title: `RSS Feed`,
+      }, ],
     },
     {
       resolve: `gatsby-plugin-manifest`,
