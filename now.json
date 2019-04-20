@@ -2,8 +2,7 @@
     "version": 2,
     "name": "nikoheikkila.fi",
     "alias": [
-        "nikoheikkila.fi",
-        "www.nikoheikkila.fi"
+        "nikoheikkila.fi"
     ],
     "builds": [
         {
@@ -15,14 +14,6 @@
         }
     ],
     "routes": [
-        {
-            "src": "https://www.nikoheikkila.fi/(.*)",
-            "dest": "https://nikoheikkila.fi/$1",
-            "status": 301,
-            "headers": {
-                "Location": "https://nikoheikkila.fi/$1"
-            }
-        },
         {
             "src": "/static/(.*)",
             "dest": "/static/$1",
