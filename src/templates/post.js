@@ -36,7 +36,7 @@ class BlogPostTemplate extends React.Component {
       `${siteUrl}${slug}`
     )}
     `
-    const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}.md`
+    const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}/index.md`
     const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
       `${siteUrl}${slug}`
     )}`;
