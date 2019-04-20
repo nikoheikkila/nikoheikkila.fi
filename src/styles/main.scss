@@ -12,7 +12,8 @@
 
 body {
     @include bodyFont();
-    font-size: 1.4em;
+    font-size: 1.0em;
+    line-height: 2.0rem;
 }
 
 /* Light theme */
@@ -58,23 +59,22 @@ a {
 }
 
 article {
-    p {
-        font-size: 1.5rem;
-        line-height: 2.25rem;
+    font-size: 1.3125rem;
 
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
+    h2, h3, h4 {
+        @include headingFont();
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 20px 0;
     }
 
     ul {
         li {
-            font-size: 1.5rem;
-            line-height: 1.5em;
             list-style: square outside none;
         }
     }
@@ -103,12 +103,13 @@ article {
 
 .post-title {
     @include headingFont();
+    font-size: 2.5rem;
+    line-height: 3.0rem;
     margin: 5px 0;
 }
 
 .post-meta {
     margin: 5px 0;
-    font-size: 0.8em;
 }
 
 .post-content {

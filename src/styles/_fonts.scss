@@ -1,23 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Arvo|Merriweather');
 
 @mixin bodyFont() {
-    font-family: 'Crimson Text', 'Helvetica', serif;
+    font-family: 'Merriweather', 'Helvetica', serif;
     font-weight: 400;
 }
 
 @mixin headingFont() {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arvo', sans-serif;
     font-weight: 900;
-    line-height: 1.25em;
 }
 
 @mixin codeFont {
-    font-family: 'Dank Mono', 'Fira Code', 'Menlo', 'Monaco', monospace;
-    font-size: 1.15rem;
+    font-family: 'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono','Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
     font-weight: 400;
     font-feature-settings: normal;
     font-variant-ligatures: additional-ligatures;
-    line-height: 1.4em;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
