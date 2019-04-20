@@ -39,19 +39,19 @@ body.dark {
     }
 }
 
-.content {
-    margin: 0 auto;
-    max-width: 800px;
+.container {
 
-    header {
-        padding: 0;
+    .content {
+        margin: 0 auto;
+        max-width: $contentWidth;
+
+        main {
+            padding: 20px 15px;
+        }
+
     }
-
-    main {
-        padding: 20px 15px;
-    }
-
 }
+
 
 a {
     text-decoration: none;
@@ -92,7 +92,7 @@ article {
 }
 
 .banner {
-    padding-bottom: 45px;
+    padding-bottom: 30px;
     margin: 0 auto;
 
     img {
@@ -118,18 +118,14 @@ article {
 
 .bio {
     display: flex;
-    margin-bottom: 2.0rem;
-    max-width: 325px;
+    margin-bottom: 2.0em;
 
     p {
-        margin-top: 0;
+        margin: 0 10px;
+        max-width: 75%;
     }
 
     img {
-        margin-right: 0.9rem;
-        margin-bottom: 0;
-        width: 3.5rem;
-        height: 3.5rem;
         border-radius: 50%;
     }
 }
@@ -163,5 +159,23 @@ footer {
 
     .feed {
         float: right;
+    }
+}
+
+@media screen and (max-width: $query-small) {
+    .bio {
+        display: block;
+    }
+
+    .post-title {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+}
+
+@media screen and (max-width: $query-medium) {
+    .post-title {
+        font-size: 2.0rem;
+        line-height: 2.25rem;
     }
 }

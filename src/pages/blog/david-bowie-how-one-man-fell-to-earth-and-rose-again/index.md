@@ -4,14 +4,13 @@ title: How One Man Fell to Earth and Rose Again
 author: Niko Heikkilä
 type: post
 date: 2016-01-14
+cover: bowie.jpg
 excerpt: Have a safe journey, Ziggy. Rest in peace, Thin White Duke. Farewell, David Bowie.
 categories:
   - Music
   - David Bowie
   - Eulogy
 ---
-
-![David Bowie](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/79d3ec88-8e07-4074-85b4-6e2225ae97fd/d5s3njm-c36c191e-c6c3-4683-84a5-11a23c5b3662.jpg/v1/fill/w_1280,h_699,q_75,strp/the_thin_white_duke_by_hisshi_d5s3njm-fullview.jpg)
 
 On Sunday, 10th January 2016 a great musical chameleon we have come to known as **David Bowie** passed away after struggling with cancer for 18 long months. The next morning I checked my Twitter as I do every morning to catch the latest news. Immediately after reading a series of tweets tagged with _#RIPBowie_ I felt overwhelmed. Both Twitter and quite truthfully speaking the whole Internet had broken out in panic and anger, fearing, or rather hoping, for the unfortunate news to turn as a hoax. Bowie had been a target of numerous hoaxes before and justifiably there were a number of people who refused to believe what they had just heard.
 

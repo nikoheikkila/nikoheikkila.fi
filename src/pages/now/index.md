@@ -1,6 +1,7 @@
 ---
 lang: en
 type: page
+cover: '../../assets/banner.jpg'
 title: What I'm Doing Now
 author: Niko Heikkilä
 date: 2019-04-15

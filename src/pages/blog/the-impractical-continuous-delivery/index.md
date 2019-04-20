@@ -4,6 +4,7 @@ title: The (Im)Practical Continuous Delivery
 author: Niko Heikkilä
 type: post
 date: 2018-04-29
+cover: cd.jpg
 excerpt: This week I participated in a 2-day training session about pragmatic solutions in Continuous Integration, Delivery, and Deployment.
 categories:
   - Continuous Delivery
