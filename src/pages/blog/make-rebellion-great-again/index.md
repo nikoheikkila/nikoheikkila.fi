@@ -4,6 +4,7 @@ title: Make Rebellion Great Again
 author: Niko Heikkilä
 type: post
 date: 2017-02-02
+cover: trumpatine.png
 excerpt: Declaration of Rebellion addressed to Donald Trump -- does this dystopia make you feel cold inside?
 categories:
   - Politics
@@ -11,8 +12,6 @@ categories:
   - Nerd
   - Star Wars
 ---
-
-![Donald Trump](https://i.imgur.com/U3qbTat.png?1)
 
 **Donald Trump** was vowed to the presidency of the United States on 20th of January this year and during these two weeks, he has caused what can fairly be stated as genuine havoc. Most notorious among these unfortunate events, depending on what media you have chosen to follow, must be the infamous [Muslim Ban][1]. Why yes, it's a ban, and frankly Obama administration had [entirely a different case][2] in their hands.
 

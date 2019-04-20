@@ -3,6 +3,7 @@ lang: en
 title: Squashing Software Defects with Eisenhower Matrix
 author: Niko Heikkilä
 type: post
+cover: trello.jpg
 date: 2017-12-05
 excerpt: If only Trump would come up with something as genious.
 categories:

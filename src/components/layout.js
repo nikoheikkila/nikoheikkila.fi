@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import banner from '../assets/banner.jpg'
+import Hero from './hero'
+import Banner from './banner'
 import Toggle from './toggle'
 import Footer from './footer'
 
@@ -21,51 +22,63 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { title, children } = this.props
+    const { title, children, cover = null } = this.props
     const { theme } = this.state
 
     const header = (
       <section className="banner">
-        <Link  to="/">
-          <img src={banner} alt={title} />
-        </Link>
-        <Toggle
-          icons={{
-            checked: (
-              <img
-                src={moon}
-                width="16"
-                height="16"
-                alt="checked"
-                style={{ pointerEvents: 'none' }}
-              />
-            ),
-            unchecked: (
-              <img
-                src={sun}
-                width="16"
-                height="16"
-                alt="unchecked"
-                style={{ pointerEvents: 'none' }}
-              />
-            ),
-          }}
-          checked={theme === 'dark'}
-          onChange={e =>
-            window.__setPreferredTheme(
-              e.target.checked ? 'dark' : 'light'
-            )
+        <Link to="/">
+          {/* <img src={banner} alt={title} /> */}
+          {cover
+            && <Hero data={cover} alt={title} />
+            || <Banner />
           }
-        />
+        </Link>
       </section>
     )
 
+    const toggle = (
+      <Toggle
+        icons={{
+          checked: (
+            <img
+              src={moon}
+              width="16"
+              height="16"
+              alt="checked"
+              style={{ pointerEvents: 'none' }}
+            />
+          ),
+          unchecked: (
+            <img
+              src={sun}
+              width="16"
+              height="16"
+              alt="unchecked"
+              style={{ pointerEvents: 'none' }}
+            />
+          ),
+        }}
+        checked={theme === 'dark'}
+        onChange={e =>
+          window.__setPreferredTheme(
+            e.target.checked ? 'dark' : 'light'
+          )
+        }
+      />
+    )
+
     return (
-      <div className="content">
+      <div className="container">
+        <section className="content">
         <header>{header}</header>
-          <main>{children}</main>
+          <main>
+            {toggle}
+            {children}
+          </main>
           <Footer />
-        </div>
+        </section>
+      </div>
     )
   }
 }

@@ -5,6 +5,7 @@ import Layout from '../components/layout'
 import Bio from '../components/bio'
 import SEO from '../components/seo'
 import { formatReadingTime } from '../utils/helpers'
+import banner from '../assets/banner.jpg'
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location} title={siteTitle}>
         <aside><Bio /></aside>
-        <SEO title="All Posts" />
+        <SEO title="All Posts" image={banner} />
 
         {posts
           .filter(({ node }) => node.frontmatter.type !== 'page')

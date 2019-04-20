@@ -28,6 +28,7 @@ class BlogPostTemplate extends React.Component {
     } = this.props
 
     const { author, date, lang, title, categories } = post.frontmatter
+    const { fluid: cover } = post.frontmatter.cover.childImageSharp
     const { slug } = post.fields
 
     const translateUrl = `
@@ -41,12 +42,13 @@ class BlogPostTemplate extends React.Component {
     )}`;
 
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location} title={siteTitle} cover={cover}>
         <SEO
           title={title}
           description={post.excerpt}
           lang={lang}
           keywords={post.categories}
+          image={cover.src}
         />
         <header>
           <h1 className="post-title">{title}</h1>
@@ -141,6 +143,15 @@ export const pageQuery = graphql`
         date(formatString: "DD.MM.YYYY")
         author
         categories
+        cover {
+          childImageSharp {
+            fluid(maxWidth: 960, quality: 100) {
+              ...GatsbyImageSharpFluid
+              presentationWidth
+              presentationHeight
+            }
+          }
+        }
       }
     }
   }
