@@ -53,11 +53,18 @@ pre[class*='language-'] ::selection {
 /* Inline code */
 :not(pre)>code[class*='language-'] {
   border-radius: 0.25em;
-  background: $inlineCodeBg;
-  color: $inlineCodeFg;
+  font-size: 0.9em;
+  color: $pink;
   padding: 0.25em 0.35em;
-  ;
-  white-space: normal;
+  white-space: pre-wrap;
+}
+
+:not(pre)>code[class*='language-']::before {
+  content: '`';
+}
+
+:not(pre)>code[class*='language-']::after {
+  content: '`';
 }
 
 .token.attr-name {
