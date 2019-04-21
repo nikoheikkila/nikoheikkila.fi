@@ -13,7 +13,6 @@
 
 html {
     overflow-x: hidden;
-    height: 100%;
 }
 
 body {
@@ -21,7 +20,6 @@ body {
     font-size: 1.0em;
     line-height: 2.0rem;
     overflow-x: hidden;
-    height: 100%;
     margin: 0;
 }
 
@@ -49,7 +47,6 @@ body.dark {
 }
 
 #content {
-    height: 100%;
     overflow: auto;
     max-width: $contentWidth;
     margin: 0 auto;
