@@ -42,20 +42,16 @@ class Layout extends React.Component {
         icons={{
           checked: (
             <img
+              className="toggle-icon"
               src={moon}
-              width="16"
-              height="16"
               alt="checked"
-              style={{ pointerEvents: 'none' }}
             />
           ),
           unchecked: (
             <img
+              className="toggle-icon"
               src={sun}
-              width="16"
-              height="16"
               alt="unchecked"
-              style={{ pointerEvents: 'none' }}
             />
           ),
         }}

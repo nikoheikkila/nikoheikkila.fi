@@ -69,15 +69,17 @@ class BlogPostTemplate extends React.Component {
 
         <article dangerouslySetInnerHTML={{ __html: post.html }} />
 
-        <p>
-          <a href={discussUrl} target="_blank" rel="noopener noreferrer">
-            Discuss on Twitter
-              </a>
-          {` • `}
-          <a href={editUrl} target="_blank" rel="noopener noreferrer">
-            Edit on GitHub
-              </a>
-        </p>
+        <section className="post-attachments">
+          <p>
+            <a href={discussUrl} target="_blank" rel="noopener noreferrer">
+              Discuss on Twitter
+                </a>
+            &bull;
+            <a href={editUrl} target="_blank" rel="noopener noreferrer">
+              Edit on GitHub
+                </a>
+          </p>
+        </section>
 
         <hr />
 
@@ -85,30 +87,24 @@ class BlogPostTemplate extends React.Component {
           <Bio />
         </aside>
 
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+        <section className="post-navigation">
+          <ul>
+            <li>
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </section>
 
       </Layout>
     )

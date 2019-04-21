@@ -103,3 +103,9 @@
 .react-toggle:active .react-toggle-thumb {
   box-shadow: 0px 0px 5px 5px rgb(255, 167, 196);
 }
+
+.toggle-icon {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
