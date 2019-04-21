@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: '.'
+    image: 'nikoheikkila/nikoheikkila.fi'
+    container_name: 'web-nginx'
+    restart: 'unless-stopped'
+    ports:
+      - '5000:80'
