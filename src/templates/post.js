@@ -6,9 +6,10 @@ import SEO from '../components/seo'
 import Bio from '../components/bio'
 import Translation from '../components/translation'
 
-import { formatCategories, formatReadingTime } from '../utils/helpers'
+import { isPage, formatCategories, formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
+
   render() {
     const {
       location,
@@ -27,7 +28,7 @@ class BlogPostTemplate extends React.Component {
       }
     } = this.props
 
-    const { author, date, lang, title, categories } = post.frontmatter
+    const { author, date, lang, title, type, categories } = post.frontmatter
     const { fluid: cover } = post.frontmatter.cover.childImageSharp
     const { slug } = post.fields
 
@@ -53,15 +54,18 @@ class BlogPostTemplate extends React.Component {
         <header>
           <h1 className="post-title">{title}</h1>
 
-          <p className="post-meta">
-            {author !== '' && <span>✏️ Conceived by {author} &bull; </span>}
-            {categories.length > 0 && <span>🗂 Filed under <strong>{formatCategories(categories)}</strong></span>}
-          </p>
+          {!isPage(type) && <section className="post-meta">
+            <p>
+              {author !== '' && <span>✏️ Conceived by {author} &bull; </span>}
+              {categories.length > 0 && <span>🗂 Filed under <strong>{formatCategories(categories)}</strong></span>}
+            </p>
 
-          <p className="post-meta">
-            <span>{date} &bull; </span>
-            {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
-          </p>
+            <p>
+              <span>{date} &bull; </span>
+              {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
+            </p>
+          </section>
+          }
 
         </header>
 
@@ -74,7 +78,7 @@ class BlogPostTemplate extends React.Component {
             <a href={discussUrl} target="_blank" rel="noopener noreferrer">
               Discuss on Twitter
                 </a>
-            &bull;
+            {' • '}
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Edit on GitHub
                 </a>
@@ -136,6 +140,7 @@ export const pageQuery = graphql`
       frontmatter {
         lang
         title
+        type
         date(formatString: "DD.MM.YYYY")
         author
         categories

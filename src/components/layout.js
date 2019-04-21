@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from 'gatsby';
+import { slide as Menu } from 'react-burger-menu'
+
 import Hero from './hero'
 import Banner from './banner'
 import Toggle from './toggle'
 import Footer from './footer'
+import Pages from './pages'
 
 import '../styles/main.scss'
 import sun from '../assets/sun.png'
@@ -18,7 +21,7 @@ class Layout extends React.Component {
     this.setState({ theme: window.__theme });
     window.__onThemeChange = () => {
       this.setState({ theme: window.__theme });
-    };
+    }
   }
 
   render() {
@@ -28,11 +31,10 @@ class Layout extends React.Component {
     const header = (
       <section className="banner">
         <Link to="/">
-          {/* <img src={banner} alt={title} /> */}
-          {cover
-            && <Hero data={cover} alt={title} />
-            || <Banner />
-          }
+        {cover
+          && <Hero data={cover} alt={title} />
+          || <Banner />
+        }
         </Link>
       </section>
     )
@@ -64,12 +66,28 @@ class Layout extends React.Component {
       />
     )
 
+    const links = [{
+      slug: '/',
+      title: 'Blog'
+    }]
+
+    const sideMenu = (
+      <Menu
+        className="site-menu"
+        pageWrapId="content"
+        outerContainerId="container"
+      >
+        <Pages links={links} />
+        {toggle}
+      </Menu>
+    )
+
     return (
-      <div className="container">
-        <section className="content">
-        <header>{header}</header>
+      <div id="container">
+        {sideMenu}
+        <section id="content">
+          <header>{header}</header>
           <main>
-            {toggle}
             {children}
           </main>
           <Footer />

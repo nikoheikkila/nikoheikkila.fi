@@ -11,10 +11,8 @@
   background-color: transparent;
   border: 0;
   padding: 0;
-  margin: 10px;
-  float: right;
+  margin-left: 2.4rem;
 
-  -webkit-touch-callout: none;
   user-select: none;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -37,7 +35,7 @@
   height: 24px;
   padding: 0;
   border-radius: 30px;
-  background-color: hsl(222, 14%, 7%);
+  background-color: #1e1e1e;
   transition: all 0.2s ease;
 }
 

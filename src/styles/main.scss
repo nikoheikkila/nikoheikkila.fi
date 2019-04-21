@@ -1,6 +1,7 @@
 @import "variables";
 @import "fonts";
 @import "syntax";
+@import "menu";
 
 @mixin hr($color, $width) {
     hr {
@@ -10,10 +11,18 @@
     }
 }
 
+html {
+    overflow-x: hidden;
+    height: 100%;
+}
+
 body {
     @include bodyFont();
     font-size: 1.0em;
     line-height: 2.0rem;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
 }
 
 /* Light theme */
@@ -39,16 +48,14 @@ body.dark {
     }
 }
 
-.container {
+#content {
+    height: 100%;
+    overflow: auto;
+    max-width: $contentWidth;
+    margin: 0 auto;
 
-    .content {
-        margin: 0 auto;
-        max-width: $contentWidth;
-
-        main {
-            padding: 20px 15px;
-        }
-
+    main {
+        padding: 1.5em 1.0em;
     }
 }
 
