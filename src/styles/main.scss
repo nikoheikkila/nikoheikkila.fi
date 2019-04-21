@@ -141,6 +141,18 @@ article {
     }
 }
 
+.post-navigation {
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+    }
+
+}
+
 footer {
     div {
         display: inline;
@@ -171,11 +183,21 @@ footer {
         font-size: 1.5rem;
         line-height: 1.75rem;
     }
+
+    code,  pre {
+        font-size: 0.7em;
+        line-height: 1.25rem;
+    }
 }
 
 @media screen and (max-width: $query-medium) {
     .post-title {
         font-size: 2.0rem;
         line-height: 2.25rem;
+    }
+
+    code,  pre {
+        font-size: 0.9em;
+        line-height: 1.5rem;
     }
 }
