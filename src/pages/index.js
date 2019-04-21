@@ -19,7 +19,6 @@ class BlogIndex extends React.Component {
         <SEO title="All Posts" image={banner} />
 
         {posts
-          .filter(({ node }) => node.frontmatter.type !== 'page')
           .map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
 
@@ -58,7 +57,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { type: { ne: "page" } } }
+      ) {
       edges {
         node {
           timeToRead

@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
-window.__onThemeChange = function () { }
-
 let preferredTheme = null
+
+window.__onThemeChange = function () { }
 
 const setTheme = newTheme => {
     window.__theme = newTheme

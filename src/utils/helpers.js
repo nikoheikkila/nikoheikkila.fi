@@ -22,3 +22,5 @@ export const formatCategories = (categories, limit = 3) => {
         .map(c => `#${c.toLowerCase()}`)
         .join(`, `)
 }
+
+export const isPage = type => type === 'page'

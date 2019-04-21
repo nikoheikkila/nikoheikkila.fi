@@ -65,7 +65,7 @@ For other content creators, a publishing frontend is required. That's another to
 
 I left my old site's styles pretty intact but did little tweaks here and there. Gatsby templates usually ship with a so-called _CSS-in-JS_ approach where you declare your styles by passing a `style` attribute (object) to a React component. As a fan of separating presentation from logic, I preferred compiling styles from SCSS with Webpack instead.
 
-Most notable customization is the fabled **Dark Mode**. Go and click the toggle button with sun and moon icons above this post, then leave the site, and come back. You will be welcomed again with a nice darker theme easier for the eyes and it gets saved to your browser's local storage. Kudos for this feature goes to [**Dan Abramov's** blog][overreacted] where I ported the functionality from.
+Most notable customization is the fabled **Dark Mode**. Go and click the toggle button with sun and moon icons behind the _hamburger menu_, then leave the site, and come back. You will be welcomed again with a nice darker theme easier for the eyes and it gets saved to your browser's local storage. Kudos for this feature goes to [**Dan Abramov's** blog][overreacted] where I ported the functionality from.
 
 Another new addition is the post footer featuring links to Twitter discussions and GitHub edits. Since this blog is now fully open-sourced from back to front each post can be edited by readers. All it takes is to click a link, fork the repository, and submit a pull request. Contributions are welcome for other things than posts as well. I must admit not being the most proficient front-end developer, therefore any fixes regarding UI or UX are greatly appreciated.
 
