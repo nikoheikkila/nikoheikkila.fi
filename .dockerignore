@@ -1,0 +1,11 @@
+.git/
+node_modules/
+public/
+.cache/
+.vscode/
+drafts/
+
+.gitignore
+.nowignore
+.travis.yml
+now.json
