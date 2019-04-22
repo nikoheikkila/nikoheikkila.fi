@@ -9,8 +9,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import SchemaOrg from './schema'
 
-function SEO({ description, lang, meta, keywords, title, image }) {
+function SEO({
+  description,
+  lang,
+  meta,
+  keywords,
+  title,
+  image,
+  type,
+  url,
+  datePublished,
+  dateModified,
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -18,6 +30,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
           siteMetadata {
             title
             description
+            siteUrl
             author {
               name
               twitter
@@ -29,8 +42,10 @@ function SEO({ description, lang, meta, keywords, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const imageURL = `${site.siteMetadata.siteUrl}${image}`
 
   return (
+    <>
     <Helmet
       htmlAttributes={{
         lang,
@@ -52,11 +67,15 @@ function SEO({ description, lang, meta, keywords, title, image }) {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: type === `page` ? `website` : `article`
         },
         {
           name: `og:image`,
-          content: image
+          content: imageURL
+        },
+        {
+          name: `og:image:alt`,
+          content: title
         },
         {
           name: `twitter:card`,
@@ -76,7 +95,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
         },
         {
           name: `twitter:image`,
-          content: image
+          content: imageURL
         },
         {
           name: `twitter:image:alt`,
@@ -86,13 +105,27 @@ function SEO({ description, lang, meta, keywords, title, image }) {
         .concat(
           keywords.length > 0
             ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
+              name: `keywords`,
+              content: keywords.join(`, `),
+            }
             : []
         )
         .concat(meta)}
     />
+    <SchemaOrg
+        isBlogPost={type === `post`}
+        url={url || site.siteMetadata.siteUrl}
+        title={title}
+        image={imageURL}
+        description={metaDescription}
+        datePublished={datePublished}
+        dateModified={dateModified || datePublished}
+        defaultTitle={site.siteMetadata.title}
+        author={site.siteMetadata.author.name}
+        canonicalUrl={site.siteMetadata.siteUrl}
+        organization={site.siteMetadata.title}
+    />
+    </>
   )
 }
 
@@ -101,7 +134,11 @@ SEO.defaultProps = {
   meta: [],
   keywords: [],
   description: ``,
-  image: ``
+  image: ``,
+  type: `page`,
+  url: ``,
+  datePublished: ``,
+  dateModified: ``
 }
 
 SEO.propTypes = {
@@ -110,7 +147,11 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
-  image: PropTypes.string
+  datePublished: PropTypes.string,
+  dateModified: PropTypes.string,
+  url: PropTypes.string,
+  image: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default SEO

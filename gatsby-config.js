@@ -8,25 +8,25 @@ module.exports = {
     description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
     social: [{
-        name: `dev`,
-        url: `https://dev.to/nikoheikkila`
-      },
-      {
-        name: `twitter`,
-        url: `https://twitter.com/nikoheikkila`
-      },
-      {
-        name: `mastodon`,
-        url: `https://mastodon.technology/@nikoheikkila`
-      },
-      {
-        name: `github`,
-        url: `https://github.com/nikoheikkila`
-      },
-      {
-        name: `linkedin`,
-        url: `https://www.linkedin.com/in/nikoheikkila`
-      }
+      name: `dev`,
+      url: `https://dev.to/nikoheikkila`
+    },
+    {
+      name: `twitter`,
+      url: `https://twitter.com/nikoheikkila`
+    },
+    {
+      name: `mastodon`,
+      url: `https://mastodon.technology/@nikoheikkila`
+    },
+    {
+      name: `github`,
+      url: `https://github.com/nikoheikkila`
+    },
+    {
+      name: `linkedin`,
+      url: `https://www.linkedin.com/in/nikoheikkila`
+    }
     ],
     repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
     rss: `/rss.xml`
@@ -96,10 +96,13 @@ module.exports = {
             allMarkdownRemark
           }
         }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
+          language: edge.node.frontmatter.lang,
+          title: edge.node.frontmatter.title,
           description: edge.node.excerpt,
           date: edge.node.frontmatter.date,
           url: site.siteMetadata.siteUrl + edge.node.fields.slug,
           guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+          author: edge.node.frontmatter.author,
           custom_elements: [{
             'content:encoded': edge.node.html
           }]
@@ -109,7 +112,7 @@ module.exports = {
               allMarkdownRemark(
                 limit: 1000,
                 sort: { order: DESC, fields: [frontmatter___date] },
-                filter: {frontmatter: { draft: { ne: true } }}
+                filter: { frontmatter: { type: { ne: "page" } } }
               ) {
                 edges {
                   node {
@@ -117,8 +120,10 @@ module.exports = {
                     html
                     fields { slug }
                     frontmatter {
-                      title
+                      author
                       date
+                      lang
+                      title
                     }
                   }
                 }
@@ -126,8 +131,8 @@ module.exports = {
             }
           `,
         output: `/rss.xml`,
-        title: `RSS Feed`,
-      }, ],
+        title: `RSS Feed | Niko Heikkilä`,
+      },],
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -140,6 +145,13 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/static/favicon.png`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }],
+        output: `/robots.txt`
+      }
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,

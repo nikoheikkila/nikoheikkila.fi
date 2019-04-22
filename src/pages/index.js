@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import dayjs from 'dayjs'
 
 import Layout from '../components/layout'
 import Bio from '../components/bio'
@@ -21,6 +22,7 @@ class BlogIndex extends React.Component {
         {posts
           .map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
+            const date = dayjs(node.frontmatter.date).format('MMMM D, YYYY')
 
             return (
               <div key={node.fields.slug} className="post-content">
@@ -30,7 +32,7 @@ class BlogIndex extends React.Component {
                   </Link>
                 </h2>
                 <p className="post-meta">
-                  {node.frontmatter.date} &bull;
+                  {date} &bull;
                   {' '}{formatReadingTime(node.timeToRead)}
                 </p>
                 <article className="post-spoiler"
@@ -70,7 +72,7 @@ export const pageQuery = graphql`
           frontmatter {
             type
             excerpt
-            date(formatString: "DD.MM.YYYY")
+            date(formatString: "YYYY-MM-DD")
             title
             categories
           }

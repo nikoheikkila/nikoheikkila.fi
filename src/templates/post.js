@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import dayjs from 'dayjs'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -31,25 +32,30 @@ class BlogPostTemplate extends React.Component {
     const { author, date, lang, title, type, categories } = post.frontmatter
     const { fluid: cover } = post.frontmatter.cover.childImageSharp
     const { slug } = post.fields
+    const postUrl = `${siteUrl}${slug}`
+    const datePublished = dayjs(date || null).format('MMMM D, YYYY')
 
     const translateUrl = `
     https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(
-      `${siteUrl}${slug}`
+      postUrl
     )}
     `
     const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}/index.md`
     const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
-      `${siteUrl}${slug}`
+      postUrl
     )}`;
 
     return (
       <Layout location={location} title={siteTitle} cover={cover}>
         <SEO
-          title={title}
           description={post.excerpt}
           lang={lang}
           keywords={post.categories}
+          title={title}
           image={cover.src}
+          type={type}
+          url={postUrl}
+          datePublished={date || dayjs().format('YYYY-MM-DD')}
         />
         <header>
           <h1 className="post-title">{title}</h1>
@@ -61,7 +67,7 @@ class BlogPostTemplate extends React.Component {
             </p>
 
             <p>
-              <span>{date} &bull; </span>
+              <span>{datePublished} &bull; </span>
               {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
             </p>
           </section>
@@ -141,7 +147,7 @@ export const pageQuery = graphql`
         lang
         title
         type
-        date(formatString: "DD.MM.YYYY")
+        date(formatString: "YYYY-MM-DD")
         author
         categories
         cover {
