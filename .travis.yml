@@ -5,8 +5,7 @@ os:
   - osx
 
 node_js:
-  - "node"
-  - "lts/*"
+  - "11"
 
 before_install:
   - npm install -g yarn@latest
