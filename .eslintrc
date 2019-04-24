@@ -4,11 +4,11 @@
     ],
     "rules": {
         "no-undef": "off",
-        "no-console": 2,
+        "no-console": 0,
         "prettier/prettier": {
             "endOfLine": "lf",
             "semi": false,
-            "singleQuote": false,
+            "singleQuote": true,
             "tabWidth": 2,
             "trailingComma": "es5",
             "printWidth": 120
