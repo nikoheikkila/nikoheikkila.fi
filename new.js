@@ -6,6 +6,8 @@ const dayjs = require('dayjs')
 const yaml = require('node-yaml')
 const chalk = require('chalk')
 
+const { siteMetadata } = require('./gatsby-config')
+
 const log = msg => console.log(msg)
 const success = msg => log(chalk.bold.green(msg))
 const error = msg => log(chalk.bold.red(msg))
@@ -13,8 +15,8 @@ const error = msg => log(chalk.bold.red(msg))
 const newPost = async () => {
   /* Sane defaults I almost never modify */
   const defaults = {
-    lang: 'en',
-    author: 'Niko Heikkilä',
+    lang: siteMetadata.language,
+    author: siteMetadata.author.name,
     date: dayjs().format('YYYY-MM-DD'),
     cover: 'cover.png'
   }
