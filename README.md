@@ -21,3 +21,8 @@ yarn dev
 
 …and follow instructions from there. Check `package.json` or type
 `gatsby --help` for other commands.
+
+## Writing
+
+To quickly bootstrap a new post or page draft use the CLI tool `new.js`
+at project root either via `yarn new` or invoking directly.
