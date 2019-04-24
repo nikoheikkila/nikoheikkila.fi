@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    language: `en`,
     title: `Niko Heikkilä`,
     author: {
       name: `Niko Heikkilä`,
