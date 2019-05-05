@@ -1,3 +1,5 @@
+import slugify from '@sindresorhus/slugify'
+
 export const formatReadingTime = minutes => {
     const cups = Math.round(minutes / 5)
     if (cups > 5) {
@@ -11,15 +13,14 @@ export const formatReadingTime = minutes => {
         .join('')} ${minutes} min read`
 }
 
-export const formatCategories = (categories, limit = 3) => {
+export const formatCategories = (categories, limit = 4) => {
     if (!categories) {
         return ''
     }
 
     return categories
         .slice(0, limit)
-        .map(c => c.replace(/\s/g, ''))
-        .map(c => `#${c.toLowerCase()}`)
+        .map(c => slugify(c, { decamelize: false, separator: ' ' }))
         .join(`, `)
 }
 
