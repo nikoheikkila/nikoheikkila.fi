@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "cypress": "^3.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.2.0",
@@ -54,9 +55,11 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "gatsby-cypress": "^0.1.9",
     "husky": "^2.2.0",
     "pa11y-ci": "^2.2.0",
-    "prettier": "^1.17.0"
+    "prettier": "^1.17.0",
+    "start-server-and-test": "^1.9.0"
   },
   "keywords": [
     "gatsby"
@@ -68,9 +71,14 @@
     "dev": "gatsby develop",
     "format": "eslint --fix .",
     "lint": "eslint .",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test:a11y": "pa11y-ci -s http://localhost:9000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:9000",
+    "start": "yarn dev",
+    "serve": "gatsby serve -p 8000",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "pa11y": "pa11y-ci -s http://localhost:8000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:8000",
+    "test:a11y": "start-server-and-test serve http://localhost:8000 pa11y",
+    "test:dev": "start-server-and-test dev http://localhost:8000 cy:open",
+    "test:e2e": "start-server-and-test serve http://localhost:8000 cy:run",
     "now-build": "yarn build",
     "now-dev": "yarn dev"
   },
