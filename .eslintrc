@@ -14,6 +14,8 @@
             "printWidth": 120
         },
         "react/prop-types": "off",
-        "react/no-danger": "off"
+        "react/no-danger": "off",
+        "import/no-extraneous-dependencies": "off",
+        "spaced-comment": "off"
     }
 }

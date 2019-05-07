@@ -173,6 +173,7 @@ export default class Toggle extends PureComponent {
 
             return (
             <div
+                id="theme-switcher"
                 role="button"
                 tabIndex="0"
                 className={classes}

@@ -5,7 +5,7 @@ os:
   - osx
 
 node_js:
-  - "11"
+  - "12"
 
 before_install:
   - npm install -g yarn@latest
@@ -13,9 +13,6 @@ before_install:
 install:
   - yarn --frozen-lockfile --prefer-offline
   - yarn build
-
-before_script:
-  - yarn serve &
 
 script:
   - yarn lint
