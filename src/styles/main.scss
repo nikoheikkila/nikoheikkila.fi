@@ -178,6 +178,13 @@ footer {
     }
 }
 
+video {
+    display: flex;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
 @media screen and (max-width: $query-small) {
     .bio {
         display: block;
