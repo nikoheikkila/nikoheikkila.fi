@@ -85,7 +85,9 @@ Speaking of debugging your code, it's possible with Bash although I've never fou
 
 Let's imagine you have written a fairly complex Bash script spanning over tens or – in the worst case – hundreds of lines. It now needs to be refactored for one reason or another. This is an excellent position to drop the Bash!
 
-![Drop the Bash](https://media.giphy.com/media/77XwMyXIgUuVW/giphy.gif)
+<video autoplay loop>
+  <source src="https://media.giphy.com/media/77XwMyXIgUuVW/giphy.mp4" type="video/mp4">
+</video>
 
 First, make a note of what is the main language of your codebase. If it's PHP, Python, or Javascript you are in luck. I'm not too familiar with Go or Rust but I've seen and used some great command-line tools written with them so I shall say you're in luck with those as well.
 
