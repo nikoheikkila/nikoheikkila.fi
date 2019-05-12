@@ -21,6 +21,7 @@ html {
 body {
     overflow-x: hidden;
     margin: 0;
+    transition: $themeTransition;
 }
 
 h1, h2, h3, h4 {
