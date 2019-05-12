@@ -65,4 +65,14 @@ context('Homepage', () => {
         })
     })
 
+    it('should define a robots.txt file', () => {
+        cy.request('/robots.txt').then(response => {
+            expect(response.status).to.equal(200)
+            expect(response.body).to.match(/User-agent: \*/)
+            expect(response.body).to.match(/Allow: \//)
+            expect(response.body).to.match(/Sitemap: (.*)/)
+            expect(response.body).to.match(/Host: (.*)/)
+        })
+    })
+
 })
