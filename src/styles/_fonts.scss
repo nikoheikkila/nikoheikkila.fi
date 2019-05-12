@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Arvo|Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Arvo:700|Merriweather+Sans:300,300i,700,700i&subset=latin-ext');
 
 @mixin bodyFont() {
-    font-family: 'Merriweather', 'Helvetica', serif;
-    font-weight: 400;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 300;
 }
 
 @mixin headingFont() {
-    font-family: 'Arvo', sans-serif;
-    font-weight: 900;
+    font-family: 'Arvo', serif;
+    font-weight: 700;
 }
 
 @mixin codeFont {
-    font-family: 'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono','Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
-    font-weight: 400;
+    font-family: 'Dank Mono', 'Fira Code', 'Monaco', monospace, serif;
     font-feature-settings: normal;
     font-variant-ligatures: additional-ligatures;
     text-align: left;

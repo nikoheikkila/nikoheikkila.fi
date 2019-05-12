@@ -1,24 +1,28 @@
 @import "fonts";
 
+$tabSize: 4;
+$hyphens: none;
+
 /**
  * Based on copypasta from Remy Bach and Sarah Drasner
  */
 code[class*='language-'],
 pre[class*='language-'] {
   @include codeFont();
+
   color: white;
   background: none;
 
   margin-bottom: 0;
 
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
+  -moz-tab-size: $tabSize;
+  -o-tab-size: $tabSize;
+  tab-size: $tabSize;
 
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+  -webkit-hyphens: $hyphens;
+  -moz-hyphens: $hyphens;
+  -ms-hyphens: $hyphens;
+  hyphens: $hyphens;
 }
 
 /* Code blocks */
@@ -53,7 +57,6 @@ pre[class*='language-'] ::selection {
 /* Inline code */
 :not(pre)>code[class*='language-'] {
   border-radius: 0.25em;
-  font-size: 0.9em;
   color: $inlineCodeFg;
   padding: 0.25em 0.35em;
   white-space: pre-wrap;
