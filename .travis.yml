@@ -10,9 +10,6 @@ node_js:
 addons:
   chrome: stable
 
-before_install:
-  - npm install -g yarn@latest
-
 install:
   - yarn --frozen-lockfile --prefer-offline
   - yarn build
