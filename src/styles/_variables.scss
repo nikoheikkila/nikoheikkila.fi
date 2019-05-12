@@ -9,9 +9,11 @@ $lightFg: #222;
 $darkBg: #1E1E1E;
 $darkFg: #D0D0D0;
 
-$inlineCodeFg: #931d3e;
+$inlineCodeFg: #bd10e0;
 
-$contentWidth: 960px;
+$contentWidth: 75vw;
+$contentMaxWidth: 960px;
+$baseFontSize: 20px;
 
-$query-small: 320px;
+$query-small: 480px;
 $query-medium: 720px;

@@ -46,7 +46,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu {
     background: #0f0f0f;
     padding: 10px 0;
-    font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -63,9 +62,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
         list-style: none;
 
         li {
-            @include headingFont();
-            font-size: 1.4rem;
-            line-height: 2.5rem;
+            font-size: 1.3125rem;
+            font-weight: 700;
+            padding: 5px 0;
+
+            a {
+                opacity: 0.8;
+            }
+
+            a:hover {
+                opacity: 1.0
+            }
         }
     }
 }
@@ -78,11 +85,4 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 1.0);
-}
-
-@media screen and (max-width: $query-medium) {
-    .bm-burger-button {
-        left: auto;
-        right: 24px;
-    }
 }

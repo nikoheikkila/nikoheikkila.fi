@@ -12,15 +12,29 @@
 }
 
 html {
+    @include bodyFont();
+    line-height: 35px;
+    font-size: $baseFontSize;
     overflow-x: hidden;
 }
 
 body {
-    @include bodyFont();
-    font-size: 1.0em;
-    line-height: 2.0rem;
     overflow-x: hidden;
     margin: 0;
+}
+
+h1, h2, h3, h4 {
+    @include headingFont();
+}
+
+h1 { font-size: 2.75rem; line-height: 3.5rem; }
+h2 { font-size: 2.25rem; line-height: 3.0rem; }
+h3 { font-size: 1.75rem; line-height: 2.5rem; }
+h4 { font-size: 1.25rem; line-height: 2.0rem; }
+
+a {
+    font-weight: 400;
+    text-decoration: none;
 }
 
 /* Light theme */
@@ -48,27 +62,16 @@ body.dark {
 
 #content {
     overflow: auto;
-    max-width: $contentWidth;
+    width: $contentWidth;
+    max-width: $contentMaxWidth;
     margin: 0 auto;
 
     main {
-        padding: 1.5em 1.0em;
+        padding: 0 1.5em;
     }
-}
-
-
-a {
-    text-decoration: none;
-    box-shadow: none;
 }
 
 article {
-    font-size: 1.3125rem;
-
-    h2, h3, h4 {
-        @include headingFont();
-    }
-
     img {
         display: block;
         max-width: 100%;
@@ -107,17 +110,10 @@ article {
 
 .post-title {
     @include headingFont();
-    font-size: 2.5rem;
-    line-height: 3.0rem;
-    margin: 5px 0;
 }
 
 .post-meta {
     margin: 5px 0;
-}
-
-.post-content {
-    margin-bottom: 65px;
 }
 
 .bio {
@@ -146,7 +142,6 @@ article {
 }
 
 .post-navigation {
-
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -154,10 +149,11 @@ article {
         list-style: none;
         padding: 0;
     }
-
 }
 
 footer {
+    padding-bottom: 60px;
+
     div {
         display: inline;
     }
@@ -186,29 +182,21 @@ video {
 }
 
 @media screen and (max-width: $query-small) {
+    html {
+        font-size: calc(#{$baseFontSize} + (24 - 16) * (100vw - 400px) / (800 - 400));
+    }
+
+    #content {
+        width: 100% !important;
+    }
+
     .bio {
         display: block;
-    }
-
-    .post-title {
-        font-size: 1.5rem;
-        line-height: 1.75rem;
-    }
-
-    code,  pre {
-        font-size: 0.7em;
-        line-height: 1.25rem;
     }
 }
 
 @media screen and (max-width: $query-medium) {
-    .post-title {
-        font-size: 2.0rem;
-        line-height: 2.25rem;
-    }
-
-    code,  pre {
-        font-size: 0.9em;
-        line-height: 1.5rem;
+    #content {
+        width: calc(#{$contentWidth} + 15vw);
     }
 }
