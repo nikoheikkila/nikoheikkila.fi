@@ -74,7 +74,7 @@
     "start": "yarn dev",
     "serve": "gatsby serve -p 8000",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --browser chrome",
     "pa11y": "pa11y-ci -s http://localhost:8000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:8000",
     "test:a11y": "start-server-and-test serve http://localhost:8000 pa11y",
     "test:dev": "start-server-and-test dev http://localhost:8000 cy:open",

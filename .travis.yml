@@ -7,6 +7,9 @@ os:
 node_js:
   - "12"
 
+addons:
+  chrome: stable
+
 before_install:
   - npm install -g yarn@latest
 
@@ -16,6 +19,7 @@ install:
 
 script:
   - yarn lint
+  - yarn test:e2e
   - yarn test:a11y
 
 cache: yarn
