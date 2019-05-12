@@ -19,4 +19,7 @@ script:
   - yarn test:e2e
   - yarn test:a11y
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - ~/.cache
