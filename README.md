@@ -3,6 +3,9 @@
 My personal blog. Forked from Gatsby Blog Starter template and inspired here
 and there by Dan Abramov's blog.
 
+[![Build Status](https://travis-ci.com/nikoheikkila/nikoheikkila.fi.svg?branch=master)](https://travis-ci.com/nikoheikkila/nikoheikkila.fi)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nikoheikkila/nikoheikkila.fi&amp;utm_campaign=Badge_Grade)
+
 ## Contributing
 
 Content can be found under `src/pages`. Edit posts as needed and submit a PR
@@ -33,6 +36,18 @@ now dev
 This will download and execute a Now builder running the `gatsby develop` command. Be warned that this is a new feature with Now and might not work as expected. In case you encounter any problems, revert to option #1.
 
 Finally, open <http://localhost:8000> to view the blog.
+
+## Testing
+
+Project is packaged with ESLint code style tests, Cypress automated tests, and Pa11y accessibility tests. They can be ran respectively like so:
+
+```bash
+yarn lint
+yarn test:dev
+yarn test:a11y
+```
+
+All of the above are also run in Travis CI pipelines for commits and PRs.
 
 ## Writing
 
