@@ -21,27 +21,27 @@
             "src": "/static/(.*)",
             "dest": "/static/$1",
             "headers": {
-                "cache-control": "public, max-age=31536000, immutable"
+                "cache-control": "public, s-maxage=31536000, max-age=0"
             }
         },
         {
             "src": "/(.*[^sw]\\.(js|json|css|ico|jpg|png)$)",
             "dest": "/$1",
             "headers": {
-                "cache-control": "public, max-age=31536000, immutable"
+                "cache-control": "public, s-maxage=31536000, max-age=0"
             }
         },
         {
             "src": "/sw.js",
             "headers": {
-                "cache-control": "public, max-age=0, must-revalidate"
+                "cache-control": "public, s-maxage=0, max-age=0, must-revalidate"
             }
         },
         {
             "src": "/(.*)",
             "dest": "/$1",
             "headers": {
-                "cache-control": "s-maxage=1, stale-while-revalidate"
+                "cache-control": "public, s-maxage=1, max-age=0, stale-while-revalidate"
             }
         }
     ]
