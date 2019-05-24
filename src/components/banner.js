@@ -6,10 +6,11 @@ const Banner = () => (
   <StaticQuery
     query={graphql`
       query {
-        placeholderImage: file(relativePath: { eq: "banner.jpg" }) {
+        placeholderImage: file(relativePath: { eq: "banner.png" }) {
+          publicURL
           childImageSharp {
-            fluid(maxHeight: 250, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fluid(quality: 100) {
+              ...GatsbyImageSharpFluid_noBase64
               presentationHeight
             }
           }

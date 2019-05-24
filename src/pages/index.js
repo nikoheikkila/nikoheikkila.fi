@@ -6,7 +6,7 @@ import Layout from '../components/layout'
 import Bio from '../components/bio'
 import SEO from '../components/seo'
 import { formatReadingTime } from '../utils/helpers'
-import banner from '../assets/banner.jpg'
+import banner from '../assets/banner.png'
 
 class BlogIndex extends React.Component {
   render() {

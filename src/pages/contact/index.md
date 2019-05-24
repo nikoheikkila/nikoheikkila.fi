@@ -1,7 +1,7 @@
 ---
 lang: en
 type: page
-cover: '../../assets/banner.jpg'
+cover: '../../assets/banner.png'
 title: Get In Touch
 ---
 
