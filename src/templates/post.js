@@ -5,45 +5,36 @@ import dayjs from 'dayjs'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Bio from '../components/bio'
+import Tag from '../components/tag'
 import Translation from '../components/translation'
 
-import { isPage, formatCategories, formatReadingTime } from '../utils/helpers'
+import { isPage, formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
-
   render() {
     const {
       location,
       data: {
         markdownRemark: post,
         site: {
-          siteMetadata: {
-            siteUrl,
-            repository,
-            title: siteTitle
-          }
+          siteMetadata: { siteUrl, repository, title: siteTitle }
         }
       },
-      pageContext: {
-        previous, next
-      }
+      pageContext: { previous, next }
     } = this.props
 
-    const { author, date, lang, title, type, categories } = post.frontmatter
+    const { author, date, lang, title, type } = post.frontmatter
     const { fluid: cover } = post.frontmatter.cover.childImageSharp
     const { slug } = post.fields
     const postUrl = `${siteUrl}${slug}`
     const datePublished = dayjs(date || null).format('MMMM D, YYYY')
+    const categories = post.frontmatter.categories || []
 
     const translateUrl = `
-    https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(
-      postUrl
-    )}
+    https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}
     `
     const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}/index.md`
-    const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(
-      postUrl
-    )}`;
+    const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(postUrl)}`
 
     return (
       <Layout location={location} title={siteTitle} cover={cover}>
@@ -60,34 +51,38 @@ class BlogPostTemplate extends React.Component {
         <header>
           <h1 className="post-title">{title}</h1>
 
-          {!isPage(type) && <section className="post-meta">
-            <p>
-              {author !== '' && <span>✏️ Conceived by {author} &bull; </span>}
-              {categories.length > 0 && <span>🗂 Filed under <strong>{formatCategories(categories)}</strong></span>}
-            </p>
-
-            <p>
-              <span>{datePublished} &bull; </span>
-              {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
-            </p>
-          </section>
-          }
-
+          {!isPage(type) && (
+            <section className="post-meta">
+              <p>
+                <span>✏️ Conceived by {author} &bull; </span>
+                <span>{datePublished} &bull; </span>
+                {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
+              </p>
+            </section>
+          )}
         </header>
 
         {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
 
         <article dangerouslySetInnerHTML={{ __html: post.html }} />
 
+        <section className="post-footer">
+          <p>
+            {categories.map(c => (
+              <Tag title={c} />
+            ))}
+          </p>
+        </section>
+
         <section className="post-attachments">
           <p>
             <a href={discussUrl} target="_blank" rel="noopener noreferrer">
               Discuss on Twitter
-                </a>
+            </a>
             {' • '}
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Edit on GitHub
-                </a>
+            </a>
           </p>
         </section>
 
@@ -115,7 +110,6 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </section>
-
       </Layout>
     )
   }
