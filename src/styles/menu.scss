@@ -66,12 +66,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
             font-weight: 700;
             padding: 5px 0;
 
-            a {
-                opacity: 0.8;
-            }
-
             a:hover {
-                opacity: 1.0
+                cursor: crosshair;
             }
         }
     }

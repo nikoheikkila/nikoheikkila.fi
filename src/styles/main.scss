@@ -24,15 +24,29 @@ body {
     transition: $themeTransition;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     @include headingFont();
     line-height: calc(#{$baseFontSize} + 50%);
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-h4 { font-size: 1.0rem; }
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1.0rem;
+}
 
 a {
     font-weight: 400;
@@ -69,7 +83,7 @@ body.dark {
     margin: 0 auto;
 
     main {
-        padding: 0 1.5em;
+        padding: 20px 1.5em 60px 1.5em;
     }
 }
 
@@ -101,7 +115,6 @@ article {
 }
 
 .banner {
-    padding-bottom: 30px;
     margin: 0 auto;
 
     img {
@@ -110,11 +123,17 @@ article {
     }
 }
 
+.post-content {
+    margin-bottom: 60px;
+}
+
 .post-title {
     @include headingFont();
+    margin: 0;
 }
 
 .post-meta {
+    font-size: 0.75rem;
     margin: 5px 0;
 }
 
@@ -154,7 +173,7 @@ article {
 }
 
 footer {
-    padding-bottom: 60px;
+    bottom: 0;
 
     div {
         display: inline;
