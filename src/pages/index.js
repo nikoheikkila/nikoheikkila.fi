@@ -44,7 +44,6 @@ class BlogIndex extends React.Component {
             )
           })
         }
-        <aside><Bio /></aside>
       </Layout>
     )
   }
