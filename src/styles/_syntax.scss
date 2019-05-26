@@ -79,6 +79,7 @@ pre[class*='language-'] ::selection {
 
 .token.comment {
   color: rgb(128, 147, 147);
+  font-style: italic;
 }
 
 .token.string,
@@ -99,6 +100,7 @@ pre[class*='language-'] ::selection {
 .token.constant,
 .token.function {
   color: rgb(130, 170, 255);
+  font-style: italic;
 }
 
 .token.punctuation {
@@ -108,7 +110,7 @@ pre[class*='language-'] ::selection {
 .token.selector,
 .token.doctype {
   color: rgb(199, 146, 234);
-  font-style: 'italic';
+  font-style: italic;
 }
 
 .token.class-name {
@@ -123,6 +125,7 @@ pre[class*='language-'] ::selection {
 
 .token.boolean {
   color: rgb(255, 88, 116);
+  font-style: italic;
 }
 
 .token.property {
