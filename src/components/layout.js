@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby';
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
 import { slide as Menu } from 'react-burger-menu'
 
 import Hero from './hero'
@@ -18,65 +19,42 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ theme: window.__theme });
+    this.setState({ theme: window.__theme })
     window.__onThemeChange = () => {
-      this.setState({ theme: window.__theme });
+      this.setState({ theme: window.__theme })
     }
   }
 
   render() {
-    const { title, children, cover = null } = this.props
+    const { title, children, cover } = this.props
     const { theme } = this.state
 
     const header = (
       <section className="banner">
-        <Link to="/">
-        {cover
-          && <Hero data={cover} alt={title} />
-          || <Banner />
-        }
-        </Link>
+        <Link to="/">{(cover && <Hero data={cover} alt={title} />) || <Banner />}</Link>
       </section>
     )
 
     const toggle = (
       <Toggle
         icons={{
-          checked: (
-            <img
-              className="toggle-icon"
-              src={moon}
-              alt="checked"
-            />
-          ),
-          unchecked: (
-            <img
-              className="toggle-icon"
-              src={sun}
-              alt="unchecked"
-            />
-          ),
+          checked: <img className="toggle-icon" src={moon} alt="checked" />,
+          unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />
         }}
         checked={theme === 'dark'}
-        onChange={e =>
-          window.__setPreferredTheme(
-            e.target.checked ? 'dark' : 'light'
-          )
-        }
+        onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
       />
     )
 
-    const links = [{
-      slug: '/',
-      title: 'Blog'
-    }]
+    const links = [
+      {
+        slug: '/',
+        title: 'Blog'
+      }
+    ]
 
     const sideMenu = (
-      <Menu
-        className="site-menu"
-        pageWrapId="content"
-        outerContainerId="container"
-      >
+      <Menu className="site-menu" pageWrapId="content" outerContainerId="container">
         <Pages links={links} />
         {toggle}
       </Menu>
@@ -87,14 +65,22 @@ class Layout extends React.Component {
         {sideMenu}
         <section id="content">
           <header>{header}</header>
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
           <Footer />
         </section>
       </div>
     )
   }
+}
+
+Layout.defaultProps = {
+  cover: null
+}
+
+Layout.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  cover: PropTypes.object
 }
 
 export default Layout
