@@ -69,7 +69,7 @@ class BlogPostTemplate extends React.Component {
         <section className="post-footer">
           <p>
             {categories.map(c => (
-              <Tag title={c} />
+              <Tag key={c} title={c} />
             ))}
           </p>
         </section>
@@ -88,9 +88,7 @@ class BlogPostTemplate extends React.Component {
 
         <hr />
 
-        <aside>
-          <Bio />
-        </aside>
+        <Bio />
 
         <section className="post-navigation">
           <ul>

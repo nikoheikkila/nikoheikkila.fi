@@ -17,9 +17,7 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={location} title={siteTitle}>
-        <aside>
-          <Bio />
-        </aside>
+        <Bio />
         <SEO title="All Posts" image={banner} />
 
         {posts.map(({ node }) => {
@@ -34,7 +32,7 @@ class BlogIndex extends React.Component {
               <p className="post-meta">
                 {date} &bull; {formatReadingTime(node.timeToRead)} &bull;
                 {node.frontmatter.categories.map(c => (
-                  <Tag title={c} />
+                  <Tag key={c} title={c} />
                 ))}
               </p>
               <article
