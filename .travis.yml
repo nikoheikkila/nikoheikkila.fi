@@ -16,10 +16,10 @@ install:
 
 script:
   - yarn lint
+  - yarn test:unit
   - yarn test:e2e
   - yarn test:a11y
 
 cache:
-  yarn: true
   directories:
     - ~/.cache
