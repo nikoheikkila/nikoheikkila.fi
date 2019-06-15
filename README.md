@@ -1,19 +1,14 @@
-# [nikoheikkila.fi](https://nikoheikkila.fi)
+<h1 align="center">Welcome to nikoheikkila.fi 👋</h1>
 
-My personal blog. Forked from Gatsby Blog Starter template and inspired here
-and there by Dan Abramov's blog.
-
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 [![Build Status](https://travis-ci.com/nikoheikkila/nikoheikkila.fi.svg?branch=master)](https://travis-ci.com/nikoheikkila/nikoheikkila.fi)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nikoheikkila/nikoheikkila.fi&amp;utm_campaign=Badge_Grade)
 
-## Contributing
+My personal blog. Forked from Gatsby Blog Starter template and inspired here and there by Dan Abramov's blog.
 
-Content can be found under `src/pages`. Edit posts as needed and submit a PR
-for me to review. All PRs are automaticallly deployed by Now to staging area.
-Once approved and merged to master branch they will be deployed to production.
+## 🏠 [Live Page](https://nikoheikkila.fi/)
 
-Other contributions to UI, accessibility, React components, security,
-dependency updates etc. are warmly welcome as well!
+## 🔧 Installation & Usage
 
 ### 1. Build Locally with Yarn
 
@@ -37,19 +32,45 @@ This will download and execute a Now builder running the `gatsby develop` comman
 
 Finally, open <http://localhost:8000> to view the blog.
 
-## Testing
+## 🤖 Run tests
 
-Project is packaged with ESLint code style tests, Cypress automated tests, and Pa11y accessibility tests. They can be ran respectively like so:
+Project is packaged with ESLint code style tests, AVA unit tests, Cypress automated tests, and Pa11y accessibility tests. They can be ran respectively like so:
 
-```bash
+```sh
 yarn lint
+yarn test:unit
 yarn test:dev
 yarn test:a11y
 ```
 
-All of the above are also run in Travis CI pipelines for commits and PRs.
+## 👤 Author
 
-## Writing
+**Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
+
+* Github: [@nikoheikkila](https://github.com/nikoheikkila)
+* Twitter: [@nikoheikkila](https://twitter.com/nikoheikkila)
+* DEV: [nikoheikkila](https://dev.to/nikoheikkila)
+* LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
+
+## 🤝 Contributing
+
+Content can be found under `src/pages`. Edit posts as needed and submit a PR for me to review. All PRs are automatically deployed by Now to staging area. Once approved and merged to master branch they will be deployed to production.
+
+Other contributions to UI, accessibility, React components, security, dependency updates etc. are warmly welcome as well!
+
+Feel free to check the [open issues](https://github.com/nikoheikkila/nikoheikkila.fi/issues).
+
+## ✍️ Writing
 
 To quickly bootstrap a new post or page draft use the CLI tool `new.js`
 at project root either via `yarn new` or invoking directly.
+
+## 📝 License
+
+Copyright of blog posts © 2019 [Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;](https://github.com/nikoheikkila).
+
+Source code of this project is [MIT](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/LICENSE-website) licensed.
+
+***
+
+<small>_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_.</small>
