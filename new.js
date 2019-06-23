@@ -72,9 +72,11 @@ const newPost = async () => {
 
   const { title, type, excerpt, categories } = prompt
 
-  const targetFolder = `./src/pages/blog/${slugify(title)}`
-  const postCategories = categories.split(',')
   const postType = Array.isArray(type) ? type[0] : type
+  const titleSlug = slugify(title)
+  const postCategories = categories.split(',')
+
+  const targetFolder = `./src/pages/${postType === `post` ? `blog/` : ''}${titleSlug}`
 
   if (!fs.existsSync(targetFolder)) {
     fs.mkdirSync(targetFolder, {
