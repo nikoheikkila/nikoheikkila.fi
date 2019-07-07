@@ -4,33 +4,34 @@ module.exports = {
     title: `Niko Heikkilä`,
     author: {
       name: `Niko Heikkilä`,
-      twitter: `@nikoheikkila`
+      twitter: `@nikoheikkila`,
     },
     description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
-    social: [{
-      name: `dev`,
-      url: `https://dev.to/nikoheikkila`
-    },
-    {
-      name: `twitter`,
-      url: `https://twitter.com/nikoheikkila`
-    },
-    {
-      name: `mastodon`,
-      url: `https://mastodon.technology/@nikoheikkila`
-    },
-    {
-      name: `github`,
-      url: `https://github.com/nikoheikkila`
-    },
-    {
-      name: `linkedin`,
-      url: `https://www.linkedin.com/in/nikoheikkila`
-    }
+    social: [
+      {
+        name: `dev`,
+        url: `https://dev.to/nikoheikkila`,
+      },
+      {
+        name: `twitter`,
+        url: `https://twitter.com/nikoheikkila`,
+      },
+      {
+        name: `mastodon`,
+        url: `https://mastodon.technology/@nikoheikkila`,
+      },
+      {
+        name: `github`,
+        url: `https://github.com/nikoheikkila`,
+      },
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/nikoheikkila`,
+      },
     ],
     repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
-    rss: `/rss.xml`
+    rss: `/rss.xml`,
   },
   plugins: [
     `gatsby-transformer-sharp`,
@@ -38,18 +39,19 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [{
-          resolve: `gatsby-remark-images`,
-          options: {
-            maxWidth: 590,
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
           },
-        },
-        {
-          resolve: `gatsby-remark-responsive-iframe`,
-          options: {
-            wrapperStyle: `margin-bottom: 1.0725rem`,
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
           },
-        },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -73,7 +75,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-41155961-1`
+        trackingId: `UA-41155961-1`,
       },
     },
     {
@@ -91,25 +93,26 @@ module.exports = {
             }
           }
         `,
-        feeds: [{
-          serialize: ({
-            query: {
-              site,
-              allMarkdownRemark
-            }
-          }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
-            language: edge.node.frontmatter.lang,
-            title: edge.node.frontmatter.title,
-            description: edge.node.excerpt,
-            date: edge.node.frontmatter.date,
-            url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-            guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-            author: edge.node.frontmatter.author,
-            custom_elements: [{
-              'content:encoded': edge.node.html
-            }]
-          })),
-          query: `
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              allMarkdownRemark.edges.map(edge =>
+                Object.assign({}, edge.node.frontmatter, {
+                  language: edge.node.frontmatter.lang,
+                  title: edge.node.frontmatter.title,
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  author: edge.node.frontmatter.author,
+                  custom_elements: [
+                    {
+                      'content:encoded': edge.node.html,
+                    },
+                  ],
+                })
+              ),
+            query: `
             {
               allMarkdownRemark(
                 limit: 1000,
@@ -133,10 +136,11 @@ module.exports = {
               }
             }
           `,
-          output: `/rss.xml`,
-          title: `RSS Feed | Niko Heikkilä`,
-          match: `^/blog/`
-        },]
+            output: `/rss.xml`,
+            title: `RSS Feed | Niko Heikkilä`,
+            match: `^/blog/`,
+          },
+        ],
       },
     },
     {
@@ -155,12 +159,12 @@ module.exports = {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
         policy: [{ userAgent: '*', allow: '/' }],
-        output: `/robots.txt`
-      }
+        output: `/robots.txt`,
+      },
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-sitemap`
+    `gatsby-plugin-sitemap`,
   ],
 }

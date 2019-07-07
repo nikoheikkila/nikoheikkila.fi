@@ -15,7 +15,7 @@ import moon from '../assets/moon.png'
 
 class Layout extends React.Component {
   state = {
-    theme: null
+    theme: null,
   }
 
   componentDidMount() {
@@ -39,7 +39,7 @@ class Layout extends React.Component {
       <Toggle
         icons={{
           checked: <img className="toggle-icon" src={moon} alt="checked" />,
-          unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />
+          unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />,
         }}
         checked={theme === 'dark'}
         onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
@@ -49,8 +49,8 @@ class Layout extends React.Component {
     const links = [
       {
         slug: '/',
-        title: 'Blog'
-      }
+        title: 'Blog',
+      },
     ]
 
     const sideMenu = (
@@ -74,13 +74,13 @@ class Layout extends React.Component {
 }
 
 Layout.defaultProps = {
-  cover: null
+  cover: null,
 }
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  cover: PropTypes.object
+  cover: PropTypes.object,
 }
 
 export default Layout

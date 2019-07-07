@@ -12,14 +12,14 @@ const Tag = ({ title }) => {
     backgroundColor: randomColor(),
     color: '#FFFFFF',
     padding: '0 4px',
-    margin: '3px'
+    margin: '3px',
   }
 
   return <span style={style}>#{innerText}</span>
 }
 
 Tag.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 }
 
 export default Tag

@@ -11,18 +11,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import SchemaOrg from './schema'
 
-function SEO({
-  description,
-  lang,
-  meta,
-  keywords,
-  title,
-  image,
-  type,
-  url,
-  datePublished,
-  dateModified,
-}) {
+function SEO({ description, lang, meta, keywords, title, image, type, url, datePublished, dateModified }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -46,73 +35,73 @@ function SEO({
 
   return (
     <>
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: type === `page` ? `website` : `article`
-        },
-        {
-          name: `og:image`,
-          content: imageURL
-        },
-        {
-          name: `og:image:alt`,
-          content: title
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author.twitter,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `twitter:image`,
-          content: imageURL
-        },
-        {
-          name: `twitter:image:alt`,
-          content: title
-        }
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-              name: `keywords`,
-              content: keywords.join(`, `),
-            }
-            : []
-        )
-        .concat(meta)}
-    />
-    <SchemaOrg
+      <Helmet
+        htmlAttributes={{
+          lang,
+        }}
+        title={title}
+        titleTemplate={`%s | ${site.siteMetadata.title}`}
+        meta={[
+          {
+            name: `description`,
+            content: metaDescription,
+          },
+          {
+            property: `og:title`,
+            content: title,
+          },
+          {
+            property: `og:description`,
+            content: metaDescription,
+          },
+          {
+            property: `og:type`,
+            content: type === `page` ? `website` : `article`,
+          },
+          {
+            name: `og:image`,
+            content: imageURL,
+          },
+          {
+            name: `og:image:alt`,
+            content: title,
+          },
+          {
+            name: `twitter:card`,
+            content: `summary_large_image`,
+          },
+          {
+            name: `twitter:creator`,
+            content: site.siteMetadata.author.twitter,
+          },
+          {
+            name: `twitter:title`,
+            content: title,
+          },
+          {
+            name: `twitter:description`,
+            content: metaDescription,
+          },
+          {
+            name: `twitter:image`,
+            content: imageURL,
+          },
+          {
+            name: `twitter:image:alt`,
+            content: title,
+          },
+        ]
+          .concat(
+            keywords.length > 0
+              ? {
+                  name: `keywords`,
+                  content: keywords.join(`, `),
+                }
+              : []
+          )
+          .concat(meta)}
+      />
+      <SchemaOrg
         isBlogPost={type === `post`}
         url={url || site.siteMetadata.siteUrl}
         title={title}
@@ -124,7 +113,7 @@ function SEO({
         author={site.siteMetadata.author.name}
         canonicalUrl={site.siteMetadata.siteUrl}
         organization={site.siteMetadata.title}
-    />
+      />
     </>
   )
 }
@@ -138,7 +127,7 @@ SEO.defaultProps = {
   type: `page`,
   url: ``,
   datePublished: ``,
-  dateModified: ``
+  dateModified: ``,
 }
 
 SEO.propTypes = {
@@ -151,7 +140,7 @@ SEO.propTypes = {
   dateModified: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
 }
 
 export default SEO

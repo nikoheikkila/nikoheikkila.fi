@@ -13,7 +13,7 @@ class Translation extends Component {
       fr: 'French',
       no: 'Norwegian',
       sv: 'Swedish',
-      ru: 'Russian'
+      ru: 'Russian',
     }
 
     this.getLanguage = this.getLanguage.bind(this)
@@ -42,7 +42,7 @@ class Translation extends Component {
 
 Translation.propTypes = {
   lang: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 }
 
 export default Translation

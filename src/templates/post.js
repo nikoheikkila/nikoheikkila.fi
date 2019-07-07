@@ -17,10 +17,10 @@ class BlogPostTemplate extends React.Component {
       data: {
         markdownRemark: post,
         site: {
-          siteMetadata: { siteUrl, repository, title: siteTitle }
-        }
+          siteMetadata: { siteUrl, repository, title: siteTitle },
+        },
       },
-      pageContext: { previous, next }
+      pageContext: { previous, next },
     } = this.props
 
     const { author, date, lang, title, type } = post.frontmatter

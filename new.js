@@ -18,7 +18,7 @@ const newPost = async () => {
     lang: siteMetadata.language,
     author: siteMetadata.author.name,
     date: dayjs().format('YYYY-MM-DD'),
-    cover: 'cover.png'
+    cover: 'cover.png',
   }
 
   let prompt
@@ -28,7 +28,7 @@ const newPost = async () => {
       {
         type: 'input',
         name: 'title',
-        message: 'Title for the post:'
+        message: 'Title for the post:',
       },
       {
         type: 'checkbox',
@@ -37,11 +37,11 @@ const newPost = async () => {
         choices: [
           {
             name: 'post',
-            checked: true
+            checked: true,
           },
           {
-            name: 'page'
-          }
+            name: 'page',
+          },
         ],
         validate: answer => {
           if (answer.length < 1) {
@@ -53,18 +53,18 @@ const newPost = async () => {
           }
 
           return true
-        }
+        },
       },
       {
         type: 'input',
         name: 'excerpt',
-        message: 'Summary for the post:'
+        message: 'Summary for the post:',
       },
       {
         type: 'input',
         name: 'categories',
-        message: 'Post categories (separated by comma):'
-      }
+        message: 'Post categories (separated by comma):',
+      },
     ])
   } catch (err) {
     return error(err)
@@ -80,7 +80,7 @@ const newPost = async () => {
 
   if (!fs.existsSync(targetFolder)) {
     fs.mkdirSync(targetFolder, {
-      recursive: true
+      recursive: true,
     })
   }
 
@@ -89,7 +89,7 @@ const newPost = async () => {
     title,
     type: postType,
     excerpt,
-    categories: postCategories
+    categories: postCategories,
   })
 
   const frontMatter = `---\n${metaData}\n---`

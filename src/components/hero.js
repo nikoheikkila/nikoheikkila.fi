@@ -15,8 +15,8 @@ class Hero extends Component {
             ...(props.style || {}),
             maxWidth: props.fluid.presentationWidth,
             maxHeight: props.fluid.presentationHeight,
-            margin: '0 auto'
-          }
+            margin: '0 auto',
+          },
         }
       }
 
@@ -29,7 +29,7 @@ class Hero extends Component {
 
 Hero.propTypes = {
   data: PropTypes.object.isRequired,
-  alt: PropTypes.string.isRequired
+  alt: PropTypes.string.isRequired,
 }
 
 export default Hero
