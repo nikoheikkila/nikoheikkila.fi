@@ -38,7 +38,7 @@ class BlogIndex extends React.Component {
               <article
                 className="post-spoiler"
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.excerpt
+                  __html: node.frontmatter.excerpt,
                 }}
               />
             </div>

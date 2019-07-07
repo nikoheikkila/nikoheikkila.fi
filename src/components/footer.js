@@ -7,41 +7,41 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 library.add(fab, faRss)
 export default function Footer() {
-
-    const { site: { siteMetadata: { social, rss } } } = useStaticQuery(graphql`
-        query {
-            site {
-                siteMetadata {
-                    social {
-                        name
-                        url
-                    }
-                    rss
-                }
-            }
+  const {
+    site: {
+      siteMetadata: { social, rss },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          social {
+            name
+            url
+          }
+          rss
         }
-    `)
+      }
+    }
+  `)
 
-    return (
-        <footer>
-            <div className="feed">
-                <FontAwesomeIcon icon={faRss} />
-                <a href={rss} target="_blank" rel="noopener noreferrer">
-                    RSS
-                </a>
-            </div>
+  return (
+    <footer>
+      <div className="feed">
+        <FontAwesomeIcon icon={faRss} />
+        <a href={rss} target="_blank" rel="noopener noreferrer">
+          RSS
+        </a>
+      </div>
 
-            {social.map(({name, url}) => (
-                <div key={name}>
-                    <FontAwesomeIcon icon={['fab', name]} />
-                    <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer me"
-                    >{name}
-                    </a>
-                </div>
-                ))}
-        </footer>
-    );
+      {social.map(({ name, url }) => (
+        <div key={name}>
+          <FontAwesomeIcon icon={['fab', name]} />
+          <a href={url} target="_blank" rel="noopener noreferrer me">
+            {name}
+          </a>
+        </div>
+      ))}
+    </footer>
+  )
 }
