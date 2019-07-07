@@ -1,5 +1,5 @@
 # Stage 1: Build Process
-FROM node:11-alpine AS build
+FROM node:12-alpine AS build
 
 RUN apk add --no-cache --virtual .gyp python make g++
 
@@ -17,7 +17,9 @@ FROM nginx:alpine
 
 COPY nginx /etc/nginx/
 COPY --from=build --chown=nginx:nginx /app/public /usr/share/nginx/html
-RUN touch /var/run/nginx.pid && chown nginx:nginx /var/run/nginx.pid
+RUN touch /var/run/nginx.pid \
+    && chown nginx:nginx /var/run/nginx.pid \
+    && chown -R nginx:nginx /var/cache/nginx
 
 USER nginx
 
