@@ -78,41 +78,42 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-feed`,
-      query: `
-        {
-          site {
-            siteMetadata {
-              title
-              description
-              siteUrl
-              site_url: siteUrl
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
             }
           }
-        }
-      `,
-      feeds: [{
-        serialize: ({
-          query: {
-            site,
-            allMarkdownRemark
-          }
-        }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
-          language: edge.node.frontmatter.lang,
-          title: edge.node.frontmatter.title,
-          description: edge.node.excerpt,
-          date: edge.node.frontmatter.date,
-          url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-          guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-          author: edge.node.frontmatter.author,
-          custom_elements: [{
-            'content:encoded': edge.node.html
-          }]
-        })),
-        query: `
+        `,
+        feeds: [{
+          serialize: ({
+            query: {
+              site,
+              allMarkdownRemark
+            }
+          }) => allMarkdownRemark.edges.map(edge => Object.assign({}, edge.node.frontmatter, {
+            language: edge.node.frontmatter.lang,
+            title: edge.node.frontmatter.title,
+            description: edge.node.excerpt,
+            date: edge.node.frontmatter.date,
+            url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+            guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+            author: edge.node.frontmatter.author,
+            custom_elements: [{
+              'content:encoded': edge.node.html
+            }]
+          })),
+          query: `
             {
               allMarkdownRemark(
                 limit: 1000,
-                sort: { order: DESC, fields: [frontmatter___date] },
+                sort: { order: DESC, fields: [frontmatter___date] }
                 filter: { frontmatter: { type: { ne: "page" } } }
               ) {
                 edges {
@@ -125,15 +126,18 @@ module.exports = {
                       date
                       lang
                       title
+                      type
                     }
                   }
                 }
               }
             }
           `,
-        output: `/rss.xml`,
-        title: `RSS Feed | Niko Heikkilä`,
-      },],
+          output: `/rss.xml`,
+          title: `RSS Feed | Niko Heikkilä`,
+          match: `^/blog/`
+        },]
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
