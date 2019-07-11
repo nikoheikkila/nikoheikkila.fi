@@ -1,6 +1,6 @@
 ---
 lang: en
-title: Serving Gatsby Site With Docker Multi-Stage Build
+title: Serving Gatsby Site with Docker Multi-Stage Build
 author: Niko Heikkilä
 type: post
 date: 2019-04-23

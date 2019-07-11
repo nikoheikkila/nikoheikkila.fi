@@ -1,6 +1,6 @@
 ---
 lang: en
-title: Keybase – Secure Communication Without Hassle
+title: Keybase – Secure Communication without Hassle
 author: Niko Heikkilä
 type: post
 date: 2015-03-22
