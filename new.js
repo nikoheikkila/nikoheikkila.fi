@@ -3,8 +3,9 @@ const inquirer = require('inquirer')
 const slugify = require('@sindresorhus/slugify')
 const fs = require('fs')
 const dayjs = require('dayjs')
-const yaml = require('node-yaml')
 const chalk = require('chalk')
+const makeTitleCase = require('title')
+const { safeDump } = require('js-yaml')
 
 const { siteMetadata } = require('./gatsby-config')
 
@@ -84,9 +85,9 @@ const newPost = async () => {
     })
   }
 
-  const metaData = yaml.dump({
+  const metaData = safeDump({
     ...defaults,
-    title,
+    title: makeTitleCase(title),
     type: postType,
     excerpt,
     categories: postCategories,
