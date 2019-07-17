@@ -1,14 +1,13 @@
+dist: xenial
+
 language: node_js
-
-os:
-  - linux
-  - osx
-
 node_js:
   - "12"
 
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
 
 install:
   - yarn --frozen-lockfile --prefer-offline
