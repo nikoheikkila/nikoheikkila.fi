@@ -8,6 +8,8 @@ addons:
   apt:
     sources:
       - google-chrome
+    packages:
+      - libgconf-2-4
 
 install:
   - yarn --frozen-lockfile --prefer-offline
@@ -20,5 +22,6 @@ script:
   - yarn test:a11y
 
 cache:
+  yarn: true
   directories:
     - ~/.cache
