@@ -5889,10 +5889,10 @@ gatsby-cli@^2.7.14:
     ink "^2.0.5"
     ink-spinner "^3.0.1"
 
-gatsby-cypress@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-cypress/-/gatsby-cypress-0.2.0.tgz#99425e3e1599aeeae9510cabea034eab1e564dd5"
-  integrity sha512-4kZAhiUMFDynIIifYH8b9MO2M3Wo3B2DPbnLYtkG/mxkma31EORCWQU0rteIaTdEwz0TskGDUz6qw6AjKGCuEg==
+gatsby-cypress@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/gatsby-cypress/-/gatsby-cypress-0.2.2.tgz#2d00eeec04d779bfce5b6c375edb424c6cfdda77"
+  integrity sha512-+ivUIjPDpIVQTAehwJ22yEmeSsYm6quBJQK0wZ4qU+jSjHWTKMJHlpCpZ7x2otA2bpmEA+cMb0240BqsbMNHgw==
   dependencies:
     "@babel/runtime" "^7.0.0"
 
