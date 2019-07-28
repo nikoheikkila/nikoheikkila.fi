@@ -40,7 +40,7 @@
     "js-yaml": "^3.13.1",
     "node-sass": "^4.12.0",
     "node-yaml": "^4.0.0",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.10",
