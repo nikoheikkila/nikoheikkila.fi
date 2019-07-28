@@ -7,7 +7,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package.json yarn.lock ./
-RUN yarn
+RUN yarn --frozen-lockfile --non-interactive
 
 COPY . .
 RUN yarn build
