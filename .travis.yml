@@ -12,7 +12,7 @@ addons:
       - libgconf-2-4
 
 install:
-  - yarn --frozen-lockfile --prefer-offline
+  - yarn
   - yarn build
 
 script:
