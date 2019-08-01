@@ -7,6 +7,7 @@ import SEO from '../components/seo'
 import Bio from '../components/bio'
 import Tag from '../components/tag'
 import Translation from '../components/translation'
+import Comments from '../components/post/comments'
 
 import { isPage, formatReadingTime } from '../utils/helpers'
 
@@ -86,7 +87,7 @@ class BlogPostTemplate extends React.Component {
           </p>
         </section>
 
-        <hr />
+        <Comments url={postUrl} identifier={slug} title={title} />
 
         <Bio />
 

@@ -1,0 +1,14 @@
+{
+    "standard": "WCAG2A",
+    "level": "error",
+    "defaults": {
+        "timeout": 10000,
+        "hideElements": "iframe",
+        "chromeLaunchConfig": {
+            "args": [
+                "--no-sandbox"
+            ]
+        },
+        "ignore": []
+    }
+}
