@@ -22,7 +22,6 @@ function SEO({ description, lang, meta, keywords, title, image, type, url, dateP
             siteUrl
             author {
               name
-              twitter
             }
           }
         }
@@ -69,10 +68,6 @@ function SEO({ description, lang, meta, keywords, title, image, type, url, dateP
           {
             name: `twitter:card`,
             content: `summary_large_image`,
-          },
-          {
-            name: `twitter:creator`,
-            content: site.siteMetadata.author.twitter,
           },
           {
             name: `twitter:title`,
