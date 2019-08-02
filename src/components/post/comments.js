@@ -29,13 +29,15 @@ export default class Comments extends Component {
      * Reload Disqus when DOM changes.
      * TODO: CSS style won't be reapplied on reset and needs to be resolved.
      */
-    this.observer = new MutationObserver(mutations => {
-      mutations.filter(this.classDidChange).forEach(() =>
-        window.DISQUS.reset({
-          reload: true,
-        })
-      )
-    })
+    if (typeof MutationObserver !== 'undefined') {
+      this.observer = new MutationObserver(mutations => {
+        mutations.filter(this.classDidChange).forEach(() =>
+          window.DISQUS.reset({
+            reload: true,
+          })
+        )
+      })
+    }
   }
 
   componentDidMount() {
