@@ -1,6 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import ExternalLink from './elements'
 
 const Bio = () => (
   <StaticQuery
@@ -20,20 +21,10 @@ const Bio = () => (
         <section className="bio">
           <Img fixed={data.placeholderImage.childImageSharp.fixed} />
           <p>
-            A blog by{' '}
-            <a href="https://twitter.com/nikoheikkila" target="_blank" rel="noopener noreferrer me">
-              Niko Heikkilä
-            </a>
+            A blog by <ExternalLink url="https://linkedin.com/in/nikoheikkila" text="Niko Heikkilä" />
             {'. '}
-            Powered by coffee,{' '}
-            <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer me">
-              VS Code
-            </a>
-            , and{' '}
-            <a href="https://gatsbyjs.org" target="_blank" rel="noopener noreferrer me">
-              Gatsby
-            </a>
-            .
+            Powered by coffee, <ExternalLink url="https://code.visualstudio.com" text="VS Code" />, and{' '}
+            <ExternalLink url="https://gatsbyjs.org" text="Gatsby" />.
           </p>
         </section>
       </aside>

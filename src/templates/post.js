@@ -7,7 +7,9 @@ import SEO from '../components/seo'
 import Bio from '../components/bio'
 import Tag from '../components/tag'
 import Translation from '../components/translation'
+import Article from '../components/post/content'
 import Comments from '../components/post/comments'
+import ExternalLink from '../components/elements'
 
 import { isPage, formatReadingTime } from '../utils/helpers'
 
@@ -65,7 +67,7 @@ class BlogPostTemplate extends React.Component {
 
         {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
 
-        <article dangerouslySetInnerHTML={{ __html: post.html }} />
+        <Article content={post.html} />
 
         <section className="post-footer">
           <p>
@@ -77,13 +79,9 @@ class BlogPostTemplate extends React.Component {
 
         <section className="post-attachments">
           <p>
-            <a href={discussUrl} target="_blank" rel="noopener noreferrer">
-              Discuss on Twitter
-            </a>
+            <ExternalLink url={discussUrl} text="Discuss on Twitter" />
             {' • '}
-            <a href={editUrl} target="_blank" rel="noopener noreferrer">
-              Edit on GitHub
-            </a>
+            <ExternalLink url={editUrl} text="Edit on GitHub" />
           </p>
         </section>
 

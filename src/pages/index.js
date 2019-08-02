@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import Bio from '../components/bio'
 import SEO from '../components/seo'
 import Tag from '../components/tag'
+import Article from '../components/post/content'
 import { formatReadingTime } from '../utils/helpers'
 import banner from '../assets/banner.png'
 
@@ -35,12 +36,7 @@ class BlogIndex extends React.Component {
                   <Tag key={c} title={c} />
                 ))}
               </p>
-              <article
-                className="post-spoiler"
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.excerpt,
-                }}
-              />
+              <Article className="post-spoiler" content={node.frontmatter.excerpt} />
             </div>
           )
         })}
