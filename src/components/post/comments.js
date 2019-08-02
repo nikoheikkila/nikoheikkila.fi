@@ -1,7 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Disqus } from 'gatsby-plugin-disqus'
+import { DiscussionEmbed } from 'disqus-react'
+
+const defaultShortName = 'nikoheikkilafi'
 
 export default class Comments extends Component {
   static propTypes = {
@@ -57,10 +59,12 @@ export default class Comments extends Component {
   }
 
   render() {
+    const shortName = process.env.GATSBY_DISQUS_SHORTNAME || defaultShortName
     const { config } = this.state
+
     return (
       <section id="comments">
-        <Disqus config={config} />
+        <DiscussionEmbed shortname={shortName} config={config} />
       </section>
     )
   }
