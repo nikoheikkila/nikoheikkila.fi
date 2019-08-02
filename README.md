@@ -48,7 +48,7 @@ yarn test:a11y
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
 
 * Github: [@nikoheikkila](https://github.com/nikoheikkila)
-* Twitter: [@nikoheikkila](https://twitter.com/nikoheikkila)
+* Mastodon: [@nikoheikkila](https://mastodon.technology/@nikoheikkila)
 * DEV: [nikoheikkila](https://dev.to/nikoheikkila)
 * LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
