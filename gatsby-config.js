@@ -4,7 +4,6 @@ module.exports = {
     title: `Niko Heikkilä`,
     author: {
       name: `Niko Heikkilä`,
-      twitter: `@nikoheikkila`,
     },
     description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
@@ -14,12 +13,8 @@ module.exports = {
         url: `https://dev.to/nikoheikkila`,
       },
       {
-        name: `twitter`,
-        url: `https://twitter.com/nikoheikkila`,
-      },
-      {
-        name: `mastodon`,
-        url: `https://mastodon.technology/@nikoheikkila`,
+        name: `facebook`,
+        url: `https://fb.me/heikkilaniko`,
       },
       {
         name: `github`,
@@ -28,6 +23,10 @@ module.exports = {
       {
         name: `linkedin`,
         url: `https://www.linkedin.com/in/nikoheikkila`,
+      },
+      {
+        name: `mastodon`,
+        url: `https://mastodon.technology/@nikoheikkila`,
       },
     ],
     repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
