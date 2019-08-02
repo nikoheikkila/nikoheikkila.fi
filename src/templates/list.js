@@ -12,9 +12,18 @@ import banner from '../assets/banner.png'
 
 class BlogIndex extends React.Component {
   render() {
-    const { data, location } = this.props
+    const {
+      data,
+      location,
+      pageContext: { currentPage, numberOfPages },
+    } = this.props
     const { title: siteTitle } = data.site.siteMetadata
     const posts = data.allMarkdownRemark.edges
+
+    const isFirstPage = currentPage === 1
+    const isLastPage = currentPage === numberOfPages
+    const previousPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
+    const nextPage = (currentPage + 1).toString()
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -40,6 +49,27 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <ul
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            listStyle: 'none',
+            padding: 0,
+          }}
+        >
+          {!isFirstPage && (
+            <Link to={previousPage} rel="prev">
+              ← Previous Page ({currentPage - 1}/{numberOfPages})
+            </Link>
+          )}
+          {!isLastPage && (
+            <Link to={nextPage} rel="next">
+              Next Page ({currentPage + 1}/{numberOfPages}) →
+            </Link>
+          )}
+        </ul>
       </Layout>
     )
   }
@@ -48,7 +78,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query BlogListQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -57,6 +87,8 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { type: { ne: "page" } } }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {

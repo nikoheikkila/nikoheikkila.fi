@@ -4,7 +4,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
+  const blogIndex = path.resolve(`./src/templates/list.js`)
   const blogPost = path.resolve(`./src/templates/post.js`)
+
   return graphql(
     `
       {
@@ -16,6 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                type
               }
             }
           }
@@ -27,12 +30,15 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+    /**
+     * Create blog posts by first querying all page objects from GraphQL
+     * and then looping them to the createPage() function.
+     */
+    const pages = result.data.allMarkdownRemark.edges
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+    pages.forEach((post, index) => {
+      const previous = index === pages.length - 1 ? null : pages[index + 1].node
+      const next = index === 0 ? null : pages[index - 1].node
 
       createPage({
         path: post.node.fields.slug,
@@ -45,7 +51,28 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    return null
+    /**
+     * Create index page by filtering the actual blog posts from all page
+     * objects and creating an index-based array of those. Result will be
+     * a site structure where '/' is the first page and subsequent pages will
+     * be '/{2..m}' where m is the maximum number of posts.
+     */
+    const posts = pages.filter(page => page.node.frontmatter.type === 'post')
+    const postsPerPage = 8
+    const numberOfPages = Math.ceil(posts.length / postsPerPage)
+
+    Array.from({ length: numberOfPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? '/' : `/${i + 1}`,
+        component: blogIndex,
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numberOfPages,
+          currentPage: i + 1,
+        },
+      })
+    })
   })
 }
 
