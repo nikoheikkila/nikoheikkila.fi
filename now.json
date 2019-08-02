@@ -16,6 +16,9 @@
             }
         }
     ],
+    "env": {
+        "GATSBY_DISQUS_SHORTNAME": "nikoheikkilafi"
+    },
     "routes": [
         {
             "src": "/static/(.*)",
