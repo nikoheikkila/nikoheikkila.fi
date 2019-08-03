@@ -26,36 +26,6 @@ export default class Comments extends Component {
         title,
       },
     }
-
-    /**
-     * Reload Disqus when DOM changes.
-     * TODO: CSS style won't be reapplied on reset and needs to be resolved.
-     */
-    if (typeof MutationObserver !== 'undefined') {
-      this.observer = new MutationObserver(mutations => {
-        mutations.filter(this.classDidChange).forEach(() =>
-          window.DISQUS.reset({
-            reload: true,
-          })
-        )
-      })
-    }
-  }
-
-  componentDidMount() {
-    this.observer.observe(document.body, {
-      attributes: true,
-      childList: false,
-      subtree: false,
-    })
-  }
-
-  componentDidUnMount() {
-    this.observer.disconnect()
-  }
-
-  classDidChange({ type, attributeName }) {
-    return type === 'attributes' && attributeName === 'class'
   }
 
   render() {

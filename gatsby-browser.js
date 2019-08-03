@@ -3,11 +3,20 @@ let preferredTheme = null
 
 window.__onThemeChange = function() {}
 
+const resetDisQus = () => {
+  if (typeof window.DISQUS === 'object') {
+    window.DISQUS.reset({
+      reload: true,
+    })
+  }
+}
+
 const setTheme = newTheme => {
   window.__theme = newTheme
   preferredTheme = newTheme
   document.body.className = newTheme
   window.__onThemeChange(newTheme)
+  resetDisQus()
 }
 
 try {
