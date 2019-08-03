@@ -39,11 +39,13 @@ class BlogIndex extends React.Component {
               <h2 className="post-title">
                 <Link to={node.fields.slug}>{title}</Link>
               </h2>
-              <p className="post-meta">
-                {date} &bull; {formatReadingTime(node.timeToRead)} &bull;
+              <p className="post-tags">
                 {node.frontmatter.categories.map(c => (
                   <Tag key={c} title={c} />
                 ))}
+              </p>
+              <p className="post-meta">
+                {date} &bull; {formatReadingTime(node.timeToRead)} &bull;
               </p>
               <Article className="post-spoiler" content={node.frontmatter.excerpt} />
             </div>
@@ -61,12 +63,12 @@ class BlogIndex extends React.Component {
         >
           {!isFirstPage && (
             <Link to={previousPage} rel="prev">
-              ← Previous Page ({currentPage - 1}/{numberOfPages})
+              👈 Previous Page ({currentPage - 1}/{numberOfPages})
             </Link>
           )}
           {!isLastPage && (
             <Link to={nextPage} rel="next">
-              Next Page ({currentPage + 1}/{numberOfPages}) →
+              Next Page ({currentPage + 1}/{numberOfPages}) 👉
             </Link>
           )}
         </ul>
