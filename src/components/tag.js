@@ -11,12 +11,12 @@ const Tag = ({ title }) => {
 
   const style = {
     display: 'inline-block',
+    fontSize: '0.8em',
     fontWeight: 700,
     backgroundColor,
     color,
-    padding: '0 6px',
-    margin: '5px',
-    borderRadius: '10%',
+    padding: '4px 12px',
+    margin: '0 8px 8px 0',
   }
 
   return <span style={style}>#{innerText}</span>

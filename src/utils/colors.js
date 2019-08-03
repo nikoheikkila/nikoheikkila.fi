@@ -5,9 +5,9 @@ export const colorPalette = [
   '#9400D3', // Violet
   '#4B0082', // Indigo
   '#1351AA', // Blue
-  '#00980D', // Green
+  '#008A0C', // Green
   '#BAD523', // Yellow
-  '#D15F22', // Orange
+  '#C55316', // Orange
   '#AB1203', // Red
 ]
 
