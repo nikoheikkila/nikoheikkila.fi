@@ -2,13 +2,13 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import dayjs from 'dayjs'
 
+import { DiscussionEmbed, CommentCount } from 'disqus-react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Bio from '../components/bio'
 import Tag from '../components/tag'
 import Translation from '../components/translation'
 import Article from '../components/post/content'
-import Comments from '../components/post/comments'
 import ExternalLink from '../components/elements'
 
 import { isPage, formatReadingTime } from '../utils/helpers'
@@ -20,7 +20,7 @@ class BlogPostTemplate extends React.Component {
       data: {
         markdownRemark: post,
         site: {
-          siteMetadata: { siteUrl, repository, title: siteTitle },
+          siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
         },
       },
       pageContext: { previous, next },
@@ -38,6 +38,12 @@ class BlogPostTemplate extends React.Component {
     `
     const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}/index.md`
     const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(postUrl)}`
+
+    const disqusConfig = {
+      url: postUrl,
+      identifier: slug,
+      title,
+    }
 
     return (
       <Layout location={location} title={siteTitle} cover={cover}>
@@ -59,7 +65,10 @@ class BlogPostTemplate extends React.Component {
               <p>
                 <span>✏️ Conceived by {author} &bull; </span>
                 <span>{datePublished} &bull; </span>
-                {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)}</span>}
+                {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
+                <span>
+                  💬 <CommentCount shortname={disqus} config={disqusConfig} />
+                </span>
               </p>
             </section>
           )}
@@ -85,7 +94,7 @@ class BlogPostTemplate extends React.Component {
           </p>
         </section>
 
-        <Comments url={postUrl} identifier={slug} title={title} />
+        <DiscussionEmbed shortname={disqus} config={disqusConfig} />
 
         <Bio />
 
@@ -124,6 +133,7 @@ export const pageQuery = graphql`
           name
         }
         repository
+        disqus
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

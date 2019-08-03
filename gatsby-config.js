@@ -7,6 +7,7 @@ module.exports = {
     },
     description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
+    disqus: process.env.GATSBY_DISQUS_SHORTNAME || 'nikoheikkilafi',
     social: [
       {
         name: `dev`,
