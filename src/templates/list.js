@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import { CommentCount } from 'disqus-react'
 import dayjs from 'dayjs'
 
 import Layout from '../components/layout'
@@ -17,7 +18,8 @@ class BlogIndex extends React.Component {
       location,
       pageContext: { currentPage, numberOfPages },
     } = this.props
-    const { title: siteTitle } = data.site.siteMetadata
+
+    const { title: siteTitle, siteUrl, disqus } = data.site.siteMetadata
     const posts = data.allMarkdownRemark.edges
 
     const isFirstPage = currentPage === 1
@@ -33,6 +35,11 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           const date = dayjs(node.frontmatter.date).format('MMMM D, YYYY')
+          const disqusConfig = {
+            url: siteUrl + node.fields.slug,
+            identifier: node.fields.slug,
+            title,
+          }
 
           return (
             <div key={node.fields.slug} className="post-content">
@@ -45,7 +52,10 @@ class BlogIndex extends React.Component {
                 ))}
               </p>
               <p className="post-meta">
-                {date} &bull; {formatReadingTime(node.timeToRead)} &bull;
+                {date} &bull; {formatReadingTime(node.timeToRead)} &bull;{' '}
+                <span>
+                  💬 <CommentCount shortname={disqus} config={disqusConfig} />
+                </span>
               </p>
               <Article className="post-spoiler" content={node.frontmatter.excerpt} />
             </div>
@@ -84,6 +94,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
+        disqus
       }
     }
     allMarkdownRemark(
