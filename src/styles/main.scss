@@ -63,7 +63,7 @@ body.light {
         color: $teal;
     }
 
-    article p > a:not(.gatsby-resp-image-link) {
+    article a:not(.gatsby-resp-image-link) {
         color: inherit;
         border-bottom: 2px solid $teal;
     }
@@ -80,7 +80,7 @@ body.dark {
         color: $pink;
     }
 
-    article p > a:not(.gatsby-resp-image-link) {
+    article a:not(.gatsby-resp-image-link) {
         color: inherit;
         border-bottom: 2px solid $pink;
     }
