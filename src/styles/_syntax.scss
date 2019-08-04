@@ -50,10 +50,17 @@ pre[class*='language-'] ::selection {
 /* Inline code */
 :not(pre)>code[class*='language-'] {
   border-radius: 0.25em;
-  background-color: $inlineCodeBg;
   color: $inlineCodeFg;
   padding: 0.25em 0.35em;
   white-space: pre-wrap;
+}
+
+body.light :not(pre)>code[class*='language-'] {
+  background-color: #f0f0f0;
+}
+
+body.dark :not(pre)>code[class*='language-'] {
+  background-color: #111111;
 }
 
 .token.attr-name {
