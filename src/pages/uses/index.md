@@ -1,7 +1,7 @@
 ---
 lang: en
 author: Niko Heikkilä
-date: 2019-06-23
+date: 2019-08-04
 cover: '../../assets/banner.png'
 title: Uses
 type: page
@@ -12,7 +12,7 @@ categories:
   - Apps
 ---
 
-Some people are often puzzled about my setup – and the font I use – or just want to hear my recommendations for a given task. Here I will describe the majority of tools I use to survive my day accompanied with links for the readers to try them out. I try to keep this page updated as often as possible.
+Some people are often puzzled about my setup – and the font I use – or just want to hear my recommendations for a given task. On this page I will describe the majority of tools I use to survive my day accompanied with links for the readers to try them out. I try to keep this page updated as often as possible.
 
 This page was inspired by the works of [**Wes Bos**][wesbos] and [**Ali Spittel**][aspittel]. If you decide to make your own [/uses](/uses) page after reading this, please include me among the sources.
 
@@ -33,29 +33,30 @@ My keyboard is [Logitech G413 mechanical keyboard][keyboard] which feels pleasan
 
 ## Code Editor
 
-![Editor](vscode.png)
+![Visual Studio Code Editor](vscode.png)
 
 My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. All the posts and pages in this site have also been written with VS Code.
 
-In the screenshot above I'm using a theme called [Night Owl][nightowl] and a font called [Dank Mono][dank] (yes, I too paid for a font).
+In the screenshot above I'm using a theme called [Night Owl][nightowl] and a font called [Operator Mono][operator].
 
 To synchronize my settings and extensions across machines I use an extension called [Settings Sync][sync].
 
 [nightowl]: https://aka.ms/nightowl
-[dank]: https://dank.sh
+[operator]: https://www.cufonfonts.com/font/operator-mono
 [sync]: https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
 
 ## Terminal
 
-![Terminal](terminal.png)
+![Hyper for macOS](terminal.png)
+![Microsoft Terminal for Windows](microsoft_terminal.png)
 
-I haven't yet found a perfect terminal application so I've been hopping back and forth between [Hyper][hyper] and [iTerm][iterm]. The release of Microsoft's new [Windows Terminal][msterminal] might change this but for the time being, I'm satisfied with Hyper 3 which introduced some dramatic performance improvements for its latest release.
+I haven't yet found a perfect terminal application so I've been hopping back and forth between [Hyper][hyper] and [iTerm][iterm]. The release of Microsoft's new [Terminal][msterminal] will change this when it becomes stable but for the time being, I'm satisfied with Hyper 3 which introduced some dramatic performance improvements for its latest release.
 
-After years of cursing the _allfathers_ while navigating in a clunky Bash shell, I came across the [Friendly Interactive Shell (Fish)][fish]. I have then supercharged my Fish shell with the [Oh-My-Fish framework][omf] and the [Spacefish theme][spacefish]. These modifications let me swim in the command line like a fish in the sea. 🐟
+After years of cursing the _allfathers_ while navigating in a clunky Bash shell, I came across the [Friendly Interactive Shell (Fish)][fish]. I have then supercharged my Fish shell with the [Oh-My-Fish framework][omf] and the [Spacefish theme][spacefish].
 
-While in the command line I use `z` to quickly jump to a project and `fzf` to remember the exact command I typed a few hours ago.
+While in the command line I use [`z`][z] to quickly jump to a project and [`fzf`][fzf] to remember the exact command I typed a few hours ago. These modifications let me swim in the command line like a fish in the sea. 🐟
 
-Since Microsoft released their [Remote Development Pack for VS Code][remotedevelopment] which lets me access the files over SSH or from WSL I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [SpaceVim][spacevim] configuration.
+Since Microsoft released their [Remote Development Pack for VS Code][remotedevelopment] which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [SpaceVim][spacevim] configuration.
 
 [hyper]: https://hyper.is
 [iterm]: https://iterm2.com/
@@ -63,6 +64,8 @@ Since Microsoft released their [Remote Development Pack for VS Code][remotedevel
 [fish]: https://fishshell.com/
 [omf]: https://github.com/oh-my-fish/oh-my-fish
 [spacefish]: https://spacefish.matchai.me/
+[z]: https://github.com/rupa/z/
+[fzf]: https://github.com/junegunn/fzf
 [remotedevelopment]: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
 [spacevim]: https://spacevim.org/
 
