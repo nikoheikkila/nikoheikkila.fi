@@ -20,12 +20,12 @@ $hyphens: none;
 }
 
 @mixin bodyFont() {
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: 'Merriweather Sans','Georgia',serif;
     font-weight: 400;
 }
 
 @mixin headingFont() {
-    font-family: 'Montserrat', serif;
+    font-family: 'Montserrat','Georgia',serif;
     font-weight: 900;
 }
 
