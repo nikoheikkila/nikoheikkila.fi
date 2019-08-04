@@ -11,7 +11,7 @@ import Translation from '../components/translation'
 import Article from '../components/post/content'
 import ExternalLink from '../components/elements'
 
-import { isPage, formatReadingTime } from '../utils/helpers'
+import { formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -60,18 +60,16 @@ class BlogPostTemplate extends React.Component {
         <header>
           <h1 className="post-title">{title}</h1>
 
-          {!isPage(type) && (
-            <section className="post-meta">
-              <p>
-                <span>✏️ Conceived by {author} &bull; </span>
-                <span>{datePublished} &bull; </span>
-                {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
-                <span>
-                  💬 <CommentCount shortname={disqus} config={disqusConfig} />
-                </span>
-              </p>
-            </section>
-          )}
+          <section className="post-meta">
+            <p>
+              <span>✏️ Conceived by {author} &bull; </span>
+              <span>{datePublished} &bull; </span>
+              {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
+              <span>
+                💬 <CommentCount shortname={disqus} config={disqusConfig} />
+              </span>
+            </p>
+          </section>
         </header>
 
         {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
