@@ -28,16 +28,14 @@ class BlogPostTemplate extends React.Component {
 
     const { author, date, lang, title, type } = post.frontmatter
     const { fluid: cover } = post.frontmatter.cover.childImageSharp
-    const { slug } = post.fields
-    const postUrl = `${siteUrl}${slug}`
+    const slug = post.fields.slug.slice(1, post.fields.slug.length - 1)
+    const postUrl = `${siteUrl}/${slug}`
     const datePublished = dayjs(date || null).format('MMMM D, YYYY')
     const categories = post.frontmatter.categories || []
 
-    const translateUrl = `
-    https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}
-    `
-    const editUrl = `${repository}/edit/master/src/pages/${slug.slice(1, slug.length - 1)}/index.md`
-    const discussUrl = `https://twitter.com/search?q=${encodeURIComponent(postUrl)}`
+    const translateUrl = `https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}`
+    const editUrl = `${repository}/edit/master/src/pages/${slug}/index.md`
+    const historyUrl = `${repository}/commits/master/src/pages/${slug}/index.md`
 
     const disqusConfig = {
       url: postUrl,
@@ -85,11 +83,14 @@ class BlogPostTemplate extends React.Component {
         </section>
 
         <section className="post-attachments">
-          <p>
-            <ExternalLink url={discussUrl} text="Discuss on Twitter" />
-            {' • '}
-            <ExternalLink url={editUrl} text="Edit on GitHub" />
-          </p>
+          <ul>
+            <li>
+              <ExternalLink url={editUrl} text="Edit Page" />
+            </li>
+            <li>
+              <ExternalLink url={historyUrl} text="View History" />
+            </li>
+          </ul>
         </section>
 
         <DiscussionEmbed shortname={disqus} config={disqusConfig} />

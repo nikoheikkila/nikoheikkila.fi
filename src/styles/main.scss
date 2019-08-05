@@ -149,6 +149,15 @@ article {
     margin: 5px 0;
 }
 
+.post-attachments {
+    list-style: none;
+
+    li  {
+        display: inline;
+        padding: 0 5px;
+    }
+}
+
 .bio {
     display: flex;
     margin-bottom: 2.0em;
