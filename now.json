@@ -16,8 +16,11 @@
             }
         }
     ],
-    "env": {
-        "GATSBY_DISQUS_SHORTNAME": "nikoheikkilafi"
+    "build": {
+        "env": {
+            "GATSBY_DISQUS_SHORTNAME": "nikoheikkilafi",
+            "GATSBY_GA_TRACKING_CODE": "UA-41155961-1"
+        }
     },
     "routes": [
         {

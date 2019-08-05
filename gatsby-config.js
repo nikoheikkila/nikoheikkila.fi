@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     language: `en`,
@@ -7,7 +11,7 @@ module.exports = {
     },
     description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
     siteUrl: `https://nikoheikkila.fi`,
-    disqus: process.env.GATSBY_DISQUS_SHORTNAME || 'nikoheikkilafi',
+    disqus: process.env.GATSBY_DISQUS_SHORTNAME,
     social: [
       {
         name: `dev`,
@@ -75,7 +79,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-41155961-1`,
+        trackingId: process.env.GATSBY_GA_TRACKING_CODE,
+        anonymize: true,
+        respectDNT: true,
       },
     },
     {
