@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-08-04
-cover: '../../assets/banner.png'
+cover: cover.png
 title: Uses
 type: page
 excerpt: Tools I use to survive my day.
