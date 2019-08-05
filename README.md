@@ -10,11 +10,16 @@ My personal blog. Forked from Gatsby Blog Starter template and inspired here and
 
 ## 🔧 Installation & Usage
 
+### Environment
+
+Gatsby makes use of several environment variables which are documented in `.env.example` file. Before building the project make sure to modify these variables as needed. Then copy the `.env.example` as `.env.development` to project root for Gatsby to recognize it.
+
 ### 1. Build Locally with Yarn
 
 To run the build locally, type like so:
 
 ```bash
+cp .env.example .env.development
 yarn
 yarn dev
 ```
