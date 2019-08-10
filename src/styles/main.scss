@@ -6,7 +6,8 @@
 @mixin hr($color, $width) {
     hr {
         border-top: dashed $width $color;
-        opacity: 0.5;
+        border-bottom: none;
+        opacity: 1.0;
         margin: 45px 0;
     }
 }
@@ -58,7 +59,7 @@ a {
 
 /* Light theme */
 body.light {
-    @include hr(#666666, 3px);
+    @include hr($teal, 2px);
     background-color: $lightBg;
     color: $lightFg;
 
@@ -74,8 +75,7 @@ body.light {
 
 /* Dark theme */
 body.dark {
-    @include hr(#aaaaaa, 3px);
-    -webkit-font-smoothing: antialiased;
+    @include hr($pink, 2px);
     background-color: $darkBg;
     color: $darkFg;
 
@@ -126,15 +126,6 @@ article {
     }
 }
 
-.banner {
-    margin: 0 auto;
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
 .post-content {
     margin-bottom: 60px;
 }
@@ -164,7 +155,7 @@ article {
 
     p {
         margin: 0 10px;
-        max-width: 75%;
+        font-style: italic;
     }
 
     img {

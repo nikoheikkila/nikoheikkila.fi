@@ -25,13 +25,36 @@ class Layout extends React.Component {
     }
   }
 
+  isIndex() {
+    /**
+     * Index page is either the home page or any page with path `/n`
+     * where `n` is a natural number > 0.
+     */
+
+    const {
+      location: { pathname },
+    } = this.props
+
+    return /^\/[0-9]*$/.test(pathname)
+  }
+
   render() {
     const { title, children, cover } = this.props
     const { theme } = this.state
 
+    const headerStyle = {
+      maxWidth: this.isIndex() ? '720px' : '100%',
+      margin: '0 auto',
+    }
+
     const header = (
-      <section className="banner">
-        <Link to="/">{(cover && <Hero data={cover} alt={title} />) || <Banner />}</Link>
+      <section style={headerStyle}>
+        {(cover && <Hero data={cover} alt={title} />) || <Banner />}
+        {this.isIndex() || (
+          <Link to="/" style={{ fontSize: '0.8em' }}>
+            ← Back to posts
+          </Link>
+        )}
       </section>
     )
 
@@ -78,6 +101,7 @@ Layout.defaultProps = {
 }
 
 Layout.propTypes = {
+  location: PropTypes.object,
   title: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   cover: PropTypes.object,

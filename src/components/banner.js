@@ -12,12 +12,13 @@ const Banner = () => (
             fluid(quality: 100) {
               ...GatsbyImageSharpFluid_noBase64
               presentationHeight
+              presentationWidth
             }
           }
         }
       }
     `}
-    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
+    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} alt="Logo" />}
   />
 )
 
