@@ -1,43 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
-class Translation extends Component {
-  constructor(props) {
-    super(props)
+import ExternalLink from './elements'
 
-    this.languages = {
-      de: 'German',
-      dk: 'Danish',
-      fi: 'Finnish',
-      fr: 'French',
-      no: 'Norwegian',
-      sv: 'Swedish',
-      ru: 'Russian',
-    }
+const languages = {
+  de: 'German',
+  dk: 'Danish',
+  fi: 'Finnish',
+  fr: 'French',
+  no: 'Norwegian',
+  sv: 'Swedish',
+  ru: 'Russian',
+}
 
-    this.getLanguage = this.getLanguage.bind(this)
-  }
+const Translation = ({ lang, url }) => {
+  const language = languages[lang] || 'language other than English'
 
-  getLanguage(key) {
-    return this.languages[key] || 'language other than English'
-  }
-
-  render() {
-    const { lang, url } = this.props
-
-    return (
-      <section className="language-info">
-        <p>
-          This post was written in {this.getLanguage(lang)}. You can access the machine translated version{' '}
-          <OutboundLink href={url} target="_blank" rel="noopener noreferrer">
-            here
-          </OutboundLink>
-          .
-        </p>
-      </section>
-    )
-  }
+  return (
+    <section className="language-info">
+      <p>
+        This post was written in {language}. You can access the machine translated version{' '}
+        <ExternalLink url={url} text="here" />.
+      </p>
+    </section>
+  )
 }
 
 Translation.propTypes = {
