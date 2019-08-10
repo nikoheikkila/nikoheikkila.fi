@@ -49,7 +49,8 @@ const Index = ({ data, location, pageContext }) => {
               ))}
             </p>
             <p className="post-meta">
-              {date} &bull; {formatReadingTime(node.timeToRead)} &bull;{' '}
+              <span>{date}</span> {' / '}
+              <span>{formatReadingTime(node.timeToRead)}</span> {' / '}
               <span>
                 💬 <CommentCount shortname={disqus} config={disqusConfig} />
               </span>
