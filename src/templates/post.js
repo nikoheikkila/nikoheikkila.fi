@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import dayjs from 'dayjs'
 
@@ -13,114 +14,116 @@ import ExternalLink from '../components/elements'
 
 import { formatReadingTime } from '../utils/helpers'
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const {
-      location,
-      data: {
-        markdownRemark: post,
-        site: {
-          siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
-        },
-      },
-      pageContext: { previous, next },
-    } = this.props
+const Post = ({ data, location, pageContext }) => {
+  const {
+    markdownRemark: post,
+    site: {
+      siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
+    },
+  } = data
 
-    const { author, date, lang, title, type } = post.frontmatter
-    const { fluid: cover } = post.frontmatter.cover.childImageSharp
-    const slug = post.fields.slug.slice(1, post.fields.slug.length - 1)
-    const postUrl = `${siteUrl}/${slug}`
-    const datePublished = dayjs(date || null).format('MMMM D, YYYY')
-    const categories = post.frontmatter.categories || []
+  const { previous, next } = pageContext
+  const { author, date, lang, title, type } = post.frontmatter
+  const { fluid: cover } = post.frontmatter.cover.childImageSharp
 
-    const translateUrl = `https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}`
-    const editUrl = `${repository}/edit/master/src/pages/${slug}/index.md`
-    const historyUrl = `${repository}/commits/master/src/pages/${slug}/index.md`
+  const slug = post.fields.slug.slice(1, post.fields.slug.length - 1)
+  const postUrl = `${siteUrl}/${slug}`
+  const datePublished = dayjs(date || null).format('MMMM D, YYYY')
+  const categories = post.frontmatter.categories || []
 
-    const disqusConfig = {
-      url: postUrl,
-      identifier: slug,
-      title,
-    }
+  const translateUrl = `https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}`
+  const editUrl = `${repository}/edit/master/src/pages/${slug}/index.md`
+  const historyUrl = `${repository}/commits/master/src/pages/${slug}/index.md`
 
-    return (
-      <Layout location={location} title={siteTitle} cover={cover}>
-        <SEO
-          description={post.excerpt}
-          lang={lang}
-          keywords={post.categories}
-          title={title}
-          image={cover.src}
-          type={type}
-          url={postUrl}
-          datePublished={date || dayjs().format('YYYY-MM-DD')}
-        />
-        <header>
-          <h1 className="post-title">{title}</h1>
+  const disqusConfig = {
+    url: postUrl,
+    identifier: slug,
+    title,
+  }
 
-          <section className="post-meta">
-            <p>
-              <span>✏️ Conceived by {author} &bull; </span>
-              <span>{datePublished} &bull; </span>
-              {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
-              <span>
-                💬 <CommentCount shortname={disqus} config={disqusConfig} />
-              </span>
-            </p>
-          </section>
-        </header>
+  return (
+    <Layout location={location} title={siteTitle} cover={cover}>
+      <SEO
+        description={post.excerpt}
+        lang={lang}
+        keywords={post.categories}
+        title={title}
+        image={cover.src}
+        type={type}
+        url={postUrl}
+        datePublished={date || dayjs().format('YYYY-MM-DD')}
+      />
+      <header>
+        <h1 className="post-title">{title}</h1>
 
-        {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
-
-        <Article content={post.html} />
-
-        <section className="post-footer">
+        <section className="post-meta">
           <p>
-            {categories.map(c => (
-              <Tag key={c} title={c} />
-            ))}
+            <span>✏️ Conceived by {author} &bull; </span>
+            <span>{datePublished} &bull; </span>
+            {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
+            <span>
+              💬 <CommentCount shortname={disqus} config={disqusConfig} />
+            </span>
           </p>
         </section>
+      </header>
 
-        <section className="post-attachments">
-          <ul>
-            <li>
-              <ExternalLink url={editUrl} text="Edit Page" />
-            </li>
-            <li>
-              <ExternalLink url={historyUrl} text="View History" />
-            </li>
-          </ul>
-        </section>
+      {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
 
-        <DiscussionEmbed shortname={disqus} config={disqusConfig} />
+      <Article content={post.html} />
 
-        <Bio />
+      <section className="post-footer">
+        <p>
+          {categories.map(c => (
+            <Tag key={c} title={c} />
+          ))}
+        </p>
+      </section>
 
-        <section className="post-navigation">
-          <ul>
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </section>
-      </Layout>
-    )
-  }
+      <section className="post-attachments">
+        <ul>
+          <li>
+            <ExternalLink url={editUrl} text="Edit Page" />
+          </li>
+          <li>
+            <ExternalLink url={historyUrl} text="View History" />
+          </li>
+        </ul>
+      </section>
+
+      <DiscussionEmbed shortname={disqus} config={disqusConfig} />
+
+      <Bio />
+
+      <section className="post-navigation">
+        <ul>
+          <li>
+            {previous && (
+              <Link to={previous.fields.slug} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={next.fields.slug} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </section>
+    </Layout>
+  )
 }
 
-export default BlogPostTemplate
+Post.propTypes = {
+  data: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
+}
+
+export default Post
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
