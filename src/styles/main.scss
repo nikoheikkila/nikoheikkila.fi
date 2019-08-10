@@ -38,19 +38,21 @@ h4 {
 }
 
 h1 {
-    font-size: 2.0rem;
+    font-size: 3.0rem;
+    line-height: 3.25rem;
 }
 
 h2 {
-    font-size: 1.75rem;
+    font-size: 2.5rem;
+    line-height: 2.75rem;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 2.0rem;
 }
 
 h4 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 a {
@@ -131,14 +133,15 @@ article {
     margin-bottom: 60px;
 }
 
-.post-title {
+.post-header {
     @include headingFont();
-    margin: 0;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .post-meta {
-    font-size: 0.75rem;
-    margin: 5px 0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
 }
 
 .post-attachments {
@@ -150,17 +153,23 @@ article {
     }
 }
 
+.profile {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 20px auto;
+
+    img {
+        border-radius: 100%;
+    }
+}
+
 .bio {
-    display: flex;
-    margin-bottom: 2.0em;
+    text-align: center;
+    margin: 0 auto 100px auto;
 
     p {
         margin: 0 10px;
         font-style: italic;
-    }
-
-    img {
-        border-radius: 50%;
     }
 }
 

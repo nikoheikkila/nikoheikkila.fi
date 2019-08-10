@@ -6,13 +6,12 @@ import dayjs from 'dayjs'
 import { DiscussionEmbed, CommentCount } from 'disqus-react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import Bio from '../components/bio'
 import Tag from '../components/tag'
 import Translation from '../components/translation'
 import Article from '../components/post/content'
 import ExternalLink from '../components/elements'
 
-import { formatReadingTime } from '../utils/helpers'
+import { formatReadingTime, isIndex, getPreviousPage } from '../utils/helpers'
 
 const Post = ({ data, location, pageContext }) => {
   const {
@@ -53,14 +52,15 @@ const Post = ({ data, location, pageContext }) => {
         url={postUrl}
         datePublished={date || dayjs().format('YYYY-MM-DD')}
       />
-      <header>
+      <header className="post-header">
+        {isIndex() || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
         <h1 className="post-title">{title}</h1>
 
         <section className="post-meta">
           <p>
-            <span>✏️ Conceived by {author} &bull; </span>
-            <span>{datePublished} &bull; </span>
-            {post.timeToRead >= 1 && <span>{formatReadingTime(post.timeToRead)} &bull; </span>}
+            <span>{author}</span> {' / '}
+            <span>{datePublished}</span> {' / '}
+            <span>{formatReadingTime(post.timeToRead)}</span> {' / '}
             <span>
               💬 <CommentCount shortname={disqus} config={disqusConfig} />
             </span>
@@ -92,8 +92,6 @@ const Post = ({ data, location, pageContext }) => {
       </section>
 
       <DiscussionEmbed shortname={disqus} config={disqusConfig} />
-
-      <Bio />
 
       <section className="post-navigation">
         <ul>

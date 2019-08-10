@@ -9,8 +9,8 @@ const Bio = () => (
       query {
         placeholderImage: file(relativePath: { eq: "profile.jpg" }) {
           childImageSharp {
-            fixed(width: 56, height: 56) {
-              ...GatsbyImageSharpFixed
+            fluid(quality: 100, maxWidth: 96, maxHeight: 96) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -18,8 +18,10 @@ const Bio = () => (
     `}
     render={data => (
       <aside>
+        <section className="profile">
+          <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+        </section>
         <section className="bio">
-          <Img fixed={data.placeholderImage.childImageSharp.fixed} />
           <p>
             A blog by <ExternalLink to="https://linkedin.com/in/nikoheikkila">Niko Heikkilä</ExternalLink>
             {'. '}
