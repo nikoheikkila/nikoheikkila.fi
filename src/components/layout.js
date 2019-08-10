@@ -39,7 +39,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { title, children, cover } = this.props
+    const { location, title, children, cover } = this.props
     const { theme } = this.state
 
     const headerStyle = {
@@ -47,11 +47,13 @@ class Layout extends React.Component {
       margin: '0 auto',
     }
 
+    const previous = location.state.previous || '/'
+
     const header = (
       <section style={headerStyle}>
         {(cover && <Hero data={cover} alt={title} />) || <Banner />}
         {this.isIndex() || (
-          <Link to="/" style={{ fontSize: '0.8em' }}>
+          <Link to={previous} style={{ fontSize: '0.8em' }}>
             ← Back to posts
           </Link>
         )}

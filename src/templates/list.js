@@ -44,7 +44,9 @@ class BlogIndex extends React.Component {
           return (
             <div key={node.fields.slug} className="post-content">
               <h2 className="post-title">
-                <Link to={node.fields.slug}>{title}</Link>
+                <Link to={node.fields.slug} state={{ previous: location.pathname }}>
+                  {title}
+                </Link>
               </h2>
               <p className="post-tags">
                 {node.frontmatter.categories.map(c => (
