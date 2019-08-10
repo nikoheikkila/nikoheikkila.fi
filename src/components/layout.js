@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { slide as Menu } from 'react-burger-menu'
+import _ from 'lodash'
 
 import Hero from './hero'
 import Banner from './banner'
@@ -25,6 +26,18 @@ class Layout extends React.Component {
     }
   }
 
+  getPreviousPage() {
+    const {
+      location: { state },
+    } = this.props
+
+    if (!state || !_.has(state, 'previous')) {
+      return '/'
+    }
+
+    return state.previous
+  }
+
   isIndex() {
     /**
      * Index page is either the home page or any page with path `/n`
@@ -39,7 +52,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { location, title, children, cover } = this.props
+    const { title, children, cover } = this.props
     const { theme } = this.state
 
     const headerStyle = {
@@ -47,13 +60,11 @@ class Layout extends React.Component {
       margin: '0 auto',
     }
 
-    const previous = location.state.previous || '/'
-
     const header = (
       <section style={headerStyle}>
         {(cover && <Hero data={cover} alt={title} />) || <Banner />}
         {this.isIndex() || (
-          <Link to={previous} style={{ fontSize: '0.8em' }}>
+          <Link to={this.getPreviousPage()} style={{ fontSize: '0.8em' }}>
             ← Back to posts
           </Link>
         )}
