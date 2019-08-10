@@ -1,28 +1,31 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import RandomFact from '../components/fact'
 
-export default class NotFoundPage extends React.Component {
-  render() {
-    const { location } = this.props
+const NotFound = ({ location }) => {
+  const title = 'Page Not Found'
 
-    return (
-      <Layout location={location} title="404 Not Found">
-        <SEO title="404: Not found" />
-        <h1>🤖 You have erred, but it is human</h1>
+  return (
+    <Layout location={location} title={title}>
+      <SEO title={title} />
+      <h1>🤖 You have erred, but it is human</h1>
 
-        <div className="gatsby-highlight" data-language="js">
-          <code className="language-js">REASON: ERR_CONTENT_NOT_FOUND</code>
-        </div>
+      <p>
+        <code className="language-js">REASON: ERR_CONTENT_NOT_FOUND</code>
+      </p>
 
-        <p>
-          Alas, the content you so humbly requested is nowhere to be found. Why not celebrate this day with the
-          following random fact instead?
-        </p>
-
-        <RandomFact />
-      </Layout>
-    )
-  }
+      <p>Alas, the content you so humbly requested is nowhere to be found.</p>
+      <p>
+        Go back to <Link to="/">home</Link> instead?
+      </p>
+    </Layout>
+  )
 }
+
+NotFound.propTypes = {
+  location: PropTypes.object.isRequired,
+}
+
+export default NotFound
