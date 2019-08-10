@@ -20,7 +20,7 @@ const Translation = ({ lang, url }) => {
     <section className="language-info">
       <p>
         This post was written in {language}. You can access the machine translated version{' '}
-        <ExternalLink url={url} text="here" />.
+        <ExternalLink to={url}>here</ExternalLink>.
       </p>
     </section>
   )

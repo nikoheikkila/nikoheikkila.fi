@@ -21,10 +21,10 @@ const Bio = () => (
         <section className="bio">
           <Img fixed={data.placeholderImage.childImageSharp.fixed} />
           <p>
-            A blog by <ExternalLink url="https://linkedin.com/in/nikoheikkila" text="Niko Heikkilä" />
+            A blog by <ExternalLink to="https://linkedin.com/in/nikoheikkila">Niko Heikkilä</ExternalLink>
             {'. '}
-            Powered by coffee, <ExternalLink url="https://code.visualstudio.com" text="VS Code" />, and{' '}
-            <ExternalLink url="https://gatsbyjs.org" text="Gatsby" />.
+            Powered by coffee, <ExternalLink to="https://code.visualstudio.com">VS Code</ExternalLink>, and{' '}
+            <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
           </p>
         </section>
       </aside>

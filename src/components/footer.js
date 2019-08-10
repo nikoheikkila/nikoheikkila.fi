@@ -30,13 +30,13 @@ export default function Footer() {
     <footer>
       <div className="feed">
         <FontAwesomeIcon icon={faRss} />
-        <ExternalLink url={rss} text="RSS" />
+        <ExternalLink to={rss}>RSS</ExternalLink>
       </div>
 
       {social.map(({ name, url }) => (
         <div key={name}>
           <FontAwesomeIcon icon={['fab', name]} />
-          <ExternalLink url={url} text={name} />
+          <ExternalLink to={url}>{name}</ExternalLink>
         </div>
       ))}
     </footer>

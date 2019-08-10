@@ -1,19 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
-const ExternalLink = ({ url, text }) => (
-  <a href={url} target="_blank" rel="noopener noreferrer">
-    {text}
-  </a>
+const ExternalLink = ({ children, to }) => (
+  <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
+    {children}
+  </OutboundLink>
 )
 
 ExternalLink.propTypes = {
-  url: PropTypes.string.isRequired,
-  text: PropTypes.string,
-}
-
-ExternalLink.defaultProps = {
-  text: '',
+  to: PropTypes.string.isRequired,
 }
 
 export default ExternalLink

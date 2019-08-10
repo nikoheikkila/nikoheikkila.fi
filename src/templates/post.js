@@ -83,10 +83,10 @@ const Post = ({ data, location, pageContext }) => {
       <section className="post-attachments">
         <ul>
           <li>
-            <ExternalLink url={editUrl} text="Edit Page" />
+            <ExternalLink to={editUrl}>Edit Page</ExternalLink>
           </li>
           <li>
-            <ExternalLink url={historyUrl} text="View History" />
+            <ExternalLink to={historyUrl}>View History</ExternalLink>
           </li>
         </ul>
       </section>
