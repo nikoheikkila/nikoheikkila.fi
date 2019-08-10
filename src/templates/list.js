@@ -24,8 +24,8 @@ class BlogIndex extends React.Component {
 
     const isFirstPage = currentPage === 1
     const isLastPage = currentPage === numberOfPages
-    const previousPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
-    const nextPage = (currentPage + 1).toString()
+    const previousPage = currentPage - 1 === 1 ? '/' : `/${currentPage - 1}`
+    const nextPage = `/${currentPage + 1}`
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -72,14 +72,18 @@ class BlogIndex extends React.Component {
           }}
         >
           {!isFirstPage && (
-            <Link to={previousPage} rel="prev">
-              👈 Previous Page ({currentPage - 1}/{numberOfPages})
-            </Link>
+            <li>
+              <Link to={previousPage} rel="prev">
+                👈 Previous Page ({currentPage - 1}/{numberOfPages})
+              </Link>
+            </li>
           )}
           {!isLastPage && (
-            <Link to={nextPage} rel="next">
-              Next Page ({currentPage + 1}/{numberOfPages}) 👉
-            </Link>
+            <li>
+              <Link to={nextPage} rel="next">
+                Next Page ({currentPage + 1}/{numberOfPages}) 👉
+              </Link>
+            </li>
           )}
         </ul>
       </Layout>
