@@ -2,6 +2,7 @@
 @import "fonts";
 @import "syntax";
 @import "menu";
+@import "gatsby";
 
 @mixin hr($color, $width) {
     hr {
@@ -105,7 +106,7 @@ article {
         display: block;
         max-width: 100%;
         height: auto;
-        margin: 20px auto;
+        margin: 30px auto;
     }
 
     ul {
