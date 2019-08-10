@@ -1,5 +1,7 @@
 ---
 lang: en
+author: Niko Heikkilä
+date: 2019-08-10
 type: page
 cover: '../../assets/banner.png'
 title: Get In Touch
