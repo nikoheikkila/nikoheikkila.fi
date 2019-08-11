@@ -1,26 +1,22 @@
 import React from 'react'
 import useDarkMode from 'use-dark-mode'
-import Toggle from './toggle'
 
 import sun from '../assets/sun.png'
 import moon from '../assets/moon.png'
 
 const ThemeToggle = () => {
-  const darkMode = useDarkMode(false, {
+  const { toggle, value: enabled } = useDarkMode(false, {
     classNameLight: 'light',
     classNameDark: 'dark',
-    storageKey: 'theme',
+    storageKey: 'darkMode',
   })
 
   return (
-    <Toggle
-      icons={{
-        checked: <img className="toggle-icon" src={moon} alt="checked" />,
-        unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />,
-      }}
-      checked={darkMode.value}
-      onChange={darkMode.toggle}
-    />
+    <section className="theme-toggle">
+      <button type="button" onClick={toggle} aria-label="Switch between light and dark themes">
+        <img src={enabled ? moon : sun} alt="Theme Icon" />
+      </button>
+    </section>
   )
 }
 

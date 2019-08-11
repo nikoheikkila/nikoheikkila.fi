@@ -53,7 +53,7 @@ const Post = ({ data, location, pageContext }) => {
         datePublished={date || dayjs().format('YYYY-MM-DD')}
       />
       <header className="post-header">
-        {isIndex() || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
+        {isIndex(location) || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
         <h1 className="post-title">{title}</h1>
 
         <section className="post-meta">
