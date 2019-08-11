@@ -168,6 +168,12 @@ module.exports = {
         output: `/robots.txt`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        minify: process.env.NODE_ENV === 'production',
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,

@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { slide as Menu } from 'react-burger-menu'
 
 import Hero from './hero'
 import Banner from './banner'
-import Toggle from './toggle'
 import Footer from './footer'
 import Pages from './pages'
-import { isIndex } from '../utils/helpers'
+import ThemeToggle from './theme'
 
+import { isIndex } from '../utils/helpers'
 import '../styles/main.scss'
-import sun from '../assets/sun.png'
-import moon from '../assets/moon.png'
 
 const Layout = ({ title, cover, children }) => {
-  const [theme, setTheme] = useState(null)
-
-  useEffect(() => {
-    setTheme(window.__theme)
-    window.__onThemeChange = () => {
-      setTheme(window.__theme)
-    }
-  }, [])
-
   const links = [
     {
       slug: '/',
@@ -34,14 +23,7 @@ const Layout = ({ title, cover, children }) => {
     <div id="container">
       <Menu className="site-menu" pageWrapId="content" outerContainerId="container">
         <Pages links={links} />
-        <Toggle
-          icons={{
-            checked: <img className="toggle-icon" src={moon} alt="checked" />,
-            unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />,
-          }}
-          checked={theme === 'dark'}
-          onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
-        />
+        <ThemeToggle />
       </Menu>
       <section id="content">
         <header>

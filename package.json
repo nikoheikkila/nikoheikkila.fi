@@ -31,6 +31,7 @@
     "gatsby-plugin-sharp": "^2.2.11",
     "gatsby-plugin-sitemap": "^2.2.6",
     "gatsby-remark-copy-linked-files": "^2.1.5",
+    "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-remark-images": "^3.1.7",
     "gatsby-remark-prismjs": "^3.3.4",
     "gatsby-remark-responsive-iframe": "^2.2.4",
@@ -47,7 +48,8 @@
     "react-burger-menu": "^2.6.10",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "title": "^3.4.1"
+    "title": "^3.4.1",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
     "ava": "^2.2.0",
