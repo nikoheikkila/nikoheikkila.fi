@@ -25,14 +25,9 @@ body.dark {
     }
 }
 
+/* Hide the close button */
 .bm-cross {
-    background: #444444;
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-    height: 24px;
-    width: 24px;
+    display: none;
 }
 
 /*
@@ -41,12 +36,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
     position: fixed;
+    height: 100%;
 }
 
 /* General sidebar styles */
 .bm-menu {
     background: #000000;
-    padding: 10px 0;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -57,6 +52,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Wrapper for item list */
 .bm-item-list {
     color: #b8b7ad;
+    overflow-y: hidden;
 
     ul {
         margin: 2.4rem 1.0rem 2.0rem 0;

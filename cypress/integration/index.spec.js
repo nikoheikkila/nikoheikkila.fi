@@ -45,7 +45,7 @@ context('Homepage', () => {
   it('should support switching themes', () => {
     cy.get('.bm-burger-button > button').click()
 
-    cy.get('.react-toggle-thumb')
+    cy.get('.theme-toggle > button')
       .click()
       .should(() => {
         expect(localStorage.getItem('darkMode')).to.deep.equal('true')
@@ -56,7 +56,7 @@ context('Homepage', () => {
       expect(element).to.not.have.class('light')
     })
 
-    cy.get('.react-toggle-thumb')
+    cy.get('.theme-toggle > button')
       .click()
       .should(() => {
         expect(localStorage.getItem('darkMode')).to.deep.equal('false')
