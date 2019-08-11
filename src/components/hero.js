@@ -27,13 +27,13 @@ NormalizedImage.defaultProps = {
 
 NormalizedImage.propTypes = {
   style: PropTypes.shape({
-    maxWidth: PropTypes.string.isRequired,
-    maxHeight: PropTypes.string.isRequired,
-    margin: PropTypes.string.isRequired,
+    maxWidth: PropTypes.string,
+    maxHeight: PropTypes.string,
+    margin: PropTypes.string,
   }),
   fluid: PropTypes.shape({
-    presentationHeight: PropTypes.string.isRequired,
-    presentationWidth: PropTypes.string.isRequired,
+    presentationHeight: PropTypes.number.isRequired,
+    presentationWidth: PropTypes.number.isRequired,
   }),
 }
 
@@ -45,7 +45,7 @@ Hero.defaultProps = {
 
 Hero.propTypes = {
   data: PropTypes.shape({
-    cover: PropTypes.instanceOf(Img).isRequired,
+    cover: PropTypes.instanceOf(Img),
   }),
   alt: PropTypes.string,
 }
