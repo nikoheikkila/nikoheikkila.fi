@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { slide as Menu } from 'react-burger-menu'
 
@@ -7,71 +7,58 @@ import Banner from './banner'
 import Toggle from './toggle'
 import Footer from './footer'
 import Pages from './pages'
+import { isIndex } from '../utils/helpers'
 
 import '../styles/main.scss'
 import sun from '../assets/sun.png'
 import moon from '../assets/moon.png'
-import { isIndex } from '../utils/helpers'
 
-class Layout extends React.Component {
-  state = {
-    theme: null,
-  }
+const Layout = ({ title, cover, children }) => {
+  const [theme, setTheme] = useState(null)
 
-  componentDidMount() {
-    this.setState({ theme: window.__theme })
+  useEffect(() => {
+    setTheme(window.__theme)
     window.__onThemeChange = () => {
-      this.setState({ theme: window.__theme })
+      setTheme(window.__theme)
     }
-  }
+  }, [])
 
-  render() {
-    const { title, children, cover } = this.props
-    const { theme } = this.state
+  const links = [
+    {
+      slug: '/',
+      title: 'Blog',
+    },
+  ]
 
-    const headerStyle = {
-      maxWidth: isIndex() ? '720px' : '100%',
-      margin: '0 auto',
-    }
-
-    const header = <section style={headerStyle}>{(cover && <Hero data={cover} alt={title} />) || <Banner />}</section>
-
-    const toggle = (
-      <Toggle
-        icons={{
-          checked: <img className="toggle-icon" src={moon} alt="checked" />,
-          unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />,
-        }}
-        checked={theme === 'dark'}
-        onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
-      />
-    )
-
-    const links = [
-      {
-        slug: '/',
-        title: 'Blog',
-      },
-    ]
-
-    const sideMenu = (
+  return (
+    <div id="container">
       <Menu className="site-menu" pageWrapId="content" outerContainerId="container">
         <Pages links={links} />
-        {toggle}
+        <Toggle
+          icons={{
+            checked: <img className="toggle-icon" src={moon} alt="checked" />,
+            unchecked: <img className="toggle-icon" src={sun} alt="unchecked" />,
+          }}
+          checked={theme === 'dark'}
+          onChange={e => window.__setPreferredTheme(e.target.checked ? 'dark' : 'light')}
+        />
       </Menu>
-    )
-
-    return (
-      <div id="container">
-        {sideMenu}
-        <section id="content">
-          <header>{header}</header>
-          <main>{children}</main>
-          <Footer />
-        </section>
-      </div>
-    )
-  }
+      <section id="content">
+        <header>
+          <section
+            style={{
+              maxWidth: isIndex() ? '720px' : '100%',
+              margin: '0 auto',
+            }}
+          >
+            {(cover && <Hero data={cover} alt={title} />) || <Banner />}
+          </section>
+        </header>
+        <main>{children}</main>
+        <Footer />
+      </section>
+    </div>
+  )
 }
 
 Layout.defaultProps = {
