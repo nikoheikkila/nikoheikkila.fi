@@ -18,7 +18,7 @@
     "dayjs": "^1.8.15",
     "disqus-react": "^1.0.6",
     "esm": "^3.2.25",
-    "gatsby": "^2.13.32",
+    "gatsby": "^2.13.57",
     "gatsby-image": "^2.2.7",
     "gatsby-plugin-disqus": "^1.1.2",
     "gatsby-plugin-feed": "^2.3.6",
