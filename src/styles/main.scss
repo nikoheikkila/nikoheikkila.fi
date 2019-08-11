@@ -195,6 +195,24 @@ article {
     }
 }
 
+.theme-toggle {
+    display: flex;
+    padding-left: 30px;
+    width: 24px;
+    height: 24px;
+
+    & > button {
+        opacity: 0.75;
+        background: inherit;
+        border: none;
+        cursor: pointer;
+
+        &.focus, &:active {
+            outline: none;
+        }
+    }
+}
+
 footer {
     bottom: 0;
 
