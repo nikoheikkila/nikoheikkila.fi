@@ -48,7 +48,7 @@ context('Homepage', () => {
     cy.get('.react-toggle-thumb')
       .click()
       .should(() => {
-        expect(localStorage.getItem('theme')).to.deep.equal('dark')
+        expect(localStorage.getItem('darkMode')).to.deep.equal('true')
       })
 
     cy.get('body').should(element => {
@@ -59,7 +59,7 @@ context('Homepage', () => {
     cy.get('.react-toggle-thumb')
       .click()
       .should(() => {
-        expect(localStorage.getItem('theme')).to.deep.equal('light')
+        expect(localStorage.getItem('darkMode')).to.deep.equal('false')
       })
 
     cy.get('body').should(element => {

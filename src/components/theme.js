@@ -9,7 +9,7 @@ const ThemeToggle = () => {
   const darkMode = useDarkMode(false, {
     classNameLight: 'light',
     classNameDark: 'dark',
-    storageKey: 'theme',
+    storageKey: 'darkMode',
   })
 
   return (
