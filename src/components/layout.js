@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { slide as Menu } from 'react-burger-menu'
+import { stack as Menu } from 'react-burger-menu'
 
 import Hero from './hero'
 import Banner from './banner'
@@ -11,7 +11,7 @@ import ThemeToggle from './theme'
 import { isIndex } from '../utils/helpers'
 import '../styles/main.scss'
 
-const Layout = ({ title, cover, children }) => {
+const Layout = ({ location, title, cover, children }) => {
   const links = [
     {
       slug: '/',
@@ -29,7 +29,7 @@ const Layout = ({ title, cover, children }) => {
         <header>
           <section
             style={{
-              maxWidth: isIndex() ? '720px' : '100%',
+              maxWidth: isIndex(location) ? '720px' : '100%',
               margin: '0 auto',
             }}
           >

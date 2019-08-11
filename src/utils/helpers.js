@@ -15,7 +15,7 @@ export const formatReadingTime = minutes => {
  * Index page is either the home page or any page with path `/n`
  * where `n` is a natural number > 0.
  */
-export const isIndex = path => /^\/[0-9]*$/.test(path)
+export const isIndex = ({ pathname }) => /^\/[0-9]*$/.test(pathname)
 
 export const getPreviousPage = ({ state = null }) => {
   if (!state || !_.has(state, 'previous')) {
