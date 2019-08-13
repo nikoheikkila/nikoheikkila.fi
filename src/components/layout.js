@@ -22,8 +22,8 @@ const Layout = ({ location, title, cover, children }) => {
   return (
     <div id="container">
       <Menu className="site-menu" pageWrapId="content" outerContainerId="container">
-        <Pages links={links} />
         <ThemeToggle />
+        <Pages links={links} />
       </Menu>
       <section id="content">
         <header>

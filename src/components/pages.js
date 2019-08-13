@@ -3,9 +3,9 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
 const renderLink = (slug, title) => (
-  <li key={slug}>
-    <Link to={slug}>{title}</Link>
-  </li>
+  <Link key={slug} to={slug}>
+    {title}
+  </Link>
 )
 
 function Pages({ links }) {
@@ -33,7 +33,7 @@ function Pages({ links }) {
 
   const pages = data.allMarkdownRemark.edges.map(({ node }) => renderLink(node.fields.slug, node.frontmatter.title))
 
-  return <ul>{links.map(({ slug, title }) => renderLink(slug, title)).concat(pages)}</ul>
+  return links.map(({ slug, title }) => renderLink(slug, title)).concat(pages)
 }
 
 Pages.defaultProps = {

@@ -12,10 +12,18 @@ const ThemeToggle = ({ dark, classNameLight, classNameDark, storageKey }) => {
     storageKey,
   })
 
+  const iconStyle = {
+    backgroundColor: '#000000',
+    position: 'absolute',
+    top: 10,
+    left: 0,
+  }
+
   return (
     <section className="theme-toggle">
       <button type="button" onClick={toggle} aria-label="Switch between light and dark themes">
-        <img src={enabled ? moon : sun} alt="Theme Icon" />
+        <img style={iconStyle} src={enabled ? sun : moon} alt="Sun Icon" />
+        <img style={iconStyle} src={enabled ? moon : sun} alt="Moon Icon" />
       </button>
     </section>
   )

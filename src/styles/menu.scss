@@ -1,6 +1,8 @@
 @import "variables";
 @import "fonts";
 
+$menuPaddingLeft: 30px;
+
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: fixed;
@@ -36,12 +38,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
     position: fixed;
+    max-width: 75vw;
     height: 100%;
 }
 
 /* General sidebar styles */
 .bm-menu {
     background: #000000;
+    overflow-y: hidden !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -51,22 +55,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Wrapper for item list */
 .bm-item-list {
+    margin: 60px 0 0 0;
+    padding-left: $menuPaddingLeft;
     color: #b8b7ad;
-    overflow-y: hidden;
 
-    ul {
-        margin: 2.4rem 1.0rem 2.0rem 0;
-        list-style: none;
+    a {
+        display: block;
+        font-size: 1.2rem;
+        line-height: 2.25rem;
+    }
 
-        li {
-            font-size: 1.3125rem;
-            font-weight: 700;
-            padding: 5px 0;
-
-            a:hover {
-                cursor: crosshair;
-            }
-        }
+    a:hover {
+        cursor: pointer;
     }
 }
 
@@ -78,4 +78,27 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 1.0);
+}
+
+/* Theme toggler */
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    left: $menuPaddingLeft;
+
+    & > button {
+        opacity: 0.75;
+        background: inherit;
+        border: none;
+        cursor: pointer;
+
+        &.focus, &:active {
+            outline: none;
+        }
+
+        & > img {
+            width: 24px;
+            height: 24px;
+        }
+    }
 }
