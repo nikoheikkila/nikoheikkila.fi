@@ -6374,12 +6374,12 @@ gatsby-core-utils@^1.0.4, gatsby-core-utils@^1.0.6:
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.6.tgz#f7fa24b87ad4820d92851a702e6c45d540177033"
   integrity sha512-q03XqN9WO6K/9mXfx0p+pUg+cY2W0wYeNKlNPmkMCYdAO7Rht+vb8mLp0bIQOxooz8hf8O4jr00r+H+xlYZ9rg==
 
-gatsby-cypress@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/gatsby-cypress/-/gatsby-cypress-0.2.3.tgz#52660e9a01d0cd0ed0aa0239ca6ff249e8c8b3d0"
-  integrity sha512-WODCHWn14+7xUNhMTSUYPe2vbUZihVyxU80Aw9BfYrbxm5gmwHiTAGvjxzDKsA3zc3VI2UIFfHaLdY1QKbZ+qQ==
+gatsby-cypress@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/gatsby-cypress/-/gatsby-cypress-0.2.6.tgz#639ce26dd566552d6d8faa433d0619520c61d25b"
+  integrity sha512-YsTi1lvJKYqrXcePIlsEf5dncwGHsWyrTbx6Wh7tDI1BQJnv7rCnx4GUOYbgRJEZj9benWSrRkYuCCUOul9I0A==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.5.5"
 
 gatsby-graphiql-explorer@^0.2.3:
   version "0.2.3"
