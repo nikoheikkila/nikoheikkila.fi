@@ -52,7 +52,7 @@
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^2.3.0",
     "babel-eslint": "^10.0.2",
     "cypress": "^3.4.1",
     "eslint": "^6.1.0",
