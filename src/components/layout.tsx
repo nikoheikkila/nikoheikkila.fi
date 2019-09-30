@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { stack as Menu } from 'react-burger-menu'
 
 import Hero from './hero'
@@ -10,8 +9,9 @@ import ThemeToggle from './theme'
 
 import { isIndex } from '../utils/helpers'
 import '../styles/main.scss'
+import { LayoutProps } from 'types/global'
 
-const Layout = ({ location, title, cover, children }) => {
+const Layout = ({ location, title, cover, children }: LayoutProps) => {
   const links = [
     {
       slug: '/',
@@ -41,16 +41,6 @@ const Layout = ({ location, title, cover, children }) => {
       </section>
     </div>
   )
-}
-
-Layout.defaultProps = {
-  cover: null,
-}
-
-Layout.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  cover: PropTypes.object,
 }
 
 export default Layout

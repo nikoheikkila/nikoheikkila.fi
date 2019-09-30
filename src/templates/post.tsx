@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import dayjs from 'dayjs'
 
@@ -12,8 +11,9 @@ import Article from '../components/post/content'
 import ExternalLink from '../components/elements'
 
 import { formatReadingTime, isIndex, getPreviousPage } from '../utils/helpers'
+import { Page } from 'types/global'
 
-const Post = ({ data, location, pageContext }) => {
+const Post = ({ data, location, pageContext }: Page) => {
   const {
     markdownRemark: post,
     site: {
@@ -74,7 +74,7 @@ const Post = ({ data, location, pageContext }) => {
 
       <section className="post-footer">
         <p>
-          {categories.map(c => (
+          {categories.map((c: string) => (
             <Tag key={c} title={c} />
           ))}
         </p>
@@ -113,12 +113,6 @@ const Post = ({ data, location, pageContext }) => {
       </section>
     </Layout>
   )
-}
-
-Post.propTypes = {
-  data: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  pageContext: PropTypes.object.isRequired,
 }
 
 export default Post

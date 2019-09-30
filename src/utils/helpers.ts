@@ -1,11 +1,5 @@
 import _ from 'lodash'
-
-interface ILocation {
-  pathname: string
-  state: {
-    previous: string
-  }
-}
+import { Location } from 'types/global'
 
 export const formatReadingTime = (minutes: number): string => {
   const cups: number = Math.round(minutes / 5)
@@ -22,9 +16,9 @@ export const formatReadingTime = (minutes: number): string => {
  * Index page is either the home page or any page with path `/n`
  * where `n` is a natural number > 0.
  */
-export const isIndex = ({ pathname }: ILocation) => /^\/[0-9]*$/.test(pathname)
+export const isIndex = ({ pathname }: Location) => /^\/[0-9]*$/.test(pathname)
 
-export const getPreviousPage = ({ state }: ILocation): string => {
+export const getPreviousPage = ({ state }: Location): string => {
   if (!_.has(state, 'previous')) {
     return '/'
   }
