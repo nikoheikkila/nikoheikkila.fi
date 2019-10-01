@@ -1,10 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import slugify from '@sindresorhus/slugify'
 
 import { randomColor, foregroundColor } from '../utils/colors'
 
-const Tag = ({ title }) => {
+interface Props {
+  title: string
+}
+
+const Tag = ({ title }: Props) => {
   const innerText = slugify(title, { decamelize: false, separator: ' ' })
   const backgroundColor = randomColor()
   const color = foregroundColor(backgroundColor)
@@ -20,10 +23,6 @@ const Tag = ({ title }) => {
   }
 
   return <span style={style}>#{innerText}</span>
-}
-
-Tag.propTypes = {
-  title: PropTypes.string.isRequired,
 }
 
 export default Tag

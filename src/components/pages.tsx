@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import PropTypes from 'prop-types'
 
-const renderLink = (slug, title) => (
+interface Props {
+  links: Array<{
+    slug: string
+    title: string
+  }>
+}
+
+const renderLink = (slug: string, title: string) => (
   <Link key={slug} to={slug}>
     {title}
   </Link>
 )
 
-function Pages({ links }) {
+function Pages({ links }: Props) {
   const data = useStaticQuery(
     graphql`
       {
@@ -34,14 +40,6 @@ function Pages({ links }) {
   const pages = data.allMarkdownRemark.edges.map(({ node }) => renderLink(node.fields.slug, node.frontmatter.title))
 
   return links.map(({ slug, title }) => renderLink(slug, title)).concat(pages)
-}
-
-Pages.defaultProps = {
-  links: [],
-}
-
-Pages.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Pages

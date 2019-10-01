@@ -2,11 +2,11 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "esnext",
-        "jsx": "preserve",
+        "jsx": "react",
         "lib": [
             "dom",
-            "es2015",
-            "es2017"
+            "es2017",
+            "es2018"
         ],
         "strict": true,
         "noEmit": true,
@@ -21,6 +21,9 @@
         "noImplicitAny": true,
         "baseUrl": "./src",
         "paths": {
+            "assets/*": [
+                "assets/*"
+            ],
             "components/*": [
                 "components/*"
             ],
@@ -32,5 +35,8 @@
     "include": [
         "./src/**/*",
         "./types"
+    ],
+    "exclude": [
+        "./src/pages/*"
     ]
 }

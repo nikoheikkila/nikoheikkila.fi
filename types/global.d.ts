@@ -1,3 +1,8 @@
+declare module '*.png' {
+    var _: string
+    export default _
+}
+
 import { ReactNode } from "react";
 
 export interface Location {

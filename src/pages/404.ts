@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import { Page } from 'types/global'
 
-const NotFound = ({ location }) => {
+const NotFound = ({ location }: Page) => {
   const title = 'Page Not Found'
 
   return (
@@ -22,10 +22,6 @@ const NotFound = ({ location }) => {
       </p>
     </Layout>
   )
-}
-
-NotFound.propTypes = {
-  location: PropTypes.object.isRequired,
 }
 
 export default NotFound

@@ -1,10 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Img from 'gatsby-image'
+import React, { CSSProperties } from 'react'
+import Img, { GatsbyImageProps, FluidObject } from 'gatsby-image'
 
-const NormalizedImage = props => {
+interface FluidImage extends FluidObject {
+  presentationHeight: number
+  presentationWidth: number
+}
+
+interface ImageProps extends GatsbyImageProps {
+  fluid: FluidImage
+  style?: CSSProperties
+}
+
+const NormalizedImage = (props: ImageProps) => {
   const {
-    style,
+    style = {},
     fluid: { presentationHeight, presentationWidth },
   } = props
 
@@ -21,33 +30,11 @@ const NormalizedImage = props => {
   return <Img {...normalizedProps} />
 }
 
-NormalizedImage.defaultProps = {
-  style: {},
+interface HeroProps {
+  data: FluidImage
+  alt: string
 }
 
-NormalizedImage.propTypes = {
-  style: PropTypes.shape({
-    maxWidth: PropTypes.string,
-    maxHeight: PropTypes.string,
-    margin: PropTypes.string,
-  }),
-  fluid: PropTypes.shape({
-    presentationHeight: PropTypes.number.isRequired,
-    presentationWidth: PropTypes.number.isRequired,
-  }),
-}
-
-const Hero = ({ data, alt }) => <NormalizedImage fluid={data} alt={alt} />
-
-Hero.defaultProps = {
-  alt: 'Cover Image',
-}
-
-Hero.propTypes = {
-  data: PropTypes.shape({
-    cover: PropTypes.instanceOf(Img),
-  }),
-  alt: PropTypes.string,
-}
+const Hero = ({ data, alt }: HeroProps) => <NormalizedImage fluid={data} alt={alt} />
 
 export default Hero

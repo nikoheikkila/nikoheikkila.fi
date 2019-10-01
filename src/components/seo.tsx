@@ -11,7 +11,29 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import SchemaOrg from './schema'
 
-function SEO({ description, lang, meta, keywords, title, image, type, url, datePublished, dateModified }) {
+interface Props {
+  title: string
+  image?: string
+  type?: string
+  url?: string
+  datePublished?: string
+  dateModified?: string
+  description?: string
+  lang?: string
+  keywords?: Array<string>
+}
+
+function SEO({
+  title,
+  image = '',
+  type = 'page',
+  url = '',
+  datePublished = '',
+  dateModified = '',
+  description = '',
+  lang = 'en',
+  keywords = [],
+}: Props) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -89,12 +111,12 @@ function SEO({ description, lang, meta, keywords, title, image, type, url, dateP
           .concat(
             keywords.length > 0
               ? {
-                  name: `keywords`,
-                  content: keywords.join(`, `),
-                }
+                name: `keywords`,
+                content: keywords.join(`, `),
+              }
               : []
           )
-          .concat(meta)}
+        }
       />
       <SchemaOrg
         isBlogPost={type === `post`}
@@ -111,31 +133,6 @@ function SEO({ description, lang, meta, keywords, title, image, type, url, dateP
       />
     </>
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  keywords: [],
-  description: ``,
-  image: ``,
-  type: `page`,
-  url: ``,
-  datePublished: ``,
-  dateModified: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-  datePublished: PropTypes.string,
-  dateModified: PropTypes.string,
-  url: PropTypes.string,
-  image: PropTypes.string,
-  type: PropTypes.string,
 }
 
 export default SEO

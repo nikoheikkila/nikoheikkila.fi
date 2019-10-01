@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
-const ExternalLink = ({ children, to }) => (
+interface Props {
+  children: ReactNode
+  to: string
+}
+
+const ExternalLink = ({ children, to }: Props) => (
   <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
     {children}
   </OutboundLink>

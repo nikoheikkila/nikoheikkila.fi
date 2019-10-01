@@ -6,7 +6,6 @@ import { DiscussionEmbed, CommentCount } from 'disqus-react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Tag from '../components/tag'
-import Translation from '../components/translation'
 import Article from '../components/post/content'
 import ExternalLink from '../components/elements'
 
@@ -67,8 +66,6 @@ const Post = ({ data, location, pageContext }: Page) => {
           </p>
         </section>
       </header>
-
-      {lang !== 'en' && <Translation lang={lang} url={translateUrl} />}
 
       <Article content={post.html} />
 
