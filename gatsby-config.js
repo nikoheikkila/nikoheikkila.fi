@@ -102,22 +102,21 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map(edge =>
-                Object.assign({}, edge.node.frontmatter, {
-                  language: edge.node.frontmatter.lang,
-                  title: edge.node.frontmatter.title,
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  author: edge.node.frontmatter.author,
-                  custom_elements: [
-                    {
-                      'content:encoded': edge.node.html,
-                    },
-                  ],
-                })
-              ),
+              allMarkdownRemark.edges.map(edge => ({
+                ...edge.node.frontmatter,
+                language: edge.node.frontmatter.lang,
+                title: edge.node.frontmatter.title,
+                description: edge.node.excerpt,
+                date: edge.node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                author: edge.node.frontmatter.author,
+                custom_elements: [
+                  {
+                    'content:encoded': edge.node.html,
+                  },
+                ],
+              })),
             query: `
             {
               allMarkdownRemark(
