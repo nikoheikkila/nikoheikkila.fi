@@ -19,7 +19,7 @@ jobs:
     - name: General Cache
       uses: actions/cache@v1
       with:
-        path: $HOME/.cache
+        path: ~/.cache
         key: ${{ runner.OS }}-cache
         restore-keys: |
           ${{ runner.OS }}-cache
