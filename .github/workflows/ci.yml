@@ -30,6 +30,9 @@ jobs:
         
     - name: Build Site
       run: yarn build
+      env:
+        GATSBY_DISQUS_SHORTNAME: test
+        GATSBY_GA_TRACKING_CODE: UA-12345678-1
         
     - name: Upload Built Site As Artifact
       uses: actions/upload-artifact@v1
