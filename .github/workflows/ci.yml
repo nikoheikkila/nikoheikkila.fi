@@ -16,15 +16,21 @@ jobs:
       with:
         node-version: 12.x
 
+    - name: General Cache
+      uses: actions/cache@v1
+      with:
+        path: $HOME/.cache
+        key: ${{ runner.OS }}-cache
+        restore-keys: |
+          ${{ runner.OS }}-cache
+
     - name: Cache Dependencies
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.OS }}-node_modules
         restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
+          ${{ runner.OS }}-node_modules
 
     - name: Build Site
       run: |
