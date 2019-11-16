@@ -1,0 +1,66 @@
+name: Build and Test Site
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build Site
+    runs-on: [ubuntu-18.04]
+    
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Setup Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    
+    - name: Cache Dependencies
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
+        
+    - name: Build Site
+      run: yarn build
+        
+    - name: Upload Built Site As Artifact
+      uses: actions/upload-artifact@v1
+      with:
+          name: public
+          path: public/
+
+  test:
+    name: Test Site
+    needs: [build]
+    runs-on: [ubuntu-18.04]
+    
+    steps:
+      - uses: actions/checkout@v1
+        
+      - name: Download Artifact from Build Step
+        uses: actions/download-artifact@v1
+        with:
+          name: public
+          
+      - name: Lint Code Style
+        run: yarn lint
+      
+      - name: Unit Tests
+        run: yarn test:unit
+      
+      - name: E2E Tests
+        uses: cypress-io/github-action@v1.5.0
+        with:
+          start: yarn serve
+          wait-on: http://localhost:8000
+      
+      - name: Accessibility Tests
+        run: yarn test:a11y
