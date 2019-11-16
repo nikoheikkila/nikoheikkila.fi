@@ -2,8 +2,9 @@ import _ from 'lodash'
 import { Location } from 'types/global'
 
 export const formatReadingTime = (minutes: number): string => {
-  const cups: number = Math.round(minutes / 5)
-  const time: string = minutes < 2 ? 'minute' : 'minutes'
+  const maxCups = 5
+  const cups = Math.round(minutes / maxCups)
+  const time = `minute${minutes >= 2 ? 's' : ''}`
 
   if (cups > 5) {
     return `${new Array(Math.round(cups / Math.E)).fill('🍱').join('')} ${minutes} ${time} read`

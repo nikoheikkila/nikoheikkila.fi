@@ -17,7 +17,17 @@ interface Props {
 }
 
 export default React.memo(
-  ({ author = '', canonicalUrl = '', datePublished = '', dateModified = '', defaultTitle = '', description = '', image = '', isBlogPost = true, title = '', url = '' }: Props) => {
+  ({ author = '',
+    canonicalUrl = '',
+    dateModified = '',
+    datePublished = '',
+    defaultTitle = '',
+    description = '',
+    image = '',
+    isBlogPost = true,
+    title = '',
+    url = ''
+  }: Props) => {
     const baseSchema = [
       {
         '@context': 'http://schema.org',
@@ -40,8 +50,8 @@ export default React.memo(
               position: 1,
               item: {
                 '@id': url,
-                name: title,
                 image,
+                name: title,
               },
             },
           ],

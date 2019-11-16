@@ -23,17 +23,17 @@ interface Props {
   keywords?: Array<string>
 }
 
-function SEO({
-  title,
+const SEO = ({
+  dateModified = '',
+  datePublished = '',
+  description = '',
   image = '',
+  keywords = [],
+  lang = 'en',
+  title,
   type = 'page',
   url = '',
-  datePublished = '',
-  dateModified = '',
-  description = '',
-  lang = 'en',
-  keywords = [],
-}: Props) {
+}: Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {

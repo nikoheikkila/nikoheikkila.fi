@@ -3,8 +3,8 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 
 interface Props {
   links: Array<{
-    slug: string
-    title: string
+    slug: string,
+    title: string,
   }>
 }
 
@@ -14,7 +14,7 @@ const renderLink = (slug: string, title: string) => (
   </Link>
 )
 
-function Pages({ links }: Props) {
+const Pages = ({ links }: Props) => {
   const data = useStaticQuery(
     graphql`
       {

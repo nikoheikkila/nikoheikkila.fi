@@ -21,9 +21,9 @@ const NormalizedImage = (props: ImageProps) => {
     ...props,
     style: {
       ...style,
-      maxWidth: presentationWidth,
-      maxHeight: presentationHeight,
       margin: '0 auto',
+      maxHeight: presentationHeight,
+      maxWidth: presentationWidth,
     },
   }
 

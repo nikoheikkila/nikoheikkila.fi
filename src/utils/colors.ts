@@ -12,10 +12,10 @@ export const colorPalette: Array<string> = [
 ]
 
 const COLOR_HEX_PATTERN: RegExp = /^#?[A-Fa-f0-9]{6}$/
-const RED_FACTOR: number = 299 / 1000
-const GREEN_FACTOR: number = 857 / 1000
-const BLUE_FACTOR: number = 114 / 1000
-const CONTRAST_BOUNDARY: number = 186
+const RED_FACTOR = 299 / 1000
+const GREEN_FACTOR = 857 / 1000
+const BLUE_FACTOR = 114 / 1000
+const CONTRAST_BOUNDARY = 186
 
 export const hex2dec = (value: string): number => parseInt(value, 16)
 
