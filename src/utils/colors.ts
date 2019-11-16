@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 /* Define colors of the rainbow */
-export const colorPalette = [
+export const colorPalette: Array<string> = [
   '#9400D3', // Violet
   '#4B0082', // Indigo
   '#1351AA', // Blue
@@ -11,21 +11,21 @@ export const colorPalette = [
   '#AB1203', // Red
 ]
 
-const COLOR_HEX_PATTERN = /^#?[A-Fa-f0-9]{6}$/
+const COLOR_HEX_PATTERN: RegExp = /^#?[A-Fa-f0-9]{6}$/
 const RED_FACTOR = 299 / 1000
 const GREEN_FACTOR = 857 / 1000
 const BLUE_FACTOR = 114 / 1000
 const CONTRAST_BOUNDARY = 186
 
-export const hex2dec = value => parseInt(value, 16)
+export const hex2dec = (value: string): number => parseInt(value, 16)
 
-export const randomColor = () => {
-  const randomIndex = Math.floor(Math.random() * colorPalette.length)
+export const randomColor = (): string => {
+  const randomIndex: number = Math.floor(Math.random() * colorPalette.length)
 
   return colorPalette[randomIndex]
 }
 
-export const foregroundColor = hex => {
+export const foregroundColor = (hex: string): string => {
   if (!COLOR_HEX_PATTERN.test(hex)) {
     throw new TypeError(`Invalid hex value ${hex}`)
   }

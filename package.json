@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@sindresorhus/slugify": "^0.9.1",
+    "@types/react-helmet": "^5.0.11",
     "chalk": "^2.4.2",
     "dayjs": "^1.8.16",
     "disqus-react": "^1.0.6",
@@ -30,8 +31,9 @@
     "gatsby-plugin-sass": "^2.1.12",
     "gatsby-plugin-sharp": "^2.2.18",
     "gatsby-plugin-sitemap": "^2.2.10",
-    "gatsby-remark-copy-linked-files": "^2.1.17",
+    "gatsby-plugin-typescript": "^2.1.11",
     "gatsby-plugin-use-dark-mode": "^1.1.2",
+    "gatsby-remark-copy-linked-files": "^2.1.17",
     "gatsby-remark-images": "^3.1.20",
     "gatsby-remark-prismjs": "^3.3.13",
     "gatsby-remark-responsive-iframe": "^2.2.16",
@@ -39,6 +41,7 @@
     "gatsby-source-filesystem": "^2.1.22",
     "gatsby-transformer-remark": "^2.6.21",
     "gatsby-transformer-sharp": "^2.2.13",
+    "global": "^4.4.0",
     "inquirer": "^7.0.0",
     "js-yaml": "^3.13.1",
     "node-sass": "^4.12.0",
@@ -52,6 +55,10 @@
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.141",
+    "@types/node": "^12.7.8",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.1",
     "ava": "^2.3.0",
     "babel-eslint": "^10.0.2",
     "cypress": "^3.4.1",
@@ -69,7 +76,9 @@
     "husky": "^3.0.4",
     "pa11y-ci": "^2.3.0",
     "prettier": "^1.18.2",
-    "start-server-and-test": "^1.10.0"
+    "start-server-and-test": "^1.10.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
   },
   "keywords": [
     "gatsby"
@@ -102,11 +111,16 @@
     }
   },
   "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
     "files": [
-      "src/__tests__/**/*.js"
+      "src/__tests__/**/*.ts"
     ],
     "require": [
-      "esm"
+      "esm",
+      "ts-node/register"
     ],
     "cache": true,
     "concurrency": 5,

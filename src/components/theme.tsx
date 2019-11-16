@@ -1,18 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import useDarkMode from 'use-dark-mode'
+import React, { CSSProperties } from 'react'
+import useDarkMode, { DarkModeConfig } from 'use-dark-mode'
 
 import sun from '../assets/sun.png'
 import moon from '../assets/moon.png'
 
-const ThemeToggle = ({ dark, classNameLight, classNameDark, storageKey }) => {
+interface Props extends DarkModeConfig {
+  dark?: boolean
+}
+
+const ThemeToggle = ({ dark = false, classNameLight = 'light', classNameDark = 'dark', storageKey = 'darkMode' }: Props) => {
   const { toggle, value: enabled } = useDarkMode(dark, {
     classNameLight,
     classNameDark,
     storageKey,
   })
 
-  const iconStyle = {
+  const iconStyle: CSSProperties = {
     backgroundColor: '#000000',
     position: 'absolute',
     top: 10,
@@ -27,20 +30,6 @@ const ThemeToggle = ({ dark, classNameLight, classNameDark, storageKey }) => {
       </button>
     </section>
   )
-}
-
-ThemeToggle.defaultProps = {
-  dark: false,
-  classNameLight: 'light',
-  classNameDark: 'dark',
-  storageKey: 'darkMode',
-}
-
-ThemeToggle.propTypes = {
-  dark: PropTypes.bool,
-  classNameLight: PropTypes.string,
-  classNameDark: PropTypes.string,
-  storageKey: PropTypes.string,
 }
 
 export default ThemeToggle

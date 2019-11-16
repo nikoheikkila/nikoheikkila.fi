@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import { CommentCount } from 'disqus-react'
 import dayjs from 'dayjs'
@@ -10,12 +9,15 @@ import SEO from '../components/seo'
 import Tag from '../components/tag'
 import Article from '../components/post/content'
 import { formatReadingTime } from '../utils/helpers'
+import { Page, MarkdownRemark } from 'types/global'
+
+// @ts-ignore
 import banner from '../assets/banner.png'
 
-const Index = ({ data, location, pageContext }) => {
+const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext
   const { title: siteTitle, siteUrl, disqus } = data.site.siteMetadata
-  const posts = data.allMarkdownRemark.edges
+  const posts: MarkdownRemark = data.allMarkdownRemark
 
   const isFirstPage = currentPage === 1
   const isLastPage = currentPage === numberOfPages
@@ -27,7 +29,7 @@ const Index = ({ data, location, pageContext }) => {
       <Bio />
       <SEO title="All Posts" image={banner} />
 
-      {posts.map(({ node }) => {
+      {posts.edges.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         const date = dayjs(node.frontmatter.date).format('MMMM D, YYYY')
         const disqusConfig = {
@@ -86,15 +88,6 @@ const Index = ({ data, location, pageContext }) => {
       </ul>
     </Layout>
   )
-}
-
-Index.propTypes = {
-  data: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  pageContext: PropTypes.shape({
-    currentPage: PropTypes.number.isRequired,
-    numberOfPages: PropTypes.number.isRequired,
-  }),
 }
 
 export default Index
