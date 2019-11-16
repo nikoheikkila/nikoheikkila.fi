@@ -47,11 +47,7 @@ jobs:
       run: yarn test:unit
 
     - name: E2E Tests
-      uses: cypress-io/github-action@v1
-      with:
-        start: yarn serve
-        wait-on: http://localhost:8000
-        browser: chrome
+      run: yarn test:e2e
 
     - name: Accessibility Tests
       run: yarn test:a11y
