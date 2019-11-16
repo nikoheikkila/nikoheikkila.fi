@@ -7,15 +7,15 @@ jobs:
   build:
     name: Build and Test Site
     runs-on: [ubuntu-18.04]
-    
+
     steps:
     - uses: actions/checkout@v1
-    
+
     - name: Setup Node.js 12
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    
+
     - name: Cache Dependencies
       uses: actions/cache@v1
       with:
@@ -25,7 +25,7 @@ jobs:
           ${{ runner.OS }}-build-${{ env.cache-name }}-
           ${{ runner.OS }}-build-
           ${{ runner.OS }}-
-        
+
     - name: Build Site
       run: |
         yarn --frozen-lockfile
@@ -33,19 +33,20 @@ jobs:
       env:
         GATSBY_DISQUS_SHORTNAME: nikoheikkila
         GATSBY_GA_TRACKING_CODE: UA-41155961-1
-        
+
     - name: Lint Code Style
       run: yarn lint
-    
+
     - name: Unit Tests
       run: yarn test:unit
-    
+
     - name: E2E Tests
-      uses: cypress-io/github-action@v1.5.0
+      uses: cypress-io/github-action@v1
       with:
         start: yarn serve
         wait-on: http://localhost:8000
-    
+        browser: chrome
+
     - name: Accessibility Tests
       run: yarn test:a11y
 
