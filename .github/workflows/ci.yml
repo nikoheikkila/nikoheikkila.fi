@@ -1,0 +1,59 @@
+name: Main Workflow
+
+on: [push]
+
+jobs:
+
+  build:
+    name: Build and Test Site
+    runs-on: [ubuntu-18.04]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: General Cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache
+        key: ${{ runner.OS }}-cache
+        restore-keys: |
+          ${{ runner.OS }}-cache
+
+    - name: Cache Dependencies
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-node_modules
+        restore-keys: |
+          ${{ runner.OS }}-node_modules
+
+    - name: Build Site
+      run: |
+        yarn --frozen-lockfile
+        yarn build
+      env:
+        GATSBY_DISQUS_SHORTNAME: nikoheikkila
+        GATSBY_GA_TRACKING_CODE: UA-41155961-1
+
+    - name: Lint Code Style
+      run: yarn lint
+
+    - name: Unit Tests
+      run: yarn test:unit
+
+    - name: E2E Tests
+      run: yarn test:e2e
+
+    - name: Accessibility Tests
+      run: yarn test:a11y
+
+    - name: Upload Built Site as Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: public
+        path: public/
