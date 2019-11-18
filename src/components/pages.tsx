@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
+import ExternalLink from './elements'
 
 interface Props {
   links: Array<{
@@ -8,11 +9,19 @@ interface Props {
   }>
 }
 
-const renderLink = (slug: string, title: string) => (
-  <Link key={slug} to={slug}>
-    {title}
-  </Link>
-)
+const renderLink = (slug: string, title: string) => {
+  if (slug.startsWith('/')) {
+    return (
+      <Link key={slug} to={slug}>
+        {title}
+      </Link>
+    )
+  }
+
+  return (
+    <ExternalLink key={slug} to={slug}>{title}</ExternalLink>
+  )
+}
 
 const Pages = ({ links }: Props) => {
   const data = useStaticQuery(

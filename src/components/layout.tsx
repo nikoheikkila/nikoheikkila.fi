@@ -17,6 +17,10 @@ const Layout = ({ location, title, cover, children }: LayoutProps) => {
       slug: '/',
       title: 'Blog',
     },
+    {
+      slug: 'https://cv.nikoheikkila.fi',
+      title: 'Skills'
+    }
   ]
 
   return (
