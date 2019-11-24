@@ -14,14 +14,6 @@ context('Homepage', () => {
     })
   })
 
-  it('should open the side menu on click', () => {
-    cy.get('.bm-burger-button > button').click()
-    cy.get('.site-menu').should('be.visible')
-
-    cy.get('.bm-cross-button > button').click()
-    cy.get('.site-menu').should('not.be.visible')
-  })
-
   it('should define a robots.txt file', () => {
     cy.request('/robots.txt').then(({ status, body }) => {
       expect(status).to.equal(200)
