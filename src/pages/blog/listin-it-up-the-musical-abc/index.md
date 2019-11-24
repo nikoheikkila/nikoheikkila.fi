@@ -19,6 +19,7 @@ Originally some letters had different tracks and versions but due to ever anguis
 
 ## Tracklist
 
+<!--alex ignore-->
 - **AC/DC** – _Let There Be Rock_
 - **Adicts, The** – _Steamroller (My Baby Got Run Over by a)_
 - **Arcade Fire** – _Neighborhood #2 (Laika)_ (*)
@@ -93,7 +94,7 @@ Originally some letters had different tracks and versions but due to ever anguis
 
 <small><strong>(*)</strong> = lyrically interesting song</small>
 
-But what would be the fun in this if it didn’t contain any competition? Exactly, I am challenging you, the reader, to craft your own list. It does not matter if it’s in plain text, on YouTube, or on Spotify. Be genuine, and add music that means something to you. Below, I have explained the rules I used for this project but you are free to make up your own. Just don’t make it too easy for yourself.
+But what would be the fun in this if it didn’t contain any competition? Exactly, I am challenging you, the reader, to craft your own list. It does not matter if it’s in plain text, on YouTube, or on Spotify. Be genuine, and add music that means something to you. Below, I have explained the rules I used for this project but you are free to make up your own. Don’t make it too easy for yourself.
 
 ## Rules
 

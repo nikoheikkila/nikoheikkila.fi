@@ -86,7 +86,7 @@ The core of this tool is, naturally, `git-log` which is a powerful tool for find
 
 The reason we include commit hash to our changelog is that GitHub and Gitlab will automatically link these hashes to their respective commit pages for viewing the entire diff. It's an extremely handy way to verify that a commit implements what it states.
 
-Git can produce a log from a range of commits. Since branches and tags are just pointers to a single commit we can specify those here. We compare from `HEAD` or the current state of clone to the given pointer to produce a list of recent changes.
+Git can produce a log from a range of commits. Since branches and tags are pointers to a single commit we can specify those here. We compare from `HEAD` or the current state of clone to the given pointer to produce a list of recent changes.
 
 Next, we pipe the log output to `grep` tool passing a regular expression filter which requires the commit title to pass the [_Conventional Commits_][cc] notation. You can modify this filter if you want but I like to keep it as is to enforce my team to use a shared commit template. If you are not familiar with Conventional Commits I highly recommend you read the aforementioned link and adopt it to your workflow.
 

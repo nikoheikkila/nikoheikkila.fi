@@ -13,9 +13,9 @@ categories:
   - Star Wars
 ---
 
-**Donald Trump** was vowed to the presidency of the United States on 20th of January this year and during these two weeks, he has caused what can fairly be stated as genuine havoc. Most notorious among these unfortunate events, depending on what media you have chosen to follow, must be the infamous [Muslim Ban][1]. Why yes, it's a ban, and frankly Obama administration had [entirely a different case][2] in their hands.
+**Donald Trump** was vowed to the presidency of the United States on 20th of January this year and during these two weeks, they have caused what can fairly be stated as genuine havoc. Most notorious among these unfortunate events, depending on what media you have chosen to follow, must be the infamous [Muslim Ban][1]. Why yes, it's a ban, and frankly Obama administration had [entirely a different case][2] in their hands.
 
-While Trump and his administration might lack skills and knowledge or, then again, they could be a manifestation [pure evil][3], I recalled another tyrant who reigned long time ago in a galaxy far, far away. Fortunately, he was not as real as Trump is.
+While Trump and their administration might lack skills and knowledge or, then again, they could be a manifestation [pure evil][3], I recalled another tyrant who reigned long time ago in a galaxy far, far away. Fortunately, they were not as real as Trump is.
 
 [_Declaration of Rebellion_][4] is a direct letter published in _The Star Wars: Rebel Alliance Sourcebook_ (1990). I wonder if it would sound familiar if Mon Mothma and the Rebel Alliance had addressed their letter to Donald Trump instead of Emperor Palpatine?
 
@@ -23,6 +23,7 @@ Let's find out by replacing some of the keywords…
 
 ***
 
+<!--alex ignore-->
 **We**, the beings of the Rebel Alliance, do this day send forth this Declaration to His Majesty, Donald Trump, and to all sentient beings in the world, to make clear to all the Purposes and Goals of this Rebellion.
 
 **We** firmly acknowledge the importance and necessity of the institution of the American Government. We accept that all must subjugate themselves to that Government, giving up certain rights and freedoms, in return for peace, prosperity, and happiness for all.

@@ -15,7 +15,7 @@ categories:
 
 Both in my work and personal life, I've used a plethora of project management tools but only Trello has stuck. However, even Trello can be useless unless you start taking care of your board systematically.
 
-Trello's semi-agile default flow (_To Do_ → _Doing_ → _Done_) is, of course, easy, but especially for me, it comes with a clear risk of not starting the actual work on tasks. Happily (or sadly) the cards linger on my evergrowing _To Do_ list.
+Trello's semi-agile default flow (_To Do_ → _Doing_ → _Done_) is easy, but especially for me, it comes with a clear risk of not starting the actual work on tasks. Happily (or sadly) the cards linger on my evergrowing _To Do_ list.
 
 What I prefer to use instead, is a popular method commonly referred to as the [Eisenhower Matrix][2]. In brief, it consists of four categories (or lists in Trello). They are following:
 

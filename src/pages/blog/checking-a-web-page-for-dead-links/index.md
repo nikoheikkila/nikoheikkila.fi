@@ -40,7 +40,7 @@ type Link struct {
 }
 ```
 
-Note that we are using `*url.URL` as the type for link member. Since URLs are essentially a form of structured data, we want to pass them as such. It also mitigates any potential security risks emerging from passing and returning simple strings around. We can always get the underlying string representation of the URL by using the `url.String()` method before, e.g. printing it out.
+Note that we are using `*url.URL` as the type for link member. Since URLs are essentially a form of structured data, we want to pass them as such. It also mitigates any potential security risks emerging from passing and returning plain strings around. We can always get the underlying string representation of the URL by using the `url.String()` method before, e.g. printing it out.
 
 Next, we need a few convenience methods for modelling the data within our structure. For instance, we want to know if the link is considered _healthy_. I've chosen that link is healthy if, and only if, the status code from the HTTP response is in the `2xx` range, which is a traditional sign of a successful HTTP request. Struct method `isHealthy()` is responsible for telling us this.
 
@@ -117,7 +117,7 @@ Remember to call `flag.Parse()` after defining your command-line flags. You also
 
 ## Setting the Handlers
 
-After initializing the collector, we need to attach a couple of handlers into it where the core logic of Colly resides. We define handlers for catching connection errors, inspecting HTML elements, and reacting to HTTP responses. All the handlers are mostly simple callback functions, so it's easy to work with them.
+After initializing the collector, we need to attach a couple of handlers into it where the core logic of Colly resides. We define handlers for catching connection errors, inspecting HTML elements, and reacting to HTTP responses. All the handlers are mostly callback functions, so it's easy to work with them.
 
 ### Catching Errors
 
@@ -195,13 +195,13 @@ Here, `getURL()` is a function for validating input arguments and retrieving the
 
 Finally, we initialize the collector, tell it to visit our given URL, and wait for any asynchronous processes to complete. The `Wait()` call is crucial as otherwise, our program would terminate without doing anything.
 
-Now we can build our program using `go build` or test it directly using `go run`. Either way, passing a URL to the program will shortly start visiting the found links and printing their health. In the repository, I've also published this tool as a Docker image if you would rather skip the coding and just use it. Run it like so:
+Now we can build our program using `go build` or test it directly using `go run`. Either way, passing a URL to the program will shortly start visiting the found links and printing their health. In the repository, I've also published this tool as a Docker image if you would rather skip the coding and start using it. Run it like so:
 
 ```bash
 docker run -it --rm nikoheikkila/go-link-health <URL>
 ```
 
-Thanks to the Docker multi-stage build, the whole image is just a little over 20 MB.
+Thanks to the Docker multi-stage build, the whole image is only little over 20 MB.
 
 ## Summary
 

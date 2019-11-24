@@ -19,9 +19,9 @@ Often there are scenarios where our code depends on the current time. Most progr
 
 Suppose your project includes a routine that needs to save a new row to database _but_ only on specified working days (no weekends, no public holidays). It's trivial to implement date validation by calling, for example, `Carbon::today()` which returns a new object representing the current day.
 
-For asserting that your logic works as intended you would write unit tests as usual. However, you might end up in a situation where your unit tests would fail if the current day is a non-working day. Next, imagine you're practicing continous delivery – like you probably should – and you can't deploy a critical fix to production until tomorrow because of a failing pipeline. How would you explain this to the client? You would probably just mark this test as incomplete so the entire pipeline could pass even if a single unit test would fail.
+For asserting that your logic works as intended you would write unit tests as usual. However, you might end up in a situation where your unit tests would fail if the current day is a non-working day. Next, imagine you're practicing continous delivery – like you probably should – and you can't deploy a critical fix to production until tomorrow because of a failing pipeline. How would you explain this to the client? You would probably mark this test as incomplete so the entire pipeline could pass even if a single unit test would fail.
 
-Fortunately, Carbon offers a simple solution for faking dates in unit tests. You only need to mock the current date to a given Carbon instance with [`setTestNow()`][2] method like so:
+Fortunately, Carbon offers a straightforward solution for faking dates in unit tests. You only need to mock the current date to a given Carbon instance with [`setTestNow()`][2] method like so:
 
 ```php
 // Set test date to 12:00 on 18th June, 2018
@@ -40,7 +40,7 @@ $this->assertDatabaseHas('stuff', [
 Carbon::setTestNow();
 ```
 
-As you can see, faking dates in tests is very easy. Just don't forget to reset the date or you might experience more failing tests.
+As you can see, faking dates in tests is very easy. Don't forget to reset the date or you might experience more failing tests.
 
  [1]: https://carbon.nesbot.com/
  [2]: https://carbon.nesbot.com/docs/#api-testing

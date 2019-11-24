@@ -12,7 +12,7 @@ categories:
   - Apps
 ---
 
-Some people are often puzzled about my setup – and the font I use – or just want to hear my recommendations for a given task. On this page I will describe the majority of tools I use to survive my day accompanied with links for the readers to try them out. I try to keep this page updated as often as possible.
+Some people are often puzzled about my setup – and the font I use – or want to hear my recommendations for a given task. On this page I will describe the majority of tools I use to survive my day accompanied with links for the readers to try them out. I try to keep this page updated as often as possible.
 
 This page was inspired by the works of [**Wes Bos**][wesbos] and [**Ali Spittel**][aspittel]. If you decide to make your own [/uses](/uses) page after reading this, please include me among the sources.
 
@@ -79,18 +79,18 @@ Another promising newcomer is the new Microsoft Edge built from Chromium (as is 
 
 ## Desktop Apps
 
-Although I consider myself an open-source advocate in most situations I have no problem paying and using commercial software when it's good. This will be a mouthful so I'll just list my used apps below.
+Although I consider myself an open-source advocate in most situations I have no problem paying and using commercial software when it's good. This will be a mouthful so I'll list my used apps below.
 
 I've marked apps I've purchased or subscribed to with a 💰sign. Most apps offer a limited free plan which I advise to check out as well if it covers your needs.
 
 **I use...**
 
-- [1Password 💰](https://1password.com) with a family plan for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a mental breakdown.
+- [1Password 💰](https://1password.com) with a family plan for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a vile breakdown.
 - [Alfred 💰](https://www.alfredapp.com/) to boost my productivity with a variety of workflows and snippets.
 - [Backblaze 💰](https://www.backblaze.com) to back up my two computers and HDDs. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager.
 - [CloudApp 💰](https://www.getcloudapp.com) to capture screenshots and videos to the cloud. Useful for reporting website issues.
 - [Dropbox 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
-- [Fork](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` just isn't enough.
+- [Fork](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
 - [MindNode 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
 - [Notion 💰](https://www.notion.so/?r=6605af2045dd4c5bbf7a87d6d949c271) for writing notes, drafts, checklists, and keeping a personal micro-wiki around.
 - [Postman](https://www.getpostman.com) for experimenting with REST APIs. If only it would support GraphQL.

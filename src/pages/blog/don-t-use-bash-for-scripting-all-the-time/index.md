@@ -7,7 +7,7 @@ title: Don't Use Bash for Scripting (All the Time)
 type: post
 excerpt: >
   When the complexity of your script grows it's time to drop the Bash.
-  With modern tools it can be simple, fast, and fun.
+  With modern tools it can be easy, fast, and fun.
 categories:
   - Beginners
   - Bash
@@ -21,7 +21,7 @@ Writing scripts is a subset of coding we sometimes can't avoid nor should be afr
 
 Bash can be considered a _ubiquitous_ language, meaning it's installed nearly on any system you land on. It's hard to find a Linux-based operating system where either Bourne Again Shell (`bash`) or its older sibling Bourne Shell (`sh`) doesn't come pre-installed.
 
-Working with code requires using a shell for executing a series of simple repeating tasks. It would be a burden to type these by hand every time you want something to happen. Using containers is a way to work around this problem but for environments where those are not supported, you would likely use Bash.
+Working with code requires using a shell for executing a series of easy repeating tasks. It would be a burden to type these by hand every time you want something to happen. Using containers is a way to work around this problem but for environments where those are not supported, you would likely use Bash.
 
 Bash shines in small and efficient scripts which are designed mainly for one thing: repeating instructions you would otherwise type manually from top to bottom. Given a standard project this typically involves installing external packages, running tests, and performing general maintenance tasks for the project.
 
@@ -40,7 +40,7 @@ name="${1:-World}"
 echo "Hello, $name!"
 ```
 
-The last line looks easy. We are just printing a message with a variable but what on earth is going on in the first line? Syntax quirks like wrapping the statement in braces and the mysterious notation of `1:-` make this very hard to understand. Without a good whitespacing it's painful to read as well. Anyhow, this line tells Bash to assign a string value of `World` to a local variable `$name` when the user has not given anything as the first parameter for the script.
+The last line looks easy. We are printing a message with a variable but what on earth is going on in the first line? Syntax quirks like wrapping the statement in braces and the mysterious notation of `1:-` make this very hard to understand. Without a good whitespacing it's painful to read as well. Anyhow, this line tells Bash to assign a string value of `World` to a local variable `$name` when the user has not given anything as the first parameter for the script.
 
 Let's do the same in Python.
 
@@ -93,7 +93,7 @@ First, make a note of what is the main language of your codebase. If it's PHP, P
 
 Next, you likely have a _shebang_ line on top of your script which reads something like `#!/bin/bash`. Change this to eg. `#!/usr/bin/env node` replacing `node` with your desired code interpreter.
 
-You might already know that this line makes your script executable given the right permissions by commanding `./script`; or just `script` if you place it in a folder included in the `$PATH` environment variable. From here, start converting your script line by line to a new language importing necessary modules where needed. In the end, your script may become longer but it will definitely be more robust and maintainable.
+You might already know that this line makes your script executable given the right permissions by commanding `./script`; or `script` if you place it in a folder included in the `$PATH` environment variable. From here, start converting your script line by line to a new language importing necessary modules where needed. In the end, your script may become longer but it will definitely be more robust and maintainable.
 
 One obstacle you might encounter while refactoring is the ability to run shell commands. In Bash, you don't need to do anything other than writing the command (unless you try to parse and validate its output in which case I wish you luck). With other languages, you have to _invoke_ them either by using a built-in or an external module. Notable picks are [`execa`](https://github.com/sindresorhus/execa) for Node and [`delegator.py`](https://github.com/kennethreitz/delegator.py) for Python. There should be similar modules for handling child processes within scripts for all the popular languages. Many of these modules allow to run commands asynchronously and handle the output in a flexible way which is something you might have a hard time to implement with Bash.
 
@@ -101,7 +101,7 @@ If built-in language features are not enough there are handy frameworks created 
 
 ## How I Did It
 
-As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.js). The script is written in Javascript and has the following features which would be difficult or even insane to implement with Bash:
+As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.js). The script is written in Javascript and has the following features which would be difficult or even foolish to implement with Bash:
 
 - Interactive prompts and ability to pass given data through validator functions
 - Transforming sentences to SEO-friendly slugs (eg. `Blog Post Title` to `blog-post-title`)
@@ -117,11 +117,12 @@ For this topic, I like to cite **Sindre Sorhus** who argues strongly for using [
 
 > Some years ago. Before Node.js and npm. I had a large database of code snippets I used to copy-paste into projects when I needed it. They were small utilities that sometimes came in handy. npm is now my snippet database. Why copy-paste when you can `require` it and with the benefit of having a clear intent. Fixing a bug in a snippet means updating one module instead of manually fixing all the instances where the snippet is used.
 
+<!--alex ignore-->
 > **I want programming to be easier. Making it easier to build durable systems.** And the way forward, in my point of view, is definitely not reinventing everything and everyone making the same stupid mistakes over and over.
 
 Actually, if you want tips on creating efficient command-line tools with Javascript go and check some of [Sorhus' repositories on GitHub](https://github.com/sindresorhus?utf8=✓&tab=repositories&q=&type=source&language=javascript).
 
-There might come a day Bash has a good (nested) dependency system and friendlier syntax. As for the syntax part, it has been improved in [_Friendly Interactive Shell_ (fish)](https://fishshell.com/) which I'm using daily. The Fish developers advertise its syntax is "simple, clean, and consistent" which I do agree. However, writing your scripts with _exotic_ shell languages might have more risks than gains unless your whole application is written in the same language.
+There might come a day Bash has a good (nested) dependency system and friendlier syntax. As for the syntax part, it has been improved in [_Friendly Interactive Shell_ (fish)](https://fishshell.com/) which I'm using daily. The Fish developers advertise its syntax is "easy, clean, and consistent" which I do agree. However, writing your scripts with _exotic_ shell languages might have more risks than gains unless your whole application is written in the same language.
 
 Until then I'm most comfortable scripting with languages I use to write my business logic with.
 
