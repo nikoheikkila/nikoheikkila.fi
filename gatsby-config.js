@@ -170,7 +170,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-use-dark-mode',
       options: {
-        minify: process.env.NODE_ENV === 'production',
+        minify: true,
+        classNameLight: 'light',
+        classNameDark: 'dark',
+        storageKey: 'darkMode',
       },
     },
     {

@@ -8,11 +8,11 @@ interface Props extends DarkModeConfig {
   dark?: boolean
 }
 
-const ThemeToggle = ({ dark = false, classNameLight = 'light', classNameDark = 'dark', storageKey = 'darkMode' }: Props) => {
+const ThemeToggle = ({ dark = true }: Props) => {
   const { toggle, value: enabled } = useDarkMode(dark, {
-    classNameLight,
-    classNameDark,
-    storageKey,
+    classNameLight: 'light',
+    classNameDark: 'dark',
+    storageKey: 'darkMode'
   })
 
   const iconStyle: CSSProperties = {
