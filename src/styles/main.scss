@@ -226,10 +226,6 @@ video {
 }
 
 @media screen and (max-width: $query-small) {
-    html {
-        font-size: calc(#{$baseFontSize} + (24 - 16) * (100vw - 400px) / (800 - 400));
-    }
-
     #content {
         width: 100% !important;
     }
