@@ -26,11 +26,15 @@ jobs:
 
     - name: Cache Dependencies
       uses: actions/cache@v1
+      env:
+        cache-name: cache-node-modules
       with:
-        path: node_modules
-        key: ${{ runner.OS }}-node_modules
+        path: ~/.yarn
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.OS }}-node_modules
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
 
     - name: Build Site
       run: |
@@ -48,8 +52,6 @@ jobs:
 
     - name: E2E Tests
       run: yarn test:e2e
-      # TODO: Remove the line below after E2E tests have been stabilized.
-      continue-on-error: true
 
     - name: Accessibility Tests
       run: yarn test:a11y
