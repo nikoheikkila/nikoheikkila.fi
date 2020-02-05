@@ -34,7 +34,7 @@ jobs:
 
     - name: Build Site
       run: |
-        yarn --frozen-lockfile
+        yarn install --immutable --immutable-cache --check-cache
         yarn build
       env:
         GATSBY_DISQUS_SHORTNAME: nikoheikkila
