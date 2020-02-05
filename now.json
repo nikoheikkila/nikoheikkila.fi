@@ -4,9 +4,6 @@
     "alias": [
         "nikoheikkila.fi"
     ],
-    "regions": [
-        "all"
-    ],
     "builds": [
         {
             "src": "package.json",
