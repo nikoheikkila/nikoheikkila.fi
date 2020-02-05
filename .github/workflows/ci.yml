@@ -38,7 +38,7 @@ jobs:
 
     - name: Build Site
       run: |
-        yarn install --immutable --immutable-cache --check-cache
+        yarn install --immutable --immutable-cache
         yarn build
       env:
         GATSBY_DISQUS_SHORTNAME: nikoheikkila
