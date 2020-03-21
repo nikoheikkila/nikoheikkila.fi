@@ -74,6 +74,10 @@ body.light {
         color: inherit;
         border-bottom: 2px solid $teal;
     }
+
+    .post-excerpt {
+        background: #fff1ac;
+    }
 }
 
 /* Dark theme */
@@ -89,6 +93,10 @@ body.dark {
     article a:not(.gatsby-resp-image-link) {
         color: inherit;
         border-bottom: 2px solid $pink;
+    }
+
+    .post-excerpt {
+        background: #17223b;
     }
 }
 
@@ -139,10 +147,16 @@ article {
     margin-bottom: 50px;
 }
 
+.post-excerpt {
+    border-radius: 10px;
+
+    p {
+        padding: 8px;
+    }
+}
+
 .post-meta {
-    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: -1px;
 }
 
 .post-attachments {

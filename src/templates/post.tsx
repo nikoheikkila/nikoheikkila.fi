@@ -21,7 +21,7 @@ const Post = ({ data, location, pageContext }: Page) => {
   } = data
 
   const { previous, next } = pageContext
-  const { author, date, lang, title, type } = post.frontmatter
+  const { author, date, lang, title, type, excerpt } = post.frontmatter
   const { fluid: cover } = post.frontmatter.cover.childImageSharp
 
   const slug = post.fields.slug.slice(1, post.fields.slug.length - 1)
@@ -29,7 +29,6 @@ const Post = ({ data, location, pageContext }: Page) => {
   const datePublished = dayjs(date || null).format('MMMM D, YYYY')
   const categories = post.frontmatter.categories || []
 
-  const translateUrl = `https://translate.google.com/translate?js=n&sl=${lang}&tl=en&u=${encodeURIComponent(postUrl)}`
   const editUrl = `${repository}/edit/master/src/pages/${slug}/index.md`
   const historyUrl = `${repository}/commits/master/src/pages/${slug}/index.md`
 
@@ -54,6 +53,10 @@ const Post = ({ data, location, pageContext }: Page) => {
       <header className="post-header">
         {isIndex(location) || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
         <h1 className="post-title">{title}</h1>
+
+        <section className="post-excerpt">
+          <p>{excerpt}</p>
+        </section>
 
         <section className="post-meta">
           <p>
@@ -132,7 +135,7 @@ export const pageQuery = graphql`
       fields {
         slug
       }
-      excerpt(pruneLength: 160)
+      excerpt(pruneLength: 256)
       html
       timeToRead
       frontmatter {
@@ -141,6 +144,7 @@ export const pageQuery = graphql`
         type
         date(formatString: "YYYY-MM-DD")
         author
+        excerpt
         categories
         cover {
           childImageSharp {
