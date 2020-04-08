@@ -54,9 +54,9 @@ const Post = ({ data, location, pageContext }: Page) => {
         {isIndex(location) || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
         <h1 className="post-title">{title}</h1>
 
-        <section className="post-excerpt">
+        {excerpt && <section className="post-excerpt">
           <p>{excerpt}</p>
-        </section>
+        </section>}
 
         <section className="post-meta">
           <p>

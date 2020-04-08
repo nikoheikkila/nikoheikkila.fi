@@ -6,7 +6,7 @@
 
 @mixin hr($color, $width) {
     hr {
-        border-top: dashed $width $color;
+        border-top: solid $width $color;
         border-bottom: none;
         opacity: 1.0;
         margin: 45px 0;
@@ -15,7 +15,6 @@
 
 html {
     @include bodyFont();
-    line-height: 32px;
     font-size: $baseFontSize;
     overflow-x: hidden;
 }
@@ -32,27 +31,26 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
     @include headingFont();
-    line-height: calc(#{$baseFontSize} + 50%);
 }
 
 h1 {
-    font-size: 3.0rem;
-    line-height: 3.25rem;
+    font-size: 2.75em;
 }
 
 h2 {
-    font-size: 2.5rem;
-    line-height: 2.75rem;
+    font-size: 2.25em;
 }
 
 h3 {
-    font-size: 2.0rem;
+    font-size: 1.75em;
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 1.25em;
 }
 
 a {
@@ -62,21 +60,22 @@ a {
 
 /* Light theme */
 body.light {
-    @include hr($teal, 2px);
+    @include hr($lightHl, 2px);
     background-color: $lightBg;
     color: $lightFg;
 
     a {
-        color: $teal;
+        color: $lightHl;
     }
 
     article a:not(.gatsby-resp-image-link) {
         color: inherit;
-        border-bottom: 2px solid $teal;
+        border-bottom: 2px dashed $lightHl;
     }
 
-    .post-excerpt {
-        background: #fff1ac;
+    blockquote {
+        background: $teal;
+        color: #eeeeee;
     }
 }
 
@@ -92,11 +91,12 @@ body.dark {
 
     article a:not(.gatsby-resp-image-link) {
         color: inherit;
-        border-bottom: 2px solid $pink;
+        border-bottom: 2px dashed $pink;
     }
 
-    .post-excerpt {
-        background: #17223b;
+    blockquote {
+        background: $pink;
+        color: #000000;
     }
 }
 
@@ -121,14 +121,15 @@ article {
 
     ul {
         li {
-            list-style: square outside none;
+            list-style: disc outside none;
+            padding: 10px 0;
         }
     }
 
     blockquote {
-        border-left: 10px solid #ccc;
         margin: 1.5em 0;
-        padding: 1.5em 25px;
+        text-align: center;
+        padding: 2.0em 25px;
         quotes: "\201C""\201D""\2018""\2019";
 
         p {
@@ -148,15 +149,12 @@ article {
 }
 
 .post-excerpt {
-    border-radius: 10px;
-
-    p {
-        padding: 8px;
-    }
+    font-size: 1.4em;
 }
 
 .post-meta {
     text-transform: uppercase;
+    font-size: 0.8em;
 }
 
 .post-attachments {
