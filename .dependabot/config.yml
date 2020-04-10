@@ -1,0 +1,20 @@
+version: 1
+
+update_configs:
+  - package_manager: javascript
+    directory: /
+    update_schedule: weekly
+    target_branch: master
+    default_reviewers: [nikoheikkila]
+    default_assignees: [nikoheikkila]
+    automerged_updates:
+      - match:
+          dependency_type: development
+          update_type: all
+      - match:
+          dependency_type: production
+          update_type: "semver:patch"
+    version_requirement_updates: auto
+    commit_message:
+      prefix: "build"
+      include_scope: true
