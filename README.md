@@ -1,7 +1,6 @@
 <h1 align="center">Welcome to nikoheikkila.fi 👋</h1>
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
-[![Build Status](https://travis-ci.com/nikoheikkila/nikoheikkila.fi.svg?branch=master)](https://travis-ci.com/nikoheikkila/nikoheikkila.fi)
+![Build Status](https://github.com/nikoheikkila/nikoheikkila.fi/workflows/Main%20Workflow/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nikoheikkila/nikoheikkila.fi&amp;utm_campaign=Badge_Grade)
 
 My personal blog. Forked from Gatsby Blog Starter template and inspired here and there by Dan Abramov's blog.
