@@ -15,7 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@sindresorhus/slugify": "^0.9.1",
     "@types/react-helmet": "^5.0.14",
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "dayjs": "^1.8.18",
     "disqus-react": "^1.0.7",
     "esm": "^3.2.25",
