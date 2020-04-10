@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "name": "nikoheikkila.fi",
     "alias": [
         "nikoheikkila.fi"
     ],
@@ -41,11 +40,12 @@
             }
         },
         {
+            "handle": "filesystem"
+        },
+        {
             "src": "/(.*)",
-            "dest": "/$1",
-            "headers": {
-                "cache-control": "public, s-maxage=1, max-age=0, stale-while-revalidate"
-            }
+            "status": 404,
+            "dest": "/404.html"
         }
     ]
 }
