@@ -16,7 +16,7 @@
     "@sindresorhus/slugify": "^0.9.1",
     "@types/react-helmet": "^5.0.14",
     "chalk": "^3.0.0",
-    "dayjs": "^1.8.18",
+    "dayjs": "^1.8.24",
     "disqus-react": "^1.0.7",
     "esm": "^3.2.25",
     "gatsby": "^2.18.16",
