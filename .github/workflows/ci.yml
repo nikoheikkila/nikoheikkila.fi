@@ -24,14 +24,6 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-cache
 
-    - name: Cache Dependencies
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-node_modules
-        restore-keys: |
-          ${{ runner.OS }}-node_modules
-
     - name: Build Site
       run: |
         yarn --frozen-lockfile
@@ -48,14 +40,6 @@ jobs:
 
     - name: E2E Tests
       run: yarn test:e2e
-      # TODO: Remove the line below after E2E tests have been stabilized.
-      continue-on-error: true
 
     - name: Accessibility Tests
       run: yarn test:a11y
-
-    - name: Upload Built Site as Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: public
-        path: public/
