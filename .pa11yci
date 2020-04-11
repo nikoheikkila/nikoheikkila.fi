@@ -1,6 +1,7 @@
 {
     "standard": "WCAG2A",
     "level": "error",
+    "concurrency": 4,
     "defaults": {
         "timeout": 10000,
         "hideElements": "iframe",
