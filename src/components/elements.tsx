@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import PropTypes from 'prop-types'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 interface Props {
@@ -12,9 +11,5 @@ const ExternalLink = ({ children, to }: Props) => (
     {children}
   </OutboundLink>
 )
-
-ExternalLink.propTypes = {
-  to: PropTypes.string.isRequired,
-}
 
 export default ExternalLink

@@ -16,13 +16,29 @@ jobs:
       with:
         node-version: 12.x
 
-    - name: General Cache
+    - name: Cache Runner Files
       uses: actions/cache@v1
       with:
         path: ~/.cache
         key: ${{ runner.OS }}-cache
         restore-keys: |
           ${{ runner.OS }}-cache
+
+    - name: Cache Gatsby Build Files
+      uses: actions/cache@v1
+      with:
+        path: .cache
+        key: ${{ runner.OS }}-gatsby-cache
+        restore-keys: |
+          ${{ runner.OS }}-gatsby-cache
+
+    - name: Cache Gatsby Public Folder
+      uses: actions/cache@v1
+      with:
+        path: public
+        key: ${{ runner.OS }}-gatsby-public
+        restore-keys: |
+          ${{ runner.OS }}-gatsby-public
 
     - name: Build Site
       run: |
@@ -31,6 +47,7 @@ jobs:
       env:
         GATSBY_DISQUS_SHORTNAME: nikoheikkila
         GATSBY_GA_TRACKING_CODE: UA-41155961-1
+        GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
     - name: Lint Code Style
       run: yarn lint

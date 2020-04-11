@@ -1,8 +1,5 @@
 {
     "version": 2,
-    "alias": [
-        "nikoheikkila.fi"
-    ],
     "builds": [
         {
             "src": "package.json",
@@ -15,7 +12,9 @@
     "build": {
         "env": {
             "GATSBY_DISQUS_SHORTNAME": "nikoheikkilafi",
-            "GATSBY_GA_TRACKING_CODE": "UA-41155961-1"
+            "GATSBY_GA_TRACKING_CODE": "UA-41155961-1",
+            "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES": "true",
+            "NPM_ONLY_PRODUCTION": "1"
         }
     },
     "routes": [

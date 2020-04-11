@@ -1,7 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const Article = ({ content, className }) => (
+interface Props {
+  content: string
+  className: string
+}
+
+const Article = ({ content, className }: Props) => (
   <article
     className={className}
     dangerouslySetInnerHTML={{
@@ -9,14 +13,5 @@ const Article = ({ content, className }) => (
     }}
   />
 )
-
-Article.propTypes = {
-  content: PropTypes.string.isRequired,
-  className: PropTypes.string,
-}
-
-Article.defaultProps = {
-  className: 'post-html',
-}
 
 export default Article

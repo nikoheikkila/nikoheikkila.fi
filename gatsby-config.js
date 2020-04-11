@@ -162,8 +162,9 @@ module.exports = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/static/favicon.png`,
+        crossOrigin: `use-credentials`,
       },
     },
     {
@@ -193,5 +194,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-preact`,
   ],
 }
