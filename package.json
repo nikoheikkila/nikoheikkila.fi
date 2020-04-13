@@ -20,7 +20,7 @@
     "dayjs": "^1.8.18",
     "disqus-react": "^1.0.7",
     "esm": "^3.2.25",
-    "gatsby": "^2.18.16",
+    "gatsby": "^2.20.18",
     "gatsby-image": "^2.2.37",
     "gatsby-plugin-disqus": "^1.1.4",
     "gatsby-plugin-feed": "^2.3.25",
