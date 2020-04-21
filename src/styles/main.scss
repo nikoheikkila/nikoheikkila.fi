@@ -3,6 +3,7 @@
 @import "syntax";
 @import "menu";
 @import "gatsby";
+@import "~katex/dist/katex.min.css";
 
 @mixin hr($color, $width) {
     hr {
@@ -119,9 +120,8 @@ article {
         margin: 30px auto;
     }
 
-    ul {
+    ol, ul {
         li {
-            list-style: disc outside none;
             padding: 10px 0;
         }
     }
@@ -135,6 +135,11 @@ article {
         p {
             display: inline;
         }
+    }
+
+    .katex {
+        display: table;
+        margin: 0 auto;
     }
 }
 
