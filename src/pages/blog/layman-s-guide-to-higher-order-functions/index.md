@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-04-21
-cover: cover.png
+cover: cover.jpg
 title: Layman's Guide to Higher-Order Functions
 type: post
 excerpt: An introduction to higher-order functions I wish I've had in school.
@@ -113,3 +113,7 @@ After removing the arrows, we have a function satisfying both pre-conditions of 
 Higher-order functions provide a clean way of solving a large problem by composing smaller solutions together. Now instead of having to maintain a long and cumbersome validator function, we can define smaller validators elsewhere in our codebase and import them. Want to remove a certain validation? Remove it from the list of arguments. Need to change how the validation logic? There's no need to touch the main validator at all.
 
 I wrote this post because I had very much trouble understanding different functional programming concepts when studying. Unfortunately, typical computer science education tends to lean on the way of defining high-level theories and proving them using mathematical constructs. This is something you almost certainly won't find in a professional software development environment. If you have managed to achieve such a position without a degree as I have, I hope this post is helpful to you.
+
+***
+
+<small>Cover image by **Ilija Boshkov** on _Unsplash_.</small>
