@@ -6,7 +6,6 @@ update_configs:
     update_schedule: weekly
     target_branch: master
     default_reviewers: [nikoheikkila]
-    default_assignees: []
     automerged_updates:
       - match:
           dependency_type: development
