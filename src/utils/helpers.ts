@@ -1,5 +1,4 @@
-import _ from 'lodash'
-import { Location } from 'types/global'
+import { RouteLocation } from '../types'
 
 export const formatReadingTime = (minutes: number): string => {
   const maxCups = 5
@@ -17,12 +16,8 @@ export const formatReadingTime = (minutes: number): string => {
  * Index page is either the home page or any page with path `/n`
  * where `n` is a natural number > 0.
  */
-export const isIndex = ({ pathname }: Location) => /^\/[0-9]*$/.test(pathname)
+export const isIndex = ({ pathname }: RouteLocation) => /^\/[0-9]*$/.test(pathname)
 
-export const getPreviousPage = ({ state }: Location): string => {
-  if (!_.has(state, 'previous')) {
-    return '/'
-  }
-
-  return state.previous
+export const getPreviousPage = ({ state }: RouteLocation): string => {
+  return state?.previous ?? ''
 }

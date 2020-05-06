@@ -1,22 +1,40 @@
+import { ReactNode } from "react";
+import { FluidObject, GatsbyImageProps } from "gatsby-image";
+
 declare module '*.png' {
     var _: string
     export default _
 }
 
-import { ReactNode } from "react";
+export interface FluidImage extends FluidObject {
+  presentationHeight: number
+  presentationWidth: number
+}
 
-export interface Location {
+export interface ImageProps extends GatsbyImageProps {
+  fluid: FluidImage
+  style?: CSSProperties
+}
+
+export interface RouteLocation {
     pathname: string
-    state: {
+    state?: {
         previous: string
     }
 }
 
 export interface LayoutProps {
-    location: Location,
-    title: string,
-    cover?: string,
+    location: RouteLocation,
+    title: string
+    cover?: FluidImage
     children: Array<ReactNode>
+}
+
+export interface PageProps {
+  links: Array<{
+    slug: string
+    title: string
+  }>
 }
 
 export interface Page {

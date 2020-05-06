@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { Page } from '../../types/global'
+import { Page } from '../../src/types'
 
 const NotFound = ({ location }: Page) => {
   const title = 'Page Not Found'

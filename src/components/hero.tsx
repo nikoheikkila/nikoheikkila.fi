@@ -1,15 +1,6 @@
-import React, { CSSProperties } from 'react'
-import Img, { GatsbyImageProps, FluidObject } from 'gatsby-image'
-
-interface FluidImage extends FluidObject {
-  presentationHeight: number
-  presentationWidth: number
-}
-
-interface ImageProps extends GatsbyImageProps {
-  fluid: FluidImage
-  style?: CSSProperties
-}
+import React from 'react'
+import Img from 'gatsby-image'
+import { ImageProps, FluidImage } from '../types'
 
 const NormalizedImage = (props: ImageProps) => {
   const {
