@@ -1,13 +1,7 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import ExternalLink from './elements'
-
-interface Props {
-  links: Array<{
-    slug: string,
-    title: string,
-  }>
-}
+import { PageProps } from '../types'
 
 const renderLink = (slug: string, title: string) => {
   if (slug.startsWith('/')) {
@@ -23,7 +17,7 @@ const renderLink = (slug: string, title: string) => {
   )
 }
 
-const Pages = ({ links }: Props) => {
+const Pages = ({ links }: PageProps): JSX.Element[] => {
   const data = useStaticQuery(
     graphql`
       {
@@ -46,6 +40,7 @@ const Pages = ({ links }: Props) => {
     `
   )
 
+  //@ts-ignore
   const pages = data.allMarkdownRemark.edges.map(({ node }) => renderLink(node.fields.slug, node.frontmatter.title))
 
   return links.map(({ slug, title }) => renderLink(slug, title)).concat(pages)

@@ -26,17 +26,13 @@
             ],
             "components/*": [
                 "components/*"
-            ],
-            "types/*": [
-                "../types/*"
             ]
         }
     },
     "include": [
         "./src/**/*",
-        "./types"
     ],
     "exclude": [
-        "./src/pages/*"
+        "./content/**/*"
     ]
 }

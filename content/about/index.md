@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2020-04-10
 type: page
-cover: '../../assets/banner.png'
+cover: '../../src/assets/banner.png'
 title: The Story
 excerpt: ...or how I learned to stop worrying and love the code.
 ---

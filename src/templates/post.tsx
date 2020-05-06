@@ -29,8 +29,8 @@ const Post = ({ data, location, pageContext }: Page) => {
   const datePublished = dayjs(date || null).format('MMMM D, YYYY')
   const categories = post.frontmatter.categories || []
 
-  const editUrl = `${repository}/edit/master/src/pages/${slug}/index.md`
-  const historyUrl = `${repository}/commits/master/src/pages/${slug}/index.md`
+  const editUrl = `${repository}/edit/master/content/${slug}/index.md`
+  const historyUrl = `${repository}/commits/master/content/${slug}/index.md`
 
   const disqusConfig = {
     url: postUrl,
