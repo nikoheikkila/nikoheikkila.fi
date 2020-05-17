@@ -57,6 +57,8 @@ jobs:
 
     - name: E2E Tests
       run: yarn test:e2e
+      env:
+        TERM: xterm
 
     - name: Accessibility Tests
       run: yarn test:a11y
