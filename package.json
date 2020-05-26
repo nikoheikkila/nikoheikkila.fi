@@ -44,7 +44,7 @@
     "gatsby-remark-smartypants": "^2.3.1",
     "gatsby-source-filesystem": "^2.3.3",
     "gatsby-transformer-remark": "^2.8.8",
-    "gatsby-transformer-sharp": "^2.5.2",
+    "gatsby-transformer-sharp": "^2.5.3",
     "global": "^4.4.0",
     "inquirer": "^7.0.1",
     "js-yaml": "^3.13.1",
