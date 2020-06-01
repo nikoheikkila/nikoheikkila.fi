@@ -96,7 +96,7 @@
   "scripts": {
     "new": "node new.js",
     "build": "gatsby build --log-pages --write-to-file",
-    "dev": "gatsby develop --https",
+    "dev": "gatsby develop",
     "format": "eslint --fix .",
     "lint:js": "eslint .",
     "lint:lang": "alex -q content",
