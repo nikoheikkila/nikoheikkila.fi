@@ -6893,10 +6893,10 @@ gatsby-page-utils@^0.2.7:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-disqus@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-disqus/-/gatsby-plugin-disqus-1.1.6.tgz#14783227752a21b4e1a7ef65a9792541c26115ce"
-  integrity sha512-e9WmJBpzMSMd7RECEC0vCTAP/5HT3YhTvQUl32lYwoZspdpeRh9YX/sDu9uCeZiVPM8HhjdZWw+9K1PloJ+Heg==
+gatsby-plugin-disqus@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-disqus/-/gatsby-plugin-disqus-1.1.7.tgz#66910da8be1219ab861ac96400edbed5abe33812"
+  integrity sha512-7gAoSdXzFtVJ5TjTYJv/crgq8wfKavRIxhd2UHTgsbzp3EOwqygs7u1hiko2BwGFROjmmhzkdRqCquKdo7oywg==
 
 gatsby-plugin-feed@^2.5.3:
   version "2.5.3"
