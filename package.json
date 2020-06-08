@@ -57,7 +57,7 @@
     "react": "^16.12.0",
     "react-burger-menu": "^2.6.15",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0",
+    "react-helmet": "^6.1.0",
     "title": "^3.4.1",
     "use-dark-mode": "^2.3.1"
   },
