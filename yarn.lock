@@ -8233,10 +8233,10 @@ gatsby-plugin-page-creator@^2.3.8:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-preact@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-4.0.2.tgz#3c51076dc1c306dd326b0fe604bc9f5102040312"
-  integrity sha512-3Vufoi3gz30OmszKko27aKAC9Snym/Nhl1l1Eddu8vy7vjlntC7XKuQ4tIJsbT0EDYn20Ajo1W8y76bW4jBtXA==
+gatsby-plugin-preact@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-4.0.3.tgz#b70142e88f277ad4c6aad42a499b1733dddeef42"
+  integrity sha512-bouFOodX7i9l4e6VwbUmlZo8RXqDT7hH1Wer6cxppXJlkdBf+tmE2HJEJ16bKAy2ij2/0g91lo6XJgLSEUE29Q==
   dependencies:
     "@prefresh/webpack" "^0.8.0"
     react-refresh "^0.8.2"

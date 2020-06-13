@@ -28,7 +28,7 @@
     "gatsby-plugin-google-analytics": "^2.3.3",
     "gatsby-plugin-manifest": "^2.4.10",
     "gatsby-plugin-offline": "^3.2.8",
-    "gatsby-plugin-preact": "^4.0.2",
+    "gatsby-plugin-preact": "^4.0.3",
     "gatsby-plugin-react-helmet": "^3.3.3",
     "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sass": "^2.3.3",
