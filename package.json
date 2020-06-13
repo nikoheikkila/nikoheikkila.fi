@@ -31,7 +31,7 @@
     "gatsby-plugin-preact": "^4.0.2",
     "gatsby-plugin-react-helmet": "^3.3.3",
     "gatsby-plugin-robots-txt": "^1.5.1",
-    "gatsby-plugin-sass": "^2.3.3",
+    "gatsby-plugin-sass": "^2.3.4",
     "gatsby-plugin-sharp": "^2.6.10",
     "gatsby-plugin-sitemap": "^2.4.4",
     "gatsby-plugin-typescript": "^2.4.4",
