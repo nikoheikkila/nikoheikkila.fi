@@ -3,18 +3,14 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
     time: '12:00'
     timezone: Europe/Helsinki
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 20
   target-branch: master
   reviewers:
   - nikoheikkila
-  ignore:
-  - dependency-name: node-yaml
-    versions:
-    - "> 4.0.0"
   commit-message:
     prefix: build
     include: scope
-  rebase-strategy: disabled
+
