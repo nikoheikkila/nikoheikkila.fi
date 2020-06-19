@@ -13958,10 +13958,10 @@ rc@^1.1.0, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-burger-menu@^2.6.15:
-  version "2.6.15"
-  resolved "https://registry.yarnpkg.com/react-burger-menu/-/react-burger-menu-2.6.15.tgz#a43f92ddad6247dc74efba202ea50381a64f139a"
-  integrity sha512-F4cq48CAZFG3G3eMC7cY83jNFky9V9on1J2JPrgXYRMhIikdGVvh22WciYXFipuS9SL6y0+lu13wbvLgRnjYbQ==
+react-burger-menu@^2.6.17:
+  version "2.6.17"
+  resolved "https://registry.yarnpkg.com/react-burger-menu/-/react-burger-menu-2.6.17.tgz#2e0cbacc9b82197fc4da196097dd32e77d7a8d14"
+  integrity sha512-PhDWM34xRcf19tdVxgmW5LPApP/sQhMfMwc9LJJKfWbrJv9Tx77FFFDsnS0s2EeSTprXqewAPdG12vZwGy9Dug==
   dependencies:
     browserify-optional "^1.0.0"
     classnames "^2.2.6"
