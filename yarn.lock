@@ -7760,10 +7760,10 @@ gatsby-plugin-disqus@^1.2.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-disqus/-/gatsby-plugin-disqus-1.2.0.tgz#8579e33b983d6de957390aef5445c99e8cb38af5"
   integrity sha512-1Vgifach9KOCTKWmOESHbGDEAVxLwg7uJZbSyohQzBqqDzfnl42SOWJhIPCOCAtKi1GcqU4JIQiWBZmN1V0Zlg==
 
-gatsby-plugin-feed@^2.5.5:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-feed/-/gatsby-plugin-feed-2.5.5.tgz#c25b07820376ddc7254eeeb402d68b1b101c81b0"
-  integrity sha512-KaFIf+Q3vQ4YuA50IjnxLlAB1KuYK8++bRvDpez5SEVkutRlIRsaHspwN56uj0nHZBcHnyIo0tG8ddsXfNZEcA==
+gatsby-plugin-feed@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-feed/-/gatsby-plugin-feed-2.5.6.tgz#21ac864bf1b60c194181ca8c747a8fc903654e9e"
+  integrity sha512-nBh77latWqWAFkhQE/atu9kbcyZvn208mhROqJU2I7xdVKfx2LRobBbZ4GC0lqadwL2EPPhMFVCJnU6B4UsqQQ==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@hapi/joi" "^15.1.1"
