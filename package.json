@@ -33,7 +33,7 @@
     "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sass": "^2.3.4",
     "gatsby-plugin-sharp": "^2.6.12",
-    "gatsby-plugin-sitemap": "^2.4.5",
+    "gatsby-plugin-sitemap": "^2.4.7",
     "gatsby-plugin-typescript": "^2.4.6",
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-remark-autolink-headers": "^2.3.5",
