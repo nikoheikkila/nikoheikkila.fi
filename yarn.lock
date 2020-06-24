@@ -2134,10 +2134,10 @@
   resolved "https://registry.yarnpkg.com/@prefresh/utils/-/utils-0.2.0.tgz#1d269210758346e8e1f8a6410b61ba3e4fb982f9"
   integrity sha512-mxJraGQLPmvAuI8Br0y/pvJWI2sy5IHU5veZ5GglP1gnb4dpp5rjIVjHdlVvrXUKGtFIpB3zxrqS+vYn1cQ01A==
 
-"@prefresh/webpack@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@prefresh/webpack/-/webpack-0.8.0.tgz#f66268f7756940b955a5720dafacceb4554c7714"
-  integrity sha512-l9vZiiI+1Za34fEvylUKiU8YFVA9w3/xmnMtj+PtVLY9zPUrBs15k23EfkUSDPJ6tuD/dfmFol6y/h6tlcuo7A==
+"@prefresh/webpack@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@prefresh/webpack/-/webpack-0.8.1.tgz#b858f5c06ae4532703f79757a96e8ece2a6fffd9"
+  integrity sha512-/35IQeMpKJDJyd6FGgaPB9dHMv0WqKUZYVyKa84PgNFoDNf8EHA0DqCqA4ZtWercK3WRtVJuHoucXzuAxSSb6g==
   dependencies:
     "@prefresh/core" "^0.7.0"
     "@prefresh/utils" "^0.2.0"
@@ -7815,12 +7815,12 @@ gatsby-plugin-page-creator@^2.3.10:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-preact@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-4.0.3.tgz#b70142e88f277ad4c6aad42a499b1733dddeef42"
-  integrity sha512-bouFOodX7i9l4e6VwbUmlZo8RXqDT7hH1Wer6cxppXJlkdBf+tmE2HJEJ16bKAy2ij2/0g91lo6XJgLSEUE29Q==
+gatsby-plugin-preact@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-4.0.5.tgz#2a69996839b270ef2aa1235d92acb09def85a591"
+  integrity sha512-VRZ82+1CwrKvFfISGD2X3QV+cPBqgwBkhmJh+rXgIfpq/XO/TIPNTKLxN65h5fZ64jceKAAL+13Z5azBkJusmg==
   dependencies:
-    "@prefresh/webpack" "^0.8.0"
+    "@prefresh/webpack" "^0.8.1"
     react-refresh "^0.8.2"
 
 gatsby-plugin-react-helmet@^3.3.4:
