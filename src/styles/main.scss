@@ -75,7 +75,7 @@ body.light {
     }
 
     blockquote {
-        background: $teal;
+        background: $blue;
         color: #ffffff;
     }
 }
@@ -172,8 +172,8 @@ article {
 }
 
 .profile {
-    width: 96px;
-    height: 96px;
+    width: 128px;
+    height: 128px;
     margin: 0 auto 20px auto;
 
     img {
@@ -226,7 +226,6 @@ footer {
     }
 
     svg {
-        color: $red;
         margin-right: 7px;
     }
 

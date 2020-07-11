@@ -2,7 +2,6 @@ import React from 'react'
 import { stack as Menu } from 'react-burger-menu'
 
 import Hero from './hero'
-import Banner from './banner'
 import Footer from './footer'
 import Pages from './pages'
 import ThemeToggle from './theme'
@@ -38,7 +37,7 @@ const Layout = ({ location, title, cover, children }: LayoutProps) => {
               margin: '0 auto',
             }}
           >
-            {(cover && <Hero data={cover} alt={title} />) || <Banner />}
+            {(cover && <Hero data={cover} alt={title} />)}
           </section>
         </header>
         <main>{children}</main>
