@@ -9,9 +9,9 @@ sections:
   label: Posts
   create: all
   match: "**/*.md"
-  new_doc_ext: ".md"
-upload_dir: uploads
-public_path: "/uploads"
+  new_doc_ext: md
+upload_dir: src/static
+public_path: "/static"
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
