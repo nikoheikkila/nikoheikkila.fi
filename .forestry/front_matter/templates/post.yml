@@ -17,12 +17,19 @@ fields:
 - type: text
   name: title
   label: title
+  config:
+    required: true
+    min: 1
 - type: text
   name: type
   label: type
+  hidden: true
+  default: post
 - type: text
   name: excerpt
   label: excerpt
 - type: list
   name: categories
   label: categories
+  config:
+    use_select: false
