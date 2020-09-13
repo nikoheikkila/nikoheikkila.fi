@@ -9,6 +9,8 @@ exports.allow = [
     'nuts',
     'postman-postwoman',
     'special',
+    'master',
+    'masters'
 ]
 
 exports.noBinary = true
