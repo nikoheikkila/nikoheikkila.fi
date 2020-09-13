@@ -10,7 +10,8 @@ exports.allow = [
     'postman-postwoman',
     'special',
     'master',
-    'masters'
+    'masters',
+    'tribe',
 ]
 
 exports.noBinary = true
