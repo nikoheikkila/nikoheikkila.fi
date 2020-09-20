@@ -1,5 +1,6 @@
 <h1 align="center">Welcome to nikoheikkila.fi 👋</h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2296609f-151b-491d-b3f8-d908eb78e4f5/deploy-status)](https://app.netlify.com/sites/nikoheikkila/deploys)
 ![Build Status](https://github.com/nikoheikkila/nikoheikkila.fi/workflows/Main%20Workflow/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nikoheikkila/nikoheikkila.fi&amp;utm_campaign=Badge_Grade)
 
@@ -23,16 +24,16 @@ yarn
 yarn dev
 ```
 
-### 2. Build Locally with Now
+### 2. Build Locally with Netlify
 
-Alternatively, you can mimic the production environment from Now like so:
+Alternatively, you can mimic the production environment from Netlify like so:
 
 ```bash
-npm install -g now
-now dev
+npm install -g netlify-cli
+ntl dev
 ```
 
-This will download and execute a Now builder running the `gatsby develop` command. Be warned that this is a new feature with Now and might not work as expected. In case you encounter any problems, revert to option #1.
+This will download and execute a Netlify builder running the `gatsby develop` command.
 
 Finally, open <http://localhost:8000> to view the blog.
 
@@ -58,7 +59,7 @@ yarn test:a11y
 
 ## 🤝 Contributing
 
-Content can be found under `src/pages`. Edit posts as needed and submit a PR for me to review. All PRs are automatically deployed by Now to staging area. Once approved and merged to master branch they will be deployed to production.
+Content can be found under `content/` directory. Edit posts as needed and submit a PR for me to review. All PRs are automatically deployed by Netlify as preview deployments. Once approved and merged to master branch they will be deployed to production.
 
 Other contributions to UI, accessibility, React components, security, dependency updates etc. are warmly welcome as well!
 
