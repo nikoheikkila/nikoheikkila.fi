@@ -1,0 +1,24 @@
+[build]
+  base = "/"
+  command = "yarn build"
+  publish = "public/"
+
+[build.environment]
+  NODE_ENV = "development"
+  GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = "true"
+  GATSBY_DISQUS_SHORTNAME = "nikoheikkilafi"
+  GATSBY_GA_TRACKING_CODE = "UA-41155961-1"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[build.processing.css]
+  bundle = true
+  minify = false
+[build.processing.js]
+  bundle = true
+  minify = false
+[build.processing.html]
+  pretty_urls = true
+[build.processing.images]
+  compress = true
