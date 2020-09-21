@@ -34,7 +34,7 @@ The whole hiring process was a breeze with all the interviews being held remotel
 
 ## Life as a Tammerforcean
 
-<iframe width="100%" height="480" src="https://www.youtube-nocookie.com/embed/tMTa5GALU6E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="720" height="360" src="https://www.youtube-nocookie.com/embed/tMTa5GALU6E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Having said goodbye to **Paytrail** in Jyväskylä and getting ample time relocating to Tampere, I cycled to the office located in the heart of the town next to Tammerkoski rapids.
 
