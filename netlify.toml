@@ -2,6 +2,7 @@
   base = "/"
   command = "yarn build"
   publish = "public/"
+  ignore = "git log -1 --pretty=%an | grep -iE '(snyk|dependabot)'"
 
 [build.environment]
   NODE_ENV = "development"
