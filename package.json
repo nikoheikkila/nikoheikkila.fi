@@ -18,7 +18,7 @@
     "@types/react-burger-menu": "^2.6.1",
     "@types/react-helmet": "^6.1.0",
     "chalk": "^4.1.0",
-    "dayjs": "^1.8.35",
+    "dayjs": "^1.8.36",
     "disqus-react": "^1.0.10",
     "esm": "^3.2.25",
     "gatsby": "^2.24.58",
