@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { Page } from '../../src/types'
+import { Page } from 'types'
 
-const NotFound = ({ location }: Page) => {
+const NotFound: React.FunctionComponent<Page> = ({ location }) => {
   const title = 'Page Not Found'
 
   return (
