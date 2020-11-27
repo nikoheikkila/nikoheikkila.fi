@@ -12,7 +12,8 @@ interface SocialLink {
 }
 
 library.add(fab, faRss)
-export default function Footer() {
+
+const Footer: React.FunctionComponent = () => {
   const {
     site: {
       siteMetadata: { social, rss },
@@ -47,3 +48,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+export default Footer

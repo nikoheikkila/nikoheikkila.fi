@@ -1,14 +1,17 @@
 import React, { CSSProperties } from 'react'
 import useDarkMode, { DarkModeConfig } from 'use-dark-mode'
 
+// @ts-ignore
 import sun from '../assets/sun.png'
+
+// @ts-ignore
 import moon from '../assets/moon.png'
 
 interface Props extends DarkModeConfig {
   dark?: boolean
 }
 
-const ThemeToggle = ({ dark = true }: Props) => {
+const ThemeToggle: React.FunctionComponent<Props> = ({ dark = true }) => {
   const { toggle, value: enabled } = useDarkMode(dark, {
     classNameLight: 'light',
     classNameDark: 'dark',

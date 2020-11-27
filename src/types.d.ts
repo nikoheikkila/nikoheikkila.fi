@@ -14,6 +14,7 @@ export interface FluidImage extends FluidObject {
 export interface ImageProps extends GatsbyImageProps {
   fluid: FluidImage
   style?: CSSProperties
+  alt?: string
 }
 
 export interface RouteLocation {

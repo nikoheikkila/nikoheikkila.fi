@@ -13,6 +13,7 @@ import { Page, MarkdownRemark } from 'types/global'
 
 // @ts-ignore
 import banner from '../assets/banner.png'
+import ExternalLink from '../components/elements'
 
 const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext
@@ -26,7 +27,14 @@ const Index = ({ data, location, pageContext }: Page) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio />
+      <Bio>
+        <p>
+            A blog by <ExternalLink to="https://linkedin.com/in/nikoheikkila">Niko Heikkilä</ExternalLink>
+            {'. '}
+            Powered by coffee, <ExternalLink to="https://code.visualstudio.com">VS Code</ExternalLink>, and{' '}
+            <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
+          </p>
+      </Bio>
       <SEO title="All Posts" image={banner} />
 
       {posts.edges.map(({ node }) => {

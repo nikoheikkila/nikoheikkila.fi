@@ -2,7 +2,7 @@ import React from 'react'
 import Img from 'gatsby-image'
 import { ImageProps, FluidImage } from '../types'
 
-const NormalizedImage = (props: ImageProps) => {
+const NormalizedImage: React.FunctionComponent<ImageProps> = (props) => {
   const {
     style = {},
     fluid: { presentationHeight, presentationWidth },
@@ -26,6 +26,6 @@ interface HeroProps {
   alt: string
 }
 
-const Hero = ({ data, alt }: HeroProps) => <NormalizedImage fluid={data} alt={alt} />
+const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => <NormalizedImage fluid={data} alt={alt} />
 
 export default Hero

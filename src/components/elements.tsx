@@ -6,7 +6,7 @@ interface Props {
   to: string
 }
 
-const ExternalLink = ({ children, to }: Props) => (
+const ExternalLink: React.FunctionComponent<Props> = ({ to, children }) => (
   <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
     {children}
   </OutboundLink>

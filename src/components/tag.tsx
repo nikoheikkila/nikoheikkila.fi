@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import slugify from '@sindresorhus/slugify'
 
 import { randomColor, foregroundColor } from '../utils/colors'
 
 interface Props {
   title: string
+  prefix?: string
 }
 
-const Tag = ({ title }: Props) => {
+const Tag: React.FunctionComponent<Props> = ({ title, prefix = '#' }) => {
   const innerText = slugify(title, { decamelize: false, separator: ' ' })
   const backgroundColor = randomColor()
   const color = foregroundColor(backgroundColor)
 
-  const style = {
+  const style: CSSProperties = {
     display: 'inline-block',
     fontSize: '0.8em',
     fontWeight: 700,
@@ -22,7 +23,7 @@ const Tag = ({ title }: Props) => {
     margin: '0 8px 8px 0',
   }
 
-  return <span style={style}>#{innerText}</span>
+  return <span style={style}>{prefix + innerText}</span>
 }
 
 export default Tag

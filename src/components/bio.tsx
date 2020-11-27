@@ -1,9 +1,8 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import ExternalLink from './elements'
 
-const Bio = () => (
+const Bio: React.FunctionComponent = ({ children }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -22,12 +21,7 @@ const Bio = () => (
           <Img fluid={data.placeholderImage.childImageSharp.fluid} />
         </section>
         <section className="bio">
-          <p>
-            A blog by <ExternalLink to="https://linkedin.com/in/nikoheikkila">Niko Heikkilä</ExternalLink>
-            {'. '}
-            Powered by coffee, <ExternalLink to="https://code.visualstudio.com">VS Code</ExternalLink>, and{' '}
-            <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
-          </p>
+          {children}
         </section>
       </aside>
     )}
