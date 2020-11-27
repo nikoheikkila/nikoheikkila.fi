@@ -68,3 +68,8 @@ export interface MarkdownRemark {
         }
     }>
 }
+
+export interface ContentLink {
+  slug: string
+  title: string
+}

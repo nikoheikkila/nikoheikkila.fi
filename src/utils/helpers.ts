@@ -19,5 +19,5 @@ export const formatReadingTime = (minutes: number): string => {
 export const isIndex = ({ pathname }: RouteLocation) => /^\/[0-9]*$/.test(pathname)
 
 export const getPreviousPage = ({ state }: RouteLocation): string => {
-  return state?.previous ?? ''
+  return state?.previous ?? '/'
 }

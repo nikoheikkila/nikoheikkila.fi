@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
 import SchemaOrg from './schema'
+import { getSEOData } from '../graphql/seo'
 
 interface Props {
   title: string
@@ -26,23 +26,7 @@ const SEO = ({
   type = 'page',
   url = '',
 }: Props) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            siteUrl
-            author {
-              name
-            }
-          }
-        }
-      }
-    `
-  )
-
+  const { site } = getSEOData();
   const metaDescription = description || site.siteMetadata.description
   const imageURL = `${site.siteMetadata.siteUrl}${image}`
 

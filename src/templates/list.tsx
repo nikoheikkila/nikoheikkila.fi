@@ -2,18 +2,17 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { CommentCount } from 'disqus-react'
 import dayjs from 'dayjs'
-
 import Layout from '../components/layout'
 import Bio from '../components/bio'
 import SEO from '../components/seo'
 import Tag from '../components/tag'
 import Article from '../components/post/content'
 import { formatReadingTime } from '../utils/helpers'
-import { Page, MarkdownRemark } from 'types/global'
+import { Page, MarkdownRemark } from '../types'
+import ExternalLink from '../components/elements'
 
 // @ts-ignore
 import banner from '../assets/banner.png'
-import ExternalLink from '../components/elements'
 
 const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext
