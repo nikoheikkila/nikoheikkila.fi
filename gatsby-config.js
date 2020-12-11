@@ -37,6 +37,10 @@ module.exports = {
     repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
     rss: `/rss.xml`,
   },
+  flags: {
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+  },
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
