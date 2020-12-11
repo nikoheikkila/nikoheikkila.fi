@@ -13,14 +13,14 @@ import { getStaticPages } from '../graphql/pages'
 const SidebarLink: React.FunctionComponent<ContentLink> = ({ slug, title }) => {
   if (slug.startsWith('/')) {
     return (
-      <Link key={slug} to={slug}>
+      <Link to={slug}>
         {title}
       </Link>
     )
   }
 
   return (
-    <ExternalLink key={slug} to={slug}>
+    <ExternalLink to={slug}>
       {title}
     </ExternalLink>
   )
@@ -40,7 +40,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ location, title, cover, 
 
   const staticPages = getStaticPages()
   const allPages = [...links, ...staticPages].map(({ slug, title }) => (
-    <SidebarLink slug={slug} title={title} />
+    <SidebarLink key={slug} slug={slug} title={title} />
   ))
 
   return (
