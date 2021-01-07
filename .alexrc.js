@@ -13,7 +13,9 @@ exports.allow = [
     'masters',
     'tribe',
     'depressed',
-    'just'
+    'just',
+    'simple',
+    'clearly',
 ]
 
 exports.noBinary = true
