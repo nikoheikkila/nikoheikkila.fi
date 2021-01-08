@@ -138,7 +138,7 @@ collector.OnError(func(response *colly.Response, err error) {
 })
 ```
 
-### Whitelisting the HTML Anchors
+### Allowlisting the HTML Anchors
 
 Every time Colly encounters an HTML element, it checks if an `OnHTML` handler satisfies the element it found. We want to visit every link on the web page, so we catch all the HTML anchor tags with `href` attribute. If you're familiar with CSS selectors, you can modify the first argument to the handler here for catching broken `img` tags, for example. I've chosen to keep it this way and limit any URLs visited with the regular expression shown before.
 

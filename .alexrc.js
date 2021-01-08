@@ -16,6 +16,7 @@ exports.allow = [
     'just',
     'simple',
     'clearly',
+    'dummy',
 ]
 
 exports.noBinary = true
