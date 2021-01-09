@@ -16,6 +16,9 @@ jobs:
       with:
         node-version: 14.x
 
+    - name: Setup Playwright
+      uses: microsoft/playwright-github-action@v1
+
     - name: Cache Runner Files
       uses: actions/cache@v1
       with:
@@ -40,14 +43,8 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-gatsby-public
 
-    - name: Build Site
-      run: |
-        yarn --frozen-lockfile
-        yarn build
-      env:
-        GATSBY_DISQUS_SHORTNAME: nikoheikkila
-        GATSBY_GA_TRACKING_CODE: UA-41155961-1
-        GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
 
     - name: Lint Code Style
       run: yarn lint
@@ -55,10 +52,30 @@ jobs:
     - name: Unit Tests
       run: yarn test:unit
 
-    - name: E2E Tests
-      run: yarn test:e2e
+    - name: Build Site
+      run: yarn build
       env:
-        TERM: xterm
+        GATSBY_DISQUS_SHORTNAME: nikoheikkila
+        GATSBY_GA_TRACKING_CODE: UA-41155961-1
+        GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+
+    - name: Launch server on background
+      run: yarn serve &
+
+    - name: E2E Tests with Chromium
+      env:
+        BROWSER: chromium
+      run: yarn test:e2e
+
+    - name: E2E Tests with Firefox
+      env:
+        BROWSER: firefox
+      run: yarn test:e2e
+
+    - name: E2E Tests with Webkit
+      env:
+        BROWSER: webkit
+      run: yarn test:e2e
 
     - name: Accessibility Tests
       run: yarn test:a11y

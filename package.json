@@ -85,6 +85,7 @@
     "gatsby-cypress": "^0.4.10",
     "husky": "^4.3.7",
     "pa11y-ci": "^2.4.0",
+    "playwright": "^1.7.1",
     "prettier": "^2.2.1",
     "start-server-and-test": "^1.11.7",
     "ts-node": "^9.1.1",
@@ -99,21 +100,15 @@
     "build": "gatsby build --log-pages --write-to-file",
     "dev": "gatsby develop",
     "format": "eslint --fix .",
+    "lint": "yarn lint:js && yarn lint:lang",
     "lint:js": "eslint .",
     "lint:lang": "alex -q content",
-    "lint": "yarn lint:js && yarn lint:lang",
     "start": "yarn dev",
     "serve": "gatsby serve -p 8000",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome",
-    "pa11y": "pa11y-ci -s http://localhost:8000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:8000",
     "test": "yarn lint && yarn test:unit && yarn test:e2e && yarn test:a11y",
     "test:unit": "ava",
-    "test:a11y": "start-server-and-test serve http://localhost:8000 pa11y",
-    "test:dev": "cypress install && start-server-and-test dev http://localhost:8000 cy:open",
-    "test:e2e": "cypress install && start-server-and-test serve http://localhost:8000 cy:run",
-    "now-build": "yarn build",
-    "now-dev": "yarn dev",
+    "test:e2e": "ava --config e2e.config.js",
+    "test:a11y": "pa11y-ci -s http://localhost:8000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:8000",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect"
   },
@@ -121,25 +116,6 @@
     "hooks": {
       "pre-commit": "yarn lint"
     }
-  },
-  "ava": {
-    "babel": {
-      "compileEnhancements": false
-    },
-    "extensions": [
-      "ts"
-    ],
-    "files": [
-      "src/__tests__/**/*.ts"
-    ],
-    "require": [
-      "esm",
-      "ts-node/register"
-    ],
-    "cache": true,
-    "concurrency": 5,
-    "failFast": true,
-    "verbose": true
   },
   "repository": {
     "type": "git",

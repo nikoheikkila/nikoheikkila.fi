@@ -51,7 +51,7 @@ const Post = ({ data, location, pageContext }: Page) => {
         datePublished={date || dayjs().format('YYYY-MM-DD')}
       />
       <header className="post-header">
-        {isIndex(location) || <Link to={getPreviousPage(location)}>↩ Back to posts</Link>}
+        {isIndex(location) || <Link rel="back" to={getPreviousPage(location)}>↩ Back to posts</Link>}
         <h1 className="post-title">{title}</h1>
 
         {excerpt && <section className="post-excerpt">
