@@ -8,7 +8,6 @@
     "node": ">=12.0"
   },
   "dependencies": {
-    "@babel/helper-call-delegate": "^7.12.1",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -20,7 +19,6 @@
     "chalk": "^4.1.0",
     "dayjs": "^1.10.2",
     "disqus-react": "^1.0.10",
-    "esm": "^3.2.25",
     "gatsby": "^2.30.1",
     "gatsby-image": "^2.9.0",
     "gatsby-plugin-disqus": "^1.2.2",
@@ -63,6 +61,7 @@
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
+    "@babel/helper-call-delegate": "^7.12.1",
     "@ava/babel": "^1.0.1",
     "@types/lodash": "^4.14.167",
     "@types/node": "^14.14.20",
@@ -71,7 +70,6 @@
     "alex": "^9.1.0",
     "ava": "^3.15.0",
     "babel-eslint": "^10.0.3",
-    "cypress": "^5.1.0",
     "eslint": "7.17.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.11.0",
@@ -82,12 +80,10 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "gatsby-cypress": "^0.4.10",
     "husky": "^4.3.7",
     "pa11y-ci": "^2.4.0",
     "playwright": "^1.7.1",
     "prettier": "^2.2.1",
-    "start-server-and-test": "^1.11.7",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
