@@ -79,18 +79,21 @@ jobs:
         BROWSER: chromium
       run: yarn test:e2e
       continue-on-error: true
+      timeout-minutes: 2
 
     - name: E2E Tests with Firefox
       env:
         BROWSER: firefox
       run: yarn test:e2e
       continue-on-error: true
+      timeout-minutes: 2
 
     - name: E2E Tests with Webkit
       env:
         BROWSER: webkit
       run: yarn test:e2e
       continue-on-error: true
+      timeout-minutes: 2
 
     - name: Upload screenshots of failed tests
       uses: actions/upload-artifact@v2
