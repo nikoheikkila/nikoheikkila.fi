@@ -1,16 +1,34 @@
+import slugify from '@sindresorhus/slugify'
 import { ExecutionContext, Macro } from 'ava'
-import playwright, { Browser, Page } from 'playwright'
+import { resolve } from 'path'
+import playwright, { Browser, LaunchOptions, Page } from 'playwright'
 
 type Callback = (t: ExecutionContext, page: Page) => Promise<void>
 
+const browserName = process.env.BROWSER || 'chromium'
+
+const addHandlers = (page: Page) => {
+  page.on('requestfailed', request => console.error(`Request failed: ${request.failure()?.errorText}`))
+  page.on('pageerror', exception => console.error(`Uncaught Exception: "${exception}"`))
+}
+
 export const getBrowser = (): Promise<Browser> => {
-  const name = process.env.BROWSER || 'chromium'
+  const options: LaunchOptions = {
+    headless: true,
+  }
 
-  if (name === 'chromium') return playwright.chromium.launch()
-  if (name === 'firefox') return playwright.firefox.launch()
-  if (name === 'webkit') return playwright.webkit.launch()
+  if (browserName === 'chromium') return playwright.chromium.launch(options)
+  if (browserName === 'firefox') return playwright.firefox.launch(options)
+  if (browserName === 'webkit') return playwright.webkit.launch(options)
 
-  throw new Error(`Unsupported browser type ${name}`)
+  throw new Error(`Unsupported browser type ${browserName}`)
+}
+
+export const captureScreenshot: Callback = async (t, page) => {
+  const path = resolve(__dirname, `screenshots/${slugify(t.title)}-${browserName}.png`)
+  await page.screenshot({ path })
+
+  console.log(`Saved screenshot to ${path}`)
 }
 
 /**
@@ -22,13 +40,15 @@ export const withBrowser: Macro<[Callback]> = async (t, callback) => {
   const browser = await getBrowser()
   const page = await browser.newPage()
 
-  page.on('pageerror', exception => {
-    console.error(`Uncaught Exception: "${exception}"`)
-  })
+  addHandlers(page)
 
   try {
     await callback(t, page)
   } finally {
+    if (!t.passed) {
+      await captureScreenshot(t, page)
+    }
+
     await page.close()
   }
 }

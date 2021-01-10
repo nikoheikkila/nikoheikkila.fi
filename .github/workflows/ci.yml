@@ -78,6 +78,7 @@ jobs:
       env:
         BROWSER: chromium
       run: yarn test:e2e
+      continue-on-error: true
 
     - name: E2E Tests with Firefox
       env:
@@ -90,6 +91,13 @@ jobs:
         BROWSER: webkit
       run: yarn test:e2e
       continue-on-error: true
+
+    - name: Upload screenshots of failed tests
+      uses: actions/upload-artifact@v2
+      if: ${{ failure() }}
+      with:
+        name: screenshots
+        path: src/__tests__/feature/screenshots/
 
     - name: Accessibility Tests
       run: yarn test:a11y

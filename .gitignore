@@ -73,4 +73,5 @@ yarn-error.log
 # Linters
 .sonarlint
 
-.now
+# Test artifacts
+/src/__tests__/feature/screenshots/
