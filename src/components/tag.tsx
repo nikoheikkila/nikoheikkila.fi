@@ -1,29 +1,29 @@
-import React, { CSSProperties } from 'react'
-import slugify from '@sindresorhus/slugify'
+import React, { CSSProperties } from "react";
+import slugify from "@sindresorhus/slugify";
 
-import { randomColor, foregroundColor } from '../utils/colors'
+import { randomColor, foregroundColor } from "../utils/colors";
 
 interface Props {
-  title: string
-  prefix?: string
+  title: string;
+  prefix?: string;
 }
 
-const Tag: React.FunctionComponent<Props> = ({ title, prefix = '#' }) => {
-  const innerText = slugify(title, { decamelize: false, separator: ' ' })
-  const backgroundColor = randomColor()
-  const color = foregroundColor(backgroundColor)
+const Tag: React.FunctionComponent<Props> = ({ title, prefix = "#" }) => {
+  const innerText = slugify(title, { decamelize: false, separator: " " });
+  const backgroundColor = randomColor();
+  const color = foregroundColor(backgroundColor);
 
   const style: CSSProperties = {
-    display: 'inline-block',
-    fontSize: '0.8em',
+    display: "inline-block",
+    fontSize: "0.8em",
     fontWeight: 700,
     backgroundColor,
     color,
-    padding: '4px 12px',
-    margin: '0 8px 8px 0',
-  }
+    padding: "4px 12px",
+    margin: "0 8px 8px 0",
+  };
 
-  return <span style={style}>{prefix + innerText}</span>
-}
+  return <span style={style}>{prefix + innerText}</span>;
+};
 
-export default Tag
+export default Tag;

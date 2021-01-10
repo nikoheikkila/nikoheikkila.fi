@@ -15,13 +15,13 @@ categories:
 
 By the 2020s, every software company in existence should be using open-source code as building blocks for their products. Better than that, every company should also be giving back to the open-source community by making regular contributions.
 
-For many companies, it's a no-brainer to import published code from services like *NPM* or *Packagist* and add it to their build dependencies. Product people expect projects to ship on time, so why not use third-party solutions.
+For many companies, it's a no-brainer to import published code from services like _NPM_ or _Packagist_ and add it to their build dependencies. Product people expect projects to ship on time, so why not use third-party solutions.
 
 However, uneasiness emerges when employees within development teams wish to produce open-source components themselves. Most often, the challenges revolve around tight bureaucracies set in stone by senior executives without a coherent understanding of the fundamentals or business benefits of the open-source.
 
-Therefore, the task of convincing the business to support open-source and allow developers to contribute during the working hours falls to none other than developers — because we care about our work most. It's not necessarily a bad thing since every reputable developer should possess *softer* skills like convincing stakeholders and driving a cultural transformation.
+Therefore, the task of convincing the business to support open-source and allow developers to contribute during the working hours falls to none other than developers — because we care about our work most. It's not necessarily a bad thing since every reputable developer should possess _softer_ skills like convincing stakeholders and driving a cultural transformation.
 
-Throughout this article, I explore *one* way of cultural transformation from a closed-source organization to open-source advocacy. Finally, I share some of my personal experiences driving the change for my current employer.
+Throughout this article, I explore _one_ way of cultural transformation from a closed-source organization to open-source advocacy. Finally, I share some of my personal experiences driving the change for my current employer.
 
 ## Establish the Open-Source Movement
 
@@ -33,11 +33,11 @@ After a moment of pure blissful selfishness, extend your thinking to your collea
 
 Attracting followers is all about listing benefits. However, at this point, you don't need a massive cult standing behind you. A few like-minded colleagues who can help review and refine the plan is enough.
 
-Carry on by writing short and long term goals down in a bullet list. For instance, **Sophie Alpert** has written a comprehensive article on *[Increment](https://increment.com/open-source/the-benefits-and-costs-of-corporate-open-source/)* about the benefits and costs open-source brought to React project. Add to the list my short-term benefits that companies enjoy by adopting open-source as part of their toolchain.
+Carry on by writing short and long term goals down in a bullet list. For instance, **Sophie Alpert** has written a comprehensive article on _[Increment](https://increment.com/open-source/the-benefits-and-costs-of-corporate-open-source/)_ about the benefits and costs open-source brought to React project. Add to the list my short-term benefits that companies enjoy by adopting open-source as part of their toolchain.
 
-- Open-source is a cost-effective and flexible way to adopt new technologies without risking vendor lock-in. Importing a dependency and changing it later is trivial if your software architecture is built upon **SOLID** principles, namely the *[Dependency Inversion](https://stackify.com/dependency-inversion-principle/)* principle.
+- Open-source is a cost-effective and flexible way to adopt new technologies without risking vendor lock-in. Importing a dependency and changing it later is trivial if your software architecture is built upon **SOLID** principles, namely the _[Dependency Inversion](https://stackify.com/dependency-inversion-principle/)_ principle.
 - It builds morale and reputation among developers and helps retain them in the company for longer. We all love a degree of variety in our work.
-- Public projects benefit from  the increase in quality and security. Remember the **Linus Torvalds'** law: "Given enough eyeballs, all bugs are shallow".
+- Public projects benefit from the increase in quality and security. Remember the **Linus Torvalds'** law: "Given enough eyeballs, all bugs are shallow".
 - The public brand of the company and its engineers receive a facelift as proud supporters of open-source.
 - It's an excellent excuse to clean up the code and documentation of older projects before open-sourcing them. Throw bad commit history away where necessary.
 
@@ -45,7 +45,7 @@ Likewise, there's much long-term fruit to harvest.
 
 - A company emerging as an open-source champion drives more tech-savvy people to use their products which generates more revenue.
 - More tech-savvy users mean improved quality through contributions, which again generates more marketability, users, and revenue. Looks like we have a profit loop here!
-- Talent acquisition becomes easier as well-known regular contributors become potential hires. Note that many people prefer to be *drive-by* contributors who only contribute once and then vanish — keep a close eye on your regulars and feature them in your repository.
+- Talent acquisition becomes easier as well-known regular contributors become potential hires. Note that many people prefer to be _drive-by_ contributors who only contribute once and then vanish — keep a close eye on your regulars and feature them in your repository.
 - By seeing the tech used by mainstream open-source projects, the company is given more unobstructed view of the future and helps plan strategically for the future.
 
 There are plenty of other benefits, but these should give you a good start on your mission.
@@ -123,36 +123,36 @@ No one must skip from the agreed flow. Employees with write permissions to the p
 
 GitHub supports organization boards which can be used to manage a variety of tasks going on in your organization. I recommend the following two boards, but feel free to make more as needed.
 
-- One board for issues, or *Bug Tracker*
-- One board for pull requests, or *Contributions Tracker*
+- One board for issues, or _Bug Tracker_
+- One board for pull requests, or _Contributions Tracker_
 
 If you've used **Trello** or **Jira**, these boards are not that different. You have a board holding multiple columns which in turn hold various cards. Cards can be dragged across the board to other columns as necessary.
 
 ### Triaging Issues with a Bug Tracker
 
-For the bug tracker, set up a basic board for *triaging* issues. Triaging in this context means categorizing the incoming issues by their priority (high vs low) or closing them. Prepare one column for each label.
+For the bug tracker, set up a basic board for _triaging_ issues. Triaging in this context means categorizing the incoming issues by their priority (high vs low) or closing them. Prepare one column for each label.
 
-- *Needs Triage*
-- *High Priority*
-- *Low Priority*
-- *Closed*
+- _Needs Triage_
+- _High Priority_
+- _Low Priority_
+- _Closed_
 
 Leave each new issue waiting for triage. The key here is to gather with your team weekly or daily for a special triage session where you will discuss the priorities and possible solutions.
 
 If the issues were reported within your team, you could discuss them straight in this session. However, more often, you will get bug reports and questions from the community. Thus, it's courteous to ask for more information and try to reproduce the issues as described before moving on with triage. GitHub issues can be enriched with labels which helps everyone to see the lay of the land.
 
-As a rule of thumb, if the issue has a severe impact on your application or library preventing its intended use, it should be a high priority. All the rest are a low priority which doesn't mean they should gather dust for years. Find time to fix these once all the critical issues have been cleared. 
+As a rule of thumb, if the issue has a severe impact on your application or library preventing its intended use, it should be a high priority. All the rest are a low priority which doesn't mean they should gather dust for years. Find time to fix these once all the critical issues have been cleared.
 
-Don't bother setting any middle stages like a *Normal* priority between *High* and *Low* or prioritizing by using numbers. They will only obfuscate the meaning of priority as everyone interprets them in their way.
+Don't bother setting any middle stages like a _Normal_ priority between _High_ and _Low_ or prioritizing by using numbers. They will only obfuscate the meaning of priority as everyone interprets them in their way.
 
 ### Monitoring the Contributions
 
 For the contributions tracker, set up an automated Kanban board with following columns. You may pick different names depending on your needs.
 
-- *In Progress* for PRs marked as drafts or implementing review suggestions
-- *In Review* for PRs being actively reviewed
-- *Ready for Merge* for PRs that have passed testing
-- *Done* for closed PRs
+- _In Progress_ for PRs marked as drafts or implementing review suggestions
+- _In Review_ for PRs being actively reviewed
+- _Ready for Merge_ for PRs that have passed testing
+- _Done_ for closed PRs
 
 You shouldn't need to touch this very often since GitHub can move the cards for you. However, it's essential to keep an eye on this board to get an overview of how pull requests flow in your repositories.
 

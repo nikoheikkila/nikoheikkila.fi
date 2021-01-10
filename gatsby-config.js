@@ -1,6 +1,6 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -118,7 +118,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map(edge => ({
+              allMarkdownRemark.edges.map((edge) => ({
                 ...edge.node.frontmatter,
                 language: edge.node.frontmatter.lang,
                 title: edge.node.frontmatter.title,
@@ -129,7 +129,7 @@ module.exports = {
                 author: edge.node.frontmatter.author,
                 custom_elements: [
                   {
-                    'content:encoded': edge.node.html,
+                    "content:encoded": edge.node.html,
                   },
                 ],
               })),
@@ -180,17 +180,17 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        policy: [{ userAgent: '*', allow: '/' }],
+        policy: [{ userAgent: "*", allow: "/" }],
         output: `/robots.txt`,
       },
     },
     {
-      resolve: 'gatsby-plugin-use-dark-mode',
+      resolve: "gatsby-plugin-use-dark-mode",
       options: {
         minify: true,
-        classNameLight: 'light',
-        classNameDark: 'dark',
-        storageKey: 'darkMode',
+        classNameLight: "light",
+        classNameDark: "dark",
+        storageKey: "darkMode",
       },
     },
     {
@@ -206,4 +206,4 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-preact`,
   ],
-}
+};

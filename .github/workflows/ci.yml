@@ -3,104 +3,103 @@ name: Main Workflow
 on: [push]
 
 jobs:
-
   build:
     name: Build and Test Site
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Setup Node.js 14
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
+      - name: Setup Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
 
-    - name: Setup Playwright
-      uses: microsoft/playwright-github-action@v1
+      - name: Setup Playwright
+        uses: microsoft/playwright-github-action@v1
 
-    - name: Get Yarn cache directory
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Get Yarn cache directory
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-    - name: Cache Yarn files
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-yarn
+      - name: Cache Yarn files
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn
 
-    - name: Cache Runner Files
-      uses: actions/cache@v1
-      with:
-        path: ~/.cache
-        key: ${{ runner.OS }}-cache
-        restore-keys: |
-          ${{ runner.OS }}-cache
+      - name: Cache Runner Files
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache
+          key: ${{ runner.OS }}-cache
+          restore-keys: |
+            ${{ runner.OS }}-cache
 
-    - name: Cache Gatsby Build Files
-      uses: actions/cache@v1
-      with:
-        path: .cache
-        key: ${{ runner.OS }}-gatsby-cache
-        restore-keys: |
-          ${{ runner.OS }}-gatsby-cache
+      - name: Cache Gatsby Build Files
+        uses: actions/cache@v1
+        with:
+          path: .cache
+          key: ${{ runner.OS }}-gatsby-cache
+          restore-keys: |
+            ${{ runner.OS }}-gatsby-cache
 
-    - name: Cache Gatsby Public Folder
-      uses: actions/cache@v1
-      with:
-        path: public
-        key: ${{ runner.OS }}-gatsby-public
-        restore-keys: |
-          ${{ runner.OS }}-gatsby-public
+      - name: Cache Gatsby Public Folder
+        uses: actions/cache@v1
+        with:
+          path: public
+          key: ${{ runner.OS }}-gatsby-public
+          restore-keys: |
+            ${{ runner.OS }}-gatsby-public
 
-    - name: Install Dependencies
-      run: yarn --frozen-lockfile --prefer-offline
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile --prefer-offline
 
-    - name: Lint Code Style
-      run: yarn lint
+      - name: Lint Code Style
+        run: yarn lint
 
-    - name: Unit Tests
-      run: yarn test:unit
+      - name: Unit Tests
+        run: yarn test:unit
 
-    - name: Build Site
-      run: yarn build
-      env:
-        GATSBY_DISQUS_SHORTNAME: nikoheikkila
-        GATSBY_GA_TRACKING_CODE: UA-41155961-1
-        GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+      - name: Build Site
+        run: yarn build
+        env:
+          GATSBY_DISQUS_SHORTNAME: nikoheikkila
+          GATSBY_GA_TRACKING_CODE: UA-41155961-1
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
-    - name: Launch server on background
-      run: yarn serve &
+      - name: Launch server on background
+        run: yarn serve &
 
-    - name: E2E Tests with Chromium
-      env:
-        BROWSER: chromium
-      run: yarn test:e2e
-      continue-on-error: true
-      timeout-minutes: 2
+      - name: E2E Tests with Chromium
+        env:
+          BROWSER: chromium
+        run: yarn test:e2e
+        continue-on-error: true
+        timeout-minutes: 2
 
-    - name: E2E Tests with Firefox
-      env:
-        BROWSER: firefox
-      run: yarn test:e2e
-      continue-on-error: true
-      timeout-minutes: 2
+      - name: E2E Tests with Firefox
+        env:
+          BROWSER: firefox
+        run: yarn test:e2e
+        continue-on-error: true
+        timeout-minutes: 2
 
-    - name: E2E Tests with Webkit
-      env:
-        BROWSER: webkit
-      run: yarn test:e2e
-      continue-on-error: true
-      timeout-minutes: 2
+      - name: E2E Tests with Webkit
+        env:
+          BROWSER: webkit
+        run: yarn test:e2e
+        continue-on-error: true
+        timeout-minutes: 2
 
-    - name: Upload screenshots of failed tests
-      uses: actions/upload-artifact@v2
-      if: ${{ failure() }}
-      with:
-        name: screenshots
-        path: src/__tests__/feature/screenshots/
+      - name: Upload screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: screenshots
+          path: src/__tests__/feature/screenshots/
 
-    - name: Accessibility Tests
-      run: yarn test:a11y
+      - name: Accessibility Tests
+        run: yarn test:a11y

@@ -38,9 +38,9 @@ A _higher-order function_ is defined to have either of the following two propert
 
 ```js
 const App = () => {
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(0);
   // typeof setCounter === 'function'
-}
+};
 ```
 
 At first, higher-order functions seemed to me like an overcomplicated problem-solving tool. Why not write a single function and call other functions from inside? Truthfully speaking, I thought as much about object-oriented programming before grasping how different design patterns improve the code.
@@ -67,27 +67,29 @@ One solution is to define each validator as a function and pass it as an argumen
 
 ```js
 /** Helper for printing the validator warnings */
-const warn = msg => {
-    console.warn('Invalid:', msg)
-    return false
-}
+const warn = (msg) => {
+  console.warn("Invalid:", msg);
+  return false;
+};
 
 /** Validators */
-const longEnough = (password, minLength = 12) => password.length >= minLength || warn(`Password should contain ${minLength} or more characters.`)
-const hasUpperCase = password => /[A-Z]+/.test(password) || warn('Password should have at least one uppercase letter.')
-const hasLowerCase = password => /[a-z]+/.test(password) || warn('Password should have at least one lowercase letter.')
-const hasNumbers = password => /[0-9]+/.test(password) || warn('Password should have at least one number.')
+const longEnough = (password, minLength = 12) =>
+  password.length >= minLength ||
+  warn(`Password should contain ${minLength} or more characters.`);
+const hasUpperCase = (password) =>
+  /[A-Z]+/.test(password) ||
+  warn("Password should have at least one uppercase letter.");
+const hasLowerCase = (password) =>
+  /[a-z]+/.test(password) ||
+  warn("Password should have at least one lowercase letter.");
+const hasNumbers = (password) =>
+  /[0-9]+/.test(password) || warn("Password should have at least one number.");
 
 /** Higher-order function to run the given validators */
-const validate = password => (...fns) => fns.every(fn => fn(password))
+const validate = (password) => (...fns) => fns.every((fn) => fn(password));
 
-const validator = validate('SUP3RsECREtP4ssW0rd')
-console.log(validator(
-    longEnough,
-    hasUpperCase,
-    hasLowerCase,
-    hasNumbers,
-)) // => true
+const validator = validate("SUP3RsECREtP4ssW0rd");
+console.log(validator(longEnough, hasUpperCase, hasLowerCase, hasNumbers)); // => true
 ```
 
 Breaking this down you can see that `longEnough`, `hasUpperCase`, `hasLowerCase`, and `hasNumbers` are each a closure passed to the `validator` function. Using variadic arguments – known as the spread operator (`...`) in Javascript – we can pass any number of validators and our code takes care of the rest.
@@ -100,11 +102,11 @@ Perhaps your head is spinning fast right now, so let's write the validate functi
 
 ```js
 function validate(password) {
-    return function(...fns) {
-        return fns.every(function(fn) {
-            return fn(password)
-        })
-    }
+  return function (...fns) {
+    return fns.every(function (fn) {
+      return fn(password);
+    });
+  };
 }
 ```
 
@@ -114,6 +116,6 @@ Higher-order functions provide a clean way of solving a large problem by composi
 
 I wrote this post because I had very much trouble understanding different functional programming concepts when studying. Unfortunately, typical computer science education tends to lean on the way of defining high-level theories and proving them using mathematical constructs. This is something you almost certainly won't find in a professional software development environment. If you have managed to achieve such a position without a degree as I have, I hope this post is helpful to you.
 
-***
+---
 
 <small>Cover image by **Ilija Boshkov** on _Unsplash_.</small>

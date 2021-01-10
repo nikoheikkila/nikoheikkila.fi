@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2296609f-151b-491d-b3f8-d908eb78e4f5/deploy-status)](https://app.netlify.com/sites/nikoheikkila/deploys)
 ![Build Status](https://github.com/nikoheikkila/nikoheikkila.fi/workflows/Main%20Workflow/badge.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nikoheikkila/nikoheikkila.fi&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&utm_medium=referral&utm_content=nikoheikkila/nikoheikkila.fi&utm_campaign=Badge_Grade)
 
 My personal blog. Forked from Gatsby Blog Starter template and inspired here and there by Dan Abramov's blog.
 
@@ -39,7 +39,7 @@ Finally, open <http://localhost:8000> to view the blog.
 
 ## 🤖 Run tests
 
-Project is packaged with ESLint code style tests, AVA unit tests, Cypress automated tests, and Pa11y accessibility tests. They can be ran respectively like so:
+Project is packaged with Prettier formatter, AVA unit tests, Playwright automated tests, and Pa11y accessibility tests. They can be ran respectively like so:
 
 ```sh
 yarn lint
@@ -52,10 +52,10 @@ yarn test:a11y
 
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
 
-* Github: [@nikoheikkila](https://github.com/nikoheikkila)
-* Mastodon: [@nikoheikkila](https://mastodon.technology/@nikoheikkila)
-* DEV: [nikoheikkila](https://dev.to/nikoheikkila)
-* LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
+- Github: [@nikoheikkila](https://github.com/nikoheikkila)
+- Mastodon: [@nikoheikkila](https://mastodon.technology/@nikoheikkila)
+- DEV: [nikoheikkila](https://dev.to/nikoheikkila)
+- LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
 ## 🤝 Contributing
 
@@ -76,6 +76,6 @@ Copyright of blog posts © 2019 [Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;](http
 
 Source code of this project is [MIT](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/LICENSE-website) licensed.
 
-***
+---
 
 <small>_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_.</small>

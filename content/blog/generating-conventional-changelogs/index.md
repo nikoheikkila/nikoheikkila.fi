@@ -107,8 +107,14 @@ changes v1.0.0 | pandoc -f markdown -t html
 
 <ul>
   <li>docs: add a security policy (<em>Niko Heikkilä</em>) (d02e70a)</li>
-  <li>fix(security): upgrade Python packages (<em>Niko Heikkilä</em>) (bbb0861)</li>
-  <li>fix(tests): replace parameter message with matches in pytest.raises (<em>Niko Heikkilä</em>) (9161cf9)</li>
+  <li>
+    fix(security): upgrade Python packages (<em>Niko Heikkilä</em>) (bbb0861)
+  </li>
+  <li>
+    fix(tests): replace parameter message with matches in pytest.raises (<em
+      >Niko Heikkilä</em
+    >) (9161cf9)
+  </li>
   <li>release: 1.0.1 (<em>Niko Heikkilä</em>) (f9cdd53)</li>
 </ul>
 ```

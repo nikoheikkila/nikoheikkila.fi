@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from "gatsby"
-import { ContentLink } from "types"
+import { graphql, useStaticQuery } from "gatsby";
+import { ContentLink } from "types";
 
 export const getStaticPages = (): ContentLink[] => {
   const data = useStaticQuery(
@@ -22,11 +22,11 @@ export const getStaticPages = (): ContentLink[] => {
         }
       }
     `
-  )
+  );
 
   //@ts-ignore
   return data.allMarkdownRemark.edges.map(({ node }) => ({
     slug: node.fields.slug,
     title: node.frontmatter.title,
-  }))
-}
+  }));
+};

@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import { Page } from 'types'
+import React from "react";
+import { Link } from "gatsby";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { Page } from "types";
 
 const NotFound: React.FunctionComponent<Page> = ({ location }) => {
-  const title = 'Page Not Found'
+  const title = "Page Not Found";
 
   return (
     <Layout location={location} title={title}>
@@ -21,7 +21,7 @@ const NotFound: React.FunctionComponent<Page> = ({ location }) => {
         Go back to <Link to="/">home</Link> instead?
       </p>
     </Layout>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

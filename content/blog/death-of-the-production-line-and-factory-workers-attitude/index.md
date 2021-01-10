@@ -31,6 +31,7 @@ The only thing that matters is that I recognize my inner software craftsman. Big
 Being a craftsman is not exclusive to tech companies and, unfortunately, many a company still has that production line rolling until the foreseeable future. Granted, a significant number of careers are jobs where craftsmanship is either impossible or actively discouraged. No one can fix the former, but the latter can be fixed with a professional environment built within the company by an emerging craftsman community. Whether you're a practical nurse, a salesperson, or a senior software architect, it all begins from the community (and a head full of strong will). Another relevant quote from the book above goes like this:
 
 <!--alex ignore-->
+
 > "_You just need **two people** to start a community, internal or external. It is not difficult to bring a culture of learning into an organization. The only thing needed is a passionate developer willing to start it. Stop finding excuses and be this developer._"
 
 Are you a craftsman? If yes, what is your profession, and when did you realize it? If no, why not?

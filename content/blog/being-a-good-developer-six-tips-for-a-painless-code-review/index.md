@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2020-02-11
 cover: cover.jpg
-title: 'Being a Good Developer: Six Tips for a Painless Code Review'
+title: "Being a Good Developer: Six Tips for a Painless Code Review"
 type: post
 excerpt: Walk another mile and make the code review a joyful experience.
 categories:
@@ -23,7 +23,7 @@ What should you, as a developer, do to help your reviewer? Here are my six tips 
 
 The first and easiest tip is to limit the scope of your pull requests by areas of concern. Part of your work can likely be integrated into the codebase independently without breaking anything, so why not have it reviewed independently as well? Defects are much easier to spot from small batches and merges with atomic changes are painless to revert if needed.
 
-If you work on a feature that adds complex logic to your ORM models responsible for fetching rows from the database, finish this pull request by writing tests, and then hand it for review. After finishing with this task, push the changes to the controller calling this logic as a new pull request. The first changeset may even be deployed to production safely as it's not  part of the public API at the time.
+If you work on a feature that adds complex logic to your ORM models responsible for fetching rows from the database, finish this pull request by writing tests, and then hand it for review. After finishing with this task, push the changes to the controller calling this logic as a new pull request. The first changeset may even be deployed to production safely as it's not part of the public API at the time.
 
 Development teams following **Scrum** or **Kanban** methodologies are already familiar with grooming and splitting the user stories from the backlog to multiple small subtasks. Even then splitting the subtask to multiple pull requests can be useful. Furthermore, if the feature involves changes to several repositories, as is the custom in a microservices oriented architecture, it's the only way.
 
@@ -41,7 +41,7 @@ Even if you split your changes to multiple pull requests as advised earlier, you
 
 If you have written a fresh new algorithm for solving a computational problem, then have it reviewed by someone who genuinely cares and knows about code performance and the Big-O notation. Don't mix anyone with impeccable CSS grid skills with this one because they serve you better when you're designing those fancy new UI changes later.
 
-This works if your team consists of developers with a particular set of skills. Some teams might consist of so-called generalist developers (*jacks of all trades*) in which case you have more room for asking a review.
+This works if your team consists of developers with a particular set of skills. Some teams might consist of so-called generalist developers (_jacks of all trades_) in which case you have more room for asking a review.
 
 Sometimes inviting more than one person to review can be useful. Changes to e.g. APIs handling sensitive data require additional attention for security details.
 
@@ -65,6 +65,6 @@ I have positioned myself with my team so that I only have to tilt my head to ask
 
 I've seen asynchronous code review in action between two people sitting in the same room both wearing their noise-cancelling headphones. Don't be afraid to tap your teammate on the shoulder and ask for guidance. The cost of momentarily disturbing their flow is small comparing to the gain of having your question answered directly. But don't make a habit out of it.
 
-***
+---
 
 <small>Photo by Alvaro Reyes on Unsplash.</small>

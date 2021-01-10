@@ -10,7 +10,6 @@ categories:
   - Trello
   - Bugs
   - Eisenhower
-
 ---
 
 Both in my work and personal life, I've used a plethora of project management tools but only Trello has stuck. However, even Trello can be useless unless you start taking care of your board systematically.

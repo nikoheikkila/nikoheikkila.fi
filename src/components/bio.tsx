@@ -1,6 +1,6 @@
-import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 
 const Bio: React.FunctionComponent = ({ children }) => (
   <StaticQuery
@@ -15,17 +15,15 @@ const Bio: React.FunctionComponent = ({ children }) => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <aside>
         <section className="profile">
           <Img fluid={data.placeholderImage.childImageSharp.fluid} />
         </section>
-        <section className="bio">
-          {children}
-        </section>
+        <section className="bio">{children}</section>
       </aside>
     )}
   />
-)
+);
 
-export default Bio
+export default Bio;

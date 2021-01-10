@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-export const getSEOData = () => useStaticQuery(
+export const getSEOData = () =>
+  useStaticQuery(
     graphql`
       query {
         site {
@@ -15,4 +16,4 @@ export const getSEOData = () => useStaticQuery(
         }
       }
     `
-  )
+  );

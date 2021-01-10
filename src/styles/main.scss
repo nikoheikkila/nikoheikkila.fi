@@ -6,27 +6,27 @@
 @import "~katex/dist/katex.min.css";
 
 @mixin hr($color, $width) {
-    hr {
-        border-top: solid $width $color;
-        border-bottom: none;
-        opacity: 1.0;
-        margin: 45px 0;
-    }
+  hr {
+    border-top: solid $width $color;
+    border-bottom: none;
+    opacity: 1;
+    margin: 45px 0;
+  }
 }
 
 html {
-    @include bodyFont();
-    font-size: $baseFontSize;
-    overflow-x: hidden;
+  @include bodyFont();
+  font-size: $baseFontSize;
+  overflow-x: hidden;
 }
 
 body {
-    overflow-x: hidden;
-    margin: 0;
-    transition: $themeTransition;
-    font-kerning: normal;
-    word-wrap: break-word;
-    font-feature-settings: "kern", "liga", "clig", "calt";
+  overflow-x: hidden;
+  margin: 0;
+  transition: $themeTransition;
+  font-kerning: normal;
+  word-wrap: break-word;
+  font-feature-settings: "kern", "liga", "clig", "calt";
 }
 
 h1,
@@ -35,220 +35,221 @@ h3,
 h4,
 h5,
 h6 {
-    @include headingFont();
+  @include headingFont();
 }
 
 h1 {
-    font-size: 2.75em;
+  font-size: 2.75em;
 }
 
 h2 {
-    font-size: 2.25em;
+  font-size: 2.25em;
 }
 
 h3 {
-    font-size: 1.75em;
+  font-size: 1.75em;
 }
 
 h4 {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
 
 a {
-    font-weight: 400;
-    text-decoration: none;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 /* Light theme */
 body.light {
-    @include hr($lightHl, 2px);
-    background-color: $lightBg;
-    color: $lightFg;
+  @include hr($lightHl, 2px);
+  background-color: $lightBg;
+  color: $lightFg;
 
-    a {
-        color: $lightHl;
-    }
+  a {
+    color: $lightHl;
+  }
 
-    article a:not(.gatsby-resp-image-link) {
-        color: inherit;
-        border-bottom: 2px dashed $lightHl;
-    }
+  article a:not(.gatsby-resp-image-link) {
+    color: inherit;
+    border-bottom: 2px dashed $lightHl;
+  }
 
-    blockquote {
-        background: $blue;
-        color: #ffffff;
-    }
+  blockquote {
+    background: $blue;
+    color: #ffffff;
+  }
 }
 
 /* Dark theme */
 body.dark {
-    @include hr($pink, 2px);
-    background-color: $darkBg;
-    color: $darkFg;
+  @include hr($pink, 2px);
+  background-color: $darkBg;
+  color: $darkFg;
 
-    a {
-        color: $pink;
-    }
+  a {
+    color: $pink;
+  }
 
-    article a:not(.gatsby-resp-image-link) {
-        color: inherit;
-        border-bottom: 2px dashed $pink;
-    }
+  article a:not(.gatsby-resp-image-link) {
+    color: inherit;
+    border-bottom: 2px dashed $pink;
+  }
 
-    blockquote {
-        background: $pink;
-        color: #000000;
-    }
+  blockquote {
+    background: $pink;
+    color: #000000;
+  }
 }
 
 #content {
-    overflow: auto;
-    width: $contentWidth;
-    max-width: $contentMaxWidth;
-    margin: 0 auto;
+  overflow: auto;
+  width: $contentWidth;
+  max-width: $contentMaxWidth;
+  margin: 0 auto;
 
-    main {
-        padding: 20px 1.5em 60px 1.5em;
-    }
+  main {
+    padding: 20px 1.5em 60px 1.5em;
+  }
 }
 
 article {
-    img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-        margin: 30px auto;
-    }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 30px auto;
+  }
 
-    ol, ul {
-        li {
-            padding: 10px 0;
-        }
+  ol,
+  ul {
+    li {
+      padding: 10px 0;
     }
+  }
 
-    blockquote {
-        margin: 1.5em 0;
-        text-align: center;
-        padding: 2.0em 25px;
-        quotes: "\201C""\201D""\2018""\2019";
+  blockquote {
+    margin: 1.5em 0;
+    text-align: center;
+    padding: 2em 25px;
+    quotes: "\201C""\201D""\2018""\2019";
 
-        p {
-            display: inline;
-        }
+    p {
+      display: inline;
     }
+  }
 
-    .katex {
-        display: table;
-        margin: 0 auto;
-    }
+  .katex {
+    display: table;
+    margin: 0 auto;
+  }
 }
 
 .post-content {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .post-header {
-    @include headingFont();
-    text-align: center;
-    margin-bottom: 50px;
+  @include headingFont();
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .post-excerpt {
-    font-size: 1.4em;
+  font-size: 1.4em;
 }
 
 .post-meta {
-    text-transform: uppercase;
-    font-size: 0.8em;
+  text-transform: uppercase;
+  font-size: 0.8em;
 }
 
 .post-attachments {
-    list-style: none;
+  list-style: none;
 
-    li  {
-        display: inline;
-        padding: 0 5px;
-    }
+  li {
+    display: inline;
+    padding: 0 5px;
+  }
 }
 
 .profile {
-    width: 128px;
-    height: 128px;
-    margin: 0 auto 20px auto;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 20px auto;
 
-    img {
-        border-radius: 100%;
-    }
+  img {
+    border-radius: 100%;
+  }
 }
 
 .bio {
-    text-align: center;
-    margin: 0 auto 100px auto;
+  text-align: center;
+  margin: 0 auto 100px auto;
 
-    p {
-        margin: 0 10px;
-        font-style: italic;
-    }
+  p {
+    margin: 0 10px;
+    font-style: italic;
+  }
 }
 
 .language-info {
-    background: #ffffcb;
-    padding: 0 1.5rem;
-    border: dashed 2px #aaaaaa;
+  background: #ffffcb;
+  padding: 0 1.5rem;
+  border: dashed 2px #aaaaaa;
 
-    p {
-        color: #444444;
-        font-style: italic;
-    }
+  p {
+    color: #444444;
+    font-style: italic;
+  }
 }
 
 .post-navigation {
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        list-style: none;
-        padding: 0;
-    }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+  }
 }
 
 footer {
-    bottom: 0;
+  bottom: 0;
 
-    div {
-        display: inline;
-    }
+  div {
+    display: inline;
+  }
 
-    a {
-        font-weight: 700;
-        text-transform: lowercase;
-        margin-right: 15px;
-    }
+  a {
+    font-weight: 700;
+    text-transform: lowercase;
+    margin-right: 15px;
+  }
 
-    svg {
-        margin-right: 7px;
-    }
+  svg {
+    margin-right: 7px;
+  }
 
-    .feed {
-        float: right;
-    }
+  .feed {
+    float: right;
+  }
 }
 
 video {
-    display: flex;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
+  display: flex;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
 
 @media screen and (max-width: $query-small) {
-    #content {
-        width: 100% !important;
-    }
+  #content {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: $query-medium) {
-    #content {
-        width: calc(#{$contentWidth} + 15vw);
-    }
+  #content {
+    width: calc(#{$contentWidth} + 15vw);
+  }
 }

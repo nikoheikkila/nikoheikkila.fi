@@ -21,9 +21,10 @@ While Trump and their administration might lack skills and knowledge or, then ag
 
 Let's find out by replacing some of the keywords…
 
-***
+---
 
 <!--alex ignore-->
+
 **We**, the beings of the Rebel Alliance, do this day send forth this Declaration to His Majesty, Donald Trump, and to all sentient beings in the world, to make clear to all the Purposes and Goals of this Rebellion.
 
 **We** firmly acknowledge the importance and necessity of the institution of the American Government. We accept that all must subjugate themselves to that Government, giving up certain rights and freedoms, in return for peace, prosperity, and happiness for all.
@@ -50,8 +51,8 @@ To these ends, we pledge our property, our honor, and our lives.
 
 _Picture from [Imgur][5]_
 
- [1]: http://www.slate.com/articles/news_and_politics/politics/2017/01/trump_s_executive_order_on_immigration_is_a_muslim_ban.html
- [2]: http://foreignpolicy.com/2017/01/30/sorry-mr-president-the-obama-administration-did-nothing-similar-to-your-immigration-ban/
- [3]: https://medium.com/@jakefuentes/the-immigration-ban-is-a-headfake-and-were-falling-for-it-b8910e78f0c5#.o7274jtkl
- [4]: http://starwars.wikia.com/wiki/Declaration_of_Rebellion/Legends
- [5]: http://imgur.com/gallery/U3qbTat
+[1]: http://www.slate.com/articles/news_and_politics/politics/2017/01/trump_s_executive_order_on_immigration_is_a_muslim_ban.html
+[2]: http://foreignpolicy.com/2017/01/30/sorry-mr-president-the-obama-administration-did-nothing-similar-to-your-immigration-ban/
+[3]: https://medium.com/@jakefuentes/the-immigration-ban-is-a-headfake-and-were-falling-for-it-b8910e78f0c5#.o7274jtkl
+[4]: http://starwars.wikia.com/wiki/Declaration_of_Rebellion/Legends
+[5]: http://imgur.com/gallery/U3qbTat

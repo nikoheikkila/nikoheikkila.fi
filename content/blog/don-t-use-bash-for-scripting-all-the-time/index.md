@@ -54,8 +54,8 @@ Assume we have parsed the arguments using Python's [`argparse`](https://docs.pyt
 A similar approach can be followed with Javascript:
 
 ```js
-const name = args.name || "World"
-console.log(`Hello, ${name}`)
+const name = args.name || "World";
+console.log(`Hello, ${name}`);
 ```
 
 The only difference to Python is replacing `or` with the standard logical notation of `||`. Granted, you'll have to do a bit more work by parsing the script arguments but the result will be more **readable**. When it comes to maintaining software one of my favorite phrases which everyone should learn is:
@@ -118,6 +118,7 @@ For this topic, I like to cite **Sindre Sorhus** who argues strongly for using [
 > Some years ago. Before Node.js and npm. I had a large database of code snippets I used to copy-paste into projects when I needed it. They were small utilities that sometimes came in handy. npm is now my snippet database. Why copy-paste when you can `require` it and with the benefit of having a clear intent. Fixing a bug in a snippet means updating one module instead of manually fixing all the instances where the snippet is used.
 
 <!--alex ignore-->
+
 > **I want programming to be easier. Making it easier to build durable systems.** And the way forward, in my point of view, is definitely not reinventing everything and everyone making the same stupid mistakes over and over.
 
 Actually, if you want tips on creating efficient command-line tools with Javascript go and check some of [Sorhus' repositories on GitHub](https://github.com/sindresorhus?utf8=✓&tab=repositories&q=&type=source&language=javascript).

@@ -1,7 +1,7 @@
 ---
 lang: en
 type: page
-cover: 'cover.png'
+cover: "cover.png"
 title: What I'm Doing Now?
 author: Niko Heikkilä
 date: 2020-06-21
@@ -35,6 +35,6 @@ I'm living in **Finland** (as of late 2020 in Tampere region, to be precise) wit
 
 I attempt to be the best ally and champion for diversity and equal rights. When I say attempt, I realize my numerous privileges given to me when I was born a white man on a European soil make me insensitive to several injustices. Nevertheless, I try to fade away that shroud of privilege. Yes, I say _Black Lives Matter_ without uttering _all_ instead of _black_.
 
-***
+---
 
 _The rightful founder of this idea is [**Derek Sivers**](https://nownownow.com/about) -- check out their [page](https://sivers.org/now)._
