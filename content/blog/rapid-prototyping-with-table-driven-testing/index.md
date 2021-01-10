@@ -19,7 +19,7 @@ However, prototyping can get cumbersome. You need to create a project, install a
 
 One technique is particularly helpful for making the prototyping faster, and it's called **table-driven testing**. This technique has gained popularity among those working with the Golang programming language.
 
-In table-driven testing, you declare a table of values which can be implemented using a two-dimensional matrix (*nested array*). The first columns usually hold the values passed to your testable function and the last column the expected result.
+In table-driven testing, you declare a table of values which can be implemented using a two-dimensional matrix (_nested array_). The first columns usually hold the values passed to your testable function and the last column the expected result.
 
 ## How It Works
 
@@ -28,11 +28,12 @@ To demonstrate this, let's write a quick curried function that formats a sum of 
 ### **Code**
 
 ```ts
-type Formatter<T> = (a: T) => (b: T) => string
-const numberFormatter: Formatter<number> = decimals => euros => euros.toFixed(decimals).replace(/\./, ',') + ' €'
+type Formatter<T> = (a: T) => (b: T) => string;
+const numberFormatter: Formatter<number> = (decimals) => (euros) =>
+  euros.toFixed(decimals).replace(/\./, ",") + " €";
 
 // Partial application to store our precision
-const toCurrencyString = numberFormatter(2)
+const toCurrencyString = numberFormatter(2);
 ```
 
 ### **Tests**
@@ -40,24 +41,24 @@ const toCurrencyString = numberFormatter(2)
 ```ts
 // [argument, expected result]
 const suites: [number, string][] = [
-    [-1, "-1,00 €"],
-    [0, "0,00 €"],
-    [1, "1,00 €"],
-    [10.01, "10,01 €"],
-    [59.00, "59,00 €"],
-    [Math.PI, "3,14 €"],
-    [NaN, "NaN €"]
-]
+  [-1, "-1,00 €"],
+  [0, "0,00 €"],
+  [1, "1,00 €"],
+  [10.01, "10,01 €"],
+  [59.0, "59,00 €"],
+  [Math.PI, "3,14 €"],
+  [NaN, "NaN €"],
+];
 
 for (const [euros, want] of suites) {
-    const got = toCurrencyString(euros)
+  const got = toCurrencyString(euros);
 
-    if (got !== want) {
-        throw `Got ${got}, but wanted ${want}`
-    }
+  if (got !== want) {
+    throw `Got ${got}, but wanted ${want}`;
+  }
 }
 
-console.log('Congratulations! All tests passed.')
+console.log("Congratulations! All tests passed.");
 ```
 
 As you can see, the trick is to declare a test loop throwing an error for each failed test. With Javascript and Typescript, it's easy to terminate the program by merely throwing a native value like string. If all the tests pass the program prints a congratulatory message for you. No assertion libraries needed.

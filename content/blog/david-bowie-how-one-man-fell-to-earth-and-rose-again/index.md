@@ -43,7 +43,7 @@ However, for Bowie the death was different. they had not been performing live si
 > Somebody else took their place, and bravely cried  
 > (I’m a blackstar, I’m a blackstar)
 
-Naturally, death and other permanent themes were never a strange ground for Bowie, but with _Blackstar_ they dropped us the final letter. Here lies a man who fell to earth only to rise again like the _Lazarus_.
+Naturally, death and other permanent themes were never a strange ground for Bowie, but with *Blackstar* they dropped us the final letter. Here lies a man who fell to earth only to rise again like the *Lazarus*.
 
 <iframe title="YouTube 1" class='youtube-player' type='text/html' width='728' height='410' src='https://www.youtube.com/embed/y-JqH1M4Ya8?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
 

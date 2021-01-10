@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
 interface Props {
-  content: string
-  className: string
+  content: string;
+  className: string;
 }
 
 const Article = ({ content, className }: Props) => (
@@ -12,6 +12,6 @@ const Article = ({ content, className }: Props) => (
       __html: content,
     }}
   />
-)
+);
 
-export default Article
+export default Article;

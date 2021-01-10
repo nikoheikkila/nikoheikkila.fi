@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import dayjs from 'dayjs'
+import React from "react";
+import { Link, graphql } from "gatsby";
+import dayjs from "dayjs";
 
-import { DiscussionEmbed, CommentCount } from 'disqus-react'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import Tag from '../components/tag'
-import Article from '../components/post/content'
-import ExternalLink from '../components/elements'
+import { DiscussionEmbed, CommentCount } from "disqus-react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Tag from "../components/tag";
+import Article from "../components/post/content";
+import ExternalLink from "../components/elements";
 
-import { formatReadingTime, isIndex, getPreviousPage } from '../utils/helpers'
-import { Page } from 'types/global'
+import { formatReadingTime, isIndex, getPreviousPage } from "../utils/helpers";
+import { Page } from "types/global";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -18,25 +18,25 @@ const Post = ({ data, location, pageContext }: Page) => {
     site: {
       siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
     },
-  } = data
+  } = data;
 
-  const { previous, next } = pageContext
-  const { author, date, lang, title, type, excerpt } = post.frontmatter
-  const { fluid: cover } = post.frontmatter.cover.childImageSharp
+  const { previous, next } = pageContext;
+  const { author, date, lang, title, type, excerpt } = post.frontmatter;
+  const { fluid: cover } = post.frontmatter.cover.childImageSharp;
 
-  const slug = post.fields.slug.slice(1, post.fields.slug.length - 1)
-  const postUrl = `${siteUrl}/${slug}`
-  const datePublished = dayjs(date || null).format('MMMM D, YYYY')
-  const categories = post.frontmatter.categories || []
+  const slug = post.fields.slug.slice(1, post.fields.slug.length - 1);
+  const postUrl = `${siteUrl}/${slug}`;
+  const datePublished = dayjs(date || null).format("MMMM D, YYYY");
+  const categories = post.frontmatter.categories || [];
 
-  const editUrl = `${repository}/edit/master/content/${slug}/index.md`
-  const historyUrl = `${repository}/commits/master/content/${slug}/index.md`
+  const editUrl = `${repository}/edit/master/content/${slug}/index.md`;
+  const historyUrl = `${repository}/commits/master/content/${slug}/index.md`;
 
   const disqusConfig = {
     url: postUrl,
     identifier: slug,
     title,
-  }
+  };
 
   return (
     <Layout location={location} title={siteTitle} cover={cover}>
@@ -48,21 +48,27 @@ const Post = ({ data, location, pageContext }: Page) => {
         image={cover.src}
         type={type}
         url={postUrl}
-        datePublished={date || dayjs().format('YYYY-MM-DD')}
+        datePublished={date || dayjs().format("YYYY-MM-DD")}
       />
       <header className="post-header">
-        {isIndex(location) || <Link rel="back" to={getPreviousPage(location)}>↩ Back to posts</Link>}
+        {isIndex(location) || (
+          <Link rel="back" to={getPreviousPage(location)}>
+            ↩ Back to posts
+          </Link>
+        )}
         <h1 className="post-title">{title}</h1>
 
-        {excerpt && <section className="post-excerpt">
-          <p>{excerpt}</p>
-        </section>}
+        {excerpt && (
+          <section className="post-excerpt">
+            <p>{excerpt}</p>
+          </section>
+        )}
 
         <section className="post-meta">
           <p>
-            <span>{author}</span> {' / '}
-            <span>{datePublished}</span> {' / '}
-            <span>{formatReadingTime(post.timeToRead)}</span> {' / '}
+            <span>{author}</span> {" / "}
+            <span>{datePublished}</span> {" / "}
+            <span>{formatReadingTime(post.timeToRead)}</span> {" / "}
             <span>
               💬 <CommentCount shortname={disqus} config={disqusConfig} />
             </span>
@@ -112,10 +118,10 @@ const Post = ({ data, location, pageContext }: Page) => {
         </ul>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -158,4 +164,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

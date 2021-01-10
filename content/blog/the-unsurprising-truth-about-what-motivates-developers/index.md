@@ -16,7 +16,7 @@ categories:
 
 Throughout the observed history, human motivation has adapted to demands and economies of the current age. The first establishment, Motivation 1.0, provided us with the tools for surviving in a harsh and dangerous environment – why care about anything else than obtaining food and not being eaten by predators? During the industrialization era, Motivation 2.0 enabled considerable leaps in manufacturing and productivity with its system of rewards and punishments ultimately paving the way for modern digital work. However, to develop as a creative craftsman instead of a wage slave, we need Motivation 3.0.
 
-Effectively, Motivation 3.0 replaced the carrots and sticks of extrinsic *if-then-else* stimulants with **autonomy**, **mastery**, and **purpose.** The three branches – or suffice to say a framework – for intrinsic motivation laid out by author **Daniel H. Pink** in their book *[Drive: The Surprising Truth About What Motivates Us](https://www.danpink.com/books/drive/)* (spoiler: it wasn't *that* surprising).
+Effectively, Motivation 3.0 replaced the carrots and sticks of extrinsic _if-then-else_ stimulants with **autonomy**, **mastery**, and **purpose.** The three branches – or suffice to say a framework – for intrinsic motivation laid out by author **Daniel H. Pink** in their book _[Drive: The Surprising Truth About What Motivates Us](https://www.danpink.com/books/drive/)_ (spoiler: it wasn't _that_ surprising).
 
 The AMP framework – as I call it – has been my professional companion for long. In this post, I share what the framework is made of, and how it might help you to become the best version of yourself.
 
@@ -26,13 +26,13 @@ The AMP framework – as I call it – has been my professional companion for lo
 
 According to Pink, before diving deeper into the AMP framework, we need to understand the very building blocks of motivation: our baseline. For developers, they are the pre-requisites for even signing a contract, which includes competent salary, functional equipment, IT budget, ability to work remotely, and other benefits. Granted, these examples are slightly biased towards my own preferences, but it doesn't make them less important.
 
-It's worth emphasizing – especially to recruiters – that proper baseline can attract people to *start* working with you while successful adoption of the AMP framework will make them *continue* the work without fear of notice.
+It's worth emphasizing – especially to recruiters – that proper baseline can attract people to _start_ working with you while successful adoption of the AMP framework will make them _continue_ the work without fear of notice.
 
 Keep on reading if you want to increase employee retention. Before publishing that new rockstar position in your company, get your baselines straight.
 
 ## Autonomy
 
-🧠 *Assume the command of your work and career.*
+🧠 _Assume the command of your work and career._
 
 As a developer, I need to have freedom over task (what I do), time (when I do it), team (who I do it with), and technique (how I do it).
 
@@ -44,9 +44,9 @@ Real autonomy can only be achieved by running things on your own, which often me
 
 ## Mastery
 
-📚 *Through autonomy, we direct ourselves towards mastery.*
+📚 _Through autonomy, we direct ourselves towards mastery._
 
-To create engaging software, developers need to feel engaged in their work. Some of us are familiar with **Mihaly Csikszentmihalyi's** concept of *flow*: the state of mind where our skills meet the level of challenge, and we sink into the task with an outcome of deep satisfaction. You've probably experienced it quite often.
+To create engaging software, developers need to feel engaged in their work. Some of us are familiar with **Mihaly Csikszentmihalyi's** concept of _flow_: the state of mind where our skills meet the level of challenge, and we sink into the task with an outcome of deep satisfaction. You've probably experienced it quite often.
 
 The topic of learning and improving skills is tricky since every one of us has a unique approach to it. Some read books, others listen to podcasts. Some might see the light in a couple of videos, while some need to work on real projects. Therefore, people should be given ample time to hone their skills the way they see fit. It's sad to witness the "features first, learning second" mentality many companies suffer from.
 
@@ -54,13 +54,13 @@ My previous employer had a concept of Freestyle Fridays where the developers spe
 
 Extreme programming practices such as test-driven development (a great source of flow) and pairing – ideally in junior-senior pairs – provide significant results when learning occurs mostly in projects.
 
-As I wrote in [my previous post](https://nikoheikkila.fi/blog/fight-the-inner-impostor-with-just-in-time-learning/), mastery is an asymptote, and we should not fool ourselves, thinking we can reach the peak. Our abilities are always *infinitely improvable*.
+As I wrote in [my previous post](https://nikoheikkila.fi/blog/fight-the-inner-impostor-with-just-in-time-learning/), mastery is an asymptote, and we should not fool ourselves, thinking we can reach the peak. Our abilities are always _infinitely improvable_.
 
 Make sure you can block time off for improving skills, and your management supports it. Participate in projects where your skills accumulate fastest. Learn things just-in-time to preserve sanity. Focus on fundamental skills and use them to solve problems in more specialized domains.
 
 ## Purpose
 
-📣 *Through mastery, we can contribute better to a broader vision and leave a lasting impact.*
+📣 _Through mastery, we can contribute better to a broader vision and leave a lasting impact._
 
 Nearly every company claims to have a vision, mission, and a strategy to fulfil those. Many of these companies exhibit visually breathtaking landing pages yet in meetings speak only of the last quarters turnover.
 
@@ -92,6 +92,6 @@ To close, here are a couple of questions for your next feedback and development 
 
 Feel free to answer in the comments as well!
 
-***
+---
 
 Photo by Max Duzij on Unsplash.

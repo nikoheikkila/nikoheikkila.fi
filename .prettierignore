@@ -1,0 +1,6 @@
+# General
+node_modules/
+
+# Gatsby
+/.cache/
+/public/

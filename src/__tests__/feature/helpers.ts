@@ -1,35 +1,42 @@
-import slugify from '@sindresorhus/slugify'
-import { ExecutionContext, Macro } from 'ava'
-import { resolve } from 'path'
-import playwright, { Browser, LaunchOptions, Page } from 'playwright'
+import slugify from "@sindresorhus/slugify";
+import { ExecutionContext, Macro } from "ava";
+import { resolve } from "path";
+import playwright, { Browser, LaunchOptions, Page } from "playwright";
 
-type Callback = (t: ExecutionContext, page: Page) => Promise<void>
+type Callback = (t: ExecutionContext, page: Page) => Promise<void>;
 
-const browserName = process.env.BROWSER || 'chromium'
+const browserName = process.env.BROWSER || "chromium";
 
 const addHandlers = (page: Page) => {
-  page.on('requestfailed', request => console.error(`Request failed: ${request.failure()?.errorText}`))
-  page.on('pageerror', exception => console.error(`Uncaught Exception: "${exception}"`))
-}
+  page.on("requestfailed", (request) =>
+    console.error(`Request failed: ${request.failure()?.errorText}`)
+  );
+  page.on("pageerror", (exception) =>
+    console.error(`Uncaught Exception: "${exception}"`)
+  );
+};
 
 export const getBrowser = (): Promise<Browser> => {
   const options: LaunchOptions = {
     headless: true,
-  }
+  };
 
-  if (browserName === 'chromium') return playwright.chromium.launch(options)
-  if (browserName === 'firefox') return playwright.firefox.launch(options)
-  if (browserName === 'webkit') return playwright.webkit.launch(options)
+  if (browserName === "chromium") return playwright.chromium.launch(options);
+  if (browserName === "firefox") return playwright.firefox.launch(options);
+  if (browserName === "webkit") return playwright.webkit.launch(options);
 
-  throw new Error(`Unsupported browser type ${browserName}`)
-}
+  throw new Error(`Unsupported browser type ${browserName}`);
+};
 
 export const captureScreenshot: Callback = async (t, page) => {
-  const path = resolve(__dirname, `screenshots/${slugify(t.title)}-${browserName}.png`)
-  await page.screenshot({ path })
+  const path = resolve(
+    __dirname,
+    `screenshots/${slugify(t.title)}-${browserName}.png`
+  );
+  await page.screenshot({ path });
 
-  console.log(`Saved screenshot to ${path}`)
-}
+  console.log(`Saved screenshot to ${path}`);
+};
 
 /**
  * AVA macro to share page context between tests.
@@ -37,18 +44,18 @@ export const captureScreenshot: Callback = async (t, page) => {
  * @param callback
  */
 export const withBrowser: Macro<[Callback]> = async (t, callback) => {
-  const browser = await getBrowser()
-  const page = await browser.newPage()
+  const browser = await getBrowser();
+  const page = await browser.newPage();
 
-  addHandlers(page)
+  addHandlers(page);
 
   try {
-    await callback(t, page)
+    await callback(t, page);
   } finally {
     if (!t.passed) {
-      await captureScreenshot(t, page)
+      await captureScreenshot(t, page);
     }
 
-    await page.close()
+    await page.close();
   }
-}
+};

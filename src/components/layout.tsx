@@ -1,51 +1,52 @@
-import React from 'react'
-import { stack as Menu } from 'react-burger-menu'
-import Hero from './hero'
-import Footer from './footer'
-import ThemeToggle from './theme'
-import { LayoutProps, ContentLink } from '../types'
-import { isIndex } from '../utils/helpers'
-import '../styles/main.scss'
-import ExternalLink from './elements'
-import { Link } from 'gatsby'
-import { getStaticPages } from '../graphql/pages'
+import React from "react";
+import { stack as Menu } from "react-burger-menu";
+import Hero from "./hero";
+import Footer from "./footer";
+import ThemeToggle from "./theme";
+import { LayoutProps, ContentLink } from "../types";
+import { isIndex } from "../utils/helpers";
+import "../styles/main.scss";
+import ExternalLink from "./elements";
+import { Link } from "gatsby";
+import { getStaticPages } from "../graphql/pages";
 
 const SidebarLink: React.FunctionComponent<ContentLink> = ({ slug, title }) => {
-  if (slug.startsWith('/')) {
-    return (
-      <Link to={slug}>
-        {title}
-      </Link>
-    )
+  if (slug.startsWith("/")) {
+    return <Link to={slug}>{title}</Link>;
   }
 
-  return (
-    <ExternalLink to={slug}>
-      {title}
-    </ExternalLink>
-  )
-}
+  return <ExternalLink to={slug}>{title}</ExternalLink>;
+};
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ location, title, cover, children }) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({
+  location,
+  title,
+  cover,
+  children,
+}) => {
   const links = [
     {
-      slug: '/',
-      title: 'Blog',
+      slug: "/",
+      title: "Blog",
     },
     {
-      slug: 'https://cv.nikoheikkila.fi',
-      title: 'Skills'
-    }
-  ]
+      slug: "https://cv.nikoheikkila.fi",
+      title: "Skills",
+    },
+  ];
 
-  const staticPages = getStaticPages()
+  const staticPages = getStaticPages();
   const allPages = [...links, ...staticPages].map(({ slug, title }) => (
     <SidebarLink key={slug} slug={slug} title={title} />
-  ))
+  ));
 
   return (
     <div id="container">
-      <Menu className="site-menu" pageWrapId="content" outerContainerId="container">
+      <Menu
+        className="site-menu"
+        pageWrapId="content"
+        outerContainerId="container"
+      >
         <ThemeToggle />
         {allPages}
       </Menu>
@@ -53,18 +54,18 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ location, title, cover, 
         <header>
           <section
             style={{
-              maxWidth: isIndex(location) ? '720px' : '100%',
-              margin: '0 auto',
+              maxWidth: isIndex(location) ? "720px" : "100%",
+              margin: "0 auto",
             }}
           >
-            {(cover && <Hero data={cover} alt={title} />)}
+            {cover && <Hero data={cover} alt={title} />}
           </section>
         </header>
         <main>{children}</main>
         <Footer />
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

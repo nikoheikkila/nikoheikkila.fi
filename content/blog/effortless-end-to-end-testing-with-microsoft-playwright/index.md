@@ -13,7 +13,7 @@ categories:
   - productivity
 ---
 
-In my job, I stumble upon projects where there are *zero* tests, or a project is equipped with a single generated test always failing. For some development teams, writing and maintaining a comprehensive automated test suite is a lesser priority. These teams' end product is usually an application that satisfies the bare necessities asked by the client but is plagued by code rot, technical debt, and instability.
+In my job, I stumble upon projects where there are _zero_ tests, or a project is equipped with a single generated test always failing. For some development teams, writing and maintaining a comprehensive automated test suite is a lesser priority. These teams' end product is usually an application that satisfies the bare necessities asked by the client but is plagued by code rot, technical debt, and instability.
 
 During the maintenance phase, new layers of code are added on top of the existing cruft, making things worse. Fear of breaking things prevents refactoring, and hence the code quality keeps dropping.
 
@@ -33,7 +33,7 @@ End-to-end tests (abbreviated as E2E from now on) instead of unit and integratio
 - signing in and out of a service as an existing user
 - adding products to the basket and checking out the purchase in an e-commerce website
 
-Experienced developers might now stop and think of *behaviour-driven development* (BDD) which goes hand-in-hand with E2E. Behaviour flows are often decided when planning a new feature.
+Experienced developers might now stop and think of _behaviour-driven development_ (BDD) which goes hand-in-hand with E2E. Behaviour flows are often decided when planning a new feature.
 
 Say we have a calculator application, for example. We want to implement the adding feature and start drafting a specification for it.
 
@@ -46,24 +46,24 @@ Feature: Calculator
     Then the current total should be “12”.
 ```
 
-The syntax in the snippet above is called *gherkin*, and it can be used to convert human-readable specifications to machine-readable tests! Thus, E2E tests can and should be written before the business logic.
+The syntax in the snippet above is called _gherkin_, and it can be used to convert human-readable specifications to machine-readable tests! Thus, E2E tests can and should be written before the business logic.
 
 Here, the above specification would result in the following test code. The below example is partly written in pseudo-code for the sake of simplicity.
 
 ```js
-describe('Calculator', () => {
-    it('+ should add to current total', () => {
-        initialTotal = 5
-        number = 7
-        
-        click('.plus')
-        fill('.input', number)
-        click('.run')
-        
-        newTotal = $('.total').innerText
-        expect(newTotal).toBe(initialTotal + number)
-    })
-})
+describe("Calculator", () => {
+  it("+ should add to current total", () => {
+    initialTotal = 5;
+    number = 7;
+
+    click(".plus");
+    fill(".input", number);
+    click(".run");
+
+    newTotal = $(".total").innerText;
+    expect(newTotal).toBe(initialTotal + number);
+  });
+});
 ```
 
 E2E tests are easy to write before the business logic, but they are also easy to write months or years afterwards. This makes them a powerful asset in a project.
@@ -86,7 +86,7 @@ The root cause of flaky E2E tests is naturally communication, but sometimes choo
 
 As a developer coming from Finland, I can say **Nokia** indeed has had a significant impact on our professional lives and education. Still, I don't shy away from saying that tests written in Robot Framework are a devastating travesty and maintenance nightmare. Since Cypress began gaining popularity, it has been our time to move on.
 
-Typically, Robot tests are written in a quirky tabular keyword syntax advertised as accessible  to even non-developers -- which it certainly is not, I dare to say. Robot tests almost always become a jumbled mess of keywords and external Python libraries without rigorous engineering practices. In a worst-case scenario, as the test suite complexity grows over time, people start neglecting it and what is left is a pit of obsolete tests that worked five years ago, but the application has lived on and changed a lot since then.
+Typically, Robot tests are written in a quirky tabular keyword syntax advertised as accessible to even non-developers -- which it certainly is not, I dare to say. Robot tests almost always become a jumbled mess of keywords and external Python libraries without rigorous engineering practices. In a worst-case scenario, as the test suite complexity grows over time, people start neglecting it and what is left is a pit of obsolete tests that worked five years ago, but the application has lived on and changed a lot since then.
 
 The solution is two-fold:
 
@@ -103,7 +103,7 @@ There are a couple of aspects that make Playwright especially pleasant to work.
 
 ### Speed and Stability Matter
 
-Page actions can be run with `async/await` logic one by one or concurrently when wrapped inside `Promise.all()` or `Promise.allSettled()` calls. Furthermore, page operations automatically wait for the targeted element to become *actionable.* So, for example, a button is not clicked until it's visible on-page and enabled. Never resort to `Sleep  5`  or other shenanigans again.
+Page actions can be run with `async/await` logic one by one or concurrently when wrapped inside `Promise.all()` or `Promise.allSettled()` calls. Furthermore, page operations automatically wait for the targeted element to become _actionable._ So, for example, a button is not clicked until it's visible on-page and enabled. Never resort to `Sleep 5` or other shenanigans again.
 
 Playwright scripts run incredibly fast with the default configuration, so you may want to add a little delay for the human eye to catch up. Most of the time you should be running your tests headless (no visible browser) and without delay, though.
 
@@ -131,11 +131,11 @@ Using a POM, the following operation of signing a user in...
 
 ```ts
 await Promise.all([
-    page.fill('[data-test-id=username]', username),
-    page.fill('[data-test-id=password]', password),
+  page.fill("[data-test-id=username]", username),
+  page.fill("[data-test-id=password]", password),
 ]);
 
-await page.click('[data-test-id=login]');
+await page.click("[data-test-id=login]");
 ```
 
 ...becomes a more readable version
@@ -176,11 +176,11 @@ Using the `npx` tool part of Node.js, this command downloads the Playwright CLI 
 In the browser, let's now fetch a random article from Wikipedia, "read" it, and navigate back to the main page. After closing the recording, we have received this code ready to be saved for further inspection.
 
 ```js
-const { chromium } = require('playwright');
+const { chromium } = require("playwright");
 
 (async () => {
   const browser = await chromium.launch({
-    headless: false
+    headless: false,
   });
   const context = await browser.newContext();
 
@@ -188,14 +188,14 @@ const { chromium } = require('playwright');
   const page = await context.newPage();
 
   // Go to https://en.wikipedia.org/wiki/Main_Page
-  await page.goto('https://en.wikipedia.org/wiki/Main_Page');
+  await page.goto("https://en.wikipedia.org/wiki/Main_Page");
 
   // Click text="Random article"
   await page.click('text="Random article"');
   // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/San_Vittore_Prison');
 
   // Click //a[normalize-space(@title)='Visit the main page']
-  await page.click('//a[normalize-space(@title)=\'Visit the main page\']');
+  await page.click("//a[normalize-space(@title)='Visit the main page']");
   // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/Main_Page');
 
   // ---------------------
@@ -222,7 +222,7 @@ With Playwright, I drafted an initial test suite by recording a user flow and re
 
 Have you used Playwright for testing your application? Let me know in the comments how it went.
 
-***
+---
 
 <small><span>Photo by <a href="https://unsplash.com/@dtravisphd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">David Travis</a> on <a href="https://unsplash.com/s/photos/testing?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></small>
 

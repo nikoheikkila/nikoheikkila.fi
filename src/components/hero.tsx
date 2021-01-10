@@ -1,31 +1,33 @@
-import React from 'react'
-import Img from 'gatsby-image'
-import { ImageProps, FluidImage } from '../types'
+import React from "react";
+import Img from "gatsby-image";
+import { ImageProps, FluidImage } from "../types";
 
 const NormalizedImage: React.FunctionComponent<ImageProps> = (props) => {
   const {
     style = {},
     fluid: { presentationHeight, presentationWidth },
-  } = props
+  } = props;
 
   const normalizedProps = {
     ...props,
     style: {
       ...style,
-      margin: '0 auto',
+      margin: "0 auto",
       maxHeight: presentationHeight,
       maxWidth: presentationWidth,
     },
-  }
+  };
 
-  return <Img {...normalizedProps} />
-}
+  return <Img {...normalizedProps} />;
+};
 
 interface HeroProps {
-  data: FluidImage
-  alt: string
+  data: FluidImage;
+  alt: string;
 }
 
-const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => <NormalizedImage fluid={data} alt={alt} />
+const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
+  <NormalizedImage fluid={data} alt={alt} />
+);
 
-export default Hero
+export default Hero;

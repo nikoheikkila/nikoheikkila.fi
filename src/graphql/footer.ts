@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-export const getFooterLinks = () => useStaticQuery(graphql`
+export const getFooterLinks = () =>
+  useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
@@ -12,4 +13,4 @@ export const getFooterLinks = () => useStaticQuery(graphql`
         }
       }
     }
-  `)
+  `);

@@ -1,6 +1,6 @@
 ---
 lang: en
-title: 'Quick Tip: Faking Dates in PHP with Carbon'
+title: "Quick Tip: Faking Dates in PHP with Carbon"
 author: Niko Heikkilä
 type: post
 date: 2018-06-24
@@ -42,5 +42,5 @@ Carbon::setTestNow();
 
 As you can see, faking dates in tests is very easy. Don't forget to reset the date or you might experience more failing tests.
 
- [1]: https://carbon.nesbot.com/
- [2]: https://carbon.nesbot.com/docs/#api-testing
+[1]: https://carbon.nesbot.com/
+[2]: https://carbon.nesbot.com/docs/#api-testing

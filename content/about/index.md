@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2020-04-10
 type: page
-cover: '../../src/assets/banner.png'
+cover: "../../src/assets/banner.png"
 title: The Story
 excerpt: ...or how I learned to stop worrying and love the code.
 ---
@@ -27,6 +27,7 @@ Apart from coding, I keep my skills refreshed by reading and writing. I've inter
 Yet I’m more than the letters you see so don’t hesitate to connect with me for any questions. Let's close this with my favourite quote.
 
 <!--alex ignore-->
+
 > _"A man is never the same for long. He is continually changing. He seldom remains the same, even for half an hour."_ -- **G.I. Gurdjieff**
 
 [atwood]: https://blog.codinghorror.com/the-principle-of-least-power/

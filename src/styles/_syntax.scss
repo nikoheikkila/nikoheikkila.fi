@@ -7,8 +7,8 @@
 /**
  * Based on copypasta from Remy Bach and Sarah Drasner
  */
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*="language-"],
+pre[class*="language-"] {
   @include codeFont();
 
   color: white;
@@ -17,49 +17,49 @@ pre[class*='language-'] {
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+pre[class*="language-"] {
   font-size: 18px;
   line-height: 1.5em;
   overflow: auto;
   padding: 0.85em;
 }
 
-pre[class*='language-']::-moz-selection {
+pre[class*="language-"]::-moz-selection {
   /* Firefox */
   background: hsl(207, 4%, 16%);
 }
 
-pre[class*='language-']::selection {
+pre[class*="language-"]::selection {
   /* Safari */
   background: hsl(207, 4%, 16%);
 }
 
 /* Text Selection colour */
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
   text-shadow: none;
   background: hsla(0, 0%, 100%, 0.15);
 }
 
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection {
   text-shadow: none;
   background: hsla(0, 0%, 100%, 0.15);
 }
 
 /* Inline code */
-:not(pre)>code[class*='language-'] {
+:not(pre) > code[class*="language-"] {
   border-radius: 0.25em;
   color: $inlineCodeFg;
   padding: 0.25em 0.35em;
   white-space: pre-wrap;
 }
 
-body.light :not(pre)>code[class*='language-'] {
+body.light :not(pre) > code[class*="language-"] {
   background-color: #f6f6f6;
 }
 
-body.dark :not(pre)>code[class*='language-'] {
+body.dark :not(pre) > code[class*="language-"] {
   background-color: #111111;
 }
 
@@ -149,7 +149,7 @@ pre[data-line] {
   overflow: auto;
 }
 
-.gatsby-highlight pre[class*='language-'] {
+.gatsby-highlight pre[class*="language-"] {
   float: left;
   min-width: 100%;
 }

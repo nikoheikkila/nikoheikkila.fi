@@ -10,7 +10,6 @@ categories:
   - PHP
   - Tooling
   - Continuous Integration
-
 ---
 
 Last month I had the pleasure of achieving my first full year as a professional web developer in a [Finnish company centered around online payments][1].

@@ -25,7 +25,7 @@ That's where Keybase comes to rescue. Instead of hassling with command-line too
 
 The catch with these social profiles is that your friend can now identify that it is really you there. You might follow each other on Twitter or collaborate in a repository on GitHub or have a heated discussion about the meaning of Caturday on Reddit (who wouldn't). You know each other and that is good.
 
-Next you want to send your friend an encrypted message. First you should track them, then visit their profile and hit _Encrypt_. Type your message and out comes a regular PGP encrypted jumbo optionally signed with your key for extra proof. Then you fire up your trusty email or IM client, paste the encrypted message and send it away. Your friend now needs to log in to their Keybase account and select _Decrypt._ In goes encrypted message and out comes plain readable text.
+Next you want to send your friend an encrypted message. First you should track them, then visit their profile and hit _Encrypt_. Type your message and out comes a regular PGP encrypted jumbo optionally signed with your key for extra proof. Then you fire up your trusty email or IM client, paste the encrypted message and send it away. Your friend now needs to log in to their Keybase account and select *Decrypt.* In goes encrypted message and out comes plain readable text.
 
 But why use browser when you are perfectly capable terminal ninja? Keybase offers a command-line tool that can be installed with [Node Package Manager (npm)](https://www.npmjs.com/package/keybase). Keybase keys can even be imported to your standard GnuPG keyring. To get my public key, type like so.
 
@@ -33,7 +33,7 @@ But why use browser when you are perfectly capable terminal ninja? Keybase offer
 curl https://keybase.io/nikoheikkila/key.asc | gpg --import
 ```
 
-Naturally, you should still verify the fingerprint, which in my key is _C8B7 1157 3C52 9CBA 02C6 CED1 C0D0 3CCC BD3C F742_, to ensure you imported the right key.
+Naturally, you should still verify the fingerprint, which in my key is *C8B7 1157 3C52 9CBA 02C6 CED1 C0D0 3CCC BD3C F742*, to ensure you imported the right key.
 
 ```bash
 gpg --fingerprint BD3CF742

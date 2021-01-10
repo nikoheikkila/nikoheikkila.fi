@@ -25,13 +25,15 @@ I will omit the middle step eliminating the anti-patterns and embracing the reme
 **The Five Ideals**
 
 <!--alex ignore-->
-* [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
-* [2. The Joy Must Flow](#2-the-joy-must-flow)
-* [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
-* [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
-* [5. Focus on the Core](#5-focus-on-the-core)
+
+- [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
+- [2. The Joy Must Flow](#2-the-joy-must-flow)
+- [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
+- [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
+- [5. Focus on the Core](#5-focus-on-the-core)
 
 <!--alex ignore-->
+
 ## 1. Keep It Simple, Keep It Local
 
 > "If a team needs to schedule a deployment and it requires 40 to 50 other teams to work with them into the schedule, nothing will ever get done. And if a team delivering on a single feature has to coordinate with 2 or many other development teams, it only creates delays and challenges for all of these teams."

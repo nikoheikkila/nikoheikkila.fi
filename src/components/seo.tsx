@@ -1,34 +1,34 @@
-import React, { Fragment } from 'react'
-import { Helmet } from 'react-helmet'
-import SchemaOrg from './schema'
-import { getSEOData } from '../graphql/seo'
+import React, { Fragment } from "react";
+import { Helmet } from "react-helmet";
+import SchemaOrg from "./schema";
+import { getSEOData } from "../graphql/seo";
 
 interface Props {
-  title: string
-  image?: string
-  type?: string
-  url?: string
-  datePublished?: string
-  dateModified?: string
-  description?: string
-  lang?: string
-  keywords?: Array<string>
+  title: string;
+  image?: string;
+  type?: string;
+  url?: string;
+  datePublished?: string;
+  dateModified?: string;
+  description?: string;
+  lang?: string;
+  keywords?: Array<string>;
 }
 
 const SEO = ({
-  dateModified = '',
-  datePublished = '',
-  description = '',
-  image = '',
+  dateModified = "",
+  datePublished = "",
+  description = "",
+  image = "",
   keywords = [],
-  lang = 'en',
+  lang = "en",
   title,
-  type = 'page',
-  url = '',
+  type = "page",
+  url = "",
 }: Props) => {
   const { site } = getSEOData();
-  const metaDescription = description || site.siteMetadata.description
-  const imageURL = `${site.siteMetadata.siteUrl}${image}`
+  const metaDescription = description || site.siteMetadata.description;
+  const imageURL = `${site.siteMetadata.siteUrl}${image}`;
 
   return (
     <Fragment>
@@ -83,16 +83,14 @@ const SEO = ({
             name: `twitter:image:alt`,
             content: title,
           },
-        ]
-          .concat(
-            keywords.length > 0
-              ? {
+        ].concat(
+          keywords.length > 0
+            ? {
                 name: `keywords`,
                 content: keywords.join(`, `),
               }
-              : []
-          )
-        }
+            : []
+        )}
       />
       <SchemaOrg
         isBlogPost={type === `post`}
@@ -108,7 +106,7 @@ const SEO = ({
         organization={site.siteMetadata.title}
       />
     </Fragment>
-  )
-}
+  );
+};
 
-export default SEO
+export default SEO;
