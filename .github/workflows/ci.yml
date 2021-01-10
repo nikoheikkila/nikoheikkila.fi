@@ -83,11 +83,13 @@ jobs:
       env:
         BROWSER: firefox
       run: yarn test:e2e
+      continue-on-error: true
 
     - name: E2E Tests with Webkit
       env:
         BROWSER: webkit
       run: yarn test:e2e
+      continue-on-error: true
 
     - name: Accessibility Tests
       run: yarn test:a11y
