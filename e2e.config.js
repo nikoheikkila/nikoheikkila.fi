@@ -4,4 +4,5 @@ export default {
   extensions: ['ts'],
   concurrency: 5,
   verbose: true,
+  timeout: '15s',
 }
