@@ -14,7 +14,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
   children,
 }) => {
   return (
-    <div id="container">
+    <main id="container">
       <ThemeToggle />
       <Menu
         className="site-menu"
@@ -32,10 +32,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             {cover && <Hero data={cover} alt={title} />}
           </section>
         </header>
-        <main>{children}</main>
+        <section>{children}</section>
         <Footer />
       </section>
-    </div>
+    </main>
   );
 };
 

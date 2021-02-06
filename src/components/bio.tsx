@@ -16,12 +16,12 @@ const Bio: React.FunctionComponent = ({ children }) => (
       }
     `}
     render={(data) => (
-      <aside>
+      <>
         <section className="profile">
           <Img fluid={data.placeholderImage.childImageSharp.fluid} />
         </section>
         <section className="bio">{children}</section>
-      </aside>
+      </>
     )}
   />
 );
