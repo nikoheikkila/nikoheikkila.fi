@@ -1,13 +1,13 @@
 /* Define colors of the rainbow */
 export const colorPalette: Array<string> = [
-    '#8d00ca', // Violet
-    '#4B0082', // Indigo
-    '#1351AA', // Blue
-    '#006809', // Green
-    '#BAD523', // Yellow
-    '#9d3700', // Orange
-    '#AB1203', // Red
-]
+  "#8d00ca", // Violet
+  "#4B0082", // Indigo
+  "#1351AA", // Blue
+  "#006809", // Green
+  "#BAD523", // Yellow
+  "#9d3700", // Orange
+  "#AB1203", // Red
+];
 
 const COLOR_HEX_PATTERN: RegExp = /^#?[A-Fa-f0-9]{6}$/;
 const RED_FACTOR = 299 / 1000;
