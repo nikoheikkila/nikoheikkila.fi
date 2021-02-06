@@ -47,8 +47,7 @@ To synchronize my settings and extensions across machines I use an extension cal
 
 ## Terminal
 
-![Hyper for macOS](terminal.png)
-![Microsoft Terminal for Windows](microsoft_terminal.png)
+![Hyper for macOS](terminal.png) ![Microsoft Terminal for Windows](microsoft_terminal.png)
 
 I haven't yet found a perfect terminal application so I've been hopping back and forth between [Hyper][hyper] and [iTerm][iterm]. The release of Microsoft's new [Terminal][msterminal] will change this when it becomes stable but for the time being, I'm satisfied with Hyper 3 which introduced some dramatic performance improvements for its latest release.
 

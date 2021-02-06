@@ -7,6 +7,7 @@ date: 2015-03-22
 cover: keybase.png
 excerpt: >
   I've been playing with Keybase.io, a message encryption service for a while now.
+
 categories:
   - Security
   - Apps

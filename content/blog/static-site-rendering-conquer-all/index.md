@@ -7,6 +7,7 @@ date: 2019-04-19
 cover: cover.png
 excerpt: >
   Goodbye WordPress, it has been quite a journey.
+
 categories:
   - WordPress
   - Gatsby

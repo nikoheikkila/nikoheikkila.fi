@@ -7,6 +7,7 @@ date: 2019-04-23
 cover: cover.png
 excerpt: >
   In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
+
 categories:
   - Docker
   - Gatsby
