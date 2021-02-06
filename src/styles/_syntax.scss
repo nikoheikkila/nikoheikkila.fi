@@ -18,9 +18,9 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-  font-size: 18px;
+  font-size: 0.85rem;
   line-height: 1.5em;
-  overflow: auto;
+  overflow-x: auto;
   padding: 0.85em;
 }
 
@@ -135,15 +135,11 @@ pre[data-line] {
 .gatsby-highlight-code-line {
   background-color: hsla(207, 95%, 15%, 1);
   display: block;
-  margin-right: -1.3125em;
-  margin-left: -1.3125em;
   border-left: 0.25em solid #ffa7c4;
 }
 
 .gatsby-highlight {
   margin-bottom: 1.75em;
-  margin-left: -1.3125em;
-  margin-right: -1.3125em;
   background: #011627;
   -webkit-overflow-scrolling: touch;
   overflow: auto;

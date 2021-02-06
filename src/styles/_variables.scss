@@ -13,11 +13,23 @@ $darkHl: $pink;
 
 $inlineCodeFg: #bd10e0;
 
-$contentWidth: 85vw;
-$contentMaxWidth: 1080px;
-$baseFontSize: 22px;
+$contentWidth: 50vw;
+$baseFontSize: 17px;
 
 $themeTransition: all 0.25s ease-out;
 
-$query-small: 480px;
-$query-medium: 720px;
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}

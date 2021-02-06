@@ -27,14 +27,9 @@ const Index = ({ data, location, pageContext }: Page) => {
     return (
         <Layout location={location} title={siteTitle}>
             <Bio>
-                <h1>{siteTitle}</h1>
+                <h1 className="site-title">{siteTitle}</h1>
                 <p>
-                    A blog by{' '}
-                    <ExternalLink to="https://linkedin.com/in/nikoheikkila">
-                        Niko Heikkilä
-                    </ExternalLink>
-                    {'. '}
-                    Powered by coffee,{' '}
+                    A blog powered by coffee,{' '}
                     <ExternalLink to="https://code.visualstudio.com">
                         VS Code
                     </ExternalLink>

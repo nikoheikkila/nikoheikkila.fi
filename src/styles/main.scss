@@ -39,24 +39,28 @@ h6 {
 }
 
 h1 {
-  font-size: 2.75em;
+  font-size: 2.0rem;
 }
 
 h2 {
-  font-size: 2.25em;
+  font-size: 1.75rem;
 }
 
 h3 {
-  font-size: 1.75em;
+  font-size: 1.5rem;
 }
 
 h4 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 
 a {
   font-weight: 400;
   text-decoration: none;
+}
+
+.site-title {
+  margin: 15px 0;
 }
 
 /* Light theme */
@@ -103,12 +107,27 @@ body.dark {
 
 #content {
   overflow: auto;
-  width: $contentWidth;
-  max-width: $contentMaxWidth;
   margin: 0 auto;
+  width: 50vw;
 
-  main {
-    padding: 20px 1.5em 60px 1.5em;
+  @include for-phone-only() {
+    width: 90vw;
+  }
+
+  @include for-tablet-portrait-up() {
+    width: 85vw;
+  }
+
+  @include for-tablet-landscape-up() {
+    width: 80vw;
+  }
+
+  @include for-desktop-up() {
+    width: 60vw;
+  }
+
+  @include for-big-desktop-up() {
+    width: 50vw;
   }
 }
 
@@ -184,7 +203,7 @@ article {
 
 .bio {
   text-align: center;
-  margin: 0 auto 100px auto;
+  margin: 0 auto;
 
   p {
     margin: 0 10px;
@@ -240,16 +259,4 @@ video {
   margin: 0 auto;
   max-width: 100%;
   height: auto;
-}
-
-@media screen and (max-width: $query-small) {
-  #content {
-    width: 100% !important;
-  }
-}
-
-@media screen and (max-width: $query-medium) {
-  #content {
-    width: calc(#{$contentWidth} + 15vw);
-  }
 }
