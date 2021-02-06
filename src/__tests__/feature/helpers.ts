@@ -59,3 +59,14 @@ export const withBrowser: Macro<[Callback]> = async (t, callback) => {
     await page.close();
   }
 };
+
+export const getPageContents = async (
+  page: Page,
+  url: string
+): Promise<string> => {
+  const response = await page.goto(url);
+  if (!response) throw new Error(`Response to ${url} failed.`);
+  const body = await response.text();
+
+  return body;
+};

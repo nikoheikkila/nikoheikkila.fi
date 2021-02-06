@@ -1,5 +1,5 @@
 import test from "ava";
-import { withBrowser } from "./helpers";
+import { getPageContents, withBrowser } from "./helpers";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
@@ -68,17 +68,13 @@ test("single blog post renders correctly", withBrowser, async (t, page) => {
  * @And the file contents should be valid
  */
 test("site has a valid robots.txt file", withBrowser, async (t, page) => {
-  const response = await page.goto(`${baseURL}/robots.txt`);
-  if (!response) {
-    return t.fail("Request response failed.");
-  }
+  const body = await getPageContents(page, `${baseURL}/robots.txt`);
 
-  const body = await response.text();
-  t.true(response.ok());
   t.regex(body, /User-agent: \*/);
   t.regex(body, /Allow: \//);
   t.regex(body, /Sitemap: (.*)/);
   t.regex(body, /Host: (.*)/);
+  t.snapshot(body);
 });
 
 /**
@@ -88,13 +84,8 @@ test("site has a valid robots.txt file", withBrowser, async (t, page) => {
  * @And the file should have a valid XML header
  */
 test("site has a valid RSS feed", withBrowser, async (t, page) => {
-  const response = await page.goto(`${baseURL}/rss.xml`);
-  if (!response) {
-    return t.fail("Request response failed.");
-  }
+  const body = await getPageContents(page, `${baseURL}/rss.xml`);
 
-  const body = await response.text();
-  t.true(response.ok());
   t.true(body.length > 0);
   t.regex(body, validXMLHeader);
 });
@@ -106,13 +97,8 @@ test("site has a valid RSS feed", withBrowser, async (t, page) => {
  * @And the file should have a valid XML header
  */
 test("site has a valid XML sitemap", withBrowser, async (t, page) => {
-  const response = await page.goto(`${baseURL}/sitemap.xml`);
-  if (!response) {
-    return t.fail("Request response failed.");
-  }
+  const body = await getPageContents(page, `${baseURL}/sitemap.xml`);
 
-  const body = await response.text();
-  t.true(response.ok());
   t.true(body.length > 0);
   t.regex(body, validXMLHeader);
 });
