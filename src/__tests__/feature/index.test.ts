@@ -128,21 +128,20 @@ test(
   "theme switcher can switch between light and dark modes",
   withBrowser,
   async (t, page) => {
-    await page.goto(baseURL);
-    await page.click("#react-burger-menu-btn");
+    await page.goto(baseURL)
 
-    await page.click('[alt="Moon Icon"]');
+    await page.click('[data-testid="theme-toggle"]')
     let handle = await page.waitForSelector("body.dark");
     let classNames = await handle.getAttribute("class");
     t.not(classNames, null);
-    t.true(classNames?.includes("dark"));
-    t.false(classNames?.includes("light"));
+    t.true(classNames!.includes('dark'))
+    t.false(classNames!.includes('light'))
 
-    await page.click('[alt="Moon Icon"]');
+    await page.click('[data-testid="theme-toggle"]')
     handle = await page.waitForSelector("body.light");
     classNames = await handle.getAttribute("class");
     t.not(classNames, null);
-    t.true(classNames?.includes("light"));
-    t.false(classNames?.includes("dark"));
+    t.true(classNames!.includes('light'))
+    t.false(classNames!.includes('dark'))
   }
 );
