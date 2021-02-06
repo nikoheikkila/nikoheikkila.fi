@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import dayjs from "dayjs";
+import { Maybe } from "purify-ts";
 
 import { DiscussionEmbed, CommentCount } from "disqus-react";
 import Layout from "../components/layout";
@@ -10,7 +11,7 @@ import Article from "../components/post/content";
 import ExternalLink from "../components/elements";
 
 import { formatReadingTime, isIndex, getPreviousPage } from "../utils/helpers";
-import { Page } from "types/global";
+import { Page } from "../types";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -22,7 +23,9 @@ const Post = ({ data, location, pageContext }: Page) => {
 
   const { previous, next } = pageContext;
   const { author, date, lang, title, type, excerpt } = post.frontmatter;
-  const { fluid: cover } = post.frontmatter.cover.childImageSharp;
+  const cover = Maybe.fromNullable(post.frontmatter.cover)
+    .chainNullable((x) => x.childImageSharp.fluid)
+    .extractNullable();
 
   const slug = post.fields.slug.slice(1, post.fields.slug.length - 1);
   const postUrl = `${siteUrl}/${slug}`;
@@ -45,17 +48,12 @@ const Post = ({ data, location, pageContext }: Page) => {
         lang={lang}
         keywords={post.categories}
         title={title}
-        image={cover.src}
+        image={cover?.src}
         type={type}
         url={postUrl}
         datePublished={date || dayjs().format("YYYY-MM-DD")}
       />
       <header className="post-header">
-        {isIndex(location) || (
-          <Link rel="back" to={getPreviousPage(location)}>
-            ↩ Back to posts
-          </Link>
-        )}
         <h1 className="post-title">{title}</h1>
 
         {excerpt && (
@@ -84,17 +82,18 @@ const Post = ({ data, location, pageContext }: Page) => {
             <Tag key={c} title={c} />
           ))}
         </p>
+        {isIndex(location) || (
+          <Link rel="back" to={getPreviousPage(location)}>
+            ↩ Back to posts
+          </Link>
+        )}
       </section>
 
       <section className="post-attachments">
-        <ul>
-          <li>
-            <ExternalLink to={editUrl}>Edit Page</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink to={historyUrl}>View History</ExternalLink>
-          </li>
-        </ul>
+        <p>
+          <ExternalLink to={editUrl}>Edit Page </ExternalLink>
+          <ExternalLink to={historyUrl}>View History </ExternalLink>
+        </p>
       </section>
 
       <DiscussionEmbed shortname={disqus} config={disqusConfig} />

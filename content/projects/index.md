@@ -3,7 +3,6 @@ lang: en
 author: Niko Heikkilä
 date: 2020-04-22
 type: page
-cover: keyboard.jpg
 title: Open-Source
 excerpt: My efforts as the self-proclaimed Open-Source Champion.
 ---

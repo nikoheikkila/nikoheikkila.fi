@@ -51,6 +51,7 @@
     "preact": "^10.5.9",
     "prismjs": "^1.23.0",
     "prop-types": "^15.7.2",
+    "purify-ts": "^0.16.1",
     "react": "^17.0.1",
     "react-burger-menu": "^3.0.3",
     "react-dom": "^17.0.1",
@@ -63,7 +64,6 @@
   "devDependencies": {
     "@ava/babel": "^1.0.1",
     "@babel/helper-call-delegate": "^7.12.1",
-    "@types/lodash": "^4.14.167",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   content: string;
-  className: string;
+  className?: string;
 }
 
 const Article = ({ content, className }: Props) => (

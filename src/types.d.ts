@@ -24,13 +24,6 @@ export interface RouteLocation {
   };
 }
 
-export interface LayoutProps {
-  location: RouteLocation;
-  title: string;
-  cover?: FluidImage;
-  children: Array<ReactNode>;
-}
-
 export interface PageProps {
   links: Array<{
     slug: string;

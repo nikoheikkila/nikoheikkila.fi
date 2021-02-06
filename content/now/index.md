@@ -1,7 +1,6 @@
 ---
 lang: en
 type: page
-cover: "cover.png"
 title: What I'm Doing Now?
 author: Niko Heikkilä
 date: 2020-06-21
