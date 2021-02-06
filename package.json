@@ -93,7 +93,7 @@
     "test": "yarn lint && yarn test:unit && yarn test:e2e && yarn test:a11y",
     "test:unit": "ava",
     "test:e2e": "ava --config e2e.config.js",
-    "test:a11y": "pa11y-ci -s http://localhost:8000/sitemap.xml -f https://nikoheikkila.fi -r http://localhost:8000",
+    "test:a11y": "pa11y-ci",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect"
   },

@@ -1,8 +1,12 @@
 {
-    "standard": "WCAG2A",
-    "level": "error",
-    "concurrency": 4,
     "defaults": {
+        "runners": [
+            "axe",
+            "htmlcs"
+        ],
+        "standard": "WCAG2AA",
+        "level": "warning",
+        "concurrency": 4,
         "timeout": 10000,
         "hideElements": "iframe",
         "chromeLaunchConfig": {
@@ -11,5 +15,9 @@
             ]
         },
         "ignore": []
-    }
+    },
+    "urls": [
+        "http://localhost:8000",
+        "http://localhost:8000/about"
+    ]
 }
