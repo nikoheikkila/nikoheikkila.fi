@@ -3,107 +3,107 @@ require("dotenv").config({
 });
 
 module.exports = {
-  siteMetadata: {
-    language: `en`,
-    title: `Niko Heikkilä`,
-    author: {
-      name: `Niko Heikkilä`,
-    },
-    description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
-    siteUrl: `https://nikoheikkila.fi`,
-    disqus: process.env.GATSBY_DISQUS_SHORTNAME,
-    social: [
-      {
-        name: `dev`,
-        url: `https://dev.to/nikoheikkila`,
-      },
-      {
-        name: `facebook`,
-        url: `https://fb.me/heikkilaniko`,
-      },
-      {
-        name: `github`,
-        url: `https://github.com/nikoheikkila`,
-      },
-      {
-        name: `linkedin`,
-        url: `https://www.linkedin.com/in/nikoheikkila`,
-      },
-      {
-        name: `mastodon`,
-        url: `https://mastodon.technology/@nikoheikkila`,
-      },
-    ],
-    repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
-    rss: `/rss.xml`,
-  },
-  flags: {
-    FAST_DEV: true,
-    FAST_REFRESH: true,
-  },
-  plugins: [
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 960,
+    siteMetadata: {
+        language: `en`,
+        title: `Niko Heikkilä`,
+        author: {
+            name: `Niko Heikkilä`,
+        },
+        description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
+        siteUrl: `https://nikoheikkila.fi`,
+        disqus: process.env.GATSBY_DISQUS_SHORTNAME,
+        social: [
+            {
+                name: `dev`,
+                url: `https://dev.to/nikoheikkila`,
             },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
+            {
+                name: `facebook`,
+                url: `https://fb.me/heikkilaniko`,
             },
-          },
-          {
-            resolve: `gatsby-remark-autolink-headers`,
-            options: {
-              icon: false,
+            {
+                name: `github`,
+                url: `https://github.com/nikoheikkila`,
             },
-          },
-          {
-            resolve: `gatsby-remark-katex`,
-            options: {
-              strict: `ignore`,
+            {
+                name: `linkedin`,
+                url: `https://www.linkedin.com/in/nikoheikkila`,
             },
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+            {
+                name: `mastodon`,
+                url: `https://mastodon.technology/@nikoheikkila`,
+            },
         ],
-      },
+        repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
+        rss: `/rss.xml`,
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content`,
-        name: `blog`,
-      },
+    flags: {
+        FAST_DEV: false,
+        FAST_REFRESH: true,
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/assets`,
-        name: `assets`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_CODE,
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        query: `
+    plugins: [
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            maxWidth: 960,
+                        },
+                    },
+                    {
+                        resolve: `gatsby-remark-responsive-iframe`,
+                        options: {
+                            wrapperStyle: `margin-bottom: 1.0725rem`,
+                        },
+                    },
+                    {
+                        resolve: `gatsby-remark-autolink-headers`,
+                        options: {
+                            icon: false,
+                        },
+                    },
+                    {
+                        resolve: `gatsby-remark-katex`,
+                        options: {
+                            strict: `ignore`,
+                        },
+                    },
+                    `gatsby-remark-prismjs`,
+                    `gatsby-remark-copy-linked-files`,
+                    `gatsby-remark-smartypants`,
+                ],
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/content`,
+                name: `blog`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/src/assets`,
+                name: `assets`,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: process.env.GATSBY_GA_TRACKING_CODE,
+                anonymize: true,
+                respectDNT: true,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-feed`,
+            options: {
+                query: `
           {
             site {
               siteMetadata {
@@ -115,25 +115,29 @@ module.exports = {
             }
           }
         `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map((edge) => ({
-                ...edge.node.frontmatter,
-                language: edge.node.frontmatter.lang,
-                title: edge.node.frontmatter.title,
-                description: edge.node.excerpt,
-                date: edge.node.frontmatter.date,
-                url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                author: edge.node.frontmatter.author,
-                custom_elements: [
-                  {
-                    "content:encoded": edge.node.html,
-                  },
-                ],
-              })),
-            query: `
+                feeds: [
+                    {
+                        serialize: ({ query: { site, allMarkdownRemark } }) =>
+                            allMarkdownRemark.edges.map((edge) => ({
+                                ...edge.node.frontmatter,
+                                language: edge.node.frontmatter.lang,
+                                title: edge.node.frontmatter.title,
+                                description: edge.node.excerpt,
+                                date: edge.node.frontmatter.date,
+                                url:
+                                    site.siteMetadata.siteUrl +
+                                    edge.node.fields.slug,
+                                guid:
+                                    site.siteMetadata.siteUrl +
+                                    edge.node.fields.slug,
+                                author: edge.node.frontmatter.author,
+                                custom_elements: [
+                                    {
+                                        'content:encoded': edge.node.html,
+                                    },
+                                ],
+                            })),
+                        query: `
             {
               allMarkdownRemark(
                 limit: 1000,
@@ -157,53 +161,53 @@ module.exports = {
               }
             }
           `,
-            output: `/rss.xml`,
-            title: `RSS Feed | Niko Heikkilä`,
-            match: `^/blog/`,
-          },
-        ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Niko Heikkilä`,
-        short_name: `nikoheikkila`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `standalone`,
-        icon: `src/static/favicon.png`,
-        crossOrigin: `use-credentials`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-robots-txt`,
-      options: {
-        policy: [{ userAgent: "*", allow: "/" }],
-        output: `/robots.txt`,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-use-dark-mode",
-      options: {
-        minify: true,
-        classNameLight: "light",
-        classNameDark: "dark",
-        storageKey: "darkMode",
-      },
-    },
-    {
-      resolve: `gatsby-plugin-typescript`,
-      options: {
-        isTSX: true,
-        allExtensions: true,
-      },
-    },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-preact`,
-  ],
-};
+                        output: `/rss.xml`,
+                        title: `RSS Feed | Niko Heikkilä`,
+                        match: `^/blog/`,
+                    },
+                ],
+            },
+        },
+        {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                name: `Niko Heikkilä`,
+                short_name: `nikoheikkila`,
+                start_url: `/`,
+                background_color: `#ffffff`,
+                theme_color: `#663399`,
+                display: `standalone`,
+                icon: `src/static/favicon.png`,
+                crossOrigin: `use-credentials`,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-robots-txt`,
+            options: {
+                policy: [{ userAgent: '*', allow: '/' }],
+                output: `/robots.txt`,
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-use-dark-mode',
+            options: {
+                minify: true,
+                classNameLight: 'light',
+                classNameDark: 'dark',
+                storageKey: 'darkMode',
+            },
+        },
+        {
+            resolve: `gatsby-plugin-typescript`,
+            options: {
+                isTSX: true,
+                allExtensions: true,
+            },
+        },
+        `gatsby-plugin-offline`,
+        `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-sass`,
+        `gatsby-plugin-sitemap`,
+        `gatsby-plugin-preact`,
+    ],
+}
