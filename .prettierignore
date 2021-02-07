@@ -4,3 +4,6 @@ node_modules/
 # Gatsby
 /.cache/
 /public/
+
+# Netlify
+/.netlify/
