@@ -38,7 +38,7 @@ After exporting the rough notes, it's time to start refining them digitally.
 
 Inside my Notion workspace, I have multiple projects as individual pages. Within those pages, I have small _databases_ where each row represents a note. This makes it easy for me to find content, although usually, I resort to the _Quick Search_ feature (`Cmd/Ctrl + P`) to get around.
 
-After pasting the rough notes from email to Notion, the process is as simple as converting bullet points to entire paragraphs, adding links, improving formatting. With this crucial, I step I ensure the raw blob becomes closer to a readable document.
+After pasting the rough notes from email to Notion, the process is as simple as converting bullet points to entire paragraphs, adding links, improving formatting. With this crucial step, I ensure the raw blob becomes closer to a readable document.
 
 ## Shaping the End Result
 
