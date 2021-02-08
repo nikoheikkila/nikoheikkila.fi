@@ -131,3 +131,29 @@ test(
     t.false(classNames!.includes("dark"));
   }
 );
+
+test("single post contains an edit link", withBrowser, async (t, page) => {
+  await page.goto(`${baseURL}/about`);
+  const [github] = await Promise.all([
+    page.context().waitForEvent("page"),
+    page.click('text="Edit Page"'),
+  ]);
+
+  await github.waitForLoadState();
+  t.regex(github.url(), /github\.com/);
+});
+
+test(
+  "single post contains a view history link",
+  withBrowser,
+  async (t, page) => {
+    await page.goto(`${baseURL}/about`);
+    const [github] = await Promise.all([
+      page.context().waitForEvent("page"),
+      page.click('text="View History"'),
+    ]);
+
+    await github.waitForLoadState();
+    t.regex(github.url(), /github\.com/);
+  }
+);
