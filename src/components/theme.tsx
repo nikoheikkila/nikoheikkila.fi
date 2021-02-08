@@ -20,6 +20,7 @@ const ThemeToggle: React.FunctionComponent<Props> = ({ dark = true }) => {
 
   const iconStyle: CSSProperties = {
     position: "fixed",
+    zIndex: 999,
     top: 10,
     right: 10,
   };
