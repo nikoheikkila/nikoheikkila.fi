@@ -38,8 +38,8 @@ module.exports = {
     rss: `/rss.xml`,
   },
   flags: {
-    FAST_DEV: false,
-    FAST_REFRESH: true,
+    FAST_DEV: process.env.FAST_DEV === "1",
+    FAST_REFRESH: process.env.FAST_REFRESH === "1",
   },
   plugins: [
     `gatsby-transformer-sharp`,
