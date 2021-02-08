@@ -16,17 +16,16 @@
 
 html {
   @include bodyFont();
-  font-size: $baseFontSize;
   overflow-x: hidden;
 }
 
 body {
-  overflow-x: hidden;
   margin: 0;
   transition: $themeTransition;
   font-kerning: normal;
   word-wrap: break-word;
   font-feature-settings: "kern", "liga", "clig", "calt";
+  line-height: 1.75rem;
 }
 
 h1,
@@ -108,26 +107,25 @@ body.dark {
 #content {
   overflow: auto;
   margin: 0 auto;
-  width: 50vw;
 
   @include for-phone-only() {
     width: 90vw;
   }
 
   @include for-tablet-portrait-up() {
-    width: 85vw;
+    width: 75vw;
   }
 
   @include for-tablet-landscape-up() {
-    width: 80vw;
+    width: 50vw;
   }
 
   @include for-desktop-up() {
-    width: 60vw;
+    width: 40vw;
   }
 
   @include for-big-desktop-up() {
-    width: 50vw;
+    width: 35vw;
   }
 }
 
