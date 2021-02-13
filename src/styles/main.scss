@@ -107,21 +107,22 @@ body.dark {
 #content {
   overflow: auto;
   margin: 0 auto;
+  padding: 0 20px;
 
   @include for-phone-only() {
     width: 90vw;
   }
 
   @include for-tablet-portrait-up() {
-    width: 75vw;
+    width: 80vw;
   }
 
   @include for-tablet-landscape-up() {
-    width: 50vw;
+    width: 65vw;
   }
 
   @include for-desktop-up() {
-    width: 40vw;
+    width: 50vw;
   }
 
   @include for-big-desktop-up() {
