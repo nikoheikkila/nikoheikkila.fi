@@ -41,7 +41,7 @@ Both the keyboard and the mouse support connecting up to three devices at most v
 
 ![Visual Studio Code with Palenight color theme and Operator Mono font](https://f001.backblazeb2.com/file/nikoheikkila-fi/vscode.png)
 
-My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing tweaking setings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
+My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing and tweaking settings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
 
 In the screenshot above I'm using a theme called [_Palenight_][theme] and a font called [Operator Mono][operator]. VS Code synchronizes all the fancy settings and extensions across platforms natively, so I can work on one platform and seamlessly continue on another.
 
@@ -56,7 +56,7 @@ For the command line, I've settled with [**iTerm 2**][iterm] and [**Windows Term
 
 After years of cursing the _allfathers_ while navigating in a clunky Bash shell, I came across the [**Friendly Interactive Shell** (Fish)][fish]. I have then supercharged my Fish shell with the [**Oh-My-Fish**][omf] framework and the [**Starship**][starship] prompt theme.
 
-While in the command line I use [`z`][z] to quickly jump to a project and [`fzf`][fzf] to remember the exact command I typed a few hours ago. These modifications let me swim in the command line like a fish in the sea. 🐟
+While in the command line I use [`tmux`][tmux] for persisting window and buffer layouts, [`z`][z] to quickly jump to a project, and [`fzf`][fzf] to remember the exact command I typed a few hours ago. These modifications let me swim in the command line like a fish in the sea. 🐟
 
 Since Microsoft released their [Remote Development Pack][remotedevelopment] for VS Code which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [SpaceVim][spacevim] configuration preset.
 
@@ -66,6 +66,7 @@ Since Microsoft released their [Remote Development Pack][remotedevelopment] for 
 [fish]: https://fishshell.com/
 [omf]: https://github.com/oh-my-fish/oh-my-fish
 [starship]: https://starship.rs/
+[tmux]: https://github.com/tmux/tmux
 [z]: https://github.com/rupa/z/
 [fzf]: https://github.com/junegunn/fzf
 [remotedevelopment]: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
@@ -77,7 +78,9 @@ I've tried virtually every browser under the sun, but the one I keep coming back
 
 ### Other Apps
 
-Although I consider myself an open-source advocate in most situations I have no problem paying and using commercial software when it's good. This will be a mouthful so I'll list my used apps below. I've marked the apps I've purchased or subscribed to with a 💰 sign. Most apps offer a limited free plan which I advise to check out as well if it covers your needs.
+Although I consider myself an open-source advocate in most situations I have no problem paying and using commercial software when it's good. This will be a mouthful so I'll list my used apps below. I've marked the apps I've purchased or subscribed to with a 💰 sign.
+
+Most apps offer a limited free plan which I advise to check out as well if it covers your needs.
 
 _I use..._
 
@@ -86,7 +89,7 @@ _I use..._
 - [Backblaze 💰](https://www.backblaze.com) to back up my disks. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager. Backblaze also ships with an S3 compatible cloud storage which I use to store some photos.
 - [Cleanshot X 💰](https://cleanshot.com/) to capture screenshots and record videos -- useful for reporting website issues. On Windows, I use the builtin screenshot tool which you can summon with `Win + Shift + S`.
 - [Dropbox 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
-- [Fork](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
+- [Fork 💰](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
 - [MindNode 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
 - [Notion 💰](https://www.notion.so/?r=6605af2045dd4c5bbf7a87d6d949c271) for writing notes, drafts, checklists, and keeping a personal micro-wiki around.
 - [Insomnia](https://insomnia.rest/) for experimenting with REST and GraphQL APIs.
