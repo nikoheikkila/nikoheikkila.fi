@@ -1,31 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
 import SchemaOrg from "./schema";
 import { getSEOData } from "../graphql/seo";
 
 interface Props {
   title: string;
-  image?: string;
-  type?: string;
-  url?: string;
-  datePublished?: string;
-  dateModified?: string;
+  type: string;
+  url: string;
+  datePublished: string;
   description?: string;
+  dateModified?: string;
+  image?: string;
   lang?: string;
   keywords?: Array<string>;
 }
 
-const SEO = ({
-  dateModified = "",
-  datePublished = "",
-  description = "",
-  image = "",
-  keywords = [],
-  lang = "en",
+const SEO: FunctionComponent<Props> = ({
   title,
-  type = "page",
-  url = "",
-}: Props) => {
+  type,
+  url,
+  datePublished,
+  description = "",
+  dateModified = "",
+  image = "",
+  lang = "en",
+  keywords = [],
+}) => {
   const { site } = getSEOData();
   const metaDescription = description || site.siteMetadata.description;
   const imageURL = `${site.siteMetadata.siteUrl}${image}`;
@@ -42,6 +42,10 @@ const SEO = ({
           {
             name: `description`,
             content: metaDescription,
+          },
+          {
+            property: `og:url`,
+            content: url,
           },
           {
             property: `og:title`,
@@ -66,6 +70,14 @@ const SEO = ({
           {
             name: `twitter:card`,
             content: `summary_large_image`,
+          },
+          {
+            name: `twitter:domain`,
+            content: site.siteMetadata.siteUrl,
+          },
+          {
+            name: `twitter:url`,
+            content: url,
           },
           {
             name: `twitter:title`,
@@ -94,7 +106,7 @@ const SEO = ({
       />
       <SchemaOrg
         isBlogPost={type === `post`}
-        url={url || site.siteMetadata.siteUrl}
+        url={url}
         title={title}
         image={imageURL}
         description={metaDescription}
@@ -102,7 +114,7 @@ const SEO = ({
         dateModified={dateModified || datePublished}
         defaultTitle={site.siteMetadata.title}
         author={site.siteMetadata.author.name}
-        canonicalUrl={site.siteMetadata.siteUrl}
+        canonicalUrl={url}
         organization={site.siteMetadata.title}
       />
     </Fragment>
