@@ -3,13 +3,20 @@ import { Link } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Page } from "types";
+import dayjs from "dayjs";
 
 const NotFound: React.FunctionComponent<Page> = ({ location }) => {
   const title = "Page Not Found";
+  const datePublished = dayjs().format("YYYY-MM-DD");
 
   return (
     <Layout location={location} title={title}>
-      <SEO title={title} />
+      <SEO
+        title={title}
+        type="page"
+        url={location.href}
+        datePublished={datePublished}
+      />
       <h1>🤖 You have erred, but it is human</h1>
 
       <p>

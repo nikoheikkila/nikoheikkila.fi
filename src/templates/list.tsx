@@ -24,6 +24,8 @@ const Index = ({ data, location, pageContext }: Page) => {
   const previousPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`;
   const nextPage = `/${currentPage + 1}`;
 
+  const datePublished = dayjs().format("YYYY-MM-DD");
+
   return (
     <Layout location={location} title={siteTitle}>
       <Bio>
@@ -36,7 +38,13 @@ const Index = ({ data, location, pageContext }: Page) => {
           , and <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
         </p>
       </Bio>
-      <SEO title="All Posts" image={banner} />
+      <SEO
+        title="All Posts"
+        image={banner}
+        url={location.href}
+        type="page"
+        datePublished={datePublished}
+      />
 
       {posts.edges.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
