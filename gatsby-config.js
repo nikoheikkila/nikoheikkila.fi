@@ -184,15 +184,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-use-dark-mode",
-      options: {
-        minify: true,
-        classNameLight: "light",
-        classNameDark: "dark",
-        storageKey: "darkMode",
-      },
-    },
-    {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,

@@ -23,7 +23,6 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
 }) => {
   return (
     <main id="container">
-      <ThemeToggle />
       <Menu
         className="site-menu"
         pageWrapId="content"
