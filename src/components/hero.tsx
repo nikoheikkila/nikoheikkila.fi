@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
   <header className="hero-image">
-    <GatsbyImage image={data} alt={alt} />
+    <GatsbyImage image={data} alt={alt} loading="eager" />
   </header>
 );
 

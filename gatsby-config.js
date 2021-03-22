@@ -41,6 +41,7 @@ module.exports = {
     FAST_DEV: process.env.FAST_DEV === "1",
   },
   plugins: [
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
