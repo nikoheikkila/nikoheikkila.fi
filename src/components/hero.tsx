@@ -1,33 +1,15 @@
 import React from "react";
-import Img from "gatsby-image";
-import { ImageProps, FluidImage } from "../types";
-
-const NormalizedImage: React.FunctionComponent<ImageProps> = (props) => {
-  const {
-    style = {},
-    fluid: { presentationHeight, presentationWidth },
-  } = props;
-
-  const normalizedProps = {
-    ...props,
-    style: {
-      ...style,
-      margin: "0 auto",
-      maxHeight: presentationHeight,
-      maxWidth: presentationWidth,
-    },
-  };
-
-  return <Img {...normalizedProps} />;
-};
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface HeroProps {
-  data: FluidImage;
-  alt: string;
+  readonly data: IGatsbyImageData;
+  readonly alt: string;
 }
 
 const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
-  <NormalizedImage fluid={data} alt={alt} />
+  <header className="hero-image">
+    <GatsbyImage image={data} alt={alt} />
+  </header>
 );
 
 export default Hero;
