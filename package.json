@@ -78,6 +78,7 @@
   "license": "MIT",
   "scripts": {
     "new": "ts-node --script-mode new.ts",
+    "clean": "gatsby clean",
     "build": "gatsby build --log-pages --write-to-file",
     "dev": "gatsby develop",
     "format": "prettier --write .",
