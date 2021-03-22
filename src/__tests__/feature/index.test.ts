@@ -103,35 +103,6 @@ test("site has a valid XML sitemap", withBrowser, async (t, page) => {
   t.regex(body, validXMLHeader);
 });
 
-/**
- * @Given I'm on the index page
- * @When I switch the theme to dark
- * @Then I should have the dark mode on
- * @When I switch the theme back to light
- * @Then I should have the light mode on
- */
-test(
-  "theme switcher can switch between light and dark modes",
-  withBrowser,
-  async (t, page) => {
-    await page.goto(baseURL);
-
-    await page.click('[data-testid="theme-toggle"]');
-    let handle = await page.waitForSelector("body.dark");
-    let classNames = await handle.getAttribute("class");
-    t.not(classNames, null);
-    t.true(classNames!.includes("dark"));
-    t.false(classNames!.includes("light"));
-
-    await page.click('[data-testid="theme-toggle"]');
-    handle = await page.waitForSelector("body.light");
-    classNames = await handle.getAttribute("class");
-    t.not(classNames, null);
-    t.true(classNames!.includes("light"));
-    t.false(classNames!.includes("dark"));
-  }
-);
-
 test("single post contains an edit link", withBrowser, async (t, page) => {
   await page.goto(`${baseURL}/about`);
   const [github] = await Promise.all([

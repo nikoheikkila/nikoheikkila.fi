@@ -55,11 +55,7 @@ pre[class*="language-"] ::selection {
   white-space: pre-wrap;
 }
 
-body.light :not(pre) > code[class*="language-"] {
-  background-color: #f6f6f6;
-}
-
-body.dark :not(pre) > code[class*="language-"] {
+body :not(pre) > code[class*="language-"] {
   background-color: #111111;
 }
 

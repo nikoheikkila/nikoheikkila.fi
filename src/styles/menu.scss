@@ -13,16 +13,8 @@ $menuPaddingLeft: 20px;
 }
 
 /* Color/shape of burger icon bars */
-body.light {
-  .bm-burger-bars {
-    background: #222;
-  }
-}
-
-body.dark {
-  .bm-burger-bars {
-    background: #eee;
-  }
+.bm-burger-bars {
+  background: #eee;
 }
 
 /*
@@ -37,7 +29,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #000000;
+  background: #22272e;
   overflow-y: hidden !important;
 }
 

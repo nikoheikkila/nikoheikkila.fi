@@ -1,16 +1,18 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
-const Bio: React.FunctionComponent = ({ children }) => (
+interface BioProps {
+  readonly alt: string;
+}
+
+const Bio: React.FunctionComponent<BioProps> = ({ alt, children }) => (
   <StaticQuery
     query={graphql`
       query {
         placeholderImage: file(relativePath: { eq: "profile.png" }) {
           childImageSharp {
-            fluid(quality: 100, maxWidth: 128, maxHeight: 128) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: FIXED, width: 128, height: 128)
           }
         }
       }
@@ -18,7 +20,10 @@ const Bio: React.FunctionComponent = ({ children }) => (
     render={(data) => (
       <>
         <section className="profile">
-          <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+          <GatsbyImage
+            image={data.placeholderImage.childImageSharp.gatsbyImageData}
+            alt={alt}
+          />
         </section>
         <section className="bio">{children}</section>
       </>

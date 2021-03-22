@@ -16,7 +16,12 @@ import banner from "../assets/banner.png";
 
 const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext;
-  const { title: siteTitle, siteUrl, disqus } = data.site.siteMetadata;
+  const {
+    title: siteTitle,
+    description,
+    siteUrl,
+    disqus,
+  } = data.site.siteMetadata;
   const posts: MarkdownRemark = data.allMarkdownRemark;
 
   const isFirstPage = currentPage === 1;
@@ -28,7 +33,7 @@ const Index = ({ data, location, pageContext }: Page) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio>
+      <Bio alt={description}>
         <h1 className="site-title">{siteTitle}</h1>
         <p>
           A blog powered by coffee,{" "}

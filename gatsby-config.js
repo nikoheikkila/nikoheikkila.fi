@@ -39,7 +39,6 @@ module.exports = {
   },
   flags: {
     FAST_DEV: process.env.FAST_DEV === "1",
-    FAST_REFRESH: process.env.FAST_REFRESH === "1",
   },
   plugins: [
     `gatsby-transformer-sharp`,
@@ -185,15 +184,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-use-dark-mode",
-      options: {
-        minify: true,
-        classNameLight: "light",
-        classNameDark: "dark",
-        storageKey: "darkMode",
-      },
-    },
-    {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,
@@ -204,6 +194,5 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-preact`,
   ],
 };

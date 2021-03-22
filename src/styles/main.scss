@@ -21,11 +21,17 @@ html {
 
 body {
   margin: 0;
-  transition: $themeTransition;
   font-kerning: normal;
   word-wrap: break-word;
   font-feature-settings: "kern", "liga", "clig", "calt";
   line-height: 1.75rem;
+
+  background-color: $darkBg;
+  color: $darkFg;
+}
+
+a {
+  color: $blue;
 }
 
 h1,
@@ -60,48 +66,6 @@ a {
 
 .site-title {
   margin: 15px 0;
-}
-
-/* Light theme */
-body.light {
-  @include hr($lightHl, 2px);
-  background-color: $lightBg;
-  color: $lightFg;
-
-  a {
-    color: $lightHl;
-  }
-
-  article a:not(.gatsby-resp-image-link) {
-    color: inherit;
-    border-bottom: 2px dashed $lightHl;
-  }
-
-  blockquote {
-    background: $blue;
-    color: #ffffff;
-  }
-}
-
-/* Dark theme */
-body.dark {
-  @include hr($pink, 2px);
-  background-color: $darkBg;
-  color: $darkFg;
-
-  a {
-    color: $pink;
-  }
-
-  article a:not(.gatsby-resp-image-link) {
-    color: inherit;
-    border-bottom: 2px dashed $pink;
-  }
-
-  blockquote {
-    background: $pink;
-    color: #000000;
-  }
 }
 
 #content {
@@ -146,8 +110,9 @@ article {
   }
 
   blockquote {
+    background-color: lighten($color: $darkBg, $amount: 10);
+    font-style: italic;
     margin: 1.5em 0;
-    text-align: center;
     padding: 2em 25px;
     quotes: "\201C""\201D""\2018""\2019";
 

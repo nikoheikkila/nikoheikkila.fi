@@ -24,7 +24,7 @@ const Post = ({ data, location, pageContext }: Page) => {
   const { previous, next } = pageContext;
   const { author, date, lang, title, type, excerpt } = post.frontmatter;
   const cover = Maybe.fromNullable(post.frontmatter.cover)
-    .chainNullable((x) => x.childImageSharp.fluid)
+    .chainNullable((x) => x.childImageSharp.gatsbyImageData)
     .extractNullable();
 
   const slug = post.fields.slug.slice(1, post.fields.slug.length - 1);
@@ -153,11 +153,7 @@ export const pageQuery = graphql`
         categories
         cover {
           childImageSharp {
-            fluid(maxWidth: 960, quality: 100) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-              presentationWidth
-              presentationHeight
-            }
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
           }
         }
       }

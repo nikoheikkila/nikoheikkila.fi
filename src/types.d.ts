@@ -1,20 +1,9 @@
 import { ReactNode } from "react";
-import { FluidObject, GatsbyImageProps } from "gatsby-image";
+import { FluidObject, GatsbyImageProps } from "gatsby-plugin-image";
 
 declare module "*.png" {
   var _: string;
   export default _;
-}
-
-export interface FluidImage extends FluidObject {
-  presentationHeight: number;
-  presentationWidth: number;
-}
-
-export interface ImageProps extends GatsbyImageProps {
-  fluid: FluidImage;
-  style?: CSSProperties;
-  alt?: string;
 }
 
 export interface RouteLocation {

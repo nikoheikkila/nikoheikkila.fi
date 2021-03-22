@@ -1,6 +1,14 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type SitePage implements Node @dontInfer {
+      path: String!
+    }
+  `);
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 

@@ -1,21 +1,13 @@
-$pink: #de5a7f;
-$teal: #00857c;
-$blue: #006274;
+$blue: #539bf5;
 $red: #fd3300;
 
-$lightBg: #ffffff;
-$lightFg: #444444;
-$lightHl: $blue;
-
-$darkBg: #1e1e1e;
+$darkBg: #1e2228;
 $darkFg: #adadad;
-$darkHl: $pink;
+$darkHl: $blue;
 
 $inlineCodeFg: #bd10e0;
 
 $contentWidth: 50vw;
-
-$themeTransition: all 0.25s ease-out;
 
 @mixin for-phone-only {
   @media (max-width: 599px) {
