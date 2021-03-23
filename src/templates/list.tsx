@@ -4,11 +4,9 @@ import dayjs from "dayjs";
 import Layout from "../components/layout";
 import BlogHeader from "../components/blog/header";
 import SEO from "../components/seo";
-import Tag from "../components/tag";
-import Article from "../components/post/content";
-import { formatReadingTime } from "../utils/helpers";
 import { Page, MarkdownRemark } from "../types";
 import banner from "../assets/banner.png";
+import ArticleCard from "../components/blog/card";
 
 const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext;
@@ -34,35 +32,25 @@ const Index = ({ data, location, pageContext }: Page) => {
       />
 
       {posts.edges.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug;
+        const { timeToRead } = node;
+        const { slug } = node.fields;
+        const { title, categories, excerpt } = node.frontmatter;
         const date = dayjs(node.frontmatter.date).format("DD.MM.YYYY");
 
         return (
-          <div key={node.fields.slug} className="post-content">
-            <h2 className="post-title">
-              <Link
-                to={node.fields.slug}
-                state={{ previous: location.pathname }}
-              >
-                {title}
-              </Link>
-            </h2>
-            <p className="post-tags">
-              {node.frontmatter.categories.map((c) => (
-                <Tag key={c} title={c} />
-              ))}
-            </p>
-            <p className="post-meta">
-              <span>{date} </span>
-              <span>{formatReadingTime(node.timeToRead)}</span>
-            </p>
-            <Article
-              className="post-spoiler"
-              content={node.frontmatter.excerpt}
-            />
-          </div>
+          <ArticleCard
+            key={slug}
+            slug={slug}
+            location={location}
+            title={title}
+            categories={categories || []}
+            date={date}
+            excerpt={excerpt}
+            timeToRead={timeToRead || 0}
+          />
         );
       })}
+
       <ul
         style={{
           display: "flex",

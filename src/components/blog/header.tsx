@@ -10,7 +10,7 @@ interface HeaderProps {
 const BlogHeader: React.FunctionComponent<HeaderProps> = ({ title }) => (
   <header className={styles.header}>
     <StaticImage
-      src="../assets/profile.png"
+      src="../../assets/profile.png"
       alt={title}
       width={128}
       height={128}
