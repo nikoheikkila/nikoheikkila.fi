@@ -47,7 +47,7 @@ const Index = ({ data, location, pageContext }: Page) => {
 
       {posts.edges.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
-        const date = dayjs(node.frontmatter.date).format("MMMM D, YYYY");
+        const date = dayjs(node.frontmatter.date).format("DD.MM.YYYY");
 
         return (
           <div key={node.fields.slug} className="post-content">

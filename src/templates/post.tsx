@@ -21,6 +21,8 @@ const Post = ({ data, location, pageContext }: Page) => {
     },
   } = data;
 
+  const { author, date, lang, title, type, excerpt } = post.frontmatter;
+
   const previous = {
     slug: Maybe.fromNullable(pageContext.previous)
       .chainNullable((_) => _.fields)
@@ -43,14 +45,13 @@ const Post = ({ data, location, pageContext }: Page) => {
       .orDefault("Next"),
   };
 
-  const { author, date, lang, title, type, excerpt } = post.frontmatter;
   const cover = Maybe.fromNullable(post.frontmatter.cover)
     .chainNullable((x) => x.childImageSharp.gatsbyImageData)
     .extractNullable();
 
   const slug = post.fields.slug.slice(1, post.fields.slug.length - 1);
   const postUrl = `${siteUrl}/${slug}`;
-  const datePublished = dayjs(date || null).format("MMMM D, YYYY");
+  const datePublished = dayjs(date).format("DD.MM.YYYY");
   const categories = post.frontmatter.categories || [];
 
   const editUrl = `${repository}/edit/main/content/${slug}/index.md`;
@@ -61,14 +62,14 @@ const Post = ({ data, location, pageContext }: Page) => {
   return (
     <Layout location={location} title={siteTitle} cover={cover}>
       <SEO
-        description={post.excerpt}
+        description={excerpt}
         lang={lang}
-        keywords={post.categories}
+        keywords={categories}
         title={title}
         image={cover?.src}
         type={type}
         url={postUrl}
-        datePublished={date || dayjs().format("YYYY-MM-DD")}
+        datePublished={date}
       />
       <PostHeader
         author={author}
