@@ -1,31 +1,29 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
-import dayjs from "dayjs";
-import { Maybe } from "purify-ts";
-
-import { DiscussionEmbed, CommentCount } from "disqus-react";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Tag from "../components/tag";
-import Article from "../components/post/content";
-import ExternalLink from "../components/elements";
-import useToggle from "../components/hooks/useToggle";
-import { useIcons } from "../components/hooks/useIcons";
-
-import { formatReadingTime, isIndex, getPreviousPage } from "../utils/helpers";
-import { Page } from "../types";
-
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
-  faUndo,
-  faEdit,
-  faHistory,
-  faComment,
-  faCommentSlash,
   faArrowLeft,
   faArrowRight,
+  faComment,
+  faCommentSlash,
+  faEdit,
+  faHistory,
+  faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dayjs from "dayjs";
+import { DiscussionEmbed } from "disqus-react";
+import { graphql, Link } from "gatsby";
+import { Maybe } from "purify-ts";
+import React from "react";
+import ExternalLink from "../components/elements";
+import { useIcons } from "../components/hooks/useIcons";
+import useToggle from "../components/hooks/useToggle";
+import Layout from "../components/layout";
+import Article from "../components/post/content";
+import PostHeader from "../components/post/header";
+import SEO from "../components/seo";
+import Tag from "../components/tag";
+import { Page } from "../types";
+import { getPreviousPage, isIndex } from "../utils/helpers";
 
 const ShowComments = () => (
   <span>
@@ -84,30 +82,13 @@ const Post = ({ data, location, pageContext }: Page) => {
         url={postUrl}
         datePublished={date || dayjs().format("YYYY-MM-DD")}
       />
-      <header className="post-header">
-        <h1 className="post-title">{title}</h1>
-
-        {excerpt && (
-          <section className="post-excerpt">
-            <p>{excerpt}</p>
-          </section>
-        )}
-
-        <section className="post-meta">
-          <p>
-            <span>{author} / </span>
-            <span>{datePublished} / </span>
-            <span>{formatReadingTime(post.timeToRead)} / </span>
-            <span>
-              <FontAwesomeIcon
-                icon={faComment}
-                style={{ paddingRight: "5px" }}
-              />
-              <CommentCount shortname={disqus} config={disqusConfig} />
-            </span>
-          </p>
-        </section>
-      </header>
+      <PostHeader
+        author={author}
+        datePublished={datePublished}
+        excerpt={excerpt}
+        timeToRead={post.timeToRead}
+        title={title}
+      />
 
       <Article content={post.html} />
 

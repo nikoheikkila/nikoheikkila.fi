@@ -21,6 +21,6 @@
       "components/*": ["components/*"]
     }
   },
-  "include": ["./src/**/*"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["./content/**/*"]
 }

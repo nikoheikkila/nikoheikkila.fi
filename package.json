@@ -87,7 +87,7 @@
     "lint:lang": "alex -q content",
     "start": "yarn dev",
     "serve": "gatsby serve -p 8000",
-    "test": "yarn lint && yarn test:unit && yarn test:e2e && yarn test:a11y",
+    "test": "yarn format && yarn test:unit && yarn test:e2e && yarn test:a11y",
     "test:unit": "ava",
     "test:e2e": "ava --config e2e.config.js",
     "test:a11y": "pa11y-ci",

@@ -1,3 +1,4 @@
+const path = require("path");
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -193,7 +194,14 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, "src/styles")],
+        },
+      },
+    },
     `gatsby-plugin-sitemap`,
   ],
 };

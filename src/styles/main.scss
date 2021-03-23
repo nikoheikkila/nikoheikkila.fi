@@ -131,21 +131,6 @@ article {
   margin-bottom: 60px;
 }
 
-.post-header {
-  @include headingFont();
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.post-excerpt {
-  font-size: 1.4em;
-}
-
-.post-meta {
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
-
 .post-attachments {
   list-style: none;
 

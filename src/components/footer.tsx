@@ -4,6 +4,8 @@ import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExternalLink from "./elements";
 import { getFooterLinks } from "../graphql/footer";
+import { useIcons } from "./hooks/useIcons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
 interface SocialLink {
   name: IconName;
@@ -16,6 +18,8 @@ const Footer: React.FunctionComponent = () => {
       siteMetadata: { social, rss },
     },
   } = getFooterLinks();
+
+  useIcons([fab]);
 
   return (
     <footer>

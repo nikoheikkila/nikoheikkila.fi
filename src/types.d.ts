@@ -1,11 +1,6 @@
 import { ReactNode } from "react";
 import { FluidObject, GatsbyImageProps } from "gatsby-plugin-image";
 
-declare module "*.png" {
-  var _: string;
-  export default _;
-}
-
 export interface RouteLocation {
   pathname: string;
   state?: {

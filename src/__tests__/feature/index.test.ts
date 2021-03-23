@@ -51,11 +51,7 @@ test("single blog post renders correctly", withBrowser, async (t, page) => {
     page.click(".post-title:first-child > a"),
   ]);
   t.regex(page.url(), /\/blog\//);
-  t.not(await page.$(".post-title"), null);
-  t.not(await page.$(".post-excerpt"), null);
-  t.not(await page.$(".post-meta"), null);
-  t.not(await page.$(".post-footer"), null);
-  t.not(await page.$(".post-attachments"), null);
+  t.not(await page.waitForSelector('[data-testid="post-header"]'), null);
 
   await Promise.all([page.waitForNavigation(), page.click('a[rel="back"]')]);
   t.is(page.url(), `${baseURL}/`);
