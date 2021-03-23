@@ -149,9 +149,12 @@ article {
 .post-attachments {
   list-style: none;
 
-  li {
-    display: inline;
-    padding: 0 5px;
+  svg {
+    margin-right: 5px;
+  }
+
+  a {
+    padding-right: 1.375rem;
   }
 }
 

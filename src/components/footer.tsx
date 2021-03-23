@@ -1,6 +1,5 @@
 import React from "react";
-import { library, IconName } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { IconName } from "@fortawesome/fontawesome-svg-core";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExternalLink from "./elements";
@@ -10,8 +9,6 @@ interface SocialLink {
   name: IconName;
   url: string;
 }
-
-library.add(fab, faRss);
 
 const Footer: React.FunctionComponent = () => {
   const {

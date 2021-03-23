@@ -9,9 +9,37 @@ import SEO from "../components/seo";
 import Tag from "../components/tag";
 import Article from "../components/post/content";
 import ExternalLink from "../components/elements";
+import useToggle from "../components/hooks/useToggle";
+import { useIcons } from "../components/hooks/useIcons";
 
 import { formatReadingTime, isIndex, getPreviousPage } from "../utils/helpers";
 import { Page } from "../types";
+
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faUndo,
+  faEdit,
+  faHistory,
+  faComment,
+  faCommentSlash,
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const ShowComments = () => (
+  <span>
+    <FontAwesomeIcon icon={faComment} />
+    Show Comments
+  </span>
+);
+
+const HideComments = () => (
+  <span>
+    <FontAwesomeIcon icon={faCommentSlash} />
+    Hide Comments
+  </span>
+);
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -41,6 +69,9 @@ const Post = ({ data, location, pageContext }: Page) => {
     title,
   };
 
+  useIcons([fab]);
+  const [comments, toggleComments] = useToggle(false);
+
   return (
     <Layout location={location} title={siteTitle} cover={cover}>
       <SEO
@@ -64,11 +95,15 @@ const Post = ({ data, location, pageContext }: Page) => {
 
         <section className="post-meta">
           <p>
-            <span>{author}</span> {" / "}
-            <span>{datePublished}</span> {" / "}
-            <span>{formatReadingTime(post.timeToRead)}</span> {" / "}
+            <span>{author} / </span>
+            <span>{datePublished} / </span>
+            <span>{formatReadingTime(post.timeToRead)} / </span>
             <span>
-              💬 <CommentCount shortname={disqus} config={disqusConfig} />
+              <FontAwesomeIcon
+                icon={faComment}
+                style={{ paddingRight: "5px" }}
+              />
+              <CommentCount shortname={disqus} config={disqusConfig} />
             </span>
           </p>
         </section>
@@ -82,35 +117,62 @@ const Post = ({ data, location, pageContext }: Page) => {
             <Tag key={c} title={c} />
           ))}
         </p>
-        {isIndex(location) || (
-          <Link rel="back" to={getPreviousPage(location)}>
-            ↩ Back to posts
-          </Link>
-        )}
       </section>
 
       <section className="post-attachments">
         <p>
-          <ExternalLink to={editUrl}>Edit Page </ExternalLink>
-          <ExternalLink to={historyUrl}>View History </ExternalLink>
+          {isIndex(location) || (
+            <Link rel="back" to={getPreviousPage(location)}>
+              <FontAwesomeIcon icon={faUndo} /> Back to posts
+            </Link>
+          )}
+          <ExternalLink to={editUrl}>
+            <FontAwesomeIcon icon={faEdit} />
+            Edit Page
+          </ExternalLink>
+          <ExternalLink to={historyUrl}>
+            <FontAwesomeIcon icon={faHistory} />
+            View History
+          </ExternalLink>
+          <a
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              toggleComments();
+            }}
+          >
+            {comments ? <HideComments /> : <ShowComments />}
+          </a>
         </p>
       </section>
 
-      <DiscussionEmbed shortname={disqus} config={disqusConfig} />
+      <section className="post-comments">
+        {comments && (
+          <DiscussionEmbed shortname={disqus} config={disqusConfig} />
+        )}
+      </section>
 
       <section className="post-navigation">
         <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  style={{ paddingRight: "5px" }}
+                />
+                {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+                {next.frontmatter.title}
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  style={{ paddingLeft: "5px" }}
+                />
               </Link>
             )}
           </li>

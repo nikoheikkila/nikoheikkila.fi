@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { CommentCount } from "disqus-react";
 import dayjs from "dayjs";
 import Layout from "../components/layout";
 import Bio from "../components/bio";
@@ -16,7 +15,7 @@ import banner from "../assets/banner.png";
 
 const Index = ({ data, location, pageContext }: Page) => {
   const { currentPage, numberOfPages } = pageContext;
-  const { title: siteTitle, siteUrl, disqus } = data.site.siteMetadata;
+  const { title: siteTitle } = data.site.siteMetadata;
   const posts: MarkdownRemark = data.allMarkdownRemark;
 
   const isFirstPage = currentPage === 1;
@@ -49,11 +48,6 @@ const Index = ({ data, location, pageContext }: Page) => {
       {posts.edges.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
         const date = dayjs(node.frontmatter.date).format("MMMM D, YYYY");
-        const disqusConfig = {
-          url: siteUrl + node.fields.slug,
-          identifier: node.fields.slug,
-          title,
-        };
 
         return (
           <div key={node.fields.slug} className="post-content">
@@ -71,11 +65,8 @@ const Index = ({ data, location, pageContext }: Page) => {
               ))}
             </p>
             <p className="post-meta">
-              <span>{date}</span> {" / "}
-              <span>{formatReadingTime(node.timeToRead)}</span> {" / "}
-              <span>
-                💬 <CommentCount shortname={disqus} config={disqusConfig} />
-              </span>
+              <span>{date} </span>
+              <span>{formatReadingTime(node.timeToRead)}</span>
             </p>
             <Article
               className="post-spoiler"
