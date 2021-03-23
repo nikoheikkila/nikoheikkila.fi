@@ -21,7 +21,28 @@ const Post = ({ data, location, pageContext }: Page) => {
     },
   } = data;
 
-  const { previous, next } = pageContext;
+  const previous = {
+    slug: Maybe.fromNullable(pageContext.previous)
+      .chainNullable((_) => _.fields)
+      .map((_) => _.slug)
+      .orDefault(""),
+    title: Maybe.fromNullable(pageContext.previous)
+      .chainNullable((_) => _.frontmatter)
+      .map((_) => _.title)
+      .orDefault("Previous"),
+  };
+
+  const next = {
+    slug: Maybe.fromNullable(pageContext.next)
+      .chainNullable((_) => _.fields)
+      .map((_) => _.slug)
+      .orDefault(""),
+    title: Maybe.fromNullable(pageContext.next)
+      .chainNullable((_) => _.frontmatter)
+      .map((_) => _.title)
+      .orDefault("Next"),
+  };
+
   const { author, date, lang, title, type, excerpt } = post.frontmatter;
   const cover = Maybe.fromNullable(post.frontmatter.cover)
     .chainNullable((x) => x.childImageSharp.gatsbyImageData)
@@ -69,28 +90,7 @@ const Post = ({ data, location, pageContext }: Page) => {
         }}
       />
 
-      <PostNavigation
-        previous={{
-          slug: Maybe.fromNullable(previous)
-            .chainNullable((_) => _.fields)
-            .map((_) => _.slug)
-            .orDefault(""),
-          title: Maybe.fromNullable(previous)
-            .chainNullable((_) => _.frontmatter)
-            .map((_) => _.title)
-            .orDefault("Previous"),
-        }}
-        next={{
-          slug: Maybe.fromNullable(next)
-            .chainNullable((_) => _.fields)
-            .map((_) => _.slug)
-            .orDefault(""),
-          title: Maybe.fromNullable(next)
-            .chainNullable((_) => _.frontmatter)
-            .map((_) => _.title)
-            .orDefault("Next"),
-        }}
-      />
+      <PostNavigation previous={previous} next={next} />
     </Layout>
   );
 };
