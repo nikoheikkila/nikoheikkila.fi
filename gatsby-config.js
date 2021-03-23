@@ -39,7 +39,7 @@ module.exports = {
     rss: `/rss.xml`,
   },
   flags: {
-    FAST_DEV: process.env.FAST_DEV === "1",
+    FAST_DEV: process.env.FAST_DEV == "1",
   },
   plugins: [
     `gatsby-plugin-image`,
