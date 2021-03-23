@@ -1,9 +1,7 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostFooter from "../components/post/footer";
 import dayjs from "dayjs";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { Maybe } from "purify-ts";
 import React from "react";
 import { useIcons } from "../components/hooks/useIcons";
@@ -13,6 +11,7 @@ import PostHeader from "../components/post/header";
 import SEO from "../components/seo";
 import { Page } from "../types";
 import PostAttachments from "../components/post/attachments";
+import PostNavigation from "../components/post/navigation";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -70,32 +69,28 @@ const Post = ({ data, location, pageContext }: Page) => {
         }}
       />
 
-      <section className="post-navigation">
-        <ul>
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                <FontAwesomeIcon
-                  icon={faArrowLeft}
-                  style={{ paddingRight: "5px" }}
-                />
-                {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title}
-                <FontAwesomeIcon
-                  icon={faArrowRight}
-                  style={{ paddingLeft: "5px" }}
-                />
-              </Link>
-            )}
-          </li>
-        </ul>
-      </section>
+      <PostNavigation
+        previous={{
+          slug: Maybe.fromNullable(previous)
+            .chainNullable((_) => _.fields)
+            .map((_) => _.slug)
+            .orDefault(""),
+          title: Maybe.fromNullable(previous)
+            .chainNullable((_) => _.frontmatter)
+            .map((_) => _.title)
+            .orDefault("Previous"),
+        }}
+        next={{
+          slug: Maybe.fromNullable(next)
+            .chainNullable((_) => _.fields)
+            .map((_) => _.slug)
+            .orDefault(""),
+          title: Maybe.fromNullable(next)
+            .chainNullable((_) => _.frontmatter)
+            .map((_) => _.title)
+            .orDefault("Next"),
+        }}
+      />
     </Layout>
   );
 };
