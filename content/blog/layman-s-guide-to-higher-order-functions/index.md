@@ -17,7 +17,9 @@ The single most important topic in functional programming is to understand what 
 
 In mathematics, you may have stumbled upon the formal definition of a function.
 
-$$f: A \to B$$
+```plain
+f: A -> B
+```
 
 This is essentially the same as written above. We define a function `f` accepting a value of `A` and returning a value of `B`. Note that `A` and `B` could be of the same type, but for the sake of this example, we keep them separate.
 

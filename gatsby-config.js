@@ -67,12 +67,6 @@ module.exports = {
               icon: false,
             },
           },
-          {
-            resolve: `gatsby-remark-katex`,
-            options: {
-              strict: `ignore`,
-            },
-          },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
