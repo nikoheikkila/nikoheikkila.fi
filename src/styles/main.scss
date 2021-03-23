@@ -64,10 +64,6 @@ a {
   text-decoration: none;
 }
 
-.site-title {
-  margin: 15px 0;
-}
-
 #content {
   overflow: auto;
   margin: 0 auto;
@@ -138,26 +134,6 @@ article {
 
   img {
     border-radius: 100%;
-  }
-}
-
-.bio {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  margin: 25px 0 auto 25px;
-
-  .bio-text {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  @include for-phone-only {
-    .bio-image {
-      margin: 0 auto;
-    }
-
-    grid-template-columns: 1fr;
-    margin: 25px 0 0 0;
   }
 }
 

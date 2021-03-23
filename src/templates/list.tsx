@@ -2,15 +2,12 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import dayjs from "dayjs";
 import Layout from "../components/layout";
-import Bio from "../components/bio";
+import BlogHeader from "../components/blog/header";
 import SEO from "../components/seo";
 import Tag from "../components/tag";
 import Article from "../components/post/content";
 import { formatReadingTime } from "../utils/helpers";
 import { Page, MarkdownRemark } from "../types";
-import ExternalLink from "../components/elements";
-
-// @ts-ignore
 import banner from "../assets/banner.png";
 
 const Index = ({ data, location, pageContext }: Page) => {
@@ -27,16 +24,7 @@ const Index = ({ data, location, pageContext }: Page) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio>
-        <h1 className="site-title">{siteTitle}</h1>
-        <p>
-          A blog powered by coffee,{" "}
-          <ExternalLink to="https://code.visualstudio.com">
-            VS Code
-          </ExternalLink>
-          , and <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
-        </p>
-      </Bio>
+      <BlogHeader title={siteTitle} />
       <SEO
         title="All Posts"
         image={banner}
