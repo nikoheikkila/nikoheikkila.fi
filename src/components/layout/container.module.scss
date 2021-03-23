@@ -1,0 +1,29 @@
+@import "_variables";
+@import "menu";
+
+.container {
+  width: $contentWidth;
+  overflow: auto;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include for-phone-only() {
+    width: 90vw;
+  }
+
+  @include for-tablet-portrait-up() {
+    width: 80vw;
+  }
+
+  @include for-tablet-landscape-up() {
+    width: 65vw;
+  }
+
+  @include for-desktop-up() {
+    width: 50vw;
+  }
+
+  @include for-big-desktop-up() {
+    width: 35vw;
+  }
+}

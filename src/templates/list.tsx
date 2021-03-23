@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
-import Layout from "../components/layout";
+import Layout from "../components/layout/layout";
 import BlogHeader from "../components/blog/header";
 import SEO from "../components/seo";
 import { Page, MarkdownRemark } from "../types";
@@ -16,7 +16,7 @@ const Index = ({ data, location, pageContext }: Page) => {
   const datePublished = dayjs().format("YYYY-MM-DD");
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <BlogHeader title={siteTitle} />
       <SEO
         title="All Posts"

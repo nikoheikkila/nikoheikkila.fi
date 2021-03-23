@@ -1,13 +1,13 @@
 import { Link } from "gatsby";
-import { getStaticPages } from "../graphql/pages";
+import { getStaticPages } from "../../graphql/pages";
 import React, { FunctionComponent, useState } from "react";
 import { stack as BurgerMenu } from "react-burger-menu";
 import { ContentLink } from "types";
-import ExternalLink from "./elements";
+import ExternalLink from "../elements";
+
+import "../../styles/menu.scss";
 
 interface MenuProps {
-  readonly pageWrapId: string;
-  readonly outerContainerId: string;
   readonly className?: string;
 }
 
@@ -30,11 +30,7 @@ const SidebarLink: FunctionComponent<ContentLink> = ({ slug, title }) => {
   return <ExternalLink to={slug}>{title}</ExternalLink>;
 };
 
-const Menu: FunctionComponent<MenuProps> = ({
-  pageWrapId,
-  outerContainerId,
-  className,
-}) => {
+const Menu: FunctionComponent<MenuProps> = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const staticPages = getStaticPages();
@@ -44,9 +40,6 @@ const Menu: FunctionComponent<MenuProps> = ({
 
   return (
     <BurgerMenu
-      className={className || "site-menu"}
-      pageWrapId={pageWrapId}
-      outerContainerId={outerContainerId}
       isOpen={menuOpen}
       onOpen={() => setMenuOpen(true)}
       onClose={() => setMenuOpen(false)}

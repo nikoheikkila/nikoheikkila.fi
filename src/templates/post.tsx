@@ -5,8 +5,8 @@ import { graphql } from "gatsby";
 import { Maybe } from "purify-ts";
 import React from "react";
 import { useIcons } from "../components/hooks/useIcons";
-import Layout from "../components/layout";
-import Article from "../components/post/content";
+import Layout from "../components/layout/layout";
+import Content from "../components/post/content";
 import PostHeader from "../components/post/header";
 import SEO from "../components/seo";
 import { Page } from "../types";
@@ -60,7 +60,7 @@ const Post = ({ data, location, pageContext }: Page) => {
   useIcons([fab]);
 
   return (
-    <Layout location={location} title={siteTitle} cover={cover}>
+    <Layout title={siteTitle} cover={cover}>
       <SEO
         description={excerpt}
         lang={lang}
@@ -78,7 +78,7 @@ const Post = ({ data, location, pageContext }: Page) => {
         timeToRead={post.timeToRead}
         title={title}
       />
-      <Article content={post.html} />
+      <Content content={post.html} />
       <PostFooter categories={categories} />
       <PostAttachments
         location={location}

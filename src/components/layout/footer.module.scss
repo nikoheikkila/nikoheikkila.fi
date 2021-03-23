@@ -1,0 +1,19 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  padding-bottom: 30px;
+
+  a {
+    font-weight: 700;
+    text-transform: lowercase;
+    margin-right: 15px;
+  }
+
+  svg {
+    margin-right: 7px;
+  }
+}
+
+.feed {
+  float: right;
+}

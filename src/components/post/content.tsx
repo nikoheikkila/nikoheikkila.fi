@@ -1,17 +1,17 @@
 import React from "react";
+import * as styles from "./content.module.scss";
 
 interface Props {
   content: string;
-  className?: string;
 }
 
-const Article = ({ content, className }: Props) => (
+const Content = ({ content }: Props) => (
   <article
-    className={className}
+    className={styles.content}
     dangerouslySetInnerHTML={{
       __html: content,
     }}
   />
 );
 
-export default Article;
+export default Content;

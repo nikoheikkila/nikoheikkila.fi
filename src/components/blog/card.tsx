@@ -1,4 +1,4 @@
-import Article from "../../components/post/content";
+import Content from "../../components/post/content";
 import Tag from "../../components/tag";
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
@@ -39,7 +39,7 @@ const ArticleCard: FunctionComponent<CardProps> = ({
       <span>{date} </span>
       <span>{formatReadingTime(timeToRead)}</span>
     </p>
-    <Article content={excerpt} />
+    <Content content={excerpt} />
   </section>
 );
 

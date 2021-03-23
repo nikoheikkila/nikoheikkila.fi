@@ -1,25 +1,10 @@
-@import "variables";
-@import "fonts";
-@import "syntax";
-@import "menu";
-@import "gatsby";
-@import "~katex/dist/katex.min.css";
-
-@mixin hr($color, $width) {
-  hr {
-    border-top: solid $width $color;
-    border-bottom: none;
-    opacity: 1;
-    margin: 45px 0;
-  }
-}
-
-html {
-  @include bodyFont();
-  overflow-x: hidden;
-}
+@import "_variables";
+@import "_fonts";
+@import "_syntax";
+@import "_gatsby";
 
 body {
+  @include bodyFont();
   margin: 0;
   font-kerning: normal;
   word-wrap: break-word;
@@ -28,10 +13,6 @@ body {
 
   background-color: $darkBg;
   color: $darkFg;
-}
-
-a {
-  color: $blue;
 }
 
 h1,
@@ -60,115 +41,7 @@ h4 {
 }
 
 a {
+  color: $blue;
   font-weight: 400;
   text-decoration: none;
-}
-
-#content {
-  overflow: auto;
-  margin: 0 auto;
-  padding: 0 20px;
-
-  @include for-phone-only() {
-    width: 90vw;
-  }
-
-  @include for-tablet-portrait-up() {
-    width: 80vw;
-  }
-
-  @include for-tablet-landscape-up() {
-    width: 65vw;
-  }
-
-  @include for-desktop-up() {
-    width: 50vw;
-  }
-
-  @include for-big-desktop-up() {
-    width: 35vw;
-  }
-}
-
-article {
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 30px auto;
-  }
-
-  ol,
-  ul {
-    li {
-      padding: 10px 0;
-    }
-  }
-
-  blockquote {
-    background-color: lighten($color: $darkBg, $amount: 10);
-    font-style: italic;
-    margin: 1.5em 0;
-    padding: 2em 25px;
-    quotes: "\201C""\201D""\2018""\2019";
-
-    p {
-      display: inline;
-    }
-  }
-
-  .katex {
-    display: table;
-    margin: 0 auto;
-  }
-}
-
-.profile {
-  width: 128px;
-  height: 128px;
-  margin: 0 auto 20px auto;
-
-  img {
-    border-radius: 100%;
-  }
-}
-
-.language-info {
-  background: #ffffcb;
-  padding: 0 1.5rem;
-  border: dashed 2px #aaaaaa;
-
-  p {
-    color: #444444;
-    font-style: italic;
-  }
-}
-
-footer {
-  bottom: 0;
-
-  div {
-    display: inline;
-  }
-
-  a {
-    font-weight: 700;
-    text-transform: lowercase;
-    margin-right: 15px;
-  }
-
-  svg {
-    margin-right: 7px;
-  }
-
-  .feed {
-    float: right;
-  }
-}
-
-video {
-  display: flex;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
 }

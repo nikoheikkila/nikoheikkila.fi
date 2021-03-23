@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Layout from "../components/layout";
+import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
 import { Page } from "types";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ const NotFound: React.FunctionComponent<Page> = ({ location }) => {
   const datePublished = dayjs().format("YYYY-MM-DD");
 
   return (
-    <Layout location={location} title={title}>
+    <Layout title={title}>
       <SEO
         title={title}
         type="page"

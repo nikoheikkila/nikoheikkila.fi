@@ -2,10 +2,11 @@ import React from "react";
 import { IconName } from "@fortawesome/fontawesome-svg-core";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExternalLink from "./elements";
-import { getFooterLinks } from "../graphql/footer";
-import { useIcons } from "./hooks/useIcons";
+import ExternalLink from "../elements";
+import { getFooterLinks } from "../../graphql/footer";
+import { useIcons } from "../hooks/useIcons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import * as styles from "./footer.module.scss";
 
 interface SocialLink {
   name: IconName;
@@ -22,17 +23,17 @@ const Footer: React.FunctionComponent = () => {
   useIcons([fab]);
 
   return (
-    <footer>
-      <div className="feed">
+    <footer className={styles.footer}>
+      <span className={styles.feed}>
         <FontAwesomeIcon icon={faRss} />
         <ExternalLink to={rss}>RSS</ExternalLink>
-      </div>
+      </span>
 
       {social.map(({ name, url }: SocialLink) => (
-        <div key={name}>
+        <span key={name}>
           <FontAwesomeIcon icon={["fab", name]} />
           <ExternalLink to={url}>{name}</ExternalLink>
-        </div>
+        </span>
       ))}
     </footer>
   );

@@ -34,3 +34,12 @@ $contentWidth: 50vw;
     @content;
   }
 }
+
+@mixin hr($color, $width) {
+  hr {
+    border-top: solid $width $color;
+    border-bottom: none;
+    opacity: 1;
+    margin: 45px 0;
+  }
+}
