@@ -9,6 +9,7 @@ import {
   faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PostFooter from "../components/post/footer";
 import dayjs from "dayjs";
 import { DiscussionEmbed } from "disqus-react";
 import { graphql, Link } from "gatsby";
@@ -21,7 +22,6 @@ import Layout from "../components/layout";
 import Article from "../components/post/content";
 import PostHeader from "../components/post/header";
 import SEO from "../components/seo";
-import Tag from "../components/tag";
 import { Page } from "../types";
 import { getPreviousPage, isIndex } from "../utils/helpers";
 
@@ -92,13 +92,7 @@ const Post = ({ data, location, pageContext }: Page) => {
 
       <Article content={post.html} />
 
-      <section className="post-footer">
-        <p>
-          {categories.map((c: string) => (
-            <Tag key={c} title={c} />
-          ))}
-        </p>
-      </section>
+      <PostFooter categories={categories} />
 
       <section className="post-attachments">
         <p>

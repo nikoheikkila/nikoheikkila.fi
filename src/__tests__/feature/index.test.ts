@@ -11,6 +11,8 @@ const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
  */
 test("index page contains an index of posts", withBrowser, async (t, page) => {
   await page.goto(baseURL);
+  await page.waitForSelector(".post-title");
+
   const posts = await page.$$(".post-title");
 
   t.is(posts.length, 8);
