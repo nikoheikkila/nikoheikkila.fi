@@ -1,43 +1,18 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import {
-  faArrowLeft,
-  faArrowRight,
-  faComment,
-  faCommentSlash,
-  faEdit,
-  faHistory,
-  faUndo,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostFooter from "../components/post/footer";
 import dayjs from "dayjs";
-import { DiscussionEmbed } from "disqus-react";
 import { graphql, Link } from "gatsby";
 import { Maybe } from "purify-ts";
 import React from "react";
-import ExternalLink from "../components/elements";
 import { useIcons } from "../components/hooks/useIcons";
-import useToggle from "../components/hooks/useToggle";
 import Layout from "../components/layout";
 import Article from "../components/post/content";
 import PostHeader from "../components/post/header";
 import SEO from "../components/seo";
 import { Page } from "../types";
-import { getPreviousPage, isIndex } from "../utils/helpers";
-
-const ShowComments = () => (
-  <span>
-    <FontAwesomeIcon icon={faComment} />
-    Show Comments
-  </span>
-);
-
-const HideComments = () => (
-  <span>
-    <FontAwesomeIcon icon={faCommentSlash} />
-    Hide Comments
-  </span>
-);
+import PostAttachments from "../components/post/attachments";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -61,14 +36,7 @@ const Post = ({ data, location, pageContext }: Page) => {
   const editUrl = `${repository}/edit/main/content/${slug}/index.md`;
   const historyUrl = `${repository}/commits/main/content/${slug}/index.md`;
 
-  const disqusConfig = {
-    url: postUrl,
-    identifier: slug,
-    title,
-  };
-
   useIcons([fab]);
-  const [comments, toggleComments] = useToggle(false);
 
   return (
     <Layout location={location} title={siteTitle} cover={cover}>
@@ -89,43 +57,18 @@ const Post = ({ data, location, pageContext }: Page) => {
         timeToRead={post.timeToRead}
         title={title}
       />
-
       <Article content={post.html} />
-
       <PostFooter categories={categories} />
-
-      <section className="post-attachments">
-        <p>
-          {isIndex(location) || (
-            <Link rel="back" to={getPreviousPage(location)}>
-              <FontAwesomeIcon icon={faUndo} /> Back to posts
-            </Link>
-          )}
-          <ExternalLink to={editUrl}>
-            <FontAwesomeIcon icon={faEdit} />
-            Edit Page
-          </ExternalLink>
-          <ExternalLink to={historyUrl}>
-            <FontAwesomeIcon icon={faHistory} />
-            View History
-          </ExternalLink>
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              toggleComments();
-            }}
-          >
-            {comments ? <HideComments /> : <ShowComments />}
-          </a>
-        </p>
-      </section>
-
-      <section className="post-comments">
-        {comments && (
-          <DiscussionEmbed shortname={disqus} config={disqusConfig} />
-        )}
-      </section>
+      <PostAttachments
+        location={location}
+        urls={{ edit: editUrl, history: historyUrl }}
+        disqusId={disqus}
+        disqusConfiguration={{
+          url: postUrl,
+          identifier: slug,
+          title,
+        }}
+      />
 
       <section className="post-navigation">
         <ul>
