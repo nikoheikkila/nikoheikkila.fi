@@ -4,10 +4,8 @@ title: Static Site Rendering Conquer All
 author: Niko Heikkilä
 type: post
 date: 2019-04-19
-cover: cover.png
-excerpt: >
-  Goodbye WordPress, it has been quite a journey.
-
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/static-site-rendering-conquer-all.png
+excerpt: Goodbye WordPress, it has been quite a journey.
 categories:
   - WordPress
   - Gatsby

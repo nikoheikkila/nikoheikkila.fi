@@ -6,7 +6,7 @@ excerpt: How organizing your day brings a sense of clarity and calm into this ma
 type: post
 categories: [productivity, tools, opensource, golang]
 date: 2021-03-20
-cover: cover.jpg
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/blocking-time-for-tasks-with-toggl.jpg
 ---
 
 For people doing mainly project work, planning daily tasks is a constant struggle, which can cause severe issues with productivity and mental well-being.

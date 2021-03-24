@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-04-21
-cover: cover.jpg
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/layman-s-guide-to-higher-order-functions.jpg
 title: Layman's Guide to Higher-Order Functions
 type: post
 excerpt: An introduction to higher-order functions I wish I've had in school.
@@ -61,7 +61,7 @@ Assume we are given a user password for validation. Our function should return `
 
 What an easy task, you might think. Write a function with a couple of conditional blocks and after having run through all of them return the intended result. Let's grab a keyboard and start defining our function.
 
-![Pseudo-code for the Validator](validator.png)
+![Pseudo-code for the Validator](https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/validator.png)
 
 This is perfectly fine for a lax validation. However, what if requirements keep on coming, and you need to add more and more conditionals into your function? Your function could quickly grow to a convoluted, unmaintainable, and unreadable mess.
 

@@ -4,10 +4,8 @@ title: Serving Gatsby Site with Docker Multi-Stage Build
 author: Niko Heikkilä
 type: post
 date: 2019-04-23
-cover: cover.png
-excerpt: >
-  In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
-
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/docker-gatsby-multi-stage-build.png
+excerpt: In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
 categories:
   - Docker
   - Gatsby

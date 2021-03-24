@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-07-15
-cover: cover.png
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/things-i-don-t-know.png
 title: The Definitive List of Things I Don't Know
 type: post
 excerpt: We have a serious problem and we as professionals are responsible for fixing it by admitting the world that you don't need to know everything.

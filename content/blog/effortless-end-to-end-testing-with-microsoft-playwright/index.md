@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2021-01-07
-cover: e2e.jpg
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/effortless-end-to-end-testing-with-microsoft-playwright.jpg
 title: Effortless End-To-End Testing with Microsoft Playwright
 type: post
 excerpt: How we can improve the developer experience in writing tedious browser-based tests.

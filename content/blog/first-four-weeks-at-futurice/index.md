@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-09-13
-cover: cover.jpg
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/first-four-weeks-at-futurice.jpg
 title: First Four Weeks at Futurice
 type: post
 excerpt: Ruminations of relocating and refactoring oneself for a new career in a new town.
