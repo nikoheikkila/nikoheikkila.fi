@@ -15,13 +15,17 @@ import PostNavigation from "../components/post/navigation";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
-    markdownRemark: post,
+    markdownRemark: {
+      fields: { slug },
+      hero,
+      html,
+      timeToRead,
+      frontmatter: { author, date, lang, title, type, excerpt, categories },
+    },
     site: {
       siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
     },
   } = data;
-
-  const { author, date, lang, title, type, excerpt } = post.frontmatter;
 
   const previous = {
     slug: Maybe.fromNullable(pageContext.previous)
@@ -45,17 +49,18 @@ const Post = ({ data, location, pageContext }: Page) => {
       .orDefault("Next"),
   };
 
-  const cover = Maybe.fromNullable(post.frontmatter.cover)
-    .chainNullable((x) => x.childImageSharp.gatsbyImageData)
-    .extractNullable();
+  const cover = Maybe.fromNullable(hero)
+    .chainNullable((_) => _.childImageSharp)
+    .chainNullable((_) => _.gatsbyImageData)
+    .extract();
 
-  const slug = post.fields.slug.slice(1, post.fields.slug.length - 1);
+  const postSlug = slug.slice(1, slug.length - 1);
   const postUrl = `${siteUrl}/${slug}`;
+  const postCategories = categories || [];
   const datePublished = dayjs(date).format("DD.MM.YYYY");
-  const categories = post.frontmatter.categories || [];
 
-  const editUrl = `${repository}/edit/main/content/${slug}/index.md`;
-  const historyUrl = `${repository}/commits/main/content/${slug}/index.md`;
+  const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
+  const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
 
   useIcons([fab]);
 
@@ -64,7 +69,7 @@ const Post = ({ data, location, pageContext }: Page) => {
       <SEO
         description={excerpt}
         lang={lang}
-        keywords={categories}
+        keywords={postCategories}
         title={title}
         image={cover?.src}
         type={type}
@@ -75,11 +80,11 @@ const Post = ({ data, location, pageContext }: Page) => {
         author={author}
         datePublished={datePublished}
         excerpt={excerpt}
-        timeToRead={post.timeToRead}
+        timeToRead={timeToRead}
         title={title}
       />
-      <Content content={post.html} />
-      <PostFooter categories={categories} />
+      <Content content={html} />
+      <PostFooter categories={postCategories} />
       <PostAttachments
         location={location}
         urls={{ edit: editUrl, history: historyUrl }}
@@ -119,19 +124,19 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       html
       timeToRead
+      hero {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        }
+      }
       frontmatter {
         lang
         title
         type
-        date(formatString: "YYYY-MM-DD")
+        date
         author
         excerpt
         categories
-        cover {
-          childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-          }
-        }
       }
     }
   }

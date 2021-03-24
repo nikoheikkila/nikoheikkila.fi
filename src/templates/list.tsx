@@ -4,15 +4,20 @@ import dayjs from "dayjs";
 import Layout from "../components/layout/layout";
 import BlogHeader from "../components/blog/header";
 import SEO from "../components/seo";
-import { Page, MarkdownRemark } from "../types";
+import { Page } from "../types";
 import banner from "../assets/banner.png";
 import ArticleCard from "../components/blog/card";
 import Pagination from "../components/blog/pagination";
 
 const Index = ({ data, location, pageContext }: Page) => {
+  const {
+    site: {
+      siteMetadata: { title: siteTitle },
+    },
+    allMarkdownRemark: { edges: posts },
+  } = data;
+
   const { currentPage, numberOfPages } = pageContext;
-  const { title: siteTitle } = data.site.siteMetadata;
-  const posts: MarkdownRemark = data.allMarkdownRemark;
   const datePublished = dayjs().format("YYYY-MM-DD");
 
   return (
@@ -26,7 +31,7 @@ const Index = ({ data, location, pageContext }: Page) => {
         datePublished={datePublished}
       />
 
-      {posts.edges.map(({ node }) => {
+      {posts.map(({ node }: any) => {
         const { timeToRead } = node;
         const { slug } = node.fields;
         const { title, categories, excerpt } = node.frontmatter;
@@ -58,8 +63,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        siteUrl
-        disqus
       }
     }
     allMarkdownRemark(
@@ -77,7 +80,7 @@ export const pageQuery = graphql`
           frontmatter {
             type
             excerpt
-            date(formatString: "YYYY-MM-DD")
+            date
             title
             categories
           }

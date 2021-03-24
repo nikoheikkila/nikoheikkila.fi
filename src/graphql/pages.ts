@@ -5,10 +5,7 @@ export const getStaticPages = (): ContentLink[] => {
   const data = useStaticQuery(
     graphql`
       {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___title], order: ASC }
-          filter: { frontmatter: { type: { eq: "page" } } }
-        ) {
+        allMarkdownRemark(filter: { frontmatter: { type: { eq: "page" } } }) {
           edges {
             node {
               fields {
