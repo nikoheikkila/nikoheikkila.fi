@@ -2,20 +2,27 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import ExternalLink from "../elements";
 import * as styles from "./header.module.scss";
+import { Link } from "gatsby";
 
 interface HeaderProps {
   readonly title: string;
+  readonly url?: string;
 }
 
-const BlogHeader: React.FunctionComponent<HeaderProps> = ({ title }) => (
+const BlogHeader: React.FunctionComponent<HeaderProps> = ({
+  title,
+  url = "/",
+}) => (
   <header className={styles.header}>
-    <StaticImage
-      src="../../assets/profile.png"
-      alt={title}
-      width={128}
-      height={128}
-      layout="fixed"
-    />
+    <Link to={url} rel="home">
+      <StaticImage
+        src="../../assets/profile.png"
+        alt={title}
+        width={128}
+        height={128}
+        layout="fixed"
+      />
+    </Link>
     <section>
       <h1 className={styles.title}>{title}</h1>
       <p>
