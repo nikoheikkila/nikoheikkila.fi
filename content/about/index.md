@@ -5,6 +5,7 @@ date: 2020-04-10
 type: page
 title: The Story
 excerpt: ...or how I learned to stop worrying and love the code.
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/story.jpg
 ---
 
 ## Hello! 🖖

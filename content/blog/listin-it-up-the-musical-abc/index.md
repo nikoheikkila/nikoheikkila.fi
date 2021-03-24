@@ -4,7 +4,7 @@ title: "Listin’ It Up: The Musical ABC"
 author: Niko Heikkilä
 type: post
 date: 2016-05-27
-cover: musical_abc.png
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/listin-it-up-the-musical-abc.png
 excerpt: This week I challenged myself to another hopeless, yet interesting, listing project.
 categories:
   - Music

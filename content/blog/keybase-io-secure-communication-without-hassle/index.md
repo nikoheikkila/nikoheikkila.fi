@@ -4,10 +4,8 @@ title: Keybase – Secure Communication without Hassle
 author: Niko Heikkilä
 type: post
 date: 2015-03-22
-cover: keybase.png
-excerpt: >
-  I've been playing with Keybase.io, a message encryption service for a while now.
-
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/keybase-io-secure-communication-without-hassle.png
+excerpt: I've been playing with Keybase.io, a message encryption service for a while now.
 categories:
   - Security
   - Apps
