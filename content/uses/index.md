@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2021-02-13
 title: Uses
-cover: keychron.jpg
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/keychron.jpg
 type: page
 excerpt: These are the tools I use to survive my hectic days.
 categories:

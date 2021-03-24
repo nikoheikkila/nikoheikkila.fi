@@ -1,10 +1,19 @@
 const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+const {
+  createFilePath,
+  createRemoteFileNode,
+} = require(`gatsby-source-filesystem`);
 
 exports.createSchemaCustomization = ({ actions }) => {
-  actions.createTypes(`
+  const { createTypes } = actions;
+
+  createTypes(`
     type SitePage implements Node @dontInfer {
       path: String!
+    }
+
+    type MarkdownRemark implements Node {
+      hero: File @link(from: "hero___NODE")
     }
   `);
 };
@@ -88,15 +97,57 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    });
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode, createNodeField },
+  store,
+  cache,
+  getNode,
+  createNodeId,
+}) => {
+  // skip for non-markdown nodes
+  if (!isMarkdownNode(node.internal.type)) {
+    return;
   }
+
+  const { id, frontmatter } = node;
+  const { hero } = frontmatter;
+
+  if (isRemoteImage(hero)) {
+    try {
+      const fileNode = await createRemoteFileNode({
+        url: hero,
+        parentNodeId: id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      });
+
+      node.hero___NODE = fileNode ? fileNode.id : null;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const value = createFilePath({ node, getNode });
+
+  createNodeField({
+    name: `slug`,
+    node,
+    value,
+  });
 };
+
+/**
+ * @param {string} type
+ * @returns boolean
+ */
+const isMarkdownNode = (type) => type === "MarkdownRemark";
+
+/**
+ * Checks if given url is a valid remote url
+ * @param {string | null} url
+ * @returns boolean
+ */
+const isRemoteImage = (url) => url !== null && /^https?:\/\/+/.test(url);

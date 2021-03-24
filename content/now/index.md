@@ -4,6 +4,7 @@ type: page
 title: What I'm Doing Now?
 author: Niko Heikkilä
 date: 2020-06-21
+cover: https://f001.backblazeb2.com/file/nikoheikkila-fi/keychron.jpg
 categories:
   - Life
   - Lists
