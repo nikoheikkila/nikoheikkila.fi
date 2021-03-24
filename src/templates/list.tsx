@@ -5,7 +5,7 @@ import Layout from "../components/layout/layout";
 import BlogHeader from "../components/blog/header";
 import SEO from "../components/seo";
 import { Page } from "../types";
-import banner from "../assets/banner.png";
+import profile from "../assets/profile.png";
 import ArticleCard from "../components/blog/card";
 import Pagination from "../components/blog/pagination";
 
@@ -25,7 +25,7 @@ const Index = ({ data, location, pageContext }: Page) => {
       <BlogHeader title={siteTitle} />
       <SEO
         title="All Posts"
-        image={banner}
+        image={profile}
         url={location.href}
         type="page"
         datePublished={datePublished}
