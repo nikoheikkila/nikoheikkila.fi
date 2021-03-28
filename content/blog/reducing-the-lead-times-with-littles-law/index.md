@@ -49,7 +49,7 @@ Note that the latter two roles don't often require separate people because devel
 
 There are three actions a company can do to increase its teams throughput.
 
-1. Hire more people, but not too much (consider [a two-pizza team](https://jasoncrawford.org/two-pizza-teams) 🍕🍕 the optimal size – leaving the exact number for you to decide).
+1. Hire more people, but not too much (consider [a two-pizza team](https://jasoncrawford.org/two-pizza-teams) 🍕🍕 the maximum size – leaving the exact number for you to decide).
 2. Make the team more proficient by fostering [Extreme Programming principles](https://en.wikipedia.org/wiki/Extreme_programming#Principles).
 3. Eliminate patterns of waste (see below).
 
