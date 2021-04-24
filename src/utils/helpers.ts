@@ -24,3 +24,10 @@ export const isIndex = ({ pathname }: RouteLocation) =>
 export const getPreviousPage = ({ state }: RouteLocation): string => {
   return state?.previous ?? "/";
 };
+
+export const combinePaths = (...paths: string[]): string => {
+  const pattern = /([^:]\/)\/+/g;
+  const substitute = "/";
+
+  return paths.join("").replace(pattern, substitute);
+};

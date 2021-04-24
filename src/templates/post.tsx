@@ -12,6 +12,7 @@ import SEO from "../components/seo";
 import { Page } from "../types";
 import PostAttachments from "../components/post/attachments";
 import PostNavigation from "../components/post/navigation";
+import { combinePaths } from "../utils/helpers";
 
 const Post = ({ data, location, pageContext }: Page) => {
   const {
@@ -55,11 +56,11 @@ const Post = ({ data, location, pageContext }: Page) => {
   const coverImage = cover.chainNullable((_) => _.gatsbyImageData).extract();
   const coverPath = cover.chainNullable((_) => _.original.src).orDefault("");
 
-  const postSlug = slug.slice(1, slug.length - 1);
-  const postUrl = `${siteUrl}/${slug}`;
+  const postUrl = combinePaths(siteUrl, slug);
   const postCategories = categories || [];
   const datePublished = dayjs(date).format("DD.MM.YYYY");
 
+  const postSlug = slug.slice(1, slug.length - 1);
   const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
   const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
 
