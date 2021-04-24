@@ -4,7 +4,7 @@ author: Niko Heikkilä
 lang: en
 excerpt: Are your features taking ages to deliver? Beat those long lead times by reducing the work in progress and increasing throughput.
 type: post
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/reducing-the-lead-times-with-littles-law.png
+hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/factory.jpg
 categories: [agile, processes, extremeprogramming, continuousdelivery]
 date: 2021-03-28
 ---
@@ -16,6 +16,8 @@ First, let's define the terms.
 **Work in progress** (WIP) is the number of backlog items the team is currently working on. These items are not yielding value for the customer. WIP can be determined by counting those cards in your project board that are not in the *Backlog* column and not in the *Done* column but somewhere in between.
 
 **Throughput** is the measured amount of backlog items a team can complete in a fixed period, which is usually a day.
+
+![Illustration of Little's Law](https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/reducing-the-lead-times-with-littles-law.png)
 
 **Example:**
 
@@ -105,4 +107,8 @@ Our calendars are filled with never-ending meetings and attempts to reach consen
 
 Little's law is one of the most powerful drivers in serious software development efforts because of its simplicity. You don't have to maintain complex models or calculations to observe your delivery performance – a fractional operation does it for you.
 
+---
+
 I gained the majority of these observations in reducing the WIP and eliminating waste during [**The Principal Developer**](https://principal.dev) workshop. Workshops like these provide invaluable tools altering the way you think about processes, teams, and cultures. I argue they offer a more significant return-on-investment in your career than simply learning frameworks and tools like React or Docker.
+
+Photo by **Ant Rozetsky** on [Unsplash](https://unsplash.com/photos/SLIFI67jv5k).
