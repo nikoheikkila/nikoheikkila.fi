@@ -49,10 +49,11 @@ const Post = ({ data, location, pageContext }: Page) => {
       .orDefault("Next"),
   };
 
-  const cover = Maybe.fromNullable(hero)
-    .chainNullable((_) => _.childImageSharp)
-    .chainNullable((_) => _.gatsbyImageData)
-    .extract();
+  const cover = Maybe.fromNullable(hero).chainNullable(
+    (_) => _.childImageSharp
+  );
+  const coverImage = cover.chainNullable((_) => _.gatsbyImageData).extract();
+  const coverPath = cover.chainNullable((_) => _.original.src).orDefault("");
 
   const postSlug = slug.slice(1, slug.length - 1);
   const postUrl = `${siteUrl}/${slug}`;
@@ -65,13 +66,13 @@ const Post = ({ data, location, pageContext }: Page) => {
   useIcons([fab]);
 
   return (
-    <Layout title={siteTitle} cover={cover}>
+    <Layout title={siteTitle} cover={coverImage}>
       <SEO
         description={excerpt}
         lang={lang}
         keywords={postCategories}
         title={title}
-        image={cover?.src}
+        image={coverPath}
         type={type}
         url={postUrl}
         datePublished={date}
@@ -127,6 +128,9 @@ export const pageQuery = graphql`
       hero {
         childImageSharp {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+          original {
+            src
+          }
         }
       }
       frontmatter {
