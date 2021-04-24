@@ -60,12 +60,17 @@ exports.createPages = ({ graphql, actions }) => {
       const previous =
         index === pages.length - 1 ? null : pages[index + 1].node;
       const next = index === 0 ? null : pages[index - 1].node;
+      const { slug } = post.node.fields;
+
+      if (!slug) {
+        return;
+      }
 
       createPage({
-        path: post.node.fields.slug,
+        path: slug,
         component: blogPost,
         context: {
-          slug: post.node.fields.slug,
+          slug: slug,
           previous,
           next,
         },
