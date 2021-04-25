@@ -1,6 +1,9 @@
 const path = require("path");
+const environment = process.env.NODE_ENV;
+const isProduction = environment === "production";
+
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${environment}`,
 });
 
 module.exports = {
@@ -186,7 +189,6 @@ module.exports = {
         allExtensions: true,
       },
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-sass`,
@@ -197,5 +199,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
-  ],
+  ].concat(
+    // Load the PWA service worker only in production to enhance development experience.
+    isProduction ? [`gatsby-plugin-offline`] : []
+  ),
 };
