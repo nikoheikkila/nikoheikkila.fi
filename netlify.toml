@@ -8,7 +8,6 @@
   NODE_ENV = "production"
   GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = "true"
   GATSBY_DISQUS_SHORTNAME = "nikoheikkilafi"
-  GATSBY_GA_TRACKING_CODE = "UA-41155961-1"
 
 [build.processing.css]
   bundle = true

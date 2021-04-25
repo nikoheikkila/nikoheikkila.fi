@@ -67,7 +67,6 @@ jobs:
         run: yarn build
         env:
           GATSBY_DISQUS_SHORTNAME: nikoheikkila
-          GATSBY_GA_TRACKING_CODE: UA-41155961-1
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
       - name: Launch server on background

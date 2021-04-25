@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { OutboundLink } from "gatsby-plugin-google-analytics";
 
 interface Props {
   children: ReactNode;
@@ -7,9 +6,9 @@ interface Props {
 }
 
 const ExternalLink: React.FunctionComponent<Props> = ({ to, children }) => (
-  <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
+  <a href={to} target="_blank" rel="noopener noreferrer">
     {children}
-  </OutboundLink>
+  </a>
 );
 
 export default ExternalLink;

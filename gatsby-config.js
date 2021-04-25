@@ -91,14 +91,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_CODE,
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
