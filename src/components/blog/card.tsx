@@ -9,7 +9,7 @@ interface CardProps {
   readonly title: string;
   readonly slug: string;
   readonly excerpt: string;
-  readonly categories: string[];
+  categories: readonly string[];
   readonly date: string;
   readonly timeToRead: number;
   readonly location: Location;

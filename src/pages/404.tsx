@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "gatsby";
 import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
-import { Page } from "types";
 import dayjs from "dayjs";
 
-const NotFound: React.FunctionComponent<Page> = ({ location }) => {
+interface NotFoundProps {
+  location: Location;
+}
+
+const NotFound: React.FC<NotFoundProps> = ({ location }) => {
   const title = "Page Not Found";
   const datePublished = dayjs().format("YYYY-MM-DD");
 

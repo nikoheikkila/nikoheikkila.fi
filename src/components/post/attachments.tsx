@@ -6,14 +6,13 @@ import {
   faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExternalLink from "../../components/elements";
-import useToggle from "../../components/hooks/useToggle";
+import { DiscussionEmbed } from "disqus-react";
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
+import ExternalLink from "../../components/elements";
+import useToggle from "../../components/hooks/useToggle";
+import { Route } from "../../gatsby";
 import { getPreviousPage, isIndex } from "../../utils/helpers";
-import { DiscussionEmbed } from "disqus-react";
-import { RouteLocation } from "types";
-
 import * as styles from "./attachments.module.scss";
 
 interface DisqusConfig {
@@ -23,7 +22,7 @@ interface DisqusConfig {
 }
 
 interface AttachmentProps {
-  readonly location: RouteLocation;
+  readonly location: Route;
   readonly urls: {
     edit: string;
     history: string;

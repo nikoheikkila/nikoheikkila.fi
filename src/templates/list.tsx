@@ -1,52 +1,63 @@
-import React from "react";
-import { graphql } from "gatsby";
 import dayjs from "dayjs";
-import Layout from "../components/layout/layout";
-import BlogHeader from "../components/blog/header";
-import SEO from "../components/seo";
-import { Page } from "../types";
+import { graphql } from "gatsby";
+import React from "react";
+import { MarkdownRemarkEdge, PageInfo, Query } from "types";
 import profile from "../assets/profile.png";
 import ArticleCard from "../components/blog/card";
+import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
+import Layout from "../components/layout/layout";
+import SEO from "../components/seo";
 
-const Index = ({ data, location, pageContext }: Page) => {
+interface IndexProps {
+  data: Query;
+  location: Location;
+  pageContext: PageInfo & {
+    numberOfPages: number;
+  };
+}
+
+const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
   const {
     site: {
-      siteMetadata: { title: siteTitle },
+      siteMetadata: { title = "" },
     },
-    allMarkdownRemark: { edges: posts },
+    allMarkdownRemark: { edges = [] },
   } = data;
 
   const { currentPage, numberOfPages } = pageContext;
   const datePublished = dayjs().format("YYYY-MM-DD");
 
   return (
-    <Layout title={siteTitle}>
-      <BlogHeader title={siteTitle} />
+    <Layout title={title}>
+      <BlogHeader title={title} />
       <SEO
-        title="All Posts"
+        title={title}
         image={profile}
         url={location.href}
         type="page"
         datePublished={datePublished}
       />
 
-      {posts.map(({ node }: any) => {
-        const { timeToRead } = node;
-        const { slug } = node.fields;
-        const { title, categories, excerpt } = node.frontmatter;
-        const date = dayjs(node.frontmatter.date).format("DD.MM.YYYY");
+      {edges.map((edge: MarkdownRemarkEdge) => {
+        const {
+          node: {
+            timeToRead,
+            fields: { slug },
+            frontmatter: { title: postTitle, categories, date, excerpt },
+          },
+        } = edge;
 
         return (
           <ArticleCard
             key={slug}
             slug={slug}
             location={location}
-            title={title}
-            categories={categories || []}
-            date={date}
+            title={postTitle}
+            categories={categories}
+            date={dayjs(date).format("DD.MM.YYYY")}
             excerpt={excerpt}
-            timeToRead={timeToRead || 0}
+            timeToRead={timeToRead}
           />
         );
       })}

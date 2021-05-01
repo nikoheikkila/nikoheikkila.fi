@@ -12,7 +12,7 @@ interface Props {
   dateModified?: string;
   image?: string;
   lang?: string;
-  keywords?: Array<string>;
+  keywords?: readonly string[];
 }
 
 const SEO: FunctionComponent<Props> = ({
@@ -96,7 +96,7 @@ const SEO: FunctionComponent<Props> = ({
             content: title,
           },
         ].concat(
-          keywords.length > 0
+          keywords && keywords.length > 0
             ? {
                 name: `keywords`,
                 content: keywords.join(`, `),

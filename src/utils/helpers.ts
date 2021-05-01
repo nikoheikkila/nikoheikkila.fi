@@ -1,4 +1,4 @@
-import { RouteLocation } from "../types";
+import { Route } from "../gatsby";
 
 export const formatReadingTime = (minutes: number): string => {
   const maxCups = 5;
@@ -18,10 +18,9 @@ export const formatReadingTime = (minutes: number): string => {
  * Index page is either the home page or any page with path `/n`
  * where `n` is a natural number > 0.
  */
-export const isIndex = ({ pathname }: RouteLocation) =>
-  /^\/[0-9]*$/.test(pathname);
+export const isIndex = ({ pathname }: Route) => /^\/[0-9]*$/.test(pathname);
 
-export const getPreviousPage = ({ state }: RouteLocation): string => {
+export const getPreviousPage = ({ state }: Route): string => {
   return state?.previous ?? "/";
 };
 

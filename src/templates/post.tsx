@@ -1,65 +1,53 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import PostFooter from "../components/post/footer";
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
-import { Maybe } from "purify-ts";
 import React from "react";
+import { MarkdownRemarkEdge, PageInfo, Query } from "types";
 import { useIcons } from "../components/hooks/useIcons";
 import Layout from "../components/layout/layout";
-import Content from "../components/post/content";
-import PostHeader from "../components/post/header";
-import SEO from "../components/seo";
-import { Page } from "../types";
 import PostAttachments from "../components/post/attachments";
+import Content from "../components/post/content";
+import PostFooter from "../components/post/footer";
+import PostHeader from "../components/post/header";
 import PostNavigation from "../components/post/navigation";
+import SEO from "../components/seo";
 import { combinePaths } from "../utils/helpers";
 
-const Post = ({ data, location, pageContext }: Page) => {
+interface PostProps {
+  data: Query;
+  location: Location;
+  pageContext: PageInfo & MarkdownRemarkEdge;
+}
+
+const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
   const {
     markdownRemark: {
       fields: { slug },
       hero,
       html,
       timeToRead,
-      frontmatter: { author, date, lang, title, type, excerpt, categories },
+      frontmatter: {
+        author,
+        date,
+        lang,
+        title: postTitle,
+        type,
+        excerpt,
+        categories,
+      },
     },
     site: {
-      siteMetadata: { siteUrl, repository, title: siteTitle, disqus },
+      siteMetadata: { siteUrl, repository, title, disqus },
     },
   } = data;
 
-  const previous = {
-    slug: Maybe.fromNullable(pageContext.previous)
-      .chainNullable((_) => _.fields)
-      .map((_) => _.slug)
-      .orDefault(""),
-    title: Maybe.fromNullable(pageContext.previous)
-      .chainNullable((_) => _.frontmatter)
-      .map((_) => _.title)
-      .orDefault("Previous"),
-  };
-
-  const next = {
-    slug: Maybe.fromNullable(pageContext.next)
-      .chainNullable((_) => _.fields)
-      .map((_) => _.slug)
-      .orDefault(""),
-    title: Maybe.fromNullable(pageContext.next)
-      .chainNullable((_) => _.frontmatter)
-      .map((_) => _.title)
-      .orDefault("Next"),
-  };
-
-  const cover = Maybe.fromNullable(hero).chainNullable(
-    (_) => _.childImageSharp
-  );
-  const coverImage = cover.chainNullable((_) => _.gatsbyImageData).extract();
-  const coverPath = cover.chainNullable((_) => _.original.src).orDefault("");
-
+  const previous = pageContext.previous;
+  const next = pageContext.next;
+  const cover = hero.childImageSharp;
+  const coverImage = cover.gatsbyImageData;
+  const coverPath = cover.original.src;
   const postUrl = combinePaths(siteUrl, slug);
-  const postCategories = categories || [];
   const datePublished = dayjs(date).format("DD.MM.YYYY");
-
   const postSlug = slug.slice(1, slug.length - 1);
   const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
   const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
@@ -67,12 +55,12 @@ const Post = ({ data, location, pageContext }: Page) => {
   useIcons([fab]);
 
   return (
-    <Layout title={siteTitle} cover={coverImage}>
+    <Layout title={title} cover={coverImage}>
       <SEO
         description={excerpt}
         lang={lang}
-        keywords={postCategories}
-        title={title}
+        keywords={categories}
+        title={postTitle}
         image={coverPath}
         type={type}
         url={postUrl}
@@ -83,10 +71,10 @@ const Post = ({ data, location, pageContext }: Page) => {
         datePublished={datePublished}
         excerpt={excerpt}
         timeToRead={timeToRead}
-        title={title}
+        title={postTitle}
       />
       <Content content={html} />
-      <PostFooter categories={postCategories} />
+      <PostFooter categories={categories} />
       <PostAttachments
         location={location}
         urls={{ edit: editUrl, history: historyUrl }}
