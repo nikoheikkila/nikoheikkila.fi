@@ -3,10 +3,10 @@ import { graphql } from "gatsby";
 import React from "react";
 import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import profile from "../assets/profile.png";
+import Layout from "../components/layout/layout";
 import ArticleCard from "../components/blog/card";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
-import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
 
 interface IndexProps {
