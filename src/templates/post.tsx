@@ -2,7 +2,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import { MarkdownRemarkEdge, PageInfo, Query } from "types";
+import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import { useIcons } from "../components/hooks/useIcons";
 import Layout from "../components/layout/layout";
 import PostAttachments from "../components/post/attachments";
@@ -12,10 +12,11 @@ import PostHeader from "../components/post/header";
 import PostNavigation from "../components/post/navigation";
 import SEO from "../components/seo";
 import { combinePaths } from "../utils/helpers";
+import { Route } from "../gatsby";
 
 interface PostProps {
   data: Query;
-  location: Location;
+  location: Route;
   pageContext: PageInfo & MarkdownRemarkEdge;
 }
 

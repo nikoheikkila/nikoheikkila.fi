@@ -12,7 +12,6 @@ import React, { FunctionComponent } from "react";
 import ExternalLink from "../../components/elements";
 import useToggle from "../../components/hooks/useToggle";
 import { Route } from "../../gatsby";
-import { getPreviousPage, isIndex } from "../../utils/helpers";
 import * as styles from "./attachments.module.scss";
 
 interface DisqusConfig {
@@ -60,11 +59,13 @@ const PostAttachments: FunctionComponent<AttachmentProps> = ({
     toggleComments();
   };
 
+  const previousPage = location.state?.previous;
+
   return (
     <section className={styles.attachments}>
       <p>
-        {isIndex(location) || (
-          <Link rel="back" to={getPreviousPage(location)}>
+        {previousPage && (
+          <Link rel="back" to={previousPage}>
             <FontAwesomeIcon icon={faUndo} /> Back to posts
           </Link>
         )}

@@ -1,26 +1,16 @@
 {
+  "include": ["./src/**/*"],
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
+    "target": "ESNext",
+    "module": "CommonJS",
     "jsx": "react",
-    "lib": ["dom", "es2017", "es2018"],
+    "lib": ["dom", "ES2020"],
     "strict": true,
-    "noEmit": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
     "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "baseUrl": "./src",
-    "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"]
-    }
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["./content/**/*"]
+    "moduleResolution": "node"
+  }
 }

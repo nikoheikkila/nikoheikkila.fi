@@ -2,7 +2,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
-import { MarkdownRemark } from "types";
+import { MarkdownRemark } from "../../types";
 import * as styles from "./navigation.module.scss";
 
 interface NavigationProps {

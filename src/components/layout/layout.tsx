@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import Hero from "../hero";
 import Footer from "./footer";
-import { RouteLocation } from "../../types";
-import { isIndex } from "../../utils/helpers";
 import "../../styles/main.scss";
 import Menu from "./menu";
 import { IGatsbyImageData } from "gatsby-plugin-image";

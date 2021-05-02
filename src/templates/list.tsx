@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import { MarkdownRemarkEdge, PageInfo, Query } from "types";
+import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import profile from "../assets/profile.png";
 import ArticleCard from "../components/blog/card";
 import BlogHeader from "../components/blog/header";
