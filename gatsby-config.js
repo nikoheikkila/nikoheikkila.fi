@@ -42,7 +42,8 @@ module.exports = {
     rss: `/rss.xml`,
   },
   flags: {
-    FAST_DEV: process.env.FAST_DEV == "1",
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PRESERVE_WEBPACK_CACHE: true,
   },
   plugins: [
     `gatsby-plugin-image`,
