@@ -79,6 +79,7 @@
   "scripts": {
     "new": "ts-node --script-mode new.ts",
     "clean": "gatsby clean",
+    "prebuild": "tsc --noEmit",
     "build": "gatsby build --log-pages --write-to-file",
     "dev": "gatsby develop",
     "format": "prettier --write .",
