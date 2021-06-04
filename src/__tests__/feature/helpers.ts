@@ -69,7 +69,7 @@ export const getPageContents = async (
     page.goto(url),
   ]);
 
-  if (!response) throw new Error(`Response to ${url} failed.`);
+  if (!response || !response.ok()) throw new Error(`Request to ${url} failed.`);
   const body = await response.text();
 
   return body;

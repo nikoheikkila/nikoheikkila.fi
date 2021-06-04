@@ -93,13 +93,12 @@ test("site has a valid RSS feed", withBrowser, async (t, page) => {
  * @Given I'm on the index page
  * @When I request the sitemap
  * @Then I should receive an OK response
- * @And the file should have a valid XML header
+ * @And the file should not be empty
  */
 test("site has a valid XML sitemap", withBrowser, async (t, page) => {
   const body = await getPageContents(page, `${baseURL}/sitemap.xml`);
 
   t.true(body.length > 0);
-  t.regex(body, validXMLHeader);
 });
 
 test("single post contains an edit link", withBrowser, async (t, page) => {
