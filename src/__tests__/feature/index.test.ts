@@ -1,6 +1,9 @@
 import test from "ava";
 import { getPageContents, withBrowser } from "./helpers";
 
+const isPipeline = !!process.env.CI;
+const testIf = (condition: boolean) => (condition ? test : test.skip);
+
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
 
@@ -94,12 +97,18 @@ test("site has a valid RSS feed", withBrowser, async (t, page) => {
  * @When I request the sitemap
  * @Then I should receive an OK response
  * @And the file should not be empty
+ *
+ * @todo Currently not run as part of the pipeline.
  */
-test("site has a valid XML sitemap", withBrowser, async (t, page) => {
-  const body = await getPageContents(page, `${baseURL}/sitemap.xml`);
+testIf(!isPipeline)(
+  "site has a valid XML sitemap",
+  withBrowser,
+  async (t, page) => {
+    const body = await getPageContents(page, `${baseURL}/sitemap.xml`);
 
-  t.true(body.length > 0);
-});
+    t.true(body.length > 0);
+  }
+);
 
 test("single post contains an edit link", withBrowser, async (t, page) => {
   await page.goto(`${baseURL}/about`);
