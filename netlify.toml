@@ -5,7 +5,6 @@
   ignore = "git log -1 --pretty=%an | grep -iE '(snyk|dependabot)'"
 
 [build.environment]
-  NODE_ENV = "production"
   GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = "true"
   GATSBY_DISQUS_SHORTNAME = "nikoheikkilafi"
 
@@ -21,4 +20,4 @@
   compress = true
 
 [[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+  package = "@netlify/plugin-gatsby"

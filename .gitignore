@@ -72,3 +72,6 @@ yarn-error.log
 
 # Test artifacts
 /src/__tests__/feature/screenshots/
+
+# Local Netlify folder
+.netlify
