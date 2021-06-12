@@ -1,13 +1,7 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import got from "got";
-import { Codec, Either, EitherAsync, GetType, string } from "purify-ts";
-
-const TokenCodec = Codec.interface({
-  id: string,
-  secret: string,
-});
-
-type Token = GetType<typeof TokenCodec>;
+import { DecodeError, Either, EitherAsync, parseError } from "purify-ts";
+import { AccessTokenCodec, ListBookmarksCodec, Token } from "./types";
 
 const ALLOWED_METHODS = ["GET"];
 const API_URL = "https://instapaper.com/api/1";
@@ -60,10 +54,56 @@ export async function getAuthorizationToken(
   });
 }
 
+type BookmarkQuery = {
+  token: string;
+  limit: number;
+};
+
+type Bookmark = {
+  id: number;
+  title: string;
+  url: string;
+};
+
+export async function getBookmarks(
+  query: BookmarkQuery
+): Promise<Either<APIError | DecodeError, Bookmark[]>> {
+  const json = {
+    limit: query.limit,
+    folder_id: "starred",
+  };
+  const responseType = "json";
+  const headers = {
+    Authorization: `Bearer ${query.token}`,
+  };
+
+  return EitherAsync(async ({ throwE }) => {
+    try {
+      const response = await got.post(`${API_URL}/bookmarks/list`, {
+        json,
+        responseType,
+        headers,
+      });
+
+      return ListBookmarksCodec.decode(response.body).caseOf({
+        Left: (error) => throwE(parseError(error)),
+        Right: (body) =>
+          body.bookmarks.map((bookmark) => ({
+            id: bookmark.bookmark_id,
+            title: bookmark.title,
+            url: bookmark.url,
+          })),
+      });
+    } catch (error) {
+      return throwE(new APIError(error.message));
+    }
+  });
+}
+
 function parseAccessTokenString(ts: string): Either<string, Token> {
   const parameters = new URLSearchParams(ts);
 
-  return TokenCodec.decode({
+  return AccessTokenCodec.decode({
     id: parameters.get("oauth_token"),
     secret: parameters.get("oauth_token_secret"),
   });
