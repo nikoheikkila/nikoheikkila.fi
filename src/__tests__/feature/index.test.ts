@@ -104,7 +104,10 @@ testIf(!isPipeline)(
   "site has a valid XML sitemap",
   withBrowser,
   async (t, page) => {
-    const body = await getPageContents(page, `${baseURL}/sitemap.xml`);
+    const body = await getPageContents(
+      page,
+      `${baseURL}/sitemap/sitemap-index.xml`
+    );
 
     t.true(body.length > 0);
   }
