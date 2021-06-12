@@ -1,6 +1,7 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import got from "got";
-import { DecodeError, Either, EitherAsync, parseError } from "purify-ts";
+import { DecodeError, Either, EitherAsync, Maybe, parseError } from "purify-ts";
+import * as API from "../api";
 import { AccessTokenCodec, ListBookmarksCodec, Token } from "./types";
 
 const ALLOWED_METHODS = ["GET"];
@@ -12,18 +13,75 @@ class APIError extends Error {
   }
 }
 
-export default function handler(
+type Configuration = {
+  username: Maybe<string>;
+  password: Maybe<string>;
+};
+
+export default async function handler(
   request: GatsbyFunctionRequest,
   response: GatsbyFunctionResponse
-) {
-  const { method = "" } = request;
+): Promise<void> {
+  const { method = "", query } = request;
 
   if (!ALLOWED_METHODS.includes(method)) {
-    return response.status(405).end();
+    return response
+      .status(API.HTTP.METHOD_NOT_ALLOWED)
+      .json(API.formatError(`HTTP Method ${method} not allowed`));
   }
 
-  return response.send("Hello");
+  const { username, password } = parseConfiguration();
+
+  if (username.isNothing() || password.isNothing()) {
+    return response
+      .status(API.HTTP.INTERNAL_SERVER_ERROR)
+      .json(
+        API.formatError(
+          `Invalid credentials supplied while authenticating to the Instapaper API`
+        )
+      );
+  }
+
+  const authorizationOrError = await getAuthorizationToken(
+    username.orDefault(""),
+    password.orDefault("")
+  );
+
+  const token: string = authorizationOrError.caseOf({
+    Left: (error) => {
+      console.error(error);
+      return "";
+    },
+    Right: ({ secret }) => secret,
+  });
+
+  if (!token) {
+    return response
+      .status(API.HTTP.INTERNAL_SERVER_ERROR)
+      .json(API.formatError("Could not authenticate to Instapaper API"));
+  }
+
+  const bookmarksOrError = await getBookmarks({
+    token,
+    limit: Number(query.limit || "25"),
+  });
+
+  bookmarksOrError
+    .ifLeft((error) => {
+      console.error(error);
+      response
+        .status(API.HTTP.INTERNAL_SERVER_ERROR)
+        .json(API.formatError("Could not load Instapaper bookmarks"));
+    })
+    .ifRight((bookmarks) => {
+      response.status(API.HTTP.OK).json(API.formatData<Bookmark[]>(bookmarks));
+    });
 }
+
+const parseConfiguration = (): Configuration => ({
+  username: Maybe.fromNullable(process.env.INSTAPAPER_USERNAME),
+  password: Maybe.fromNullable(process.env.INSTAPAPER_PASSWORD),
+});
 
 export async function getAuthorizationToken(
   username: string,
@@ -56,7 +114,7 @@ export async function getAuthorizationToken(
 
 type BookmarkQuery = {
   token: string;
-  limit: number;
+  limit?: number;
 };
 
 type Bookmark = {
