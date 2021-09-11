@@ -2,7 +2,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
+import { ImageSharp, MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import { useIcons } from "../components/hooks/useIcons";
 import Layout from "../components/layout/layout";
 import PostAttachments from "../components/post/attachments";
@@ -13,6 +13,7 @@ import PostNavigation from "../components/post/navigation";
 import SEO from "../components/seo";
 import { combinePaths } from "../utils/helpers";
 import { Route } from "../gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 interface PostProps {
   data: Query;
@@ -44,14 +45,15 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
   const previous = pageContext.previous;
   const next = pageContext.next;
-  const cover = hero.childImageSharp;
-  const coverImage = cover.gatsbyImageData;
-  const coverPath = cover.original.src;
   const postUrl = combinePaths(siteUrl, slug);
   const datePublished = dayjs(date).format("DD.MM.YYYY");
   const postSlug = slug.slice(1, slug.length - 1);
   const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
   const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
+
+  const cover: ImageSharp | undefined = hero?.childImageSharp;
+  const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
+  const coverPath = cover?.original?.src ?? "";
 
   useIcons([fab]);
 

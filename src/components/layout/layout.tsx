@@ -23,7 +23,11 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
         <Menu />
       </aside>
       <Container>
-        <header>{cover && <Hero data={cover} alt={title} />}</header>
+        {cover && (
+          <header>
+            <Hero data={cover} alt={title} />
+          </header>
+        )}
         <section>{children}</section>
         <Footer />
       </Container>
