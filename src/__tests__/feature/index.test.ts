@@ -13,13 +13,10 @@ const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
  * @Then their count should be exactly 8
  */
 test("index page contains an index of posts", withBrowser, async (t, page) => {
-  const titleSelector = '[data-testid="post-title"]';
-
   await page.goto(baseURL);
-  await page.waitForSelector(titleSelector);
-  const posts = await page.$$(titleSelector);
+  const posts = await page.locator('[data-testid="post-title"]').count();
 
-  t.is(posts.length, 8);
+  t.is(posts, 8);
 });
 
 /**
@@ -56,8 +53,13 @@ test("single blog post renders correctly", withBrowser, async (t, page) => {
     page.waitForNavigation(),
     page.click('[data-testid="post-title"]:first-child > a'),
   ]);
+
   t.regex(page.url(), /\/blog\//);
-  t.not(await page.waitForSelector('[data-testid="post-header"]'), null);
+
+  const headerIsVisible = await page
+    .locator('[data-testid="post-header"]')
+    .isVisible();
+  t.true(headerIsVisible);
 
   await Promise.all([page.waitForNavigation(), page.click('a[rel="back"]')]);
   t.is(page.url(), `${baseURL}/`);
