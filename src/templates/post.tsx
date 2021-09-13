@@ -22,26 +22,23 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
-  const {
-    markdownRemark: {
-      fields: { slug },
-      hero,
-      html,
-      timeToRead,
-      frontmatter: {
-        author,
-        date,
-        lang,
-        title: postTitle,
-        type,
-        excerpt,
-        categories,
-      },
-    },
-    site: {
-      siteMetadata: { siteUrl, repository, title, disqus },
-    },
-  } = data;
+  const slug = data.markdownRemark?.fields?.slug ?? "";
+  const hero = data.markdownRemark?.hero;
+  const html = data.markdownRemark?.html ?? "";
+  const timeToRead = data.markdownRemark?.timeToRead ?? 0;
+
+  const author = data.markdownRemark?.frontmatter?.author ?? "";
+  const date = data.markdownRemark?.frontmatter?.date ?? "";
+  const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
+  const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
+  const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
+  const categories = data.markdownRemark?.frontmatter?.categories ?? [];
+  const type = data.markdownRemark?.frontmatter?.type ?? "";
+
+  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
+  const repository = data.site?.siteMetadata?.repository ?? "";
+  const title = data.site?.siteMetadata?.title ?? "";
+  const disqus = data.site?.siteMetadata?.disqus ?? "";
 
   const previous = pageContext.previous;
   const next = pageContext.next;
@@ -51,7 +48,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
   const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
   const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
 
-  const cover: ImageSharp | undefined = hero?.childImageSharp;
+  const cover = hero?.childImageSharp;
   const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
   const coverPath = cover?.original?.src ?? "";
 
@@ -62,7 +59,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
       <SEO
         description={excerpt}
         lang={lang}
-        keywords={categories}
+        keywords={categories as string[]}
         title={postTitle}
         image={coverPath}
         type={type}
@@ -77,7 +74,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
         title={postTitle}
       />
       <Content content={html} />
-      <PostFooter categories={categories} />
+      <PostFooter categories={categories as string[]} />
       <PostAttachments
         location={location}
         urls={{ edit: editUrl, history: historyUrl }}
@@ -89,7 +86,10 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
         }}
       />
 
-      <PostNavigation previous={previous} next={next} />
+      <PostNavigation
+        next={next ?? undefined}
+        previous={previous ?? undefined}
+      />
     </Layout>
   );
 };

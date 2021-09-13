@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
+import { MarkdownRemarkEdge, PageInfo, Query, Site } from "../types";
 import profile from "../assets/profile.png";
 import Layout from "../components/layout/layout";
 import ArticleCard from "../components/blog/card";
@@ -19,12 +19,10 @@ interface IndexProps {
 
 const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
   const {
-    site: {
-      siteMetadata: { title = "" },
-    },
     allMarkdownRemark: { edges = [] },
   } = data;
 
+  const title = data.site?.siteMetadata?.title ?? "";
   const { currentPage, numberOfPages } = pageContext;
   const datePublished = dayjs().format("YYYY-MM-DD");
 
@@ -40,13 +38,14 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
       />
 
       {edges.map((edge: MarkdownRemarkEdge) => {
-        const {
-          node: {
-            timeToRead,
-            fields: { slug },
-            frontmatter: { title: postTitle, categories, date, excerpt },
-          },
-        } = edge;
+        const slug = edge.node.fields?.slug;
+        if (!slug) return null;
+
+        const postTitle = edge.node.frontmatter?.title ?? "";
+        const categories = edge.node.frontmatter?.categories ?? [];
+        const date = edge.node.frontmatter?.date;
+        const excerpt = edge.node.frontmatter?.excerpt ?? "";
+        const timeToRead = edge.node.timeToRead;
 
         return (
           <ArticleCard
@@ -54,10 +53,10 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
             slug={slug}
             location={location}
             title={postTitle}
-            categories={categories}
+            categories={categories as string[]}
             date={dayjs(date).format("DD.MM.YYYY")}
             excerpt={excerpt}
-            timeToRead={timeToRead}
+            timeToRead={timeToRead ?? undefined}
           />
         );
       })}

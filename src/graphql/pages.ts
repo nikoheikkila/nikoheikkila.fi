@@ -22,7 +22,7 @@ export const getStaticPages = () => {
   );
 
   return data.allMarkdownRemark.edges.map(({ node }) => ({
-    slug: node.fields.slug,
-    title: node.frontmatter.title,
+    slug: node.fields?.slug,
+    title: node.frontmatter?.title,
   }));
 };

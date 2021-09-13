@@ -9,9 +9,9 @@ interface CardProps {
   readonly title: string;
   readonly slug: string;
   readonly excerpt: string;
-  categories: readonly string[];
+  categories: string[];
   readonly date: string;
-  readonly timeToRead: number;
+  readonly timeToRead?: number;
   readonly location: Location;
 }
 
@@ -37,7 +37,7 @@ const ArticleCard: FunctionComponent<CardProps> = ({
     </p>
     <p>
       <span>{date} </span>
-      <span>{formatReadingTime(timeToRead)}</span>
+      {timeToRead && <span>{formatReadingTime(timeToRead)}</span>}
     </p>
     <Content content={excerpt} />
   </section>

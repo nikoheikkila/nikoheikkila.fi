@@ -6,8 +6,8 @@ import { MarkdownRemark } from "../../types";
 import * as styles from "./navigation.module.scss";
 
 interface NavigationProps {
-  readonly previous: MarkdownRemark;
-  readonly next: MarkdownRemark;
+  readonly next?: MarkdownRemark;
+  readonly previous?: MarkdownRemark;
 }
 
 const PostNavigation: FunctionComponent<NavigationProps> = ({
@@ -17,20 +17,20 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({
   <section className={styles.navigation}>
     <ul>
       <li>
-        {previous && (
+        {previous?.fields?.slug && (
           <Link to={previous.fields.slug} rel="prev">
             <FontAwesomeIcon
               icon={faArrowLeft}
               style={{ paddingRight: "5px" }}
             />
-            {previous.frontmatter.title}
+            {previous.frontmatter?.title}
           </Link>
         )}
       </li>
       <li>
-        {next && (
+        {next?.fields?.slug && (
           <Link to={next.fields.slug} rel="next">
-            {next.frontmatter.title}
+            {next.frontmatter?.title}
             <FontAwesomeIcon
               icon={faArrowRight}
               style={{ paddingLeft: "5px" }}
