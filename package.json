@@ -55,7 +55,7 @@
     "typescript": "^4.4.3"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
+    "@ava/babel": "^2.0.0",
     "@babel/helper-call-delegate": "^7.12.13",
     "@graphql-codegen/cli": "^2.2.0",
     "@graphql-codegen/typescript": "^2.2.2",
