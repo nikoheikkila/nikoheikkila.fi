@@ -99,16 +99,8 @@ const newPost = async () => {
     return error(err);
   }
 
-  const {
-    title,
-    type,
-    excerpt,
-    categories,
-    author,
-    cover,
-    date,
-    language,
-  } = prompt;
+  const { title, type, excerpt, categories, author, cover, date, language } =
+    prompt;
   const postType = Array.isArray(type) ? type[0] : type;
   const postCategories = categories
     .split(",")

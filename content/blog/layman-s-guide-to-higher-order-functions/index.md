@@ -88,7 +88,10 @@ const hasNumbers = (password) =>
   /[0-9]+/.test(password) || warn("Password should have at least one number.");
 
 /** Higher-order function to run the given validators */
-const validate = (password) => (...fns) => fns.every((fn) => fn(password));
+const validate =
+  (password) =>
+  (...fns) =>
+    fns.every((fn) => fn(password));
 
 const validator = validate("SUP3RsECREtP4ssW0rd");
 console.log(validator(longEnough, hasUpperCase, hasLowerCase, hasNumbers)); // => true
