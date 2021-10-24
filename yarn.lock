@@ -3908,16 +3908,16 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alex@9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/alex/-/alex-9.1.0.tgz#bc54b305c3e05d87085cca3af4376314be0dbeee"
-  integrity sha512-mlNQ0CBGinzZj1pjiXaSLsihjZ4Kzq0U0EjR+DrZ3IQQfM4pf4OtxHI1agBIiEwv0tQUzimjgTk+5t9iHeT7Vw==
+alex@9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/alex/-/alex-9.1.1.tgz#063819cb01b8f81a25588af89523ca289dadaa07"
+  integrity sha512-2mYyFfQnzWzDd6lSACRePBj8YP6fzzvclPkfGfYrY6vPNFDoQKrCAAdF0XCKROGJGnbSWX1K5PrxixVTaV5ODw==
   dependencies:
     meow "^7.0.0"
     rehype-parse "^7.0.0"
     rehype-retext "^2.0.1"
     remark-frontmatter "^2.0.0"
-    remark-mdx "^2.0.0-next.7"
+    remark-mdx "2.0.0-next.7"
     remark-message-control "^6.0.0"
     remark-parse "^8.0.0"
     remark-retext "^4.0.0"
@@ -14837,7 +14837,7 @@ remark-gfm@^1.0.0:
     mdast-util-gfm "^0.1.0"
     micromark-extension-gfm "^0.3.0"
 
-remark-mdx@^2.0.0-next.4, remark-mdx@^2.0.0-next.7:
+remark-mdx@2.0.0-next.7, remark-mdx@^2.0.0-next.4:
   version "2.0.0-next.7"
   resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-2.0.0-next.7.tgz#e8d4e4fe2c2a98bb34e10304c6e6f2823ba56dfb"
   integrity sha512-JHYCfxJzvjTw8h5y10f+mCvbfIt5klAkWlULqPu1nM/r6ghF3tzJl0AFQFj5b/m/7U553+yYb/y4n0julMERYA==
