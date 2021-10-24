@@ -61,7 +61,7 @@
     "@graphql-codegen/cli": "2.2.0",
     "@graphql-codegen/typescript": "2.2.2",
     "@netlify/plugin-gatsby": "2.0.0-zz-beta.0",
-    "@types/inquirer": "7.3.1",
+    "@types/inquirer": "7.3.3",
     "@types/title": "1.0.5",
     "alex": "9.1.0",
     "ava": "3.15.0",
