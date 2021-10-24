@@ -4,6 +4,11 @@ const {
   createRemoteFileNode,
 } = require(`gatsby-source-filesystem`);
 
+/**
+ * How many posts are listed per page.
+ */
+const postsPerPage = 9;
+
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
@@ -69,6 +74,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: slug,
         component: blogPost,
+        defer: index > postsPerPage,
         context: {
           slug: slug,
           previous,
@@ -84,18 +90,20 @@ exports.createPages = ({ graphql, actions }) => {
      * be '/{2..m}' where m is the maximum number of posts.
      */
     const posts = pages.filter((page) => page.node.frontmatter.type === "post");
-    const postsPerPage = 8;
     const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
     Array.from({ length: numberOfPages }).forEach((_, i) => {
+      const currentPage = i + 1;
+
       createPage({
-        path: i === 0 ? "/" : `/${i + 1}`,
+        path: i === 0 ? "/" : `/${currentPage}`,
         component: blogIndex,
+        defer: currentPage > 1,
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
           numberOfPages,
-          currentPage: i + 1,
+          currentPage,
         },
       });
     });

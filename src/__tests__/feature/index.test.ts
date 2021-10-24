@@ -10,13 +10,13 @@ const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
 /**
  * @Given I'm on the index page
  * @When I query all the post titles
- * @Then their count should be exactly 8
+ * @Then their count should be exactly 9
  */
 test("index page contains an index of posts", withBrowser, async (t, page) => {
   await page.goto(baseURL);
   const posts = await page.locator('[data-testid="post-title"]').count();
 
-  t.is(posts, 8);
+  t.is(posts, 9);
 });
 
 /**
@@ -47,8 +47,9 @@ test("index page has a working pagination", withBrowser, async (t, page) => {
  * @Then I should be back on the index page
  */
 test("single blog post renders correctly", withBrowser, async (t, page) => {
-  await page.goto(baseURL);
+  const postHeader = '[data-testid="post-header"]';
 
+  await page.goto(baseURL);
   await Promise.all([
     page.waitForNavigation(),
     page.click('[data-testid="post-title"]:first-child > a'),
@@ -56,9 +57,9 @@ test("single blog post renders correctly", withBrowser, async (t, page) => {
 
   t.regex(page.url(), /\/blog\//);
 
-  const headerIsVisible = await page
-    .locator('[data-testid="post-header"]')
-    .isVisible();
+  await page.waitForSelector(postHeader);
+  const headerIsVisible = await page.locator(postHeader).isVisible();
+
   t.true(headerIsVisible);
 
   await Promise.all([page.waitForNavigation(), page.click('a[rel="back"]')]);
