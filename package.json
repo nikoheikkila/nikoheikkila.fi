@@ -81,7 +81,7 @@
     "new": "ts-node --script-mode new.ts",
     "clean": "gatsby clean",
     "build": "gatsby build --log-pages --write-to-file",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop --verbose",
     "format": "prettier --write .",
     "lint": "yarn lint:style && yarn lint:types && yarn lint:lang",
     "lint:style": "prettier --check .",
