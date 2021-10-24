@@ -1,5 +1,17 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+  "automergeType": "branch",
+  "enabledManagers": ["npm"],
+  "schedule": ["every weekend"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "extends": "monorepo:gatsby",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"],
+      "groupName": "Gatsby packages"
+    }
   ]
 }
