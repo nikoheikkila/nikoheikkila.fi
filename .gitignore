@@ -75,3 +75,6 @@ yarn-error.log
 
 # Local Netlify folder
 .netlify
+
+# Obsidian workspaces
+/content/.obsidian/workspace

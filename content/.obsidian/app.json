@@ -1,0 +1,10 @@
+{
+  "readableLineLength": true,
+  "showFrontmatter": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "useMarkdownLinks": true,
+  "attachmentFolderPath": "./"
+}
