@@ -13,7 +13,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type MarkdownRemark implements Node {
-      hero: File @link(from: "hero___NODE")
+      hero: File @link(from: "hero")
     }
   `);
 };
@@ -129,7 +129,7 @@ exports.onCreateNode = async ({
         store,
       });
 
-      node.hero___NODE = fileNode ? fileNode.id : null;
+      node.hero = fileNode ? fileNode.id : null;
     } catch (err) {
       console.error(err);
     }
