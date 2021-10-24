@@ -1,7 +1,7 @@
 ---
 lang: en
 author: Niko Heikkilä
-date: 2021-02-13
+date: 2021-10-24
 title: Uses
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/keychron.jpg
 type: page
@@ -43,7 +43,7 @@ Both the keyboard and the mouse support connecting up to three devices at most v
 
 My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing and tweaking settings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
 
-In the screenshot above I'm using a theme called [_Palenight_][theme] and a font called [Operator Mono][operator]. VS Code synchronizes all the fancy settings and extensions across platforms natively, so I can work on one platform and seamlessly continue on another.
+In the screenshot above I'm using a theme called [Palenight][theme] and a font called [Operator Mono][operator]. VS Code synchronizes all the fancy settings and extensions across platforms natively, so I can work on one platform and seamlessly continue on another.
 
 [theme]: https://marketplace.visualstudio.com/items?itemName=whizkydee.material-palenight-theme
 [operator]: https://www.cufonfonts.com/font/operator-mono
@@ -58,7 +58,7 @@ After years of cursing the _allfathers_ while navigating in a clunky Bash shell,
 
 While in the command line I use [`tmux`][tmux] for persisting window and buffer layouts, [`z`][z] to quickly jump to a project, and [`fzf`][fzf] to remember the exact command I typed a few hours ago. These modifications let me swim in the command line like a fish in the sea. 🐟
 
-Since Microsoft released their [Remote Development Pack][remotedevelopment] for VS Code which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [SpaceVim][spacevim] configuration preset.
+Since Microsoft released their [Remote Development Pack][remotedevelopment] for VS Code which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [Doom NVIM][doom] configuration preset.
 
 [hyper]: https://hyper.is
 [iterm]: https://iterm2.com/
@@ -70,11 +70,13 @@ Since Microsoft released their [Remote Development Pack][remotedevelopment] for 
 [z]: https://github.com/rupa/z/
 [fzf]: https://github.com/junegunn/fzf
 [remotedevelopment]: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
-[spacevim]: https://spacevim.org/
+[doom]: https://github.com/NTBBloodbath/doom-nvim
 
 ### Browser
 
-I've tried virtually every browser under the sun, but the one I keep coming back to is the new **Microsoft Edge** (or _Edgium_, if you prefer) which provides the best parts of Google Chrome without eating all your RAM. Previously, I used Vivaldi but due to its constant regression bugs and crashes on macOS, I gave up on using it. Hope it gets well again soon.
+I've tried virtually every browser under the sun, but the one I keep coming back to is [**Vivaldi**](https://vivaldi.com) due to its theming system and power-user features. It uses Chromium under the hood so it's not the first choice for privacy enthusiasts, but that risk I'm willing to take.
+
+If, for some reason, Vivaldi lets me down I've also enjoyed the new **Microsoft Edge** browser which could be described as the resource-friendly sibling of Chrome.
 
 ### Other Apps
 
@@ -84,19 +86,19 @@ Most apps offer a limited free plan which I advise to check out as well if it co
 
 _I use..._
 
-- [1Password 💰](https://1password.com) with a family plan for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a vile breakdown.
-- [Alfred 💰](https://www.alfredapp.com/) to boost my productivity with a variety of workflows and snippets.
-- [Backblaze 💰](https://www.backblaze.com) to back up my disks. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager. Backblaze also ships with an S3 compatible cloud storage which I use to store some photos.
-- [Cleanshot X 💰](https://cleanshot.com/) to capture screenshots and record videos -- useful for reporting website issues. On Windows, I use the builtin screenshot tool which you can summon with `Win + Shift + S`.
-- [Dropbox 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
-- [Fork 💰](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
-- [MindNode 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
-- [Notion 💰](https://www.notion.so/?r=6605af2045dd4c5bbf7a87d6d949c271) for writing notes, drafts, checklists, and keeping a personal micro-wiki around.
-- [Insomnia](https://insomnia.rest/) for experimenting with REST and GraphQL APIs.
-- [Rectangle](https://rectangleapp.com/) for organizing the windows in my desktop. Sadly, I haven't found a good Windows alternative but using the WIN and arrow keys is efficient enough.
-- [TablePlus 💰](https://tableplus.io) for accessing relational databases, Redis caches, and more.
-- [Todoist 💰](https://todoist.com) for reminding me to pay my repeating bills each month and a heap of other stuff.
-- [Toggl](https://toggl.com) for tracking the time spent on projects and tasks which is a mandatory evil thing to do in work.
+- [**1Password**](https://1password.com) with a business and family subscriptions paid by my employer. I use it for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a vile breakdown.
+- [**Alfred** 💰](https://www.alfredapp.com/) to boost my productivity with a variety of workflows and snippets.
+- [**Backblaze** 💰](https://www.backblaze.com) to back up my disks. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager. Backblaze also ships with an S3 compatible cloud storage which I use to store my blog's images and static assets.
+- [**Cleanshot X** 💰](https://cleanshot.com/) to capture screenshots and record videos -- useful for reporting website issues. On Windows, I use the builtin screenshot tool which you can summon with `Win + Shift + S`.
+- [**Dropbox** 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
+- [**Fork** 💰](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
+- [**MindNode** 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
+- [**Obsidian** 💰](https://obsidian.md) for writing notes, drafts, checklists, and keeping a personal micro-wiki around. Previously, I used **Notion** for this, but Obsidian is more simple with its pure Markdown approach.
+- [**Insomnia**](https://insomnia.rest/) for experimenting with REST and GraphQL APIs.
+- [**Rectangle**](https://rectangleapp.com/) for organizing the windows in my desktop. Sadly, I haven't found a good Windows alternative but using the WIN and arrow keys is efficient enough.
+- [**TablePlus** 💰](https://tableplus.io) for accessing relational databases, Redis caches, and more.
+- [**Todoist** 💰](https://todoist.com) for reminding me to pay my repeating bills each month and a heap of other stuff.
+- [**Toggl**](https://toggl.com) for tracking the time spent on projects and tasks which is a mandatory evil thing to do in work.
 
 ## Office Setup
 
