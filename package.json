@@ -13,7 +13,7 @@
     "@fortawesome/free-brands-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.1.16",
-    "@sindresorhus/slugify": "1.1.2",
+    "@sindresorhus/slugify": "2.1.0",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
     "@types/react-burger-menu": "2.8.2",
