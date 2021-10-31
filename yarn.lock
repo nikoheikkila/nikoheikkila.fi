@@ -3291,20 +3291,20 @@
   resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.1.tgz#5544730b65a480b18ace6b6ce914e519cec2d43b"
   integrity sha512-xdOvNmXmrZqqPy3kuCQ+fz6wA0xU5pji9cd1nDrflWaAWtYLLGk5ykW0H6yg5TVyehHP1pfmuuSaZkhP+kspVA==
 
-"@types/json-schema@*", "@types/json-schema@7.0.7":
+"@types/json-schema@*":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
+
+"@types/json-schema@7.0.9", "@types/json-schema@^7.0.7", "@types/json-schema@^7.0.8":
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
+  integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
 
 "@types/json-schema@^7.0.6":
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
-
-"@types/json-schema@^7.0.7", "@types/json-schema@^7.0.8":
-  version "7.0.9"
-  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
-  integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
 
 "@types/json-stable-stringify@^1.0.32":
   version "1.0.32"
@@ -14270,12 +14270,12 @@ puppeteer@~1.19.0:
     rimraf "^2.6.1"
     ws "^6.1.0"
 
-purify-ts@0.16.3:
-  version "0.16.3"
-  resolved "https://registry.yarnpkg.com/purify-ts/-/purify-ts-0.16.3.tgz#be85f939b4c1365f38c1c8c44fdfbd3145ecae0c"
-  integrity sha512-ZEmLC0myQiV672QM5ZD//KyoCDXQltBvdR9q12NUk5d1tS1d7paut0U8/13Xl4dJ/pA1JYJg6gHhoiaqy2O1bg==
+purify-ts@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/purify-ts/-/purify-ts-1.1.0.tgz#1a8fd7e85ec4c832ee1f6b43e443d38229352804"
+  integrity sha512-hfXuxs6hoRURvcBwHVGlLdeNp9R96z+l1sQQj5enqU1ZDqV1GGVPIr6wNw2rNKqhQemaaMERrqjqjzO2hVYZsg==
   dependencies:
-    "@types/json-schema" "7.0.7"
+    "@types/json-schema" "7.0.9"
 
 q@^1.1.2:
   version "1.5.1"
