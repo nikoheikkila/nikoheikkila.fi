@@ -2,7 +2,6 @@
   base = "/"
   command = "yarn build"
   publish = "public/"
-  ignore = "git log -1 --pretty=%an | grep -iE '(snyk|dependabot)'"
 
 [build.environment]
   GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = "true"
