@@ -4,6 +4,7 @@
   "automergeType": "branch",
   "enabledManagers": ["npm"],
   "schedule": ["every weekend"],
+  "commitBody": "[skip netlify]",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
