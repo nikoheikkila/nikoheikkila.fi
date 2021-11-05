@@ -4,6 +4,11 @@ const {
   createRemoteFileNode,
 } = require(`gatsby-source-filesystem`);
 
+/* Determine if DSG (deferred static generation) should be enabled */
+const hasDSG = () => {
+  return process.env.GATSBY_ENABLE_DSG === "true";
+};
+
 /**
  * How many posts are listed per page.
  */
@@ -74,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: slug,
         component: blogPost,
-        defer: index > postsPerPage,
+        defer: hasDSG() ? index > postsPerPage : false,
         context: {
           slug: slug,
           previous,
@@ -98,7 +103,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: i === 0 ? "/" : `/${currentPage}`,
         component: blogIndex,
-        defer: currentPage > 1,
+        defer: hasDSG() ? currentPage > 1 : false,
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
