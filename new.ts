@@ -124,7 +124,7 @@ excerpt: ${excerpt}
 type: ${postType}
 categories: [${postCategories}]
 date: ${date}
-cover: ${cover}
+hero: ${cover}
 ---`.trim();
 
   const markdownFile = `${targetFolder}/index.md`;
