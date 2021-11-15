@@ -7,10 +7,10 @@ title: Quoth the Raven, Virtualize Your Stand-Ups
 type: post
 excerpt: How asynchronous communication drives success in the time of Coronavirus
 categories:
-  - productivity
-  - agile
-  - communication
-  - bots
+    - productivity
+    - agile
+    - communication
+    - bots
 ---
 
 Every agile software development team, whether practising Scrum, Kanban, or something in between as a core methodology, needs to share their progress. [Daily meetings](https://www.agilealliance.org/glossary/daily-meeting/), commonly referred to as *stand-ups* have proved themselves to be an effective form of talking out the accomplishments and issues with the team daily.
@@ -31,11 +31,11 @@ Repeat after me: **The circle only helps the people in it, disbanding the circl
 
 Physical standup circles are ineffective for a myriad of reasons. To mention but a few, these include:
 
-- **Higher risk of forgetting.** Before and during the meeting, each participant must recall what they did yesterday and plan what they would be doing today. This reserves the majority of the brain capacity leaving little to no room for listening. Unless you're among the first people to speak, there's a considerable risk that you had forgotten what the people before you spoke. Eventually, everyone forgets what others said after an hour or so.
-- **Time wasted standing.** When people need to gather around in a circle, someone will always be late even if the standup meeting was scheduled in the calendar. Since effective teams want to minimize the information loss, they usually can't start the session before everyone is present. Casual chit-chat has its place, but there are far better times for it than right before the standup.
-- **Remote hostility.** If part of your team works outside the office, you either have to exclude them or bring in a full video meeting to carry out the ordinary 15-minute session. This is a massive waste since you have to plug in a conference speaker and a microphone for everyone to be able to communicate. Furthermore, people working in different timezones won't likely attend a standup at 10 AM, which in their timezone could be as late as 8 PM.
-- **Environmental distractions.** Many of the teams work in a single room, which means they can shut the door to have a meeting. However, other teams working from open office spaces have to hunt for a free meeting room or submit themselves to distractions from people walking by getting coffee and talking. Being distracted by noises almost every time messes up what you were going to say.
-- **Invites the wrong kind of discussion.** You would likely disagree with me here stating that managers catching up with your team during the standup is a great benefit, but I assure you it is harmful. Too often have I seen product people innocently smuggling themselves into a standup circle, not keeping their mouth shut. Since product people are righteously interested in the progress of their team shipping new features, all stand-ups with them turn into status meetings. It bears repeating that stand-ups are a way for agile teams to synchronize their work and not report to management – that is for the team lead to deliver when asked.
+-   **Higher risk of forgetting.** Before and during the meeting, each participant must recall what they did yesterday and plan what they would be doing today. This reserves the majority of the brain capacity leaving little to no room for listening. Unless you're among the first people to speak, there's a considerable risk that you had forgotten what the people before you spoke. Eventually, everyone forgets what others said after an hour or so.
+-   **Time wasted standing.** When people need to gather around in a circle, someone will always be late even if the standup meeting was scheduled in the calendar. Since effective teams want to minimize the information loss, they usually can't start the session before everyone is present. Casual chit-chat has its place, but there are far better times for it than right before the standup.
+-   **Remote hostility.** If part of your team works outside the office, you either have to exclude them or bring in a full video meeting to carry out the ordinary 15-minute session. This is a massive waste since you have to plug in a conference speaker and a microphone for everyone to be able to communicate. Furthermore, people working in different timezones won't likely attend a standup at 10 AM, which in their timezone could be as late as 8 PM.
+-   **Environmental distractions.** Many of the teams work in a single room, which means they can shut the door to have a meeting. However, other teams working from open office spaces have to hunt for a free meeting room or submit themselves to distractions from people walking by getting coffee and talking. Being distracted by noises almost every time messes up what you were going to say.
+-   **Invites the wrong kind of discussion.** You would likely disagree with me here stating that managers catching up with your team during the standup is a great benefit, but I assure you it is harmful. Too often have I seen product people innocently smuggling themselves into a standup circle, not keeping their mouth shut. Since product people are righteously interested in the progress of their team shipping new features, all stand-ups with them turn into status meetings. It bears repeating that stand-ups are a way for agile teams to synchronize their work and not report to management – that is for the team lead to deliver when asked.
 
 ## Make It Asynchronous
 

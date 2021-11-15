@@ -7,10 +7,10 @@ title: Rapid Prototyping with Table-Driven Testing
 type: post
 excerpt: Lazy developers ain't got time for installing test libraries
 categories:
-  - testing
-  - typescript
-  - golang
-  - productivity
+    - testing
+    - typescript
+    - golang
+    - productivity
 ---
 
 Developers often need to work with something from scratch. Usually, it's a couple of lines of code whose suitability to real business logic needs to be measured before using. Sometimes you might get an idea you want to play around.
@@ -30,7 +30,7 @@ To demonstrate this, let's write a quick curried function that formats a sum of 
 ```ts
 type Formatter<T> = (a: T) => (b: T) => string;
 const numberFormatter: Formatter<number> = (decimals) => (euros) =>
-  euros.toFixed(decimals).replace(/\./, ",") + " €";
+    euros.toFixed(decimals).replace(/\./, ",") + " €";
 
 // Partial application to store our precision
 const toCurrencyString = numberFormatter(2);
@@ -41,21 +41,21 @@ const toCurrencyString = numberFormatter(2);
 ```ts
 // [argument, expected result]
 const suites: [number, string][] = [
-  [-1, "-1,00 €"],
-  [0, "0,00 €"],
-  [1, "1,00 €"],
-  [10.01, "10,01 €"],
-  [59.0, "59,00 €"],
-  [Math.PI, "3,14 €"],
-  [NaN, "NaN €"],
+    [-1, "-1,00 €"],
+    [0, "0,00 €"],
+    [1, "1,00 €"],
+    [10.01, "10,01 €"],
+    [59.0, "59,00 €"],
+    [Math.PI, "3,14 €"],
+    [NaN, "NaN €"],
 ];
 
 for (const [euros, want] of suites) {
-  const got = toCurrencyString(euros);
+    const got = toCurrencyString(euros);
 
-  if (got !== want) {
-    throw `Got ${got}, but wanted ${want}`;
-  }
+    if (got !== want) {
+        throw `Got ${got}, but wanted ${want}`;
+    }
 }
 
 console.log("Congratulations! All tests passed.");

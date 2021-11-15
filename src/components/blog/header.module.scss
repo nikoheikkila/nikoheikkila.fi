@@ -1,25 +1,25 @@
 @import "_variables";
 
 .header {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  margin: 25px 0 auto 25px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    margin: 25px 0 auto 25px;
 
-  .bio-text {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  @include for-phone-only {
-    .bio-image {
-      margin: 0 auto;
+    .bio-text {
+        margin-top: 1.5rem;
+        text-align: center;
     }
 
-    grid-template-columns: 1fr;
-    margin: 25px 0 0 0;
-  }
+    @include for-phone-only {
+        .bio-image {
+            margin: 0 auto;
+        }
+
+        grid-template-columns: 1fr;
+        margin: 25px 0 0 0;
+    }
 }
 
 .title {
-  margin: 15px 0;
+    margin: 15px 0;
 }

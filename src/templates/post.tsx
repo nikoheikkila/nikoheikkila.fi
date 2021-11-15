@@ -16,124 +16,124 @@ import { Route } from "../gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 interface PostProps {
-  data: Query;
-  location: Route;
-  pageContext: PageInfo & MarkdownRemarkEdge;
+    data: Query;
+    location: Route;
+    pageContext: PageInfo & MarkdownRemarkEdge;
 }
 
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
-  const slug = data.markdownRemark?.fields?.slug ?? "";
-  const hero = data.markdownRemark?.hero;
-  const html = data.markdownRemark?.html ?? "";
-  const timeToRead = data.markdownRemark?.timeToRead ?? 0;
+    const slug = data.markdownRemark?.fields?.slug ?? "";
+    const hero = data.markdownRemark?.hero;
+    const html = data.markdownRemark?.html ?? "";
+    const timeToRead = data.markdownRemark?.timeToRead ?? 0;
 
-  const author = data.markdownRemark?.frontmatter?.author ?? "";
-  const date = data.markdownRemark?.frontmatter?.date ?? "";
-  const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
-  const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
-  const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
-  const categories = data.markdownRemark?.frontmatter?.categories ?? [];
-  const type = data.markdownRemark?.frontmatter?.type ?? "";
+    const author = data.markdownRemark?.frontmatter?.author ?? "";
+    const date = data.markdownRemark?.frontmatter?.date ?? "";
+    const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
+    const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
+    const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
+    const categories = data.markdownRemark?.frontmatter?.categories ?? [];
+    const type = data.markdownRemark?.frontmatter?.type ?? "";
 
-  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
-  const repository = data.site?.siteMetadata?.repository ?? "";
-  const title = data.site?.siteMetadata?.title ?? "";
-  const disqus = data.site?.siteMetadata?.disqus ?? "";
+    const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
+    const repository = data.site?.siteMetadata?.repository ?? "";
+    const title = data.site?.siteMetadata?.title ?? "";
+    const disqus = data.site?.siteMetadata?.disqus ?? "";
 
-  const previous = pageContext.previous;
-  const next = pageContext.next;
-  const postUrl = combinePaths(siteUrl, slug);
-  const datePublished = dayjs(date).format("DD.MM.YYYY");
-  const postSlug = slug.slice(1, slug.length - 1);
-  const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
-  const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
+    const previous = pageContext.previous;
+    const next = pageContext.next;
+    const postUrl = combinePaths(siteUrl, slug);
+    const datePublished = dayjs(date).format("DD.MM.YYYY");
+    const postSlug = slug.slice(1, slug.length - 1);
+    const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
+    const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
 
-  const cover = hero?.childImageSharp;
-  const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
-  const coverPath = cover?.original?.src ?? "";
+    const cover = hero?.childImageSharp;
+    const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
+    const coverPath = cover?.original?.src ?? "";
 
-  useIcons([fab]);
+    useIcons([fab]);
 
-  return (
-    <Layout title={title} cover={coverImage}>
-      <SEO
-        description={excerpt}
-        lang={lang}
-        keywords={categories as string[]}
-        title={postTitle}
-        image={coverPath}
-        type={type}
-        url={postUrl}
-        datePublished={date}
-      />
-      <PostHeader
-        author={author}
-        datePublished={datePublished}
-        excerpt={excerpt}
-        timeToRead={timeToRead}
-        title={postTitle}
-      />
-      <Content content={html} />
-      <PostFooter categories={categories as string[]} />
-      <PostAttachments
-        location={location}
-        urls={{ edit: editUrl, history: historyUrl }}
-        disqusId={disqus}
-        disqusConfiguration={{
-          url: postUrl,
-          identifier: slug,
-          title,
-        }}
-      />
+    return (
+        <Layout title={title} cover={coverImage}>
+            <SEO
+                description={excerpt}
+                lang={lang}
+                keywords={categories as string[]}
+                title={postTitle}
+                image={coverPath}
+                type={type}
+                url={postUrl}
+                datePublished={date}
+            />
+            <PostHeader
+                author={author}
+                datePublished={datePublished}
+                excerpt={excerpt}
+                timeToRead={timeToRead}
+                title={postTitle}
+            />
+            <Content content={html} />
+            <PostFooter categories={categories as string[]} />
+            <PostAttachments
+                location={location}
+                urls={{ edit: editUrl, history: historyUrl }}
+                disqusId={disqus}
+                disqusConfiguration={{
+                    url: postUrl,
+                    identifier: slug,
+                    title,
+                }}
+            />
 
-      <PostNavigation
-        next={next ?? undefined}
-        previous={previous ?? undefined}
-      />
-    </Layout>
-  );
+            <PostNavigation
+                next={next ?? undefined}
+                previous={previous ?? undefined}
+            />
+        </Layout>
+    );
 };
 
 export default Post;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        siteUrl
-        title
-        author {
-          name
+    query BlogPostBySlug($slug: String!) {
+        site {
+            siteMetadata {
+                siteUrl
+                title
+                author {
+                    name
+                }
+                repository
+                disqus
+            }
         }
-        repository
-        disqus
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      fields {
-        slug
-      }
-      excerpt(pruneLength: 160)
-      html
-      timeToRead
-      hero {
-        childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-          original {
-            src
-          }
+        markdownRemark(fields: { slug: { eq: $slug } }) {
+            id
+            fields {
+                slug
+            }
+            excerpt(pruneLength: 160)
+            html
+            timeToRead
+            hero {
+                childImageSharp {
+                    gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+                    original {
+                        src
+                    }
+                }
+            }
+            frontmatter {
+                lang
+                title
+                type
+                date
+                author
+                excerpt
+                categories
+            }
         }
-      }
-      frontmatter {
-        lang
-        title
-        type
-        date
-        author
-        excerpt
-        categories
-      }
     }
-  }
 `;

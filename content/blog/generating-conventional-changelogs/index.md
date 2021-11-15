@@ -7,10 +7,10 @@ title: Generating Conventional Changelogs
 type: post
 excerpt: Spicing up your release notes with awesome changelog power.
 categories:
-  - Git
-  - Fish
-  - Shell
-  - Tips
+    - Git
+    - Fish
+    - Shell
+    - Tips
 ---
 
 As an open-source maintainer, I have a severe obsession for informative release notes and I cringe every time I see release notes with the dreadful _"Bug fixes and minor improvements"_ line in it. I like to write my release notes as accurately as possible which is tedious by hand. I decided to use scripting power to ease it.
@@ -32,10 +32,10 @@ changes v1.0.0
 
 Write your release notes on this line.
 
-- docs: add a security policy (_Niko Heikkilä_) (d02e70a)
-- fix(security): upgrade Python packages (_Niko Heikkilä_) (bbb0861)
-- fix(tests): replace parameter message with matches in pytest.raises (_Niko Heikkilä_) (9161cf9)
-- release: 1.0.1 (_Niko Heikkilä_) (f9cdd53)
+-   docs: add a security policy (_Niko Heikkilä_) (d02e70a)
+-   fix(security): upgrade Python packages (_Niko Heikkilä_) (bbb0861)
+-   fix(tests): replace parameter message with matches in pytest.raises (_Niko Heikkilä_) (9161cf9)
+-   release: 1.0.1 (_Niko Heikkilä_) (f9cdd53)
 ```
 
 The script takes only one argument which is the commit we compare our state to. It's fast, includes all the necessary information, and fully supports Markdown. What more could I ask?
@@ -80,9 +80,9 @@ end
 
 The core of this tool is, naturally, `git-log` which is a powerful tool for finding out what's going on in your projects. Here we use it to print a compact one-liner log formatting each message with a custom pattern where:
 
-- `%s` is the commit title
-- `%aN` is the commit author's name respecting the `.mailmap` file if there's one
-- `%h` is the commit hash in a short format
+-   `%s` is the commit title
+-   `%aN` is the commit author's name respecting the `.mailmap` file if there's one
+-   `%h` is the commit hash in a short format
 
 The reason we include commit hash to our changelog is that GitHub and Gitlab will automatically link these hashes to their respective commit pages for viewing the entire diff. It's an extremely handy way to verify that a commit implements what it states.
 
@@ -106,16 +106,17 @@ changes v1.0.0 | pandoc -f markdown -t html
 <p>Write your release notes on this line.</p>
 
 <ul>
-  <li>docs: add a security policy (<em>Niko Heikkilä</em>) (d02e70a)</li>
-  <li>
-    fix(security): upgrade Python packages (<em>Niko Heikkilä</em>) (bbb0861)
-  </li>
-  <li>
-    fix(tests): replace parameter message with matches in pytest.raises (<em
-      >Niko Heikkilä</em
-    >) (9161cf9)
-  </li>
-  <li>release: 1.0.1 (<em>Niko Heikkilä</em>) (f9cdd53)</li>
+    <li>docs: add a security policy (<em>Niko Heikkilä</em>) (d02e70a)</li>
+    <li>
+        fix(security): upgrade Python packages (<em>Niko Heikkilä</em>)
+        (bbb0861)
+    </li>
+    <li>
+        fix(tests): replace parameter message with matches in pytest.raises (<em
+            >Niko Heikkilä</em
+        >) (9161cf9)
+    </li>
+    <li>release: 1.0.1 (<em>Niko Heikkilä</em>) (f9cdd53)</li>
 </ul>
 ```
 

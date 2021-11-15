@@ -182,10 +182,10 @@ In this post, I outlined many benefits, pitfalls and practical tips to ease your
 
 It is not always easy to decide. In my experience, there are specific tasks that are often better solo. These include but are not limited to:
 
-- deploying builds and running scripts
-- documenting existing features and writing simple instructions
-- checking if a reported bug can be reproduced
-- doing mundane and routine tasks, which should be automated, anyway
+-   deploying builds and running scripts
+-   documenting existing features and writing simple instructions
+-   checking if a reported bug can be reproduced
+-   doing mundane and routine tasks, which should be automated, anyway
 
 For all other tasks that require levelling knowledge, learning new concepts, or solving challenging problems, the answer is often *yes*. You should always be ready to pair.
 

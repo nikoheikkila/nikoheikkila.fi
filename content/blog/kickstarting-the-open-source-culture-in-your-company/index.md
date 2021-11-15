@@ -7,10 +7,10 @@ title: Kickstarting the Open-Source Culture in Your Company
 type: post
 excerpt: Thinking of selling open-source to your employer? Read this guide for a swift path to glory.
 categories:
-  - opensource
-  - github
-  - culture
-  - workplace
+    - opensource
+    - github
+    - culture
+    - workplace
 ---
 
 By the 2020s, every software company in existence should be using open-source code as building blocks for their products. Better than that, every company should also be giving back to the open-source community by making regular contributions.
@@ -35,18 +35,18 @@ Attracting followers is all about listing benefits. However, at this point, you 
 
 Carry on by writing short and long term goals down in a bullet list. For instance, **Sophie Alpert** has written a comprehensive article on _[Increment](https://increment.com/open-source/the-benefits-and-costs-of-corporate-open-source/)_ about the benefits and costs open-source brought to React project. Add to the list my short-term benefits that companies enjoy by adopting open-source as part of their toolchain.
 
-- Open-source is a cost-effective and flexible way to adopt new technologies without risking vendor lock-in. Importing a dependency and changing it later is trivial if your software architecture is built upon **SOLID** principles, namely the _[Dependency Inversion](https://stackify.com/dependency-inversion-principle/)_ principle.
-- It builds morale and reputation among developers and helps retain them in the company for longer. We all love a degree of variety in our work.
-- Public projects benefit from the increase in quality and security. Remember the **Linus Torvalds'** law: "Given enough eyeballs, all bugs are shallow".
-- The public brand of the company and its engineers receive a facelift as proud supporters of open-source.
-- It's an excellent excuse to clean up the code and documentation of older projects before open-sourcing them. Throw bad commit history away where necessary.
+-   Open-source is a cost-effective and flexible way to adopt new technologies without risking vendor lock-in. Importing a dependency and changing it later is trivial if your software architecture is built upon **SOLID** principles, namely the _[Dependency Inversion](https://stackify.com/dependency-inversion-principle/)_ principle.
+-   It builds morale and reputation among developers and helps retain them in the company for longer. We all love a degree of variety in our work.
+-   Public projects benefit from the increase in quality and security. Remember the **Linus Torvalds'** law: "Given enough eyeballs, all bugs are shallow".
+-   The public brand of the company and its engineers receive a facelift as proud supporters of open-source.
+-   It's an excellent excuse to clean up the code and documentation of older projects before open-sourcing them. Throw bad commit history away where necessary.
 
 Likewise, there's much long-term fruit to harvest.
 
-- A company emerging as an open-source champion drives more tech-savvy people to use their products which generates more revenue.
-- More tech-savvy users mean improved quality through contributions, which again generates more marketability, users, and revenue. Looks like we have a profit loop here!
-- Talent acquisition becomes easier as well-known regular contributors become potential hires. Note that many people prefer to be _drive-by_ contributors who only contribute once and then vanish — keep a close eye on your regulars and feature them in your repository.
-- By seeing the tech used by mainstream open-source projects, the company is given more unobstructed view of the future and helps plan strategically for the future.
+-   A company emerging as an open-source champion drives more tech-savvy people to use their products which generates more revenue.
+-   More tech-savvy users mean improved quality through contributions, which again generates more marketability, users, and revenue. Looks like we have a profit loop here!
+-   Talent acquisition becomes easier as well-known regular contributors become potential hires. Note that many people prefer to be _drive-by_ contributors who only contribute once and then vanish — keep a close eye on your regulars and feature them in your repository.
+-   By seeing the tech used by mainstream open-source projects, the company is given more unobstructed view of the future and helps plan strategically for the future.
 
 There are plenty of other benefits, but these should give you a good start on your mission.
 
@@ -64,10 +64,10 @@ Whatever the approach you need to take, a well-versed letter accompanied by a sp
 
 When communicating a cultural change, define the status quo*.* It's useful to address the following:
 
-- where your company stands at the moment compared to your competitors
-- what are you missing out by not contributing to the open-source
-- what do your business and culture benefit from the change (see above)
-- what concrete steps have you planned to achieve results
+-   where your company stands at the moment compared to your competitors
+-   what are you missing out by not contributing to the open-source
+-   what do your business and culture benefit from the change (see above)
+-   what concrete steps have you planned to achieve results
 
 Back up each statement with a reliable citation. For example, cloud provider **Digital Ocean** has done substantial research on open-source for their **[Currents](https://www.digitalocean.com/currents/)** survey. Other companies may have published their findings and retrospectives on adopting open-source. Use every credible source, even academic ones, you can find. You can even use this post as one — but not the only — reference.
 
@@ -123,8 +123,8 @@ No one must skip from the agreed flow. Employees with write permissions to the p
 
 GitHub supports organization boards which can be used to manage a variety of tasks going on in your organization. I recommend the following two boards, but feel free to make more as needed.
 
-- One board for issues, or _Bug Tracker_
-- One board for pull requests, or _Contributions Tracker_
+-   One board for issues, or _Bug Tracker_
+-   One board for pull requests, or _Contributions Tracker_
 
 If you've used **Trello** or **Jira**, these boards are not that different. You have a board holding multiple columns which in turn hold various cards. Cards can be dragged across the board to other columns as necessary.
 
@@ -132,10 +132,10 @@ If you've used **Trello** or **Jira**, these boards are not that different. You 
 
 For the bug tracker, set up a basic board for _triaging_ issues. Triaging in this context means categorizing the incoming issues by their priority (high vs low) or closing them. Prepare one column for each label.
 
-- _Needs Triage_
-- _High Priority_
-- _Low Priority_
-- _Closed_
+-   _Needs Triage_
+-   _High Priority_
+-   _Low Priority_
+-   _Closed_
 
 Leave each new issue waiting for triage. The key here is to gather with your team weekly or daily for a special triage session where you will discuss the priorities and possible solutions.
 
@@ -149,10 +149,10 @@ Don't bother setting any middle stages like a _Normal_ priority between _High_ a
 
 For the contributions tracker, set up an automated Kanban board with following columns. You may pick different names depending on your needs.
 
-- _In Progress_ for PRs marked as drafts or implementing review suggestions
-- _In Review_ for PRs being actively reviewed
-- _Ready for Merge_ for PRs that have passed testing
-- _Done_ for closed PRs
+-   _In Progress_ for PRs marked as drafts or implementing review suggestions
+-   _In Review_ for PRs being actively reviewed
+-   _Ready for Merge_ for PRs that have passed testing
+-   _Done_ for closed PRs
 
 You shouldn't need to touch this very often since GitHub can move the cards for you. However, it's essential to keep an eye on this board to get an overview of how pull requests flow in your repositories.
 

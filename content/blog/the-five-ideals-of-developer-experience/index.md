@@ -7,9 +7,9 @@ title: The Five Ideals of Developer Experience
 type: post
 excerpt: Assessing the anti-patterns and embracing the remedies.
 categories:
-  - DevOps
-  - Business
-  - Processes
+    - DevOps
+    - Business
+    - Processes
 ---
 
 Developer experience is a term often thrown loosely without much explanation. You might have come across it in developer communities describing how easy it's to work with some public APIs or your company might have participated in one of the myriad best workplace competitions. Job advertisements may promise a heavenly developer experience by offering table tennis or a fridge full of beers and pizza as a work benefit. However, to me, developer experience is all about getting my job done while maintaining my competence in this profession.
@@ -26,11 +26,11 @@ I will omit the middle step eliminating the anti-patterns and embracing the reme
 
 <!--alex ignore-->
 
-- [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
-- [2. The Joy Must Flow](#2-the-joy-must-flow)
-- [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
-- [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
-- [5. Focus on the Core](#5-focus-on-the-core)
+-   [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
+-   [2. The Joy Must Flow](#2-the-joy-must-flow)
+-   [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
+-   [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
+-   [5. Focus on the Core](#5-focus-on-the-core)
 
 <!--alex ignore-->
 

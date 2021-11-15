@@ -4,15 +4,15 @@
 @import "_gatsby";
 
 body {
-  @include bodyFont();
-  margin: 0;
-  font-kerning: normal;
-  word-wrap: break-word;
-  font-feature-settings: "kern", "liga", "clig", "calt";
-  line-height: 1.75rem;
+    @include bodyFont();
+    margin: 0;
+    font-kerning: normal;
+    word-wrap: break-word;
+    font-feature-settings: "kern", "liga", "clig", "calt";
+    line-height: 1.75rem;
 
-  background-color: $darkBg;
-  color: $darkFg;
+    background-color: $darkBg;
+    color: $darkFg;
 }
 
 h1,
@@ -21,28 +21,28 @@ h3,
 h4,
 h5,
 h6 {
-  @include headingFont();
+    @include headingFont();
 }
 
 h1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
 }
 
 h2 {
-  font-size: 1.75rem;
+    font-size: 1.75rem;
 }
 
 h3 {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 h4 {
-  font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 a {
-  color: $blue;
-  font-weight: 400;
-  text-decoration: none;
+    color: $blue;
+    font-weight: 400;
+    text-decoration: none;
 }

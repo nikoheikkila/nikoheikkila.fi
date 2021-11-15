@@ -35,18 +35,18 @@ The next time your head is being hunted, consider following up with the below re
 
 Thanks for reaching out. Before making any decisions, I would like to inquire about your company's (or client's) perspective to the following questions. I've found this information valuable to know when seeking new challenges. Please, take all the time required to go through these questions and get back to me. In any case, I hope we can have a fruitful discussion over these topics later.
 
-- **Do** the [Agile Manifesto](https://agilemanifesto.org/) and its [12 principles](https://agilemanifesto.org/principles.html) act as a general baseline guiding your development?
-- **Do** your teams strive for professionalism following the [Manifesto for Software Craftsmanship](http://manifesto.softwarecraftsmanship.org/)?
-- **Do** you grow autonomous and self-organizing teams trusting them to get the job done?
-- **Do** your developers mentor and cross-train each other to elevate the team's spirit, skills, and knowledge?
-- **Do** your teams continuously improve their craft by having agile retrospectives?
-- **Do** your teams solve problems efficiently using collaboration and co-creation patterns like [pair and mob programming](https://www.agilealliance.org/resources/experience-reports/mob-programming-agile2014/) (also known as *swarming*)?
-- **Do** your teams build quality products with [Extreme Programming](https://www.agilealliance.org/glossary/xp), [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html) and [Continuous Delivery](https://www.martinfowler.com/bliki/ContinuousDelivery.html) methodologies?
-- **Do** your teams develop and maintain software with clean object-oriented and functional programming principles?
-- **Do** your teams ensure software maintainability by writing automated unit, integration, and end-to-end test suites following the behaviour-driven and test-driven development practices?
-- **Do** your core values include customer satisfaction, trust, innovation, transparency, care, and social responsibility?
-- **Do** your projects make the world a better place for everyone through diversity, equity, and inclusion?
-- **Do** you share a transparent salary and career path policy either internally or with the public audience?
+-   **Do** the [Agile Manifesto](https://agilemanifesto.org/) and its [12 principles](https://agilemanifesto.org/principles.html) act as a general baseline guiding your development?
+-   **Do** your teams strive for professionalism following the [Manifesto for Software Craftsmanship](http://manifesto.softwarecraftsmanship.org/)?
+-   **Do** you grow autonomous and self-organizing teams trusting them to get the job done?
+-   **Do** your developers mentor and cross-train each other to elevate the team's spirit, skills, and knowledge?
+-   **Do** your teams continuously improve their craft by having agile retrospectives?
+-   **Do** your teams solve problems efficiently using collaboration and co-creation patterns like [pair and mob programming](https://www.agilealliance.org/resources/experience-reports/mob-programming-agile2014/) (also known as *swarming*)?
+-   **Do** your teams build quality products with [Extreme Programming](https://www.agilealliance.org/glossary/xp), [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html) and [Continuous Delivery](https://www.martinfowler.com/bliki/ContinuousDelivery.html) methodologies?
+-   **Do** your teams develop and maintain software with clean object-oriented and functional programming principles?
+-   **Do** your teams ensure software maintainability by writing automated unit, integration, and end-to-end test suites following the behaviour-driven and test-driven development practices?
+-   **Do** your core values include customer satisfaction, trust, innovation, transparency, care, and social responsibility?
+-   **Do** your projects make the world a better place for everyone through diversity, equity, and inclusion?
+-   **Do** you share a transparent salary and career path policy either internally or with the public audience?
 
 If you ticked **yes** to at least **10** of the questions above, I'm more than happy to continue the process with you.
 

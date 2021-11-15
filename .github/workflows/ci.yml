@@ -3,62 +3,62 @@ name: Main Workflow
 on: [push]
 
 jobs:
-  build:
-    name: Build and Test Site
-    runs-on: ubuntu-latest
+    build:
+        name: Build and Test Site
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-      - name: Setup Node.js 14
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          cache: yarn
+            - name: Setup Node.js 14
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+                  cache: yarn
 
-      - name: Install Dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+            - name: Install Dependencies
+              run: yarn --frozen-lockfile --prefer-offline
 
-      - name: Lint Code Style
-        run: yarn lint
+            - name: Lint Code Style
+              run: yarn lint
 
-      - name: Unit Tests
-        run: yarn test:unit
+            - name: Unit Tests
+              run: yarn test:unit
 
-      - name: Cache Gatsby Build Files
-        uses: actions/cache@v2
-        with:
-          path: |
-            .cache
-            public
-          key: ${{ runner.OS }}-gatsby-cache
-          restore-keys: |
-            ${{ runner.OS }}-gatsby-cache
+            - name: Cache Gatsby Build Files
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      .cache
+                      public
+                  key: ${{ runner.OS }}-gatsby-cache
+                  restore-keys: |
+                      ${{ runner.OS }}-gatsby-cache
 
-      - name: Build Site
-        run: yarn build
-        env:
-          GATSBY_DISQUS_SHORTNAME: nikoheikkila
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+            - name: Build Site
+              run: yarn build
+              env:
+                  GATSBY_DISQUS_SHORTNAME: nikoheikkila
+                  GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
-      - name: Setup Playwright
-        run: npx playwright install-deps
+            - name: Setup Playwright
+              run: npx playwright install-deps
 
-      - name: Launch server on background
-        run: yarn serve &
+            - name: Launch server on background
+              run: yarn serve &
 
-      - name: E2E Tests with Chromium
-        env:
-          BROWSER: chromium
-        run: yarn test:e2e
+            - name: E2E Tests with Chromium
+              env:
+                  BROWSER: chromium
+              run: yarn test:e2e
 
-      - name: Upload screenshots of failed tests
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: screenshots
-          path: src/__tests__/feature/screenshots/
+            - name: Upload screenshots of failed tests
+              uses: actions/upload-artifact@v2
+              if: failure()
+              with:
+                  name: screenshots
+                  path: src/__tests__/feature/screenshots/
 
-      - name: Accessibility Tests
-        run: yarn test:a11y
+            - name: Accessibility Tests
+              run: yarn test:a11y

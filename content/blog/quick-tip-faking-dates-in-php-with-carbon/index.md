@@ -7,10 +7,10 @@ date: 2018-06-24
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/quick-tip-faking-dates-in-php-with-carbon.jpg
 excerpt: Often there are scenarios where our code depends on the current time. Carbon handles this eloquently.
 categories:
-  - PHP
-  - Development
-  - Carbon
-  - Hot Tip
+    - PHP
+    - Development
+    - Carbon
+    - Hot Tip
 ---
 
 Often there are scenarios where our code depends on the current time. Most programming languages handle datetime parsing pretty eloquently but a demand for simpler more humane date libraries have arisen. One of the best date libraries I've used is [Carbon][1] by **Brian Nesbitt** which could be briefly described as PHP's `DateTime` for humans. It's a must-to-have tool if you're developing anything complex with Laravel.

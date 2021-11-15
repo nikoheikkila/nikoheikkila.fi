@@ -77,9 +77,9 @@ Wonder why that co-worker has been ignoring you or acting offensively? It might 
 
 Sometimes mentees approach with simple questions. Instead of doing their homework and spoon-feeding answers, mentors ask follow-up questions.
 
-- **Where is the documentation located?** Where have you looked? Who have you asked?
-- **How can I make my code cleaner?** Do you see any repeating patterns that could be abstracted to a shared function or library?
-- **Niko is writing crappy code, and it's killing me!** What are **you** going to do about it? How can I help to solve this problem without firing Niko?
+-   **Where is the documentation located?** Where have you looked? Who have you asked?
+-   **How can I make my code cleaner?** Do you see any repeating patterns that could be abstracted to a shared function or library?
+-   **Niko is writing crappy code, and it's killing me!** What are **you** going to do about it? How can I help to solve this problem without firing Niko?
 
 ### Don't Reserve, Delegate
 
@@ -123,13 +123,13 @@ Naturally, as human beings, everything we speak of doesn't have to be profession
 
 Finally, here is a non-exhaustive list of traits that matter when developing yourself as a mentor.
 
-- **Knowledge.** What experience and skills do you possess. How extensive is your professional background?
-- **Authority.** Who are you? Why should people listen to you? Do other people know what you have achieved?
-- **Confidence.** How confidently can you express your ideas and solutions?
-- **Charisma.** What kind of body language do you use? How does your voice sound?
-- **Emotional Intelligence.** How easy it is for people to trust you. How well can you empathise with others? How deeply can you collaborate?
-- **Team reputation.** How successful your team and its members are in the eyes of the organisation and client?
-- **Thought leadership.** Are you a recognised blogger or speaker? Are people lining up to work with you?
+-   **Knowledge.** What experience and skills do you possess. How extensive is your professional background?
+-   **Authority.** Who are you? Why should people listen to you? Do other people know what you have achieved?
+-   **Confidence.** How confidently can you express your ideas and solutions?
+-   **Charisma.** What kind of body language do you use? How does your voice sound?
+-   **Emotional Intelligence.** How easy it is for people to trust you. How well can you empathise with others? How deeply can you collaborate?
+-   **Team reputation.** How successful your team and its members are in the eyes of the organisation and client?
+-   **Thought leadership.** Are you a recognised blogger or speaker? Are people lining up to work with you?
 
 Keep calm and carry on **mentoring**!
 

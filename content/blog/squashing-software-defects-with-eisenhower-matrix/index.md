@@ -7,9 +7,9 @@ hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/squashing-software-
 date: 2017-12-05
 excerpt: If only Trump would come up with something as genious.
 categories:
-  - Trello
-  - Bugs
-  - Eisenhower
+    - Trello
+    - Bugs
+    - Eisenhower
 ---
 
 Both in my work and personal life, I've used a plethora of project management tools but only Trello has stuck. However, even Trello can be useless unless you start taking care of your board systematically.

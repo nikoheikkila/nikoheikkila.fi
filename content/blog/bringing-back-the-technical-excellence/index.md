@@ -11,7 +11,7 @@ hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/bringing-back-the-t
 
 > In software, legacy code is a code that runs in production.
 
-Don't you love the defeatist attitude of this quote? You might have stumbled upon it on many occasions. But, sadly, it is not too far from the truth.
+Don't you love the defeatist attitude of this quote? You might have stumbled upon it on many occasions. But, sadly, it is not too far from the _truth_.
 
 There are many definitions for legacy code. I've settled to define it as the code we are afraid to change, yet we need to. The code whose developer experience converges asymptotically to zero over time.
 
@@ -25,12 +25,12 @@ Complex implementation, therefore, is a direct consequence of complex design. Ho
 
 The common culprits for complex implementations are the following:
 
-- teams are not abiding by the technical excellence and software craftspersonship — also known as having **immature senior engineers** in the team
-- too high (100 %) utilisation rates keeping everyone as busy as possible therefore stifling innovation
-- severe blindness towards the wastes in the development process
-- allowing the unplanned work (e.g. production incidents) to stall the team's throughput by holding planned work hostage
-- working through tasks in isolation (one-person silos) and not sharing and integrating code daily
-- accepting too much work, and as a result, cutting corners under pressure to get tasks done
+-   teams are not abiding by the technical excellence and software craftspersonship — also known as having **immature senior engineers** in the team
+-   too high (100 %) utilisation rates keeping everyone as busy as possible therefore stifling innovation
+-   severe blindness towards the wastes in the development process
+-   allowing the unplanned work (e.g. production incidents) to stall the team's throughput by holding planned work hostage
+-   working through tasks in isolation (one-person silos) and not sharing and integrating code daily
+-   accepting too much work, and as a result, cutting corners under pressure to get tasks done
 
 All of the above contribute to unhealthy codebases, but the fastest way is to cut corners regularly.
 
@@ -142,10 +142,10 @@ Fortunately, we can practise test-driven development also for the existing code 
 
 There are many good resources written about refactoring. I tend to follow [the four rules of simple design](https://martinfowler.com/bliki/BeckDesignRules.html) by **Kent Beck**:
 
-- make the tests pass
-- refactor until the intention is clear
-- remove duplication where feasible
-- remove everything not needed to satisfy the first three rules
+-   make the tests pass
+-   refactor until the intention is clear
+-   remove duplication where feasible
+-   remove everything not needed to satisfy the first three rules
 
 More succinctly: **test, refactor, remove, and repeat**.
 
@@ -173,13 +173,13 @@ When studying a codebase for the first time, I often reach for three different t
 
 We should ensure we have a **README** file in the project root for the first task. This is the front page of your documentation in modern version control systems, which people consult first. As a bare minimum, it should contain the following information.
 
-- How to install the application
-- How to start the application
-- How to test the application manually
-- How to run the automated tests
-- How to deploy the application
-- How to contribute to the codebase
-- Who to ask for support in case the documentation can't provide answers
+-   How to install the application
+-   How to start the application
+-   How to test the application manually
+-   How to run the automated tests
+-   How to deploy the application
+-   How to contribute to the codebase
+-   Who to ask for support in case the documentation can't provide answers
 
 ### Executable Documentation
 
@@ -211,11 +211,11 @@ Thus, we should use [Architectural Decision Records](https://adr.github.io) inst
 
 ADRs capture a single decision that has significant consequences towards the design and implementation of the product for the foreseeable future. Typically, they include but are not limited to:
 
-- title of the decision
-- status (proposed, accepted, rejected, or superseded by another ADR)
-- context (why did we have to discuss this?)
-- decision (where did our discussion lead us?)
-- possible consequences (what later impacts did our decision have?)
+-   title of the decision
+-   status (proposed, accepted, rejected, or superseded by another ADR)
+-   context (why did we have to discuss this?)
+-   decision (where did our discussion lead us?)
+-   possible consequences (what later impacts did our decision have?)
 
 ADRs work well with internal meetings, and therefore we should set a requirement that no architecture meeting takes place unless a decision or proposal is produced.
 

@@ -4,29 +4,29 @@ $tabSize: 4;
 $hyphens: none;
 
 @mixin bodyFont() {
-  font-family: "Poppins", "Georgia", serif;
-  font-weight: 400;
+    font-family: "Poppins", "Georgia", serif;
+    font-weight: 400;
 }
 
 @mixin headingFont() {
-  font-family: "Nunito Sans", "Georgia", serif;
-  font-weight: 700;
+    font-family: "Nunito Sans", "Georgia", serif;
+    font-weight: 700;
 }
 
 @mixin codeFont() {
-  font-family: monospace, serif;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
+    font-family: monospace, serif;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
 
-  -moz-tab-size: $tabSize;
-  -o-tab-size: $tabSize;
-  tab-size: $tabSize;
+    -moz-tab-size: $tabSize;
+    -o-tab-size: $tabSize;
+    tab-size: $tabSize;
 
-  -webkit-hyphens: $hyphens;
-  -moz-hyphens: $hyphens;
-  -ms-hyphens: $hyphens;
-  hyphens: $hyphens;
+    -webkit-hyphens: $hyphens;
+    -moz-hyphens: $hyphens;
+    -ms-hyphens: $hyphens;
+    hyphens: $hyphens;
 }

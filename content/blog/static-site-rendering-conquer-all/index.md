@@ -7,9 +7,9 @@ date: 2019-04-19
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/static-site-rendering-conquer-all.png
 excerpt: Goodbye WordPress, it has been quite a journey.
 categories:
-  - WordPress
-  - Gatsby
-  - Now
+    - WordPress
+    - Gatsby
+    - Now
 ---
 
 Recently I began migrating my blog from an old - but not vulnerable - WordPress installation to [_Gatsby_][gatsby]. The migration went well save a brief downtime due to DNS misconfigurations. Now, the result lies in before your very eyes. Let's talk about changes later, though.
@@ -49,12 +49,12 @@ See how components can include other components like `<OutboundLink>` in this ca
 
 Building your blog with Gatsby has many remarkable advantages over traditional dynamic web applications:
 
-- Your blog becomes a single page app (SPA) meaning the site feels like a unified page despite hundreds of posts spread across separate URLs.
-- All the content lives within your repository. You'll never have to worry about data loss again unless you're drunken and decide to delete your remote repository along with all the local clones of it - in which case your Internet license should be revoked indefinitely.
-- Markdown is the purest, most beautiful form of writing which I use to document my work every day. The important part is that you don't have to mess with WordPress HTML blocks or the new Gutenberg editor.
-- Build process minifies and bundles your assets for minimum footprint.
-- Deployment can be automated with a Continuous Integration pipeline or with [ZEIT Now][zeit] serverless service (no pun intended) like I did.
-- Your blog becomes _blazing fast_ because the content is plain old HTML with some CSS and Javascript assets ideally served via CDN network.
+-   Your blog becomes a single page app (SPA) meaning the site feels like a unified page despite hundreds of posts spread across separate URLs.
+-   All the content lives within your repository. You'll never have to worry about data loss again unless you're drunken and decide to delete your remote repository along with all the local clones of it - in which case your Internet license should be revoked indefinitely.
+-   Markdown is the purest, most beautiful form of writing which I use to document my work every day. The important part is that you don't have to mess with WordPress HTML blocks or the new Gutenberg editor.
+-   Build process minifies and bundles your assets for minimum footprint.
+-   Deployment can be automated with a Continuous Integration pipeline or with [ZEIT Now][zeit] serverless service (no pun intended) like I did.
+-   Your blog becomes _blazing fast_ because the content is plain old HTML with some CSS and Javascript assets ideally served via CDN network.
 
 The inevitable trade-off of storing all the content in version control is that you have to edit raw text files and push them to a remote repository for anything to happen. This is very acceptable since I and many other developers are most comfortable with editing text in a code editor.
 

@@ -7,9 +7,9 @@ date: 2019-04-23
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/docker-gatsby-multi-stage-build.png
 excerpt: In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
 categories:
-  - Docker
-  - Gatsby
-  - Deployments
+    - Docker
+    - Gatsby
+    - Deployments
 ---
 
 Developing and deploying static sites can be managed with a wide variety of techniques. If _Docker_ is already a part of your tooling you can drop your content as a container to any platform in the world be it _Kubernetes_, _OpenShift_ or your friend's laptop.
@@ -94,13 +94,13 @@ We could now build the Docker image and run it from our terminal using the stand
 version: "3"
 
 services:
-  web:
-    build: "."
-    image: "nikoheikkila/nikoheikkila.fi"
-    container_name: "web-nginx"
-    restart: "unless-stopped"
-    ports:
-      - "8080:8080"
+    web:
+        build: "."
+        image: "nikoheikkila/nikoheikkila.fi"
+        container_name: "web-nginx"
+        restart: "unless-stopped"
+        ports:
+            - "8080:8080"
 ```
 
 Nothing too fancy here. We declare a service called `web` which builds the `Dockerfile` in our project root and tags it with a custom name. The restart policy of `unless-stopped` will keep restarting our container unless we explicitly halt it. As the last rule, we bind our host machine's port 8080 to the same port exposed in the container.

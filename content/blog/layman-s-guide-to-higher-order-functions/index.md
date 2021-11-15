@@ -7,10 +7,10 @@ title: Layman's Guide to Higher-Order Functions
 type: post
 excerpt: An introduction to higher-order functions I wish I've had in school.
 categories:
-  - beginners
-  - functional programming
-  - javascript
-  - react
+    - beginners
+    - functional programming
+    - javascript
+    - react
 ---
 
 The single most important topic in functional programming is to understand what a **function** is. Inherently, a function is a way to map the input value of some type to output value of another type. To put it in other words, you give your function a problem, and it returns a solution.
@@ -40,8 +40,8 @@ A _higher-order function_ is defined to have either of the following two propert
 
 ```js
 const App = () => {
-  const [counter, setCounter] = useState(0);
-  // typeof setCounter === 'function'
+    const [counter, setCounter] = useState(0);
+    // typeof setCounter === 'function'
 };
 ```
 
@@ -55,9 +55,9 @@ Solving problems in a declarative way is a perfect demonstration of divide and c
 
 Assume we are given a user password for validation. Our function should return `true` if the password is valid, and `false` otherwise. We have received the following requirements for validating passwords:
 
-- password must contain 12 or more characters
-- password must contain at least one uppercase and one lowercase character
-- password must contain at least one number
+-   password must contain 12 or more characters
+-   password must contain at least one uppercase and one lowercase character
+-   password must contain at least one number
 
 What an easy task, you might think. Write a function with a couple of conditional blocks and after having run through all of them return the intended result. Let's grab a keyboard and start defining our function.
 
@@ -70,28 +70,29 @@ One solution is to define each validator as a function and pass it as an argumen
 ```js
 /** Helper for printing the validator warnings */
 const warn = (msg) => {
-  console.warn("Invalid:", msg);
-  return false;
+    console.warn("Invalid:", msg);
+    return false;
 };
 
 /** Validators */
 const longEnough = (password, minLength = 12) =>
-  password.length >= minLength ||
-  warn(`Password should contain ${minLength} or more characters.`);
+    password.length >= minLength ||
+    warn(`Password should contain ${minLength} or more characters.`);
 const hasUpperCase = (password) =>
-  /[A-Z]+/.test(password) ||
-  warn("Password should have at least one uppercase letter.");
+    /[A-Z]+/.test(password) ||
+    warn("Password should have at least one uppercase letter.");
 const hasLowerCase = (password) =>
-  /[a-z]+/.test(password) ||
-  warn("Password should have at least one lowercase letter.");
+    /[a-z]+/.test(password) ||
+    warn("Password should have at least one lowercase letter.");
 const hasNumbers = (password) =>
-  /[0-9]+/.test(password) || warn("Password should have at least one number.");
+    /[0-9]+/.test(password) ||
+    warn("Password should have at least one number.");
 
 /** Higher-order function to run the given validators */
 const validate =
-  (password) =>
-  (...fns) =>
-    fns.every((fn) => fn(password));
+    (password) =>
+    (...fns) =>
+        fns.every((fn) => fn(password));
 
 const validator = validate("SUP3RsECREtP4ssW0rd");
 console.log(validator(longEnough, hasUpperCase, hasLowerCase, hasNumbers)); // => true
@@ -107,11 +108,11 @@ Perhaps your head is spinning fast right now, so let's write the validate functi
 
 ```js
 function validate(password) {
-  return function (...fns) {
-    return fns.every(function (fn) {
-      return fn(password);
-    });
-  };
+    return function (...fns) {
+        return fns.every(function (fn) {
+            return fn(password);
+        });
+    };
 }
 ```
 

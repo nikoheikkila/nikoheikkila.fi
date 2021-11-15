@@ -1,17 +1,19 @@
 import { Route } from "../gatsby";
 
 export const formatReadingTime = (minutes: number): string => {
-  const maxCups = 5;
-  const cups = Math.round(minutes / maxCups);
-  const time = `minute${minutes >= 2 ? "s" : ""}`;
+    const maxCups = 5;
+    const cups = Math.round(minutes / maxCups);
+    const time = `minute${minutes >= 2 ? "s" : ""}`;
 
-  if (cups > 5) {
-    return `${new Array(Math.round(cups / Math.E))
-      .fill("🍱")
-      .join("")} ${minutes} ${time} read`;
-  }
+    if (cups > 5) {
+        return `${new Array(Math.round(cups / Math.E))
+            .fill("🍱")
+            .join("")} ${minutes} ${time} read`;
+    }
 
-  return `${new Array(cups || 1).fill("☕️").join("")} ${minutes} ${time} read`;
+    return `${new Array(cups || 1)
+        .fill("☕️")
+        .join("")} ${minutes} ${time} read`;
 };
 
 /**
@@ -21,12 +23,12 @@ export const formatReadingTime = (minutes: number): string => {
 export const isIndex = ({ pathname }: Route) => /^\/[0-9]*$/.test(pathname);
 
 export const getPreviousPage = ({ state }: Route): string => {
-  return state?.previous ?? "/";
+    return state?.previous ?? "/";
 };
 
 export const combinePaths = (...paths: string[]): string => {
-  const pattern = /([^:]\/)\/+/g;
-  const substitute = "/";
+    const pattern = /([^:]\/)\/+/g;
+    const substitute = "/";
 
-  return paths.join("").replace(pattern, substitute);
+    return paths.join("").replace(pattern, substitute);
 };

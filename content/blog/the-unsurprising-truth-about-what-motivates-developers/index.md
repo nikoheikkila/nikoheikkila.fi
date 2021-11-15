@@ -7,11 +7,11 @@ title: The Unsurprising Truth about What Motivates Developers
 type: post
 excerpt: A take on autonomy, mastery, and purpose as driving forces.
 categories:
-  - motivation
-  - career
-  - autonomy
-  - mastery
-  - purpose
+    - motivation
+    - career
+    - autonomy
+    - mastery
+    - purpose
 ---
 
 Throughout the observed history, human motivation has adapted to demands and economies of the current age. The first establishment, Motivation 1.0, provided us with the tools for surviving in a harsh and dangerous environment – why care about anything else than obtaining food and not being eaten by predators? During the industrialization era, Motivation 2.0 enabled considerable leaps in manufacturing and productivity with its system of rewards and punishments ultimately paving the way for modern digital work. However, to develop as a creative craftsman instead of a wage slave, we need Motivation 3.0.
@@ -82,13 +82,13 @@ After finding your drive, you should make regular checks regarding the level of 
 
 To close, here are a couple of questions for your next feedback and development session.
 
-- What has changed in your work regarding the task, time, team, and technique? Has the change been for better, or for worse?
-- Have you noticed any new obstacles preventing your autonomy? How can you finish your work without hanging onto dependencies?
-- When was the last time you learned a new skill? Were you able to apply it to a particular problem?
-- Have you got better in any of the skills? To what extent?
-- How often have you experienced a flowing state of mind? How can you form regular habits of those moments?
-- When was the last time you made an impact on someone or something (colleague, manager, client, society, etc.)?
-- What purposes are you serving through your current projects? Do they align with your views of the world?
+-   What has changed in your work regarding the task, time, team, and technique? Has the change been for better, or for worse?
+-   Have you noticed any new obstacles preventing your autonomy? How can you finish your work without hanging onto dependencies?
+-   When was the last time you learned a new skill? Were you able to apply it to a particular problem?
+-   Have you got better in any of the skills? To what extent?
+-   How often have you experienced a flowing state of mind? How can you form regular habits of those moments?
+-   When was the last time you made an impact on someone or something (colleague, manager, client, society, etc.)?
+-   What purposes are you serving through your current projects? Do they align with your views of the world?
 
 Feel free to answer in the comments as well!
 

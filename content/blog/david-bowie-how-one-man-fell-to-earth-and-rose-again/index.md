@@ -7,9 +7,9 @@ date: 2016-01-14
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/david-bowie-how-one-man-fell-to-earth-and-rose-again.jpg
 excerpt: Have a safe journey, Ziggy. Rest in peace, Thin White Duke. Farewell, David Bowie.
 categories:
-  - Music
-  - David Bowie
-  - Eulogy
+    - Music
+    - David Bowie
+    - Eulogy
 ---
 
 On Sunday, 10th January 2016 a great musical chameleon we have come to known as **David Bowie** passed away after struggling with cancer for 18 long months. The next morning I checked my Twitter as I do every morning to catch the latest news. Immediately after reading a series of tweets tagged with _#RIPBowie_ I felt overwhelmed. Both Twitter and quite truthfully speaking the whole Internet had broken out in panic and anger, fearing, or rather hoping, for the unfortunate news to turn as a hoax. Bowie had been a target of numerous hoaxes before and justifiably there were a number of people who refused to believe what they had now heard.

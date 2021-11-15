@@ -7,10 +7,10 @@ title: Don't Use Bash for Scripting (All the Time)
 type: post
 excerpt: When the complexity of your script grows it's time to drop the Bash. With modern tools it can be easy, fast, and fun.
 categories:
-  - Beginners
-  - Bash
-  - CLI
-  - Linux
+    - Beginners
+    - Bash
+    - CLI
+    - Linux
 ---
 
 Writing scripts is a subset of coding we sometimes can't avoid nor should be afraid of. The standard tool for writing scripts is Bash for UNIX environments and PowerShell for Windows environments. In this post, I explain when it's appropriate to use Bash for scripting and when it's not.
@@ -68,10 +68,10 @@ Writing good Bash scripts takes years of practice. It's not a fruitless path sho
 
 The first advice is to use the [unofficial Bash strict mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/) to avoid unnecessary debugging. It consists of two lines making your script behave in the following way:
 
-- The script exits immediately upon encountering an error (`-e` flag)
-- The script exits immediately upon encountering an undefined variable (`-u` flag)
-- The script exits immediately when one or more calls in a piped statement fail (`pipefail` option)
-- Internal field separator (`IFS`) is set to accept newlines and tabs making the notorious Bash array handling easier and more logical
+-   The script exits immediately upon encountering an error (`-e` flag)
+-   The script exits immediately upon encountering an undefined variable (`-u` flag)
+-   The script exits immediately when one or more calls in a piped statement fail (`pipefail` option)
+-   Internal field separator (`IFS`) is set to accept newlines and tabs making the notorious Bash array handling easier and more logical
 
 There are some caveats for using the strict mode so I suggest reading the entire linked article and enabling or disabling the settings as you go.
 
@@ -101,11 +101,11 @@ If built-in language features are not enough there are handy frameworks created 
 
 As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.js). The script is written in Javascript and has the following features which would be difficult or even foolish to implement with Bash:
 
-- Interactive prompts and ability to pass given data through validator functions
-- Transforming sentences to SEO-friendly slugs (eg. `Blog Post Title` to `blog-post-title`)
-- Coloring terminal output without using weird ANSI codes
-- Asynchronous programming
-- Converting structured data to YAML front matter
+-   Interactive prompts and ability to pass given data through validator functions
+-   Transforming sentences to SEO-friendly slugs (eg. `Blog Post Title` to `blog-post-title`)
+-   Coloring terminal output without using weird ANSI codes
+-   Asynchronous programming
+-   Converting structured data to YAML front matter
 
 I'm not saying it would be impossible to do these things with Bash but it would be a hot mess of weird `awk` patterns I would end up debugging for hours.
 

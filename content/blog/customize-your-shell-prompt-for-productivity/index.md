@@ -7,11 +7,11 @@ title: Customizing Your Shell Prompt for Productivity
 type: post
 excerpt: To developers, command line is a natural environment for daily work. It makes sense then to customize it to be as helpful as possible.
 categories:
-  - Tips
-  - Terminal
-  - Bash
-  - Zsh
-  - Fish
+    - Tips
+    - Terminal
+    - Bash
+    - Zsh
+    - Fish
 ---
 
 To developers, the command line is a natural environment for daily work. It makes sense then to customize it to be as helpful as possible.
@@ -20,14 +20,14 @@ Try opening an uncustomized Bash shell on your machine and you will likely be gr
 
 What is useful enough information to include in the prompt then? I've gotten used to demanding the following information depending on the circumstances:
 
-- current working directory
-- current Git branch
-- current username if logged in to a remote machine or doing superuser stuff
-- system time if working in a full-screen mode
-- battery charge level if working on a laptop
-- state of the local project clone; eg. unstaged, modified, and deleted files or unpushed and unpulled commits
-- current application version from _package.json_ if working with a Javascript project
-- current runtime version depending on the programming language
+-   current working directory
+-   current Git branch
+-   current username if logged in to a remote machine or doing superuser stuff
+-   system time if working in a full-screen mode
+-   battery charge level if working on a laptop
+-   state of the local project clone; eg. unstaged, modified, and deleted files or unpushed and unpulled commits
+-   current application version from _package.json_ if working with a Javascript project
+-   current runtime version depending on the programming language
 
 You can find suitable commands to print out this information and customize your shell startup file `~/.bashrc` to include it but why keep reinventing the wheel?
 

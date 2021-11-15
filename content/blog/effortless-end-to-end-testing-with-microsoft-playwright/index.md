@@ -7,10 +7,10 @@ title: Effortless End-To-End Testing with Microsoft Playwright
 type: post
 excerpt: How we can improve the developer experience in writing tedious browser-based tests.
 categories:
-  - testing
-  - automation
-  - frontend
-  - productivity
+    - testing
+    - automation
+    - frontend
+    - productivity
 ---
 
 In my job, I stumble upon projects where there are _zero_ tests, or a project is equipped with a single generated test always failing. For some development teams, writing and maintaining a comprehensive automated test suite is a lesser priority. These teams' end product is usually an application that satisfies the bare necessities asked by the client but is plagued by code rot, technical debt, and instability.
@@ -19,9 +19,9 @@ During the maintenance phase, new layers of code are added on top of the existin
 
 Software maintenance and lifecycle management are hard. As maintainers, we are often tempted to heroically rescue the project by adding all the missing tests or rewriting the whole project from scratch. No budget will ever be given for such a crazy thing. Fortunately, we can follow certain practices:
 
-- adding tests whenever writing new functions, methods, or classes
-- adding tests before refactoring a unit of code
-- studying the business logic and writing end-to-end tests for it
+-   adding tests whenever writing new functions, methods, or classes
+-   adding tests before refactoring a unit of code
+-   studying the business logic and writing end-to-end tests for it
 
 In this post, I explain the latter -- **end-to-end tests** -- which I've found to be the most effective way of refreshing a stale project. What are these tests, you may ask?
 
@@ -29,9 +29,9 @@ In this post, I explain the latter -- **end-to-end tests** -- which I've found t
 
 End-to-end tests (abbreviated as E2E from now on) instead of unit and integration tests cover user-facing flows and business requirements defined for the application since it's planning phase started. These include, for example:
 
-- registering a new user for a service
-- signing in and out of a service as an existing user
-- adding products to the basket and checking out the purchase in an e-commerce website
+-   registering a new user for a service
+-   signing in and out of a service as an existing user
+-   adding products to the basket and checking out the purchase in an e-commerce website
 
 Experienced developers might now stop and think of _behaviour-driven development_ (BDD) which goes hand-in-hand with E2E. Behaviour flows are often decided when planning a new feature.
 
@@ -52,17 +52,17 @@ Here, the above specification would result in the following test code. The below
 
 ```js
 describe("Calculator", () => {
-  it("+ should add to current total", () => {
-    initialTotal = 5;
-    number = 7;
+    it("+ should add to current total", () => {
+        initialTotal = 5;
+        number = 7;
 
-    click(".plus");
-    fill(".input", number);
-    click(".run");
+        click(".plus");
+        fill(".input", number);
+        click(".run");
 
-    newTotal = $(".total").innerText;
-    expect(newTotal).toBe(initialTotal + number);
-  });
+        newTotal = $(".total").innerText;
+        expect(newTotal).toBe(initialTotal + number);
+    });
 });
 ```
 
@@ -131,8 +131,8 @@ Using a POM, the following operation of signing a user in...
 
 ```ts
 await Promise.all([
-  page.fill("[data-test-id=username]", username),
-  page.fill("[data-test-id=password]", password),
+    page.fill("[data-test-id=username]", username),
+    page.fill("[data-test-id=password]", password),
 ]);
 
 await page.click("[data-test-id=login]");
@@ -179,28 +179,28 @@ In the browser, let's now fetch a random article from Wikipedia, "read" it, and 
 const { chromium } = require("playwright");
 
 (async () => {
-  const browser = await chromium.launch({
-    headless: false,
-  });
-  const context = await browser.newContext();
+    const browser = await chromium.launch({
+        headless: false,
+    });
+    const context = await browser.newContext();
 
-  // Open new page
-  const page = await context.newPage();
+    // Open new page
+    const page = await context.newPage();
 
-  // Go to https://en.wikipedia.org/wiki/Main_Page
-  await page.goto("https://en.wikipedia.org/wiki/Main_Page");
+    // Go to https://en.wikipedia.org/wiki/Main_Page
+    await page.goto("https://en.wikipedia.org/wiki/Main_Page");
 
-  // Click text="Random article"
-  await page.click('text="Random article"');
-  // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/San_Vittore_Prison');
+    // Click text="Random article"
+    await page.click('text="Random article"');
+    // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/San_Vittore_Prison');
 
-  // Click //a[normalize-space(@title)='Visit the main page']
-  await page.click("//a[normalize-space(@title)='Visit the main page']");
-  // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/Main_Page');
+    // Click //a[normalize-space(@title)='Visit the main page']
+    await page.click("//a[normalize-space(@title)='Visit the main page']");
+    // assert.equal(page.url(), 'https://en.wikipedia.org/wiki/Main_Page');
 
-  // ---------------------
-  await context.close();
-  await browser.close();
+    // ---------------------
+    await context.close();
+    await browser.close();
 })();
 ```
 

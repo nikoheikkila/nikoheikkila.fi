@@ -1,14 +1,14 @@
 # Contributing to nikoheikkila.fi
 
-- [Contributing to nikoheikkila.fi](#contributing-to-nikoheikkilafi)
-  - [Contributing](#contributing)
-    - [Where to Contribute](#where-to-contribute)
-    - [How to Contribute](#how-to-contribute)
-  - [Contribution Guidelines](#contribution-guidelines)
-    - [Create an Issue](#create-an-issue)
-    - [Clean Code With Tests](#clean-code-with-tests)
-    - [Create a Pull Request](#create-a-pull-request)
-  - [The Bottom Line](#the-bottom-line)
+-   [Contributing to nikoheikkila.fi](#contributing-to-nikoheikkilafi)
+    -   [Contributing](#contributing)
+        -   [Where to Contribute](#where-to-contribute)
+        -   [How to Contribute](#how-to-contribute)
+    -   [Contribution Guidelines](#contribution-guidelines)
+        -   [Create an Issue](#create-an-issue)
+        -   [Clean Code With Tests](#clean-code-with-tests)
+        -   [Create a Pull Request](#create-a-pull-request)
+    -   [The Bottom Line](#the-bottom-line)
 
 ## Contributing
 
@@ -48,12 +48,12 @@ Some existing code may be poorly written or untested, so we must have more scrut
 
 ### Create a Pull Request
 
-- Try to keep the pull requests small. A pull request should try its very best to address only a single concern.
-- Make sure all tests pass and add additional tests for the code you submit.
-- Staging deployment will be made to _now.sh_, always check that it succeeds and your changes are deployed correctly.
-- Document your reasoning behind the changes. Explain why you wrote the code in the way you did. The code should explain what it does.
-- If there's an existing issue related to the pull request, reference to it by adding something like `References/Closes/Fixes/Resolves #305`, where 305 is the issue number. [More info here](https://github.com/blog/1506-closing-issues-via-pull-requests)
-- If you follow the pull request template, you can't go wrong.
+-   Try to keep the pull requests small. A pull request should try its very best to address only a single concern.
+-   Make sure all tests pass and add additional tests for the code you submit.
+-   Staging deployment will be made to _now.sh_, always check that it succeeds and your changes are deployed correctly.
+-   Document your reasoning behind the changes. Explain why you wrote the code in the way you did. The code should explain what it does.
+-   If there's an existing issue related to the pull request, reference to it by adding something like `References/Closes/Fixes/Resolves #305`, where 305 is the issue number. [More info here](https://github.com/blog/1506-closing-issues-via-pull-requests)
+-   If you follow the pull request template, you can't go wrong.
 
 _Please note: all commits in a pull request will be squashed when merged, but when your PR is approved and passes our CI, it will be live on production!_
 

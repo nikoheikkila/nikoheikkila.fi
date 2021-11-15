@@ -6,9 +6,9 @@ author: Niko Heikkilä
 date: 2020-06-21
 hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/now.jpg
 categories:
-  - Life
-  - Lists
-  - Now
+    - Life
+    - Lists
+    - Now
 ---
 
 This is my `/now` page intended to keep you -- and perhaps myself -- in the loop with my life. I can't fathom how to pull out a list like this accurately since I'm continually changing, but let me at least provide a bird's eye on my current life activities.

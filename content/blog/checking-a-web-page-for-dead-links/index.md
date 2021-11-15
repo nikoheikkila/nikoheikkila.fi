@@ -7,10 +7,10 @@ title: Checking a Web Page for Dead Links
 type: post
 excerpt: A Golang Command-Line Tutorial
 categories:
-  - tutorial
-  - golang
-  - web development
-  - tools
+    - tutorial
+    - golang
+    - web development
+    - tools
 ---
 
 There is no content on the web that is immune to rotting and growing moss. Blog posts start festering with old dead links pointing to nowhere, and images blank out when a server hosting them goes away. The cure is to periodically check for any dead content, which is a crazy thing to do by hand. Luckily, we can automate this boring stuff by using computers.
@@ -219,10 +219,10 @@ With that in mind, I hope you have enjoyed what you've read, and we meet again i
 
 As a closing note, below are some resources I found useful when learning how to Go.
 
-- [Go By Example](https://gobyexample.com/); contains plenty of annotated code snippets for performing basic and advanced tasks.
-- [GoDocs](https://godoc.org/); for the core API documentation.
-- [Official Go Extension for VS Code](https://github.com/Microsoft/vscode-go); huge praise to Microsoft for developing this extension and making writing Go a smooth process. No heavy IDEs needed here either.
-- [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/); if you only click one link in this post, let it be this one. Contains a comprehensive introduction to writing Go with TDD (_Test-Driven Development_) approach.
+-   [Go By Example](https://gobyexample.com/); contains plenty of annotated code snippets for performing basic and advanced tasks.
+-   [GoDocs](https://godoc.org/); for the core API documentation.
+-   [Official Go Extension for VS Code](https://github.com/Microsoft/vscode-go); huge praise to Microsoft for developing this extension and making writing Go a smooth process. No heavy IDEs needed here either.
+-   [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/); if you only click one link in this post, let it be this one. Contains a comprehensive introduction to writing Go with TDD (_Test-Driven Development_) approach.
 
 [colly]: http://go-colly.org/
 [aurora]: https://github.com/logrusorgru/aurora
