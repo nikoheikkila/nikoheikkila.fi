@@ -21,11 +21,9 @@ interface PromptAttributes {
   readonly cover: string | null;
 }
 
-type Logger = (msg: string) => void;
-
-const log: Logger = (msg) => console.log(msg);
-const success: Logger = (msg) => log(chalk.bold.green(msg));
-const error: Logger = (msg) => log(chalk.bold.red(msg));
+const log = (msg: string) => console.log(msg);
+const success = (msg: string) => log(chalk.bold.green(msg));
+const error = (msg: string) => log(chalk.bold.red(msg));
 
 const isValidCheckBoxAnswer = (answers: string[]): boolean | string => {
   if (answers.length < 1) return "Choose either type!";
@@ -96,7 +94,7 @@ const newPost = async () => {
       },
     ]);
   } catch (err) {
-    return error(err);
+    return error(err instanceof Error ? err.message : String(err));
   }
 
   const { title, type, excerpt, categories, author, cover, date, language } =
