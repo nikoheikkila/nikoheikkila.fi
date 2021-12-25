@@ -3586,10 +3586,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-burger-menu@2.8.2":
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/@types/react-burger-menu/-/react-burger-menu-2.8.2.tgz#bbf000b39f2829fcb28f69da3d13c8195862eaa6"
-  integrity sha512-WpFyppWeN6bJmaf7YlthgkHG0wiBbaYJZeEoqcpzIzlnrrXMnXXvI2N7yc5WAOOpPesVd/OJJGfLnmHKLz9uGA==
+"@types/react-burger-menu@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@types/react-burger-menu/-/react-burger-menu-2.8.3.tgz#c05b740117cf65751f6b945b7ae3836fcf3805d1"
+  integrity sha512-dXH/HzYSpcSxfstfBeBz5vzFLvaDbapExfh2QaPHPVX/IrgeGS6J25XTUTjnVtXpYoSKxFu6QFupO1J/RYbQlA==
   dependencies:
     "@types/react" "*"
 
