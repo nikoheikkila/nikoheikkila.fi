@@ -61,6 +61,7 @@
         "@graphql-codegen/cli": "2.3.1",
         "@graphql-codegen/typescript": "2.4.2",
         "@netlify/plugin-gatsby": "2.0.0-zz-beta.0",
+        "@playwright/test": "^1.17.2",
         "@types/inquirer": "8.1.3",
         "@types/title": "3.4.1",
         "alex": "9.1.1",
@@ -90,11 +91,24 @@
         "start": "yarn dev",
         "serve": "gatsby serve -p 8000",
         "test": "yarn format && yarn test:unit && yarn test:e2e && yarn test:a11y",
-        "test:unit": "ava --config ava.config.js",
-        "test:e2e": "ava --config e2e.config.js",
+        "test:unit": "ava",
+        "test:e2e": "playwright test",
         "test:a11y": "pa11y-ci",
         "snyk-protect": "snyk protect",
         "prepare": "yarn run snyk-protect"
+    },
+    "ava": {
+        "require": [
+            "ts-node/register"
+        ],
+        "files": [
+            "src/__tests__/unit/*.test.ts"
+        ],
+        "extensions": [
+            "ts"
+        ],
+        "concurrency": 5,
+        "verbose": true
     },
     "husky": {
         "hooks": {
