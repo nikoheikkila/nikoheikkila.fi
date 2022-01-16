@@ -37,12 +37,10 @@ test("should convert hex value to decimal", async (t) => {
 });
 
 test("should throw error on invalid hex value", async (t) => {
-    t.plan(2);
-    const error = t.throws(() => foregroundColor("123"), {
+    t.throws(() => foregroundColor("123"), {
         instanceOf: TypeError,
+        message: "Invalid hex value 123",
     });
-
-    t.is(error.message, "Invalid hex value 123");
 });
 
 test("should use light color on dark background", async (t) => {
