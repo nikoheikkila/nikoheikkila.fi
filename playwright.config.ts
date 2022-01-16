@@ -1,7 +1,5 @@
 import { PlaywrightTestConfig } from "@playwright/test";
 
-const isPipeline = !!process.env.CI;
-
 const config: PlaywrightTestConfig = {
     testDir: "src/__tests__/feature",
     use: {
