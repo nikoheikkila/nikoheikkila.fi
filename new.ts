@@ -4,7 +4,6 @@ import slugify from "@sindresorhus/slugify";
 import path from "path";
 import fs from "fs";
 import dayjs from "dayjs";
-import chalk from "chalk";
 import makeTitleCase from "title";
 
 // @ts-ignore
@@ -20,10 +19,6 @@ interface PromptAttributes {
     readonly date: string;
     readonly cover: string | null;
 }
-
-const log = (msg: string) => console.log(msg);
-const success = (msg: string) => log(chalk.bold.green(msg));
-const error = (msg: string) => log(chalk.bold.red(msg));
 
 const isValidCheckBoxAnswer = (answers: string[]): boolean | string => {
     if (answers.length < 1) return "Choose either type!";
@@ -94,7 +89,7 @@ const newPost = async () => {
             },
         ]);
     } catch (err) {
-        return error(err instanceof Error ? err.message : String(err));
+        return console.error(err instanceof Error ? err.message : String(err));
     }
 
     const { title, type, excerpt, categories, author, cover, date, language } =
@@ -130,7 +125,7 @@ hero: ${cover}
     const markdownFile = `${targetFolder}/index.md`;
     fs.writeFileSync(markdownFile, frontMatterBlock);
 
-    success(`
+    console.log(`
     Saved new post to ${markdownFile} with following content:
 
     ${frontMatterBlock}
