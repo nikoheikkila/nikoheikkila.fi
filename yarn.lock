@@ -1920,7 +1920,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.14.8", "@babel/runtime@^7.15.4":
+"@babel/runtime@^7.15.4":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -8705,26 +8705,27 @@ gatsby-cli@^4.5.1:
     yoga-layout-prebuilt "^1.10.0"
     yurnalist "^2.1.0"
 
-gatsby-core-utils@^3.0.0-next.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.0.0.tgz#5a0fccd9118acb874dd64324fcc3c1b407a5c16e"
-  integrity sha512-MEQAgP+/ddDTOjcfRhyZenLfr6q3nyh01muI6QTgz0qAFsbS50lZh9SbczgpuKnb6qiST1KR0OUIYTaBFXfB2g==
+gatsby-core-utils@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.5.1.tgz#0c0e03e173d0a615fa8146e629f2ad29ceff50d4"
+  integrity sha512-qYjPUKULMcrcQyzY3BYKRFwBeI94Cxxm95ByNzYLT80QL0qZL4CapwLgCo1PyZPNd5IWByO8+nmZTcBR6hy0tQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     ci-info "2.0.0"
     configstore "^5.0.1"
     file-type "^16.5.3"
     fs-extra "^10.0.0"
-    got "^11.8.2"
-    node-object-hash "^2.3.9"
+    got "^11.8.3"
+    lock "^1.1.0"
+    node-object-hash "^2.3.10"
     proper-lockfile "^4.1.2"
     tmp "^0.2.1"
     xdg-basedir "^4.0.0"
 
-gatsby-core-utils@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.5.1.tgz#0c0e03e173d0a615fa8146e629f2ad29ceff50d4"
-  integrity sha512-qYjPUKULMcrcQyzY3BYKRFwBeI94Cxxm95ByNzYLT80QL0qZL4CapwLgCo1PyZPNd5IWByO8+nmZTcBR6hy0tQ==
+gatsby-core-utils@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.5.2.tgz#f95e1d9034811029a1db85479a1a2bfd456818db"
+  integrity sha512-sY7BD6VlbWwrV892x9/yJPtXYaGC/GLyhabd9j2xP6zsIOW0XBHXZ4jJ+xEPaRn3CJxYgBd8KdCyoc4h1ZEFzg==
   dependencies:
     "@babel/runtime" "^7.15.4"
     ci-info "2.0.0"
@@ -8824,14 +8825,14 @@ gatsby-plugin-manifest@4.5.1:
     semver "^7.3.5"
     sharp "^0.29.3"
 
-gatsby-plugin-netlify@4.0.0-next.0:
-  version "4.0.0-next.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-4.0.0-next.0.tgz#515c38ef6094f55efe8f46837137647a7d46a442"
-  integrity sha512-v8L1/9vnKDpKj1wGMwFlWa1al2nZm8+u/emxMjaevS8AIQqgFNarjGtDdDLyVSu9oN6Vk29ah77rJDcfycadjg==
+gatsby-plugin-netlify@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-4.0.0.tgz#5509e8e4bf7eda5bd7ccafffe1ecdbe6e4860447"
+  integrity sha512-QsuRqBWYAOqnY2DXMP5puVhb9NhLfj6srClCMXwaIduDjSRQpEP6/R0LjOf7yg3Kj8j4qP+fhiAGPns7kRBkoA==
   dependencies:
-    "@babel/runtime" "^7.14.8"
+    "@babel/runtime" "^7.16.7"
     fs-extra "^10.0.0"
-    gatsby-core-utils "^3.0.0-next.0"
+    gatsby-core-utils "^3.5.2"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.6"
@@ -12898,7 +12899,7 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-object-hash@^2.3.10, node-object-hash@^2.3.9:
+node-object-hash@^2.3.10:
   version "2.3.10"
   resolved "https://registry.yarnpkg.com/node-object-hash/-/node-object-hash-2.3.10.tgz#4b0c1a3a8239e955f0db71f8e00b38b5c0b33992"
   integrity sha512-jY5dPJzw6NHd/KPSfPKJ+IHoFS81/tJ43r34ZeNMXGzCOM8jwQDCD12HYayKIB6MuznrnqIYy2e891NA2g0ibA==
