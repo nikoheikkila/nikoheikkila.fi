@@ -58,8 +58,8 @@
     "devDependencies": {
         "@ava/babel": "2.0.0",
         "@babel/helper-call-delegate": "7.12.13",
-        "@graphql-codegen/cli": "2.4.0",
-        "@graphql-codegen/typescript": "2.4.2",
+        "@graphql-codegen/cli": "2.5.0",
+        "@graphql-codegen/typescript": "2.4.3",
         "@netlify/plugin-gatsby": "2.0.2",
         "@playwright/test": "1.18.1",
         "@types/inquirer": "8.2.0",
