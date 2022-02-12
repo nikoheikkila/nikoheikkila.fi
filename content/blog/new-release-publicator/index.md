@@ -13,7 +13,7 @@ Lately, I've been investing more time in _Python_ projects. However, having work
 
 Python ecosystem has had its fair share of package management solutions starting from the classic Pip and advancing to Pipenv a few years ago. Unfortunately, both tools lack a wholesome user experience similar to Yarn. I was lucky to stumble upon [**Poetry**](https://python-poetry.org/) some time ago and haven't looked back at other tools since.
 
-While Poetry finally brings us a sane solution for publishing and maintaining Python packages, many developers crave a more _enhanced_ and safer user experience. **Sindre Sorhus** and contributors have given us [np](https://github.com/sindresorhus/np) for the Node ecosystem, which I've happily used to publish both private and public NPM packages.
+While Poetry finally brings us a sensible solution for publishing and maintaining Python packages, many developers crave a more _enhanced_ and safer user experience. **Sindre Sorhus** and contributors have given us [np](https://github.com/sindresorhus/np) for the Node ecosystem, which I've happily used to publish both private and public NPM packages.
 
 Was there anything like this for Poetry? Probably, if I've bothered to search through the packages carefully, but why not make a tool to fit precisely for my use cases? Thus, my latest open-source tool, [**Publicator**](https://github.com/nikoheikkila/publicator), aims to offer the same convenient solution for publishing your everyday Python packages.
 
