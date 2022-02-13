@@ -26,7 +26,9 @@ Out of the box, its most helpful features include:
 -   Committing the version bump, pushing a new tag to your Git server, and publishing the new package to [Python Package Index](https://pypi.org/) (or your private repository)
 -   Projects hosted on GitHub.com open a new browser window for drafting the release with pre-filled details. Sweet!
 
-Developing and testing Publicator has been an incredible luxury because of the dogfooding – that is, I can release new versions using the tool itself. On another note, the codebase has over 100 micro-tests I've obediently written following TDD cycles. Hence, you won't find any technical debt here, making your contribution efforts easier.
+Developing and testing Publicator has been an incredible luxury because of the dogfooding – that is, I can release new versions using the tool itself. Additionally, I created [**semmy**](https://github.com/nikoheikkila/semmy), a simple Python package to help with semantic versioning, which Publicator uses internally.
+
+On another note, the codebase has many micro-tests I've obediently written following TDD cycles. Hence, you won't find any technical debt here, making your contribution efforts easier.
 
 As is the custom, my employer generously funds the development through [The Spice Program](https://spiceprogram.org/). I'm also sharing my work under the **MIT** license so you can use it for your commercial projects as well.
 
