@@ -84,8 +84,17 @@ const newPost = async () => {
             {
                 type: "input",
                 name: "cover",
-                message: "Filename of the cover image: ",
+                message: "URL of the cover image: ",
                 default: "null",
+                validate: (input: string) => {
+                    try {
+                        new URL(input);
+                    } catch {
+                        return "Enter a valid URL";
+                    }
+
+                    return true;
+                },
             },
         ]);
     } catch (err) {
