@@ -8,7 +8,7 @@
         "level": "warning",
         "concurrency": 4,
         "timeout": 10000,
-        "hideElements": "iframe",
+        "hideElements": "iframe, #react-burger-menu-btn",
         "chromeLaunchConfig": {
             "args": [
                 "--no-sandbox"
