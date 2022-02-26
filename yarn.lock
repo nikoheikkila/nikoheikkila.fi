@@ -3364,19 +3364,19 @@
   resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-live-query/-/graphql-live-query-0.9.0.tgz#defaebdd31f625bee49e6745934f36312532b2bc"
   integrity sha512-BTpWy1e+FxN82RnLz4x1+JcEewVdfmUhV1C6/XYD5AjS7PQp9QFF7K8bCD6gzPTr2l+prvqOyVueQhFJxB1vfg==
 
-"@netlify/functions@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-0.11.0.tgz#224f3bba53809b364d36377ad0b2d3de594f994d"
-  integrity sha512-+WWX081UCkLZYkfh1Ru+PH5HTujNXugeskATGhZLTyS1U3Cqh2gYLArdG1a/vU8WWopu/wjpxEOdWq8/T5Nw5Q==
+"@netlify/functions@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-1.0.0.tgz#5b6c02fafc567033c93b15a080cc021e5f10f254"
+  integrity sha512-7fnJv3vr8uyyyOYPChwoec6MjzsCw1CoRUO2DhQ1BD6bOyJRlD4DUaOOGlMILB2LCT8P24p5LexEGx8AJb7xdA==
   dependencies:
     is-promise "^4.0.0"
 
-"@netlify/plugin-gatsby@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-2.0.2.tgz#99500272f7ed2eeabaa4fb52b9899a63cd550316"
-  integrity sha512-DhlCGcthCylRuOPuAtquYx2Ryc066WoDcRyV4CYEA++imN5lT83EZ9f366MPP+/7CUCFbNXtdVGoVYhXrd7GiA==
+"@netlify/plugin-gatsby@2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-2.0.4.tgz#18ba8353eca993ad6b164250cff1e794c9ca51f3"
+  integrity sha512-JsMFRnRNJlMx4VY3WXhc+MKLOxBGG5ZI/nqR7BYCRIG/MghLf8gXy+K0QMhMm+sjeUAIreCI0SihqFJeUoSyjA==
   dependencies:
-    "@netlify/functions" "^0.11.0"
+    "@netlify/functions" "^1.0.0"
     chalk "^4.1.2"
     co-body "^6.1.0"
     cookie "^0.4.1"
