@@ -15796,10 +15796,10 @@ puppeteer@~9.1.1:
     unbzip2-stream "^1.3.3"
     ws "^7.2.3"
 
-purify-ts@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/purify-ts/-/purify-ts-1.1.0.tgz#1a8fd7e85ec4c832ee1f6b43e443d38229352804"
-  integrity sha512-hfXuxs6hoRURvcBwHVGlLdeNp9R96z+l1sQQj5enqU1ZDqV1GGVPIr6wNw2rNKqhQemaaMERrqjqjzO2hVYZsg==
+purify-ts@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/purify-ts/-/purify-ts-1.2.0.tgz#103f088798c55b78b0ba49d82714f912c5d35b4c"
+  integrity sha512-CTiMFDCaJ9vKXOnl13sRktbb6KMYB0NuQD0LPUYfEZO5YIKcN7uxIb7maSe0Ywzcm9O8LDcz7dQK1p6ZWDCvaQ==
   dependencies:
     "@types/json-schema" "7.0.9"
 
