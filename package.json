@@ -15,7 +15,7 @@
         "@fortawesome/react-fontawesome": "0.1.17",
         "@sindresorhus/slugify": "1.1.2",
         "@types/node": "16.11.26",
-        "@types/react": "17.0.39",
+        "@types/react": "17.0.40",
         "@types/react-burger-menu": "2.8.3",
         "@types/react-dom": "17.0.13",
         "@types/react-helmet": "6.1.5",
