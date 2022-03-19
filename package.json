@@ -12,7 +12,7 @@
         "@fortawesome/fontawesome-svg-core": "1.2.36",
         "@fortawesome/free-brands-svg-icons": "5.15.4",
         "@fortawesome/free-solid-svg-icons": "5.15.4",
-        "@fortawesome/react-fontawesome": "0.1.17",
+        "@fortawesome/react-fontawesome": "0.1.18",
         "@sindresorhus/slugify": "1.1.2",
         "@types/node": "16.11.26",
         "@types/react": "17.0.40",
