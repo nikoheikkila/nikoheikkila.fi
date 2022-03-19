@@ -3373,13 +3373,6 @@
   resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-live-query/-/graphql-live-query-0.9.0.tgz#defaebdd31f625bee49e6745934f36312532b2bc"
   integrity sha512-BTpWy1e+FxN82RnLz4x1+JcEewVdfmUhV1C6/XYD5AjS7PQp9QFF7K8bCD6gzPTr2l+prvqOyVueQhFJxB1vfg==
 
-"@netlify/functions@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-0.7.2.tgz#9d39553b94e7aaa86dddf515bdbaed3e89998122"
-  integrity sha512-xf45ZqQukMxmlkqNMC5BXdFMaVZ8VqF42MV5zA5nKVOh2V0mhYlcbTYlVbS/K2/rtvQ3W8lxxixYl4NT7kq6Bg==
-  dependencies:
-    is-promise "^4.0.0"
-
 "@netlify/functions@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-1.0.0.tgz#5b6c02fafc567033c93b15a080cc021e5f10f254"
@@ -3387,28 +3380,28 @@
   dependencies:
     is-promise "^4.0.0"
 
-"@netlify/ipx@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@netlify/ipx/-/ipx-1.0.0.tgz#90ed5a16df02caff4e1eec8e71cdb0c247e24180"
-  integrity sha512-0qfWI1sHR4iiN9mYCSjHp4R1YcIFn2k2WfU/xpWvfkaaA8ZJaPTcHnNoVKQeLSRhh6eQXNSr7TZzYmgSu1i1jg==
+"@netlify/ipx@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@netlify/ipx/-/ipx-1.0.1.tgz#aa6a38ae33931a1d8a2dbd84341862c4126e74bd"
+  integrity sha512-bABYrpien+MnIUBbkM/xuU4so3BOeOQZBnWqL215EZjJzbfch4jbErLFZWbeWyrJSPc8QklG/yHgLLrelfA42g==
   dependencies:
-    "@netlify/functions" "^0.7.2"
+    "@netlify/functions" "^1.0.0"
     etag "^1.8.1"
     fs-extra "^10.0.0"
     ipx "^0.9.4"
     mkdirp "^1.0.4"
     murmurhash "^2.0.0"
     node-fetch "^2.0.0"
-    ufo "^0.7.10"
+    ufo "^0.7.11"
     unstorage "^0.2.8"
 
-"@netlify/plugin-gatsby@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-2.1.2.tgz#4466957a624e25702a9cd6c3191c7ac66dac9d2a"
-  integrity sha512-45JSNzRecESLSxZWxTm0PcZ65K2AghphoPA7NbigpiTiRgURfKVQQtt+54PG9iDC62c8ZQuih8wjmT7lirJWCQ==
+"@netlify/plugin-gatsby@2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-2.1.3.tgz#9c954407973cda21d9d231c836cb455d88156ecb"
+  integrity sha512-og3Ih6uRVvFErvCOnifY/+ZpPV3pP3REGFlTfSpLe6115kM6gKtPHy73jLh6fw1C1tIqzBdQVCjyx9Fqcj78qQ==
   dependencies:
     "@netlify/functions" "^1.0.0"
-    "@netlify/ipx" "^1.0.0"
+    "@netlify/ipx" "^1.0.1"
     chalk "^4.1.2"
     co-body "^6.1.0"
     cookie "^0.4.1"
@@ -19324,7 +19317,7 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
   integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
-ufo@^0.7.10, ufo@^0.7.9:
+ufo@^0.7.10, ufo@^0.7.11, ufo@^0.7.9:
   version "0.7.11"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.7.11.tgz#17defad497981290383c5d26357773431fdbadcb"
   integrity sha512-IT3q0lPvtkqQ8toHQN/BkOi4VIqoqheqM1FnkNWT9y0G8B3xJhwnoKBu5OHx8zHDOvveQzfKuFowJ0VSARiIDg==
