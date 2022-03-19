@@ -70,7 +70,7 @@
         "inquirer": "8.2.1",
         "pa11y-ci": "3.0.1",
         "playwright": "1.19.2",
-        "prettier": "2.5.1",
+        "prettier": "2.6.0",
         "title": "3.4.4",
         "ts-node": "10.7.0"
     },
