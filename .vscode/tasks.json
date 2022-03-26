@@ -25,14 +25,6 @@
             "type": "npm",
             "script": "serve",
             "group": "build"
-        },
-        {
-            "type": "npm",
-            "script": "test:a11y",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            }
         }
     ]
 }

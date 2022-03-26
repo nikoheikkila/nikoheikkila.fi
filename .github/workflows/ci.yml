@@ -59,6 +59,3 @@ jobs:
               with:
                   name: screenshots
                   path: src/__tests__/feature/screenshots/
-
-            - name: Accessibility Tests
-              run: yarn test:a11y
