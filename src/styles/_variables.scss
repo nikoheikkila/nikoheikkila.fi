@@ -1,3 +1,5 @@
+$filter: invert(100%) hue-rotate(180deg);
+
 $blue: #539bf5;
 $red: #fd3300;
 
@@ -6,7 +8,6 @@ $darkFg: #adadad;
 $darkHl: $blue;
 
 $inlineCodeFg: #bd10e0;
-
 $contentWidth: 50vw;
 
 @mixin for-phone-only {

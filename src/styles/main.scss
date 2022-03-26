@@ -47,3 +47,29 @@ a {
     font-weight: 400;
     text-decoration: none;
 }
+
+/**
+ * LIGHT MODE
+ * Because dark mode should be the default everywhere, ha-ha!
+ */
+@media (prefers-color-scheme: light) {
+    $lightBackground: #fff;
+
+    body {
+        background-color: $lightBackground;
+        filter: $filter;
+    }
+
+    /* Re-enable dark background for specific elements by filtering twice */
+    img,
+    video,
+    iframe,
+    .gatsby-highlight {
+        filter: $filter;
+    }
+
+    /* Tweak other elements */
+    li::marker {
+        color: $lightBackground;
+    }
+}
