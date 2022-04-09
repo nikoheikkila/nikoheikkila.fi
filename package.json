@@ -21,7 +21,7 @@
         "@types/react-helmet": "6.1.5",
         "dayjs": "1.11.0",
         "disqus-react": "1.1.2",
-        "gatsby": "4.11.1",
+        "gatsby": "4.11.2",
         "gatsby-plugin-disqus": "1.2.3",
         "gatsby-plugin-feed": "4.11.1",
         "gatsby-plugin-image": "2.11.1",
