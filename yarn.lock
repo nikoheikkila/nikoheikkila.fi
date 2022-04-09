@@ -3377,10 +3377,10 @@
     ufo "^0.7.11"
     unstorage "^0.2.8"
 
-"@netlify/plugin-gatsby@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-2.1.4.tgz#7d5891dbff7d47d29029b416feeb082ed7100f45"
-  integrity sha512-Fm71x7oKHUGaiz0COh1LgjxHhEeY0B7pmqzMaqo8TRI1wOnfFFNvY1KQ8fx3KQfAHOpYKpWUPJA5Wkt9W9eMdQ==
+"@netlify/plugin-gatsby@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.0.0.tgz#d77545ef91705bcdf2d8b65d8165a1370bc69ae4"
+  integrity sha512-hne8HUPgtzgKC8eyW97PRrzp99Csu9xkuIn21J8BSzkVQOPw22hyDgulgiGg4zmQr+80PICOc57W2xOncM9d/w==
   dependencies:
     "@netlify/functions" "^1.0.0"
     "@netlify/ipx" "^1.0.1"
@@ -3396,6 +3396,7 @@
     node-stream-zip "^1.15.0"
     pathe "^0.2.0"
     pretty-bytes "^5.6.0"
+    semver "^7.3.5"
     tempy "^1.0.0"
 
 "@nodelib/fs.scandir@2.1.3":
