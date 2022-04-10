@@ -1,7 +1,37 @@
 import type { GatsbyConfig } from "gatsby";
+import {
+    MarkdownRemarkConnection,
+    SiteSiteMetadata as SiteMetadata,
+} from "./src/types";
 
 const environment = process.env.NODE_ENV;
 const isProduction = environment === "production";
+
+interface Serializable {
+    query: {
+        allMarkdownRemark: MarkdownRemarkConnection;
+        site: {
+            siteMetadata: SiteMetadata;
+        };
+    };
+}
+
+const serialize = ({ query: { site, allMarkdownRemark } }: Serializable) =>
+    allMarkdownRemark.edges.map((edge) => ({
+        ...edge.node.frontmatter,
+        language: edge.node.frontmatter?.lang,
+        title: edge.node.frontmatter?.title,
+        description: edge.node?.excerpt,
+        date: edge.node.frontmatter?.date,
+        url: site.siteMetadata?.siteUrl ?? "" + edge.node.fields?.slug,
+        guid: site.siteMetadata?.siteUrl ?? "" + edge.node.fields?.slug,
+        author: edge.node.frontmatter?.author ?? "",
+        custom_elements: [
+            {
+                "content:encoded": edge.node.html,
+            },
+        ],
+    }));
 
 const config: GatsbyConfig = {
     siteMetadata: {
@@ -90,64 +120,41 @@ const config: GatsbyConfig = {
         {
             resolve: `gatsby-plugin-feed`,
             options: {
-                query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-                site_url: siteUrl
-              }
-            }
-          }
-        `,
+                query: `{
+                    site {
+                        siteMetadata {
+                            title
+                            description
+                            siteUrl
+                            site_url: siteUrl
+                        }
+                    }
+                }`,
                 feeds: [
                     {
-                        serialize: ({ query: { site, allMarkdownRemark } }) =>
-                            allMarkdownRemark.edges.map((edge) => ({
-                                ...edge.node.frontmatter,
-                                language: edge.node.frontmatter.lang,
-                                title: edge.node.frontmatter.title,
-                                description: edge.node.excerpt,
-                                date: edge.node.frontmatter.date,
-                                url:
-                                    site.siteMetadata.siteUrl +
-                                    edge.node.fields.slug,
-                                guid:
-                                    site.siteMetadata.siteUrl +
-                                    edge.node.fields.slug,
-                                author: edge.node.frontmatter.author,
-                                custom_elements: [
-                                    {
-                                        "content:encoded": edge.node.html,
-                                    },
-                                ],
-                            })),
-                        query: `
-            {
-              allMarkdownRemark(
-                limit: 1000,
-                sort: { order: DESC, fields: [frontmatter___date] }
-                filter: { frontmatter: { type: { ne: "page" } } }
-              ) {
-                edges {
-                  node {
-                    excerpt
-                    html
-                    fields { slug }
-                    frontmatter {
-                      author
-                      date
-                      lang
-                      title
-                      type
-                    }
-                  }
-                }
-              }
-            }
-          `,
+                        serialize,
+                        query: `{
+                            allMarkdownRemark(
+                                limit: 1000,
+                                sort: { order: DESC, fields: [frontmatter___date] }
+                                filter: { frontmatter: { type: { ne: "page" } } }
+                            ) {
+                                edges {
+                                    node {
+                                        excerpt
+                                        html
+                                        fields { slug }
+                                        frontmatter {
+                                            author
+                                            date
+                                            lang
+                                            title
+                                            type
+                                        }
+                                    }
+                                }
+                            }
+                        }`,
                         output: `/rss.xml`,
                         title: `RSS Feed | Niko Heikkilä`,
                         match: `^/blog/`,
