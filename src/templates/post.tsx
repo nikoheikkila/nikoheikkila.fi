@@ -14,6 +14,7 @@ import SEO from "../components/seo";
 import { combinePaths } from "../utils/helpers";
 import { Route } from "../gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import Subscribe from "../components/post/subscribe";
 
 interface PostProps {
     data: Query;
@@ -74,6 +75,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
                 title={postTitle}
             />
             <Content content={html} />
+            <Subscribe />
             <PostFooter categories={categories as string[]} />
             <PostAttachments
                 location={location}

@@ -1,0 +1,15 @@
+.subscribe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: solid 2px;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
