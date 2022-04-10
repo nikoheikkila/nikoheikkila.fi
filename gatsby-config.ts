@@ -1,12 +1,15 @@
-const path = require("path");
+import path from "path";
+import dotenv from "dotenv";
+import type { GatsbyConfig } from "gatsby";
+
 const environment = process.env.NODE_ENV;
 const isProduction = environment === "production";
 
-require("dotenv").config({
+dotenv.config({
     path: `.env.${environment}`,
 });
 
-module.exports = {
+const config: GatsbyConfig = {
     siteMetadata: {
         language: `en`,
         title: `Niko Heikkilä`,
@@ -79,14 +82,14 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/content`,
+                path: path.resolve("./content"),
                 name: `blog`,
             },
         },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/src/assets`,
+                path: path.resolve("./src/assets"),
                 name: `assets`,
             },
         },
@@ -190,7 +193,7 @@ module.exports = {
             resolve: `gatsby-plugin-sass`,
             options: {
                 sassOptions: {
-                    includePaths: [path.resolve(__dirname, "src/styles")],
+                    includePaths: [path.resolve("./src/styles")],
                 },
             },
         },
@@ -201,3 +204,5 @@ module.exports = {
         isProduction ? [`gatsby-plugin-offline`] : []
     ),
 };
+
+export default config;
