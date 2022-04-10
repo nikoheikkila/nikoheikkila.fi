@@ -1,13 +1,7 @@
-import path from "path";
-import dotenv from "dotenv";
 import type { GatsbyConfig } from "gatsby";
 
 const environment = process.env.NODE_ENV;
 const isProduction = environment === "production";
-
-dotenv.config({
-    path: `.env.${environment}`,
-});
 
 const config: GatsbyConfig = {
     siteMetadata: {
@@ -18,7 +12,7 @@ const config: GatsbyConfig = {
         },
         description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
         siteUrl: `https://nikoheikkila.fi`,
-        disqus: process.env.GATSBY_DISQUS_SHORTNAME,
+        disqus: "nikoheikkilafi",
         social: [
             {
                 name: `dev`,
@@ -82,14 +76,14 @@ const config: GatsbyConfig = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: path.resolve("./content"),
+                path: "./content",
                 name: `blog`,
             },
         },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: path.resolve("./src/assets"),
+                path: "./src/assets",
                 name: `assets`,
             },
         },
@@ -193,7 +187,7 @@ const config: GatsbyConfig = {
             resolve: `gatsby-plugin-sass`,
             options: {
                 sassOptions: {
-                    includePaths: [path.resolve("./src/styles")],
+                    includePaths: ["./src/styles"],
                 },
             },
         },
