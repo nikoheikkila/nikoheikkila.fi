@@ -1,6 +1,8 @@
 <h1 align="center">Welcome to nikoheikkila.fi 👋</h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2296609f-151b-491d-b3f8-d908eb78e4f5/deploy-status)](https://app.netlify.com/sites/nikoheikkila/deploys) ![Build Status](https://github.com/nikoheikkila/nikoheikkila.fi/workflows/Main%20Workflow/badge.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&utm_medium=referral&utm_content=nikoheikkila/nikoheikkila.fi&utm_campaign=Badge_Grade)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2296609f-151b-491d-b3f8-d908eb78e4f5/deploy-status)](https://app.netlify.com/sites/nikoheikkila/deploys)
+[![Acceptance Tests](https://github.com/nikoheikkila/nikoheikkila.fi/actions/workflows/ci.yml/badge.svg)](https://github.com/nikoheikkila/nikoheikkila.fi/actions/workflows/ci.yml)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/587ffb2f1f2c47bcb6a3141574dbb440)](https://www.codacy.com/app/nikoheikkila/nikoheikkila.fi?utm_source=github.com&utm_medium=referral&utm_content=nikoheikkila/nikoheikkila.fi&utm_campaign=Badge_Grade)
 
 My personal blog. Forked from Gatsby Blog Starter template and inspired here and there by Dan Abramov's blog.
 
