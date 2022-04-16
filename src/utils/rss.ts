@@ -1,0 +1,69 @@
+import { graphql } from "gatsby";
+import { MarkdownRemarkConnection, SiteSiteMetadata as Meta } from "../types";
+
+type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>;
+};
+
+export type Serializable = {
+    query: {
+        allMarkdownRemark: DeepPartial<MarkdownRemarkConnection>;
+        site: {
+            siteMetadata: DeepPartial<Meta>;
+        };
+    };
+};
+
+export const serialize = ({
+    query: { site, allMarkdownRemark },
+}: Serializable) => {
+    return (allMarkdownRemark?.edges || []).map((edge) => {
+        const siteUrl = site?.siteMetadata?.siteUrl ?? "";
+        const slug = edge?.node?.fields?.slug ?? "";
+        const url = siteUrl + slug;
+
+        return {
+            url,
+            language: edge?.node?.frontmatter?.lang,
+            title: edge?.node?.frontmatter?.title,
+            description: edge?.node?.excerpt,
+            date: edge?.node?.frontmatter?.date,
+            categories: edge?.node?.frontmatter?.categories,
+            guid: url,
+            author: edge?.node?.frontmatter?.author,
+            custom_elements: [
+                {
+                    "content:encoded": edge?.node?.html,
+                },
+            ],
+        };
+    });
+};
+
+export const rssQuery = `
+    {
+        allMarkdownRemark(
+            limit: 1000
+            sort: { order: DESC, fields: [frontmatter___date] }
+            filter: { frontmatter: { type: { ne: "page" } } }
+        ) {
+            edges {
+                node {
+                    excerpt
+                    html
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        author
+                        date
+                        lang
+                        title
+                        type
+                        categories
+                    }
+                }
+            }
+        }
+    }
+`;
