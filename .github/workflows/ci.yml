@@ -11,10 +11,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Setup Node.js 14
+            - name: Setup Node.js 16
               uses: actions/setup-node@v2
               with:
-                  node-version: 14
+                  node-version: 16
                   cache: yarn
 
             - name: Install Dependencies
@@ -43,14 +43,12 @@ jobs:
                   GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
             - name: Setup Playwright
-              run: npx playwright install-deps
+              run: npx playwright install
 
             - name: Launch server on background
               run: yarn serve &
 
-            - name: E2E Tests with Chromium
-              env:
-                  BROWSER: chromium
+            - name: Run E2E Tests with Chromium
               run: yarn test:e2e
 
             - name: Upload screenshots of failed tests
