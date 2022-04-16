@@ -5,6 +5,8 @@ const baseURL = process.env.APP_URL || "http://localhost:8000";
 const config: PlaywrightTestConfig = {
     testDir: "src/__tests__/feature",
     forbidOnly: !!process.env.CI,
+    workers: process.env.CI ? 2 : undefined,
+    reporter: process.env.CI ? "github" : "list",
     use: {
         baseURL,
         ignoreHTTPSErrors: true,
