@@ -34,7 +34,13 @@ jobs:
 
     acceptance_stage:
         name: Acceptance Stage
-        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, macos-latest, windows-latest]
+
+        runs-on: ${{ matrix.os }}
 
         steps:
             - name: Checkout repository
@@ -65,11 +71,23 @@ jobs:
                   GATSBY_DISQUS_SHORTNAME: nikoheikkila
                   GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
 
-            - name: Setup Playwright
-              run: npx playwright install --with-deps
+            - name: Run E2E Tests on Linux
+              if: runner.os == 'Linux'
+              run: |
+                  npx playwright install --with-deps chrome firefox
+                  yarn test:e2e --project Chromium Firefox Android
 
-            - name: Run E2E Tests
-              run: yarn test:e2e
+            - name: Run E2E Tests on macOS
+              if: runner.os == 'macOS'
+              run: |
+                  npx playwright install --with-deps webkit
+                  yarn test:e2e --project Safari iPhone
+
+            - name: Run E2E Tests on Windows
+              if: runner.os == 'Windows'
+              run: |
+                  npx playwright install --with-deps msedge
+                  yarn test:e2e --project Edge
 
             - name: Upload results of failed tests
               uses: actions/upload-artifact@v2

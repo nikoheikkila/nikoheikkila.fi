@@ -36,6 +36,10 @@ const config: PlaywrightTestConfig = {
             use: { ...devices["Desktop Safari"] },
         },
         {
+            name: "Edge",
+            use: { ...devices["Desktop Edge"] },
+        },
+        {
             name: "iPhone",
             use: { ...devices["iPhone 13"] },
         },
