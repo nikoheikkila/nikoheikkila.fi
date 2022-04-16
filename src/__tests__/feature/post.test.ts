@@ -5,7 +5,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
         await page.goto("/");
         await Promise.all([
             page.waitForNavigation(),
-            page.click('[data-testid="post-title"]:first-child > a'),
+            page.click("[data-testid=post-title]:first-child > a"),
         ]);
         await expect(page).toHaveURL(/blog/);
     });
@@ -13,7 +13,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
     test("when I view it, then title should render correctly", async ({
         page,
     }) => {
-        const postHeader = page.locator('[data-testid="post-header"]');
+        const postHeader = page.locator("data-testid=post-header");
         await expect(postHeader).toBeVisible();
     });
 
