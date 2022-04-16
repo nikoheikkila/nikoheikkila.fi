@@ -71,9 +71,9 @@ jobs:
             - name: Run E2E Tests
               run: yarn test:e2e
 
-            - name: Upload screenshots of failed tests
+            - name: Upload results of failed tests
               uses: actions/upload-artifact@v2
               if: failure()
               with:
-                  name: screenshots
-                  path: src/__tests__/feature/screenshots/
+                  name: test-results
+                  path: test-results/
