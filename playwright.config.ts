@@ -7,6 +7,8 @@ const config: PlaywrightTestConfig = {
     forbidOnly: !!process.env.CI,
     workers: process.env.CI ? 2 : undefined,
     reporter: process.env.CI ? "github" : "list",
+    timeout: process.env.CI ? 60 * 1000 : undefined,
+    globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined,
     use: {
         baseURL,
         ignoreHTTPSErrors: true,
