@@ -10,11 +10,18 @@ test.describe.parallel("Given I'm on a single post page", () => {
         await expect(page).toHaveURL(/blog/);
     });
 
-    test("when I view it, then it should render correctly", async ({
+    test("when I view it, then title should render correctly", async ({
         page,
     }) => {
         const postHeader = page.locator('[data-testid="post-header"]');
         await expect(postHeader).toBeVisible();
+    });
+
+    test("when I view it, then I should see a subscribe box", async ({
+        page,
+    }) => {
+        const subscribeBox = page.locator("data-test-id=rss-subscribe");
+        await expect(subscribeBox).toBeVisible();
     });
 
     test("when I click the 'Edit' button, then I should be taken to GitHub", async ({

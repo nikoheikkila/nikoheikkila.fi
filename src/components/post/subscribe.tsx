@@ -24,7 +24,7 @@ const Error = () => (
 );
 
 const FeedLink: React.FC<{ url: string }> = ({ url }) => (
-    <section className={styles.subscribe}>
+    <section className={styles.subscribe} data-test-id="rss-subscribe">
         <p>
             <FontAwesomeIcon icon={faRss} /> Enjoyed what you read? Why not keep
             yourself updated and grab the <a href={url}>RSS feed</a>.
