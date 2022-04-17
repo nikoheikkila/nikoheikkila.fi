@@ -2,6 +2,8 @@ import test from "ava";
 import * as RSS from "../../utils/rss";
 
 test("should serialize a valid query object", async (t) => {
+    const contentDigest = "e71faeed61b358a14ba16b3d3ff47967";
+
     const data: RSS.Serializable = {
         query: {
             site: {
@@ -15,6 +17,7 @@ test("should serialize a valid query object", async (t) => {
                         node: {
                             excerpt: "Lorem ipsum dolor sit amet",
                             html: "<article>Hello World!</article>",
+                            internal: { contentDigest },
                             fields: {
                                 slug: "/blog/test-post/",
                             },
@@ -41,7 +44,7 @@ test("should serialize a valid query object", async (t) => {
             description: "Lorem ipsum dolor sit amet",
             date: "2022-12-31",
             url: "https://www.nikoheikkila.fi/blog/test-post/",
-            guid: "https://www.nikoheikkila.fi/blog/test-post/",
+            guid: contentDigest,
             author: "Niko Heikkilä",
             categories: ["article"],
             custom_elements: [

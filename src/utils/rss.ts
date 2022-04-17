@@ -1,4 +1,3 @@
-import { graphql } from "gatsby";
 import { MarkdownRemarkConnection, SiteSiteMetadata as Meta } from "../types";
 
 type DeepPartial<T> = {
@@ -29,7 +28,7 @@ export const serialize = ({
             description: edge?.node?.excerpt,
             date: edge?.node?.frontmatter?.date,
             categories: edge?.node?.frontmatter?.categories,
-            guid: url,
+            guid: edge?.node?.internal?.contentDigest,
             author: edge?.node?.frontmatter?.author,
             custom_elements: [
                 {
@@ -51,6 +50,9 @@ export const rssQuery = `
                 node {
                     excerpt
                     html
+                    internal {
+                        contentDigest
+                    }
                     fields {
                         slug
                     }
