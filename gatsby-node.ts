@@ -77,31 +77,32 @@ export const createPages = async ({
         throw new Error(errors);
     }
 
+    if (!data) {
+        throw new Error("createPages() query returned no data");
+    }
+
     /**
      * Create blog posts by first querying all page objects from GraphQL
      * and then looping them to the createPage() function.
      */
-    const { edges } = data.allMarkdownRemark;
+    const { edges = [] } = data.allMarkdownRemark;
 
     edges.forEach((post, index) => {
+        const slug = post.node.fields?.slug;
+
+        if (!slug || slug.length === 0) {
+            return;
+        }
+
         const previous =
             index === edges.length - 1 ? null : edges[index + 1].node;
         const next = index === 0 ? null : edges[index - 1].node;
-        const { slug } = post.node.fields;
-
-        if (slug.length === 0) {
-            return;
-        }
 
         createPage({
             path: slug,
             component: blogPost,
             defer: hasDSG() ? index > postsPerPage : false,
-            context: {
-                slug: slug,
-                previous,
-                next,
-            },
+            context: { slug, previous, next },
         });
     });
 
@@ -111,7 +112,9 @@ export const createPages = async ({
      * a site structure where '/' is the first page and subsequent pages will
      * be '/{2..m}' where m is the maximum number of posts.
      */
-    const posts = edges.filter((page) => page.node.frontmatter.type === "post");
+    const posts = edges.filter(
+        (page) => page.node.frontmatter?.type === "post"
+    );
     const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
     Array.from({ length: numberOfPages }).forEach((_, i) => {
@@ -146,7 +149,7 @@ export const onCreateNode = async ({
     const { id, frontmatter } = node;
     const { hero } = frontmatter;
 
-    if (isRemoteImage(hero)) {
+    if (hero && isRemoteImage(hero)) {
         try {
             const fileNode = await createRemoteFileNode({
                 url: hero,
@@ -175,5 +178,4 @@ export const onCreateNode = async ({
 
 const isMarkdownNode = (node: Node): boolean =>
     node.internal.type === "MarkdownRemark";
-const isRemoteImage = (url: string | null): boolean =>
-    url !== null && /^https?:\/\/+/.test(url);
+const isRemoteImage = (url: string): boolean => /^https?:\/\/+/.test(url);

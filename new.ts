@@ -41,13 +41,13 @@ const newPost = async () => {
                 type: "input",
                 name: "author",
                 message: "Author: ",
-                default: meta.author.name,
+                default: meta?.author?.name,
             },
             {
                 type: "input",
                 name: "language",
                 message: "Language (en, fi, sv): ",
-                default: meta.language,
+                default: meta?.language,
             },
             {
                 type: "input",
