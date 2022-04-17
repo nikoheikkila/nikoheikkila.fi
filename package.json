@@ -52,7 +52,7 @@
         "react-dom": "18.0.0",
         "react-helmet": "6.1.0",
         "sass": "1.50.0",
-        "snyk": "1.900.0",
+        "snyk": "1.907.0",
         "typescript": "4.6.3"
     },
     "devDependencies": {
