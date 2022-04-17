@@ -45,7 +45,7 @@
         "gatsby-transformer-sharp": "4.12.1",
         "global": "4.4.0",
         "katex": "0.15.3",
-        "prismjs": "1.27.0",
+        "prismjs": "1.28.0",
         "purify-ts": "1.2.0",
         "react": "18.0.0",
         "react-burger-menu": "3.0.6",
