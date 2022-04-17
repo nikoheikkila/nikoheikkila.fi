@@ -5,9 +5,10 @@ import path from "path";
 import fs from "fs";
 import dayjs from "dayjs";
 import makeTitleCase from "title";
+import config from "./gatsby-config";
+import { SiteSiteMetadata as Meta } from "./src/types";
 
-// @ts-ignore
-import { siteMetadata } from "./gatsby-config";
+const meta = config.siteMetadata as Meta;
 
 interface PromptAttributes {
     readonly title: string;
@@ -40,13 +41,13 @@ const newPost = async () => {
                 type: "input",
                 name: "author",
                 message: "Author: ",
-                default: siteMetadata.author.name,
+                default: meta.author.name,
             },
             {
                 type: "input",
                 name: "language",
                 message: "Language (en, fi, sv): ",
-                default: siteMetadata.language,
+                default: meta.language,
             },
             {
                 type: "input",

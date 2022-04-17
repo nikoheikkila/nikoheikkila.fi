@@ -1,11 +1,15 @@
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GatsbyConfig } from "gatsby";
 import { Maybe } from "purify-ts";
 import React from "react";
-import config from "../../../gatsby-config";
 import * as styles from "./subscribe.module.scss";
 
-const Subscribe = () => {
+interface SubscribeProps {
+    config: GatsbyConfig;
+}
+
+const Subscribe: React.FC<SubscribeProps> = ({ config }) => {
     return Maybe.fromNullable(config.siteMetadata)
         .chainNullable((meta) => meta.rss)
         .map(String)

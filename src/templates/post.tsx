@@ -1,8 +1,9 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
-import { ImageSharp, MarkdownRemarkEdge, PageInfo, Query } from "../types";
+import config from "../../gatsby-config";
 import { useIcons } from "../components/hooks/useIcons";
 import Layout from "../components/layout/layout";
 import PostAttachments from "../components/post/attachments";
@@ -10,11 +11,11 @@ import Content from "../components/post/content";
 import PostFooter from "../components/post/footer";
 import PostHeader from "../components/post/header";
 import PostNavigation from "../components/post/navigation";
-import SEO from "../components/seo";
-import { combinePaths } from "../utils/helpers";
-import { Route } from "../gatsby";
-import { IGatsbyImageData } from "gatsby-plugin-image";
 import Subscribe from "../components/post/subscribe";
+import SEO from "../components/seo";
+import { Route } from "../gatsby";
+import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
+import { combinePaths } from "../utils/helpers";
 
 interface PostProps {
     data: Query;
@@ -75,7 +76,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
                 title={postTitle}
             />
             <Content content={html} />
-            <Subscribe />
+            <Subscribe config={config} />
             <PostFooter categories={categories as string[]} />
             <PostAttachments
                 location={location}
