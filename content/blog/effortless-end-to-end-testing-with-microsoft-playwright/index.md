@@ -33,7 +33,7 @@ End-to-end tests (abbreviated as E2E from now on) instead of unit and integratio
 
 -   booking a hotel room online
 -   adding products to the basket, viewing them, and checking out the purchase on an e-commerce website
-- ...and many more
+-   ...and many more
 
 Experienced developers might now stop and think of _behaviour-driven development_ (BDD), which goes hand-in-hand with E2E. Behaviour flows are often decided when planning a new feature.
 
@@ -129,11 +129,11 @@ You can also use any third-party NPM modules in your tests. For example, the [`f
 
 If you choose to use the first-party test runner, you get to configure your tests in a single TypeScript file. The configurable features are documented and well. Some of the most helpful ones are:
 
-- adjusting test timeouts in case of particularly slow web servers
-- specifying multiple projects with separate configurations and running them with `playwright test --project <name>`
-- specifying multiple reporters -- generally, you want console and HTML reporting, but there are more, or you can roll your own
-- allowing flaky tests to be retried multiple times, which is sometimes useful when working with crappy external APIs
-- launching a web server in the background and waiting until an endpoint responds with HTTP 200 code before running tests
+-   adjusting test timeouts in case of particularly slow web servers
+-   specifying multiple projects with separate configurations and running them with `playwright test --project <name>`
+-   specifying multiple reporters -- generally, you want console and HTML reporting, but there are more, or you can roll your own
+-   allowing flaky tests to be retried multiple times, which is sometimes useful when working with crappy external APIs
+-   launching a web server in the background and waiting until an endpoint responds with HTTP 200 code before running tests
 
 ### Easy Maintenance
 
@@ -190,20 +190,21 @@ Using the `npx` tool part of Node.js, this command downloads the Playwright CLI 
 In the browser, let's now fetch a random article from Wikipedia, "read" it, and navigate back to the main page. Meanwhile, we receive the code below on another window, ready to be saved for further inspection.
 
 ```ts
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('test', async ({ page }) => {
+test("test", async ({ page }) => {
+    // Go to https://en.wikipedia.org/wiki/Main_Page
+    await page.goto("https://en.wikipedia.org/wiki/Main_Page");
 
-  // Go to https://en.wikipedia.org/wiki/Main_Page
-  await page.goto('https://en.wikipedia.org/wiki/Main_Page');
+    // Click text=Random article
+    await page.locator("text=Random article").click();
+    await expect(page).toHaveURL(
+        "https://en.wikipedia.org/wiki/Howie_Schwarzman"
+    );
 
-  // Click text=Random article
-  await page.locator('text=Random article').click();
-  await expect(page).toHaveURL('https://en.wikipedia.org/wiki/Howie_Schwarzman');
-
-  // Click text=Main page
-  await page.locator('text=Main page').click();
-  await expect(page).toHaveURL('https://en.wikipedia.org/wiki/Main_Page');
+    // Click text=Main page
+    await page.locator("text=Main page").click();
+    await expect(page).toHaveURL("https://en.wikipedia.org/wiki/Main_Page");
 });
 ```
 
@@ -217,11 +218,11 @@ Writing tests is never enough if they only run locally. Playwright supports most
 
 Generally, a delivery pipeline has the following steps:
 
-- clone the repository
-- install dependencies
-- build the application with a production-like configuration
-- launch the application in the background
-- run Playwright tests
+-   clone the repository
+-   install dependencies
+-   build the application with a production-like configuration
+-   launch the application in the background
+-   run Playwright tests
 
 Because remote build systems offer limited visibility to test runs, it's crucial to leverage Playwright's capabilities of recording screenshots, videos, and test traces in case of failures. These should be uploaded as test artefacts and the actual test report, so you may attempt to reproduce the same failure locally.
 

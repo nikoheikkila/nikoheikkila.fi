@@ -19,6 +19,7 @@ exports.allow = [
     "dummy",
     "insomnia",
     "obvious",
+    "of-course",
 ];
 
 exports.noBinary = true;
