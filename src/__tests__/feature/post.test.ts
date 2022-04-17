@@ -28,25 +28,21 @@ test.describe.parallel("Given I'm on a single post page", () => {
         page,
     }) => {
         const [github] = await Promise.all([
-            page.context().waitForEvent("page"),
-            page.click('text="Edit Page"'),
+            page.waitForEvent("popup"),
+            page.locator("text=Edit Page").click(),
         ]);
 
-        await github.waitForLoadState();
         await expect(github).toHaveURL(/github\.com/);
-        await expect(github).toHaveURL(/edit/);
     });
 
     test("when I click the 'View History' button, then I should be taken to GitHub", async ({
         page,
     }) => {
         const [github] = await Promise.all([
-            page.context().waitForEvent("page"),
-            page.click('text="View History"'),
+            page.waitForEvent("popup"),
+            page.locator("text=View History").click(),
         ]);
 
-        await github.waitForLoadState();
         await expect(github).toHaveURL(/github\.com/);
-        await expect(github).toHaveURL(/commits/);
     });
 });
