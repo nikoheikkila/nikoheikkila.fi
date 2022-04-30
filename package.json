@@ -67,7 +67,7 @@
         "alex": "10.0.0",
         "ava": "4.2.0",
         "husky": "7.0.4",
-        "inquirer": "8.2.2",
+        "inquirer": "8.2.4",
         "playwright": "1.21.1",
         "prettier": "2.6.2",
         "title": "3.4.4",
