@@ -59,7 +59,7 @@
         "@ava/babel": "2.0.0",
         "@babel/helper-call-delegate": "7.12.13",
         "@graphql-codegen/cli": "2.6.2",
-        "@graphql-codegen/typescript": "2.4.10",
+        "@graphql-codegen/typescript": "2.4.11",
         "@netlify/plugin-gatsby": "3.0.0",
         "@playwright/test": "1.22.0",
         "@types/inquirer": "8.2.1",
