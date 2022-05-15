@@ -66,7 +66,6 @@
         "@types/title": "3.4.1",
         "alex": "10.0.0",
         "ava": "4.2.0",
-        "husky": "8.0.1",
         "inquirer": "8.2.4",
         "playwright": "1.22.0",
         "prettier": "2.6.2",
@@ -105,12 +104,6 @@
         ],
         "concurrency": 5,
         "verbose": true
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "task lint",
-            "pre-push": "task test"
-        }
     },
     "repository": {
         "type": "git",
