@@ -9,6 +9,7 @@ const config: PlaywrightTestConfig = {
     reporter: process.env.CI ? "github" : "list",
     timeout: process.env.CI ? 60 * 1000 : undefined,
     globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined,
+    retries: 1,
     use: {
         baseURL,
         ignoreHTTPSErrors: true,
