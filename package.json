@@ -108,7 +108,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn lint"
+            "pre-commit": "task lint",
+            "pre-push": "task test"
         }
     },
     "repository": {
