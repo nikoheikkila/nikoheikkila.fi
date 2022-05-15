@@ -19,7 +19,7 @@ tasks:
         cmds:
             - npx prettier --write "{{.EXTS}}"
         vars:
-            EXTS: "./**/*.(ts|tsx|json|yml|yaml|md)"
+            EXTS: "./**/*.{ts,tsx,json,yml,yaml,md}"
 
     lint:
         summary: Lint codebase
@@ -35,7 +35,7 @@ tasks:
         cmds:
             - npx prettier --check "{{.EXTS}}"
         vars:
-            EXTS: "./**/*.(ts|tsx|json|yml|yaml|md)"
+            EXTS: "./**/*.{ts,tsx,json,yml,yaml,md}"
 
     lint-lang:
         summary: Lint Markdown files for insensitive language
@@ -47,7 +47,7 @@ tasks:
     lint-types:
         summary: Lint TypeScript files for incorrect typing
         sources:
-            - ./**/*.(ts|tsx)
+            - ./**/*.{ts,tsx}
         cmds:
             - npx tsc --noEmit
 
@@ -63,7 +63,7 @@ tasks:
         deps:
             - install
         sources:
-            - src/**/*.(ts|tsx)
+            - src/**/*.{ts,tsx}
         cmds:
             - npx ava {{.CLI_ARGS}}
 
@@ -72,7 +72,7 @@ tasks:
         deps:
             - build
         sources:
-            - ./**/*.(ts|tsx)
+            - ./**/*.{ts,tsx}
         cmds:
             - npx playwright test {{.CLI_ARGS}}
 
@@ -88,7 +88,7 @@ tasks:
         deps:
             - install
         sources:
-            - ./**/*.(ts|tsx)
+            - ./**/*.{ts,tsx}
             - content/**/*.md
         generates:
             - public/*
