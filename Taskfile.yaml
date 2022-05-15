@@ -10,7 +10,7 @@ tasks:
         generates:
             - node_modules/*
         cmds:
-            - yarn --frozen-lockfile --prefer-offline {{.CLI_ARGS}}
+            - yarn --frozen-lockfile --prefer-offline
 
     format:
         summary: Format codebase
@@ -65,7 +65,7 @@ tasks:
         sources:
             - src/**/*.{ts,tsx}
         cmds:
-            - npx ava {{.CLI_ARGS}}
+            - npx ava
 
     test-e2e:
         summary: Run end-to-end tests
