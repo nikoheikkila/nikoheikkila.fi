@@ -53,7 +53,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest, macos-latest, windows-latest]
+                os: [ubuntu-latest]
 
         runs-on: ${{ matrix.os }}
 
@@ -96,23 +96,10 @@ jobs:
                       ${{ runner.os }}-gatsby-
                       ${{ runner.os }}-
 
-            - name: Run E2E Tests on Linux
-              if: runner.os == 'Linux'
+            - name: Run E2E Tests
               run: |
-                  npx playwright install --with-deps chrome firefox
-                  task test-e2e -- --project Chromium Firefox Android
-
-            - name: Run E2E Tests on macOS
-              if: runner.os == 'macOS'
-              run: |
-                  npx playwright install --with-deps webkit
-                  task test-e2e -- --project Safari iPhone
-
-            - name: Run E2E Tests on Windows
-              if: runner.os == 'Windows'
-              run: |
-                  npx playwright install --with-deps msedge
-                  task test-e2e -- --project Edge
+                  npx playwright install --with-deps
+                  task test-e2e
 
             - name: Upload results of failed tests
               uses: actions/upload-artifact@v2
