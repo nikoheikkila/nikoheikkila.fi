@@ -1,0 +1,107 @@
+version: "3"
+dotenv:
+    - .env
+
+tasks:
+    install:
+        sources:
+            - package.json
+            - yarn.lock
+        generates:
+            - node_modules/*
+        cmds:
+            - yarn --frozen-lockfile --prefer-offline {{.CLI_ARGS}}
+
+    format:
+        summary: Format codebase
+        sources:
+            - "{{.EXTS}}"
+        cmds:
+            - npx prettier --write "{{.EXTS}}"
+        vars:
+            EXTS: "./**/*.(ts|tsx|json|yml|yaml|md)"
+
+    lint:
+        summary: Lint codebase
+        deps:
+            - lint-style
+            - lint-lang
+            - lint-types
+
+    lint-style:
+        summary: Lint codebase for style issues
+        sources:
+            - "{{.EXTS}}"
+        cmds:
+            - npx prettier --check "{{.EXTS}}"
+        vars:
+            EXTS: "./**/*.(ts|tsx|json|yml|yaml|md)"
+
+    lint-lang:
+        summary: Lint Markdown files for insensitive language
+        sources:
+            - content/**/*.md
+        cmds:
+            - npx alex -q .
+
+    lint-types:
+        summary: Lint TypeScript files for incorrect typing
+        sources:
+            - ./**/*.(ts|tsx)
+        cmds:
+            - npx tsc --noEmit
+
+    test:
+        summary: Run application test suite
+        deps:
+            - lint
+            - test-unit
+            - test-e2e
+
+    test-unit:
+        summary: Run unit tests
+        deps:
+            - install
+        sources:
+            - src/**/*.(ts|tsx)
+        cmds:
+            - npx ava {{.CLI_ARGS}}
+
+    test-e2e:
+        summary: Run end-to-end tests
+        deps:
+            - build
+        sources:
+            - ./**/*.(ts|tsx)
+        cmds:
+            - npx playwright test {{.CLI_ARGS}}
+
+    dev:
+        deps:
+            - install
+        summary: Serve the Gatsby development site
+        cmds:
+            - yarn dev
+
+    build:
+        summary: Build the Gatsby production site
+        deps:
+            - install
+        sources:
+            - ./**/*.(ts|tsx)
+            - content/**/*.md
+        generates:
+            - public/*
+        env:
+            GATSBY_CPU_COUNT: logical_cores
+            GATSBY_DISQUS_SHORTNAME: nikoheikkilafi
+            NODE_ENV: production
+        cmds:
+            - yarn build
+
+    serve:
+        summary: Serve the Gatsby production site
+        deps:
+            - build
+        cmds:
+            - yarn serve
