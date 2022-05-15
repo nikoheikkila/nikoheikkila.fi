@@ -17,20 +17,32 @@ jobs:
                   node-version: 16
                   cache: yarn
 
+            - name: Install Task
+              uses: arduino/setup-task@v1
+
+            - name: Cache task checksums
+              uses: actions/cache@v3
+              with:
+                  path: .task
+                  key: ${{ runner.os }}-task-${{ hashFiles('Taskfile.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-task-
+                      ${{ runner.os }}-
+
             - name: Install dependencies
-              run: yarn --frozen-lockfile --prefer-offline
+              run: task install
 
             - name: Lint Code Style
-              run: yarn lint:style
+              run: task lint-style
 
             - name: Check types
-              run: yarn lint:types
+              run: task lint-types
 
             - name: Check grammar
-              run: yarn lint:lang
+              run: task lint-lang
 
             - name: Run unit tests
-              run: yarn test:unit
+              run: task test-unit
 
     acceptance_stage:
         name: Acceptance Stage
@@ -52,8 +64,20 @@ jobs:
                   node-version: 16
                   cache: yarn
 
+            - name: Install Task
+              uses: arduino/setup-task@v1
+
             - name: Install dependencies
-              run: yarn --frozen-lockfile --prefer-offline
+              run: task install
+
+            - name: Cache task checksums
+              uses: actions/cache@v3
+              with:
+                  path: .task
+                  key: ${{ runner.os }}-task-${{ hashFiles('Taskfile.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-task-
+                      ${{ runner.os }}-
 
             - name: Cache Gatsby Build Files
               uses: actions/cache@v2
@@ -61,33 +85,28 @@ jobs:
                   path: |
                       .cache
                       public
-                  key: ${{ runner.OS }}-gatsby-cache
+                  key: ${{ runner.os }}-gatsby-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.OS }}-gatsby-cache
-
-            - name: Build Site
-              run: yarn build
-              env:
-                  GATSBY_DISQUS_SHORTNAME: nikoheikkila
-                  GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+                      ${{ runner.os }}-gatsby-
+                      ${{ runner.os }}-
 
             - name: Run E2E Tests on Linux
               if: runner.os == 'Linux'
               run: |
                   npx playwright install --with-deps chrome firefox
-                  yarn test:e2e --project Chromium Firefox Android
+                  task test-e2e -- --project Chromium Firefox Android
 
             - name: Run E2E Tests on macOS
               if: runner.os == 'macOS'
               run: |
                   npx playwright install --with-deps webkit
-                  yarn test:e2e --project Safari iPhone
+                  task test-e2e -- --project Safari iPhone
 
             - name: Run E2E Tests on Windows
               if: runner.os == 'Windows'
               run: |
                   npx playwright install --with-deps msedge
-                  yarn test:e2e --project Edge
+                  task test-e2e -- --project Edge
 
             - name: Upload results of failed tests
               uses: actions/upload-artifact@v2
