@@ -10,7 +10,10 @@ test.describe.parallel("API Tests", () => {
         expect(response).toBeOK();
 
         const body = await response.text();
-        expect(body).toMatchSnapshot("robots-txt");
+        expect(body).toContain("User-agent: ");
+        expect(body).toContain("Allow: ");
+        expect(body).toContain("Sitemap: ");
+        expect(body).toContain("Host: ");
     });
 
     test("/rss.xml should return valid RSS feed", async ({ request }) => {
