@@ -7,28 +7,25 @@ test.describe.parallel("API Tests", () => {
         request,
     }) => {
         const response = await request.get("/robots.txt");
-        const body = await response.text();
+        expect(response).toBeOK();
 
-        expect(response.ok()).toBeTruthy();
-        expect(body).toMatch(/User-agent: \*/);
-        expect(body).toMatch(/Allow: \//);
-        expect(body).toMatch(/Sitemap: (.*)/);
-        expect(body).toMatch(/Host: (.*)/);
+        const body = await response.text();
+        expect(body).toMatchSnapshot("robots-txt");
     });
 
     test("/rss.xml should return valid RSS feed", async ({ request }) => {
         const response = await request.get("/rss.xml");
-        const body = await response.text();
+        expect(response).toBeOK();
 
-        expect(response.ok()).toBeTruthy();
+        const body = await response.text();
         expect(body).toMatch(validXMLHeader);
     });
 
     test("/sitemap should return valid XML sitemap", async ({ request }) => {
         const response = await request.get("/sitemap/sitemap-index.xml");
-        const body = await response.text();
+        expect(response).toBeOK();
 
-        expect(response.ok()).toBeTruthy();
+        const body = await response.text();
         expect(body).toMatch(validXMLHeader);
     });
 });
