@@ -3309,16 +3309,16 @@
     ufo "^0.7.11"
     unstorage "^0.2.8"
 
-"@netlify/plugin-gatsby@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.0.0.tgz#d77545ef91705bcdf2d8b65d8165a1370bc69ae4"
-  integrity sha512-hne8HUPgtzgKC8eyW97PRrzp99Csu9xkuIn21J8BSzkVQOPw22hyDgulgiGg4zmQr+80PICOc57W2xOncM9d/w==
+"@netlify/plugin-gatsby@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.1.0.tgz#8fe6f772bb4cf075a8f2c81d38a4499e33f1f5ec"
+  integrity sha512-aVbGOZBacLM/uoOIMz4cBZggS5dcVCwpPyzqw2CMHZrQ3LwLGk4Fat6EB8HMxHFJthCaK3lVRddlZZrjVzJf2w==
   dependencies:
     "@netlify/functions" "^1.0.0"
     "@netlify/ipx" "^1.0.1"
     chalk "^4.1.2"
     co-body "^6.1.0"
-    cookie "^0.4.1"
+    cookie "^0.5.0"
     download "^8.0.0"
     etag "^1.8.1"
     fs-extra "^10.0.0"
@@ -6719,6 +6719,11 @@ cookie@^0.4.1, cookie@~0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
   integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
+
+cookie@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
+  integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
 
 core-js-compat@3.9.0:
   version "3.9.0"
