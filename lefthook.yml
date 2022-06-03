@@ -1,7 +1,8 @@
 pre-push:
     commands:
         sync:
-            run: git pull --rebase
+            run:
+                - task test-unit
 
 pre-commit:
     commands:
