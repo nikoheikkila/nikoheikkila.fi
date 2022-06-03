@@ -56,8 +56,9 @@ tasks:
         desc: Run application test suite
         deps:
             - lint
-            - test-unit
-            - test-e2e
+        cmds:
+            - task: test-unit
+            - task: test-e2e
 
     test-unit:
         desc: Run unit tests
