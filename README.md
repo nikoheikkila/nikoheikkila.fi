@@ -39,7 +39,7 @@ Finally, open <http://localhost:8000> to view the blog.
 
 ## 🤖 Run tests
 
-Project is packaged with Prettier formatter, AVA unit tests, and Playwright automated tests. They can be ran respectively like so:
+Project is packaged with Prettier formatter, Vitest unit tests, and Playwright automated tests. They can be ran respectively like so:
 
 ```sh
 yarn lint

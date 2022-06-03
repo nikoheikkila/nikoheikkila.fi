@@ -1,62 +1,31 @@
-import test from "ava";
-import {
-    hex2dec,
-    colorPalette,
-    randomColor,
-    foregroundColor,
-} from "../../utils/colors";
+import { test, expect } from "vitest";
+import * as Colors from "../../utils/colors";
 
-test("should print a random color", async (t) => {
-    t.plan(1);
-    t.true(colorPalette.includes(randomColor()));
+test("should print a random color", () => {
+    expect(Colors.colorPalette.includes(Colors.randomColor())).toBeTruthy();
 });
 
-test("should convert hex value to decimal", async (t) => {
-    t.plan(16);
-    const hexes = [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-    ];
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
-    hexes.forEach((hex, i) => t.is(hex2dec(hex), numbers[i]));
+test("should throw error on invalid hex value", () => {
+    expect(() => Colors.foregroundColor("123")).toThrowError(TypeError);
 });
 
-test("should throw error on invalid hex value", async (t) => {
-    t.throws(() => foregroundColor("123"), {
-        instanceOf: TypeError,
-        message: "Invalid hex value 123",
-    });
-});
+test.each([
+    ["#070092"],
+    ["#295330"],
+    ["#820009"],
+    ["#763507"],
+    ["#02070a"],
+    ["#000600"],
+])(
+    "when background color is %s, foreground color should be #FFFFFF",
+    (backgroundColor: string) => {
+        expect(Colors.foregroundColor(backgroundColor)).toBe("#FFFFFF");
+    }
+);
 
-test("should use light color on dark background", async (t) => {
-    t.plan(5);
-    const backgrounds = ["#070092", "#295330", "#820009", "#763507", "#00070a"];
-
-    backgrounds.forEach((background) => {
-        t.is(foregroundColor(background), "#FFFFFF");
-    });
-});
-
-test("should use dark color on light background", async (t) => {
-    t.plan(5);
-    const backgrounds = ["#f5a7ba", "#b8bfe0", "#a1f98b", "#f4ff93", "#f7f7f7"];
-
-    backgrounds.forEach((background) => {
-        t.is(foregroundColor(background), "#000000");
-    });
-});
+test.each([["#f5a7ba"], ["#b8bfe0"], ["#a1f98b"], ["#f4ff93"], ["#f7f7f7"]])(
+    "when background color is %s, foreground color should be #000000",
+    (backgroundColor: string) => {
+        expect(Colors.foregroundColor(backgroundColor)).toBe("#000000");
+    }
+);

@@ -56,7 +56,6 @@
         "typescript": "4.7.2"
     },
     "devDependencies": {
-        "@ava/babel": "2.0.0",
         "@babel/helper-call-delegate": "7.12.13",
         "@graphql-codegen/cli": "2.6.2",
         "@graphql-codegen/typescript": "2.4.11",
@@ -65,12 +64,12 @@
         "@types/inquirer": "8.2.1",
         "@types/title": "3.4.1",
         "alex": "10.0.0",
-        "ava": "4.2.0",
         "inquirer": "8.2.4",
         "playwright": "1.22.2",
         "prettier": "2.6.2",
         "title": "3.4.4",
-        "ts-node": "10.8.0"
+        "ts-node": "10.8.0",
+        "vitest": "^0.13.1"
     },
     "keywords": [
         "gatsby"
@@ -89,21 +88,8 @@
         "start": "yarn dev",
         "serve": "gatsby serve -p 8000",
         "test": "yarn format && yarn test:unit && yarn test:e2e",
-        "test:unit": "ava",
+        "test:unit": "vitest",
         "test:e2e": "playwright test"
-    },
-    "ava": {
-        "require": [
-            "ts-node/register"
-        ],
-        "files": [
-            "src/__tests__/unit/*.test.ts"
-        ],
-        "extensions": [
-            "ts"
-        ],
-        "concurrency": 5,
-        "verbose": true
     },
     "repository": {
         "type": "git",

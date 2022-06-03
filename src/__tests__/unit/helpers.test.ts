@@ -1,7 +1,7 @@
-import test from "ava";
-import { formatReadingTime } from "../../utils/helpers";
+import { test, expect } from "vitest";
+import * as Helpers from "../../utils/helpers";
 
-test("should humanize reading time", async (t) => {
-    t.regex(formatReadingTime(1), /^(.+) 1 minute read$/);
-    t.regex(formatReadingTime(2), /^(.+) 2 minutes read$/);
+test("should humanize reading time", () => {
+    expect(Helpers.formatReadingTime(1)).toMatch(/^(.+) 1 minute read$/);
+    expect(Helpers.formatReadingTime(2)).toMatch(/^(.+) 2 minutes read$/);
 });

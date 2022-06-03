@@ -1,7 +1,7 @@
-import test from "ava";
+import { test, expect } from "vitest";
 import * as RSS from "../../utils/rss";
 
-test("should serialize a valid query object", async (t) => {
+test("should serialize a valid query object", () => {
     const contentDigest = "e71faeed61b358a14ba16b3d3ff47967";
 
     const data: RSS.Serializable = {
@@ -55,10 +55,10 @@ test("should serialize a valid query object", async (t) => {
         },
     ];
 
-    t.deepEqual(actualSerialization, expectedSerialization);
+    expect(actualSerialization).toMatchObject(expectedSerialization);
 });
 
-test("should serialize an empty object", async (t) => {
+test("should serialize an empty object", () => {
     const data: RSS.Serializable = {
         query: {
             site: { siteMetadata: {} },
@@ -66,5 +66,5 @@ test("should serialize an empty object", async (t) => {
         },
     };
 
-    t.deepEqual(RSS.serialize(data), []);
+    expect(RSS.serialize(data)).toHaveLength(0);
 });
