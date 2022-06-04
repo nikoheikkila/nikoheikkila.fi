@@ -68,7 +68,7 @@
         "playwright": "1.22.2",
         "prettier": "2.6.2",
         "title": "3.4.4",
-        "ts-node": "10.8.0",
+        "ts-node": "10.8.1",
         "vitest": "0.13.1"
     },
     "keywords": [
