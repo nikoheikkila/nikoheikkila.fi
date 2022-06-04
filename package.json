@@ -69,7 +69,7 @@
         "prettier": "2.6.2",
         "title": "3.4.4",
         "ts-node": "10.8.0",
-        "vitest": "^0.13.1"
+        "vitest": "0.13.1"
     },
     "keywords": [
         "gatsby"
