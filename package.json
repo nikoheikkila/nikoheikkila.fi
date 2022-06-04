@@ -46,7 +46,7 @@
         "global": "4.4.0",
         "katex": "0.15.6",
         "prismjs": "1.28.0",
-        "purify-ts": "1.2.0",
+        "purify-ts": "1.2.2",
         "react": "18.1.0",
         "react-burger-menu": "3.0.8",
         "react-dom": "18.1.0",
