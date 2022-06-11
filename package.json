@@ -44,7 +44,7 @@
         "gatsby-transformer-remark": "5.15.1",
         "gatsby-transformer-sharp": "4.15.1",
         "global": "4.4.0",
-        "katex": "0.15.6",
+        "katex": "0.16.0",
         "prismjs": "1.28.0",
         "purify-ts": "1.2.2",
         "react": "18.1.0",
