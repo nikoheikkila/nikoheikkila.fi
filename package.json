@@ -64,7 +64,7 @@
         "@types/inquirer": "8.2.1",
         "@types/title": "3.4.1",
         "alex": "10.0.0",
-        "inquirer": "8.2.4",
+        "inquirer": "9.0.0",
         "playwright": "1.22.2",
         "prettier": "2.7.1",
         "title": "3.4.4",
