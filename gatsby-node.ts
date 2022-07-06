@@ -137,7 +137,6 @@ export const createPages = async ({
 export const onCreateNode = async ({
     node,
     actions: { createNode, createNodeField },
-    store,
     cache,
     getNode,
     createNodeId,
@@ -154,11 +153,9 @@ export const onCreateNode = async ({
             const fileNode = await createRemoteFileNode({
                 url: hero,
                 parentNodeId: id,
-                reporter: {},
                 createNode,
                 createNodeId,
                 cache,
-                store,
             });
 
             node.hero = fileNode?.id ?? null;
