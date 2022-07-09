@@ -17,7 +17,7 @@
         "@types/node": "16.11.43",
         "@types/react": "17.0.47",
         "@types/react-burger-menu": "2.8.3",
-        "@types/react-dom": "18.0.5",
+        "@types/react-dom": "18.0.6",
         "@types/react-helmet": "6.1.5",
         "dayjs": "1.11.3",
         "disqus-react": "1.1.3",
