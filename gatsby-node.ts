@@ -38,7 +38,7 @@ export const createSchemaCustomization = ({
     }
 
     type MarkdownRemark implements Node {
-      hero: File @link(from: "hero")
+      hero: File @link(from: "fields.hero")
     }
   `);
 
@@ -137,7 +137,7 @@ export const createPages = async ({
 export const onCreateNode = async ({
     node,
     actions: { createNode, createNodeField },
-    cache,
+    getCache,
     getNode,
     createNodeId,
 }: OnCreateNodeArgs) => {
@@ -149,18 +149,20 @@ export const onCreateNode = async ({
     const { hero } = frontmatter;
 
     if (hero && isRemoteImage(hero)) {
-        try {
-            const fileNode = await createRemoteFileNode({
-                url: hero,
-                parentNodeId: id,
-                createNode,
-                createNodeId,
-                cache,
-            });
+        const fileNode = await createRemoteFileNode({
+            url: hero,
+            parentNodeId: id,
+            createNode,
+            createNodeId,
+            getCache,
+        });
 
-            node.hero = fileNode?.id ?? null;
-        } catch (err) {
-            console.error(err);
+        if (fileNode) {
+            createNodeField({
+                node,
+                name: "hero",
+                value: fileNode.id,
+            });
         }
     }
 

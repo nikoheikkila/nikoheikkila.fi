@@ -46,3 +46,18 @@ test.describe.parallel("Given I'm on a single post page", () => {
         await expect(github).toHaveURL(/github\.com/);
     });
 });
+
+test.describe.parallel("Given I'm on a page with cover image", () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto("/about");
+        await expect(page).toHaveURL(/about/);
+    });
+
+    test("when I view it, then it should display the accessible cover image", async ({
+        page,
+    }) => {
+        const heroImage = page.locator('img[alt="Niko Heikkilä"]');
+
+        await expect(heroImage).toBeVisible();
+    });
+});
