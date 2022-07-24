@@ -89,11 +89,6 @@ tasks:
         desc: Build the Gatsby production site
         deps:
             - install
-        sources:
-            - ./**/*.{ts,tsx}
-            - content/**/*.md
-        generates:
-            - public/*
         env:
             GATSBY_CPU_COUNT: logical_cores
             GATSBY_DISQUS_SHORTNAME: nikoheikkilafi
