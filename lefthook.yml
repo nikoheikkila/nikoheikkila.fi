@@ -1,12 +1,9 @@
 pre-push:
     commands:
         sync:
-            run:
-                - task test-unit
+            run: task test-unit
 
 pre-commit:
     commands:
         lint:
-            run:
-                - task format
-                - task lint
+            run: task format lint
