@@ -40,7 +40,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
     const repository = data.site?.siteMetadata?.repository ?? "";
     const title = data.site?.siteMetadata?.title ?? "";
-    const disqus = data.site?.siteMetadata?.disqus ?? "";
 
     const previous = pageContext.previous;
     const next = pageContext.next;
@@ -79,14 +78,8 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
             <Subscribe config={config} />
             <PostFooter categories={categories as string[]} />
             <PostAttachments
-                location={location}
+                previous={location.state?.previous}
                 urls={{ edit: editUrl, history: historyUrl }}
-                disqusId={disqus}
-                disqusConfiguration={{
-                    url: postUrl,
-                    identifier: slug,
-                    title,
-                }}
             />
 
             <PostNavigation
@@ -109,7 +102,6 @@ export const pageQuery = graphql`
                     name
                 }
                 repository
-                disqus
             }
         }
         markdownRemark(fields: { slug: { eq: $slug } }) {

@@ -58,6 +58,7 @@ tasks:
             - lint
         cmds:
             - task: test-unit
+            - task: test-react
             - task: test-e2e
 
     test-unit:
@@ -68,6 +69,15 @@ tasks:
             - src/**/*.{ts,tsx}
         cmds:
             - npx vitest
+
+    test-react:
+        desc: Run React component tests
+        deps:
+            - install
+        sources:
+            - src/**/*.{ts,tsx}
+        cmds:
+            - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
 
     test-e2e:
         desc: Run end-to-end tests
