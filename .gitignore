@@ -78,3 +78,6 @@ yarn-error.log
 
 # Obsidian workspaces
 /content/.obsidian/workspace
+
+# Playwright
+playwright-report/
