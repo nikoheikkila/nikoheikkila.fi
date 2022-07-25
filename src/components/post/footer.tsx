@@ -8,7 +8,7 @@ interface FooterProps {
 const PostFooter: FunctionComponent<FooterProps> = ({ categories }) => (
     <p>
         {(categories || []).map((c: string) => (
-            <Tag key={c} title={c} />
+            <Tag className="post-footer-tag" key={c} title={c} />
         ))}
     </p>
 );
