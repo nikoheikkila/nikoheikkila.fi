@@ -5,10 +5,15 @@ import { randomColor, foregroundColor } from "../utils/colors";
 
 interface Props {
     title: string;
+    className?: string;
     prefix?: string;
 }
 
-const Tag: React.FunctionComponent<Props> = ({ title, prefix = "#" }) => {
+const Tag: React.FunctionComponent<Props> = ({
+    title,
+    className,
+    prefix = "#",
+}) => {
     const innerText = slugify(title, { decamelize: false, separator: " " });
     const backgroundColor = randomColor();
     const color = foregroundColor(backgroundColor);
@@ -23,7 +28,11 @@ const Tag: React.FunctionComponent<Props> = ({ title, prefix = "#" }) => {
         margin: "0 8px 8px 0",
     };
 
-    return <span style={style}>{prefix + innerText}</span>;
+    return (
+        <span className={className} style={style}>
+            {prefix + innerText}
+        </span>
+    );
 };
 
 export default Tag;
