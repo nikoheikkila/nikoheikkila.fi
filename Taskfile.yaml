@@ -75,7 +75,9 @@ tasks:
         deps:
             - install
         sources:
-            - src/**/*.{ts,tsx}
+            - src/**/*.ts
+            - src/**/*.tsx
+            - playwright-ct.config.ts
         cmds:
             - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
 

@@ -22,16 +22,20 @@ const PostHeader: FunctionComponent<HeaderProps> = ({
         <h1>{title}</h1>
 
         {excerpt && (
-            <section className={styles.excerpt}>
+            <section className={styles.excerpt} data-testid="post-excerpt">
                 <p>{excerpt}</p>
             </section>
         )}
 
         <section className={styles.meta}>
             <p>
-                <span>{author} / </span>
-                <span>{datePublished} / </span>
-                <span>{formatReadingTime(timeToRead)}</span>
+                {author && <span data-testid="post-author">{author} / </span>}
+                {datePublished && (
+                    <span data-testid="post-date">{datePublished} / </span>
+                )}
+                <span data-testid="post-ttr">
+                    {formatReadingTime(timeToRead)}
+                </span>
             </p>
         </section>
     </header>
