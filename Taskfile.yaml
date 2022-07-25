@@ -103,7 +103,6 @@ tasks:
             - install
         env:
             GATSBY_CPU_COUNT: logical_cores
-            GATSBY_DISQUS_SHORTNAME: nikoheikkilafi
             NODE_ENV: production
         cmds:
             - yarn build

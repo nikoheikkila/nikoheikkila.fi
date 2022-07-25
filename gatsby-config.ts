@@ -13,7 +13,6 @@ const config: GatsbyConfig = {
         },
         description: `A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.`,
         siteUrl: `https://nikoheikkila.fi`,
-        disqus: "nikoheikkilafi",
         social: [
             {
                 name: `dev`,
