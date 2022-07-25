@@ -83,8 +83,14 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
             />
 
             <PostNavigation
-                next={next ?? undefined}
-                previous={previous ?? undefined}
+                next={{
+                    slug: next?.fields?.slug ?? "",
+                    title: next?.frontmatter?.title ?? "",
+                }}
+                previous={{
+                    slug: previous?.fields?.slug ?? "",
+                    title: previous?.frontmatter?.title ?? "",
+                }}
             />
         </Layout>
     );

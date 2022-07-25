@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "gatsby-link";
 import React, { FunctionComponent } from "react";
 import ExternalLink from "../../components/elements";
-import { Route } from "../../gatsby";
 import * as styles from "./attachments.module.scss";
 
 interface AttachmentProps {

@@ -1,13 +1,18 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
-import { MarkdownRemark } from "../../types";
 import * as styles from "./navigation.module.scss";
 
+import Link from "gatsby-link";
+
+interface Navigable {
+    slug: string;
+    title: string;
+}
+
 interface NavigationProps {
-    readonly next?: MarkdownRemark;
-    readonly previous?: MarkdownRemark;
+    readonly next?: Navigable;
+    readonly previous?: Navigable;
 }
 
 const PostNavigation: FunctionComponent<NavigationProps> = ({
@@ -17,20 +22,20 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({
     <section className={styles.navigation}>
         <ul>
             <li>
-                {previous?.fields?.slug && (
-                    <Link to={previous.fields.slug} rel="prev">
+                {previous?.slug && (
+                    <Link to={previous.slug} rel="prev">
                         <FontAwesomeIcon
                             icon={faArrowLeft}
                             style={{ paddingRight: "5px" }}
                         />
-                        {previous.frontmatter?.title}
+                        {previous.title}
                     </Link>
                 )}
             </li>
             <li>
-                {next?.fields?.slug && (
-                    <Link to={next.fields.slug} rel="next">
-                        {next.frontmatter?.title}
+                {next?.slug && (
+                    <Link to={next.slug} rel="next">
+                        {next.title}
                         <FontAwesomeIcon
                             icon={faArrowRight}
                             style={{ paddingLeft: "5px" }}
