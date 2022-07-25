@@ -47,6 +47,9 @@ jobs:
             - name: Run unit tests
               run: task test-unit
 
+            - name: Run component tests
+              run: task test-react
+
     acceptance_stage:
         name: Acceptance Stage
 
