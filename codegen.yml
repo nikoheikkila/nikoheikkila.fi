@@ -1,8 +1,16 @@
 schema: http://localhost:8000/___graphql
+
+hooks:
+    afterAllFileWrite:
+        - prettier --write
+
 generates:
     ./src/types.ts:
         plugins:
+            - add:
+                  content: "/* eslint-disable */"
             - typescript
+            - typescript-operations
         config:
             avoidOptionals: true
             immutableTypes: true

@@ -91,11 +91,24 @@ tasks:
             - npx playwright test {{.CLI_ARGS}}
 
     dev:
+        desc: Run development server
+        deps:
+            - task: dev-gatsby
+            - task: dev-types
+
+    dev-gatsby:
         deps:
             - install
         desc: Serve the Gatsby development site
         cmds:
             - yarn dev
+
+    dev-types:
+        deps:
+            - install
+        desc: Fetch and generate GraphQL types from development server
+        cmds:
+            - npx graphql-codegen --watch
 
     build:
         desc: Build the Gatsby production site

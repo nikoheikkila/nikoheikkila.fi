@@ -52,10 +52,11 @@ typings/
 .env*
 !.env.example
 
-# gatsby files
+# Gatsby files
 .cache/
 public
 drafts
+gatsby-types.d.ts
 
 # Mac files
 .DS_Store

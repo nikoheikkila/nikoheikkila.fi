@@ -1,4 +1,6 @@
+/* eslint-disable */
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
     [K in keyof T]: T[K];
 };
@@ -15,41 +17,40 @@ export type Scalars = {
     Boolean: boolean;
     Int: number;
     Float: number;
-    /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
     Date: any;
-    /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+    GatsbyImageData: any;
     JSON: any;
 };
 
 export type AvifOptions = {
-    readonly lossless: Maybe<Scalars["Boolean"]>;
-    readonly quality: Maybe<Scalars["Int"]>;
-    readonly speed: Maybe<Scalars["Int"]>;
+    readonly lossless: InputMaybe<Scalars["Boolean"]>;
+    readonly quality: InputMaybe<Scalars["Int"]>;
+    readonly speed: InputMaybe<Scalars["Int"]>;
 };
 
 export type BlurredOptions = {
     /** Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this */
-    readonly toFormat: Maybe<ImageFormat>;
+    readonly toFormat: InputMaybe<ImageFormat>;
     /** Width of the generated low-res preview. Default is 20px */
-    readonly width: Maybe<Scalars["Int"]>;
+    readonly width: InputMaybe<Scalars["Int"]>;
 };
 
 export type BooleanQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["Boolean"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["Boolean"]>>>;
-    readonly ne: Maybe<Scalars["Boolean"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["Boolean"]>>>;
+    readonly eq: InputMaybe<Scalars["Boolean"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Boolean"]>>>;
+    readonly ne: InputMaybe<Scalars["Boolean"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Boolean"]>>>;
 };
 
 export type DateQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["Date"]>;
-    readonly gt: Maybe<Scalars["Date"]>;
-    readonly gte: Maybe<Scalars["Date"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["Date"]>>>;
-    readonly lt: Maybe<Scalars["Date"]>;
-    readonly lte: Maybe<Scalars["Date"]>;
-    readonly ne: Maybe<Scalars["Date"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["Date"]>>>;
+    readonly eq: InputMaybe<Scalars["Date"]>;
+    readonly gt: InputMaybe<Scalars["Date"]>;
+    readonly gte: InputMaybe<Scalars["Date"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Date"]>>>;
+    readonly lt: InputMaybe<Scalars["Date"]>;
+    readonly lte: InputMaybe<Scalars["Date"]>;
+    readonly ne: InputMaybe<Scalars["Date"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Date"]>>>;
 };
 
 export type Directory = Node & {
@@ -64,8 +65,6 @@ export type Directory = Node & {
     readonly birthtime: Maybe<Scalars["Date"]>;
     /** @deprecated Use `birthTime` instead */
     readonly birthtimeMs: Maybe<Scalars["Float"]>;
-    readonly blksize: Maybe<Scalars["Int"]>;
-    readonly blocks: Maybe<Scalars["Int"]>;
     readonly changeTime: Scalars["Date"];
     readonly children: ReadonlyArray<Node>;
     readonly ctime: Scalars["Date"];
@@ -96,52 +95,52 @@ export type Directory = Node & {
 };
 
 export type DirectoryAccessTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryAtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryBirthTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryChangeTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryCtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryModifiedTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryMtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type DirectoryConnection = {
@@ -163,8 +162,8 @@ export type DirectoryConnectionDistinctArgs = {
 
 export type DirectoryConnectionGroupArgs = {
     field: DirectoryFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type DirectoryConnectionMaxArgs = {
@@ -195,8 +194,6 @@ export enum DirectoryFieldsEnum {
     BirthTime = "birthTime",
     Birthtime = "birthtime",
     BirthtimeMs = "birthtimeMs",
-    Blksize = "blksize",
-    Blocks = "blocks",
     ChangeTime = "changeTime",
     Children = "children",
     ChildrenChildren = "children___children",
@@ -309,63 +306,88 @@ export enum DirectoryFieldsEnum {
 }
 
 export type DirectoryFilterInput = {
-    readonly absolutePath: Maybe<StringQueryOperatorInput>;
-    readonly accessTime: Maybe<DateQueryOperatorInput>;
-    readonly atime: Maybe<DateQueryOperatorInput>;
-    readonly atimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly base: Maybe<StringQueryOperatorInput>;
-    readonly birthTime: Maybe<DateQueryOperatorInput>;
-    readonly birthtime: Maybe<DateQueryOperatorInput>;
-    readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly blksize: Maybe<IntQueryOperatorInput>;
-    readonly blocks: Maybe<IntQueryOperatorInput>;
-    readonly changeTime: Maybe<DateQueryOperatorInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly ctime: Maybe<DateQueryOperatorInput>;
-    readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly dev: Maybe<IntQueryOperatorInput>;
-    readonly dir: Maybe<StringQueryOperatorInput>;
-    readonly ext: Maybe<StringQueryOperatorInput>;
-    readonly extension: Maybe<StringQueryOperatorInput>;
-    readonly gid: Maybe<IntQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly ino: Maybe<FloatQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly mode: Maybe<IntQueryOperatorInput>;
-    readonly modifiedTime: Maybe<DateQueryOperatorInput>;
-    readonly mtime: Maybe<DateQueryOperatorInput>;
-    readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly nlink: Maybe<IntQueryOperatorInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly prettySize: Maybe<StringQueryOperatorInput>;
-    readonly rdev: Maybe<IntQueryOperatorInput>;
-    readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
-    readonly relativePath: Maybe<StringQueryOperatorInput>;
-    readonly root: Maybe<StringQueryOperatorInput>;
-    readonly size: Maybe<IntQueryOperatorInput>;
-    readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
-    readonly uid: Maybe<IntQueryOperatorInput>;
+    readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
+    readonly accessTime: InputMaybe<DateQueryOperatorInput>;
+    readonly atime: InputMaybe<DateQueryOperatorInput>;
+    readonly atimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly base: InputMaybe<StringQueryOperatorInput>;
+    readonly birthTime: InputMaybe<DateQueryOperatorInput>;
+    readonly birthtime: InputMaybe<DateQueryOperatorInput>;
+    readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly ctime: InputMaybe<DateQueryOperatorInput>;
+    readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly dev: InputMaybe<IntQueryOperatorInput>;
+    readonly dir: InputMaybe<StringQueryOperatorInput>;
+    readonly ext: InputMaybe<StringQueryOperatorInput>;
+    readonly extension: InputMaybe<StringQueryOperatorInput>;
+    readonly gid: InputMaybe<IntQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly ino: InputMaybe<FloatQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly mode: InputMaybe<IntQueryOperatorInput>;
+    readonly modifiedTime: InputMaybe<DateQueryOperatorInput>;
+    readonly mtime: InputMaybe<DateQueryOperatorInput>;
+    readonly mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
+    readonly nlink: InputMaybe<IntQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+    readonly rdev: InputMaybe<IntQueryOperatorInput>;
+    readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+    readonly relativePath: InputMaybe<StringQueryOperatorInput>;
+    readonly root: InputMaybe<StringQueryOperatorInput>;
+    readonly size: InputMaybe<IntQueryOperatorInput>;
+    readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+    readonly uid: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type DirectoryGroupConnection = {
     readonly __typename?: "DirectoryGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<DirectoryEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<DirectoryGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<Directory>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type DirectoryGroupConnectionDistinctArgs = {
+    field: DirectoryFieldsEnum;
+};
+
+export type DirectoryGroupConnectionGroupArgs = {
+    field: DirectoryFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type DirectoryGroupConnectionMaxArgs = {
+    field: DirectoryFieldsEnum;
+};
+
+export type DirectoryGroupConnectionMinArgs = {
+    field: DirectoryFieldsEnum;
+};
+
+export type DirectoryGroupConnectionSumArgs = {
+    field: DirectoryFieldsEnum;
+};
+
 export type DirectorySortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<DirectoryFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<ReadonlyArray<InputMaybe<DirectoryFieldsEnum>>>;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type DuotoneGradient = {
     readonly highlight: Scalars["String"];
-    readonly opacity: Maybe<Scalars["Int"]>;
+    readonly opacity: InputMaybe<Scalars["Int"]>;
     readonly shadow: Scalars["String"];
 };
 
@@ -426,52 +448,52 @@ export type File = Node & {
 };
 
 export type FileAccessTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileAtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileBirthTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileChangeTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileCtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileModifiedTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileMtimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type FileConnection = {
@@ -493,8 +515,8 @@ export type FileConnectionDistinctArgs = {
 
 export type FileConnectionGroupArgs = {
     field: FileFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type FileConnectionMaxArgs = {
@@ -543,28 +565,51 @@ export enum FileFieldsEnum {
     ChildImageSharpChildrenInternalType = "childImageSharp___children___internal___type",
     ChildImageSharpChildrenParentChildren = "childImageSharp___children___parent___children",
     ChildImageSharpChildrenParentId = "childImageSharp___children___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedAspectRatio = "childImageSharp___fixed___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedBase64 = "childImageSharp___fixed___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedHeight = "childImageSharp___fixed___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedOriginalName = "childImageSharp___fixed___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedSrc = "childImageSharp___fixed___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedSrcSet = "childImageSharp___fixed___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedSrcSetWebp = "childImageSharp___fixed___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedSrcWebp = "childImageSharp___fixed___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedTracedSvg = "childImageSharp___fixed___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFixedWidth = "childImageSharp___fixed___width",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidAspectRatio = "childImageSharp___fluid___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidBase64 = "childImageSharp___fluid___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidOriginalImg = "childImageSharp___fluid___originalImg",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidOriginalName = "childImageSharp___fluid___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidPresentationHeight = "childImageSharp___fluid___presentationHeight",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidPresentationWidth = "childImageSharp___fluid___presentationWidth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidSizes = "childImageSharp___fluid___sizes",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidSrc = "childImageSharp___fluid___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidSrcSet = "childImageSharp___fluid___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidSrcSetWebp = "childImageSharp___fluid___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidSrcWebp = "childImageSharp___fluid___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpFluidTracedSvg = "childImageSharp___fluid___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpGatsbyImageData = "childImageSharp___gatsbyImageData",
     ChildImageSharpId = "childImageSharp___id",
     ChildImageSharpInternalContent = "childImageSharp___internal___content",
@@ -592,11 +637,17 @@ export enum FileFieldsEnum {
     ChildImageSharpParentInternalType = "childImageSharp___parent___internal___type",
     ChildImageSharpParentParentChildren = "childImageSharp___parent___parent___children",
     ChildImageSharpParentParentId = "childImageSharp___parent___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeAspectRatio = "childImageSharp___resize___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeHeight = "childImageSharp___resize___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeOriginalName = "childImageSharp___resize___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeSrc = "childImageSharp___resize___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeTracedSvg = "childImageSharp___resize___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildImageSharpResizeWidth = "childImageSharp___resize___width",
     ChildMarkdownRemarkChildren = "childMarkdownRemark___children",
     ChildMarkdownRemarkChildrenChildren = "childMarkdownRemark___children___children",
@@ -613,8 +664,11 @@ export enum FileFieldsEnum {
     ChildMarkdownRemarkChildrenInternalType = "childMarkdownRemark___children___internal___type",
     ChildMarkdownRemarkChildrenParentChildren = "childMarkdownRemark___children___parent___children",
     ChildMarkdownRemarkChildrenParentId = "childMarkdownRemark___children___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkExcerpt = "childMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkExcerptAst = "childMarkdownRemark___excerptAst",
+    ChildMarkdownRemarkFieldsHero = "childMarkdownRemark___fields___hero",
     ChildMarkdownRemarkFieldsSlug = "childMarkdownRemark___fields___slug",
     ChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___fileAbsolutePath",
     ChildMarkdownRemarkFrontmatterAuthor = "childMarkdownRemark___frontmatter___author",
@@ -625,9 +679,13 @@ export enum FileFieldsEnum {
     ChildMarkdownRemarkFrontmatterLang = "childMarkdownRemark___frontmatter___lang",
     ChildMarkdownRemarkFrontmatterTitle = "childMarkdownRemark___frontmatter___title",
     ChildMarkdownRemarkFrontmatterType = "childMarkdownRemark___frontmatter___type",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeadings = "childMarkdownRemark___headings",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeadingsDepth = "childMarkdownRemark___headings___depth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeadingsId = "childMarkdownRemark___headings___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeadingsValue = "childMarkdownRemark___headings___value",
     ChildMarkdownRemarkHeroAbsolutePath = "childMarkdownRemark___hero___absolutePath",
     ChildMarkdownRemarkHeroAccessTime = "childMarkdownRemark___hero___accessTime",
@@ -641,34 +699,44 @@ export enum FileFieldsEnum {
     ChildMarkdownRemarkHeroBlocks = "childMarkdownRemark___hero___blocks",
     ChildMarkdownRemarkHeroChangeTime = "childMarkdownRemark___hero___changeTime",
     ChildMarkdownRemarkHeroChildImageSharpChildren = "childMarkdownRemark___hero___childImageSharp___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildImageSharpGatsbyImageData = "childMarkdownRemark___hero___childImageSharp___gatsbyImageData",
     ChildMarkdownRemarkHeroChildImageSharpId = "childMarkdownRemark___hero___childImageSharp___id",
     ChildMarkdownRemarkHeroChildMarkdownRemarkChildren = "childMarkdownRemark___hero___childMarkdownRemark___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildMarkdownRemarkExcerpt = "childMarkdownRemark___hero___childMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildMarkdownRemarkExcerptAst = "childMarkdownRemark___hero___childMarkdownRemark___excerptAst",
     ChildMarkdownRemarkHeroChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___hero___childMarkdownRemark___fileAbsolutePath",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildMarkdownRemarkHeadings = "childMarkdownRemark___hero___childMarkdownRemark___headings",
     ChildMarkdownRemarkHeroChildMarkdownRemarkHtml = "childMarkdownRemark___hero___childMarkdownRemark___html",
     ChildMarkdownRemarkHeroChildMarkdownRemarkHtmlAst = "childMarkdownRemark___hero___childMarkdownRemark___htmlAst",
     ChildMarkdownRemarkHeroChildMarkdownRemarkId = "childMarkdownRemark___hero___childMarkdownRemark___id",
     ChildMarkdownRemarkHeroChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___hero___childMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildMarkdownRemarkTableOfContents = "childMarkdownRemark___hero___childMarkdownRemark___tableOfContents",
     ChildMarkdownRemarkHeroChildMarkdownRemarkTimeToRead = "childMarkdownRemark___hero___childMarkdownRemark___timeToRead",
     ChildMarkdownRemarkHeroChildren = "childMarkdownRemark___hero___children",
     ChildMarkdownRemarkHeroChildrenImageSharp = "childMarkdownRemark___hero___childrenImageSharp",
     ChildMarkdownRemarkHeroChildrenImageSharpChildren = "childMarkdownRemark___hero___childrenImageSharp___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildrenImageSharpGatsbyImageData = "childMarkdownRemark___hero___childrenImageSharp___gatsbyImageData",
     ChildMarkdownRemarkHeroChildrenImageSharpId = "childMarkdownRemark___hero___childrenImageSharp___id",
     ChildMarkdownRemarkHeroChildrenMarkdownRemark = "childMarkdownRemark___hero___childrenMarkdownRemark",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkChildren = "childMarkdownRemark___hero___childrenMarkdownRemark___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkExcerpt = "childMarkdownRemark___hero___childrenMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkExcerptAst = "childMarkdownRemark___hero___childrenMarkdownRemark___excerptAst",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___hero___childrenMarkdownRemark___fileAbsolutePath",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkHeadings = "childMarkdownRemark___hero___childrenMarkdownRemark___headings",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkHtml = "childMarkdownRemark___hero___childrenMarkdownRemark___html",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkHtmlAst = "childMarkdownRemark___hero___childrenMarkdownRemark___htmlAst",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkId = "childMarkdownRemark___hero___childrenMarkdownRemark___id",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___hero___childrenMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkTableOfContents = "childMarkdownRemark___hero___childrenMarkdownRemark___tableOfContents",
     ChildMarkdownRemarkHeroChildrenMarkdownRemarkTimeToRead = "childMarkdownRemark___hero___childrenMarkdownRemark___timeToRead",
     ChildMarkdownRemarkHeroChildrenChildren = "childMarkdownRemark___hero___children___children",
@@ -734,6 +802,7 @@ export enum FileFieldsEnum {
     ChildMarkdownRemarkParentParentChildren = "childMarkdownRemark___parent___parent___children",
     ChildMarkdownRemarkParentParentId = "childMarkdownRemark___parent___parent___id",
     ChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildMarkdownRemarkTableOfContents = "childMarkdownRemark___tableOfContents",
     ChildMarkdownRemarkTimeToRead = "childMarkdownRemark___timeToRead",
     ChildMarkdownRemarkWordCountParagraphs = "childMarkdownRemark___wordCount___paragraphs",
@@ -756,28 +825,51 @@ export enum FileFieldsEnum {
     ChildrenImageSharpChildrenInternalType = "childrenImageSharp___children___internal___type",
     ChildrenImageSharpChildrenParentChildren = "childrenImageSharp___children___parent___children",
     ChildrenImageSharpChildrenParentId = "childrenImageSharp___children___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedAspectRatio = "childrenImageSharp___fixed___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedBase64 = "childrenImageSharp___fixed___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedHeight = "childrenImageSharp___fixed___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedOriginalName = "childrenImageSharp___fixed___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedSrc = "childrenImageSharp___fixed___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedSrcSet = "childrenImageSharp___fixed___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedSrcSetWebp = "childrenImageSharp___fixed___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedSrcWebp = "childrenImageSharp___fixed___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedTracedSvg = "childrenImageSharp___fixed___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFixedWidth = "childrenImageSharp___fixed___width",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidAspectRatio = "childrenImageSharp___fluid___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidBase64 = "childrenImageSharp___fluid___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidOriginalImg = "childrenImageSharp___fluid___originalImg",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidOriginalName = "childrenImageSharp___fluid___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidPresentationHeight = "childrenImageSharp___fluid___presentationHeight",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidPresentationWidth = "childrenImageSharp___fluid___presentationWidth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidSizes = "childrenImageSharp___fluid___sizes",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidSrc = "childrenImageSharp___fluid___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidSrcSet = "childrenImageSharp___fluid___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidSrcSetWebp = "childrenImageSharp___fluid___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidSrcWebp = "childrenImageSharp___fluid___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpFluidTracedSvg = "childrenImageSharp___fluid___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpGatsbyImageData = "childrenImageSharp___gatsbyImageData",
     ChildrenImageSharpId = "childrenImageSharp___id",
     ChildrenImageSharpInternalContent = "childrenImageSharp___internal___content",
@@ -805,11 +897,17 @@ export enum FileFieldsEnum {
     ChildrenImageSharpParentInternalType = "childrenImageSharp___parent___internal___type",
     ChildrenImageSharpParentParentChildren = "childrenImageSharp___parent___parent___children",
     ChildrenImageSharpParentParentId = "childrenImageSharp___parent___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeAspectRatio = "childrenImageSharp___resize___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeHeight = "childrenImageSharp___resize___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeOriginalName = "childrenImageSharp___resize___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeSrc = "childrenImageSharp___resize___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeTracedSvg = "childrenImageSharp___resize___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenImageSharpResizeWidth = "childrenImageSharp___resize___width",
     ChildrenMarkdownRemark = "childrenMarkdownRemark",
     ChildrenMarkdownRemarkChildren = "childrenMarkdownRemark___children",
@@ -827,8 +925,11 @@ export enum FileFieldsEnum {
     ChildrenMarkdownRemarkChildrenInternalType = "childrenMarkdownRemark___children___internal___type",
     ChildrenMarkdownRemarkChildrenParentChildren = "childrenMarkdownRemark___children___parent___children",
     ChildrenMarkdownRemarkChildrenParentId = "childrenMarkdownRemark___children___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkExcerpt = "childrenMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkExcerptAst = "childrenMarkdownRemark___excerptAst",
+    ChildrenMarkdownRemarkFieldsHero = "childrenMarkdownRemark___fields___hero",
     ChildrenMarkdownRemarkFieldsSlug = "childrenMarkdownRemark___fields___slug",
     ChildrenMarkdownRemarkFileAbsolutePath = "childrenMarkdownRemark___fileAbsolutePath",
     ChildrenMarkdownRemarkFrontmatterAuthor = "childrenMarkdownRemark___frontmatter___author",
@@ -839,9 +940,13 @@ export enum FileFieldsEnum {
     ChildrenMarkdownRemarkFrontmatterLang = "childrenMarkdownRemark___frontmatter___lang",
     ChildrenMarkdownRemarkFrontmatterTitle = "childrenMarkdownRemark___frontmatter___title",
     ChildrenMarkdownRemarkFrontmatterType = "childrenMarkdownRemark___frontmatter___type",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeadings = "childrenMarkdownRemark___headings",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeadingsDepth = "childrenMarkdownRemark___headings___depth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeadingsId = "childrenMarkdownRemark___headings___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeadingsValue = "childrenMarkdownRemark___headings___value",
     ChildrenMarkdownRemarkHeroAbsolutePath = "childrenMarkdownRemark___hero___absolutePath",
     ChildrenMarkdownRemarkHeroAccessTime = "childrenMarkdownRemark___hero___accessTime",
@@ -855,34 +960,44 @@ export enum FileFieldsEnum {
     ChildrenMarkdownRemarkHeroBlocks = "childrenMarkdownRemark___hero___blocks",
     ChildrenMarkdownRemarkHeroChangeTime = "childrenMarkdownRemark___hero___changeTime",
     ChildrenMarkdownRemarkHeroChildImageSharpChildren = "childrenMarkdownRemark___hero___childImageSharp___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildImageSharpGatsbyImageData = "childrenMarkdownRemark___hero___childImageSharp___gatsbyImageData",
     ChildrenMarkdownRemarkHeroChildImageSharpId = "childrenMarkdownRemark___hero___childImageSharp___id",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkChildren = "childrenMarkdownRemark___hero___childMarkdownRemark___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkExcerpt = "childrenMarkdownRemark___hero___childMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkExcerptAst = "childrenMarkdownRemark___hero___childMarkdownRemark___excerptAst",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkFileAbsolutePath = "childrenMarkdownRemark___hero___childMarkdownRemark___fileAbsolutePath",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkHeadings = "childrenMarkdownRemark___hero___childMarkdownRemark___headings",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkHtml = "childrenMarkdownRemark___hero___childMarkdownRemark___html",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkHtmlAst = "childrenMarkdownRemark___hero___childMarkdownRemark___htmlAst",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkId = "childrenMarkdownRemark___hero___childMarkdownRemark___id",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkRawMarkdownBody = "childrenMarkdownRemark___hero___childMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkTableOfContents = "childrenMarkdownRemark___hero___childMarkdownRemark___tableOfContents",
     ChildrenMarkdownRemarkHeroChildMarkdownRemarkTimeToRead = "childrenMarkdownRemark___hero___childMarkdownRemark___timeToRead",
     ChildrenMarkdownRemarkHeroChildren = "childrenMarkdownRemark___hero___children",
     ChildrenMarkdownRemarkHeroChildrenImageSharp = "childrenMarkdownRemark___hero___childrenImageSharp",
     ChildrenMarkdownRemarkHeroChildrenImageSharpChildren = "childrenMarkdownRemark___hero___childrenImageSharp___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildrenImageSharpGatsbyImageData = "childrenMarkdownRemark___hero___childrenImageSharp___gatsbyImageData",
     ChildrenMarkdownRemarkHeroChildrenImageSharpId = "childrenMarkdownRemark___hero___childrenImageSharp___id",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemark = "childrenMarkdownRemark___hero___childrenMarkdownRemark",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkChildren = "childrenMarkdownRemark___hero___childrenMarkdownRemark___children",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkExcerpt = "childrenMarkdownRemark___hero___childrenMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkExcerptAst = "childrenMarkdownRemark___hero___childrenMarkdownRemark___excerptAst",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkFileAbsolutePath = "childrenMarkdownRemark___hero___childrenMarkdownRemark___fileAbsolutePath",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkHeadings = "childrenMarkdownRemark___hero___childrenMarkdownRemark___headings",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkHtml = "childrenMarkdownRemark___hero___childrenMarkdownRemark___html",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkHtmlAst = "childrenMarkdownRemark___hero___childrenMarkdownRemark___htmlAst",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkId = "childrenMarkdownRemark___hero___childrenMarkdownRemark___id",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkRawMarkdownBody = "childrenMarkdownRemark___hero___childrenMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkTableOfContents = "childrenMarkdownRemark___hero___childrenMarkdownRemark___tableOfContents",
     ChildrenMarkdownRemarkHeroChildrenMarkdownRemarkTimeToRead = "childrenMarkdownRemark___hero___childrenMarkdownRemark___timeToRead",
     ChildrenMarkdownRemarkHeroChildrenChildren = "childrenMarkdownRemark___hero___children___children",
@@ -948,6 +1063,7 @@ export enum FileFieldsEnum {
     ChildrenMarkdownRemarkParentParentChildren = "childrenMarkdownRemark___parent___parent___children",
     ChildrenMarkdownRemarkParentParentId = "childrenMarkdownRemark___parent___parent___id",
     ChildrenMarkdownRemarkRawMarkdownBody = "childrenMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ChildrenMarkdownRemarkTableOfContents = "childrenMarkdownRemark___tableOfContents",
     ChildrenMarkdownRemarkTimeToRead = "childrenMarkdownRemark___timeToRead",
     ChildrenMarkdownRemarkWordCountParagraphs = "childrenMarkdownRemark___wordCount___paragraphs",
@@ -1065,76 +1181,136 @@ export enum FileFieldsEnum {
 }
 
 export type FileFilterInput = {
-    readonly absolutePath: Maybe<StringQueryOperatorInput>;
-    readonly accessTime: Maybe<DateQueryOperatorInput>;
-    readonly atime: Maybe<DateQueryOperatorInput>;
-    readonly atimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly base: Maybe<StringQueryOperatorInput>;
-    readonly birthTime: Maybe<DateQueryOperatorInput>;
-    readonly birthtime: Maybe<DateQueryOperatorInput>;
-    readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly blksize: Maybe<IntQueryOperatorInput>;
-    readonly blocks: Maybe<IntQueryOperatorInput>;
-    readonly changeTime: Maybe<DateQueryOperatorInput>;
-    readonly childImageSharp: Maybe<ImageSharpFilterInput>;
-    readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
-    readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
-    readonly ctime: Maybe<DateQueryOperatorInput>;
-    readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly dev: Maybe<IntQueryOperatorInput>;
-    readonly dir: Maybe<StringQueryOperatorInput>;
-    readonly ext: Maybe<StringQueryOperatorInput>;
-    readonly extension: Maybe<StringQueryOperatorInput>;
-    readonly gid: Maybe<IntQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly ino: Maybe<FloatQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly mode: Maybe<IntQueryOperatorInput>;
-    readonly modifiedTime: Maybe<DateQueryOperatorInput>;
-    readonly mtime: Maybe<DateQueryOperatorInput>;
-    readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly nlink: Maybe<IntQueryOperatorInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly prettySize: Maybe<StringQueryOperatorInput>;
-    readonly publicURL: Maybe<StringQueryOperatorInput>;
-    readonly rdev: Maybe<IntQueryOperatorInput>;
-    readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
-    readonly relativePath: Maybe<StringQueryOperatorInput>;
-    readonly root: Maybe<StringQueryOperatorInput>;
-    readonly size: Maybe<IntQueryOperatorInput>;
-    readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
-    readonly uid: Maybe<IntQueryOperatorInput>;
-    readonly url: Maybe<StringQueryOperatorInput>;
+    readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
+    readonly accessTime: InputMaybe<DateQueryOperatorInput>;
+    readonly atime: InputMaybe<DateQueryOperatorInput>;
+    readonly atimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly base: InputMaybe<StringQueryOperatorInput>;
+    readonly birthTime: InputMaybe<DateQueryOperatorInput>;
+    readonly birthtime: InputMaybe<DateQueryOperatorInput>;
+    readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly blksize: InputMaybe<IntQueryOperatorInput>;
+    readonly blocks: InputMaybe<IntQueryOperatorInput>;
+    readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+    readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
+    readonly childMarkdownRemark: InputMaybe<MarkdownRemarkFilterInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
+    readonly childrenMarkdownRemark: InputMaybe<MarkdownRemarkFilterListInput>;
+    readonly ctime: InputMaybe<DateQueryOperatorInput>;
+    readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly dev: InputMaybe<IntQueryOperatorInput>;
+    readonly dir: InputMaybe<StringQueryOperatorInput>;
+    readonly ext: InputMaybe<StringQueryOperatorInput>;
+    readonly extension: InputMaybe<StringQueryOperatorInput>;
+    readonly gid: InputMaybe<IntQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly ino: InputMaybe<FloatQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly mode: InputMaybe<IntQueryOperatorInput>;
+    readonly modifiedTime: InputMaybe<DateQueryOperatorInput>;
+    readonly mtime: InputMaybe<DateQueryOperatorInput>;
+    readonly mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
+    readonly nlink: InputMaybe<IntQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+    readonly publicURL: InputMaybe<StringQueryOperatorInput>;
+    readonly rdev: InputMaybe<IntQueryOperatorInput>;
+    readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+    readonly relativePath: InputMaybe<StringQueryOperatorInput>;
+    readonly root: InputMaybe<StringQueryOperatorInput>;
+    readonly size: InputMaybe<IntQueryOperatorInput>;
+    readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+    readonly uid: InputMaybe<IntQueryOperatorInput>;
+    readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileGroupConnection = {
     readonly __typename?: "FileGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<FileEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<FileGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<File>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type FileGroupConnectionDistinctArgs = {
+    field: FileFieldsEnum;
+};
+
+export type FileGroupConnectionGroupArgs = {
+    field: FileFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type FileGroupConnectionMaxArgs = {
+    field: FileFieldsEnum;
+};
+
+export type FileGroupConnectionMinArgs = {
+    field: FileFieldsEnum;
+};
+
+export type FileGroupConnectionSumArgs = {
+    field: FileFieldsEnum;
+};
+
 export type FileSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<FileFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<ReadonlyArray<InputMaybe<FileFieldsEnum>>>;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type FloatQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["Float"]>;
-    readonly gt: Maybe<Scalars["Float"]>;
-    readonly gte: Maybe<Scalars["Float"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["Float"]>>>;
-    readonly lt: Maybe<Scalars["Float"]>;
-    readonly lte: Maybe<Scalars["Float"]>;
-    readonly ne: Maybe<Scalars["Float"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["Float"]>>>;
+    readonly eq: InputMaybe<Scalars["Float"]>;
+    readonly gt: InputMaybe<Scalars["Float"]>;
+    readonly gte: InputMaybe<Scalars["Float"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Float"]>>>;
+    readonly lt: InputMaybe<Scalars["Float"]>;
+    readonly lte: InputMaybe<Scalars["Float"]>;
+    readonly ne: InputMaybe<Scalars["Float"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Float"]>>>;
 };
+
+export type GatsbyImageDataQueryOperatorInput = {
+    readonly eq: InputMaybe<Scalars["GatsbyImageData"]>;
+    readonly in: InputMaybe<
+        ReadonlyArray<InputMaybe<Scalars["GatsbyImageData"]>>
+    >;
+    readonly ne: InputMaybe<Scalars["GatsbyImageData"]>;
+    readonly nin: InputMaybe<
+        ReadonlyArray<InputMaybe<Scalars["GatsbyImageData"]>>
+    >;
+};
+
+export enum GatsbyImageFormat {
+    Auto = "AUTO",
+    Avif = "AVIF",
+    Jpg = "JPG",
+    NoChange = "NO_CHANGE",
+    Png = "PNG",
+    Webp = "WEBP",
+}
+
+export enum GatsbyImageLayout {
+    Constrained = "CONSTRAINED",
+    Fixed = "FIXED",
+    FullWidth = "FULL_WIDTH",
+}
+
+export enum GatsbyImagePlaceholder {
+    Blurred = "BLURRED",
+    DominantColor = "DOMINANT_COLOR",
+    None = "NONE",
+    TracedSvg = "TRACED_SVG",
+}
 
 export enum ImageCropFocus {
     Attention = "ATTENTION",
@@ -1185,7 +1361,7 @@ export type ImageSharp = Node & {
     readonly children: ReadonlyArray<Node>;
     readonly fixed: Maybe<ImageSharpFixed>;
     readonly fluid: Maybe<ImageSharpFluid>;
-    readonly gatsbyImageData: Scalars["JSON"];
+    readonly gatsbyImageData: Scalars["GatsbyImageData"];
     readonly id: Scalars["ID"];
     readonly internal: Internal;
     readonly original: Maybe<ImageSharpOriginal>;
@@ -1194,92 +1370,94 @@ export type ImageSharp = Node & {
 };
 
 export type ImageSharpFixedArgs = {
-    background?: Maybe<Scalars["String"]>;
-    base64Width: Maybe<Scalars["Int"]>;
-    cropFocus?: Maybe<ImageCropFocus>;
-    duotone: Maybe<DuotoneGradient>;
-    fit?: Maybe<ImageFit>;
-    grayscale?: Maybe<Scalars["Boolean"]>;
-    height: Maybe<Scalars["Int"]>;
-    jpegProgressive?: Maybe<Scalars["Boolean"]>;
-    jpegQuality: Maybe<Scalars["Int"]>;
-    pngCompressionSpeed?: Maybe<Scalars["Int"]>;
-    pngQuality: Maybe<Scalars["Int"]>;
-    quality: Maybe<Scalars["Int"]>;
-    rotate?: Maybe<Scalars["Int"]>;
-    toFormat?: Maybe<ImageFormat>;
-    toFormatBase64?: Maybe<ImageFormat>;
-    traceSVG: Maybe<Potrace>;
-    trim?: Maybe<Scalars["Float"]>;
-    webpQuality: Maybe<Scalars["Int"]>;
-    width: Maybe<Scalars["Int"]>;
+    background?: InputMaybe<Scalars["String"]>;
+    base64Width: InputMaybe<Scalars["Int"]>;
+    cropFocus?: InputMaybe<ImageCropFocus>;
+    duotone: InputMaybe<DuotoneGradient>;
+    fit?: InputMaybe<ImageFit>;
+    grayscale?: InputMaybe<Scalars["Boolean"]>;
+    height: InputMaybe<Scalars["Int"]>;
+    jpegProgressive?: InputMaybe<Scalars["Boolean"]>;
+    jpegQuality: InputMaybe<Scalars["Int"]>;
+    pngCompressionSpeed?: InputMaybe<Scalars["Int"]>;
+    pngQuality: InputMaybe<Scalars["Int"]>;
+    quality: InputMaybe<Scalars["Int"]>;
+    rotate?: InputMaybe<Scalars["Int"]>;
+    toFormat?: InputMaybe<ImageFormat>;
+    toFormatBase64?: InputMaybe<ImageFormat>;
+    traceSVG: InputMaybe<Potrace>;
+    trim?: InputMaybe<Scalars["Float"]>;
+    webpQuality: InputMaybe<Scalars["Int"]>;
+    width: InputMaybe<Scalars["Int"]>;
 };
 
 export type ImageSharpFluidArgs = {
-    background?: Maybe<Scalars["String"]>;
-    base64Width: Maybe<Scalars["Int"]>;
-    cropFocus?: Maybe<ImageCropFocus>;
-    duotone: Maybe<DuotoneGradient>;
-    fit?: Maybe<ImageFit>;
-    grayscale?: Maybe<Scalars["Boolean"]>;
-    jpegProgressive?: Maybe<Scalars["Boolean"]>;
-    jpegQuality: Maybe<Scalars["Int"]>;
-    maxHeight: Maybe<Scalars["Int"]>;
-    maxWidth: Maybe<Scalars["Int"]>;
-    pngCompressionSpeed?: Maybe<Scalars["Int"]>;
-    pngQuality: Maybe<Scalars["Int"]>;
-    quality: Maybe<Scalars["Int"]>;
-    rotate?: Maybe<Scalars["Int"]>;
-    sizes?: Maybe<Scalars["String"]>;
-    srcSetBreakpoints?: Maybe<ReadonlyArray<Maybe<Scalars["Int"]>>>;
-    toFormat?: Maybe<ImageFormat>;
-    toFormatBase64?: Maybe<ImageFormat>;
-    traceSVG: Maybe<Potrace>;
-    trim?: Maybe<Scalars["Float"]>;
-    webpQuality: Maybe<Scalars["Int"]>;
+    background?: InputMaybe<Scalars["String"]>;
+    base64Width: InputMaybe<Scalars["Int"]>;
+    cropFocus?: InputMaybe<ImageCropFocus>;
+    duotone: InputMaybe<DuotoneGradient>;
+    fit?: InputMaybe<ImageFit>;
+    grayscale?: InputMaybe<Scalars["Boolean"]>;
+    jpegProgressive?: InputMaybe<Scalars["Boolean"]>;
+    jpegQuality: InputMaybe<Scalars["Int"]>;
+    maxHeight: InputMaybe<Scalars["Int"]>;
+    maxWidth: InputMaybe<Scalars["Int"]>;
+    pngCompressionSpeed?: InputMaybe<Scalars["Int"]>;
+    pngQuality: InputMaybe<Scalars["Int"]>;
+    quality: InputMaybe<Scalars["Int"]>;
+    rotate?: InputMaybe<Scalars["Int"]>;
+    sizes?: InputMaybe<Scalars["String"]>;
+    srcSetBreakpoints?: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Int"]>>>;
+    toFormat?: InputMaybe<ImageFormat>;
+    toFormatBase64?: InputMaybe<ImageFormat>;
+    traceSVG: InputMaybe<Potrace>;
+    trim?: InputMaybe<Scalars["Float"]>;
+    webpQuality: InputMaybe<Scalars["Int"]>;
 };
 
 export type ImageSharpGatsbyImageDataArgs = {
-    aspectRatio: Maybe<Scalars["Float"]>;
-    avifOptions: Maybe<AvifOptions>;
-    backgroundColor: Maybe<Scalars["String"]>;
-    blurredOptions: Maybe<BlurredOptions>;
-    breakpoints: Maybe<ReadonlyArray<Maybe<Scalars["Int"]>>>;
-    formats: Maybe<ReadonlyArray<Maybe<ImageFormat>>>;
-    height: Maybe<Scalars["Int"]>;
-    jpgOptions: Maybe<JpgOptions>;
-    layout?: Maybe<ImageLayout>;
-    outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars["Float"]>>>;
-    placeholder: Maybe<ImagePlaceholder>;
-    pngOptions: Maybe<PngOptions>;
-    quality: Maybe<Scalars["Int"]>;
-    sizes: Maybe<Scalars["String"]>;
-    tracedSVGOptions: Maybe<Potrace>;
-    transformOptions: Maybe<TransformOptions>;
-    webpOptions: Maybe<WebPOptions>;
-    width: Maybe<Scalars["Int"]>;
+    aspectRatio: InputMaybe<Scalars["Float"]>;
+    avifOptions: InputMaybe<AvifOptions>;
+    backgroundColor: InputMaybe<Scalars["String"]>;
+    blurredOptions: InputMaybe<BlurredOptions>;
+    breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Int"]>>>;
+    formats: InputMaybe<ReadonlyArray<InputMaybe<ImageFormat>>>;
+    height: InputMaybe<Scalars["Int"]>;
+    jpgOptions: InputMaybe<JpgOptions>;
+    layout?: InputMaybe<ImageLayout>;
+    outputPixelDensities: InputMaybe<
+        ReadonlyArray<InputMaybe<Scalars["Float"]>>
+    >;
+    placeholder: InputMaybe<ImagePlaceholder>;
+    pngOptions: InputMaybe<PngOptions>;
+    quality: InputMaybe<Scalars["Int"]>;
+    sizes: InputMaybe<Scalars["String"]>;
+    tracedSVGOptions: InputMaybe<Potrace>;
+    transformOptions: InputMaybe<TransformOptions>;
+    webpOptions: InputMaybe<WebPOptions>;
+    width: InputMaybe<Scalars["Int"]>;
 };
 
 export type ImageSharpResizeArgs = {
-    background?: Maybe<Scalars["String"]>;
-    base64?: Maybe<Scalars["Boolean"]>;
-    cropFocus?: Maybe<ImageCropFocus>;
-    duotone: Maybe<DuotoneGradient>;
-    fit?: Maybe<ImageFit>;
-    grayscale?: Maybe<Scalars["Boolean"]>;
-    height: Maybe<Scalars["Int"]>;
-    jpegProgressive?: Maybe<Scalars["Boolean"]>;
-    jpegQuality: Maybe<Scalars["Int"]>;
-    pngCompressionLevel?: Maybe<Scalars["Int"]>;
-    pngCompressionSpeed?: Maybe<Scalars["Int"]>;
-    pngQuality: Maybe<Scalars["Int"]>;
-    quality: Maybe<Scalars["Int"]>;
-    rotate?: Maybe<Scalars["Int"]>;
-    toFormat?: Maybe<ImageFormat>;
-    traceSVG: Maybe<Potrace>;
-    trim?: Maybe<Scalars["Float"]>;
-    webpQuality: Maybe<Scalars["Int"]>;
-    width: Maybe<Scalars["Int"]>;
+    background?: InputMaybe<Scalars["String"]>;
+    base64?: InputMaybe<Scalars["Boolean"]>;
+    cropFocus?: InputMaybe<ImageCropFocus>;
+    duotone: InputMaybe<DuotoneGradient>;
+    fit?: InputMaybe<ImageFit>;
+    grayscale?: InputMaybe<Scalars["Boolean"]>;
+    height: InputMaybe<Scalars["Int"]>;
+    jpegProgressive?: InputMaybe<Scalars["Boolean"]>;
+    jpegQuality: InputMaybe<Scalars["Int"]>;
+    pngCompressionLevel?: InputMaybe<Scalars["Int"]>;
+    pngCompressionSpeed?: InputMaybe<Scalars["Int"]>;
+    pngQuality: InputMaybe<Scalars["Int"]>;
+    quality: InputMaybe<Scalars["Int"]>;
+    rotate?: InputMaybe<Scalars["Int"]>;
+    toFormat?: InputMaybe<ImageFormat>;
+    traceSVG: InputMaybe<Potrace>;
+    trim?: InputMaybe<Scalars["Float"]>;
+    webpQuality: InputMaybe<Scalars["Int"]>;
+    width: InputMaybe<Scalars["Int"]>;
 };
 
 export type ImageSharpConnection = {
@@ -1301,8 +1479,8 @@ export type ImageSharpConnectionDistinctArgs = {
 
 export type ImageSharpConnectionGroupArgs = {
     field: ImageSharpFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type ImageSharpConnectionMaxArgs = {
@@ -1364,28 +1542,51 @@ export enum ImageSharpFieldsEnum {
     ChildrenParentInternalType = "children___parent___internal___type",
     ChildrenParentParentChildren = "children___parent___parent___children",
     ChildrenParentParentId = "children___parent___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedAspectRatio = "fixed___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedBase64 = "fixed___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedHeight = "fixed___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedOriginalName = "fixed___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedSrc = "fixed___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedSrcSet = "fixed___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedSrcSetWebp = "fixed___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedSrcWebp = "fixed___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedTracedSvg = "fixed___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FixedWidth = "fixed___width",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidAspectRatio = "fluid___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidBase64 = "fluid___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidOriginalImg = "fluid___originalImg",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidOriginalName = "fluid___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidPresentationHeight = "fluid___presentationHeight",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidPresentationWidth = "fluid___presentationWidth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidSizes = "fluid___sizes",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidSrc = "fluid___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidSrcSet = "fluid___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidSrcSetWebp = "fluid___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidSrcWebp = "fluid___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     FluidTracedSvg = "fluid___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     GatsbyImageData = "gatsbyImageData",
     Id = "id",
     InternalContent = "internal___content",
@@ -1437,28 +1638,34 @@ export enum ImageSharpFieldsEnum {
     ParentParentInternalType = "parent___parent___internal___type",
     ParentParentParentChildren = "parent___parent___parent___children",
     ParentParentParentId = "parent___parent___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeAspectRatio = "resize___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeHeight = "resize___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeOriginalName = "resize___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeSrc = "resize___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeTracedSvg = "resize___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ResizeWidth = "resize___width",
 }
 
 export type ImageSharpFilterInput = {
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly fixed: Maybe<ImageSharpFixedFilterInput>;
-    readonly fluid: Maybe<ImageSharpFluidFilterInput>;
-    readonly gatsbyImageData: Maybe<JsonQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly original: Maybe<ImageSharpOriginalFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly resize: Maybe<ImageSharpResizeFilterInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly fixed: InputMaybe<ImageSharpFixedFilterInput>;
+    readonly fluid: InputMaybe<ImageSharpFluidFilterInput>;
+    readonly gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly original: InputMaybe<ImageSharpOriginalFilterInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly resize: InputMaybe<ImageSharpResizeFilterInput>;
 };
 
 export type ImageSharpFilterListInput = {
-    readonly elemMatch: Maybe<ImageSharpFilterInput>;
+    readonly elemMatch: InputMaybe<ImageSharpFilterInput>;
 };
 
 export type ImageSharpFixed = {
@@ -1476,16 +1683,16 @@ export type ImageSharpFixed = {
 };
 
 export type ImageSharpFixedFilterInput = {
-    readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-    readonly base64: Maybe<StringQueryOperatorInput>;
-    readonly height: Maybe<FloatQueryOperatorInput>;
-    readonly originalName: Maybe<StringQueryOperatorInput>;
-    readonly src: Maybe<StringQueryOperatorInput>;
-    readonly srcSet: Maybe<StringQueryOperatorInput>;
-    readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
-    readonly srcWebp: Maybe<StringQueryOperatorInput>;
-    readonly tracedSVG: Maybe<StringQueryOperatorInput>;
-    readonly width: Maybe<FloatQueryOperatorInput>;
+    readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+    readonly base64: InputMaybe<StringQueryOperatorInput>;
+    readonly height: InputMaybe<FloatQueryOperatorInput>;
+    readonly originalName: InputMaybe<StringQueryOperatorInput>;
+    readonly src: InputMaybe<StringQueryOperatorInput>;
+    readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+    readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+    readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+    readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+    readonly width: InputMaybe<FloatQueryOperatorInput>;
 };
 
 export type ImageSharpFluid = {
@@ -1505,28 +1712,55 @@ export type ImageSharpFluid = {
 };
 
 export type ImageSharpFluidFilterInput = {
-    readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-    readonly base64: Maybe<StringQueryOperatorInput>;
-    readonly originalImg: Maybe<StringQueryOperatorInput>;
-    readonly originalName: Maybe<StringQueryOperatorInput>;
-    readonly presentationHeight: Maybe<IntQueryOperatorInput>;
-    readonly presentationWidth: Maybe<IntQueryOperatorInput>;
-    readonly sizes: Maybe<StringQueryOperatorInput>;
-    readonly src: Maybe<StringQueryOperatorInput>;
-    readonly srcSet: Maybe<StringQueryOperatorInput>;
-    readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
-    readonly srcWebp: Maybe<StringQueryOperatorInput>;
-    readonly tracedSVG: Maybe<StringQueryOperatorInput>;
+    readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+    readonly base64: InputMaybe<StringQueryOperatorInput>;
+    readonly originalImg: InputMaybe<StringQueryOperatorInput>;
+    readonly originalName: InputMaybe<StringQueryOperatorInput>;
+    readonly presentationHeight: InputMaybe<IntQueryOperatorInput>;
+    readonly presentationWidth: InputMaybe<IntQueryOperatorInput>;
+    readonly sizes: InputMaybe<StringQueryOperatorInput>;
+    readonly src: InputMaybe<StringQueryOperatorInput>;
+    readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+    readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+    readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+    readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type ImageSharpGroupConnection = {
     readonly __typename?: "ImageSharpGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<ImageSharpEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<ImageSharpGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<ImageSharp>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
+};
+
+export type ImageSharpGroupConnectionDistinctArgs = {
+    field: ImageSharpFieldsEnum;
+};
+
+export type ImageSharpGroupConnectionGroupArgs = {
+    field: ImageSharpFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type ImageSharpGroupConnectionMaxArgs = {
+    field: ImageSharpFieldsEnum;
+};
+
+export type ImageSharpGroupConnectionMinArgs = {
+    field: ImageSharpFieldsEnum;
+};
+
+export type ImageSharpGroupConnectionSumArgs = {
+    field: ImageSharpFieldsEnum;
 };
 
 export type ImageSharpOriginal = {
@@ -1537,9 +1771,9 @@ export type ImageSharpOriginal = {
 };
 
 export type ImageSharpOriginalFilterInput = {
-    readonly height: Maybe<FloatQueryOperatorInput>;
-    readonly src: Maybe<StringQueryOperatorInput>;
-    readonly width: Maybe<FloatQueryOperatorInput>;
+    readonly height: InputMaybe<FloatQueryOperatorInput>;
+    readonly src: InputMaybe<StringQueryOperatorInput>;
+    readonly width: InputMaybe<FloatQueryOperatorInput>;
 };
 
 export type ImageSharpResize = {
@@ -1553,28 +1787,30 @@ export type ImageSharpResize = {
 };
 
 export type ImageSharpResizeFilterInput = {
-    readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-    readonly height: Maybe<IntQueryOperatorInput>;
-    readonly originalName: Maybe<StringQueryOperatorInput>;
-    readonly src: Maybe<StringQueryOperatorInput>;
-    readonly tracedSVG: Maybe<StringQueryOperatorInput>;
-    readonly width: Maybe<IntQueryOperatorInput>;
+    readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+    readonly height: InputMaybe<IntQueryOperatorInput>;
+    readonly originalName: InputMaybe<StringQueryOperatorInput>;
+    readonly src: InputMaybe<StringQueryOperatorInput>;
+    readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+    readonly width: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type ImageSharpSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<ImageSharpFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<
+        ReadonlyArray<InputMaybe<ImageSharpFieldsEnum>>
+    >;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type IntQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["Int"]>;
-    readonly gt: Maybe<Scalars["Int"]>;
-    readonly gte: Maybe<Scalars["Int"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["Int"]>>>;
-    readonly lt: Maybe<Scalars["Int"]>;
-    readonly lte: Maybe<Scalars["Int"]>;
-    readonly ne: Maybe<Scalars["Int"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["Int"]>>>;
+    readonly eq: InputMaybe<Scalars["Int"]>;
+    readonly gt: InputMaybe<Scalars["Int"]>;
+    readonly gte: InputMaybe<Scalars["Int"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Int"]>>>;
+    readonly lt: InputMaybe<Scalars["Int"]>;
+    readonly lte: InputMaybe<Scalars["Int"]>;
+    readonly ne: InputMaybe<Scalars["Int"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["Int"]>>>;
 };
 
 export type Internal = {
@@ -1590,28 +1826,28 @@ export type Internal = {
 };
 
 export type InternalFilterInput = {
-    readonly content: Maybe<StringQueryOperatorInput>;
-    readonly contentDigest: Maybe<StringQueryOperatorInput>;
-    readonly description: Maybe<StringQueryOperatorInput>;
-    readonly fieldOwners: Maybe<StringQueryOperatorInput>;
-    readonly ignoreType: Maybe<BooleanQueryOperatorInput>;
-    readonly mediaType: Maybe<StringQueryOperatorInput>;
-    readonly owner: Maybe<StringQueryOperatorInput>;
-    readonly type: Maybe<StringQueryOperatorInput>;
+    readonly content: InputMaybe<StringQueryOperatorInput>;
+    readonly contentDigest: InputMaybe<StringQueryOperatorInput>;
+    readonly description: InputMaybe<StringQueryOperatorInput>;
+    readonly fieldOwners: InputMaybe<StringQueryOperatorInput>;
+    readonly ignoreType: InputMaybe<BooleanQueryOperatorInput>;
+    readonly mediaType: InputMaybe<StringQueryOperatorInput>;
+    readonly owner: InputMaybe<StringQueryOperatorInput>;
+    readonly type: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type JpgOptions = {
-    readonly progressive: Maybe<Scalars["Boolean"]>;
-    readonly quality: Maybe<Scalars["Int"]>;
+    readonly progressive: InputMaybe<Scalars["Boolean"]>;
+    readonly quality: InputMaybe<Scalars["Int"]>;
 };
 
 export type JsonQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["JSON"]>;
-    readonly glob: Maybe<Scalars["JSON"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["JSON"]>>>;
-    readonly ne: Maybe<Scalars["JSON"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["JSON"]>>>;
-    readonly regex: Maybe<Scalars["JSON"]>;
+    readonly eq: InputMaybe<Scalars["JSON"]>;
+    readonly glob: InputMaybe<Scalars["JSON"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["JSON"]>>>;
+    readonly ne: InputMaybe<Scalars["JSON"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["JSON"]>>>;
+    readonly regex: InputMaybe<Scalars["JSON"]>;
 };
 
 export enum MarkdownExcerptFormats {
@@ -1628,13 +1864,13 @@ export type MarkdownHeading = {
 };
 
 export type MarkdownHeadingFilterInput = {
-    readonly depth: Maybe<IntQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly value: Maybe<StringQueryOperatorInput>;
+    readonly depth: InputMaybe<IntQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly value: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type MarkdownHeadingFilterListInput = {
-    readonly elemMatch: Maybe<MarkdownHeadingFilterInput>;
+    readonly elemMatch: InputMaybe<MarkdownHeadingFilterInput>;
 };
 
 export enum MarkdownHeadingLevels {
@@ -1668,25 +1904,25 @@ export type MarkdownRemark = Node & {
 };
 
 export type MarkdownRemarkExcerptArgs = {
-    format?: Maybe<MarkdownExcerptFormats>;
-    pruneLength?: Maybe<Scalars["Int"]>;
-    truncate?: Maybe<Scalars["Boolean"]>;
+    format?: InputMaybe<MarkdownExcerptFormats>;
+    pruneLength?: InputMaybe<Scalars["Int"]>;
+    truncate?: InputMaybe<Scalars["Boolean"]>;
 };
 
 export type MarkdownRemarkExcerptAstArgs = {
-    pruneLength?: Maybe<Scalars["Int"]>;
-    truncate?: Maybe<Scalars["Boolean"]>;
+    pruneLength?: InputMaybe<Scalars["Int"]>;
+    truncate?: InputMaybe<Scalars["Boolean"]>;
 };
 
 export type MarkdownRemarkHeadingsArgs = {
-    depth: Maybe<MarkdownHeadingLevels>;
+    depth: InputMaybe<MarkdownHeadingLevels>;
 };
 
 export type MarkdownRemarkTableOfContentsArgs = {
-    absolute?: Maybe<Scalars["Boolean"]>;
-    heading: Maybe<Scalars["String"]>;
-    maxDepth: Maybe<Scalars["Int"]>;
-    pathToSlugField?: Maybe<Scalars["String"]>;
+    absolute?: InputMaybe<Scalars["Boolean"]>;
+    heading: InputMaybe<Scalars["String"]>;
+    maxDepth: InputMaybe<Scalars["Int"]>;
+    pathToSlugField?: InputMaybe<Scalars["String"]>;
 };
 
 export type MarkdownRemarkConnection = {
@@ -1708,8 +1944,8 @@ export type MarkdownRemarkConnectionDistinctArgs = {
 
 export type MarkdownRemarkConnectionGroupArgs = {
     field: MarkdownRemarkFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type MarkdownRemarkConnectionMaxArgs = {
@@ -1733,6 +1969,7 @@ export type MarkdownRemarkEdge = {
 
 export type MarkdownRemarkFields = {
     readonly __typename?: "MarkdownRemarkFields";
+    readonly hero: Maybe<Scalars["String"]>;
     readonly slug: Maybe<Scalars["String"]>;
 };
 
@@ -1776,8 +2013,11 @@ export enum MarkdownRemarkFieldsEnum {
     ChildrenParentInternalType = "children___parent___internal___type",
     ChildrenParentParentChildren = "children___parent___parent___children",
     ChildrenParentParentId = "children___parent___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     Excerpt = "excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     ExcerptAst = "excerptAst",
+    FieldsHero = "fields___hero",
     FieldsSlug = "fields___slug",
     FileAbsolutePath = "fileAbsolutePath",
     FrontmatterAuthor = "frontmatter___author",
@@ -1788,9 +2028,13 @@ export enum MarkdownRemarkFieldsEnum {
     FrontmatterLang = "frontmatter___lang",
     FrontmatterTitle = "frontmatter___title",
     FrontmatterType = "frontmatter___type",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     Headings = "headings",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeadingsDepth = "headings___depth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeadingsId = "headings___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeadingsValue = "headings___value",
     HeroAbsolutePath = "hero___absolutePath",
     HeroAccessTime = "hero___accessTime",
@@ -1806,28 +2050,51 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildImageSharpChildren = "hero___childImageSharp___children",
     HeroChildImageSharpChildrenChildren = "hero___childImageSharp___children___children",
     HeroChildImageSharpChildrenId = "hero___childImageSharp___children___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedAspectRatio = "hero___childImageSharp___fixed___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedBase64 = "hero___childImageSharp___fixed___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedHeight = "hero___childImageSharp___fixed___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedOriginalName = "hero___childImageSharp___fixed___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedSrc = "hero___childImageSharp___fixed___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedSrcSet = "hero___childImageSharp___fixed___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedSrcSetWebp = "hero___childImageSharp___fixed___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedSrcWebp = "hero___childImageSharp___fixed___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedTracedSvg = "hero___childImageSharp___fixed___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFixedWidth = "hero___childImageSharp___fixed___width",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidAspectRatio = "hero___childImageSharp___fluid___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidBase64 = "hero___childImageSharp___fluid___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidOriginalImg = "hero___childImageSharp___fluid___originalImg",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidOriginalName = "hero___childImageSharp___fluid___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidPresentationHeight = "hero___childImageSharp___fluid___presentationHeight",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidPresentationWidth = "hero___childImageSharp___fluid___presentationWidth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidSizes = "hero___childImageSharp___fluid___sizes",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidSrc = "hero___childImageSharp___fluid___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidSrcSet = "hero___childImageSharp___fluid___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidSrcSetWebp = "hero___childImageSharp___fluid___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidSrcWebp = "hero___childImageSharp___fluid___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpFluidTracedSvg = "hero___childImageSharp___fluid___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpGatsbyImageData = "hero___childImageSharp___gatsbyImageData",
     HeroChildImageSharpId = "hero___childImageSharp___id",
     HeroChildImageSharpInternalContent = "hero___childImageSharp___internal___content",
@@ -1843,17 +2110,26 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildImageSharpOriginalWidth = "hero___childImageSharp___original___width",
     HeroChildImageSharpParentChildren = "hero___childImageSharp___parent___children",
     HeroChildImageSharpParentId = "hero___childImageSharp___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeAspectRatio = "hero___childImageSharp___resize___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeHeight = "hero___childImageSharp___resize___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeOriginalName = "hero___childImageSharp___resize___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeSrc = "hero___childImageSharp___resize___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeTracedSvg = "hero___childImageSharp___resize___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildImageSharpResizeWidth = "hero___childImageSharp___resize___width",
     HeroChildMarkdownRemarkChildren = "hero___childMarkdownRemark___children",
     HeroChildMarkdownRemarkChildrenChildren = "hero___childMarkdownRemark___children___children",
     HeroChildMarkdownRemarkChildrenId = "hero___childMarkdownRemark___children___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkExcerpt = "hero___childMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkExcerptAst = "hero___childMarkdownRemark___excerptAst",
+    HeroChildMarkdownRemarkFieldsHero = "hero___childMarkdownRemark___fields___hero",
     HeroChildMarkdownRemarkFieldsSlug = "hero___childMarkdownRemark___fields___slug",
     HeroChildMarkdownRemarkFileAbsolutePath = "hero___childMarkdownRemark___fileAbsolutePath",
     HeroChildMarkdownRemarkFrontmatterAuthor = "hero___childMarkdownRemark___frontmatter___author",
@@ -1864,9 +2140,13 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildMarkdownRemarkFrontmatterLang = "hero___childMarkdownRemark___frontmatter___lang",
     HeroChildMarkdownRemarkFrontmatterTitle = "hero___childMarkdownRemark___frontmatter___title",
     HeroChildMarkdownRemarkFrontmatterType = "hero___childMarkdownRemark___frontmatter___type",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkHeadings = "hero___childMarkdownRemark___headings",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkHeadingsDepth = "hero___childMarkdownRemark___headings___depth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkHeadingsId = "hero___childMarkdownRemark___headings___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkHeadingsValue = "hero___childMarkdownRemark___headings___value",
     HeroChildMarkdownRemarkHeroAbsolutePath = "hero___childMarkdownRemark___hero___absolutePath",
     HeroChildMarkdownRemarkHeroAccessTime = "hero___childMarkdownRemark___hero___accessTime",
@@ -1921,6 +2201,7 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildMarkdownRemarkParentChildren = "hero___childMarkdownRemark___parent___children",
     HeroChildMarkdownRemarkParentId = "hero___childMarkdownRemark___parent___id",
     HeroChildMarkdownRemarkRawMarkdownBody = "hero___childMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildMarkdownRemarkTableOfContents = "hero___childMarkdownRemark___tableOfContents",
     HeroChildMarkdownRemarkTimeToRead = "hero___childMarkdownRemark___timeToRead",
     HeroChildMarkdownRemarkWordCountParagraphs = "hero___childMarkdownRemark___wordCount___paragraphs",
@@ -1931,28 +2212,51 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildrenImageSharpChildren = "hero___childrenImageSharp___children",
     HeroChildrenImageSharpChildrenChildren = "hero___childrenImageSharp___children___children",
     HeroChildrenImageSharpChildrenId = "hero___childrenImageSharp___children___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedAspectRatio = "hero___childrenImageSharp___fixed___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedBase64 = "hero___childrenImageSharp___fixed___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedHeight = "hero___childrenImageSharp___fixed___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedOriginalName = "hero___childrenImageSharp___fixed___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedSrc = "hero___childrenImageSharp___fixed___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedSrcSet = "hero___childrenImageSharp___fixed___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedSrcSetWebp = "hero___childrenImageSharp___fixed___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedSrcWebp = "hero___childrenImageSharp___fixed___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedTracedSvg = "hero___childrenImageSharp___fixed___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFixedWidth = "hero___childrenImageSharp___fixed___width",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidAspectRatio = "hero___childrenImageSharp___fluid___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidBase64 = "hero___childrenImageSharp___fluid___base64",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidOriginalImg = "hero___childrenImageSharp___fluid___originalImg",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidOriginalName = "hero___childrenImageSharp___fluid___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidPresentationHeight = "hero___childrenImageSharp___fluid___presentationHeight",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidPresentationWidth = "hero___childrenImageSharp___fluid___presentationWidth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidSizes = "hero___childrenImageSharp___fluid___sizes",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidSrc = "hero___childrenImageSharp___fluid___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidSrcSet = "hero___childrenImageSharp___fluid___srcSet",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidSrcSetWebp = "hero___childrenImageSharp___fluid___srcSetWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidSrcWebp = "hero___childrenImageSharp___fluid___srcWebp",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpFluidTracedSvg = "hero___childrenImageSharp___fluid___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpGatsbyImageData = "hero___childrenImageSharp___gatsbyImageData",
     HeroChildrenImageSharpId = "hero___childrenImageSharp___id",
     HeroChildrenImageSharpInternalContent = "hero___childrenImageSharp___internal___content",
@@ -1968,18 +2272,27 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildrenImageSharpOriginalWidth = "hero___childrenImageSharp___original___width",
     HeroChildrenImageSharpParentChildren = "hero___childrenImageSharp___parent___children",
     HeroChildrenImageSharpParentId = "hero___childrenImageSharp___parent___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeAspectRatio = "hero___childrenImageSharp___resize___aspectRatio",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeHeight = "hero___childrenImageSharp___resize___height",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeOriginalName = "hero___childrenImageSharp___resize___originalName",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeSrc = "hero___childrenImageSharp___resize___src",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeTracedSvg = "hero___childrenImageSharp___resize___tracedSVG",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenImageSharpResizeWidth = "hero___childrenImageSharp___resize___width",
     HeroChildrenMarkdownRemark = "hero___childrenMarkdownRemark",
     HeroChildrenMarkdownRemarkChildren = "hero___childrenMarkdownRemark___children",
     HeroChildrenMarkdownRemarkChildrenChildren = "hero___childrenMarkdownRemark___children___children",
     HeroChildrenMarkdownRemarkChildrenId = "hero___childrenMarkdownRemark___children___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkExcerpt = "hero___childrenMarkdownRemark___excerpt",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkExcerptAst = "hero___childrenMarkdownRemark___excerptAst",
+    HeroChildrenMarkdownRemarkFieldsHero = "hero___childrenMarkdownRemark___fields___hero",
     HeroChildrenMarkdownRemarkFieldsSlug = "hero___childrenMarkdownRemark___fields___slug",
     HeroChildrenMarkdownRemarkFileAbsolutePath = "hero___childrenMarkdownRemark___fileAbsolutePath",
     HeroChildrenMarkdownRemarkFrontmatterAuthor = "hero___childrenMarkdownRemark___frontmatter___author",
@@ -1990,9 +2303,13 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildrenMarkdownRemarkFrontmatterLang = "hero___childrenMarkdownRemark___frontmatter___lang",
     HeroChildrenMarkdownRemarkFrontmatterTitle = "hero___childrenMarkdownRemark___frontmatter___title",
     HeroChildrenMarkdownRemarkFrontmatterType = "hero___childrenMarkdownRemark___frontmatter___type",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkHeadings = "hero___childrenMarkdownRemark___headings",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkHeadingsDepth = "hero___childrenMarkdownRemark___headings___depth",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkHeadingsId = "hero___childrenMarkdownRemark___headings___id",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkHeadingsValue = "hero___childrenMarkdownRemark___headings___value",
     HeroChildrenMarkdownRemarkHeroAbsolutePath = "hero___childrenMarkdownRemark___hero___absolutePath",
     HeroChildrenMarkdownRemarkHeroAccessTime = "hero___childrenMarkdownRemark___hero___accessTime",
@@ -2047,6 +2364,7 @@ export enum MarkdownRemarkFieldsEnum {
     HeroChildrenMarkdownRemarkParentChildren = "hero___childrenMarkdownRemark___parent___children",
     HeroChildrenMarkdownRemarkParentId = "hero___childrenMarkdownRemark___parent___id",
     HeroChildrenMarkdownRemarkRawMarkdownBody = "hero___childrenMarkdownRemark___rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     HeroChildrenMarkdownRemarkTableOfContents = "hero___childrenMarkdownRemark___tableOfContents",
     HeroChildrenMarkdownRemarkTimeToRead = "hero___childrenMarkdownRemark___timeToRead",
     HeroChildrenMarkdownRemarkWordCountParagraphs = "hero___childrenMarkdownRemark___wordCount___paragraphs",
@@ -2163,6 +2481,7 @@ export enum MarkdownRemarkFieldsEnum {
     ParentParentParentChildren = "parent___parent___parent___children",
     ParentParentParentId = "parent___parent___parent___id",
     RawMarkdownBody = "rawMarkdownBody",
+    /** @deprecated Sorting on fields that need arguments to resolve is deprecated. */
     TableOfContents = "tableOfContents",
     TimeToRead = "timeToRead",
     WordCountParagraphs = "wordCount___paragraphs",
@@ -2171,31 +2490,32 @@ export enum MarkdownRemarkFieldsEnum {
 }
 
 export type MarkdownRemarkFieldsFilterInput = {
-    readonly slug: Maybe<StringQueryOperatorInput>;
+    readonly hero: InputMaybe<StringQueryOperatorInput>;
+    readonly slug: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type MarkdownRemarkFilterInput = {
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly excerpt: Maybe<StringQueryOperatorInput>;
-    readonly excerptAst: Maybe<JsonQueryOperatorInput>;
-    readonly fields: Maybe<MarkdownRemarkFieldsFilterInput>;
-    readonly fileAbsolutePath: Maybe<StringQueryOperatorInput>;
-    readonly frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
-    readonly headings: Maybe<MarkdownHeadingFilterListInput>;
-    readonly hero: Maybe<FileFilterInput>;
-    readonly html: Maybe<StringQueryOperatorInput>;
-    readonly htmlAst: Maybe<JsonQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly rawMarkdownBody: Maybe<StringQueryOperatorInput>;
-    readonly tableOfContents: Maybe<StringQueryOperatorInput>;
-    readonly timeToRead: Maybe<IntQueryOperatorInput>;
-    readonly wordCount: Maybe<MarkdownWordCountFilterInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly excerpt: InputMaybe<StringQueryOperatorInput>;
+    readonly excerptAst: InputMaybe<JsonQueryOperatorInput>;
+    readonly fields: InputMaybe<MarkdownRemarkFieldsFilterInput>;
+    readonly fileAbsolutePath: InputMaybe<StringQueryOperatorInput>;
+    readonly frontmatter: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+    readonly headings: InputMaybe<MarkdownHeadingFilterListInput>;
+    readonly hero: InputMaybe<FileFilterInput>;
+    readonly html: InputMaybe<StringQueryOperatorInput>;
+    readonly htmlAst: InputMaybe<JsonQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly rawMarkdownBody: InputMaybe<StringQueryOperatorInput>;
+    readonly tableOfContents: InputMaybe<StringQueryOperatorInput>;
+    readonly timeToRead: InputMaybe<IntQueryOperatorInput>;
+    readonly wordCount: InputMaybe<MarkdownWordCountFilterInput>;
 };
 
 export type MarkdownRemarkFilterListInput = {
-    readonly elemMatch: Maybe<MarkdownRemarkFilterInput>;
+    readonly elemMatch: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
 export type MarkdownRemarkFrontmatter = {
@@ -2211,36 +2531,65 @@ export type MarkdownRemarkFrontmatter = {
 };
 
 export type MarkdownRemarkFrontmatterDateArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type MarkdownRemarkFrontmatterFilterInput = {
-    readonly author: Maybe<StringQueryOperatorInput>;
-    readonly categories: Maybe<StringQueryOperatorInput>;
-    readonly date: Maybe<DateQueryOperatorInput>;
-    readonly excerpt: Maybe<StringQueryOperatorInput>;
-    readonly hero: Maybe<StringQueryOperatorInput>;
-    readonly lang: Maybe<StringQueryOperatorInput>;
-    readonly title: Maybe<StringQueryOperatorInput>;
-    readonly type: Maybe<StringQueryOperatorInput>;
+    readonly author: InputMaybe<StringQueryOperatorInput>;
+    readonly categories: InputMaybe<StringQueryOperatorInput>;
+    readonly date: InputMaybe<DateQueryOperatorInput>;
+    readonly excerpt: InputMaybe<StringQueryOperatorInput>;
+    readonly hero: InputMaybe<StringQueryOperatorInput>;
+    readonly lang: InputMaybe<StringQueryOperatorInput>;
+    readonly title: InputMaybe<StringQueryOperatorInput>;
+    readonly type: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type MarkdownRemarkGroupConnection = {
     readonly __typename?: "MarkdownRemarkGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<MarkdownRemarkEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<MarkdownRemarkGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<MarkdownRemark>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type MarkdownRemarkGroupConnectionDistinctArgs = {
+    field: MarkdownRemarkFieldsEnum;
+};
+
+export type MarkdownRemarkGroupConnectionGroupArgs = {
+    field: MarkdownRemarkFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type MarkdownRemarkGroupConnectionMaxArgs = {
+    field: MarkdownRemarkFieldsEnum;
+};
+
+export type MarkdownRemarkGroupConnectionMinArgs = {
+    field: MarkdownRemarkFieldsEnum;
+};
+
+export type MarkdownRemarkGroupConnectionSumArgs = {
+    field: MarkdownRemarkFieldsEnum;
+};
+
 export type MarkdownRemarkSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<MarkdownRemarkFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<
+        ReadonlyArray<InputMaybe<MarkdownRemarkFieldsEnum>>
+    >;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type MarkdownWordCount = {
@@ -2251,9 +2600,9 @@ export type MarkdownWordCount = {
 };
 
 export type MarkdownWordCountFilterInput = {
-    readonly paragraphs: Maybe<IntQueryOperatorInput>;
-    readonly sentences: Maybe<IntQueryOperatorInput>;
-    readonly words: Maybe<IntQueryOperatorInput>;
+    readonly paragraphs: InputMaybe<IntQueryOperatorInput>;
+    readonly sentences: InputMaybe<IntQueryOperatorInput>;
+    readonly words: InputMaybe<IntQueryOperatorInput>;
 };
 
 /** Node Interface */
@@ -2265,19 +2614,19 @@ export type Node = {
 };
 
 export type NodeFilterInput = {
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
 };
 
 export type NodeFilterListInput = {
-    readonly elemMatch: Maybe<NodeFilterInput>;
+    readonly elemMatch: InputMaybe<NodeFilterInput>;
 };
 
 export type PngOptions = {
-    readonly compressionSpeed: Maybe<Scalars["Int"]>;
-    readonly quality: Maybe<Scalars["Int"]>;
+    readonly compressionSpeed: InputMaybe<Scalars["Int"]>;
+    readonly quality: InputMaybe<Scalars["Int"]>;
 };
 
 export type PageInfo = {
@@ -2292,15 +2641,15 @@ export type PageInfo = {
 };
 
 export type Potrace = {
-    readonly alphaMax: Maybe<Scalars["Float"]>;
-    readonly background: Maybe<Scalars["String"]>;
-    readonly blackOnWhite: Maybe<Scalars["Boolean"]>;
-    readonly color: Maybe<Scalars["String"]>;
-    readonly optCurve: Maybe<Scalars["Boolean"]>;
-    readonly optTolerance: Maybe<Scalars["Float"]>;
-    readonly threshold: Maybe<Scalars["Int"]>;
-    readonly turdSize: Maybe<Scalars["Float"]>;
-    readonly turnPolicy: Maybe<PotraceTurnPolicy>;
+    readonly alphaMax: InputMaybe<Scalars["Float"]>;
+    readonly background: InputMaybe<Scalars["String"]>;
+    readonly blackOnWhite: InputMaybe<Scalars["Boolean"]>;
+    readonly color: InputMaybe<Scalars["String"]>;
+    readonly optCurve: InputMaybe<Scalars["Boolean"]>;
+    readonly optTolerance: InputMaybe<Scalars["Float"]>;
+    readonly threshold: InputMaybe<Scalars["Int"]>;
+    readonly turdSize: InputMaybe<Scalars["Float"]>;
+    readonly turnPolicy: InputMaybe<PotraceTurnPolicy>;
 };
 
 export enum PotraceTurnPolicy {
@@ -2335,248 +2684,251 @@ export type Query = {
 };
 
 export type QueryAllDirectoryArgs = {
-    filter: Maybe<DirectoryFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<DirectorySortInput>;
+    filter: InputMaybe<DirectoryFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<DirectorySortInput>;
 };
 
 export type QueryAllFileArgs = {
-    filter: Maybe<FileFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<FileSortInput>;
+    filter: InputMaybe<FileFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<FileSortInput>;
 };
 
 export type QueryAllImageSharpArgs = {
-    filter: Maybe<ImageSharpFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<ImageSharpSortInput>;
+    filter: InputMaybe<ImageSharpFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<ImageSharpSortInput>;
 };
 
 export type QueryAllMarkdownRemarkArgs = {
-    filter: Maybe<MarkdownRemarkFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<MarkdownRemarkSortInput>;
+    filter: InputMaybe<MarkdownRemarkFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<MarkdownRemarkSortInput>;
 };
 
 export type QueryAllSiteArgs = {
-    filter: Maybe<SiteFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<SiteSortInput>;
+    filter: InputMaybe<SiteFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<SiteSortInput>;
 };
 
 export type QueryAllSiteBuildMetadataArgs = {
-    filter: Maybe<SiteBuildMetadataFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<SiteBuildMetadataSortInput>;
+    filter: InputMaybe<SiteBuildMetadataFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<SiteBuildMetadataSortInput>;
 };
 
 export type QueryAllSiteFunctionArgs = {
-    filter: Maybe<SiteFunctionFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<SiteFunctionSortInput>;
+    filter: InputMaybe<SiteFunctionFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<SiteFunctionSortInput>;
 };
 
 export type QueryAllSitePageArgs = {
-    filter: Maybe<SitePageFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<SitePageSortInput>;
+    filter: InputMaybe<SitePageFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<SitePageSortInput>;
 };
 
 export type QueryAllSitePluginArgs = {
-    filter: Maybe<SitePluginFilterInput>;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
-    sort: Maybe<SitePluginSortInput>;
+    filter: InputMaybe<SitePluginFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<SitePluginSortInput>;
 };
 
 export type QueryDirectoryArgs = {
-    absolutePath: Maybe<StringQueryOperatorInput>;
-    accessTime: Maybe<DateQueryOperatorInput>;
-    atime: Maybe<DateQueryOperatorInput>;
-    atimeMs: Maybe<FloatQueryOperatorInput>;
-    base: Maybe<StringQueryOperatorInput>;
-    birthTime: Maybe<DateQueryOperatorInput>;
-    birthtime: Maybe<DateQueryOperatorInput>;
-    birthtimeMs: Maybe<FloatQueryOperatorInput>;
-    blksize: Maybe<IntQueryOperatorInput>;
-    blocks: Maybe<IntQueryOperatorInput>;
-    changeTime: Maybe<DateQueryOperatorInput>;
-    children: Maybe<NodeFilterListInput>;
-    ctime: Maybe<DateQueryOperatorInput>;
-    ctimeMs: Maybe<FloatQueryOperatorInput>;
-    dev: Maybe<IntQueryOperatorInput>;
-    dir: Maybe<StringQueryOperatorInput>;
-    ext: Maybe<StringQueryOperatorInput>;
-    extension: Maybe<StringQueryOperatorInput>;
-    gid: Maybe<IntQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    ino: Maybe<FloatQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    mode: Maybe<IntQueryOperatorInput>;
-    modifiedTime: Maybe<DateQueryOperatorInput>;
-    mtime: Maybe<DateQueryOperatorInput>;
-    mtimeMs: Maybe<FloatQueryOperatorInput>;
-    name: Maybe<StringQueryOperatorInput>;
-    nlink: Maybe<IntQueryOperatorInput>;
-    parent: Maybe<NodeFilterInput>;
-    prettySize: Maybe<StringQueryOperatorInput>;
-    rdev: Maybe<IntQueryOperatorInput>;
-    relativeDirectory: Maybe<StringQueryOperatorInput>;
-    relativePath: Maybe<StringQueryOperatorInput>;
-    root: Maybe<StringQueryOperatorInput>;
-    size: Maybe<IntQueryOperatorInput>;
-    sourceInstanceName: Maybe<StringQueryOperatorInput>;
-    uid: Maybe<IntQueryOperatorInput>;
+    absolutePath: InputMaybe<StringQueryOperatorInput>;
+    accessTime: InputMaybe<DateQueryOperatorInput>;
+    atime: InputMaybe<DateQueryOperatorInput>;
+    atimeMs: InputMaybe<FloatQueryOperatorInput>;
+    base: InputMaybe<StringQueryOperatorInput>;
+    birthTime: InputMaybe<DateQueryOperatorInput>;
+    birthtime: InputMaybe<DateQueryOperatorInput>;
+    birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    changeTime: InputMaybe<DateQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    ctime: InputMaybe<DateQueryOperatorInput>;
+    ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+    dev: InputMaybe<IntQueryOperatorInput>;
+    dir: InputMaybe<StringQueryOperatorInput>;
+    ext: InputMaybe<StringQueryOperatorInput>;
+    extension: InputMaybe<StringQueryOperatorInput>;
+    gid: InputMaybe<IntQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    ino: InputMaybe<FloatQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    mode: InputMaybe<IntQueryOperatorInput>;
+    modifiedTime: InputMaybe<DateQueryOperatorInput>;
+    mtime: InputMaybe<DateQueryOperatorInput>;
+    mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    name: InputMaybe<StringQueryOperatorInput>;
+    nlink: InputMaybe<IntQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    prettySize: InputMaybe<StringQueryOperatorInput>;
+    rdev: InputMaybe<IntQueryOperatorInput>;
+    relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+    relativePath: InputMaybe<StringQueryOperatorInput>;
+    root: InputMaybe<StringQueryOperatorInput>;
+    size: InputMaybe<IntQueryOperatorInput>;
+    sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+    uid: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type QueryFileArgs = {
-    absolutePath: Maybe<StringQueryOperatorInput>;
-    accessTime: Maybe<DateQueryOperatorInput>;
-    atime: Maybe<DateQueryOperatorInput>;
-    atimeMs: Maybe<FloatQueryOperatorInput>;
-    base: Maybe<StringQueryOperatorInput>;
-    birthTime: Maybe<DateQueryOperatorInput>;
-    birthtime: Maybe<DateQueryOperatorInput>;
-    birthtimeMs: Maybe<FloatQueryOperatorInput>;
-    blksize: Maybe<IntQueryOperatorInput>;
-    blocks: Maybe<IntQueryOperatorInput>;
-    changeTime: Maybe<DateQueryOperatorInput>;
-    childImageSharp: Maybe<ImageSharpFilterInput>;
-    childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
-    children: Maybe<NodeFilterListInput>;
-    childrenImageSharp: Maybe<ImageSharpFilterListInput>;
-    childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
-    ctime: Maybe<DateQueryOperatorInput>;
-    ctimeMs: Maybe<FloatQueryOperatorInput>;
-    dev: Maybe<IntQueryOperatorInput>;
-    dir: Maybe<StringQueryOperatorInput>;
-    ext: Maybe<StringQueryOperatorInput>;
-    extension: Maybe<StringQueryOperatorInput>;
-    gid: Maybe<IntQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    ino: Maybe<FloatQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    mode: Maybe<IntQueryOperatorInput>;
-    modifiedTime: Maybe<DateQueryOperatorInput>;
-    mtime: Maybe<DateQueryOperatorInput>;
-    mtimeMs: Maybe<FloatQueryOperatorInput>;
-    name: Maybe<StringQueryOperatorInput>;
-    nlink: Maybe<IntQueryOperatorInput>;
-    parent: Maybe<NodeFilterInput>;
-    prettySize: Maybe<StringQueryOperatorInput>;
-    publicURL: Maybe<StringQueryOperatorInput>;
-    rdev: Maybe<IntQueryOperatorInput>;
-    relativeDirectory: Maybe<StringQueryOperatorInput>;
-    relativePath: Maybe<StringQueryOperatorInput>;
-    root: Maybe<StringQueryOperatorInput>;
-    size: Maybe<IntQueryOperatorInput>;
-    sourceInstanceName: Maybe<StringQueryOperatorInput>;
-    uid: Maybe<IntQueryOperatorInput>;
-    url: Maybe<StringQueryOperatorInput>;
+    absolutePath: InputMaybe<StringQueryOperatorInput>;
+    accessTime: InputMaybe<DateQueryOperatorInput>;
+    atime: InputMaybe<DateQueryOperatorInput>;
+    atimeMs: InputMaybe<FloatQueryOperatorInput>;
+    base: InputMaybe<StringQueryOperatorInput>;
+    birthTime: InputMaybe<DateQueryOperatorInput>;
+    birthtime: InputMaybe<DateQueryOperatorInput>;
+    birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    blksize: InputMaybe<IntQueryOperatorInput>;
+    blocks: InputMaybe<IntQueryOperatorInput>;
+    changeTime: InputMaybe<DateQueryOperatorInput>;
+    childImageSharp: InputMaybe<ImageSharpFilterInput>;
+    childMarkdownRemark: InputMaybe<MarkdownRemarkFilterInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
+    childrenMarkdownRemark: InputMaybe<MarkdownRemarkFilterListInput>;
+    ctime: InputMaybe<DateQueryOperatorInput>;
+    ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+    dev: InputMaybe<IntQueryOperatorInput>;
+    dir: InputMaybe<StringQueryOperatorInput>;
+    ext: InputMaybe<StringQueryOperatorInput>;
+    extension: InputMaybe<StringQueryOperatorInput>;
+    gid: InputMaybe<IntQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    ino: InputMaybe<FloatQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    mode: InputMaybe<IntQueryOperatorInput>;
+    modifiedTime: InputMaybe<DateQueryOperatorInput>;
+    mtime: InputMaybe<DateQueryOperatorInput>;
+    mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+    name: InputMaybe<StringQueryOperatorInput>;
+    nlink: InputMaybe<IntQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    prettySize: InputMaybe<StringQueryOperatorInput>;
+    publicURL: InputMaybe<StringQueryOperatorInput>;
+    rdev: InputMaybe<IntQueryOperatorInput>;
+    relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+    relativePath: InputMaybe<StringQueryOperatorInput>;
+    root: InputMaybe<StringQueryOperatorInput>;
+    size: InputMaybe<IntQueryOperatorInput>;
+    sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+    uid: InputMaybe<IntQueryOperatorInput>;
+    url: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type QueryImageSharpArgs = {
-    children: Maybe<NodeFilterListInput>;
-    fixed: Maybe<ImageSharpFixedFilterInput>;
-    fluid: Maybe<ImageSharpFluidFilterInput>;
-    gatsbyImageData: Maybe<JsonQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    original: Maybe<ImageSharpOriginalFilterInput>;
-    parent: Maybe<NodeFilterInput>;
-    resize: Maybe<ImageSharpResizeFilterInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    fixed: InputMaybe<ImageSharpFixedFilterInput>;
+    fluid: InputMaybe<ImageSharpFluidFilterInput>;
+    gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    original: InputMaybe<ImageSharpOriginalFilterInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    resize: InputMaybe<ImageSharpResizeFilterInput>;
 };
 
 export type QueryMarkdownRemarkArgs = {
-    children: Maybe<NodeFilterListInput>;
-    excerpt: Maybe<StringQueryOperatorInput>;
-    excerptAst: Maybe<JsonQueryOperatorInput>;
-    fields: Maybe<MarkdownRemarkFieldsFilterInput>;
-    fileAbsolutePath: Maybe<StringQueryOperatorInput>;
-    frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
-    headings: Maybe<MarkdownHeadingFilterListInput>;
-    hero: Maybe<FileFilterInput>;
-    html: Maybe<StringQueryOperatorInput>;
-    htmlAst: Maybe<JsonQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    parent: Maybe<NodeFilterInput>;
-    rawMarkdownBody: Maybe<StringQueryOperatorInput>;
-    tableOfContents: Maybe<StringQueryOperatorInput>;
-    timeToRead: Maybe<IntQueryOperatorInput>;
-    wordCount: Maybe<MarkdownWordCountFilterInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    excerpt: InputMaybe<StringQueryOperatorInput>;
+    excerptAst: InputMaybe<JsonQueryOperatorInput>;
+    fields: InputMaybe<MarkdownRemarkFieldsFilterInput>;
+    fileAbsolutePath: InputMaybe<StringQueryOperatorInput>;
+    frontmatter: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+    headings: InputMaybe<MarkdownHeadingFilterListInput>;
+    hero: InputMaybe<FileFilterInput>;
+    html: InputMaybe<StringQueryOperatorInput>;
+    htmlAst: InputMaybe<JsonQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    rawMarkdownBody: InputMaybe<StringQueryOperatorInput>;
+    tableOfContents: InputMaybe<StringQueryOperatorInput>;
+    timeToRead: InputMaybe<IntQueryOperatorInput>;
+    wordCount: InputMaybe<MarkdownWordCountFilterInput>;
 };
 
 export type QuerySiteArgs = {
-    buildTime: Maybe<DateQueryOperatorInput>;
-    children: Maybe<NodeFilterListInput>;
-    flags: Maybe<SiteFlagsFilterInput>;
-    host: Maybe<StringQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    parent: Maybe<NodeFilterInput>;
-    pathPrefix: Maybe<StringQueryOperatorInput>;
-    polyfill: Maybe<BooleanQueryOperatorInput>;
-    port: Maybe<IntQueryOperatorInput>;
-    siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+    buildTime: InputMaybe<DateQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    flags: InputMaybe<SiteFlagsFilterInput>;
+    graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
+    host: InputMaybe<StringQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    jsxRuntime: InputMaybe<StringQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    pathPrefix: InputMaybe<StringQueryOperatorInput>;
+    polyfill: InputMaybe<BooleanQueryOperatorInput>;
+    port: InputMaybe<IntQueryOperatorInput>;
+    siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+    trailingSlash: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type QuerySiteBuildMetadataArgs = {
-    buildTime: Maybe<DateQueryOperatorInput>;
-    children: Maybe<NodeFilterListInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    parent: Maybe<NodeFilterInput>;
+    buildTime: InputMaybe<DateQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    parent: InputMaybe<NodeFilterInput>;
 };
 
 export type QuerySiteFunctionArgs = {
-    absoluteCompiledFilePath: Maybe<StringQueryOperatorInput>;
-    children: Maybe<NodeFilterListInput>;
-    functionRoute: Maybe<StringQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    matchPath: Maybe<StringQueryOperatorInput>;
-    originalAbsoluteFilePath: Maybe<StringQueryOperatorInput>;
-    originalRelativeFilePath: Maybe<StringQueryOperatorInput>;
-    parent: Maybe<NodeFilterInput>;
-    pluginName: Maybe<StringQueryOperatorInput>;
-    relativeCompiledFilePath: Maybe<StringQueryOperatorInput>;
+    absoluteCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    functionRoute: InputMaybe<StringQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    matchPath: InputMaybe<StringQueryOperatorInput>;
+    originalAbsoluteFilePath: InputMaybe<StringQueryOperatorInput>;
+    originalRelativeFilePath: InputMaybe<StringQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    pluginName: InputMaybe<StringQueryOperatorInput>;
+    relativeCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type QuerySitePageArgs = {
-    children: Maybe<NodeFilterListInput>;
-    component: Maybe<StringQueryOperatorInput>;
-    componentChunkName: Maybe<StringQueryOperatorInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    internalComponentName: Maybe<StringQueryOperatorInput>;
-    matchPath: Maybe<StringQueryOperatorInput>;
-    parent: Maybe<NodeFilterInput>;
-    path: Maybe<StringQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    component: InputMaybe<StringQueryOperatorInput>;
+    componentChunkName: InputMaybe<StringQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    internalComponentName: InputMaybe<StringQueryOperatorInput>;
+    matchPath: InputMaybe<StringQueryOperatorInput>;
+    pageContext: InputMaybe<JsonQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    path: InputMaybe<StringQueryOperatorInput>;
+    pluginCreator: InputMaybe<SitePluginFilterInput>;
 };
 
 export type QuerySitePluginArgs = {
-    browserAPIs: Maybe<StringQueryOperatorInput>;
-    children: Maybe<NodeFilterListInput>;
-    id: Maybe<StringQueryOperatorInput>;
-    internal: Maybe<InternalFilterInput>;
-    name: Maybe<StringQueryOperatorInput>;
-    nodeAPIs: Maybe<StringQueryOperatorInput>;
-    packageJson: Maybe<SitePluginPackageJsonFilterInput>;
-    parent: Maybe<NodeFilterInput>;
-    pluginFilepath: Maybe<StringQueryOperatorInput>;
-    pluginOptions: Maybe<SitePluginPluginOptionsFilterInput>;
-    resolve: Maybe<StringQueryOperatorInput>;
-    ssrAPIs: Maybe<StringQueryOperatorInput>;
-    version: Maybe<StringQueryOperatorInput>;
+    browserAPIs: InputMaybe<StringQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    name: InputMaybe<StringQueryOperatorInput>;
+    nodeAPIs: InputMaybe<StringQueryOperatorInput>;
+    packageJson: InputMaybe<JsonQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
+    pluginFilepath: InputMaybe<StringQueryOperatorInput>;
+    pluginOptions: InputMaybe<JsonQueryOperatorInput>;
+    resolve: InputMaybe<StringQueryOperatorInput>;
+    ssrAPIs: InputMaybe<StringQueryOperatorInput>;
+    version: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type Site = Node & {
@@ -2584,21 +2936,24 @@ export type Site = Node & {
     readonly buildTime: Maybe<Scalars["Date"]>;
     readonly children: ReadonlyArray<Node>;
     readonly flags: Maybe<SiteFlags>;
+    readonly graphqlTypegen: Maybe<Scalars["Boolean"]>;
     readonly host: Maybe<Scalars["String"]>;
     readonly id: Scalars["ID"];
     readonly internal: Internal;
+    readonly jsxRuntime: Maybe<Scalars["String"]>;
     readonly parent: Maybe<Node>;
     readonly pathPrefix: Maybe<Scalars["String"]>;
     readonly polyfill: Maybe<Scalars["Boolean"]>;
     readonly port: Maybe<Scalars["Int"]>;
     readonly siteMetadata: Maybe<SiteSiteMetadata>;
+    readonly trailingSlash: Maybe<Scalars["String"]>;
 };
 
 export type SiteBuildTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type SiteBuildMetadata = Node & {
@@ -2611,10 +2966,10 @@ export type SiteBuildMetadata = Node & {
 };
 
 export type SiteBuildMetadataBuildTimeArgs = {
-    difference: Maybe<Scalars["String"]>;
-    formatString: Maybe<Scalars["String"]>;
-    fromNow: Maybe<Scalars["Boolean"]>;
-    locale: Maybe<Scalars["String"]>;
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
 };
 
 export type SiteBuildMetadataConnection = {
@@ -2636,8 +2991,8 @@ export type SiteBuildMetadataConnectionDistinctArgs = {
 
 export type SiteBuildMetadataConnectionGroupArgs = {
     field: SiteBuildMetadataFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type SiteBuildMetadataConnectionMaxArgs = {
@@ -2750,26 +3105,55 @@ export enum SiteBuildMetadataFieldsEnum {
 }
 
 export type SiteBuildMetadataFilterInput = {
-    readonly buildTime: Maybe<DateQueryOperatorInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
+    readonly buildTime: InputMaybe<DateQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
 };
 
 export type SiteBuildMetadataGroupConnection = {
     readonly __typename?: "SiteBuildMetadataGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<SiteBuildMetadataEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SiteBuildMetadataGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<SiteBuildMetadata>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type SiteBuildMetadataGroupConnectionDistinctArgs = {
+    field: SiteBuildMetadataFieldsEnum;
+};
+
+export type SiteBuildMetadataGroupConnectionGroupArgs = {
+    field: SiteBuildMetadataFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type SiteBuildMetadataGroupConnectionMaxArgs = {
+    field: SiteBuildMetadataFieldsEnum;
+};
+
+export type SiteBuildMetadataGroupConnectionMinArgs = {
+    field: SiteBuildMetadataFieldsEnum;
+};
+
+export type SiteBuildMetadataGroupConnectionSumArgs = {
+    field: SiteBuildMetadataFieldsEnum;
+};
+
 export type SiteBuildMetadataSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<SiteBuildMetadataFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<
+        ReadonlyArray<InputMaybe<SiteBuildMetadataFieldsEnum>>
+    >;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type SiteConnection = {
@@ -2791,8 +3175,8 @@ export type SiteConnectionDistinctArgs = {
 
 export type SiteConnectionGroupArgs = {
     field: SiteFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type SiteConnectionMaxArgs = {
@@ -2856,6 +3240,7 @@ export enum SiteFieldsEnum {
     ChildrenParentParentChildren = "children___parent___parent___children",
     ChildrenParentParentId = "children___parent___parent___id",
     FlagsPreserveFileDownloadCache = "flags___PRESERVE_FILE_DOWNLOAD_CACHE",
+    GraphqlTypegen = "graphqlTypegen",
     Host = "host",
     Id = "id",
     InternalContent = "internal___content",
@@ -2866,6 +3251,7 @@ export enum SiteFieldsEnum {
     InternalMediaType = "internal___mediaType",
     InternalOwner = "internal___owner",
     InternalType = "internal___type",
+    JsxRuntime = "jsxRuntime",
     ParentChildren = "parent___children",
     ParentChildrenChildren = "parent___children___children",
     ParentChildrenChildrenChildren = "parent___children___children___children",
@@ -2909,7 +3295,6 @@ export enum SiteFieldsEnum {
     Port = "port",
     SiteMetadataAuthorName = "siteMetadata___author___name",
     SiteMetadataDescription = "siteMetadata___description",
-    SiteMetadataDisqus = "siteMetadata___disqus",
     SiteMetadataLanguage = "siteMetadata___language",
     SiteMetadataRepository = "siteMetadata___repository",
     SiteMetadataRss = "siteMetadata___rss",
@@ -2918,20 +3303,24 @@ export enum SiteFieldsEnum {
     SiteMetadataSocialName = "siteMetadata___social___name",
     SiteMetadataSocialUrl = "siteMetadata___social___url",
     SiteMetadataTitle = "siteMetadata___title",
+    TrailingSlash = "trailingSlash",
 }
 
 export type SiteFilterInput = {
-    readonly buildTime: Maybe<DateQueryOperatorInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly flags: Maybe<SiteFlagsFilterInput>;
-    readonly host: Maybe<StringQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly pathPrefix: Maybe<StringQueryOperatorInput>;
-    readonly polyfill: Maybe<BooleanQueryOperatorInput>;
-    readonly port: Maybe<IntQueryOperatorInput>;
-    readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+    readonly buildTime: InputMaybe<DateQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly flags: InputMaybe<SiteFlagsFilterInput>;
+    readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
+    readonly host: InputMaybe<StringQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly jsxRuntime: InputMaybe<StringQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly pathPrefix: InputMaybe<StringQueryOperatorInput>;
+    readonly polyfill: InputMaybe<BooleanQueryOperatorInput>;
+    readonly port: InputMaybe<IntQueryOperatorInput>;
+    readonly siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+    readonly trailingSlash: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteFlags = {
@@ -2940,7 +3329,7 @@ export type SiteFlags = {
 };
 
 export type SiteFlagsFilterInput = {
-    readonly PRESERVE_FILE_DOWNLOAD_CACHE: Maybe<BooleanQueryOperatorInput>;
+    readonly PRESERVE_FILE_DOWNLOAD_CACHE: InputMaybe<BooleanQueryOperatorInput>;
 };
 
 export type SiteFunction = Node & {
@@ -2977,8 +3366,8 @@ export type SiteFunctionConnectionDistinctArgs = {
 
 export type SiteFunctionConnectionGroupArgs = {
     field: SiteFunctionFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type SiteFunctionConnectionMaxArgs = {
@@ -3097,42 +3486,98 @@ export enum SiteFunctionFieldsEnum {
 }
 
 export type SiteFunctionFilterInput = {
-    readonly absoluteCompiledFilePath: Maybe<StringQueryOperatorInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly functionRoute: Maybe<StringQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly matchPath: Maybe<StringQueryOperatorInput>;
-    readonly originalAbsoluteFilePath: Maybe<StringQueryOperatorInput>;
-    readonly originalRelativeFilePath: Maybe<StringQueryOperatorInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly pluginName: Maybe<StringQueryOperatorInput>;
-    readonly relativeCompiledFilePath: Maybe<StringQueryOperatorInput>;
+    readonly absoluteCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly functionRoute: InputMaybe<StringQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly matchPath: InputMaybe<StringQueryOperatorInput>;
+    readonly originalAbsoluteFilePath: InputMaybe<StringQueryOperatorInput>;
+    readonly originalRelativeFilePath: InputMaybe<StringQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly pluginName: InputMaybe<StringQueryOperatorInput>;
+    readonly relativeCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteFunctionGroupConnection = {
     readonly __typename?: "SiteFunctionGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<SiteFunctionEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SiteFunctionGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<SiteFunction>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type SiteFunctionGroupConnectionDistinctArgs = {
+    field: SiteFunctionFieldsEnum;
+};
+
+export type SiteFunctionGroupConnectionGroupArgs = {
+    field: SiteFunctionFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type SiteFunctionGroupConnectionMaxArgs = {
+    field: SiteFunctionFieldsEnum;
+};
+
+export type SiteFunctionGroupConnectionMinArgs = {
+    field: SiteFunctionFieldsEnum;
+};
+
+export type SiteFunctionGroupConnectionSumArgs = {
+    field: SiteFunctionFieldsEnum;
+};
+
 export type SiteFunctionSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<SiteFunctionFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<
+        ReadonlyArray<InputMaybe<SiteFunctionFieldsEnum>>
+    >;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type SiteGroupConnection = {
     readonly __typename?: "SiteGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<SiteEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SiteGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<Site>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
+};
+
+export type SiteGroupConnectionDistinctArgs = {
+    field: SiteFieldsEnum;
+};
+
+export type SiteGroupConnectionGroupArgs = {
+    field: SiteFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type SiteGroupConnectionMaxArgs = {
+    field: SiteFieldsEnum;
+};
+
+export type SiteGroupConnectionMinArgs = {
+    field: SiteFieldsEnum;
+};
+
+export type SiteGroupConnectionSumArgs = {
+    field: SiteFieldsEnum;
 };
 
 export type SitePage = Node & {
@@ -3144,8 +3589,10 @@ export type SitePage = Node & {
     readonly internal: Internal;
     readonly internalComponentName: Scalars["String"];
     readonly matchPath: Maybe<Scalars["String"]>;
+    readonly pageContext: Maybe<Scalars["JSON"]>;
     readonly parent: Maybe<Node>;
     readonly path: Scalars["String"];
+    readonly pluginCreator: Maybe<SitePlugin>;
 };
 
 export type SitePageConnection = {
@@ -3167,8 +3614,8 @@ export type SitePageConnectionDistinctArgs = {
 
 export type SitePageConnectionGroupArgs = {
     field: SitePageFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type SitePageConnectionMaxArgs = {
@@ -3243,6 +3690,7 @@ export enum SitePageFieldsEnum {
     InternalOwner = "internal___owner",
     InternalType = "internal___type",
     MatchPath = "matchPath",
+    PageContext = "pageContext",
     ParentChildren = "parent___children",
     ParentChildrenChildren = "parent___children___children",
     ParentChildrenChildrenChildren = "parent___children___children___children",
@@ -3282,33 +3730,109 @@ export enum SitePageFieldsEnum {
     ParentParentParentChildren = "parent___parent___parent___children",
     ParentParentParentId = "parent___parent___parent___id",
     Path = "path",
+    PluginCreatorBrowserApIs = "pluginCreator___browserAPIs",
+    PluginCreatorChildren = "pluginCreator___children",
+    PluginCreatorChildrenChildren = "pluginCreator___children___children",
+    PluginCreatorChildrenChildrenChildren = "pluginCreator___children___children___children",
+    PluginCreatorChildrenChildrenId = "pluginCreator___children___children___id",
+    PluginCreatorChildrenId = "pluginCreator___children___id",
+    PluginCreatorChildrenInternalContent = "pluginCreator___children___internal___content",
+    PluginCreatorChildrenInternalContentDigest = "pluginCreator___children___internal___contentDigest",
+    PluginCreatorChildrenInternalDescription = "pluginCreator___children___internal___description",
+    PluginCreatorChildrenInternalFieldOwners = "pluginCreator___children___internal___fieldOwners",
+    PluginCreatorChildrenInternalIgnoreType = "pluginCreator___children___internal___ignoreType",
+    PluginCreatorChildrenInternalMediaType = "pluginCreator___children___internal___mediaType",
+    PluginCreatorChildrenInternalOwner = "pluginCreator___children___internal___owner",
+    PluginCreatorChildrenInternalType = "pluginCreator___children___internal___type",
+    PluginCreatorChildrenParentChildren = "pluginCreator___children___parent___children",
+    PluginCreatorChildrenParentId = "pluginCreator___children___parent___id",
+    PluginCreatorId = "pluginCreator___id",
+    PluginCreatorInternalContent = "pluginCreator___internal___content",
+    PluginCreatorInternalContentDigest = "pluginCreator___internal___contentDigest",
+    PluginCreatorInternalDescription = "pluginCreator___internal___description",
+    PluginCreatorInternalFieldOwners = "pluginCreator___internal___fieldOwners",
+    PluginCreatorInternalIgnoreType = "pluginCreator___internal___ignoreType",
+    PluginCreatorInternalMediaType = "pluginCreator___internal___mediaType",
+    PluginCreatorInternalOwner = "pluginCreator___internal___owner",
+    PluginCreatorInternalType = "pluginCreator___internal___type",
+    PluginCreatorName = "pluginCreator___name",
+    PluginCreatorNodeApIs = "pluginCreator___nodeAPIs",
+    PluginCreatorPackageJson = "pluginCreator___packageJson",
+    PluginCreatorParentChildren = "pluginCreator___parent___children",
+    PluginCreatorParentChildrenChildren = "pluginCreator___parent___children___children",
+    PluginCreatorParentChildrenId = "pluginCreator___parent___children___id",
+    PluginCreatorParentId = "pluginCreator___parent___id",
+    PluginCreatorParentInternalContent = "pluginCreator___parent___internal___content",
+    PluginCreatorParentInternalContentDigest = "pluginCreator___parent___internal___contentDigest",
+    PluginCreatorParentInternalDescription = "pluginCreator___parent___internal___description",
+    PluginCreatorParentInternalFieldOwners = "pluginCreator___parent___internal___fieldOwners",
+    PluginCreatorParentInternalIgnoreType = "pluginCreator___parent___internal___ignoreType",
+    PluginCreatorParentInternalMediaType = "pluginCreator___parent___internal___mediaType",
+    PluginCreatorParentInternalOwner = "pluginCreator___parent___internal___owner",
+    PluginCreatorParentInternalType = "pluginCreator___parent___internal___type",
+    PluginCreatorParentParentChildren = "pluginCreator___parent___parent___children",
+    PluginCreatorParentParentId = "pluginCreator___parent___parent___id",
+    PluginCreatorPluginFilepath = "pluginCreator___pluginFilepath",
+    PluginCreatorPluginOptions = "pluginCreator___pluginOptions",
+    PluginCreatorResolve = "pluginCreator___resolve",
+    PluginCreatorSsrApIs = "pluginCreator___ssrAPIs",
+    PluginCreatorVersion = "pluginCreator___version",
 }
 
 export type SitePageFilterInput = {
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly component: Maybe<StringQueryOperatorInput>;
-    readonly componentChunkName: Maybe<StringQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly internalComponentName: Maybe<StringQueryOperatorInput>;
-    readonly matchPath: Maybe<StringQueryOperatorInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly path: Maybe<StringQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly component: InputMaybe<StringQueryOperatorInput>;
+    readonly componentChunkName: InputMaybe<StringQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly internalComponentName: InputMaybe<StringQueryOperatorInput>;
+    readonly matchPath: InputMaybe<StringQueryOperatorInput>;
+    readonly pageContext: InputMaybe<JsonQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly path: InputMaybe<StringQueryOperatorInput>;
+    readonly pluginCreator: InputMaybe<SitePluginFilterInput>;
 };
 
 export type SitePageGroupConnection = {
     readonly __typename?: "SitePageGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<SitePageEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SitePageGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<SitePage>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
+export type SitePageGroupConnectionDistinctArgs = {
+    field: SitePageFieldsEnum;
+};
+
+export type SitePageGroupConnectionGroupArgs = {
+    field: SitePageFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+};
+
+export type SitePageGroupConnectionMaxArgs = {
+    field: SitePageFieldsEnum;
+};
+
+export type SitePageGroupConnectionMinArgs = {
+    field: SitePageFieldsEnum;
+};
+
+export type SitePageGroupConnectionSumArgs = {
+    field: SitePageFieldsEnum;
+};
+
 export type SitePageSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<SitePageFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SitePageFieldsEnum>>>;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type SitePlugin = Node & {
@@ -3319,10 +3843,10 @@ export type SitePlugin = Node & {
     readonly internal: Internal;
     readonly name: Maybe<Scalars["String"]>;
     readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly packageJson: Maybe<SitePluginPackageJson>;
+    readonly packageJson: Maybe<Scalars["JSON"]>;
     readonly parent: Maybe<Node>;
     readonly pluginFilepath: Maybe<Scalars["String"]>;
-    readonly pluginOptions: Maybe<SitePluginPluginOptions>;
+    readonly pluginOptions: Maybe<Scalars["JSON"]>;
     readonly resolve: Maybe<Scalars["String"]>;
     readonly ssrAPIs: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
     readonly version: Maybe<Scalars["String"]>;
@@ -3347,8 +3871,8 @@ export type SitePluginConnectionDistinctArgs = {
 
 export type SitePluginConnectionGroupArgs = {
     field: SitePluginFieldsEnum;
-    limit: Maybe<Scalars["Int"]>;
-    skip: Maybe<Scalars["Int"]>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
 export type SitePluginConnectionMaxArgs = {
@@ -3422,22 +3946,7 @@ export enum SitePluginFieldsEnum {
     InternalType = "internal___type",
     Name = "name",
     NodeApIs = "nodeAPIs",
-    PackageJsonAuthor = "packageJson___author",
-    PackageJsonDependencies = "packageJson___dependencies",
-    PackageJsonDependenciesName = "packageJson___dependencies___name",
-    PackageJsonDependenciesVersion = "packageJson___dependencies___version",
-    PackageJsonDescription = "packageJson___description",
-    PackageJsonDevDependencies = "packageJson___devDependencies",
-    PackageJsonDevDependenciesName = "packageJson___devDependencies___name",
-    PackageJsonDevDependenciesVersion = "packageJson___devDependencies___version",
-    PackageJsonKeywords = "packageJson___keywords",
-    PackageJsonLicense = "packageJson___license",
-    PackageJsonMain = "packageJson___main",
-    PackageJsonName = "packageJson___name",
-    PackageJsonPeerDependencies = "packageJson___peerDependencies",
-    PackageJsonPeerDependenciesName = "packageJson___peerDependencies___name",
-    PackageJsonPeerDependenciesVersion = "packageJson___peerDependencies___version",
-    PackageJsonVersion = "packageJson___version",
+    PackageJson = "packageJson",
     ParentChildren = "parent___children",
     ParentChildrenChildren = "parent___children___children",
     ParentChildrenChildrenChildren = "parent___children___children___children",
@@ -3477,439 +3986,76 @@ export enum SitePluginFieldsEnum {
     ParentParentParentChildren = "parent___parent___parent___children",
     ParentParentParentId = "parent___parent___parent___id",
     PluginFilepath = "pluginFilepath",
-    PluginOptionsAllExtensions = "pluginOptions___allExtensions",
-    PluginOptionsBackgroundColor = "pluginOptions___backgroundColor",
-    PluginOptionsBase64Width = "pluginOptions___base64Width",
-    PluginOptionsCacheDigest = "pluginOptions___cacheDigest",
-    PluginOptionsCacheBustingMode = "pluginOptions___cache_busting_mode",
-    PluginOptionsClassName = "pluginOptions___className",
-    PluginOptionsCreateLinkInHead = "pluginOptions___createLinkInHead",
-    PluginOptionsCrossOrigin = "pluginOptions___crossOrigin",
-    PluginOptionsDecoding = "pluginOptions___decoding",
-    PluginOptionsDefaultQuality = "pluginOptions___defaultQuality",
-    PluginOptionsDisableBgImage = "pluginOptions___disableBgImage",
-    PluginOptionsDisableBgImageOnAlpha = "pluginOptions___disableBgImageOnAlpha",
-    PluginOptionsDisplay = "pluginOptions___display",
-    PluginOptionsEntryLimit = "pluginOptions___entryLimit",
-    PluginOptionsFailOnError = "pluginOptions___failOnError",
-    PluginOptionsFeeds = "pluginOptions___feeds",
-    PluginOptionsFeedsMatch = "pluginOptions___feeds___match",
-    PluginOptionsFeedsOutput = "pluginOptions___feeds___output",
-    PluginOptionsFeedsQuery = "pluginOptions___feeds___query",
-    PluginOptionsFeedsTitle = "pluginOptions___feeds___title",
-    PluginOptionsIncludeFavicon = "pluginOptions___include_favicon",
-    PluginOptionsIsTsx = "pluginOptions___isTSX",
-    PluginOptionsJsxPragma = "pluginOptions___jsxPragma",
-    PluginOptionsLegacy = "pluginOptions___legacy",
-    PluginOptionsLinkImagesToOriginal = "pluginOptions___linkImagesToOriginal",
-    PluginOptionsLoading = "pluginOptions___loading",
-    PluginOptionsMarkdownCaptions = "pluginOptions___markdownCaptions",
-    PluginOptionsMaxWidth = "pluginOptions___maxWidth",
-    PluginOptionsName = "pluginOptions___name",
-    PluginOptionsOffsetY = "pluginOptions___offsetY",
-    PluginOptionsOutput = "pluginOptions___output",
-    PluginOptionsPath = "pluginOptions___path",
-    PluginOptionsPathCheck = "pluginOptions___pathCheck",
-    PluginOptionsPlugins = "pluginOptions___plugins",
-    PluginOptionsPluginsBrowserApIs = "pluginOptions___plugins___browserAPIs",
-    PluginOptionsPluginsId = "pluginOptions___plugins___id",
-    PluginOptionsPluginsName = "pluginOptions___plugins___name",
-    PluginOptionsPluginsNodeApIs = "pluginOptions___plugins___nodeAPIs",
-    PluginOptionsPluginsPluginFilepath = "pluginOptions___plugins___pluginFilepath",
-    PluginOptionsPluginsPluginOptionsBackgroundColor = "pluginOptions___plugins___pluginOptions___backgroundColor",
-    PluginOptionsPluginsPluginOptionsClassName = "pluginOptions___plugins___pluginOptions___className",
-    PluginOptionsPluginsPluginOptionsDecoding = "pluginOptions___plugins___pluginOptions___decoding",
-    PluginOptionsPluginsPluginOptionsDisableBgImage = "pluginOptions___plugins___pluginOptions___disableBgImage",
-    PluginOptionsPluginsPluginOptionsDisableBgImageOnAlpha = "pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha",
-    PluginOptionsPluginsPluginOptionsIcon = "pluginOptions___plugins___pluginOptions___icon",
-    PluginOptionsPluginsPluginOptionsLinkImagesToOriginal = "pluginOptions___plugins___pluginOptions___linkImagesToOriginal",
-    PluginOptionsPluginsPluginOptionsLoading = "pluginOptions___plugins___pluginOptions___loading",
-    PluginOptionsPluginsPluginOptionsMarkdownCaptions = "pluginOptions___plugins___pluginOptions___markdownCaptions",
-    PluginOptionsPluginsPluginOptionsMaxWidth = "pluginOptions___plugins___pluginOptions___maxWidth",
-    PluginOptionsPluginsPluginOptionsOffsetY = "pluginOptions___plugins___pluginOptions___offsetY",
-    PluginOptionsPluginsPluginOptionsQuality = "pluginOptions___plugins___pluginOptions___quality",
-    PluginOptionsPluginsPluginOptionsShowCaptions = "pluginOptions___plugins___pluginOptions___showCaptions",
-    PluginOptionsPluginsPluginOptionsSizeByPixelDensity = "pluginOptions___plugins___pluginOptions___sizeByPixelDensity",
-    PluginOptionsPluginsPluginOptionsTracedSvg = "pluginOptions___plugins___pluginOptions___tracedSVG",
-    PluginOptionsPluginsPluginOptionsWithWebp = "pluginOptions___plugins___pluginOptions___withWebp",
-    PluginOptionsPluginsPluginOptionsWrapperStyle = "pluginOptions___plugins___pluginOptions___wrapperStyle",
-    PluginOptionsPluginsResolve = "pluginOptions___plugins___resolve",
-    PluginOptionsPluginsSsrApIs = "pluginOptions___plugins___ssrAPIs",
-    PluginOptionsPluginsVersion = "pluginOptions___plugins___version",
-    PluginOptionsPolicy = "pluginOptions___policy",
-    PluginOptionsPolicyAllow = "pluginOptions___policy___allow",
-    PluginOptionsPolicyUserAgent = "pluginOptions___policy___userAgent",
-    PluginOptionsQuality = "pluginOptions___quality",
-    PluginOptionsQuery = "pluginOptions___query",
-    PluginOptionsSassOptionsIncludePaths = "pluginOptions___sassOptions___includePaths",
-    PluginOptionsSassOptionsIndentType = "pluginOptions___sassOptions___indentType",
-    PluginOptionsSassOptionsIndentWidth = "pluginOptions___sassOptions___indentWidth",
-    PluginOptionsSassOptionsIndentedSyntax = "pluginOptions___sassOptions___indentedSyntax",
-    PluginOptionsSassOptionsLinefeed = "pluginOptions___sassOptions___linefeed",
-    PluginOptionsSassOptionsOmitSourceMapUrl = "pluginOptions___sassOptions___omitSourceMapUrl",
-    PluginOptionsSassOptionsPrecision = "pluginOptions___sassOptions___precision",
-    PluginOptionsSassOptionsSourceComments = "pluginOptions___sassOptions___sourceComments",
-    PluginOptionsSassOptionsSourceMapContents = "pluginOptions___sassOptions___sourceMapContents",
-    PluginOptionsSassOptionsSourceMapEmbed = "pluginOptions___sassOptions___sourceMapEmbed",
-    PluginOptionsShortName = "pluginOptions___short_name",
-    PluginOptionsShowCaptions = "pluginOptions___showCaptions",
-    PluginOptionsSizeByPixelDensity = "pluginOptions___sizeByPixelDensity",
-    PluginOptionsStartUrl = "pluginOptions___start_url",
-    PluginOptionsStripMetadata = "pluginOptions___stripMetadata",
-    PluginOptionsThemeColor = "pluginOptions___theme_color",
-    PluginOptionsThemeColorInHead = "pluginOptions___theme_color_in_head",
-    PluginOptionsTracedSvg = "pluginOptions___tracedSVG",
-    PluginOptionsWithWebp = "pluginOptions___withWebp",
-    PluginOptionsWrapperStyle = "pluginOptions___wrapperStyle",
+    PluginOptions = "pluginOptions",
     Resolve = "resolve",
     SsrApIs = "ssrAPIs",
     Version = "version",
 }
 
 export type SitePluginFilterInput = {
-    readonly browserAPIs: Maybe<StringQueryOperatorInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly internal: Maybe<InternalFilterInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
-    readonly packageJson: Maybe<SitePluginPackageJsonFilterInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
-    readonly pluginOptions: Maybe<SitePluginPluginOptionsFilterInput>;
-    readonly resolve: Maybe<StringQueryOperatorInput>;
-    readonly ssrAPIs: Maybe<StringQueryOperatorInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
+    readonly browserAPIs: InputMaybe<StringQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
+    readonly nodeAPIs: InputMaybe<StringQueryOperatorInput>;
+    readonly packageJson: InputMaybe<JsonQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+    readonly pluginFilepath: InputMaybe<StringQueryOperatorInput>;
+    readonly pluginOptions: InputMaybe<JsonQueryOperatorInput>;
+    readonly resolve: InputMaybe<StringQueryOperatorInput>;
+    readonly ssrAPIs: InputMaybe<StringQueryOperatorInput>;
+    readonly version: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginGroupConnection = {
     readonly __typename?: "SitePluginGroupConnection";
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
     readonly edges: ReadonlyArray<SitePluginEdge>;
     readonly field: Scalars["String"];
     readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SitePluginGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
     readonly nodes: ReadonlyArray<SitePlugin>;
     readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
     readonly totalCount: Scalars["Int"];
 };
 
-export type SitePluginPackageJson = {
-    readonly __typename?: "SitePluginPackageJson";
-    readonly author: Maybe<Scalars["String"]>;
-    readonly dependencies: Maybe<
-        ReadonlyArray<Maybe<SitePluginPackageJsonDependencies>>
-    >;
-    readonly description: Maybe<Scalars["String"]>;
-    readonly devDependencies: Maybe<
-        ReadonlyArray<Maybe<SitePluginPackageJsonDevDependencies>>
-    >;
-    readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly license: Maybe<Scalars["String"]>;
-    readonly main: Maybe<Scalars["String"]>;
-    readonly name: Maybe<Scalars["String"]>;
-    readonly peerDependencies: Maybe<
-        ReadonlyArray<Maybe<SitePluginPackageJsonPeerDependencies>>
-    >;
-    readonly version: Maybe<Scalars["String"]>;
+export type SitePluginGroupConnectionDistinctArgs = {
+    field: SitePluginFieldsEnum;
 };
 
-export type SitePluginPackageJsonDependencies = {
-    readonly __typename?: "SitePluginPackageJsonDependencies";
-    readonly name: Maybe<Scalars["String"]>;
-    readonly version: Maybe<Scalars["String"]>;
+export type SitePluginGroupConnectionGroupArgs = {
+    field: SitePluginFieldsEnum;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
 };
 
-export type SitePluginPackageJsonDependenciesFilterInput = {
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
+export type SitePluginGroupConnectionMaxArgs = {
+    field: SitePluginFieldsEnum;
 };
 
-export type SitePluginPackageJsonDependenciesFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPackageJsonDependenciesFilterInput>;
+export type SitePluginGroupConnectionMinArgs = {
+    field: SitePluginFieldsEnum;
 };
 
-export type SitePluginPackageJsonDevDependencies = {
-    readonly __typename?: "SitePluginPackageJsonDevDependencies";
-    readonly name: Maybe<Scalars["String"]>;
-    readonly version: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPackageJsonDevDependenciesFilterInput = {
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPackageJsonDevDependenciesFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPackageJsonDevDependenciesFilterInput>;
-};
-
-export type SitePluginPackageJsonFilterInput = {
-    readonly author: Maybe<StringQueryOperatorInput>;
-    readonly dependencies: Maybe<SitePluginPackageJsonDependenciesFilterListInput>;
-    readonly description: Maybe<StringQueryOperatorInput>;
-    readonly devDependencies: Maybe<SitePluginPackageJsonDevDependenciesFilterListInput>;
-    readonly keywords: Maybe<StringQueryOperatorInput>;
-    readonly license: Maybe<StringQueryOperatorInput>;
-    readonly main: Maybe<StringQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly peerDependencies: Maybe<SitePluginPackageJsonPeerDependenciesFilterListInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPackageJsonPeerDependencies = {
-    readonly __typename?: "SitePluginPackageJsonPeerDependencies";
-    readonly name: Maybe<Scalars["String"]>;
-    readonly version: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPackageJsonPeerDependenciesFilterInput = {
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPackageJsonPeerDependenciesFilterInput>;
-};
-
-export type SitePluginPluginOptions = {
-    readonly __typename?: "SitePluginPluginOptions";
-    readonly allExtensions: Maybe<Scalars["Boolean"]>;
-    readonly backgroundColor: Maybe<Scalars["String"]>;
-    readonly background_color: Maybe<Scalars["String"]>;
-    readonly base64Width: Maybe<Scalars["Int"]>;
-    readonly cacheDigest: Maybe<Scalars["String"]>;
-    readonly cache_busting_mode: Maybe<Scalars["String"]>;
-    readonly className: Maybe<Scalars["String"]>;
-    readonly createLinkInHead: Maybe<Scalars["Boolean"]>;
-    readonly crossOrigin: Maybe<Scalars["String"]>;
-    readonly decoding: Maybe<Scalars["String"]>;
-    readonly defaultQuality: Maybe<Scalars["Int"]>;
-    readonly disableBgImage: Maybe<Scalars["Boolean"]>;
-    readonly disableBgImageOnAlpha: Maybe<Scalars["Boolean"]>;
-    readonly display: Maybe<Scalars["String"]>;
-    readonly entryLimit: Maybe<Scalars["Int"]>;
-    readonly failOnError: Maybe<Scalars["Boolean"]>;
-    readonly feeds: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsFeeds>>>;
-    readonly include_favicon: Maybe<Scalars["Boolean"]>;
-    readonly isTSX: Maybe<Scalars["Boolean"]>;
-    readonly jsxPragma: Maybe<Scalars["String"]>;
-    readonly legacy: Maybe<Scalars["Boolean"]>;
-    readonly linkImagesToOriginal: Maybe<Scalars["Boolean"]>;
-    readonly loading: Maybe<Scalars["String"]>;
-    readonly markdownCaptions: Maybe<Scalars["Boolean"]>;
-    readonly maxWidth: Maybe<Scalars["Int"]>;
-    readonly name: Maybe<Scalars["String"]>;
-    readonly offsetY: Maybe<Scalars["Int"]>;
-    readonly output: Maybe<Scalars["String"]>;
-    readonly path: Maybe<Scalars["String"]>;
-    readonly pathCheck: Maybe<Scalars["Boolean"]>;
-    readonly plugins: Maybe<
-        ReadonlyArray<Maybe<SitePluginPluginOptionsPlugins>>
-    >;
-    readonly policy: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsPolicy>>>;
-    readonly quality: Maybe<Scalars["Int"]>;
-    readonly query: Maybe<Scalars["String"]>;
-    readonly sassOptions: Maybe<SitePluginPluginOptionsSassOptions>;
-    readonly short_name: Maybe<Scalars["String"]>;
-    readonly showCaptions: Maybe<Scalars["Boolean"]>;
-    readonly sizeByPixelDensity: Maybe<Scalars["Boolean"]>;
-    readonly start_url: Maybe<Scalars["String"]>;
-    readonly stripMetadata: Maybe<Scalars["Boolean"]>;
-    readonly theme_color: Maybe<Scalars["String"]>;
-    readonly theme_color_in_head: Maybe<Scalars["Boolean"]>;
-    readonly tracedSVG: Maybe<Scalars["Boolean"]>;
-    readonly withWebp: Maybe<Scalars["Boolean"]>;
-    readonly wrapperStyle: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPluginOptionsFeeds = {
-    readonly __typename?: "SitePluginPluginOptionsFeeds";
-    readonly match: Maybe<Scalars["String"]>;
-    readonly output: Maybe<Scalars["String"]>;
-    readonly query: Maybe<Scalars["String"]>;
-    readonly title: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPluginOptionsFeedsFilterInput = {
-    readonly match: Maybe<StringQueryOperatorInput>;
-    readonly output: Maybe<StringQueryOperatorInput>;
-    readonly query: Maybe<StringQueryOperatorInput>;
-    readonly title: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsFeedsFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPluginOptionsFeedsFilterInput>;
-};
-
-export type SitePluginPluginOptionsFilterInput = {
-    readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
-    readonly backgroundColor: Maybe<StringQueryOperatorInput>;
-    readonly background_color: Maybe<StringQueryOperatorInput>;
-    readonly base64Width: Maybe<IntQueryOperatorInput>;
-    readonly cacheDigest: Maybe<StringQueryOperatorInput>;
-    readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
-    readonly className: Maybe<StringQueryOperatorInput>;
-    readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
-    readonly crossOrigin: Maybe<StringQueryOperatorInput>;
-    readonly decoding: Maybe<StringQueryOperatorInput>;
-    readonly defaultQuality: Maybe<IntQueryOperatorInput>;
-    readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
-    readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
-    readonly display: Maybe<StringQueryOperatorInput>;
-    readonly entryLimit: Maybe<IntQueryOperatorInput>;
-    readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-    readonly feeds: Maybe<SitePluginPluginOptionsFeedsFilterListInput>;
-    readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
-    readonly isTSX: Maybe<BooleanQueryOperatorInput>;
-    readonly jsxPragma: Maybe<StringQueryOperatorInput>;
-    readonly legacy: Maybe<BooleanQueryOperatorInput>;
-    readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
-    readonly loading: Maybe<StringQueryOperatorInput>;
-    readonly markdownCaptions: Maybe<BooleanQueryOperatorInput>;
-    readonly maxWidth: Maybe<IntQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly offsetY: Maybe<IntQueryOperatorInput>;
-    readonly output: Maybe<StringQueryOperatorInput>;
-    readonly path: Maybe<StringQueryOperatorInput>;
-    readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-    readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
-    readonly policy: Maybe<SitePluginPluginOptionsPolicyFilterListInput>;
-    readonly quality: Maybe<IntQueryOperatorInput>;
-    readonly query: Maybe<StringQueryOperatorInput>;
-    readonly sassOptions: Maybe<SitePluginPluginOptionsSassOptionsFilterInput>;
-    readonly short_name: Maybe<StringQueryOperatorInput>;
-    readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
-    readonly sizeByPixelDensity: Maybe<BooleanQueryOperatorInput>;
-    readonly start_url: Maybe<StringQueryOperatorInput>;
-    readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
-    readonly theme_color: Maybe<StringQueryOperatorInput>;
-    readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
-    readonly tracedSVG: Maybe<BooleanQueryOperatorInput>;
-    readonly withWebp: Maybe<BooleanQueryOperatorInput>;
-    readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsPlugins = {
-    readonly __typename?: "SitePluginPluginOptionsPlugins";
-    readonly browserAPIs: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly id: Maybe<Scalars["String"]>;
-    readonly name: Maybe<Scalars["String"]>;
-    readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly pluginFilepath: Maybe<Scalars["String"]>;
-    readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptions>;
-    readonly resolve: Maybe<Scalars["String"]>;
-    readonly ssrAPIs: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly version: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPluginOptionsPluginsFilterInput = {
-    readonly browserAPIs: Maybe<StringQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
-    readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
-    readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
-    readonly resolve: Maybe<StringQueryOperatorInput>;
-    readonly ssrAPIs: Maybe<StringQueryOperatorInput>;
-    readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsPluginsFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPluginOptionsPluginsFilterInput>;
-};
-
-export type SitePluginPluginOptionsPluginsPluginOptions = {
-    readonly __typename?: "SitePluginPluginOptionsPluginsPluginOptions";
-    readonly backgroundColor: Maybe<Scalars["String"]>;
-    readonly className: Maybe<Scalars["String"]>;
-    readonly decoding: Maybe<Scalars["String"]>;
-    readonly disableBgImage: Maybe<Scalars["Boolean"]>;
-    readonly disableBgImageOnAlpha: Maybe<Scalars["Boolean"]>;
-    readonly icon: Maybe<Scalars["Boolean"]>;
-    readonly linkImagesToOriginal: Maybe<Scalars["Boolean"]>;
-    readonly loading: Maybe<Scalars["String"]>;
-    readonly markdownCaptions: Maybe<Scalars["Boolean"]>;
-    readonly maxWidth: Maybe<Scalars["Int"]>;
-    readonly offsetY: Maybe<Scalars["Int"]>;
-    readonly quality: Maybe<Scalars["Int"]>;
-    readonly showCaptions: Maybe<Scalars["Boolean"]>;
-    readonly sizeByPixelDensity: Maybe<Scalars["Boolean"]>;
-    readonly tracedSVG: Maybe<Scalars["Boolean"]>;
-    readonly withWebp: Maybe<Scalars["Boolean"]>;
-    readonly wrapperStyle: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
-    readonly backgroundColor: Maybe<StringQueryOperatorInput>;
-    readonly className: Maybe<StringQueryOperatorInput>;
-    readonly decoding: Maybe<StringQueryOperatorInput>;
-    readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
-    readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
-    readonly icon: Maybe<BooleanQueryOperatorInput>;
-    readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
-    readonly loading: Maybe<StringQueryOperatorInput>;
-    readonly markdownCaptions: Maybe<BooleanQueryOperatorInput>;
-    readonly maxWidth: Maybe<IntQueryOperatorInput>;
-    readonly offsetY: Maybe<IntQueryOperatorInput>;
-    readonly quality: Maybe<IntQueryOperatorInput>;
-    readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
-    readonly sizeByPixelDensity: Maybe<BooleanQueryOperatorInput>;
-    readonly tracedSVG: Maybe<BooleanQueryOperatorInput>;
-    readonly withWebp: Maybe<BooleanQueryOperatorInput>;
-    readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsPolicy = {
-    readonly __typename?: "SitePluginPluginOptionsPolicy";
-    readonly allow: Maybe<Scalars["String"]>;
-    readonly userAgent: Maybe<Scalars["String"]>;
-};
-
-export type SitePluginPluginOptionsPolicyFilterInput = {
-    readonly allow: Maybe<StringQueryOperatorInput>;
-    readonly userAgent: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsPolicyFilterListInput = {
-    readonly elemMatch: Maybe<SitePluginPluginOptionsPolicyFilterInput>;
-};
-
-export type SitePluginPluginOptionsSassOptions = {
-    readonly __typename?: "SitePluginPluginOptionsSassOptions";
-    readonly includePaths: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly indentType: Maybe<Scalars["String"]>;
-    readonly indentWidth: Maybe<Scalars["Int"]>;
-    readonly indentedSyntax: Maybe<Scalars["Boolean"]>;
-    readonly linefeed: Maybe<Scalars["String"]>;
-    readonly omitSourceMapUrl: Maybe<Scalars["Boolean"]>;
-    readonly precision: Maybe<Scalars["Int"]>;
-    readonly sourceComments: Maybe<Scalars["Boolean"]>;
-    readonly sourceMapContents: Maybe<Scalars["Boolean"]>;
-    readonly sourceMapEmbed: Maybe<Scalars["Boolean"]>;
-};
-
-export type SitePluginPluginOptionsSassOptionsFilterInput = {
-    readonly includePaths: Maybe<StringQueryOperatorInput>;
-    readonly indentType: Maybe<StringQueryOperatorInput>;
-    readonly indentWidth: Maybe<IntQueryOperatorInput>;
-    readonly indentedSyntax: Maybe<BooleanQueryOperatorInput>;
-    readonly linefeed: Maybe<StringQueryOperatorInput>;
-    readonly omitSourceMapUrl: Maybe<BooleanQueryOperatorInput>;
-    readonly precision: Maybe<IntQueryOperatorInput>;
-    readonly sourceComments: Maybe<BooleanQueryOperatorInput>;
-    readonly sourceMapContents: Maybe<BooleanQueryOperatorInput>;
-    readonly sourceMapEmbed: Maybe<BooleanQueryOperatorInput>;
+export type SitePluginGroupConnectionSumArgs = {
+    field: SitePluginFieldsEnum;
 };
 
 export type SitePluginSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<SitePluginFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<
+        ReadonlyArray<InputMaybe<SitePluginFieldsEnum>>
+    >;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export type SiteSiteMetadata = {
     readonly __typename?: "SiteSiteMetadata";
     readonly author: Maybe<SiteSiteMetadataAuthor>;
     readonly description: Maybe<Scalars["String"]>;
-    readonly disqus: Maybe<Scalars["String"]>;
     readonly language: Maybe<Scalars["String"]>;
     readonly repository: Maybe<Scalars["String"]>;
     readonly rss: Maybe<Scalars["String"]>;
@@ -3924,19 +4070,18 @@ export type SiteSiteMetadataAuthor = {
 };
 
 export type SiteSiteMetadataAuthorFilterInput = {
-    readonly name: Maybe<StringQueryOperatorInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteSiteMetadataFilterInput = {
-    readonly author: Maybe<SiteSiteMetadataAuthorFilterInput>;
-    readonly description: Maybe<StringQueryOperatorInput>;
-    readonly disqus: Maybe<StringQueryOperatorInput>;
-    readonly language: Maybe<StringQueryOperatorInput>;
-    readonly repository: Maybe<StringQueryOperatorInput>;
-    readonly rss: Maybe<StringQueryOperatorInput>;
-    readonly siteUrl: Maybe<StringQueryOperatorInput>;
-    readonly social: Maybe<SiteSiteMetadataSocialFilterListInput>;
-    readonly title: Maybe<StringQueryOperatorInput>;
+    readonly author: InputMaybe<SiteSiteMetadataAuthorFilterInput>;
+    readonly description: InputMaybe<StringQueryOperatorInput>;
+    readonly language: InputMaybe<StringQueryOperatorInput>;
+    readonly repository: InputMaybe<StringQueryOperatorInput>;
+    readonly rss: InputMaybe<StringQueryOperatorInput>;
+    readonly siteUrl: InputMaybe<StringQueryOperatorInput>;
+    readonly social: InputMaybe<SiteSiteMetadataSocialFilterListInput>;
+    readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteSiteMetadataSocial = {
@@ -3946,17 +4091,17 @@ export type SiteSiteMetadataSocial = {
 };
 
 export type SiteSiteMetadataSocialFilterInput = {
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly url: Maybe<StringQueryOperatorInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
+    readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteSiteMetadataSocialFilterListInput = {
-    readonly elemMatch: Maybe<SiteSiteMetadataSocialFilterInput>;
+    readonly elemMatch: InputMaybe<SiteSiteMetadataSocialFilterInput>;
 };
 
 export type SiteSortInput = {
-    readonly fields: Maybe<ReadonlyArray<Maybe<SiteFieldsEnum>>>;
-    readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+    readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SiteFieldsEnum>>>;
+    readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 export enum SortOrderEnum {
@@ -3965,23 +4110,23 @@ export enum SortOrderEnum {
 }
 
 export type StringQueryOperatorInput = {
-    readonly eq: Maybe<Scalars["String"]>;
-    readonly glob: Maybe<Scalars["String"]>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly ne: Maybe<Scalars["String"]>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
-    readonly regex: Maybe<Scalars["String"]>;
+    readonly eq: InputMaybe<Scalars["String"]>;
+    readonly glob: InputMaybe<Scalars["String"]>;
+    readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars["String"]>>>;
+    readonly ne: InputMaybe<Scalars["String"]>;
+    readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars["String"]>>>;
+    readonly regex: InputMaybe<Scalars["String"]>;
 };
 
 export type TransformOptions = {
-    readonly cropFocus: Maybe<ImageCropFocus>;
-    readonly duotone: Maybe<DuotoneGradient>;
-    readonly fit: Maybe<ImageFit>;
-    readonly grayscale: Maybe<Scalars["Boolean"]>;
-    readonly rotate: Maybe<Scalars["Int"]>;
-    readonly trim: Maybe<Scalars["Float"]>;
+    readonly cropFocus: InputMaybe<ImageCropFocus>;
+    readonly duotone: InputMaybe<DuotoneGradient>;
+    readonly fit: InputMaybe<ImageFit>;
+    readonly grayscale: InputMaybe<Scalars["Boolean"]>;
+    readonly rotate: InputMaybe<Scalars["Int"]>;
+    readonly trim: InputMaybe<Scalars["Float"]>;
 };
 
 export type WebPOptions = {
-    readonly quality: Maybe<Scalars["Int"]>;
+    readonly quality: InputMaybe<Scalars["Int"]>;
 };
