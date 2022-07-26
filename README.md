@@ -10,18 +10,12 @@ My personal blog. Forked from Gatsby Blog Starter template and inspired here and
 
 ## 🔧 Installation & Usage
 
-### Environment
-
-Gatsby makes use of several environment variables which are documented in `.env.example` file. Before building the project make sure to modify these variables as needed. Then copy the `.env.example` as `.env.development` to project root for Gatsby to recognize it.
-
-### 1. Build Locally with Yarn
+### 1. Build Locally with [Task](https://taskfile.dev)
 
 To run the build locally, type like so:
 
 ```bash
-cp .env.example .env.development
-yarn
-yarn dev
+task dev
 ```
 
 ### 2. Build Locally with Netlify
@@ -42,9 +36,7 @@ Finally, open <http://localhost:8000> to view the blog.
 Project is packaged with Prettier formatter, Vitest unit tests, and Playwright automated tests. They can be ran respectively like so:
 
 ```sh
-yarn lint
-yarn test:unit
-yarn test:e2e
+task test
 ```
 
 ## 👤 Author
@@ -70,7 +62,7 @@ To quickly bootstrap a new post or page draft use the CLI tool `new.js` at proje
 
 ## 📝 License
 
-Copyright of blog posts © 2019 [Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;](https://github.com/nikoheikkila).
+Copyright of blog posts © 2022 [Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;](https://github.com/nikoheikkila).
 
 Source code of this project is [MIT](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/LICENSE-website) licensed.
 
