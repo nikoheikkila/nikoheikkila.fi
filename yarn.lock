@@ -3839,10 +3839,10 @@
     ufo "^0.8.0"
     unstorage "^0.2.8"
 
-"@netlify/plugin-gatsby@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.3.1.tgz#358590150af4c1be0f2a4914d9858390589b85a9"
-  integrity sha512-HF4dgpMqgngVMi0pnsv8r2PCy5VnA01DMkhrJPBO0+S1bvbhwUB+nrr77q8ZOOkApTSZPiHW2RaHJuia8wWqDQ==
+"@netlify/plugin-gatsby@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.4.0.tgz#287eca43b54963ab65a0858e0657479c1b8f7e0c"
+  integrity sha512-Iop0L+66QnQc6JIRRkuV25u02xRrxBtR32tTKSyjD3y0+6s17DjXr9MDHutU8v8gJCLrpPit6BPcSb2lsGc2Jw==
   dependencies:
     "@netlify/functions" "^1.0.0"
     "@netlify/ipx" "^1.1.2"
@@ -3860,6 +3860,7 @@
     pathe "^0.3.0"
     pretty-bytes "^5.6.0"
     semver "^7.3.5"
+    statuses "^2.0.1"
     tempy "^1.0.0"
     uuid "^8.3.2"
 
@@ -17546,7 +17547,7 @@ standard-as-callback@^2.1.0:
   resolved "https://registry.yarnpkg.com/standard-as-callback/-/standard-as-callback-2.1.0.tgz#8953fc05359868a77b5b9739a665c5977bb7df45"
   integrity sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==
 
-statuses@2.0.1:
+statuses@2.0.1, statuses@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
