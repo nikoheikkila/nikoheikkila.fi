@@ -3839,10 +3839,10 @@
     ufo "^0.8.0"
     unstorage "^0.2.8"
 
-"@netlify/plugin-gatsby@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.4.0.tgz#287eca43b54963ab65a0858e0657479c1b8f7e0c"
-  integrity sha512-Iop0L+66QnQc6JIRRkuV25u02xRrxBtR32tTKSyjD3y0+6s17DjXr9MDHutU8v8gJCLrpPit6BPcSb2lsGc2Jw==
+"@netlify/plugin-gatsby@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-gatsby/-/plugin-gatsby-3.4.1.tgz#d10141b1c4e18ccb9d9fdb4e93c04874c5faca9a"
+  integrity sha512-x/4IECHxCY3Ga+lOfwjCLNExIusj/A3QN0gMcciP5UYargV8zxlzwgzn9Ku9KM2Jxme+aLhpJNNPqX/xrfhuhQ==
   dependencies:
     "@netlify/functions" "^1.0.0"
     "@netlify/ipx" "^1.1.2"
