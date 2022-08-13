@@ -68,7 +68,7 @@
         "playwright": "1.24.2",
         "prettier": "2.7.1",
         "subscriptions-transport-ws": "0.11.0",
-        "title": "3.4.4",
+        "title": "3.5.2",
         "ts-node": "10.9.1",
         "vitest": "0.21.1"
     },
