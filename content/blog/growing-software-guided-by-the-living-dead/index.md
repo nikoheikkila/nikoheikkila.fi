@@ -13,7 +13,13 @@ While dipping our toes with test-driven development for the first time, a signif
 
 No, I mean for real. **ZOMBIES** testing pattern was introduced by **James Grenning** in their [blog][grenning] as follows:
 
-> "When test-driving, guided by ZOMBIES, the first test **S**cenarios are for **S**imple post-conditions of a just created object. These are the **Z**ero cases. While defining the **Z**ero cases, take care to design the **I**nterface and capture the **B**oundary **B**ehaviors in your test **S**cenarios. Keep it **S**imple, both **S**olutions and **S**cenarios. You'll find that hard. Once progress is made on the **Z**ero cases, move to the next special **B**oundary case, testing the **B**ehavior desired when transitioning from **Z**ero to **O**ne. To do so there are likely other **I**nterfaces to define and use in new test **S**cenarios. Once the **B**oundary **B**ehaviors between **Z**ero and **One** (and possibly back to **Z**ero from **O**ne) have been captured in tests, move on to start to generalize your design now dealing with **M**ore complex **S**cenarios and **M**any items being managed. Often there are new **B**oundary conditions to be concerned with. Finally review your work and make sure you consider and **E**xercise the **E**xceptional things that might happen."
+> "When test-driving, guided by ZOMBIES, the first test **S**cenarios are for **S**imple post-conditions of a just created object. These are the **Z**ero cases. While defining the **Z**ero cases, take care to design the **I**nterface and capture the **B**oundary **B**ehaviors in your test **S**cenarios. Keep it **S**imple, both **S**olutions and **S**cenarios. You'll find that hard.
+>
+> Once progress is made on the **Z**ero cases, move to the next special **B**oundary case, testing the **B**ehavior desired when transitioning from **Z**ero to **O**ne. To do so there are likely other **I**nterfaces to define and use in new test **S**cenarios.
+>
+> Once the **B**oundary **B**ehaviors between **Z**ero and **One** (and possibly back to **Z**ero from **O**ne) have been captured in tests, move on to start to generalize your design now dealing with **M**ore complex **S**cenarios and **M**any items being managed. Often there are new **B**oundary conditions to be concerned with.
+>
+> Finally review your work and make sure you consider and **E**xercise the **E**xceptional things that might happen."
 
 In mathematics, you may have encountered [proofing by induction][induction], which is more or less related to the **ZOM** part of our approach and is particularly helpful.
 
@@ -65,7 +71,9 @@ Eventually, our tests are now handling both happy and sad paths. If we haven't p
 
 A crucial point in refactoring is to advance in baby steps. In practice, you make a minor modification to your code, compile it, run your tests and commit your changes. If, at any point, you can't compile your code without errors or your tests fail, you should reset to the last known working state and try again.
 
-I usually start my refactoring process by making a tiny useful change and committing it with a message like `refactor: component <name>`. Then all the subsequent commits are amended to the previous commit with `git commit --amend --no-edit`. But your workflow may differ, and it's fine as long as you keep the rhythm of refactoring steady: _refactor–compile–test–commit–repeat_.
+I usually start my refactoring process by setting up a goal, making a tiny useful change, and committing it with a dummy message. After that, all the subsequent commits may be squashed to a logical whole describing my efforts better. Read more about my [practical micro-commit workflow][microcommits].
+
+But your workflow may differ, and it's fine as long as you keep the rhythm of refactoring steady: _refactor–compile–test–commit–repeat_.
 
 Refactoring workflows are described in great detail in **Martin Fowler's** and **Kent Beck's** groundbreaking book [_Refactoring_][refactoring]. Suffice to quote the senseis here:
 
@@ -77,3 +85,4 @@ Refactoring workflows are described in great detail in **Martin Fowler's** and *
 [induction]: https://en.wikipedia.org/wiki/Mathematical_induction
 [monads]: https://www.toptal.com/javascript/option-maybe-either-future-monads-js
 [refactoring]: https://www.informit.com/store/refactoring-improving-the-design-of-existing-code-9780134757599
+[microcommits]: /blog/a-practical-guide-to-micro-commits/
