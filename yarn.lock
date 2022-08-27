@@ -18264,10 +18264,10 @@ title-case@^3.0.3:
   dependencies:
     tslib "^2.0.3"
 
-title@3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/title/-/title-3.5.2.tgz#21596db334a55239d93b68525315b12da09624a9"
-  integrity sha512-PD9x2repsKvhDr/aE8mz9JlcyGKbTPOhIRraioVi9gc8AZEVok875UPFnWHFs97ddIomPC/oThpENPx3HhV5kg==
+title@3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/title/-/title-3.5.3.tgz#b338d701a3d949db6b49b2c86f409f9c2f36cd91"
+  integrity sha512-20JyowYglSEeCvZv3EZ0nZ046vLarO37prvV0mbtQV7C8DJPGgN967r8SJkqd3XK3K3lD3/Iyfp3avjfil8Q2Q==
   dependencies:
     arg "1.0.0"
     chalk "2.3.0"
