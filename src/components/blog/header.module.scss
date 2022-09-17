@@ -1,25 +1,49 @@
 @import "_variables";
 
-.header {
+.grid {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    margin: 25px 0 auto 25px;
-
-    .bio-text {
-        margin-top: 1.5rem;
-        text-align: center;
-    }
+    grid-template-columns: 200px 1fr;
+    align-items: center;
 
     @include for-phone-only {
-        .bio-image {
-            margin: 0 auto;
-        }
-
         grid-template-columns: 1fr;
-        margin: 25px 0 0 0;
+        text-align: center;
+    }
+}
+
+.logo {
+    justify-self: left;
+
+    @include for-phone-only {
+        margin: 0 auto;
+        max-width: 200px;
     }
 }
 
 .title {
-    margin: 15px 0;
+    justify-self: right;
+    text-align: center;
+
+    & > h1, & > p {
+        margin: 5px 0;
+    }
+
+    & > h1 {
+        font-size: 2.5rem;
+    }
+}
+
+.description {
+    margin: 50px auto 0 auto;
+    max-width: 60vw;
+    text-align: center;
+    line-height: 2.0rem;
+
+    @include for-phone-only {
+        max-width: 80vw;
+    }
+
+    a {
+        color: $blue;
+    }
 }

@@ -2,13 +2,13 @@ $filter: invert(100%) hue-rotate(180deg);
 
 $blue: #539bf5;
 $red: #fd3300;
+$orange: #f9a515;
 
 $darkBg: #1e2228;
 $darkFg: #adadad;
 $darkHl: $blue;
 
 $inlineCodeFg: #bd10e0;
-$contentWidth: 50vw;
 
 @mixin for-phone-only {
     @media (max-width: 599px) {

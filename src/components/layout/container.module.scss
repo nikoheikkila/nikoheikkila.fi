@@ -1,10 +1,9 @@
 @import "_variables";
 @import "menu";
 
-.container {
-    width: $contentWidth;
+.list {
     overflow: auto;
-    margin: 0 auto;
+    margin: 15px auto;
     padding: 0 20px;
 
     @include for-phone-only() {
@@ -16,7 +15,37 @@
     }
 
     @include for-tablet-landscape-up() {
+        width: 75vw;
+    }
+
+    @include for-desktop-up() {
         width: 65vw;
+    }
+
+    @include for-big-desktop-up() {
+        width: 50vw;
+    }
+}
+
+.single {
+    overflow: auto;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    a {
+        color: $blue;
+    }
+
+    @include for-phone-only() {
+        width: 80vw;
+    }
+
+    @include for-tablet-portrait-up() {
+        width: 75vw;
+    }
+
+    @include for-tablet-landscape-up() {
+        width: 60vw;
     }
 
     @include for-desktop-up() {

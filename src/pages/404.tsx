@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Layout from "../components/layout/layout";
+import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
 import dayjs from "dayjs";
 
@@ -13,7 +13,7 @@ const NotFound: React.FC<NotFoundProps> = ({ location }) => {
     const datePublished = dayjs().format("YYYY-MM-DD");
 
     return (
-        <Layout title={title}>
+        <Layout type={LayoutType.SINGLE} title={title}>
             <SEO
                 title={title}
                 type="page"

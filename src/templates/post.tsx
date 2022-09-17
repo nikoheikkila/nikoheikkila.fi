@@ -5,7 +5,7 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import config from "../../gatsby-config";
 import { useIcons } from "../components/hooks/useIcons";
-import Layout from "../components/layout/layout";
+import Layout, { LayoutType } from "../components/layout/layout";
 import PostAttachments from "../components/post/attachments";
 import Content from "../components/post/content";
 import PostFooter from "../components/post/footer";
@@ -56,7 +56,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     useIcons([fab]);
 
     return (
-        <Layout title={title} cover={coverImage}>
+        <Layout type={LayoutType.SINGLE} title={title} cover={coverImage}>
             <SEO
                 description={excerpt}
                 lang={lang}

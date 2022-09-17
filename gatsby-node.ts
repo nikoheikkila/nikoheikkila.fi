@@ -23,7 +23,7 @@ interface OnCreateNodeArgs extends CreateNodeArgs {
     };
 }
 
-const postsPerPage = 9;
+const postsPerPage = 30;
 
 const hasDSG = (): boolean => {
     return process.env.GATSBY_ENABLE_DSG === "true";

@@ -1,10 +1,14 @@
 import React, { FunctionComponent } from "react";
 import * as styles from "./container.module.scss";
 
-const Container: FunctionComponent = ({ children }) => (
-    <main id="container" className={styles.container}>
+export const ListContainer: FunctionComponent = ({ children }) => (
+    <main id="container" className={styles.list}>
         {children}
     </main>
 );
 
-export default Container;
+export const SinglePostContainer: FunctionComponent = ({ children }) => (
+    <main id="container" className={styles.single}>
+        {children}
+    </main>
+);

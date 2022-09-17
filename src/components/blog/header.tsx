@@ -13,25 +13,40 @@ const BlogHeader: React.FunctionComponent<HeaderProps> = ({
     title,
     url = "/",
 }) => (
-    <header className={styles.header}>
-        <Link to={url} rel="home">
-            <StaticImage
-                src="../../assets/profile.png"
-                alt={title}
-                width={128}
-                height={128}
-                layout="fixed"
-            />
-        </Link>
-        <section>
-            <h1 className={styles.title}>{title}</h1>
+    <header>
+        <section className={styles.grid}>
+            <Link to={url} rel="home">
+                <StaticImage
+                    className={styles.logo}
+                    src="../../assets/profile.png"
+                    alt={title}
+                    layout="fullWidth"
+                />
+            </Link>
+            <section className={styles.title}>
+                <h1>{title}</h1>
+                <p>
+                    A blog powered by coffee,{" "}
+                    <ExternalLink to="https://code.visualstudio.com">
+                        VS Code
+                    </ExternalLink>
+                    , and{" "}
+                    <ExternalLink to="https://gatsbyjs.org">
+                        Gatsby
+                    </ExternalLink>
+                    .
+                </p>
+            </section>
+        </section>
+        <section className={styles.description}>
             <p>
-                A blog powered by coffee,{" "}
-                <ExternalLink to="https://code.visualstudio.com">
-                    VS Code
-                </ExternalLink>
-                , and{" "}
-                <ExternalLink to="https://gatsbyjs.org">Gatsby</ExternalLink>.
+                👋🏻 Hello, traveller! I’m a software craftsperson with a strong
+                passion for making work and life better for software engineers.
+                This blog contains insights related to modern software
+                engineering practices. Read
+                <Link to="/about"> the longer story of me</Link>, and if you
+                liked what you read
+                <Link to="/rss.xml"> subscribe to my feed</Link>.
             </p>
         </section>
     </header>

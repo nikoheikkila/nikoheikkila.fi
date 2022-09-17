@@ -4,15 +4,22 @@ import Footer from "./footer";
 import "../../styles/main.scss";
 import Menu from "./menu";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import Container from "./container";
+import { ListContainer, SinglePostContainer } from "./container";
+
+export enum LayoutType {
+    LIST = "list",
+    SINGLE = "single",
+}
 
 interface LayoutProps {
+    type: LayoutType;
     title: string;
     cover?: IGatsbyImageData;
     children: Array<ReactNode>;
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({
+    type,
     title,
     cover,
     children,
@@ -22,15 +29,28 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             <aside>
                 <Menu />
             </aside>
-            <Container>
-                {cover && (
-                    <header>
-                        <Hero data={cover} alt={title} />
-                    </header>
-                )}
-                <section>{children}</section>
-                <Footer />
-            </Container>
+            {type === LayoutType.LIST && (
+                <ListContainer>
+                    {cover && (
+                        <header>
+                            <Hero data={cover} alt={title} />
+                        </header>
+                    )}
+                    <section>{children}</section>
+                    <Footer />
+                </ListContainer>
+            )}
+            {type === LayoutType.SINGLE && (
+                <SinglePostContainer>
+                    {cover && (
+                        <header>
+                            <Hero data={cover} alt={title} />
+                        </header>
+                    )}
+                    <section>{children}</section>
+                    <Footer />
+                </SinglePostContainer>
+            )}
         </>
     );
 };

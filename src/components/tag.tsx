@@ -20,12 +20,12 @@ const Tag: React.FunctionComponent<Props> = ({
 
     const style: CSSProperties = {
         display: "inline-block",
-        fontSize: "0.8em",
-        fontWeight: 700,
+        fontSize: "0.6em",
+        fontWeight: 400,
         backgroundColor,
         color,
-        padding: "4px 12px",
-        margin: "0 8px 8px 0",
+        padding: "0px 4px",
+        margin: "0 6px 0 0",
     };
 
     return (

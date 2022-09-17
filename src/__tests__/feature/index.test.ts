@@ -5,12 +5,12 @@ test.describe.parallel("Given I'm on the index page", () => {
         await page.goto("/");
     });
 
-    test("when I query all the post titles, their count should be exactly 9", async ({
+    test("when I query all the post titles, their count should be exactly 30", async ({
         page,
     }) => {
         const posts = page.locator('[data-testid="post-title"]');
 
-        await expect(posts).toHaveCount(9);
+        await expect(posts).toHaveCount(30);
     });
 
     test("when I click the next/previous button, then I should visit the respective page", async ({

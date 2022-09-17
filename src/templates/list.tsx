@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import { MarkdownRemarkEdge, PageInfo, Query, Site } from "../types";
 import profile from "../assets/profile.png";
-import Layout from "../components/layout/layout";
-import ArticleCard from "../components/blog/card";
+import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
+import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
+import { PageInfo, Query } from "../types";
 
 interface IndexProps {
     data: Query;
@@ -23,47 +23,23 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
     } = data;
 
     const title = data.site?.siteMetadata?.title ?? "";
-    const { currentPage, numberOfPages } = pageContext;
-    const datePublished = dayjs().format("YYYY-MM-DD");
 
     return (
-        <Layout title={title}>
+        <Layout type={LayoutType.LIST} title={title}>
             <BlogHeader title={title} />
             <SEO
                 title={title}
                 image={profile}
                 url={location.href}
                 type="page"
-                datePublished={datePublished}
+                datePublished={dayjs().format("YYYY-MM-DD")}
             />
 
-            {edges.map((edge: MarkdownRemarkEdge) => {
-                const slug = edge.node.fields?.slug;
-                if (!slug) return null;
-
-                const postTitle = edge.node.frontmatter?.title ?? "";
-                const categories = edge.node.frontmatter?.categories ?? [];
-                const date = edge.node.frontmatter?.date;
-                const excerpt = edge.node.frontmatter?.excerpt ?? "";
-                const timeToRead = edge.node.timeToRead;
-
-                return (
-                    <ArticleCard
-                        key={slug}
-                        slug={slug}
-                        location={location}
-                        title={postTitle}
-                        categories={categories as string[]}
-                        date={dayjs(date).format("DD.MM.YYYY")}
-                        excerpt={excerpt}
-                        timeToRead={timeToRead ?? undefined}
-                    />
-                );
-            })}
+            <ArticleView edges={edges} location={location} />
 
             <Pagination
-                currentPage={currentPage}
-                numberOfPages={numberOfPages}
+                currentPage={pageContext.currentPage}
+                numberOfPages={pageContext.numberOfPages}
             />
         </Layout>
     );
@@ -86,13 +62,13 @@ export const pageQuery = graphql`
         ) {
             edges {
                 node {
+                    excerpt(pruneLength: 160)
                     timeToRead
                     fields {
                         slug
                     }
                     frontmatter {
                         type
-                        excerpt
                         date
                         title
                         categories

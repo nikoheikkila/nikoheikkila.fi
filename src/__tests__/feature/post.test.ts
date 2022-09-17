@@ -5,7 +5,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
         await page.goto("/");
         await Promise.all([
             page.waitForNavigation(),
-            page.click("[data-testid=post-title]:first-child > a"),
+            page.click("data-testid=post-title"),
         ]);
         await expect(page).toHaveURL(/blog/);
     });
