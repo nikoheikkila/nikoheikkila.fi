@@ -16,7 +16,6 @@ import SEO from "../components/seo";
 import { Route } from "../gatsby";
 import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import { combinePaths } from "../utils/helpers";
-import "katex/dist/katex.min.css";
 
 interface PostProps {
     data: Query;

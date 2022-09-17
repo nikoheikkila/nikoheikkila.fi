@@ -67,7 +67,19 @@ const config: GatsbyConfig = {
                             icon: false,
                         },
                     },
-                    `gatsby-remark-prismjs`,
+                    {
+                        resolve: `gatsby-remark-prismjs`,
+                        options: {
+                            aliases: {
+                                sh: "bash",
+                            },
+                            prompt: {
+                                user: "root",
+                                host: "localhost",
+                                global: false,
+                            },
+                        },
+                    },
                     `gatsby-remark-copy-linked-files`,
                     `gatsby-remark-smartypants`,
                     `gatsby-remark-katex`,
