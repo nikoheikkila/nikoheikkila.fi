@@ -20,6 +20,8 @@ exports.allow = [
     "insomnia",
     "obvious",
     "of-course",
+    "gals-man",
+    "hero-heroine",
 ];
 
 exports.noBinary = true;
