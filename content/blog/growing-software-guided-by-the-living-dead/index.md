@@ -23,7 +23,7 @@ No, I mean for real. **ZOMBIES** testing pattern was introduced by **James Grenn
 
 In mathematics, you may have encountered [proofing by induction][induction], which is more or less related to the **ZOM** part of our approach and is particularly helpful.
 
-Let `P(n)` be our test case where `n` is the complexity of our input starting from the base case (`n=0`), advancing to the induction step (`n=1`), and finally achieving the end case (`n=k`). If mathematical analysis and proofing are not your strongest assets, let me explain these more practically through an example.
+Let $P(n)$ be our test case where $n$ is the complexity of our input starting from the base case ($n = 0$), advancing to the induction step ($n = 1$), and finally achieving the end case ($n = k$). If mathematical analysis and proofing are not your strongest assets, let me explain these more practically through an example.
 
 Imagine an invoicing system that receives a list of employees and a list of projects as input and returns a list of invoices as output.
 
