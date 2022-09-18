@@ -56,8 +56,9 @@ test.describe.parallel("Given I'm on a page with cover image", () => {
     test("when I view it, then it should display the accessible cover image", async ({
         page,
     }) => {
-        const heroImage = page.locator('img[alt="Niko Heikkilä"]');
+        const heroImage = page.locator("img[data-main-image]");
 
         await expect(heroImage).toBeVisible();
+        await expect(heroImage.getAttribute("alt")).not.toBeNull();
     });
 });

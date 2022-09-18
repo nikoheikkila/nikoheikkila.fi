@@ -1,25 +1,19 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, HeadFC } from "gatsby";
 import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
 import dayjs from "dayjs";
+import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 
 interface NotFoundProps {
     location: Location;
 }
 
-const NotFound: React.FC<NotFoundProps> = ({ location }) => {
-    const title = "Page Not Found";
-    const datePublished = dayjs().format("YYYY-MM-DD");
+const title = "Page Not Found";
 
+const NotFound: React.FC<NotFoundProps> = () => {
     return (
         <Layout type={LayoutType.SINGLE} title={title}>
-            <SEO
-                title={title}
-                type="page"
-                url={location.href}
-                datePublished={datePublished}
-            />
             <h1>🤖 You have erred, but it is human</h1>
 
             <p>
@@ -37,6 +31,12 @@ const NotFound: React.FC<NotFoundProps> = ({ location }) => {
             </p>
         </Layout>
     );
+};
+
+export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
+    location,
+}) => {
+    return <SEO title={title} type="page" url={location.pathname} />;
 };
 
 export default NotFound;

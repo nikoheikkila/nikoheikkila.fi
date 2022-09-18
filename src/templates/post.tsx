@@ -1,6 +1,6 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import dayjs from "dayjs";
-import { graphql } from "gatsby";
+import { graphql, HeadFC } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import config from "../../gatsby-config";
@@ -31,11 +31,9 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
     const author = data.markdownRemark?.frontmatter?.author ?? "";
     const date = data.markdownRemark?.frontmatter?.date ?? "";
-    const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
     const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
     const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
     const categories = data.markdownRemark?.frontmatter?.categories ?? [];
-    const type = data.markdownRemark?.frontmatter?.type ?? "";
 
     const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
     const repository = data.site?.siteMetadata?.repository ?? "";
@@ -43,7 +41,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
     const previous = pageContext.previous;
     const next = pageContext.next;
-    const postUrl = combinePaths(siteUrl, slug);
     const datePublished = dayjs(date).format("DD.MM.YYYY");
     const postSlug = slug.slice(1, slug.length - 1);
     const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
@@ -51,22 +48,11 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
     const cover = hero?.childImageSharp;
     const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
-    const coverPath = cover?.original?.src ?? "";
 
     useIcons([fab]);
 
     return (
         <Layout type={LayoutType.SINGLE} title={title} cover={coverImage}>
-            <SEO
-                description={excerpt}
-                lang={lang}
-                keywords={categories as string[]}
-                title={postTitle}
-                image={coverPath}
-                type={type}
-                url={postUrl}
-                datePublished={date}
-            />
             <PostHeader
                 author={author}
                 datePublished={datePublished}
@@ -123,6 +109,8 @@ export const pageQuery = graphql`
                     gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
                     original {
                         src
+                        width
+                        height
                     }
                 }
             }
@@ -138,3 +126,32 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
+    data,
+}) => {
+    const hero = data.markdownRemark?.hero;
+    const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
+    const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
+    const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
+    const cover = hero?.childImageSharp ?? undefined;
+    const type = data.markdownRemark?.frontmatter?.type ?? "";
+    const slug = data.markdownRemark?.fields?.slug ?? "";
+    const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
+    const postUrl = combinePaths(siteUrl, slug);
+    const date = data.markdownRemark?.frontmatter?.date ?? "";
+    const categories = data.markdownRemark?.frontmatter?.categories ?? [];
+
+    return (
+        <SEO
+            title={postTitle}
+            description={excerpt}
+            lang={lang}
+            image={cover}
+            type={type}
+            url={postUrl}
+            datePublished={date}
+            categories={categories.map(String)}
+        />
+    );
+};

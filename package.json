@@ -18,7 +18,6 @@
         "@types/react": "17.0.50",
         "@types/react-burger-menu": "2.8.3",
         "@types/react-dom": "18.0.6",
-        "@types/react-helmet": "6.1.5",
         "dayjs": "1.11.5",
         "gatsby": "4.23.0",
         "gatsby-plugin-feed": "4.23.0",
@@ -26,7 +25,6 @@
         "gatsby-plugin-manifest": "4.23.0",
         "gatsby-plugin-netlify": "5.0.1",
         "gatsby-plugin-offline": "5.23.0",
-        "gatsby-plugin-react-helmet": "5.23.0",
         "gatsby-plugin-robots-txt": "1.7.1",
         "gatsby-plugin-sass": "5.23.0",
         "gatsby-plugin-sharp": "4.23.0",
@@ -49,7 +47,6 @@
         "react": "18.2.0",
         "react-burger-menu": "3.0.8",
         "react-dom": "18.2.0",
-        "react-helmet": "6.1.0",
         "sass": "1.54.9",
         "snyk": "1.1006.0",
         "typescript": "4.8.3"

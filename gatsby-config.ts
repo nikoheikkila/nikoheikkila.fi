@@ -7,7 +7,7 @@ const isProduction = environment === "production";
 const config: GatsbyConfig = {
     siteMetadata: {
         language: `en`,
-        title: `Niko Heikkilä`,
+        title: `Blog | Niko Heikkilä`,
         author: {
             name: `Niko Heikkilä`,
         },
@@ -40,6 +40,8 @@ const config: GatsbyConfig = {
     },
     flags: {
         PRESERVE_FILE_DOWNLOAD_CACHE: true,
+        FAST_DEV: true,
+        DEV_SSR: true,
     },
     plugins: [
         `gatsby-plugin-image`,
@@ -151,7 +153,6 @@ const config: GatsbyConfig = {
                 allExtensions: true,
             },
         },
-        `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-plugin-sass`,
             options: {

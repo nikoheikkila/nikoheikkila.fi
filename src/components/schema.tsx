@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import favicon from "../static/favicon.png";
 
 interface Props {
@@ -97,9 +96,9 @@ export default React.memo(
         const jsonSchema = JSON.stringify(schema);
 
         return (
-            <Helmet>
+            <>
                 <script type="application/ld+json">{jsonSchema}</script>
-            </Helmet>
+            </>
         );
     }
 );
