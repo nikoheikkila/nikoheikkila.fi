@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { formatReadingTime } from "../../utils/helpers";
-
 import * as styles from "./header.module.scss";
 
 interface HeaderProps {

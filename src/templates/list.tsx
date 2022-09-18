@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
 import { graphql } from "gatsby";
 import React from "react";
-import profile from "../assets/profile.png";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
 import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
 import { PageInfo, Query } from "../types";
+import profile from "../assets/profile.png";
 
 interface IndexProps {
     data: Query;

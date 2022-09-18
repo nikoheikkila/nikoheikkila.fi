@@ -14,8 +14,8 @@ test("should display image with passed properties", async ({ mount }) => {
     const component = await mount(<Hero data={imageData} alt="Cover Image" />);
     const image = component.locator('img[alt="Cover Image"]');
 
-    await expect(component).toHaveClass("hero-image");
     await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute("alt", "Cover Image");
     await expect(image).toHaveAttribute("width", "500");
     await expect(image).toHaveAttribute("height", "500");
 });

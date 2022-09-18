@@ -1,10 +1,10 @@
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { ReactNode } from "react";
 import Hero from "../hero";
-import Footer from "./footer";
-import "../../styles/main.scss";
-import Menu from "./menu";
-import { IGatsbyImageData } from "gatsby-plugin-image";
 import { ListContainer, SinglePostContainer } from "./container";
+import Footer from "./footer";
+import Menu from "./menu";
+import "../../styles/main.scss";
 
 export enum LayoutType {
     LIST = "list",
@@ -29,24 +29,19 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             <aside>
                 <Menu />
             </aside>
+            {cover && (
+                <header>
+                    <Hero data={cover} alt={title} />
+                </header>
+            )}
             {type === LayoutType.LIST && (
                 <ListContainer>
-                    {cover && (
-                        <header>
-                            <Hero data={cover} alt={title} />
-                        </header>
-                    )}
                     <section>{children}</section>
                     <Footer />
                 </ListContainer>
             )}
             {type === LayoutType.SINGLE && (
                 <SinglePostContainer>
-                    {cover && (
-                        <header>
-                            <Hero data={cover} alt={title} />
-                        </header>
-                    )}
                     <section>{children}</section>
                     <Footer />
                 </SinglePostContainer>

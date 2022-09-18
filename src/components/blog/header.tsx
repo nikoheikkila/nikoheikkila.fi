@@ -1,8 +1,8 @@
-import React from "react";
+import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
+import React from "react";
 import ExternalLink from "../elements";
 import * as styles from "./header.module.scss";
-import { Link } from "gatsby";
 
 interface HeaderProps {
     readonly title: string;
@@ -25,17 +25,6 @@ const BlogHeader: React.FunctionComponent<HeaderProps> = ({
             </Link>
             <section className={styles.title}>
                 <h1>{title}</h1>
-                <p>
-                    A blog powered by coffee,{" "}
-                    <ExternalLink to="https://code.visualstudio.com">
-                        VS Code
-                    </ExternalLink>
-                    , and{" "}
-                    <ExternalLink to="https://gatsbyjs.org">
-                        Gatsby
-                    </ExternalLink>
-                    .
-                </p>
             </section>
         </section>
         <section className={styles.description}>
