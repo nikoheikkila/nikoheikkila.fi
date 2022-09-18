@@ -24,3 +24,9 @@
   for = "/rss.xml"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[redirects]]
+  from = "/feed"
+  to = "/rss.xml"
+  status = 200
+  force = true

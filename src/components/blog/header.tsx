@@ -35,7 +35,7 @@ const BlogHeader: React.FunctionComponent<HeaderProps> = ({
                 engineering practices. Read
                 <Link to="/about"> the longer story of me</Link>, and if you
                 liked what you read
-                <Link to="/rss.xml"> subscribe to my feed</Link>.
+                <Link to="/feed"> subscribe to my feed</Link>.
             </p>
         </section>
     </header>

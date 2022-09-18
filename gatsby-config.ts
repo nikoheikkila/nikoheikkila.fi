@@ -36,7 +36,7 @@ const config: GatsbyConfig = {
             },
         ],
         repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,
-        rss: `/rss.xml`,
+        rss: `/feed`,
     },
     flags: {
         PRESERVE_FILE_DOWNLOAD_CACHE: true,
