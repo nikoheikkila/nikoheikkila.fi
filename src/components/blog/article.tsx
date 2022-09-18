@@ -1,11 +1,11 @@
-import Content from "../post/content";
-import Tag from "../tag";
+import dayjs from "dayjs";
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
-import { formatReadingTime } from "../../utils/helpers";
-import * as styles from "./article.module.scss";
 import { MarkdownRemarkEdge } from "../../types";
-import dayjs from "dayjs";
+import { formatReadingTime } from "../../utils/helpers";
+import Content from "../post/content";
+import Tag from "../tag";
+import * as styles from "./article.module.scss";
 
 interface ArticleCardProps {
     readonly title: string;
@@ -66,9 +66,10 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
     date,
     timeToRead,
     location,
-}) => (
-    <section className={styles.card}>
+}) => {
+    return (
         <Link
+            className={styles.card}
             to={slug}
             state={{ previous: location.pathname }}
             data-testid="post-title"
@@ -78,8 +79,8 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
             <Content content={excerpt} />
             <TagList categories={categories} />
         </Link>
-    </section>
-);
+    );
+};
 
 const ArticleTitle = ({ title }: { title: string }) => (
     <h2 className={styles.title}>{title}</h2>

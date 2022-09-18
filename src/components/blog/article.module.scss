@@ -39,8 +39,14 @@
     box-sizing: border-box;
     border: solid 6px #666;
     padding: 20px;
+    outline: 0;
 
-    &:hover, &:active {
+    &:hover {
+        border-color: $blue;
+        color: $blue;
+    }
+
+    &:active, &:focus, &:focus-visible {
         border-color: $orange;
         color: $orange;
     }
