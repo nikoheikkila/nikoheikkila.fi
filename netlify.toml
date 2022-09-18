@@ -19,3 +19,8 @@
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
+
+[[headers]]
+  for = "/rss.xml"
+  [headers.values]
+    Cache-Control = "no-cache"
