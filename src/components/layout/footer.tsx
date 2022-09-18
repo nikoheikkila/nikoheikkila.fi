@@ -1,11 +1,11 @@
-import React from "react";
 import { IconName } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExternalLink from "../elements";
+import React from "react";
 import { getFooterLinks } from "../../graphql/footer";
+import ExternalLink from "../elements";
 import { useIcons } from "../hooks/useIcons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
 import * as styles from "./footer.module.scss";
 
 interface SocialLink {

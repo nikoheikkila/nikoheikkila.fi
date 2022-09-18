@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
-import { getStaticPages } from "../../graphql/pages";
 import React, { FunctionComponent, useState } from "react";
 import { stack as BurgerMenu } from "react-burger-menu";
+import { getStaticPages } from "../../graphql/pages";
 import ExternalLink from "../elements";
 
 import "../../styles/menu.scss";

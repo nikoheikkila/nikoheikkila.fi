@@ -1,7 +1,7 @@
-import React, { CSSProperties } from "react";
 import slugify from "@sindresorhus/slugify";
+import React, { CSSProperties } from "react";
 
-import { randomColor, foregroundColor } from "../utils/colors";
+import { foregroundColor, randomColor } from "../utils/colors";
 
 interface Props {
     title: string;

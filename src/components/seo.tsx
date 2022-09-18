@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { Helmet } from "react-helmet";
-import SchemaOrg from "./schema";
 import { getSEOData } from "../graphql/seo";
+import SchemaOrg from "./schema";
 
 interface Props {
     title: string;
