@@ -214,7 +214,9 @@ Tight collaboration nurtures empathy and team spirit. Of course, you become more
 
 As I indicated earlier, mob programming is neither a silver bullet nor a best practice. Therefore, it's fair to expect that transforming our work also brought new problems. However, we have discovered root causes for most of these thanks to agile retrospectives.
 
-Remote Code Sharing Working in a hybrid model where one of our team members lives in another city poses the problem of communication and keyboard sharing. However, these are not issues when everyone is in the same space.
+### Remote Code Sharing
+
+Working in a hybrid model where one of our team members lives in another city poses the problem of communication and keyboard sharing. However, these are not issues when everyone is in the same space.
 
 For sharing the code, we have been using **VS Code Live Share**, which, in all irony, works surprisingly poorly on Windows compared to, e.g. macOS. Typically, signing in to the Live Share service takes a long time, and you might have to restart the whole IDE a couple of times before being able to share a session or join one. So the most reliable solution is restarting the software before starting to work.
 
