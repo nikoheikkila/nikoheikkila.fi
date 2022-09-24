@@ -55,7 +55,7 @@
         "@babel/helper-call-delegate": "7.12.13",
         "@graphql-codegen/cli": "2.12.1",
         "@graphql-codegen/typescript": "2.7.3",
-        "@netlify/plugin-gatsby": "3.4.6",
+        "@netlify/plugin-gatsby": "3.4.7",
         "@playwright/experimental-ct-react": "1.25.2",
         "@playwright/test": "1.25.2",
         "@types/inquirer": "8.2.1",
