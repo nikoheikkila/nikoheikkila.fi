@@ -6,7 +6,7 @@ excerpt: Once upon a time, two software companies were competing in the same bus
 type: post
 categories: [devops, agile, scrum, management]
 date: 2022-01-01
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/dev-ops-is-the-interface-your-organisation-implements-it.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/dev-ops-is-the-interface-your-organisation-implements-it.jpg
 ---
 
 ## Long Time Ago in a Software Company, Far Far Away

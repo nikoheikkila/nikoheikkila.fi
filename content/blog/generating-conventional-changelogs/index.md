@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-05-25
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/generating-conventional-changelogs.png
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/generating-conventional-changelogs.png
 title: Generating Conventional Changelogs
 type: post
 excerpt: Spicing up your release notes with awesome changelog power.

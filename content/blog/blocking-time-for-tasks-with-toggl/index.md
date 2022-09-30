@@ -6,7 +6,7 @@ excerpt: How organizing your day brings a sense of clarity and calm into this ma
 type: post
 categories: [productivity, tools, opensource, golang]
 date: 2021-03-20
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/blocking-time-for-tasks-with-toggl.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/blocking-time-for-tasks-with-toggl.jpg
 ---
 
 For people doing mainly project work, planning daily tasks is a constant struggle, which can cause severe issues with productivity and mental well-being.
@@ -27,7 +27,7 @@ Don't worry. With time blocking, you get to keep your regular breaks and days of
 
 After dividing your days into slices, your day might look a bit like in the picture below. Note that the themes are only examples, and I usually write those down precisely to help me later recall what I worked on.
 
-![Time blocking example sketch](https://f001.backblazeb2.com/file/nikoheikkila-fi/timeblocking.png)
+![Time blocking example sketch](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/timeblocking.png)
 
 ## How Do I Split the Day?
 
@@ -59,9 +59,9 @@ Toggl web app has a nifty calendar view which is ideal for drawing blocks of tim
 
 However, one thing I was missing from Toggl was a performant terminal app. So, as a hobby project and because my current employer sponsors the personal time spent in open-source, I started writing one. Enter [**Hours**](https://github.com/nikoheikkila/hours). It's a lightweight, single-binary, open-source terminal companion for Toggl written in **Go**. At the moment, Hours ships the following features:
 
--   listing the saved time entries in various formats using the public Toggl API
--   styling the plain text output with `termenv`
--   converting the output to Markdown, JSON, and CSV allowing you to post-process data with other scripts
+- listing the saved time entries in various formats using the public Toggl API
+- styling the plain text output with `termenv`
+- converting the output to Markdown, JSON, and CSV allowing you to post-process data with other scripts
 
 Fortunately, the Toggl API is convenient to work with and I've been delighted how easy it is to marshal Go structures to JSON and vice versa. Thus, more features are definitely on the roadmap. I'm thinking of implementing features such as starting and stopping timers without forgetting the basic time entry CRUD operations (create, read, update, and delete). Since **Hours** is still in the very early stages of development, you can help me improve it!
 

@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-01-06
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/the-five-ideals-of-developer-experience.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/the-five-ideals-of-developer-experience.jpg
 title: The Five Ideals of Developer Experience
 type: post
 excerpt: Assessing the anti-patterns and embracing the remedies.

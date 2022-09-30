@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2021-09-11
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/being-a-good-developer-six-tips-for-a-painless-code-review.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/being-a-good-developer-six-tips-for-a-painless-code-review.jpg
 title: "Being a Good Developer: Tips for an Effective Code Review"
 type: post
 excerpt: Walk another mile and make the code review a joyful experience.

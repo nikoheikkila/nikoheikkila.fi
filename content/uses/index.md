@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2021-10-24
 title: Uses
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/keychron.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/keychron.jpg
 type: page
 excerpt: These are the tools I use to survive my hectic days.
 categories:
@@ -39,7 +39,7 @@ Both the keyboard and the mouse support connecting up to three devices at most v
 
 ### Code Editor
 
-![Visual Studio Code with Palenight color theme and Operator Mono font](https://f001.backblazeb2.com/file/nikoheikkila-fi/vscode.png)
+![Visual Studio Code with Palenight color theme and Operator Mono font](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/vscode.png)
 
 My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing and tweaking settings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
 
@@ -50,7 +50,7 @@ In the screenshot above I'm using a theme called [Palenight][theme] and a font c
 
 ### Terminal
 
-![Microsoft Terminal for Windows](https://f001.backblazeb2.com/file/nikoheikkila-fi/wsl.png)
+![Microsoft Terminal for Windows](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/wsl.png)
 
 For the command line, I've settled with [**iTerm 2**][iterm] and [**Windows Terminal**][msterminal]. Sometimes I also use the builtin terminal of VS Code for small tasks.
 
@@ -60,7 +60,6 @@ While in the command line I use [`tmux`][tmux] for persisting window and buffer 
 
 Since Microsoft released their [Remote Development Pack][remotedevelopment] for VS Code which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [Doom NVIM][doom] configuration preset.
 
-[hyper]: https://hyper.is
 [iterm]: https://iterm2.com/
 [msterminal]: https://github.com/Microsoft/Terminal
 [fish]: https://fishshell.com/
@@ -86,19 +85,19 @@ Most apps offer a limited free plan which I advise to check out as well if it co
 
 _I use..._
 
--   [**1Password**](https://1password.com) with a business and family subscriptions paid by my employer. I use it for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a vile breakdown.
--   [**Alfred** 💰](https://www.alfredapp.com/) to boost my productivity with a variety of workflows and snippets.
--   [**Backblaze** 💰](https://www.backblaze.com) to back up my disks. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager. Backblaze also ships with an S3 compatible cloud storage which I use to store my blog's images and static assets.
--   [**Cleanshot X** 💰](https://cleanshot.com/) to capture screenshots and record videos -- useful for reporting website issues. On Windows, I use the builtin screenshot tool which you can summon with `Win + Shift + S`.
--   [**Dropbox** 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
--   [**Fork** 💰](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
--   [**MindNode** 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
--   [**Obsidian** 💰](https://obsidian.md) for writing notes, drafts, checklists, and keeping a personal micro-wiki around. Previously, I used **Notion** for this, but Obsidian is more simple with its pure Markdown approach.
--   [**Insomnia**](https://insomnia.rest/) for experimenting with REST and GraphQL APIs.
--   [**Rectangle**](https://rectangleapp.com/) for organizing the windows in my desktop. Sadly, I haven't found a good Windows alternative but using the WIN and arrow keys is efficient enough.
--   [**TablePlus** 💰](https://tableplus.io) for accessing relational databases, Redis caches, and more.
--   [**Todoist** 💰](https://todoist.com) for reminding me to pay my repeating bills each month and a heap of other stuff.
--   [**Toggl**](https://toggl.com) for tracking the time spent on projects and tasks which is a mandatory evil thing to do in work.
+- [**1Password**](https://1password.com) with a business and family subscriptions paid by my employer. I use it for storing passwords, secure notes, software licenses, and even movie tickets. It's the best password manager out there and using anything else would cause me a vile breakdown.
+- [**Alfred** 💰](https://www.alfredapp.com/) to boost my productivity with a variety of workflows and snippets.
+- [**Backblaze** 💰](https://www.backblaze.com) to back up my disks. It does everything silently on the background which means I usually forget its existence and that's definitely a good feature from a backup manager. Backblaze also ships with an S3 compatible cloud storage which I use to store my blog's images and static assets.
+- [**Cleanshot X** 💰](https://cleanshot.com/) to capture screenshots and record videos -- useful for reporting website issues. On Windows, I use the builtin screenshot tool which you can summon with `Win + Shift + S`.
+- [**Dropbox** 💰](https://www.dropbox.com) with a 2 TB subscription to dump all my random things into.
+- [**Fork** 💰](https://git-fork.com) for viewing commit diffs and solving merge conflicts in Git. Sometimes the native command line `git` isn't enough.
+- [**MindNode** 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps.
+- [**Obsidian** 💰](https://obsidian.md) for writing notes, drafts, checklists, and keeping a personal micro-wiki around. Previously, I used **Notion** for this, but Obsidian is more simple with its pure Markdown approach.
+- [**Insomnia**](https://insomnia.rest/) for experimenting with REST and GraphQL APIs.
+- [**Rectangle**](https://rectangleapp.com/) for organizing the windows in my desktop. Sadly, I haven't found a good Windows alternative but using the WIN and arrow keys is efficient enough.
+- [**TablePlus** 💰](https://tableplus.io) for accessing relational databases, Redis caches, and more.
+- [**Todoist** 💰](https://todoist.com) for reminding me to pay my repeating bills each month and a heap of other stuff.
+- [**Toggl**](https://toggl.com) for tracking the time spent on projects and tasks which is a mandatory evil thing to do in work.
 
 ## Office Setup
 
@@ -106,6 +105,6 @@ I mostly work from home, so a good office setup is something you shouldn't be a 
 
 _I work with..._
 
--   [**Autonomous Standing Desk**](https://www.autonomous.ai/standing-desks/smartdesk-2-home) which is mostly in sitting position unless I'm listening to music.
--   [**GAME**](https://www.sotka.fi/tuotteet/tuote/1848/35577/game-pelituoli-mustapunainen) office chair -- whoever came up with such a unique name?
--   **Mozi AR-2 BaseStand** stand which lifts the laptop to a comfortable height for my eyes.
+- [**Autonomous Standing Desk**](https://www.autonomous.ai/standing-desks/smartdesk-2-home) which is mostly in sitting position unless I'm listening to music.
+- [**GAME**](https://www.sotka.fi/tuotteet/tuote/1848/35577/game-pelituoli-mustapunainen) office chair -- whoever came up with such a unique name?
+- **Mozi AR-2 BaseStand** stand which lifts the laptop to a comfortable height for my eyes.

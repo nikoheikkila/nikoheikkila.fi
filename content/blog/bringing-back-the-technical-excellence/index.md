@@ -6,7 +6,7 @@ excerpt: In this post, I present a brief — constantly evolving — guide on gr
 type: post
 categories: [craftspersonship, maintenance, testing, tdd, documentation]
 date: 2021-11-15
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/bringing-back-the-technical-excellence.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/bringing-back-the-technical-excellence.jpg
 ---
 
 > In software, legacy code is a code that runs in production.

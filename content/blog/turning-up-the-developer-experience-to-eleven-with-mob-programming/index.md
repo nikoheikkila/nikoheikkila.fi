@@ -5,7 +5,7 @@ lang: en
 type: post
 categories: [agile, mobprogramming, collaboration, lean]
 date: 2022-08-08
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/turning-up-the-developer-experience-to-eleven-with-mob-programming.webp
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/turning-up-the-developer-experience-to-eleven-with-mob-programming.webp
 excerpt: |
     My team and I have now practised mob programming for half a year. Transitioning from working asynchronously and integrating changes late in the process to working synchronously and integrating continuously has not been without pain. However, in the end, the benefits have far outweighed the detriments.
 ---

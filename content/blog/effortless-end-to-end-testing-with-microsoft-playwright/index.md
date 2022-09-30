@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2022-04-17
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/effortless-end-to-end-testing-with-microsoft-playwright.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/effortless-end-to-end-testing-with-microsoft-playwright.jpg
 title: Effortless End-To-End Testing with Microsoft Playwright
 type: post
 excerpt: How can we improve the developer experience in writing tedious browser-based tests?
@@ -21,9 +21,9 @@ During the maintenance phase, new layers of code are added on top of the existin
 
 Software maintenance and lifecycle management are complicated. As maintainers, we are often tempted to heroically rescue the project by adding all the missing tests or rewriting the whole project from scratch. No budget will ever be given for such a crazy thing. Fortunately, we can follow certain practices:
 
--   adding tests whenever writing new functions, methods, or classes
--   adding tests before refactoring a unit of code
--   studying the business logic and writing end-to-end tests for it
+- adding tests whenever writing new functions, methods, or classes
+- adding tests before refactoring a unit of code
+- studying the business logic and writing end-to-end tests for it
 
 In this post, I explain the latter -- **end-to-end tests** -- which I've found to be the most effective way of refreshing a stale project. What are these tests, you may ask?
 
@@ -31,9 +31,9 @@ In this post, I explain the latter -- **end-to-end tests** -- which I've found t
 
 End-to-end tests (abbreviated as E2E from now on) instead of unit and integration tests cover user-facing flows and business requirements defined for the application since its planning phase started. These include, for example:
 
--   booking a hotel room online
--   adding products to the basket, viewing them, and checking out the purchase on an e-commerce website
--   ...and many more
+- booking a hotel room online
+- adding products to the basket, viewing them, and checking out the purchase on an e-commerce website
+- ...and many more
 
 Experienced developers might now stop and think of _behaviour-driven development_ (BDD), which goes hand-in-hand with E2E. Behaviour flows are often decided when planning a new feature.
 
@@ -82,7 +82,7 @@ Meanwhile, QA struggles to write and maintain an exhaustive test set when not te
 
 Let's put this in the form of a picture.
 
-![Typical tests created by QA and developers.](https://f001.backblazeb2.com/file/nikoheikkila-fi/DevQATests.png)
+![Typical tests created by QA and developers.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/DevQATests.png)
 
 The root cause of flaky E2E tests is naturally failed communication, but sometimes choosing the right tools may also help. For example, the QA boomers (pardon the expression) who have been working in the software business for decades often write E2E tests with **Robot Framework** and **Selenium**.
 
@@ -129,11 +129,11 @@ You can also use any third-party NPM modules in your tests. For example, the [`f
 
 If you choose to use the first-party test runner, you get to configure your tests in a single TypeScript file. The configurable features are documented and well. Some of the most helpful ones are:
 
--   adjusting test timeouts in case of particularly slow web servers
--   specifying multiple projects with separate configurations and running them with `playwright test --project <name>`
--   specifying multiple reporters -- generally, you want console and HTML reporting, but there are more, or you can roll your own
--   allowing flaky tests to be retried multiple times, which is sometimes useful when working with crappy external APIs
--   launching a web server in the background and waiting until an endpoint responds with HTTP 200 code before running tests
+- adjusting test timeouts in case of particularly slow web servers
+- specifying multiple projects with separate configurations and running them with `playwright test --project <name>`
+- specifying multiple reporters -- generally, you want console and HTML reporting, but there are more, or you can roll your own
+- allowing flaky tests to be retried multiple times, which is sometimes useful when working with crappy external APIs
+- launching a web server in the background and waiting until an endpoint responds with HTTP 200 code before running tests
 
 ### Easy Maintenance
 
@@ -218,11 +218,11 @@ Writing tests is never enough if they only run locally. Playwright supports most
 
 Generally, a delivery pipeline has the following steps:
 
--   clone the repository
--   install dependencies
--   build the application with a production-like configuration
--   launch the application in the background
--   run Playwright tests
+- clone the repository
+- install dependencies
+- build the application with a production-like configuration
+- launch the application in the background
+- run Playwright tests
 
 Because remote build systems offer limited visibility to test runs, it's crucial to leverage Playwright's capabilities of recording screenshots, videos, and test traces in case of failures. These should be uploaded as test artefacts and the actual test report, so you may attempt to reproduce the same failure locally.
 
