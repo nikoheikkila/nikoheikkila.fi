@@ -67,7 +67,7 @@ I have always enjoyed recognising the process bottlenecks in my vicinity and try
 
 Luckily, I was born with a strong head and resilience (what in Finland we call *sisu*), so the mental damage has been minimal. However, for others, aggressive approaches might even end up terminating promising careers.
 
-As a mentor, I must always keep in mind [*reciprocity*](https://en.wikipedia.org/wiki/Reciprocity_%28social_psychology%29) from social psychology.
+As a mentor, I must always keep in mind [_reciprocity_](https://en.wikipedia.org/wiki/Reciprocity_%28social_psychology%29) from social psychology.
 
 > "As a social construct, **reciprocity** means that in response to friendly actions, people are frequently much nicer and much more cooperative than predicted by the self-interest model; conversely, in response to hostile actions they are frequently much more nasty and even brutal."
 
@@ -77,9 +77,9 @@ Wonder why that co-worker has been ignoring you or acting offensively? It might 
 
 Sometimes mentees approach with simple questions. Instead of doing their homework and spoon-feeding answers, mentors ask follow-up questions.
 
-- **Where is the documentation located?** Where have you looked? Who have you asked?
-- **How can I make my code cleaner?** Do you see any repeating patterns that could be abstracted to a shared function or library?
-- **Niko is writing crappy code, and it's killing me!** What are **you** going to do about it? How can I help to solve this problem without firing Niko?
+-   **Where is the documentation located?** Where have you looked? Who have you asked?
+-   **How can I make my code cleaner?** Do you see any repeating patterns that could be abstracted to a shared function or library?
+-   **Niko is writing crappy code, and it's killing me!** What are **you** going to do about it? How can I help to solve this problem without firing Niko?
 
 ### Don't Reserve, Delegate
 
@@ -105,7 +105,7 @@ As mentors, we set clear rules on how the team works effectively.
 
 ### Do Together
 
-Finally, the shiniest gem of them all is *co-creation patterns*. It makes me sad to see how many developers like to work things independently, even in the office. Outdated management views further incentivise solo work. Some managers think that people working on many simultaneous tasks is somehow more effective.
+Finally, the shiniest gem of them all is _co-creation patterns_. It makes me sad to see how many developers like to work things independently, even in the office. Outdated management views further incentivise solo work. Some managers think that people working on many simultaneous tasks is somehow more effective.
 
 In truth, we should voraciously swarm to solve problems. We are already doing this early on in the design phase when we co-create with tools like Google Docs, Sketch, and Miro. When it comes to coding, we tend to split tasks as far as possible and let people pick their favourites to work.
 
@@ -123,13 +123,13 @@ Naturally, as human beings, everything we speak of doesn't have to be profession
 
 Finally, here is a non-exhaustive list of traits that matter when developing yourself as a mentor.
 
-- **Knowledge.** What experience and skills do you possess. How extensive is your professional background?
-- **Authority.** Who are you? Why should people listen to you? Do other people know what you have achieved?
-- **Confidence.** How confidently can you express your ideas and solutions?
-- **Charisma.** What kind of body language do you use? How does your voice sound?
-- **Emotional Intelligence.** How easy it is for people to trust you. How well can you empathise with others? How deeply can you collaborate?
-- **Team reputation.** How successful your team and its members are in the eyes of the organisation and client?
-- **Thought leadership.** Are you a recognised blogger or speaker? Are people lining up to work with you?
+-   **Knowledge.** What experience and skills do you possess. How extensive is your professional background?
+-   **Authority.** Who are you? Why should people listen to you? Do other people know what you have achieved?
+-   **Confidence.** How confidently can you express your ideas and solutions?
+-   **Charisma.** What kind of body language do you use? How does your voice sound?
+-   **Emotional Intelligence.** How easy it is for people to trust you. How well can you empathise with others? How deeply can you collaborate?
+-   **Team reputation.** How successful your team and its members are in the eyes of the organisation and client?
+-   **Thought leadership.** Are you a recognised blogger or speaker? Are people lining up to work with you?
 
 Keep calm and carry on **mentoring**!
 

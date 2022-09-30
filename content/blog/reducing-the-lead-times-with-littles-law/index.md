@@ -37,13 +37,13 @@ Total WIP should be smaller than the number of people in the team. If possible, 
 
 When working under a strict WIP limit, you should leverage the daily stand-up with your team for prioritizing and selecting the tasks for today. If the WIP limit is reached, nobody is allowed to start new work. Instead, everybody should help finish the ongoing work – be it developing, reviewing, testing, or deploying a new feature.
 
-Teams wanting to reduce WIP should focus as many people as possible on as few tasks as possible. Some people think this only applies to Kanban, but Scrum too has a specific technique for this: [*swarming*](https://www.scruminc.com/swarming-instantly-boost-scrum-team-productivity/).
+Teams wanting to reduce WIP should focus as many people as possible on as few tasks as possible. Some people think this only applies to Kanban, but Scrum too has a specific technique for this: [_swarming_](https://www.scruminc.com/swarming-instantly-boost-scrum-team-productivity/).
 
 Pair/mob programming is also a natural and effective enemy towards high WIP. Instead of distributing one task for each developer, make them solve the problem together. Pairing and mobbing are not only for programming, as you can also practice design, testing, monitoring, leadership, and many other tasks together.
 
 Essentially, when people pile on a single task, they can design, develop, test, and deliver it more cost-efficiently. Mobbing has its limits, though, and we should find balance through careful studying. Too many people working on a single task invokes [the law of diminishing returns](https://www.investopedia.com/terms/l/lawofdiminishingmarginalreturn.asp) and eventually hurts the performance.
 
-Additionally, to make the mobbing work, all teams should be cross-functional, consisting of designers, developers, testers, and deployers with a well-balanced skill set. These teams deliver [*vertical slices*](https://en.wikipedia.org/wiki/Vertical_slice).
+Additionally, to make the mobbing work, all teams should be cross-functional, consisting of designers, developers, testers, and deployers with a well-balanced skill set. These teams deliver [_vertical slices_](https://en.wikipedia.org/wiki/Vertical_slice).
 
 Note that the latter two roles don't often require separate people because developers can test and deploy the changes themselves. In case you have an independent QA team, make sure to involve them early on in the process, tear down the walls, and enable deep collaboration.
 
@@ -71,11 +71,11 @@ Alternatively, we apply the best development principles while developing throw-a
 
 We might deliver features with low or negative user impact. We should carefully observe and respond to UX metrics and customer feedback.
 
-We adopt trendy technologies and tools, whereas the tools we already know how to use would suffice (see [*Marchitecture*](https://en.wikipedia.org/wiki/Marchitecture)).
+We adopt trendy technologies and tools, whereas the tools we already know how to use would suffice (see [_Marchitecture_](https://en.wikipedia.org/wiki/Marchitecture)).
 
 We chase 100% test coverage for our unit, integration, and acceptance test suites. Still, we ship design defects that are difficult to detect and recover from in case of disasters. Customer finding out a bug in production before your team does is a bad, bad thing.
 
-Our product owners maintain huge backlogs with more user stories than needed for the next few sprints. [*YAGNI*](https://www.martinfowler.com/bliki/Yagni.html) rule is the single best defence shielding us from this.
+Our product owners maintain huge backlogs with more user stories than needed for the next few sprints. [_YAGNI_](https://www.martinfowler.com/bliki/Yagni.html) rule is the single best defence shielding us from this.
 
 ### 3. Waiting, Delays, and Handoffs
 
