@@ -6,7 +6,7 @@ excerpt: Mentoring is sometimes seen as a practice reserved for experienced prof
 type: post
 categories: [agile, mentorship, career, softskills]
 date: 2021-04-24
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/you-can-t-grow-yourself-unless-you-grow-others.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/you-can-t-grow-yourself-unless-you-grow-others.jpg
 ---
 
 During our careers, almost everyone has regular one-on-one meetings, sometimes referred to as performance reviews. There we take time to go through our past, present, and future in the context of our jobs. In Futurice, these are called [**MyRetros**](https://github.com/futurice/myRetro-template/blob/master/MyRetro.md), where my supervisor and I specifically look back on the last six months, the current state, and possible future endeavours.

@@ -6,7 +6,7 @@ excerpt: Embrace the known unknowns
 type: post
 categories: [agile, estimating, project management, planning]
 date: 2022-02-12
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/uncertainty-driven-project-development.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/uncertainty-driven-project-development.jpg
 ---
 
 In the modern world struck by [volatility, uncertainty, complexity, and ambiguity][vuca] we are still pushed to estimate our work accurately. Some say estimating is stressful and counter-productive. Some say it's essential for tracking the team's progress. There is an alternative parallel universe way of working, forcing you to refine and split your work to decrease the feedback loops.

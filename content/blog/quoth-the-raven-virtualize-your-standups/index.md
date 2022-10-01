@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-03-21
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/quoth-the-raven-virtualize-your-standups.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/quoth-the-raven-virtualize-your-standups.jpg
 title: Quoth the Raven, Virtualize Your Stand-Ups
 type: post
 excerpt: How asynchronous communication drives success in the time of Coronavirus

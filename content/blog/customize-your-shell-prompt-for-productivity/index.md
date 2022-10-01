@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-08-06
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/customize-your-shell-prompt-for-productivity.png
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/customize-your-shell-prompt-for-productivity.png
 title: Customizing Your Shell Prompt for Productivity
 type: post
 excerpt: To developers, command line is a natural environment for daily work. It makes sense then to customize it to be as helpful as possible.
@@ -49,7 +49,7 @@ This will load the Starship initialization code when you open a new shell sessio
 
 Next, create a configuration file at `~/.config/starship.toml`. Don't worry if you're not familiar with TOML syntax, it's very human-readable. Finally, start hacking with the [documented configuration parameters][conf] and you might end up with something like this.
 
-![Starship Shell](https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/starship.png)
+![Starship Shell](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/starship.png)
 
 ## Conclusion
 

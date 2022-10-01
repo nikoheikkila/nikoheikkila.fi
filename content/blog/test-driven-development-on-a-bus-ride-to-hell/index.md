@@ -5,7 +5,7 @@ lang: en
 type: post
 categories: [tdd, engineering, agile, movies]
 date: 2022-09-17
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/test-driven-development-on-a-bus-ride-to-hell.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/test-driven-development-on-a-bus-ride-to-hell.jpg
 excerpt: |
     Want to learn TDD while saving innocent civilians from dying?
     Hop on board the bus!

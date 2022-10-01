@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2022-09-18
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/things-i-don-t-know.png
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/things-i-don-t-know.png
 title: The Definitive List of Things I Don't Know
 type: post
 excerpt: The IT industry has serious problem and we as professionals are responsible for fixing it by admitting the world that we don't need to know everything.

@@ -6,7 +6,7 @@ excerpt: A better experience for publishing Python packages.
 type: post
 categories: [python, opensource, tools]
 date: 2022-01-30
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/publicator.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/publicator.jpg
 ---
 
 Lately, I've been investing more time in _Python_ projects. However, having worked with _Node.js_ and _TypeScript_ for the better part of the last few years, I instantly began to miss the comforts provided by the Node ecosystem, namely the fantastic [**Yarn**](https://yarnpkg.com/) package manager.

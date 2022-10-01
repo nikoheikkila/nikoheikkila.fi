@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-03-27
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/rapid-prototyping-with-table-driven-testing.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/rapid-prototyping-with-table-driven-testing.jpg
 title: Rapid Prototyping with Table-Driven Testing
 type: post
 excerpt: Lazy developers ain't got time for installing test libraries

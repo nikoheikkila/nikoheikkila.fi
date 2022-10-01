@@ -4,7 +4,7 @@ title: Make Rebellion Great Again
 author: Niko Heikkilä
 type: post
 date: 2017-02-02
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/make-rebellion-great-again.png
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/make-rebellion-great-again.png
 excerpt: Declaration of Rebellion addressed to Donald Trump -- does this dystopia make you feel cold inside?
 categories:
     - Politics

@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2021-10-24
 title: Uses
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/keychron.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/keychron.jpg
 type: page
 excerpt: These are the tools I use to survive my hectic days.
 categories:
@@ -39,7 +39,7 @@ Both the keyboard and the mouse support connecting up to three devices at most v
 
 ### Code Editor
 
-![Visual Studio Code with Palenight color theme and Operator Mono font](https://f001.backblazeb2.com/file/nikoheikkila-fi/vscode.png)
+![Visual Studio Code with Palenight color theme and Operator Mono font](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/vscode.png)
 
 My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing and tweaking settings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
 
@@ -50,7 +50,7 @@ In the screenshot above I'm using a theme called [Palenight][theme] and a font c
 
 ### Terminal
 
-![Microsoft Terminal for Windows](https://f001.backblazeb2.com/file/nikoheikkila-fi/wsl.png)
+![Microsoft Terminal for Windows](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/wsl.png)
 
 For the command line, I've settled with [**iTerm 2**][iterm] and [**Windows Terminal**][msterminal]. Sometimes I also use the builtin terminal of VS Code for small tasks.
 
@@ -60,7 +60,6 @@ While in the command line I use [`tmux`][tmux] for persisting window and buffer 
 
 Since Microsoft released their [Remote Development Pack][remotedevelopment] for VS Code which lets me access the files over SSH, WSL, or within a Docker container, I've largely given up on using Vim. However, on those rare occasions I need to use it I leverage the [Doom NVIM][doom] configuration preset.
 
-[hyper]: https://hyper.is
 [iterm]: https://iterm2.com/
 [msterminal]: https://github.com/Microsoft/Terminal
 [fish]: https://fishshell.com/

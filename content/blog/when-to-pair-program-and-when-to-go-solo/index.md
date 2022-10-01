@@ -6,7 +6,7 @@ excerpt: Despite all the praise pair programming gets, it is not a silver bullet
 type: post
 categories: [pairprogramming, mobbing, collaboration, books]
 date: 2021-05-23
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/when-to-pair-program-and-when-to-go-solo.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/when-to-pair-program-and-when-to-go-solo.jpg
 ---
 
 I recently finished reading [*Practical Remote Pair Programming* by **Adrian Bolboacă**](https://www.goodreads.com/book/show/57518328-practical-remote-pair-programming). In the description, the author promises to teach you the structure, organisation, communication, and tools for making (remote) pair programming successful in your (distributed) team.

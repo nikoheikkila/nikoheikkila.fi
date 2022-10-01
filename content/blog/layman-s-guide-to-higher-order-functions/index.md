@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2022-09-27
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/layman-s-guide-to-higher-order-functions.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/layman-s-guide-to-higher-order-functions.jpg
 title: Layman's Guide to Higher-Order Functions
 type: post
 excerpt: An introduction to higher-order functions I wish I've had in school.

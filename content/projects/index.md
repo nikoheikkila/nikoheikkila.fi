@@ -5,7 +5,7 @@ date: 2020-04-22
 type: page
 title: Open-Source
 excerpt: My efforts as the self-proclaimed Open-Source Champion.
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/projects.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/projects.jpg
 ---
 
 On this page, I'm listing the open-source projects I've coded on my spare time. Contributions and issues are welcome for every project. Check the respective repositories for more information and contribution guidelines. 🙏🏽

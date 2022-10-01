@@ -3,7 +3,7 @@ lang: en
 title: Squashing Software Defects with Eisenhower Matrix
 author: Niko Heikkilä
 type: post
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/squashing-software-defects-with-eisenhower-matrix.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/squashing-software-defects-with-eisenhower-matrix.jpg
 date: 2017-12-05
 excerpt: If only Trump would come up with something as genious.
 categories:

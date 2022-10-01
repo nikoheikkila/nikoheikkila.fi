@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-08-02
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/why-i-m-quitting-twitter.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/why-i-m-quitting-twitter.jpg
 title: Why I'm Quitting Twitter
 type: post
 excerpt: Recently I ended a long relationship with Twitter, and I'm relieved.

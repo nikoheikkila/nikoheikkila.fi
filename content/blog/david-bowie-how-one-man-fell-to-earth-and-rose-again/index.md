@@ -4,7 +4,7 @@ title: How One Man Fell to Earth and Rose Again
 author: Niko Heikkilä
 type: post
 date: 2016-01-14
-hero: https://f001.backblazeb2.com/file/nikoheikkila-fi/Blog/david-bowie-how-one-man-fell-to-earth-and-rose-again.jpg
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/david-bowie-how-one-man-fell-to-earth-and-rose-again.jpg
 excerpt: Have a safe journey, Ziggy. Rest in peace, Thin White Duke. Farewell, David Bowie.
 categories:
     - Music
