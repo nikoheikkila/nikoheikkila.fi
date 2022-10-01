@@ -14,16 +14,15 @@ const Tag: React.FunctionComponent<Props> = ({
     className,
     prefix = "#",
 }) => {
-    const innerText = slugify(title, { decamelize: false, separator: " " });
+    const text = slugify(title, { decamelize: false, separator: "" });
 
     const [style, setStyle] = useState<CSSProperties>({
         display: "inline-block",
-        fontSize: "0.6em",
-        fontWeight: 400,
+        padding: "0 10px",
+        margin: 4,
+        borderRadius: 50,
         backgroundColor: "transparent",
         color: "inherit",
-        padding: "0px 4px",
-        margin: "0 6px 0 0",
     });
 
     useEffect(() => {
@@ -39,7 +38,7 @@ const Tag: React.FunctionComponent<Props> = ({
 
     return (
         <span className={className} style={style}>
-            {prefix + innerText}
+            {prefix + text}
         </span>
     );
 };

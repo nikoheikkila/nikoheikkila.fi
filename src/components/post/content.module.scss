@@ -8,11 +8,14 @@
         margin: 30px auto;
     }
 
-    ol,
-    ul {
-        padding-inline-start: 30px;
-        li {
-            line-height: 2.5rem;
+    ol > li,
+    ul > li {
+        line-height: 2.5rem;
+        list-style-type: none;
+
+        &:before {
+            content: "–";
+            margin-right: 0.5rem;
         }
     }
 

@@ -2,10 +2,13 @@ $filter: invert(100%) hue-rotate(180deg);
 
 $blue: #539bf5;
 $red: #fd3300;
-$orange: #f9a515;
+$teal: rgb(157, 255, 236);
+$purple: rgb(108, 67, 246);
 
-$darkBg: #1e2228;
-$darkFg: #adadad;
+$darkBg: rgb(27, 39, 51);
+$darkFg: rgb(236, 233, 230);
+$darkSecondaryFg: rgb(157, 157, 157);
+$gray: rgb(73, 73, 73);
 $darkHl: $blue;
 
 $inlineCodeFg: #bd10e0;

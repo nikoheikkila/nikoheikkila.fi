@@ -1,26 +1,21 @@
 @import "_variables";
-@import "_fonts";
 @import "_gatsby";
 
 body {
-    @include bodyFont();
     margin: 0;
     font-kerning: normal;
     word-wrap: break-word;
     font-feature-settings: "kern", "liga", "clig", "calt";
-    line-height: 1.75rem;
+    line-height: 40px;
 
     background-color: $darkBg;
     color: $darkFg;
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    @include headingFont();
+    font-weight: 400;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
 }
 
 h1 {
@@ -41,6 +36,17 @@ h4 {
     font-size: 1.25rem;
 }
 
+ol,
+ul {
+    padding-inline-start: 5px;
+}
+
+li,
+p {
+    font-size: 1.2rem;
+    line-height: 1.75rem;
+}
+
 a {
     color: inherit;
     font-weight: 400;
@@ -48,7 +54,17 @@ a {
 }
 
 blockquote {
-    text-align: center;
+    border-left: 2px solid $gray;
+
+    p {
+        margin: 0;
+    }
+}
+
+hr {
+    border: 0;
+    border-top: 3px solid $purple;
+    margin: 2rem 0;
 }
 
 /**

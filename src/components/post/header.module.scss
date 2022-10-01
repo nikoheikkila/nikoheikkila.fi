@@ -1,7 +1,4 @@
-@import "src/styles/_fonts.scss";
-
 .header {
-    @include headingFont();
     text-align: center;
     margin-bottom: 50px;
 }
