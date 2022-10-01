@@ -5,7 +5,7 @@ import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import ExternalLink from '../elements';
+import ExternalLink from "../elements";
 import * as styles from "./content.module.scss";
 
 import { Link } from "gatsby";
@@ -22,11 +22,33 @@ const Content: React.FC<ContentProps> = ({ content }) => (
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{
+                img: ({ src, alt, ...props }) => {
+                    if (!src) return <img {...props} />;
+                    if (!alt || alt.length === 0)
+                        console.warn(
+                            `Alternative text not specified for image with URL: ${src}`
+                        );
+
+                    return (
+                        <ExternalLink to={src}>
+                            <img src={src} {...props} />
+                        </ExternalLink>
+                    );
+                },
                 a({ node, href, children, className, ...props }) {
                     if (!href) return <>{children}</>;
-                    if (isInternalLink(href)) return <Link role="navigation" to={href}>{children}</Link>
+                    if (isInternalLink(href))
+                        return (
+                            <Link role="navigation" to={href}>
+                                {children}
+                            </Link>
+                        );
 
-                    return <ExternalLink to={href} {...props}>{children}</ExternalLink>
+                    return (
+                        <ExternalLink to={href} {...props}>
+                            {children}
+                        </ExternalLink>
+                    );
                 },
 
                 code({ node, inline, className, children, ...props }) {
@@ -45,7 +67,7 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                             </CodeBlock>
                         );
 
-                    return <>{children}</>;
+                    return <code {...props}>{children}</code>;
                 },
             }}
         />

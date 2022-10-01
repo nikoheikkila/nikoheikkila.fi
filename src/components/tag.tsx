@@ -20,8 +20,8 @@ const Tag: React.FunctionComponent<Props> = ({
         display: "inline-block",
         fontSize: "0.6em",
         fontWeight: 400,
-        backgroundColor: 'transparent',
-        color: 'inherit',
+        backgroundColor: "transparent",
+        color: "inherit",
         padding: "0px 4px",
         margin: "0 6px 0 0",
     });
@@ -34,8 +34,8 @@ const Tag: React.FunctionComponent<Props> = ({
             ...style,
             backgroundColor,
             color,
-        }))
-    }, [])
+        }));
+    }, []);
 
     return (
         <span className={className} style={style}>
