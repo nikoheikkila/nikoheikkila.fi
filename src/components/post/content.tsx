@@ -30,7 +30,7 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 
                     return (
                         <BlogLink href={src}>
-                            <img src={src} {...props} />
+                            <img src={src} alt={alt || ""} loading="lazy" />
                         </BlogLink>
                     );
                 },
