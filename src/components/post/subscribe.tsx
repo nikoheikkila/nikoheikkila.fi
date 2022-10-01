@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GatsbyConfig } from "gatsby";
 import { Maybe } from "purify-ts";
 import React from "react";
+import { BlogLink } from "../elements";
 import * as styles from "./subscribe.module.scss";
 
 interface SubscribeProps {
@@ -31,7 +32,8 @@ const FeedLink: React.FC<{ url: string }> = ({ url }) => (
     <section className={styles.subscribe} data-test-id="rss-subscribe">
         <p>
             <FontAwesomeIcon icon={faRss} /> Enjoyed what you read? Why not keep
-            yourself updated and grab the <a href={url}>RSS feed</a>.
+            yourself updated and grab the{" "}
+            <BlogLink href={url}>RSS feed</BlogLink>.
         </p>
     </section>
 );
