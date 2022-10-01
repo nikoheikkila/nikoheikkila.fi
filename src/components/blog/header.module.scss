@@ -24,7 +24,8 @@
     justify-self: right;
     text-align: center;
 
-    & > h1, & > p {
+    & > h1,
+    & > p {
         margin: 5px 0;
     }
 
@@ -37,7 +38,7 @@
     margin: 50px auto 0 auto;
     max-width: 60vw;
     text-align: center;
-    line-height: 2.0rem;
+    line-height: 2rem;
 
     @include for-phone-only {
         max-width: 80vw;

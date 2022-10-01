@@ -5,10 +5,9 @@ import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import ExternalLink from "../elements";
+import { BlogLink } from "../elements";
 import * as styles from "./content.module.scss";
 
-import { Link } from "gatsby";
 import "katex/dist/katex.min.css";
 
 interface ContentProps {
@@ -30,27 +29,14 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                         );
 
                     return (
-                        <ExternalLink to={src}>
+                        <BlogLink href={src}>
                             <img src={src} {...props} />
-                        </ExternalLink>
+                        </BlogLink>
                     );
                 },
-                a({ node, href, children, className, ...props }) {
-                    if (!href) return <>{children}</>;
-                    if (isInternalLink(href))
-                        return (
-                            <Link role="navigation" to={href}>
-                                {children}
-                            </Link>
-                        );
-
-                    return (
-                        <ExternalLink to={href} {...props}>
-                            {children}
-                        </ExternalLink>
-                    );
+                a({ children, ...props }) {
+                    return <BlogLink {...props}>{children}</BlogLink>;
                 },
-
                 code({ node, inline, className, children, ...props }) {
                     if (inline)
                         return (
@@ -73,8 +59,6 @@ const Content: React.FC<ContentProps> = ({ content }) => (
         />
     </article>
 );
-
-const isInternalLink = (href: string): boolean => /^\/(?!\/)/.test(href);
 
 interface CodeBlockProps {
     language: string;

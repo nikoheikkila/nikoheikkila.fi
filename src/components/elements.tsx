@@ -1,14 +1,30 @@
+import { Link } from "gatsby";
 import React, { ReactNode } from "react";
 
-interface Props {
-    children: ReactNode;
-    to: string;
+interface BlogLinkProps {
+    href?: string;
+    children: ReactNode | ReactNode[];
 }
 
-const ExternalLink: React.FunctionComponent<Props> = ({ to, children }) => (
-    <a href={to} target="_blank" rel="noopener noreferrer">
-        {children}
-    </a>
-);
+export const BlogLink: React.FC<BlogLinkProps> = ({
+    href,
+    children,
+    ...props
+}) => {
+    if (!href) return <>{children}</>;
 
-export default ExternalLink;
+    if (isInternalLink(href))
+        return (
+            <Link to={href} {...props}>
+                {children}
+            </Link>
+        );
+
+    return (
+        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+            {children}
+        </a>
+    );
+};
+
+const isInternalLink = (href: string): boolean => /^\/(?!\/)/.test(href);

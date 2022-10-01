@@ -2,7 +2,7 @@
 
 .header {
     margin-top: 80px;
-    font-size: 2.0em;
+    font-size: 2em;
     text-align: center;
 }
 
@@ -46,7 +46,9 @@
         color: $blue;
     }
 
-    &:active, &:focus, &:focus-visible {
+    &:active,
+    &:focus,
+    &:focus-visible {
         border-color: $orange;
         color: $orange;
     }

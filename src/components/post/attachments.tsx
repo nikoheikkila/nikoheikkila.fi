@@ -2,7 +2,7 @@ import { faEdit, faHistory, faUndo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "gatsby-link";
 import React, { FunctionComponent } from "react";
-import ExternalLink from "../../components/elements";
+import { BlogLink } from "../../components/elements";
 import * as styles from "./attachments.module.scss";
 
 interface AttachmentProps {
@@ -23,14 +23,16 @@ const PostAttachments: FunctionComponent<AttachmentProps> = ({
                 <Link rel="back" to={previous ?? "/"}>
                     <FontAwesomeIcon icon={faUndo} /> Back to posts
                 </Link>
-                <ExternalLink to={urls.edit}>
+
+                <BlogLink href={urls.edit}>
                     <FontAwesomeIcon icon={faEdit} />
                     Edit Page
-                </ExternalLink>
-                <ExternalLink to={urls.history}>
+                </BlogLink>
+
+                <BlogLink href={urls.history}>
                     <FontAwesomeIcon icon={faHistory} />
                     View History
-                </ExternalLink>
+                </BlogLink>
             </p>
         </section>
     );

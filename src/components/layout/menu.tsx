@@ -1,8 +1,7 @@
-import { Link } from "gatsby";
 import React, { FunctionComponent, useState } from "react";
 import { stack as BurgerMenu } from "react-burger-menu";
 import { getStaticPages } from "../../graphql/pages";
-import ExternalLink from "../elements";
+import { BlogLink } from "../elements";
 
 import "../../styles/menu.scss";
 
@@ -26,20 +25,14 @@ interface SidebarLinkProps {
     readonly title: string;
 }
 
-const SidebarLink: FunctionComponent<SidebarLinkProps> = ({ slug, title }) => {
-    if (slug.startsWith("/")) {
-        return <Link to={slug}>{title}</Link>;
-    }
-
-    return <ExternalLink to={slug}>{title}</ExternalLink>;
-};
-
 const Menu: FunctionComponent<MenuProps> = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
     const staticPages = getStaticPages();
     const allPages = [...links, ...staticPages].map(({ slug, title }) => (
-        <SidebarLink key={slug} slug={slug ?? ""} title={title ?? ""} />
+        <BlogLink key={slug} href={slug || ""}>
+            {title}
+        </BlogLink>
     ));
 
     return (
