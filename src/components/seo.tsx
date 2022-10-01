@@ -155,7 +155,7 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
                     <meta name="article:author" content={author} />
                     <meta name="article:section" content="Technology" />
                     {categories.map((category) => (
-                        <meta name="article:tag" content={category} />
+                        <meta key={category} name="article:tag" content={category} />
                     ))}
                 </>
             )}

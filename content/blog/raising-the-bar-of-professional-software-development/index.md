@@ -33,8 +33,6 @@ For professionals, it is not enough to glue together clumps of spaghetti code an
 
 For professionals, it is not enough to follow the orders given by management and stakeholders. The project or product you work on is your ship too. Without travelling too far to the myriad misconceptions of the "Corporate Agile with a Big A", we professionals understand that new information uncovered during the development process may shift the path forward radically. So, we must be prepared to trash our plans yet always keep adding value.
 
-<!--alex ignore-->
-
 How do we achieve that? Through the [**Evolutionary Design**](https://mozaicworks.com/blog/what-is-evolutionary-design) principle. It guides us first to build a primitive whole and grow its design organically utilizing automated tests (surprise!), test-driven development, domain-driven design, design patterns, and continuous delivery for stable and resilient value production.
 
 ### Not only individuals and interactions but also a community of professionals

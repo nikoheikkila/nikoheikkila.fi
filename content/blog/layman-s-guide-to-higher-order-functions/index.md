@@ -143,4 +143,4 @@ I wrote this post because I had very much trouble understanding different functi
 
 ---
 
-<small>Cover image by **Ilija Boshkov** on _Unsplash_.</small>
+Cover image by **Ilija Boshkov** on _Unsplash_.

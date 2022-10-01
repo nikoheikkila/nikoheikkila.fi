@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
-import { serialize, rssQuery } from "./src/utils/rss";
+import { rssQuery, serialize } from "./src/utils/rss";
 
 const environment = process.env.NODE_ENV;
 const isProduction = environment === "production";
@@ -58,33 +58,13 @@ const config: GatsbyConfig = {
                         },
                     },
                     {
-                        resolve: `gatsby-remark-responsive-iframe`,
-                        options: {
-                            wrapperStyle: `margin-bottom: 1.0725rem`,
-                        },
-                    },
-                    {
                         resolve: `gatsby-remark-autolink-headers`,
                         options: {
                             icon: false,
                         },
                     },
-                    {
-                        resolve: `gatsby-remark-prismjs`,
-                        options: {
-                            aliases: {
-                                sh: "bash",
-                            },
-                            prompt: {
-                                user: "root",
-                                host: "localhost",
-                                global: false,
-                            },
-                        },
-                    },
                     `gatsby-remark-copy-linked-files`,
                     `gatsby-remark-smartypants`,
-                    `gatsby-remark-katex`,
                 ],
             },
         },

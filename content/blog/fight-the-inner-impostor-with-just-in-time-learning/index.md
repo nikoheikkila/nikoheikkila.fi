@@ -36,4 +36,4 @@ Many years ago, I spent time reading arbitrary online tutorials without actually
 
 ---
 
-<small>Photo by Road Trip with Raj on Unsplash.</small>
+Photo by Road Trip with Raj on Unsplash.

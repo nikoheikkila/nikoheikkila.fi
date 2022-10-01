@@ -38,4 +38,4 @@ _P.S. This is not as dramatic a decision as it reads. I'm only channeling my inn
 
 ![Don Draper Meditating at Mad Men's Final Episode](https://media.giphy.com/media/3oEdv9duTLhWoNhcGs/giphy.gif)
 
-<small>Cover photo by Jason Blackeye on Unsplash</small>
+Cover photo by Jason Blackeye on Unsplash

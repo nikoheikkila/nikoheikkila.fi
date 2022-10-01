@@ -236,7 +236,7 @@ Today when working with frontend applications, I don't write too many fine-grain
 
 Have you used Playwright for testing your application? Let me know in the comments how it went and if you need guidance with it.
 
-<small><span>Photo by <a href="https://unsplash.com/@dtravisphd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">David Travis</a> on <a href="https://unsplash.com/s/photos/testing?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></small>
+Photo by David Travis on Unsplash
 
 [conway]: https://en.wikipedia.org/wiki/Conway%27s_law
 [playwright]: https://playwright.dev/

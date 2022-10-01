@@ -186,4 +186,4 @@ Given our internal cultural success and clients growing interested in our effort
 
 Go ahead, open some of your projects into the public where suitable. The risk is worth taking.
 
-<small>Photo by Markus Winkler on Unsplash.</small>
+Photo by Markus Winkler on Unsplash.

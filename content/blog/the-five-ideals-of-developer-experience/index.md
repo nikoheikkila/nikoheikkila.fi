@@ -22,17 +22,14 @@ I will omit the middle step eliminating the anti-patterns and embracing the reme
 
 ---
 
-**The Five Ideals**
+# The Five Ideals
 
-<!--alex ignore-->
-
--   [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
--   [2. The Joy Must Flow](#2-the-joy-must-flow)
--   [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
--   [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
--   [5. Focus on the Core](#5-focus-on-the-core)
-
-<!--alex ignore-->
+-   [The Five Ideals](#the-five-ideals)
+    -   [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
+    -   [2. The Joy Must Flow](#2-the-joy-must-flow)
+    -   [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
+    -   [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
+    -   [5. Focus on the Core](#5-focus-on-the-core)
 
 ## 1. Keep It Simple, Keep It Local
 
@@ -130,6 +127,6 @@ Time spent on working with repeating office tasks and systems invisible to custo
 
 ---
 
-<small>Quoted paragraphs were taken from the [InfoQ](https://www.infoq.com/articles/unicorn-project/) interview with **Gene Kim** in November 2019.</small>
+Quoted paragraphs were taken from the [InfoQ](https://www.infoq.com/articles/unicorn-project/) interview with **Gene Kim** in November 2019.
 
-<small>Photo by Marco Secchi on Unsplash.</small>
+Photo by Marco Secchi on Unsplash.

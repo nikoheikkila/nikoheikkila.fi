@@ -34,8 +34,6 @@ The whole hiring process was a breeze with all the interviews being held remotel
 
 ## Life as a Tammerforcean
 
-<iframe width="720" height="360" src="https://www.youtube-nocookie.com/embed/tMTa5GALU6E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 Having said goodbye to **Paytrail** in Jyväskylä and getting ample time relocating to Tampere, I cycled to the office located in the heart of the town next to Tammerkoski rapids.
 
 I was greeted by my supervisor and people from the Human Care team (people are not *resources* here), grabbed coffee, and received the laptop and phone. I was also assigned a _FutuBuddy_, whose role was to tour me through the office and introduce me the ways of working during the first week.
@@ -60,4 +58,4 @@ To answer the question above, I feel fine. Yeah. No problems.
 
 ---
 
-<small><em>Cover image by Tiia Monto under CC BY-SA 3.0 license.</em></small>
+Cover image by Tiia Monto under CC BY-SA 3.0 license.

@@ -169,7 +169,7 @@ When studying a codebase for the first time, I often reach for three different t
 2. What features does it have, and how do I use them?
 3. What past decisions have affected the design of this application and the way it works today?
 
-### Read Me, Read Me!
+### Read Me, Read Me
 
 We should ensure we have a **README** file in the project root for the first task. This is the front page of your documentation in modern version control systems, which people consult first. As a bare minimum, it should contain the following information.
 
@@ -233,4 +233,4 @@ Keep calm and carry on!
 
 ---
 
-<small>Photo by <a href="https://unsplash.com/@carlevarino">Cesar Carlevarino Aragon</a> on Unsplash</small>
+Photo by Cesar Carlevarino Aragon on Unsplash.

@@ -90,4 +90,4 @@ Keeping the code easy to change allows us to refactor it to better serve our pur
 
 ---
 
-<small>Photo by Alvaro Reyes on Unsplash.</small>
+Photo by Alvaro Reyes on Unsplash.

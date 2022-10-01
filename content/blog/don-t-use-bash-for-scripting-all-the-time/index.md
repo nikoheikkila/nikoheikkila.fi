@@ -83,10 +83,6 @@ Speaking of debugging your code, it's possible with Bash although I've never fou
 
 Let's imagine you have written a fairly complex Bash script spanning over tens or – in the worst case – hundreds of lines. It now needs to be refactored for one reason or another. This is an excellent position to drop the Bash!
 
-<video autoplay loop>
-  <source src="https://media.giphy.com/media/77XwMyXIgUuVW/giphy.mp4" type="video/mp4">
-</video>
-
 First, make a note of what is the main language of your codebase. If it's PHP, Python, or Javascript you are in luck. I'm not too familiar with Go or Rust but I've seen and used some great command-line tools written with them so I shall say you're in luck with those as well.
 
 Next, you likely have a _shebang_ line on top of your script which reads something like `#!/bin/bash`. Change this to eg. `#!/usr/bin/env node` replacing `node` with your desired code interpreter.
@@ -114,8 +110,6 @@ One concrete upside is that I'm able to use logic from several 3rd party modules
 For this topic, I like to cite **Sindre Sorhus** who argues strongly for using [small and focused modules](https://blog.sindresorhus.com/small-focused-modules-9238d977a92a) instead of reinventing the wheel:
 
 > Some years ago. Before Node.js and npm. I had a large database of code snippets I used to copy-paste into projects when I needed it. They were small utilities that sometimes came in handy. npm is now my snippet database. Why copy-paste when you can `require` it and with the benefit of having a clear intent. Fixing a bug in a snippet means updating one module instead of manually fixing all the instances where the snippet is used.
-
-<!--alex ignore-->
 
 > **I want programming to be easier. Making it easier to build durable systems.** And the way forward, in my point of view, is definitely not reinventing everything and everyone making the same stupid mistakes over and over.
 

@@ -68,8 +68,6 @@ Pairing and mobbing (style of pairing with three or more people) can also happen
 
 In the book, there is a fascinating anecdote about the social aspect of pairing:
 
-<!--alex ignore he-she her-him-->
-
 > "During a community event that I was facilitating, while the programmers were pairing, **a CEO appeared**. He heard about this event and he was curious what was going on. Nobody had any idea about his role, and he joined, paired, and discussed just like any other attendee. Only after the event did I find out that he wasn't really a programmer."
 
 Pairing is not only for developers. You can pair with designers, testers, product owners, managers and even your CEO under some circumstances. What value does your solution have if you can't explain it to your CEO, anyway?

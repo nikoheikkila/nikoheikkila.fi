@@ -1,5 +1,5 @@
 import slugify from "@sindresorhus/slugify";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 
 import { foregroundColor, randomColor } from "../utils/colors";
 
@@ -15,18 +15,27 @@ const Tag: React.FunctionComponent<Props> = ({
     prefix = "#",
 }) => {
     const innerText = slugify(title, { decamelize: false, separator: " " });
-    const backgroundColor = randomColor();
-    const color = foregroundColor(backgroundColor);
 
-    const style: CSSProperties = {
+    const [style, setStyle] = useState<CSSProperties>({
         display: "inline-block",
         fontSize: "0.6em",
         fontWeight: 400,
-        backgroundColor,
-        color,
+        backgroundColor: 'transparent',
+        color: 'inherit',
         padding: "0px 4px",
         margin: "0 6px 0 0",
-    };
+    });
+
+    useEffect(() => {
+        const backgroundColor = randomColor();
+        const color = foregroundColor(backgroundColor);
+
+        setStyle((style) => ({
+            ...style,
+            backgroundColor,
+            color,
+        }))
+    }, [])
 
     return (
         <span className={className} style={style}>

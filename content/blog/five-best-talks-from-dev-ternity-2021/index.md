@@ -72,21 +72,15 @@ In the long run, your product is most likely doomed without a single generalist 
 
 ## Robert Martin – The Craftsman's Oath
 
-<!--alex ignore aunt-uncle -->
-
 I always enjoy watching Uncle Bob share wisdom, and their talk about developer responsibilities was no exception.
 
 If we date the genesis of software to the year 1936 when **Alan Turing** published their famous paper _On Computable Numbers, with an Application to the Entscheidungsproblem_ and draw the line to the present day, we notice that the number of _computers_ and _programmers_ has grown incomprehensible. Software has become an everyday commodity that should be easier than ever to produce with speed and safety.
-
-<!--alex ignore gals-man -->
 
 Still, today we struggle to produce quality software mainly because we are eager to ignore disciplined software engineering processes. Here, the term "we" refers to a horde of energetic and undisciplined young men who started occupying programmer positions during the 1970s, desperately needing management. One can only wonder what the software development world would be like if women still occupied most developer positions.
 
 Harmful software can take our job, money, and even life in the worst case without strict adherence to quality. As of today, there is no way to live without software; a significant disaster is waiting to happen. Fortunately, we can still mitigate the worst by following Martin's oath.
 
 The oath in 10 commandments is published in Martin's latest book _Clean Craftsmanship: Disciplines, Standards, and Ethics_. A brief version of it is as follows:
-
-<!--alex ignore gal-guy -->
 
 1. I will not produce harmful code.
 2. The code that I produce will always be my best work.

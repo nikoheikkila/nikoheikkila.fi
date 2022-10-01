@@ -26,6 +26,4 @@ Follow my rants in [Mastodon](https://mastodon.technology/@nikoheikkila) and [Li
 
 Yet I'm more than the letters you see, so don't hesitate to connect with me for any questions. Closing this chapter with my favourite quote from a revered mystic **G.I. Gurdjieff**.
 
-<!--alex ignore-->
-
 > A man is never the same for long. He is continually changing. He seldom remains the same, even for half an hour.

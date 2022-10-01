@@ -40,8 +40,6 @@ You don't necessarily need to have watched the fantastic Oscar-winning film [**S
 
 ## Requirements
 
-<!--alex disable her-him-->
-
 > "When a young Los Angeles police department, Special Weapons and Tactics (SWAT) officer called Jack Traven angers retired Atlanta police department bomb squad member Howard Payne, by foiling his attempt at taking hostages stuck in an elevator with a bomb, Payne in retaliation arms a bus with a bomb that will explode if it drops below 50 miles per hour. With the help of spunky passenger Annie, Jack and his partner Detective Harry Temple try to save the people on the bus before the bomb goes off, while also trying to figure out how Payne is monitoring them."
 
 We can extract the following testable acceptance criteria from the film's storyline.
@@ -491,8 +489,6 @@ Looks like we are done here. Time to mark the feature as done and go home? Absol
 -   [x] There is an unarmed bomb installed on the bus.
 -   [x] When the bomb is unarmed **and** the bus accelerates to $v \geq 50$ mph, the bomb arms itself.
 -   [x] When the bomb is armed **and** the bus decelerates to $v \leq 50$, the bomb explodes **unless** there is at least one passenger on the bus who can save the day.
-
-<!--alex disable boy-girl-->
 
 In its current state, our codebase is ghastly with all the magic numbers, nested conditionals, and lack of abstractions. However, as professional software engineers, we should always adhere to the _boy scout rule_:
 

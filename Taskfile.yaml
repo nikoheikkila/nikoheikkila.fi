@@ -26,7 +26,6 @@ tasks:
         desc: Lint codebase
         deps:
             - lint-style
-            - lint-lang
             - lint-types
 
     lint-style:
@@ -37,13 +36,6 @@ tasks:
             - npx prettier --check "{{.EXTS}}"
         vars:
             EXTS: "./**/*.{ts,tsx,json,yml,yaml,md}"
-
-    lint-lang:
-        desc: Lint Markdown files for insensitive language
-        sources:
-            - content/**/*.md
-        cmds:
-            - npx alex -q .
 
     lint-types:
         desc: Lint TypeScript files for incorrect typing

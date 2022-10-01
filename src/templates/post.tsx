@@ -26,7 +26,7 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     const slug = data.markdownRemark?.fields?.slug ?? "";
     const hero = data.markdownRemark?.hero;
-    const html = data.markdownRemark?.html ?? "";
+    const body = data.markdownRemark?.rawMarkdownBody ?? "";
     const timeToRead = data.markdownRemark?.timeToRead ?? 0;
 
     const author = data.markdownRemark?.frontmatter?.author ?? "";
@@ -35,7 +35,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
     const categories = data.markdownRemark?.frontmatter?.categories ?? [];
 
-    const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
     const repository = data.site?.siteMetadata?.repository ?? "";
     const title = data.site?.siteMetadata?.title ?? "";
 
@@ -60,7 +59,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
                 timeToRead={timeToRead}
                 title={postTitle}
             />
-            <Content content={html} />
+            <Content content={body} />
             <Subscribe config={config} />
             <PostFooter categories={categories as string[]} />
             <PostAttachments
@@ -102,7 +101,7 @@ export const pageQuery = graphql`
                 slug
             }
             excerpt(pruneLength: 160)
-            html
+            rawMarkdownBody
             timeToRead
             hero {
                 childImageSharp {
