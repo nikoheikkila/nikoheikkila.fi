@@ -10,3 +10,6 @@ node_modules/
 
 # Obsidian
 /content/.obsidian/
+
+# Playwright
+/playwright

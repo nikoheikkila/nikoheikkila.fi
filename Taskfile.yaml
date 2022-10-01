@@ -15,12 +15,8 @@ tasks:
 
     format:
         desc: Format codebase
-        sources:
-            - "{{.EXTS}}"
         cmds:
-            - npx prettier --write "{{.EXTS}}"
-        vars:
-            EXTS: "./**/*.{ts,tsx,json,yml,yaml,md}"
+            - npx prettier --write .
 
     lint:
         desc: Lint codebase
@@ -30,12 +26,8 @@ tasks:
 
     lint-style:
         desc: Lint codebase for style issues
-        sources:
-            - "{{.EXTS}}"
         cmds:
-            - npx prettier --check "{{.EXTS}}"
-        vars:
-            EXTS: "./**/*.{ts,tsx,json,yml,yaml,md}"
+            - npx prettier --check .
 
     lint-types:
         desc: Lint TypeScript files for incorrect typing
@@ -77,8 +69,6 @@ tasks:
         desc: Run end-to-end tests
         deps:
             - build
-        sources:
-            - ./**/*.{ts,tsx}
         cmds:
             - npx playwright test {{.CLI_ARGS}}
 
@@ -86,7 +76,6 @@ tasks:
         desc: Run development server
         deps:
             - task: dev-gatsby
-            - task: dev-types
 
     dev-gatsby:
         deps:
@@ -106,6 +95,9 @@ tasks:
         desc: Build the Gatsby production site
         deps:
             - install
+        generates:
+            - public/
+            - .cache/
         env:
             GATSBY_CPU_COUNT: logical_cores
             NODE_ENV: production
@@ -114,7 +106,7 @@ tasks:
 
     serve:
         desc: Serve the Gatsby production site
-        deps:
-            - build
+        env:
+            NODE_ENV: production
         cmds:
             - yarn serve
