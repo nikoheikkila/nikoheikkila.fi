@@ -56,12 +56,14 @@ tasks:
 
     test-react:
         desc: Run React component tests
+        summary: These tests are still experimental and may cause failures
         deps:
             - install
         sources:
             - src/**/*.ts
             - src/**/*.tsx
             - playwright-ct.config.ts
+        ignore_error: true
         cmds:
             - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
 
