@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -37,46 +37,98 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                 a({ children, ...props }) {
                     return <BlogLink {...props}>{children}</BlogLink>;
                 },
-                code({ node, inline, className, children, ...props }) {
-                    if (inline)
+                code({ inline, className, children, ...props }) {
+                    const match = /language-([a-z-]+)/.exec(className || "");
+                    const [_, language] = Array.from(match || []);
+
+                    if (inline || !language) {
                         return (
                             <InlineCode className={className} {...props}>
                                 {children}
                             </InlineCode>
                         );
+                    }
 
-                    const match = /language-(\w+)/.exec(className || "");
-                    if (match && match.length >= 2)
-                        return (
-                            <CodeBlock language={match[1]} {...props}>
-                                {children}
-                            </CodeBlock>
-                        );
+                    const lines = children.toString().split("\n");
 
-                    return <code {...props}>{children}</code>;
+                    return (
+                        <CodeBlock
+                            language={language.replace("diff-", "")}
+                            addedLines={lines.map(extractAddedLineNumber)}
+                            removedLines={lines.map(extractRemovedLineNumber)}
+                            className={className}
+                            {...props}
+                        >
+                            {children}
+                        </CodeBlock>
+                    );
                 },
             }}
         />
     </article>
 );
 
+const extractAddedLineNumber = (line: string, index: number) =>
+    line.startsWith("+") ? index + 1 : 0;
+const extractRemovedLineNumber = (line: string, index: number) =>
+    line.startsWith("-") ? index + 1 : 0;
+
 interface CodeBlockProps {
     language: string;
-    children: ReactNode[];
+    className?: string;
+    addedLines?: number[];
+    removedLines?: number[];
+    children?: ReactNode[];
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
     language,
-    children,
+    className,
+    addedLines = [],
+    removedLines = [],
+    children = [],
     ...props
 }) => {
     return (
         <SyntaxHighlighter
-            children={String(children).replace(/\n$/, "")}
+            className={className}
+            children={children.toString().replace(/\n$/, "")}
             style={nightOwl}
-            customStyle={{ padding: 16, fontSize: "1.0rem" }}
+            customStyle={{
+                padding: 0,
+                fontSize: "1.0rem",
+                lineHeight: "2.0rem",
+            }}
             language={language}
-            wrapLongLines
+            lineProps={(lineNumber) => {
+                const style: CSSProperties = {
+                    display: "block",
+                    width: "fit-content",
+                    paddingRight: 10,
+                };
+
+                if (addedLines.includes(lineNumber)) {
+                    return {
+                        style: {
+                            ...style,
+                            backgroundColor: "rgba(0, 255, 0, 0.2)",
+                        },
+                    };
+                }
+
+                if (removedLines.includes(lineNumber)) {
+                    return {
+                        style: {
+                            ...style,
+                            backgroundColor: "rgba(255, 0, 0, 0.3)",
+                        },
+                    };
+                }
+
+                return { style };
+            }}
+            showLineNumbers
+            wrapLines
             {...props}
         />
     );
