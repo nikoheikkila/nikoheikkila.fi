@@ -12,7 +12,7 @@ export const BlogLink: React.FC<BlogLinkProps> = ({
     children,
     ...props
 }) => {
-    if (!href) return <>{children}</>;
+    if (!href) return <a {...props}>{children}</a>;
 
     if (isInternalLink(href))
         return (

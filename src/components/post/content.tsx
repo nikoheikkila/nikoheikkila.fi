@@ -38,10 +38,15 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                                 title="Click for a larger version"
                                 loading="lazy"
                             />
-                            <p className={styles.caption}>
-                                <span>Picture: {alt}</span>
-                                <span>Click for a larger version</span>
-                            </p>
+                            <span className={styles.caption}>
+                                <span>
+                                    <strong>Picture:</strong> {alt}
+                                </span>
+                                <br />
+                                <span>
+                                    <strong>Click for a larger version.</strong>
+                                </span>
+                            </span>
                         </BlogLink>
                     );
                 },
@@ -49,7 +54,7 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                     return <BlogLink {...props}>{children}</BlogLink>;
                 },
                 code({ inline, className, children, ...props }) {
-                    const match = /language-([a-z-]+)/.exec(className || "");
+                    const match = /language-(\w+)/.exec(className || "");
                     const [_, language] = Array.from(match || []);
 
                     if (inline || !language) {
