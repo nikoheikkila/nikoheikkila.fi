@@ -2,7 +2,6 @@
 @import "menu";
 
 .list {
-    overflow: auto;
     margin: 15px auto;
     padding: 0 20px;
 
@@ -28,24 +27,22 @@
 }
 
 .single {
-    overflow: auto;
     margin: 0 auto;
-    padding: 0 20px;
 
     a {
         color: $blue;
     }
 
     @include for-phone-only() {
-        width: 80vw;
+        width: 95vw;
     }
 
     @include for-tablet-portrait-up() {
-        width: 75vw;
+        width: 90vw;
     }
 
     @include for-tablet-landscape-up() {
-        width: 60vw;
+        width: 80vw;
     }
 
     @include for-desktop-up() {
