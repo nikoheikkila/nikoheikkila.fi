@@ -1,6 +1,0 @@
-*
-!nginx/
-!src/
-!*.js
-!package.json
-!yarn.lock
