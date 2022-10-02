@@ -84,6 +84,7 @@ tasks:
             - install
         desc: Serve the Gatsby development site
         cmds:
+            - yarn clean
             - yarn dev
 
     dev-types:
