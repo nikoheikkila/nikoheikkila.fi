@@ -5,6 +5,7 @@ import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import makeTitleCase from "title";
 import { BlogLink } from "../elements";
 import * as styles from "./content.module.scss";
 
@@ -66,7 +67,6 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                             language={language.replace("diff-", "")}
                             addedLines={lines.map(extractAddedLineNumber)}
                             removedLines={lines.map(extractRemovedLineNumber)}
-                            className={className}
                             {...props}
                         >
                             {children}
@@ -85,7 +85,6 @@ const extractRemovedLineNumber = (line: string, index: number) =>
 
 interface CodeBlockProps {
     language: string;
-    className?: string;
     addedLines?: number[];
     removedLines?: number[];
     children?: ReactNode[];
@@ -93,54 +92,55 @@ interface CodeBlockProps {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
     language,
-    className,
     addedLines = [],
     removedLines = [],
     children = [],
     ...props
 }) => {
     return (
-        <SyntaxHighlighter
-            className={className}
-            children={children.toString().replace(/\n$/, "")}
-            style={nightOwl}
-            customStyle={{
-                padding: 0,
-                fontSize: "1.0rem",
-                lineHeight: "2.0rem",
-            }}
-            language={language}
-            lineProps={(lineNumber) => {
-                const style: CSSProperties = {
-                    display: "block",
-                    width: "fit-content",
-                    paddingRight: 10,
-                };
-
-                if (addedLines.includes(lineNumber)) {
-                    return {
-                        style: {
-                            ...style,
-                            backgroundColor: "rgba(0, 255, 0, 0.2)",
-                        },
+        <section className={styles.codeblock}>
+            <span className={styles.language}>{makeTitleCase(language)}</span>
+            <SyntaxHighlighter
+                children={children.toString().replace(/\n$/, "")}
+                style={nightOwl}
+                customStyle={{
+                    padding: 0,
+                    fontSize: "1.0rem",
+                    lineHeight: "2.0rem",
+                }}
+                language={language}
+                lineProps={(lineNumber) => {
+                    const style: CSSProperties = {
+                        display: "block",
+                        width: "fit-content",
+                        paddingRight: 10,
                     };
-                }
 
-                if (removedLines.includes(lineNumber)) {
-                    return {
-                        style: {
-                            ...style,
-                            backgroundColor: "rgba(255, 0, 0, 0.3)",
-                        },
-                    };
-                }
+                    if (addedLines.includes(lineNumber)) {
+                        return {
+                            style: {
+                                ...style,
+                                backgroundColor: "rgba(0, 255, 0, 0.2)",
+                            },
+                        };
+                    }
 
-                return { style };
-            }}
-            showLineNumbers
-            wrapLines
-            {...props}
-        />
+                    if (removedLines.includes(lineNumber)) {
+                        return {
+                            style: {
+                                ...style,
+                                backgroundColor: "rgba(255, 0, 0, 0.3)",
+                            },
+                        };
+                    }
+
+                    return { style };
+                }}
+                showLineNumbers
+                wrapLines
+                {...props}
+            />
+        </section>
     );
 };
 

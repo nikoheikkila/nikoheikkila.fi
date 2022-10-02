@@ -64,7 +64,7 @@
 .photoframe {
     display: block;
     padding: 8px;
-    background: $darkGray;
+    background-color: $darkGray;
     margin-bottom: 60px;
     box-shadow: 3px 3px 10px $darkGray;
 }
@@ -81,5 +81,21 @@
 
     span {
         display: block;
+    }
+}
+
+.codeblock {
+    margin: 60px 0;
+    background-color: $almostBlack;
+    text-align: right;
+
+    .language {
+        padding-right: 10px;
+        font-size: 0.8rem;
+    }
+
+    pre {
+        margin: 0;
+        padding: 0;
     }
 }
