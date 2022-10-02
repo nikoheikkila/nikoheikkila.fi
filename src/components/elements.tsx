@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 
 interface BlogLinkProps {
     href?: string;
+    className?: string;
     children: ReactNode | ReactNode[];
 }
 

@@ -29,8 +29,18 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                         );
 
                     return (
-                        <BlogLink href={src}>
-                            <img src={src} alt={alt || ""} loading="lazy" />
+                        <BlogLink className={styles.photoframe} href={src}>
+                            <img
+                                className={styles.image}
+                                src={src}
+                                alt={alt}
+                                title="Click for a larger version"
+                                loading="lazy"
+                            />
+                            <p className={styles.caption}>
+                                <span>Picture: {alt}</span>
+                                <span>Click for a larger version</span>
+                            </p>
                         </BlogLink>
                     );
                 },
