@@ -51,7 +51,7 @@ Assume we have parsed the arguments using Python's [`argparse`](https://docs.pyt
 
 A similar approach can be followed with Javascript:
 
-```js
+```javascript
 const name = args.name || "World";
 console.log(`Hello, ${name}`);
 ```

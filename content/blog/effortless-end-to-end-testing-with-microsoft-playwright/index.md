@@ -52,7 +52,7 @@ The syntax in the snippet above is called _gherkin_, and it can be used to conve
 
 Here, the above specification would result in the following test code. The below example is partly written in pseudo-code for the sake of simplicity.
 
-```js
+```javascript
 describe("Calculator", () => {
     it("+ should add to current total", () => {
         initialTotal = 5;
@@ -143,7 +143,7 @@ In brief, POMs are regular classes that are instantiated with a `Page` object re
 
 Using a POM, the following operation of signing a user in...
 
-```ts
+```typescript
 await Promise.all([
     page.fill("data-test-id=username", username),
     page.fill("data-test-id=password", password),
@@ -154,7 +154,7 @@ await page.click("data-test-id=login");
 
 ...becomes a more readable version
 
-```ts
+```typescript
 class LoginPage() {
     constructor(page: Page) {
         this.page = page;
@@ -189,7 +189,7 @@ Using the `npx` tool part of Node.js, this command downloads the Playwright CLI 
 
 In the browser, let's now fetch a random article from Wikipedia, "read" it, and navigate back to the main page. Meanwhile, we receive the code below on another window, ready to be saved for further inspection.
 
-```ts
+```typescript
 import { test, expect } from "@playwright/test";
 
 test("test", async ({ page }) => {

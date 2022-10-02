@@ -35,7 +35,7 @@ Finally, open <http://localhost:8000> to view the blog.
 
 Project is packaged with Prettier formatter, Vitest unit tests, and Playwright automated tests. They can be ran respectively like so:
 
-```sh
+```bash
 task test
 ```
 

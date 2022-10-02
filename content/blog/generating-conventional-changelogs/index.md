@@ -27,7 +27,7 @@ curl -sSL https://gist.githubusercontent.com/nikoheikkila/96f734a5dffa7a9e6e32c3
 changes v1.0.0
 ```
 
-```md
+```markdown
 ## `v1.0.0`
 
 Write your release notes on this line.

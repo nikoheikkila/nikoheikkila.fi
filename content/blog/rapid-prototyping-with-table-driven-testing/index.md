@@ -27,7 +27,7 @@ To demonstrate this, let's write a quick curried function that formats a sum of 
 
 ### **Code**
 
-```ts
+```typescript
 type Formatter<T> = (a: T) => (b: T) => string;
 const numberFormatter: Formatter<number> = (decimals) => (euros) =>
     euros.toFixed(decimals).replace(/\./, ",") + " €";
@@ -38,7 +38,7 @@ const toCurrencyString = numberFormatter(2);
 
 ### **Tests**
 
-```ts
+```typescript
 // [argument, expected result]
 const suites: [number, string][] = [
     [-1, "-1,00 €"],

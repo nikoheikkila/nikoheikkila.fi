@@ -34,7 +34,7 @@ A _higher-order function_ is defined to have either of the following two propert
 
 **React** developers know that for example, the `React.useState` hook for managing component state is a higher-order function since it returns a function used for updating the state.
 
-```ts
+```typescript
 const App = () => {
     const [counter, setCounter] = useState<number>(0);
     // typeof setCounter === 'function'
@@ -70,7 +70,7 @@ This is perfectly fine for a lax validation. However, what if requirements keep 
 
 One solution is to define each validator as a function and pass it as an argument. The example below is in TypeScript.
 
-```ts
+```typescript
 /** Helper for chaining and printing the validator warnings **/
 const warn = (msg: string): boolean => {
     console.warn("Invalid:", msg);
@@ -125,7 +125,7 @@ Another sweet aspect of higher-order functions is the ability to _curry_ your fu
 
 Perhaps your head is spinning fast right now, so let's write the validate function without the ES6 arrow notation to examine it further.
 
-```ts
+```typescript
 function validator(...fns: Validator[]) {
     return function(password: string) {
         return fns.every(function(fn) {

@@ -24,7 +24,7 @@ Gatsby, on the other hand, is built with JavaScript and powered by _React_. Reac
 
 Example snippet below shows a custom component renderer outputting a link to Google Translate page should I choose to publish a post not written in English. Don't be afraid of the JSX syntax. It's quite comfortable after getting used to.
 
-```js
+```javascript
  render() {
     const { lang, url } = this.props
     return (

@@ -130,7 +130,7 @@ During pairing, we usually share the same codebase, which means that version con
 
 This can be done with a technique called *ensemble commits*, in which you simply write the name and email of your pair in the commit message footer. See the example below.
 
-```
+```plain
 feat(api): add a new route '/films' for fetching IMDb data
 
 // optional longer description here
