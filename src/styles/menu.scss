@@ -11,6 +11,15 @@ $menuPaddingLeft: 20px;
     top: 10px;
 }
 
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
+
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
     background: #eee;
@@ -52,6 +61,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
     display: inline-block;
+
+    &:focus-visible,
+    &:hover {
+        &::before {
+            content: "❯ ";
+        }
+
+        font-weight: 700;
+        outline: none;
+        color: $teal;
+        text-shadow: 0px 0px 2px $teal;
+    }
 }
 
 /* Styling of overlay */

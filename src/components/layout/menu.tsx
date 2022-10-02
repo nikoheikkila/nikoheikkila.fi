@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import { stack as BurgerMenu } from "react-burger-menu";
+import { slide as BurgerMenu } from "react-burger-menu";
 import { getStaticPages } from "../../graphql/pages";
 import { BlogLink } from "../elements";
 
@@ -12,7 +12,7 @@ interface MenuProps {
 const links = [
     {
         slug: "/",
-        title: "Blog",
+        title: "Posts",
     },
     {
         slug: "https://cv.nikoheikkila.fi",
@@ -20,15 +20,10 @@ const links = [
     },
 ];
 
-interface SidebarLinkProps {
-    readonly slug: string;
-    readonly title: string;
-}
-
 const Menu: FunctionComponent<MenuProps> = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
     const staticPages = getStaticPages();
+
     const allPages = [...links, ...staticPages].map(({ slug, title }) => (
         <BlogLink key={slug} href={slug || ""}>
             {title}
