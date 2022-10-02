@@ -8,31 +8,35 @@
     h5,
     h6 {
         text-align: center;
+        color: $teal;
+        text-decoration: $teal wavy underline;
+        text-decoration-thickness: 0.06em;
+        text-underline-offset: 10px;
     }
 
     h1 {
         font-size: 2rem;
-        margin-bottom: 80px;
+        margin: 80px 0;
     }
     h2 {
         font-size: 1.8rem;
-        margin-bottom: 60px;
+        margin: 60px 0;
     }
     h3 {
         font-size: 1.6rem;
-        margin-bottom: 40px;
+        margin: 40px 0;
     }
     h4 {
         font-size: 1.4rem;
-        margin-bottom: 20px;
+        margin: 20px 0;
     }
     h5 {
         font-size: 1.2rem;
-        margin-bottom: 10px;
+        margin: 10px 0;
     }
     h6 {
         font-size: 1rem;
-        margin-bottom: 5px;
+        margin: 5px 0;
     }
 
     ol > li,
