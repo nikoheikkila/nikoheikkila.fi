@@ -31,7 +31,7 @@ What is useful enough information to include in the prompt then? I've gotten use
 
 You can find suitable commands to print out this information and customize your shell startup file `~/.bashrc` to include it but why keep reinventing the wheel?
 
-## Board the Starship!
+## Board the Starship
 
 [**Starship**][starship] is a highly customizable cross-shell prompt created with _Rust_. It's a successor to the popular [_Spaceship_][spaceship] theme for ZSH and the [_Spacefish_][spacefish] theme for Fish. I've been using the latter for more than a year now, and I was mildly annoyed by its sometimes sluggish output. After all, navigating in the command line environment should be a blazing fast experience. Thanks to Rust, speed is no longer an issue with Starship. The project is not yet out of the beta but the foundation is very mature for daily use.
 
@@ -49,7 +49,7 @@ This will load the Starship initialization code when you open a new shell sessio
 
 Next, create a configuration file at `~/.config/starship.toml`. Don't worry if you're not familiar with TOML syntax, it's very human-readable. Finally, start hacking with the [documented configuration parameters][conf] and you might end up with something like this.
 
-![Starship Shell](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/starship.png)
+![A screenshot of a prompt customised with the _Starship_ framework.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/starship.png)
 
 ## Conclusion
 

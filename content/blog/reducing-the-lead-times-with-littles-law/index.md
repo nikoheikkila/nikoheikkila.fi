@@ -17,7 +17,7 @@ First, let's define the terms.
 
 **Throughput** is the measured amount of backlog items a team can complete in a fixed period, which is usually a day.
 
-![Illustration of Little's Law](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/reducing-the-lead-times-with-littles-law.png)
+![Little's Law illustrated with a picture of cute robots dividing the average work-in-progress with average throughput and receiving the average lead time as a result.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/reducing-the-lead-times-with-littles-law.png)
 
 **Example:**
 

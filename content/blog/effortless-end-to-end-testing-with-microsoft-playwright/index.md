@@ -82,7 +82,7 @@ Meanwhile, QA struggles to write and maintain an exhaustive test set when not te
 
 Let's put this in the form of a picture.
 
-![Typical tests created by QA and developers.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/DevQATests.png)
+![A breakdown of test suites that either quality assurance specialists or software developers typically write.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/DevQATests.png)
 
 The root cause of flaky E2E tests is naturally failed communication, but sometimes choosing the right tools may also help. For example, the QA boomers (pardon the expression) who have been working in the software business for decades often write E2E tests with **Robot Framework** and **Selenium**.
 

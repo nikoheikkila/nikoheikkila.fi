@@ -36,6 +36,6 @@ Yours Sincerely,
 
 _P.S. This is not as dramatic a decision as it reads. I'm only channeling my inner Don Draper._
 
-![Don Draper Meditating at Mad Men's Final Episode](https://media.giphy.com/media/3oEdv9duTLhWoNhcGs/giphy.gif)
+![**Don Draper** (starring Jon Hamm) meditating in the final episode of the _Mad Men_.](https://media.giphy.com/media/3oEdv9duTLhWoNhcGs/giphy.gif)
 
 Cover photo by Jason Blackeye on Unsplash

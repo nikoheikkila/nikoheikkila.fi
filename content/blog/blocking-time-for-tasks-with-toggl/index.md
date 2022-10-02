@@ -27,7 +27,7 @@ Don't worry. With time blocking, you get to keep your regular breaks and days of
 
 After dividing your days into slices, your day might look a bit like in the picture below. Note that the themes are only examples, and I usually write those down precisely to help me later recall what I worked on.
 
-![Time blocking example sketch](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/timeblocking.png)
+![An example sketch of how I might block time for different tasks throughout the day.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/timeblocking.png)
 
 ## How Do I Split the Day?
 

@@ -39,7 +39,7 @@ Both the keyboard and the mouse support connecting up to three devices at most v
 
 ### Code Editor
 
-![Visual Studio Code with Palenight color theme and Operator Mono font](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/vscode.png)
+![A screenshot of my Visual Studio Code setup using Palenight as the color theme and Operator Mono as the primary font while editing React source code.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/vscode.png)
 
 My editor of choice is Visual Studio Code which I migrated to after using Atom and Sublime Text for some years. I dislike using full-blown IDEs as they are mostly resource hogs offering very little extra value to my workflow. Respectively, I'm too lazy to spend hours editing and tweaking settings for barebone editors like Vim and Emacs. Therefore, VS Code fits best in my niche.
 
@@ -50,7 +50,7 @@ In the screenshot above I'm using a theme called [Palenight][theme] and a font c
 
 ### Terminal
 
-![Microsoft Terminal for Windows](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/wsl.png)
+![A screenshot of my Windows Terminal setup using `tmux` terminal multiplexer and three split windows. The top-right pane is building this Gatsby site, the top-left pane has a cow saying "Moo!", and the bottom pane displays the resource consumption using the `htop` utility.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/wsl.png)
 
 For the command line, I've settled with [**iTerm 2**][iterm] and [**Windows Terminal**][msterminal]. Sometimes I also use the builtin terminal of VS Code for small tasks.
 
