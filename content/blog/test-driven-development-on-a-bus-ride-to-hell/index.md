@@ -34,7 +34,7 @@ Before continuing, I expect you know your way around the basic Git commands and 
 
 The outline of this tutorial is to follow the Red-Green cycles by first writing a failing test and then making it pass by writing simple production code. After each failing test, we record our changes in a new micro-commit — think it as a commit but a very small one.
 
-> If you're interested in how I work with small commits, read my earlier post about [**micro-commits**](https://nikoheikkila.fi/blog/a-practical-guide-to-micro-commits/).
+> If you're interested in how I work with small commits, read my earlier post about [**micro-commits**](/blog/a-practical-guide-to-micro-commits/).
 
 You don't necessarily need to have watched the fantastic Oscar-winning film [**Speed (1994)**](https://www.imdb.com/title/tt0111257/) directed by **Jan de Bont**, and starring **Keanu Reeves** and **Sandra Bullock**, but it might help you to tune into the atmosphere.
 

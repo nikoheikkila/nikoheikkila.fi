@@ -23,6 +23,6 @@ Furthermore, I'm a big fan of [**Mailbrew**](https://mailbrew.com/), which allo
 
 I've come to a remarkable revelation through content digests: nothing beats the *slow* web. It's the place where you embrace calmness—no rush to be the first to see, hear and share something. Instead, you'll take it nice and slow and enjoy a well-curated content delivered to you deliberately late. Later is better than now, and the mental health effect of the said life in contrast to a hectic refreshing of the Hacker News and Reddit is irreplaceable. Take it from someone who used to commit F5 frenzy on significant outlets and subscribed to all the good RSS feeds[1] everywhere.
 
-Finally, if you decide to learn something, do it no sooner than [_just in time_](https://nikoheikkila.fi/blog/fight-the-inner-impostor-with-just-in-time-learning/).
+Finally, if you decide to learn something, do it no sooner than [_just in time_](/blog/fight-the-inner-impostor-with-just-in-time-learning/).
 
 [1]: Don't get me wrong. RSS is still a fantastic centralised way to follow the web. It's just easy to get overwhelmed with it, too.

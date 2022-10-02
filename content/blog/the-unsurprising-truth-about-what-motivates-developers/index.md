@@ -54,7 +54,7 @@ My previous employer had a concept of Freestyle Fridays where the developers spe
 
 Extreme programming practices such as test-driven development (a great source of flow) and pairing – ideally in junior-senior pairs – provide significant results when learning occurs mostly in projects.
 
-As I wrote in [my previous post](https://nikoheikkila.fi/blog/fight-the-inner-impostor-with-just-in-time-learning/), mastery is an asymptote, and we should not fool ourselves, thinking we can reach the peak. Our abilities are always _infinitely improvable_.
+As I wrote in [my previous post](/blog/fight-the-inner-impostor-with-just-in-time-learning/), mastery is an asymptote, and we should not fool ourselves, thinking we can reach the peak. Our abilities are always _infinitely improvable_.
 
 Make sure you can block time off for improving skills, and your management supports it. Participate in projects where your skills accumulate fastest. Learn things just-in-time to preserve sanity. Focus on fundamental skills and use them to solve problems in more specialized domains.
 
@@ -70,7 +70,7 @@ The older we grow, the more concrete the handprint we wish to leave behind. Our 
 
 ## Finding Your Drive
 
-The AMP framework unlocks a path to a promising career, but to fully reap its benefits, you also need to study the path of [**software craftsmanship**](https://nikoheikkila.fi/blog/death-of-the-production-line-and-factory-workers-attitude/). A direction opposed to the production line and factory worker attitude with professionalism, pragmatism, and pride as motivators.
+The AMP framework unlocks a path to a promising career, but to fully reap its benefits, you also need to study the path of [**software craftsmanship**](/blog/death-of-the-production-line-and-factory-workers-attitude/). A direction opposed to the production line and factory worker attitude with professionalism, pragmatism, and pride as motivators.
 
 It's best to seek motivation from your current job, but in case it's not possible, there are alternatives for developers. A well-researched application of the AMP framework is open-source development. Developing and maintaining open-source projects, especially your own, offers a world of highest autonomy where everything can be harnessed for mastery, and nothing thwarts the journey to a glorious purpose.
 

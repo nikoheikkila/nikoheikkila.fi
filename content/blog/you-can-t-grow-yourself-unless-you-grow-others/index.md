@@ -43,7 +43,7 @@ Your design-oriented frontend developer should be able to help with databases an
 
 Furthermore, levelling the team helps to reduce the bus factor. The project doesn't halt when the integration specialist gets sick or when the business director burns out and is set aside for a couple of months. Thus, we need to build a team of solid generalists – also known as T-shaped professionals.
 
-The desired side-effect of levelling the competencies is increased autonomy. When people are comfortable working in a generalist mindset, they feel a greater sense of freedom regarding what tasks they can pick. As I mentioned in [my earlier blog post](https://nikoheikkila.fi/blog/the-unsurprising-truth-about-what-motivates-developers/), **autonomy** leads to **mastery** which leads to finding our **purpose**. The three elements together significantly boost the retention and desire to work in your company.
+The desired side-effect of levelling the competencies is increased autonomy. When people are comfortable working in a generalist mindset, they feel a greater sense of freedom regarding what tasks they can pick. As I mentioned in [my earlier blog post](/blog/the-unsurprising-truth-about-what-motivates-developers/), **autonomy** leads to **mastery** which leads to finding our **purpose**. The three elements together significantly boost the retention and desire to work in your company.
 
 ### You Contribute to a Better Hiring and Onboarding Experiences
 
@@ -135,6 +135,6 @@ Keep calm and carry on **mentoring**!
 
 ---
 
-This is the second post about observations I gained from [**The Principal Developer**](https://principal.dev/) workshop. Read also [my earlier post](https://nikoheikkila.fi/blog/reducing-the-lead-times-with-littles-law/) on reducing the work-in-progress and increasing throughput following Little's Law.
+This is the second post about observations I gained from [**The Principal Developer**](https://principal.dev/) workshop. Read also [my earlier post](/blog/reducing-the-lead-times-with-littles-law/) on reducing the work-in-progress and increasing throughput following Little's Law.
 
 Photo by **John Schnobrich** on [Unsplash](https://unsplash.com/photos/2FPjlAyMQTA).
