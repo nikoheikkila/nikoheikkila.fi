@@ -1,9 +1,9 @@
 #!/usr/bin/env ts-node-script
-import inquirer, { PromptModule } from "inquirer";
 import slugify from "@sindresorhus/slugify";
-import path from "path";
-import fs from "fs";
 import dayjs from "dayjs";
+import fs from "fs";
+import inquirer, { PromptModule } from "inquirer";
+import path from "path";
 import makeTitleCase from "title";
 import config from "./gatsby-config";
 import { SiteSiteMetadata as Meta } from "./src/types";
@@ -88,6 +88,8 @@ const newPost = async () => {
                 message: "URL of the cover image: ",
                 default: "null",
                 validate: (input: string) => {
+                    if (input === "null") return true;
+
                     try {
                         new URL(input);
                     } catch {
@@ -110,16 +112,10 @@ const newPost = async () => {
         .map((c) => c.trim())
         .join(", ");
 
-    const targetFolder = path.join(
+    const targetFile = path.join(
         __dirname,
-        `content/${postType === `post` ? `blog/` : ""}${slugify(title)}`
+        `content/${postType === `post` ? `blog/` : ""}${slugify(title)}.md`
     );
-
-    if (!fs.existsSync(targetFolder)) {
-        fs.mkdirSync(targetFolder, {
-            recursive: true,
-        });
-    }
 
     const frontMatterBlock = `---
 title: ${makeTitleCase(title)}
@@ -132,11 +128,10 @@ date: ${date}
 hero: ${cover}
 ---`.trim();
 
-    const markdownFile = `${targetFolder}/index.md`;
-    fs.writeFileSync(markdownFile, frontMatterBlock);
+    fs.writeFileSync(targetFile, frontMatterBlock);
 
     console.log(`
-    Saved new post to ${markdownFile} with following content:
+    Saved new post to ${targetFile} with following content:
 
     ${frontMatterBlock}
   `);
