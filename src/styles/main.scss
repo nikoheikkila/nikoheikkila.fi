@@ -1,6 +1,8 @@
 @import "_variables";
 @import "_gatsby";
 
+@import url("https://api.fontshare.com/v2/css?f[]=bespoke-slab@700&f[]=bespoke-serif@400,700,401&display=swap");
+
 body {
     margin: 0;
     font-kerning: normal;
@@ -13,9 +15,21 @@ body {
 
     font-weight: 400;
     font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-        "Segoe UI Symbol";
+    font-family: "Bespoke Serif", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Bespoke Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
 }
 
 ol,
