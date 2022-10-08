@@ -22,7 +22,7 @@ I'm a strong proponent of Lean methodologies and **Theory of Constraints** as de
 
 Currently, I'm working as a full-stack software engineer in the digital consultancy business. I'm a generalist with a broad skillset who can handle the end-to-end value streams from analysis, design, development, and delivery of digital products. Obviously, all this happens concurrently in short iterations. Therefore, having a stable automated testing and deployment pipeline from the first day of the project is its greatest future asset. It radically shortens the time-to-market and increases customer value.
 
-Follow my rants in [Mastodon](https://mastodon.technology/@nikoheikkila) and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
+Follow my rants in [Mastodon](https://fosstodon.org/@nikoheikkila) and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
 
 Yet I'm more than the letters you see, so don't hesitate to connect with me for any questions. Closing this chapter with my favourite quote from a revered mystic **G.I. Gurdjieff**.
 

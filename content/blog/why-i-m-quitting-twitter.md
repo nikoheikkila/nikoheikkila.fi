@@ -21,10 +21,10 @@ So as of today, I will no longer update my Twitter account. It's going to be har
 
 If you're interested in my content, here's a list of social accounts I'm still active in addition to this blog:
 
--   [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
--   [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
--   [_mastodon.technology_](https://mastodon.technology/@nikoheikkila) for my short posts in English.
--   [_mastodontti.fi_](https://mastodontti.fi/@nikoheikkila) for my short posts in Finnish.
+- [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
+- [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
+- [_Fosstodon_](https://fosstodon.org/@nikoheikkila) for my short posts in English.
+- [_mastodontti.fi_](https://mastodontti.fi/@nikoheikkila) for my short posts in Finnish.
 
 I'm also on _Facebook_ and _LinkedIn_. However, those accounts are more restricted, so if I have no idea who you are I'm going to decline your request. I welcome you to follow me on the sites above because I'm certain my best content is still ahead of me.
 

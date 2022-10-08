@@ -32,7 +32,7 @@ const config: GatsbyConfig = {
             },
             {
                 name: `mastodon`,
-                url: `https://mastodon.technology/@nikoheikkila`,
+                url: `https://fosstodon.org/@nikoheikkila`,
             },
         ],
         repository: `https://github.com/nikoheikkila/nikoheikkila.fi`,

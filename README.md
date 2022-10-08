@@ -44,7 +44,7 @@ task test
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
 
 -   Github: [@nikoheikkila](https://github.com/nikoheikkila)
--   Mastodon: [@nikoheikkila](https://mastodon.technology/@nikoheikkila)
+-   Mastodon: [@nikoheikkila](https://fosstodon.org/@nikoheikkila)
 -   DEV: [nikoheikkila](https://dev.to/nikoheikkila)
 -   LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
