@@ -15,7 +15,7 @@
         "@fortawesome/react-fontawesome": "0.2.0",
         "@sindresorhus/slugify": "1.1.2",
         "dayjs": "1.11.5",
-        "gatsby": "4.24.1",
+        "gatsby": "4.24.3",
         "gatsby-plugin-feed": "4.24.0",
         "gatsby-plugin-image": "2.24.0",
         "gatsby-plugin-manifest": "4.24.0",
