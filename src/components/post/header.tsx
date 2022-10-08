@@ -28,7 +28,11 @@ const PostHeader: FunctionComponent<HeaderProps> = ({
 
         <section>
             <p className={styles.meta}>
-                {author && <span data-testid="post-author">{author} / </span>}
+                {author && (
+                    <span className={styles.author} data-testid="post-author">
+                        By {author} /{" "}
+                    </span>
+                )}
                 {datePublished && (
                     <span data-testid="post-date">{datePublished} / </span>
                 )}

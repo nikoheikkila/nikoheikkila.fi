@@ -40,7 +40,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
     const previous = pageContext.previous;
     const next = pageContext.next;
-    const datePublished = dayjs(date).format("DD.MM.YYYY");
+    const datePublished = dayjs(date).format("MMMM D, YYYY");
     const postSlug = slug.slice(1, slug.length - 1);
     const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
     const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;

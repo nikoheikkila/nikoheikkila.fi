@@ -39,9 +39,13 @@
         margin: 5px 0;
     }
 
+    p {
+        line-height: 1.75em;
+    }
+
     ol > li,
     ul > li {
-        padding-top: 1.5rem;
+        padding: 10px 0;
         list-style-type: none;
 
         &:before {
