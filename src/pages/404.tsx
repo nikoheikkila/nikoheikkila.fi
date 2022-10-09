@@ -1,8 +1,7 @@
+import { HeadFC, Link } from "gatsby";
 import React from "react";
-import { Link, HeadFC } from "gatsby";
 import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
-import dayjs from "dayjs";
 import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 
 interface NotFoundProps {

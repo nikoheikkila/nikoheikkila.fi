@@ -1,7 +1,7 @@
-import dayjs from "dayjs";
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
 import { MarkdownRemarkEdge } from "../../types";
+import * as DateTime from "../../utils/datetime";
 import { formatReadingTime } from "../../utils/helpers";
 import Content from "../post/content";
 import Tag from "../tag";
@@ -45,8 +45,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                                 categories={(
                                     edge.node.frontmatter?.categories || []
                                 ).map(String)}
-                                date={dayjs(edge.node.frontmatter?.date).format(
-                                    "DD.MM.YYYY"
+                                date={DateTime.toDisplay(
+                                    edge.node.frontmatter?.date
                                 )}
                                 excerpt={edge.node.excerpt || ""}
                                 timeToRead={edge.node.timeToRead || 0}

@@ -1,5 +1,4 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import dayjs from "dayjs";
 import { graphql, HeadFC } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
@@ -15,6 +14,7 @@ import Subscribe from "../components/post/subscribe";
 import SEO from "../components/seo";
 import { Route } from "../gatsby";
 import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
+import * as DateTime from "../utils/datetime";
 import { combinePaths } from "../utils/helpers";
 
 interface PostProps {
@@ -40,7 +40,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
     const previous = pageContext.previous;
     const next = pageContext.next;
-    const datePublished = dayjs(date).format("MMMM D, YYYY");
+    const datePublished = DateTime.toDisplay(date);
     const postSlug = slug.slice(1, slug.length - 1);
     const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
     const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;

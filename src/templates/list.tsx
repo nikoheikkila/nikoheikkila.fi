@@ -1,7 +1,5 @@
-import dayjs from "dayjs";
 import { graphql, HeadFC } from "gatsby";
 import React from "react";
-import profile from "../assets/profile.png";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";

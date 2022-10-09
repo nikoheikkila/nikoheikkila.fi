@@ -1,12 +1,12 @@
 #!/usr/bin/env ts-node-script
 import slugify from "@sindresorhus/slugify";
-import dayjs from "dayjs";
 import fs from "fs";
 import inquirer, { PromptModule } from "inquirer";
 import path from "path";
 import makeTitleCase from "title";
 import config from "./gatsby-config";
 import { SiteSiteMetadata as Meta } from "./src/types";
+import * as DateTime from "./src/utils/datetime";
 
 const meta = config.siteMetadata as Meta;
 
@@ -80,7 +80,7 @@ const newPost = async () => {
                 type: "input",
                 name: "date",
                 message: "Publication date (YYYY-MM-DD): ",
-                default: dayjs().format("YYYY-MM-DD"),
+                default: DateTime.toISOString(),
             },
             {
                 type: "input",
