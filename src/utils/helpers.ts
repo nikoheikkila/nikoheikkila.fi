@@ -1,19 +1,25 @@
 import { Route } from "../gatsby";
 
+const maxCups = 5;
+
 export const formatReadingTime = (minutes: number): string => {
-    const maxCups = 5;
+    if (minutes < 1) {
+        return "";
+    }
+
+    return formatCups(minutes);
+};
+
+const formatCups = (minutes: number, icon: string = "☕️"): string => {
     const cups = Math.round(minutes / maxCups);
     const time = `minute${minutes >= 2 ? "s" : ""}`;
 
-    if (cups > 5) {
-        return `${new Array(Math.round(cups / Math.E))
-            .fill("🍱")
-            .join("")} ${minutes} ${time} read`;
-    }
+    const result: string[] =
+        cups > maxCups
+            ? new Array(Math.round(cups / Math.E))
+            : new Array(cups || 1);
 
-    return `${new Array(cups || 1)
-        .fill("☕️")
-        .join("")} ${minutes} ${time} read`;
+    return `${result.fill(icon).join("")} ${minutes} ${time} read`;
 };
 
 /**
