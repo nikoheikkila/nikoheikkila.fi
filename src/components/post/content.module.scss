@@ -55,10 +55,13 @@
     }
 
     blockquote {
-        font-style: italic;
-        margin: 1.5em 0;
-        padding: 10px 20px;
+        margin: 40px 0;
+        padding: 0 20px;
         quotes: "\201C""\201D""\2018""\2019";
+
+        p:not(:last-of-type) {
+            padding-bottom: 1.5em;
+        }
     }
 
     video {
