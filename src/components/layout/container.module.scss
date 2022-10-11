@@ -34,11 +34,11 @@
     }
 
     @include for-phone-only() {
-        width: 95vw;
+        width: 90vw;
     }
 
     @include for-tablet-portrait-up() {
-        width: 90vw;
+        width: 85vw;
     }
 
     @include for-tablet-landscape-up() {
