@@ -160,11 +160,7 @@ const InlineCode: React.FC<InlineCodeProps> = ({
     ...props
 }) => {
     return (
-        <code
-            className={className}
-            style={{ fontSize: "1.0rem", color: "#e12de1" }}
-            {...props}
-        >
+        <code className={className} {...props}>
             {children}
         </code>
     );

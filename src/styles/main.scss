@@ -15,9 +15,7 @@ body {
 
     font-weight: 400;
     font-size: 16px;
-    font-family: "Bespoke Serif", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Bespoke Serif", $fontFamily;
 }
 
 h1,
@@ -26,9 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Bespoke Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Bespoke Slab", $fontFamily;
     font-weight: 700;
 }
 
@@ -49,18 +45,15 @@ a {
     text-decoration: none;
 }
 
-blockquote {
-    border-left: 2px solid $gray;
-
-    p {
-        margin: 0;
-    }
-}
-
 hr {
     border: 0;
     border-top: 3px solid $purple;
     margin: 2rem 0;
+}
+
+::selection {
+    background-color: $yellow;
+    color: invert($color: $darkFg);
 }
 
 /**
@@ -87,5 +80,9 @@ hr {
     /* Tweak other elements */
     li::marker {
         color: $lightBackground;
+    }
+
+    ::selection {
+        background-color: hotpink;
     }
 }

@@ -12,8 +12,12 @@ $gray: rgb(73, 73, 73);
 $darkGray: rgb(23, 23, 23);
 $almostBlack: rgb(10, 10, 10);
 $darkHl: $blue;
+$yellow: #ffc600;
 
-$inlineCodeFg: #bd10e0;
+$hotpink: #ff00ff;
+
+$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 @mixin for-phone-only {
     @media (max-width: 599px) {
