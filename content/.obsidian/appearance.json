@@ -1,4 +1,8 @@
 {
-  "baseFontSize": 20,
-  "cssTheme": "Primary"
+  "baseFontSize": 14,
+  "cssTheme": "Things",
+  "accentColor": "#8929ff",
+  "interfaceFontFamily": "JetBrainsMono Nerd Font",
+  "textFontFamily": "JetBrainsMono Nerd Font",
+  "monospaceFontFamily": "JetBrainsMono Nerd Font"
 }

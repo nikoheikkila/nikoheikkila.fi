@@ -1,0 +1,78 @@
+{
+  "main": {
+    "id": "60e1d2035d81cf71",
+    "type": "split",
+    "children": [
+      {
+        "id": "85910c2743fbbef7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "86b79ed42e2195ae",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "05b9de7dbfb57abe",
+    "type": "split",
+    "children": [
+      {
+        "id": "675a6439a9f2e921",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d7f7cf79eb2b04c1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "766bb6bddde906b0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "493cd03a9c2b4a33",
+    "type": "split",
+    "children": [],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "86b79ed42e2195ae",
+  "lastOpenFiles": [
+    "uses.md",
+    "blog/things-i-don-t-know.md"
+  ]
+}

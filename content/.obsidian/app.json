@@ -1,6 +1,6 @@
 {
   "readableLineLength": true,
-  "showFrontmatter": true,
+  "showFrontmatter": false,
   "foldHeading": true,
   "foldIndent": true,
   "alwaysUpdateLinks": true,
@@ -9,5 +9,7 @@
   "attachmentFolderPath": "./",
   "legacyEditor": false,
   "livePreview": true,
-  "promptDelete": false
+  "promptDelete": false,
+  "showInlineTitle": false,
+  "vimMode": true
 }
