@@ -47,7 +47,7 @@
     "devDependencies": {
         "@babel/helper-call-delegate": "7.12.13",
         "@graphql-codegen/cli": "2.13.7",
-        "@graphql-codegen/typescript": "2.7.4",
+        "@graphql-codegen/typescript": "2.7.5",
         "@netlify/plugin-gatsby": "3.4.8",
         "@playwright/experimental-ct-react": "1.27.1",
         "@playwright/test": "1.27.1",
