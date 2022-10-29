@@ -63,7 +63,7 @@
         "playwright": "1.27.1",
         "prettier": "2.7.1",
         "sass": "1.55.0",
-        "snyk": "1.1040.0",
+        "snyk": "1.1044.0",
         "subscriptions-transport-ws": "0.11.0",
         "title": "3.5.3",
         "ts-node": "10.9.1",
