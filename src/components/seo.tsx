@@ -42,6 +42,7 @@ const SEO: FunctionComponent<SEOProps> = ({
     return (
         <>
             <BasicMeta title={title} description={description} />
+            <MastodonVerification url="https://fosstodon.org/@nikoheikkila" />
 
             <OpenGraph
                 author={author}
@@ -94,6 +95,14 @@ const BasicMeta: React.FC<BasicMetaProps> = ({ title, description }) => {
             <meta name="description" content={description} />
         </>
     );
+};
+
+interface MastodonVerificationProps {
+    url: string;
+}
+
+const MastodonVerification: React.FC<MastodonVerificationProps> = ({ url }) => {
+    return <link rel="me" href={url} />;
 };
 
 interface OpenGraphProps {
