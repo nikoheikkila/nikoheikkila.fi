@@ -5,7 +5,7 @@ lang: en
 excerpt: How do you practice small batches — micro-commits — as part of your daily workflow? Let me show you.
 type: post
 categories: [git, testing, tips]
-date: 2022-07-27
+date: 2022-11-05
 hero: null
 ---
 
@@ -15,7 +15,7 @@ How do you practice small batches — micro-commits — as part of your daily wo
 
 > If you'd rather skip straight to the source code, you can find it [**here**](https://github.com/nikoheikkila/setup/tree/main/bin).
 
-**Tim Ottinger** of Industrial Logic has written [a great piece about micro-commits](https://www.industriallogic.com/blog/whats-this-about-micro-commits/). It's one of those articles that changed how I see Git and version control for good. Not only as a sequence of commits pushed to the remote but as a means of saving and loading a working state — people familiar with fast-paced video games know what I speak of.
+**Tim Ottinger** of Industrial Logic has written [a great piece about micro-commits](https://www.industriallogic.com/blog/whats-this-about-micro-commits/). It's one of those articles that changed how I see Git and version control for good. Not only as a sequence of commits pushed to the remote but as a means of saving and loading a working state. People familiar with fast-paced video games know what I speak of.
 
 > "**A micro-commit is a tiny commit.** It consists of the changes necessary to do one tightly-scoped change. Maybe it's just a file reformat. Maybe it's just a variable rename. It could be the addition of one loop or one statement. It might involve a new microtest and just enough code to make it pass."
 
@@ -31,28 +31,30 @@ When I work with micro-commits, I typically follow the steps below.
 
 To facilitate it, I've created a few custom Git commands. Few people know that you can extend Git in powerful ways when you create custom scripts named according to the pattern `git-{{command}}` and place the files in your `$PATH`, where they become accessible by invoking `git command` in your shell.
 
-## Setting the Goal
+The animation below[^1] shows how I work with micro-commits.
+
+![A GIF recording of my Git workflow in terminal](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/micro-commits-with-git.gif)
+
+Does this feel oddly familiar? You're correct because it's an application of **Kent Beck's** famous `test && commit || revert` workflow. Let's break down the steps you saw above.
+
+## `git goal`
 
 Before starting to work, I must figure out what I want to do. This is an excellent opportunity to create a new empty commit — a topic — stating my goal.
 
 Later on, as you will see, I can squash my work to this commit and retain a clean version history.
 
 ```bash
-# git goal "feat: add use case handler for adding blog posts"
-
 echo "Setting up goal for: '$message'"
 git commit --allow-empty --no-verify -m "$message" > /dev/null 2>&1
 ```
 
 Additionally, I'm using the `--no-verify` flag to skip pre-commit hooks, which I usually have set up in my projects. Running them for an empty changeset would be redundant.
 
-## Saving the Progress
+## `git save`
 
 At this point, I have completed a minimal slice of my work. Following the TDD practice, it's typically all tests passing (green phase). This is the best time to save the progress if I screw it up.
 
 ```bash
-# git save
-
 echo "Committing recent changes with message: '$message'"
 git add -A > /dev/null 2>&1
 git commit --no-verify -m "$message" > /dev/null 2>&1
@@ -60,13 +62,11 @@ git commit --no-verify -m "$message" > /dev/null 2>&1
 
 For staging files, I'm using the `-A` flag without specifying the path to ensure all files in the entire working tree are updated. Next, I'm once again skipping the hooks and committing the changes. I default the commit message to something simple like _"quicksave"_ or _"wip"_ because it doesn't matter now.
 
-## Rolling Back Defective Changes
+## `git load`
 
 Alas! After continuing my work, I notice I have made a tragic mistake, and my tests are no longer passing. Unfortunately, time has passed, and I can't fix forward quickly, so it's only logical to roll back to the last known good state.
 
 ```bash
-# git load
-
 echo "Reverting to the last known good state at: '$last_commit'"
 git reset --hard > /dev/null 2>&1
 git clean -fd > /dev/null 2>&1
@@ -74,7 +74,7 @@ git clean -fd > /dev/null 2>&1
 
 First, I discard the changes made, and then I clean the repository of any additional files or directories I've created.
 
-## Polishing and Wrapping it Up
+## `git done`
 
 Finally, after a few save runs and all tests passing, I'm happy with my changes and ready to share them with others.
 
@@ -85,8 +85,6 @@ One caveat to avoid is creating too large commits when wrapping up. Sometimes th
 There's also the option of not squashing if I like it. For those cases, I can simply reword the quicksaves while wrapping up or pass an argument to the `git save` command.
 
 ```bash
-# git done
-
 git reset --soft "$(git history)"
 git add -A
 git commit --amend
@@ -98,13 +96,15 @@ The `git history` command above is beneficial. It uses `fzf` — a powerful inte
 `fzf` also has an excellent way of running an arbitrary command for a given line. Here I'm using `git show` accompanied by `diff-so-fancy` to view the contents of that commit on the right-hand side of my screen.
 
 ```bash
-# git history
-
-git log --oneline --pretty='%h %s' | fzf --preview='git show --color=always {+1} | diff-so-fancy' | cut -d ' ' -f 1
+git log --oneline --pretty='%h %s' \
+| fzf --preview='git show --color=always {+1} | diff-so-fancy' \
+| cut -d ' ' -f 1
 ```
 
 ## Conclusion
 
-Just because Git steers you to work a certain way doesn't mean you have to follow it by the book. Git is a potent tool, and I've found it best to crank its benefits to the extreme like in _Extreme Programming_.
+Just because Git steers you to work a certain way doesn't mean you have to follow it by the book. Git is a potent tool, and I've found it best to crank its benefits to the extreme like we do it in _Extreme Programming_.
 
 Creating a micro-commit every few minutes ensures a stable pace, and you can always revert to safety in case of errors. If you try it out, you may notice a significant amount of stress related to Git usage simply vanishes.
+
+[^1]: I created this helpful GIF using [VHS](https://github.com/charmbracelet/vhs), which is a _digital_ tape recorder for your command-line.

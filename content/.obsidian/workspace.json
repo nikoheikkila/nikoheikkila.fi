@@ -4,15 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "85910c2743fbbef7",
+        "id": "6eb00b340fb7fe72",
         "type": "tabs",
         "children": [
           {
-            "id": "86b79ed42e2195ae",
+            "id": "7c820a70daf0cb33",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "blog/a-practical-guide-to-micro-commits.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -67,10 +72,7 @@
     "width": 300,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "86b79ed42e2195ae",
+  "active": "7c820a70daf0cb33",
   "lastOpenFiles": [
     "uses.md",
     "blog/things-i-don-t-know.md"
