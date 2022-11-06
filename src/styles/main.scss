@@ -31,6 +31,7 @@ h6 {
 ol,
 ul {
     padding-inline-start: 5px;
+    padding-left: 1.5em;
 }
 
 li,
@@ -53,12 +54,6 @@ hr {
 
 section.footnotes {
     margin: 50px 0;
-    ol {
-        padding-left: 2.5em;
-        li {
-            list-style-type: numeric;
-        }
-    }
 
     p {
         font-size: 0.9rem;
