@@ -1,13 +1,14 @@
 import {
     CreateNodeArgs,
     CreatePagesArgs,
-    CreateSchemaCustomizationArgs, Node
+    CreateSchemaCustomizationArgs,
+    Node,
 } from "gatsby";
 import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import path from "path";
 import type {
     MarkdownRemarkConnection,
-    MarkdownRemarkFrontmatter
+    MarkdownRemarkFrontmatter,
 } from "./src/types";
 
 interface CreatePagesData {
