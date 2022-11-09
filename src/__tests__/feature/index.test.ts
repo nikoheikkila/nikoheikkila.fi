@@ -21,7 +21,7 @@ test.describe.parallel("Given I'm on the index page", () => {
             page.waitForNavigation(),
             page.click('a[rel="next"]'),
         ]);
-        await expect(page).toHaveURL(`${baseURL}/2`);
+        await expect(page).toHaveURL(`${baseURL}/2/`);
 
         await Promise.all([
             page.waitForNavigation(),

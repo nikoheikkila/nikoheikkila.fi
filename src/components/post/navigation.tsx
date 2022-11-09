@@ -1,9 +1,8 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
 import * as styles from "./navigation.module.scss";
-
-import Link from "gatsby-link";
 
 interface Navigable {
     slug: string;

@@ -35,6 +35,7 @@ tasks:
             - ./**/*.{ts,tsx}
         cmds:
             - npx tsc --noEmit
+        ignore_error: true
 
     test:
         desc: Run application test suite
