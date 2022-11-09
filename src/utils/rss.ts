@@ -39,33 +39,31 @@ export const serialize = ({
     });
 };
 
-export const rssQuery = `
-    {
-        allMarkdownRemark(
-            limit: 1000
-            sort: { order: DESC, fields: [frontmatter___date] }
-            filter: { frontmatter: { type: { ne: "page" } } }
-        ) {
-            edges {
-                node {
-                    excerpt
-                    html
-                    internal {
-                        contentDigest
-                    }
-                    fields {
-                        slug
-                    }
-                    frontmatter {
-                        author
-                        date
-                        lang
-                        title
-                        type
-                        categories
-                    }
-                }
-            }
+export const rssQuery = `{
+  allMarkdownRemark(
+    limit: 1000
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {type: {ne: "page"}}}
+  ) {
+    edges {
+      node {
+        excerpt
+        html
+        internal {
+          contentDigest
         }
+        fields {
+          slug
+        }
+        frontmatter {
+          author
+          date
+          lang
+          title
+          type
+          categories
+        }
+      }
     }
-`;
+  }
+}`;

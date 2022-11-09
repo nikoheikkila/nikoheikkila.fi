@@ -1,115 +1,115 @@
 version: "3"
 dotenv:
-    - .env
+  - .env
 
 tasks:
-    install:
-        desc: Install dependencies with Yarn
-        sources:
-            - package.json
-            - yarn.lock
-        generates:
-            - node_modules/*
-        cmds:
-            - yarn --frozen-lockfile --prefer-offline
+  install:
+    desc: Install dependencies with Yarn
+    sources:
+      - package.json
+      - yarn.lock
+    generates:
+      - node_modules/*
+    cmds:
+      - yarn --frozen-lockfile --prefer-offline
 
-    format:
-        desc: Format codebase
-        cmds:
-            - npx prettier --write .
+  format:
+    desc: Format codebase
+    cmds:
+      - npx prettier --write .
 
-    lint:
-        desc: Lint codebase
-        deps:
-            - lint-style
-            - lint-types
+  lint:
+    desc: Lint codebase
+    deps:
+      - lint-style
+      - lint-types
 
-    lint-style:
-        desc: Lint codebase for style issues
-        cmds:
-            - npx prettier --check .
+  lint-style:
+    desc: Lint codebase for style issues
+    cmds:
+      - npx prettier --check .
 
-    lint-types:
-        desc: Lint TypeScript files for incorrect typing
-        sources:
-            - ./**/*.{ts,tsx}
-        cmds:
-            - npx tsc --noEmit
+  lint-types:
+    desc: Lint TypeScript files for incorrect typing
+    sources:
+      - ./**/*.{ts,tsx}
+    cmds:
+      - npx tsc --noEmit
 
-    test:
-        desc: Run application test suite
-        deps:
-            - lint
-        cmds:
-            - task: test-unit
-            - task: test-react
-            - task: test-e2e
+  test:
+    desc: Run application test suite
+    deps:
+      - lint
+    cmds:
+      - task: test-unit
+      - task: test-react
+      - task: test-e2e
 
-    test-unit:
-        desc: Run unit tests
-        deps:
-            - install
-        sources:
-            - src/**/*.{ts,tsx}
-        cmds:
-            - npx vitest
+  test-unit:
+    desc: Run unit tests
+    deps:
+      - install
+    sources:
+      - src/**/*.{ts,tsx}
+    cmds:
+      - npx vitest
 
-    test-react:
-        desc: Run React component tests
-        summary: These tests are still experimental and may cause failures
-        deps:
-            - install
-        sources:
-            - src/**/*.ts
-            - src/**/*.tsx
-            - playwright-ct.config.ts
-        ignore_error: true
-        cmds:
-            - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
+  test-react:
+    desc: Run React component tests
+    summary: These tests are still experimental and may cause failures
+    deps:
+      - install
+    sources:
+      - src/**/*.ts
+      - src/**/*.tsx
+      - playwright-ct.config.ts
+    ignore_error: true
+    cmds:
+      - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
 
-    test-e2e:
-        desc: Run end-to-end tests
-        deps:
-            - build
-        cmds:
-            - npx playwright test {{.CLI_ARGS}}
+  test-e2e:
+    desc: Run end-to-end tests
+    deps:
+      - build
+    cmds:
+      - npx playwright test {{.CLI_ARGS}}
 
-    dev:
-        desc: Run development server
-        deps:
-            - task: dev-gatsby
+  dev:
+    desc: Run development server
+    deps:
+      - task: dev-gatsby
 
-    dev-gatsby:
-        deps:
-            - install
-        desc: Serve the Gatsby development site
-        cmds:
-            - yarn clean
-            - yarn dev
+  dev-gatsby:
+    deps:
+      - install
+    desc: Serve the Gatsby development site
+    cmds:
+      - yarn clean
+      - yarn dev
 
-    dev-types:
-        deps:
-            - install
-        desc: Fetch and generate GraphQL types from development server
-        cmds:
-            - npx graphql-codegen --watch
+  dev-types:
+    deps:
+      - install
+    desc: Fetch and generate GraphQL types from development server
+    cmds:
+      - npx graphql-codegen --watch
 
-    build:
-        desc: Build the Gatsby production site
-        deps:
-            - install
-        generates:
-            - public/
-            - .cache/
-        env:
-            GATSBY_CPU_COUNT: logical_cores
-            NODE_ENV: production
-        cmds:
-            - yarn build
+  build:
+    desc: Build the Gatsby production site
+    deps:
+      - install
+    generates:
+      - public/
+      - .cache/
+    env:
+      GATSBY_CPU_COUNT: logical_cores
+      NODE_ENV: production
+    cmds:
+      - yarn build
 
-    serve:
-        desc: Serve the Gatsby production site
-        env:
-            NODE_ENV: production
-        cmds:
-            - yarn serve
+  serve:
+    desc: Serve the Gatsby production site
+    env:
+      NODE_ENV: production
+    cmds:
+      - yarn serve

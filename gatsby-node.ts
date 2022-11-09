@@ -1,14 +1,13 @@
 import {
     CreateNodeArgs,
     CreatePagesArgs,
-    CreateSchemaCustomizationArgs,
-    Node,
+    CreateSchemaCustomizationArgs, Node
 } from "gatsby";
 import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import path from "path";
 import type {
     MarkdownRemarkConnection,
-    MarkdownRemarkFrontmatter,
+    MarkdownRemarkFrontmatter
 } from "./src/types";
 
 interface CreatePagesData {
@@ -55,7 +54,7 @@ export const createPages = async ({
     >(`
         {
             allMarkdownRemark(
-                sort: { fields: [frontmatter___date], order: DESC }
+                sort: { frontmatter: { date: DESC } }
                 limit: 1000
             ) {
                 edges {
