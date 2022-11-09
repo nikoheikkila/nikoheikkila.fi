@@ -11,10 +11,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Setup Node.js 16
-              uses: actions/setup-node@v2
+            - name: Setup Node.js 18
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: yarn
 
             - name: Install Task
@@ -61,10 +61,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Setup Node.js 16
-              uses: actions/setup-node@v2
+            - name: Setup Node.js 18
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: yarn
 
             - name: Install Task
