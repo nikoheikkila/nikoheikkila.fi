@@ -9362,10 +9362,10 @@ gatsby-worker@^2.0.0:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-5.0.0.tgz#bc0962bb47961b308b09e703959831b5db005d35"
-  integrity sha512-8ovjyCUWqLpaCPmF/jq2VwrfIb8/8NwXqKflFhuF7IciVZ4YuX9s2iCL+esaGxH8SyvKciTMWvvzh9hWYpMIBQ==
+gatsby@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-5.0.1.tgz#b8a8e29b42603d742e108ef82d40f34ac56aec7d"
+  integrity sha512-3HFIeA8jY2QyU+h+JhsfGuuzgdXAAppPse19ItVNP2hJ9qiMPAxDE1cJPg9jGEt0o6olIo78DAzmE+9n8ZFvRQ==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
