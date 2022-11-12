@@ -15887,10 +15887,10 @@ snapsvg@0.5.1:
   dependencies:
     eve "~0.5.1"
 
-snyk@1.1053.0:
-  version "1.1053.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1053.0.tgz#4bde9caeef69953943ed26f86ae2a71d90bf1033"
-  integrity sha512-TPOHesOdqlif3OTputIk9ZRLlHL6xUZNawZsBasthfqFUFogR+p4dleVSopBiiJdwt18nGI6Rank7jAUsJuPog==
+snyk@1.1058.0:
+  version "1.1058.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1058.0.tgz#fb227c21c9d9268d9b734db95f9a7a3dba49ad8a"
+  integrity sha512-B3Uiph9uS50B6xJ7QlQaat6jfqGGnZPHG5SbnBDZeIW/sokIUgywc0cgN/nBoNQX2RUHQXDmca9qlT8UI04dDg==
 
 socket.io-adapter@~2.1.0:
   version "2.1.0"
