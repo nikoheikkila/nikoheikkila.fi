@@ -51,7 +51,7 @@
         "@netlify/plugin-gatsby": "3.4.8",
         "@playwright/experimental-ct-react": "1.27.1",
         "@playwright/test": "1.27.1",
-        "@types/inquirer": "8.2.4",
+        "@types/inquirer": "8.2.5",
         "@types/node": "18.11.7",
         "@types/react": "17.0.52",
         "@types/react-burger-menu": "2.8.3",
