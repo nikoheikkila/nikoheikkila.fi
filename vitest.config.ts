@@ -8,7 +8,5 @@ export default defineConfig({
         reporters: ["verbose"],
         environment: "node",
         watch: !isPipeline,
-        maxThreads: 8,
-        minThreads: isPipeline ? 2 : undefined,
     },
 });
