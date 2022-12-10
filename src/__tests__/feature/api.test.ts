@@ -25,7 +25,7 @@ test.describe.parallel("API Tests", () => {
     });
 
     test("/sitemap should return valid XML sitemap", async ({ request }) => {
-        const response = await request.get("/sitemap/sitemap-index.xml");
+        const response = await request.get("/sitemap-index.xml");
         expect(response).toBeOK();
 
         const body = await response.text();

@@ -11,11 +11,15 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Setup Node.js 16
-              uses: actions/setup-node@v2
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version-file: ".nvmrc"
+                  check-latest: true
                   cache: yarn
+
+            - name: Print Node.js dependencies
+              run: node -e 'console.log(process.versions)'
 
             - name: Install Task
               uses: arduino/setup-task@v1
@@ -61,10 +65,11 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Setup Node.js 16
-              uses: actions/setup-node@v2
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version-file: ".nvmrc"
+                  check-latest: true
                   cache: yarn
 
             - name: Install Task

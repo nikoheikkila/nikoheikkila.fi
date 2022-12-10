@@ -3,9 +3,6 @@
   command = "yarn build"
   publish = "public/"
 
-[build.environment]
-  GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = "true"
-
 [build.processing.css]
   bundle = true
   minify = false
@@ -17,8 +14,8 @@
 [build.processing.images]
   compress = true
 
-[[plugins]]
-  package = "@netlify/plugin-gatsby"
+# [[plugins]]
+#   package = "@netlify/plugin-gatsby"
 
 [[headers]]
   for = "/rss.xml"

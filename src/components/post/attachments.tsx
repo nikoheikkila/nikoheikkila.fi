@@ -1,6 +1,6 @@
 import { faEdit, faHistory, faUndo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
 import { BlogLink } from "../../components/elements";
 import * as styles from "./attachments.module.scss";
