@@ -14,7 +14,7 @@
         "@fortawesome/free-solid-svg-icons": "6.2.1",
         "@fortawesome/react-fontawesome": "0.2.0",
         "@sindresorhus/slugify": "2.1.1",
-        "dayjs": "1.11.6",
+        "dayjs": "1.11.7",
         "gatsby": "5.2.0",
         "gatsby-plugin-feed": "5.2.0",
         "gatsby-plugin-image": "3.2.0",
