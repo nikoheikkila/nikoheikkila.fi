@@ -2,7 +2,6 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { ReactNode } from "react";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
-import Footer from "./footer";
 import "../../styles/main.scss";
 import { Slice } from "gatsby";
 
@@ -35,13 +34,13 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
             {type === LayoutType.LIST && (
                 <ListContainer>
                     <section>{children}</section>
-                    <Footer />
+                    <Slice alias="footer" />
                 </ListContainer>
             )}
             {type === LayoutType.SINGLE && (
                 <SinglePostContainer>
                     <section>{children}</section>
-                    <Footer />
+                    <Slice alias="footer" />
                 </SinglePostContainer>
             )}
         </>

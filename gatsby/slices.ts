@@ -1,9 +1,8 @@
-interface Slice {
-    id: string;
-    component: string;
-    context?: Record<string, unknown>;
-}
+import { SliceInput } from "gatsby";
 
-const slices: Slice[] = [{ id: "sidebar", component: "menu.tsx" }];
+const slices: SliceInput[] = [
+    { id: "sidebar", component: "menu.tsx" },
+    { id: "footer", component: "footer.tsx" },
+];
 
 export default slices;
