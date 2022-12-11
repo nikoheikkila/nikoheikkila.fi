@@ -1,5 +1,6 @@
 import React from "react";
 import favicon from "../static/favicon.png";
+import { Script, ScriptStrategy } from "gatsby";
 
 interface Props {
     author?: string;
@@ -93,12 +94,14 @@ export default React.memo(
               ]
             : baseSchema;
 
-        const jsonSchema = JSON.stringify(schema);
-
         return (
-            <>
-                <script type="application/ld+json">{jsonSchema}</script>
-            </>
+            <Script
+                id="json-ld"
+                type="application/ld+json"
+                strategy={ScriptStrategy.idle}
+            >
+                {JSON.stringify(schema)}
+            </Script>
         );
     }
 );
