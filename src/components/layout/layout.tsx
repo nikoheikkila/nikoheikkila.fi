@@ -3,8 +3,8 @@ import React, { ReactNode } from "react";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import Footer from "./footer";
-import Menu from "./menu";
 import "../../styles/main.scss";
+import { Slice } from "gatsby";
 
 export enum LayoutType {
     LIST = "list",
@@ -26,9 +26,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
 }) => {
     return (
         <>
-            <aside>
-                <Menu />
-            </aside>
+            <Slice alias="sidebar" />
             {cover && (
                 <header>
                     <Hero data={cover} alt={title} />

@@ -31,13 +31,15 @@ const Menu: FunctionComponent<MenuProps> = () => {
     ));
 
     return (
-        <BurgerMenu
-            isOpen={menuOpen}
-            onOpen={() => setMenuOpen(true)}
-            onClose={() => setMenuOpen(false)}
-        >
-            {menuOpen ? allPages : null}
-        </BurgerMenu>
+        <aside>
+            <BurgerMenu
+                isOpen={menuOpen}
+                onOpen={() => setMenuOpen(true)}
+                onClose={() => setMenuOpen(false)}
+            >
+                {menuOpen ? allPages : null}
+            </BurgerMenu>
+        </aside>
     );
 };
 

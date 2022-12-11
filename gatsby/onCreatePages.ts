@@ -1,6 +1,7 @@
 import { CreatePagesArgs } from "gatsby";
 import path from "path";
 import { MarkdownRemarkConnection } from "../src/types";
+import slices from "./slices";
 
 interface CreatePagesData {
     allMarkdownRemark: MarkdownRemarkConnection;
@@ -10,7 +11,7 @@ const postsPerPage = 30;
 
 const onCreatePages = async ({
     graphql,
-    actions: { createPage },
+    actions: { createPage, createSlice },
 }: CreatePagesArgs) => {
     const blogIndex = path.resolve(`./src/templates/list.tsx`);
     const blogPost = path.resolve(`./src/templates/post.tsx`);
@@ -46,6 +47,17 @@ const onCreatePages = async ({
     if (!data) {
         throw new Error("createPages() query returned no data");
     }
+
+    /**
+     * Create reusable slices for common site components
+     */
+    slices.forEach(({ id, component, context = {} }) => {
+        createSlice({
+            id,
+            context,
+            component: path.resolve("src", "components", "layout", component),
+        });
+    });
 
     /**
      * Create blog posts by first querying all page objects from GraphQL
