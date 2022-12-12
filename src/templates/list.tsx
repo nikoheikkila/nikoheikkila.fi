@@ -1,9 +1,9 @@
-import { graphql, HeadFC } from "gatsby";
 import React from "react";
+import { graphql, HeadFC } from "gatsby";
+import Layout, { LayoutType } from "../components/layout/layout";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
-import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
 import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 
