@@ -25,7 +25,6 @@
         "gatsby-plugin-sass": "6.2.0",
         "gatsby-plugin-sharp": "5.2.0",
         "gatsby-plugin-sitemap": "6.2.0",
-        "gatsby-plugin-typescript": "5.2.0",
         "gatsby-remark-autolink-headers": "6.2.0",
         "gatsby-remark-copy-linked-files": "6.2.0",
         "gatsby-remark-images": "7.2.0",
