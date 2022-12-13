@@ -3,6 +3,12 @@ dotenv:
     - .env
 
 tasks:
+    new:
+        desc: Scaffold a new post or page
+        interactive: true
+        cmds:
+            - npx esno new.ts
+
     install:
         desc: Install dependencies with Yarn
         sources:

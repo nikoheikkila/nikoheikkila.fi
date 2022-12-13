@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node-script
+#!/usr/bin/env esno
 import slugify from "@sindresorhus/slugify";
 import fs from "fs";
 import inquirer, { PromptModule } from "inquirer";
