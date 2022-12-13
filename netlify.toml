@@ -1,29 +1,32 @@
 [build]
-  base = "/"
-  command = "yarn build"
-  publish = "public/"
+base = "/"
+command = "yarn build"
+publish = "public/"
 
 [build.processing.css]
-  bundle = true
-  minify = false
+bundle = true
+minify = false
 [build.processing.js]
-  bundle = true
-  minify = false
+bundle = true
+minify = false
 [build.processing.html]
-  pretty_urls = true
+pretty_urls = true
 [build.processing.images]
-  compress = true
+compress = true
 
-# [[plugins]]
-#   package = "@netlify/plugin-gatsby"
+[context.production.environment]
+YARN_VERSION = "3.3.0"
+
+#[[plugins]]
+#package = "@netlify/plugin-gatsby"
 
 [[headers]]
-  for = "/rss.xml"
-  [headers.values]
-    Cache-Control = "no-cache"
+for = "/rss.xml"
+[headers.values]
+Cache-Control = "no-cache"
 
 [[redirects]]
-  from = "/feed"
-  to = "/rss.xml"
-  status = 200
-  force = true
+from = "/feed"
+to = "/rss.xml"
+status = 200
+force = true

@@ -17,7 +17,7 @@ tasks:
         generates:
             - node_modules/*
         cmds:
-            - yarn --frozen-lockfile --prefer-offline
+            - yarn --frozen-lockfile
 
     format:
         desc: Format codebase
