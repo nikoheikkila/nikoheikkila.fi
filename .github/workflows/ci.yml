@@ -28,7 +28,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: .task
-                  key: ${{ runner.os }}-task-${{ hashFiles('Taskfile.yaml') }}
+                  key: ${{ runner.os }}-task-commit-${{ hashFiles('Taskfile.yaml') }}
                   restore-keys: |
                       ${{ runner.os }}-task-
                       ${{ runner.os }}-
@@ -37,7 +37,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: .yarn
-                  key: ${{ runner.os }}-task-${{ hashFiles('yarn.lock') }}
+                  key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
                       ${{ runner.os }}-
@@ -88,7 +88,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: .task
-                  key: ${{ runner.os }}-task-${{ hashFiles('Taskfile.yaml') }}
+                  key: ${{ runner.os }}-task-acceptance-${{ hashFiles('Taskfile.yaml') }}
                   restore-keys: |
                       ${{ runner.os }}-task-
                       ${{ runner.os }}-
@@ -97,7 +97,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: .yarn
-                  key: ${{ runner.os }}-task-${{ hashFiles('yarn.lock') }}
+                  key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-yarn-
                       ${{ runner.os }}-
