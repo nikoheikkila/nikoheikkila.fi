@@ -19,7 +19,7 @@ tasks:
         cmds:
             - corepack enable
             - corepack prepare yarn@stable --activate
-            - yarn --frozen-lockfile
+            - yarn --immutable
 
     format:
         desc: Format codebase
