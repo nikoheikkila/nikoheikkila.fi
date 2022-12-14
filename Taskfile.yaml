@@ -17,6 +17,8 @@ tasks:
         generates:
             - node_modules/*
         cmds:
+            - corepack enable
+            - corepack prepare yarn@stable --activate
             - yarn --frozen-lockfile
 
     format:
