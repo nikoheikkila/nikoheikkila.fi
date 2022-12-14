@@ -33,6 +33,15 @@ jobs:
                       ${{ runner.os }}-task-
                       ${{ runner.os }}-
 
+            - name: Cache Yarn files
+              uses: actions/cache@v3
+              with:
+                  path: .yarn
+                  key: ${{ runner.os }}-task-${{ hashFiles('yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+                      ${{ runner.os }}-
+
             - name: Install dependencies
               run: task install
 
@@ -75,9 +84,6 @@ jobs:
                   version: 3.x
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Install dependencies
-              run: task install
-
             - name: Cache task checksums
               uses: actions/cache@v3
               with:
@@ -86,6 +92,18 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-task-
                       ${{ runner.os }}-
+
+            - name: Cache Yarn files
+              uses: actions/cache@v3
+              with:
+                  path: .yarn
+                  key: ${{ runner.os }}-task-${{ hashFiles('yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+                      ${{ runner.os }}-
+
+            - name: Install dependencies
+              run: task install
 
             - name: Cache Gatsby Build Files
               uses: actions/cache@v2
