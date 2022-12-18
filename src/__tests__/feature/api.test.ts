@@ -7,7 +7,7 @@ test.describe.parallel("API Tests", () => {
         request,
     }) => {
         const response = await request.get("/robots.txt");
-        expect(response).toBeOK();
+        await expect(response).toBeOK();
 
         const body = await response.text();
         expect(body).toContain("User-agent: ");
@@ -18,7 +18,7 @@ test.describe.parallel("API Tests", () => {
 
     test("/rss.xml should return valid RSS feed", async ({ request }) => {
         const response = await request.get("/rss.xml");
-        expect(response).toBeOK();
+        await expect(response).toBeOK();
 
         const body = await response.text();
         expect(body).toMatch(validXMLHeader);
@@ -26,7 +26,7 @@ test.describe.parallel("API Tests", () => {
 
     test("/sitemap should return valid XML sitemap", async ({ request }) => {
         const response = await request.get("/sitemap-index.xml");
-        expect(response).toBeOK();
+        await expect(response).toBeOK();
 
         const body = await response.text();
         expect(body).toMatch(validXMLHeader);
