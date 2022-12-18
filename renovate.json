@@ -5,6 +5,9 @@
     "enabledManagers": ["npm"],
     "schedule": ["every weekend"],
     "commitBody": "[skip netlify]",
+    "constraints": {
+        "yarn": ">=3.3.0"
+    },
     "packageRules": [
         {
             "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
