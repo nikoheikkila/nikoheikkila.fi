@@ -17,8 +17,8 @@ compress = true
 [context.production.environment]
 YARN_VERSION = "3.3.0"
 
-#[[plugins]]
-#package = "@netlify/plugin-gatsby"
+[[plugins]]
+package = "@netlify/plugin-gatsby"
 
 [[headers]]
 for = "/rss.xml"
