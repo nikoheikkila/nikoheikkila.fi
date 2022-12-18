@@ -62,7 +62,7 @@ gatsby-types.d.ts
 .DS_Store
 
 # Yarn
-.yarn/
+.yarn/cache
 yarn-error.log
 .yarn-integrity
 .pnp/
