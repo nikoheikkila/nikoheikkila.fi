@@ -14,9 +14,6 @@ pretty_urls = true
 [build.processing.images]
 compress = true
 
-[context.production.environment]
-YARN_VERSION = "3.3.0"
-
 [[plugins]]
 package = "@netlify/plugin-gatsby"
 
