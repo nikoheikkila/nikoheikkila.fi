@@ -62,11 +62,12 @@ gatsby-types.d.ts
 .DS_Store
 
 # Yarn
-.yarn/cache
-yarn-error.log
-.yarn-integrity
-.pnp/
-.pnp.js
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Linters
 .sonarlint
