@@ -2756,7 +2756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/ipx@npm:^1.2.5":
+"@netlify/ipx@npm:^1.3.0":
   version: 1.3.2
   resolution: "@netlify/ipx@npm:1.3.2"
   dependencies:
@@ -2774,12 +2774,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/plugin-gatsby@npm:3.4.8":
-  version: 3.4.8
-  resolution: "@netlify/plugin-gatsby@npm:3.4.8"
+"@netlify/plugin-gatsby@npm:3.5.0":
+  version: 3.5.0
+  resolution: "@netlify/plugin-gatsby@npm:3.5.0"
   dependencies:
     "@netlify/functions": ^1.3.0
-    "@netlify/ipx": ^1.2.5
+    "@netlify/ipx": ^1.3.0
     abortcontroller-polyfill: ^1.7.3
     chalk: ^4.1.2
     co-body: ^6.1.0
@@ -2798,9 +2798,9 @@ __metadata:
     tempy: ^1.0.0
     uuid: ^8.3.2
   peerDependencies:
-    "@gatsbyjs/reach-router": ^1.3.6
+    "@gatsbyjs/reach-router": "*"
     common-tags: ^1.8.2
-  checksum: 894ab49d28d406d1b262a279eea695f044feae4972fbabe252aee23bc9f3152b0b355109e720079202083c2b54070d9e586c8672714a32833c8e61bbbe1214d9
+  checksum: 12876358e80c757b110abf7ebd057581fc9b06de3d7d30758ba52ab36460a0f98bdc52d709e7901daf7680e80f7db12a81e1c3b617586d44f9414afac8ecdcd9
   languageName: node
   linkType: hard
 
@@ -14437,7 +14437,7 @@ __metadata:
     "@fortawesome/react-fontawesome": 0.2.0
     "@graphql-codegen/cli": 2.16.1
     "@graphql-codegen/typescript": 2.8.5
-    "@netlify/plugin-gatsby": 3.4.8
+    "@netlify/plugin-gatsby": 3.5.0
     "@playwright/experimental-ct-react": 1.28.1
     "@playwright/test": 1.28.1
     "@sindresorhus/slugify": 2.1.1
