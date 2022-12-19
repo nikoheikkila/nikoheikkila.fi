@@ -32,6 +32,16 @@ for = "/.well-known/webfinger"
 [headers.values]
 Content-Type = "application/jrd+json"
 
+[[headers]]
+for = "/.well-known/host-meta"
+[headers.values]
+Content-Type = "application/xml"
+
+[[headers]]
+for = "/.well-known/nodeinfo"
+[headers.values]
+Content-Type = "application/jrd+json"
+
 [[redirects]]
 from = "/feed"
 to = "/rss.xml"
