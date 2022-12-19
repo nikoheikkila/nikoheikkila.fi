@@ -27,6 +27,11 @@ for = "/rss.xml"
 [headers.values]
 Cache-Control = "no-cache"
 
+[[headers]]
+for = "/.well-known/webfinger"
+[headers.values]
+Content-Type = "application/jrd+json"
+
 [[redirects]]
 from = "/feed"
 to = "/rss.xml"

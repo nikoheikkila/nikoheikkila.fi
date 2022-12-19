@@ -1,5 +1,4 @@
 import React from "react";
-import favicon from "../static/favicon.png";
 import { Script, ScriptStrategy } from "gatsby";
 
 interface Props {
@@ -78,7 +77,7 @@ export default React.memo(
                           url: canonicalUrl,
                           logo: {
                               "@type": "ImageObject",
-                              url: canonicalUrl + favicon,
+                              url: canonicalUrl + "/favicon.png",
                               width: 512,
                               height: 512,
                           },

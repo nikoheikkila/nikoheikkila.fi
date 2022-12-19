@@ -116,7 +116,7 @@ const config: GatsbyConfig = {
                 background_color: `#ffffff`,
                 theme_color: `#663399`,
                 display: `standalone`,
-                icon: `src/static/favicon.png`,
+                icon: `./static/favicon.png`,
                 crossOrigin: `use-credentials`,
             },
         },
