@@ -50,6 +50,7 @@
         "@netlify/plugin-gatsby": "3.5.0",
         "@playwright/experimental-ct-react": "1.29.0",
         "@playwright/test": "1.29.0",
+        "@sindresorhus/slugify": "2.1.1",
         "@types/inquirer": "9.0.3",
         "@types/node": "18.11.17",
         "@types/react": "18.0.26",
@@ -65,8 +66,7 @@
         "snyk": "1.1071.0",
         "subscriptions-transport-ws": "0.11.0",
         "typescript": "4.9.4",
-        "vitest": "0.25.8",
-        "@sindresorhus/slugify": "2.1.1"
+        "vitest": "0.25.8"
     },
     "keywords": [
         "gatsby"
