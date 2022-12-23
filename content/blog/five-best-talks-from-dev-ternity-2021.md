@@ -19,7 +19,11 @@ The conference took place remotely via Zoom in December of 2021 due to the pande
 
 As a visitor, I've had the pleasure to watch the raw and unpolished recordings and pick five favourites of mine. Here's what I chose (in no particular order).
 
-## Kevlin Henney – Decremental Development
+**Don't trust only on my words. Click on the talk titles to watch the recordings.**
+
+---
+
+## [Kevlin Henney – Decremental Development](https://www.youtube.com/watch?v=Wv4NBpB53Bg)
 
 How do you increment value through developing decrementally?
 
@@ -31,7 +35,7 @@ What does not exist cannot kill you as it is also effectively invulnerable to ex
 
 In my line of work, there is a pervasive possibility of reducing our solutions to their minimal functional versions. We can do this by enforcing the correct number of tests and refactoring (decrementing) our solution until no more elements are removed. What is left is the most uncomplicated design we can muster.
 
-## Allen Holub – War Is Peace, Freedom Is Slavery, Ignorance Is Strength, Scrum Is Agile
+## [Allen Holub – War Is Peace, Freedom Is Slavery, Ignorance Is Strength, Scrum Is Agile](https://www.youtube.com/watch?v=41CES2sNPxs)
 
 One of the most thought-provoking talks in the event came from Allen Holub explaining how Agile (with a _capital_ A) has suffered from excess productization.
 
@@ -47,7 +51,7 @@ It is not agile when we attempt to convert our waterfall process to massive user
 
 Finally, Holub gives us a precious tip. The word _agile_ translates to nimble, flexible, or fast. It's an adjective, not a noun. If you can't substitute agile with these adjectives in your text, you're probably doing it wrong.
 
-## Anton Keks – The World Needs Full-Stack Craftspeople
+## [Anton Keks – The World Needs Full-Stack Craftspeople](https://www.youtube.com/watch?v=ipKw9hB2_bM)
 
 Over-specialization of talent has led us to divide our craft between many professionals. As a result, for a significant amount of time, there has been an ever-ongoing battle between developers whose job is to change things and system admins whose job is to keep things running stable.
 
@@ -70,7 +74,7 @@ Building a team of generalists is challenging in environments where we favour pr
 
 In the long run, your product is most likely doomed without a single generalist who cares about long-term maintainability. It is the curse of our business that, in the short term, we can still earn good profit by delivering wrong results inefficiently. That is where our mentality has to change the most.
 
-## Robert Martin – The Craftsman's Oath
+## [Robert Martin – The Craftsman's Oath](https://www.youtube.com/watch?v=nM-0gfFvT-k)
 
 I always enjoy watching Uncle Bob share wisdom, and their talk about developer responsibilities was no exception.
 
@@ -95,7 +99,9 @@ The oath in 10 commandments is published in Martin's latest book _Clean Craftsma
 
 Naturally, the most crucial promise is hippocratic first. No matter what software you are developing, ensure it inflicts no harm to others.
 
-## David Neal – Leadership Guide for the Reluctant Leader
+## [David Neal – Leadership Guide for the Reluctant Leader](https://www.youtube.com/watch?v=3PcL8UkorEg)
+
+_Note the linked recording above is from 2019, but the same concepts still apply._
 
 According to David Neal, there are two common misconceptions about leadership. Firstly, leadership is not only for managers but also for you all. Secondly, leadership is not about being in charge; it's about having influence.
 
