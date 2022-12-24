@@ -9881,9 +9881,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-remark@npm:6.3.1":
-  version: 6.3.1
-  resolution: "gatsby-transformer-remark@npm:6.3.1"
+"gatsby-transformer-remark@npm:6.3.2":
+  version: 6.3.2
+  resolution: "gatsby-transformer-remark@npm:6.3.2"
   dependencies:
     "@babel/runtime": ^7.15.4
     gatsby-core-utils: ^4.3.1
@@ -9909,7 +9909,7 @@ __metadata:
     unist-util-visit: ^2.0.3
   peerDependencies:
     gatsby: ^5.0.0-next
-  checksum: 021ad18b1244969e089e52fd78e142a620c1a9abff1560d22421e8e48d30bc0a5c0718af2694c7a94b624e31bbebff680ae78aa31885e5f0358116ed57b25e27
+  checksum: 20a969dc55fe9b5b7820d1cc4f0ce6961d0be3cf76af7fd81ad09f0f9e0afdced486c9ccc099d83d9ab8f0c25a3e8b8bf96c271448fca7bfd3dbf2c1ad7207f4
   languageName: node
   linkType: hard
 
@@ -9944,9 +9944,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.3.2":
-  version: 5.3.2
-  resolution: "gatsby@npm:5.3.2"
+"gatsby@npm:5.3.3":
+  version: 5.3.3
+  resolution: "gatsby@npm:5.3.3"
   dependencies:
     "@babel/code-frame": ^7.14.0
     "@babel/core": ^7.15.5
@@ -10122,7 +10122,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 2e3fbdb4b4aa86d368d402cfb5ebed333b8c8c33c2d7dab8cdd10e956eeed7f70d3641c1790b94e60d0b397aa6165a989ab74a0ae97ff037e3fc00ed5ce3603d
+  checksum: f064cabd53e609c143605b85427cbf245893dc65935e1ed57a397b31dde2c106427f0fa8a807b2c2d970afdee84c6e7232b2cdd1ac405f65149d1db6a9c220b1
   languageName: node
   linkType: hard
 
@@ -14424,7 +14424,7 @@ __metadata:
     "@types/title": 3.4.1
     dayjs: 1.11.7
     esno: ^0.16.3
-    gatsby: 5.3.2
+    gatsby: 5.3.3
     gatsby-plugin-feed: 5.3.1
     gatsby-plugin-image: 3.3.2
     gatsby-plugin-manifest: 5.3.1
@@ -14439,7 +14439,7 @@ __metadata:
     gatsby-remark-images: 7.3.1
     gatsby-remark-smartypants: 6.3.0
     gatsby-source-filesystem: 5.3.1
-    gatsby-transformer-remark: 6.3.1
+    gatsby-transformer-remark: 6.3.2
     gatsby-transformer-sharp: 5.3.1
     graphql-sse: 2.0.0
     inquirer: 9.1.4
