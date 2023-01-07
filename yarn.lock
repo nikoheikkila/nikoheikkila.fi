@@ -3385,26 +3385,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/experimental-ct-react@npm:1.29.1":
-  version: 1.29.1
-  resolution: "@playwright/experimental-ct-react@npm:1.29.1"
+"@playwright/experimental-ct-react@npm:1.29.2":
+  version: 1.29.2
+  resolution: "@playwright/experimental-ct-react@npm:1.29.2"
   dependencies:
-    "@playwright/test": 1.29.1
+    "@playwright/test": 1.29.2
     "@vitejs/plugin-react": ^2.2.0
     vite: ^3.2.1
-  checksum: 62db39c32df6bc0880167b70938d2adacadae026b65647aef83764f35356d764d04c82b7591467d7a367442e08d2dc75e7c6340dfa28cbc9f5d23b95a0677f79
+  checksum: 327d682c91595975bbadb7137245975eaa57b113e49800a212767fecd5e5baf5406f9826a93665a020bae37afcca392a24b68e12338fbc78ffc1bc61cfb0b82e
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.29.1":
-  version: 1.29.1
-  resolution: "@playwright/test@npm:1.29.1"
+"@playwright/test@npm:1.29.2":
+  version: 1.29.2
+  resolution: "@playwright/test@npm:1.29.2"
   dependencies:
     "@types/node": "*"
-    playwright-core: 1.29.1
+    playwright-core: 1.29.2
   bin:
     playwright: cli.js
-  checksum: c4424ee09f6589a296a3a78402f8c9eac841f3e5f44d96e3a2ba07aaa00d53ee9c10cc96379b304743a9e70f231df0ded0ad2fc197f412ada67b4cf17ee24b0f
+  checksum: 614cd4ed3baa4e41a6c7865f3c49733caef2c9d5a1aae5832b3d145ffdb0be2dd9d30136c0cb8aed5f9d452782baf2f380e5b12092958bf9fa7578a6d5fa61bf
   languageName: node
   linkType: hard
 
@@ -14484,8 +14484,8 @@ __metadata:
     "@graphql-codegen/cli": 2.16.3
     "@graphql-codegen/typescript": 2.8.7
     "@netlify/plugin-gatsby": 3.5.0
-    "@playwright/experimental-ct-react": 1.29.1
-    "@playwright/test": 1.29.1
+    "@playwright/experimental-ct-react": 1.29.2
+    "@playwright/test": 1.29.2
     "@sindresorhus/slugify": 2.1.1
     "@types/inquirer": 9.0.3
     "@types/node": 18.11.18
@@ -14515,7 +14515,7 @@ __metadata:
     gatsby-transformer-sharp: 5.3.1
     graphql-sse: 2.0.0
     inquirer: 9.1.4
-    playwright: 1.29.1
+    playwright: 1.29.2
     prettier: 2.8.1
     purify-ts: 1.3.0
     react: 18.2.0
@@ -15594,23 +15594,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.29.1":
-  version: 1.29.1
-  resolution: "playwright-core@npm:1.29.1"
+"playwright-core@npm:1.29.2":
+  version: 1.29.2
+  resolution: "playwright-core@npm:1.29.2"
   bin:
     playwright: cli.js
-  checksum: e1c8423db4d28f44e5365a353f321b04a07709c8bf26d0c908f06d2c2669f715315170f84ca98a532951c2ac6324f5f48f651dca1abe43092c7637bdb4703303
+  checksum: 19e00e162a24eb99878408518930346c1d2c8ce83bb02993e3dd890c99df4530240cfebe4ec4e5aca01656462695b6328fb8f913cf2e229c2c73941623ac524e
   languageName: node
   linkType: hard
 
-"playwright@npm:1.29.1":
-  version: 1.29.1
-  resolution: "playwright@npm:1.29.1"
+"playwright@npm:1.29.2":
+  version: 1.29.2
+  resolution: "playwright@npm:1.29.2"
   dependencies:
-    playwright-core: 1.29.1
+    playwright-core: 1.29.2
   bin:
     playwright: cli.js
-  checksum: ef20f71b20420d9e0eaf45ac5f936422dc6961a863eb71192abe911d3f951722b3c464a36ea04cac8484368c876b5513db04171375f970831fb2bccb9fbb1b7b
+  checksum: 6909483b440ad936cf413efeb30f4541e801f93f9a87797dda263264e29170a38e0741d65274bc26ffcbbfaa12f044938d65ccdfc04ca960c16b9383ed4cbb0e
   languageName: node
   linkType: hard
 
