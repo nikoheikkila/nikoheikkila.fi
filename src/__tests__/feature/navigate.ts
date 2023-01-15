@@ -1,20 +1,21 @@
 import { Page } from "playwright";
+import { Locator } from "@playwright/test";
 
 export const toExternalSiteByClicking = async (
     page: Page,
-    selector: string
+    locator: Locator
 ): Promise<Page> => {
-    const [newPage] = await Promise.all([
-        page.waitForEvent("popup"),
-        page.locator(selector).click(),
-    ]);
+    const popupPromise = page.waitForEvent("popup");
+    await locator.click();
+    const popup = await popupPromise;
+    await popup.waitForLoadState("load");
 
-    return newPage;
+    return popup;
 };
 
 export const toInternalPageByClicking = async (
     page: Page,
-    selector: string
+    locator: Locator
 ): Promise<void> => {
-    await Promise.all([page.waitForNavigation(), page.click(selector)]);
+    await Promise.all([page.waitForNavigation(), locator.click()]);
 };

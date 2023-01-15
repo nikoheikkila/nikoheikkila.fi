@@ -3,9 +3,10 @@ import * as Navigate from "./navigate";
 
 test.describe.parallel("Given I'm on a single post page", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/");
+        const title = page.getByTestId("post-title").first();
 
-        await Navigate.toInternalPageByClicking(page, "data-testid=post-title");
+        await page.goto("/");
+        await Navigate.toInternalPageByClicking(page, title);
 
         await expect(page).toHaveURL(/blog/);
     });
@@ -38,10 +39,9 @@ test.describe.parallel("Given I'm on a single post page", () => {
     test("when I click the 'Edit' button, then I should be taken to GitHub web editor", async ({
         page,
     }) => {
-        const github = await Navigate.toExternalSiteByClicking(
-            page,
-            "text=Edit Page"
-        );
+        const editLink = page.getByRole("link", { name: /Edit Page/ });
+
+        const github = await Navigate.toExternalSiteByClicking(page, editLink);
 
         await expect(github).toHaveURL(/github\.com/);
         await expect(github).toHaveTitle(/Sign in to GitHub/);
@@ -50,9 +50,11 @@ test.describe.parallel("Given I'm on a single post page", () => {
     test("when I click the 'View History' button, then I should be taken to GitHub history view", async ({
         page,
     }) => {
+        const historyLink = page.getByRole("link", { name: /View History/ });
+
         const github = await Navigate.toExternalSiteByClicking(
             page,
-            "text=View History"
+            historyLink
         );
 
         await expect(github).toHaveURL(/github\.com/);
