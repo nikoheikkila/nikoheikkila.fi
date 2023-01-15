@@ -42,8 +42,8 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     const next = pageContext.next;
     const datePublished = DateTime.toDisplay(date);
     const postSlug = slug.slice(1, slug.length - 1);
-    const editUrl = `${repository}/edit/main/content/${postSlug}/index.md`;
-    const historyUrl = `${repository}/commits/main/content/${postSlug}/index.md`;
+    const editUrl = `${repository}/edit/main/content/${postSlug}.md`;
+    const historyUrl = `${repository}/commits/main/content/${postSlug}.md`;
 
     const cover = hero?.childImageSharp;
     const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;

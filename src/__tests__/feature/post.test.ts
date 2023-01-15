@@ -35,7 +35,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
         await expect(page).toHaveURL(/feed/);
     });
 
-    test("when I click the 'Edit' button, then I should be taken to GitHub", async ({
+    test("when I click the 'Edit' button, then I should be taken to GitHub web editor", async ({
         page,
     }) => {
         const github = await Navigate.toExternalSiteByClicking(
@@ -44,9 +44,10 @@ test.describe.parallel("Given I'm on a single post page", () => {
         );
 
         await expect(github).toHaveURL(/github\.com/);
+        await expect(github).toHaveTitle(/Sign in to GitHub/);
     });
 
-    test("when I click the 'View History' button, then I should be taken to GitHub", async ({
+    test("when I click the 'View History' button, then I should be taken to GitHub history view", async ({
         page,
     }) => {
         const github = await Navigate.toExternalSiteByClicking(
@@ -55,6 +56,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
         );
 
         await expect(github).toHaveURL(/github\.com/);
+        await expect(github).toHaveTitle(/History for/);
     });
 });
 
