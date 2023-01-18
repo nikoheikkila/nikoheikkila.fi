@@ -1,7 +1,7 @@
 import React from "react";
 import { Script, ScriptStrategy } from "gatsby";
 
-interface Props {
+interface SchemaProps {
     author?: string;
     canonicalUrl?: string;
     datePublished?: string;
@@ -15,92 +15,92 @@ interface Props {
     organization?: string;
 }
 
-export default React.memo(
-    ({
-        author = "",
-        canonicalUrl = "",
-        dateModified = "",
-        datePublished = "",
-        defaultTitle = "",
-        description = "",
-        image = "",
-        isBlogPost = true,
-        title = "",
-        url = "",
-    }: Props) => {
-        const baseSchema = [
-            {
-                "@context": "http://schema.org",
-                "@type": "WebSite",
-                url,
-                name: title,
-                alternateName: defaultTitle,
-            },
-        ];
+const Schema: React.FC<SchemaProps> = ({
+    author = "",
+    canonicalUrl = "",
+    dateModified = "",
+    datePublished = "",
+    defaultTitle = "",
+    description = "",
+    image = "",
+    isBlogPost = true,
+    title = "",
+    url = "",
+}) => {
+    const baseSchema = [
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            url,
+            name: title,
+            alternateName: defaultTitle,
+        },
+    ];
 
-        const schema = isBlogPost
-            ? [
-                  ...baseSchema,
-                  {
-                      "@context": "http://schema.org",
-                      "@type": "BreadcrumbList",
-                      itemListElement: [
-                          {
-                              "@type": "ListItem",
-                              position: 1,
-                              item: {
-                                  "@id": url,
-                                  image,
-                                  name: title,
-                              },
+    const schema = isBlogPost
+        ? [
+              ...baseSchema,
+              {
+                  "@context": "http://schema.org",
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                      {
+                          "@type": "ListItem",
+                          position: 1,
+                          item: {
+                              "@id": url,
+                              image,
+                              name: title,
                           },
-                      ],
+                      },
+                  ],
+              },
+              {
+                  "@context": "http://schema.org",
+                  "@type": "BlogPosting",
+                  url,
+                  name: title,
+                  alternateName: defaultTitle,
+                  headline: title,
+                  image: {
+                      "@type": "ImageObject",
+                      url: image,
                   },
-                  {
-                      "@context": "http://schema.org",
-                      "@type": "BlogPosting",
-                      url,
-                      name: title,
-                      alternateName: defaultTitle,
-                      headline: title,
-                      image: {
+                  description,
+                  author: {
+                      "@type": "Person",
+                      name: author,
+                  },
+                  publisher: {
+                      "@type": "Organization",
+                      url: canonicalUrl,
+                      logo: {
                           "@type": "ImageObject",
-                          url: image,
+                          url: canonicalUrl + "/favicon.png",
+                          width: 512,
+                          height: 512,
                       },
-                      description,
-                      author: {
-                          "@type": "Person",
-                          name: author,
-                      },
-                      publisher: {
-                          "@type": "Organization",
-                          url: canonicalUrl,
-                          logo: {
-                              "@type": "ImageObject",
-                              url: canonicalUrl + "/favicon.png",
-                              width: 512,
-                              height: 512,
-                          },
-                          name: title,
-                      },
-                      mainEntityOfPage: {
-                          "@type": "WebSite",
-                          "@id": canonicalUrl,
-                      },
-                      datePublished,
-                      dateModified,
+                      name: title,
                   },
-              ]
-            : baseSchema;
+                  mainEntityOfPage: {
+                      "@type": "WebSite",
+                      "@id": canonicalUrl,
+                  },
+                  datePublished,
+                  dateModified,
+              },
+          ]
+        : baseSchema;
 
-        return (
-            <Script
-                id="json-ld"
-                type="application/ld+json"
-                strategy={ScriptStrategy.idle}
-            >
-                {JSON.stringify(schema)}
-            </Script>
-        );
-    }
-);
+    return (
+        <Script
+            id="json-ld"
+            type="application/ld+json"
+            strategy={ScriptStrategy.idle}
+        >
+            {JSON.stringify(schema)}
+        </Script>
+    );
+};
+
+export default React.memo(Schema);

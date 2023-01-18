@@ -18,12 +18,11 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = ({ content }) => (
     <article className={styles.content}>
         <ReactMarkdown
-            children={content}
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{
                 img: ({ src, alt, ...props }) => {
-                    if (!src) return <img {...props} />;
+                    if (!src) return <img alt={alt} {...props} />;
                     if (!alt || alt.length === 0)
                         console.warn(
                             `Alternative text not specified for image with URL: ${src}`
@@ -55,7 +54,7 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                 },
                 code({ inline, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || "");
-                    const [_, language] = Array.from(match || []);
+                    const [, language] = Array.from(match || []);
 
                     if (inline || !language) {
                         return (
@@ -79,7 +78,9 @@ const Content: React.FC<ContentProps> = ({ content }) => (
                     );
                 },
             }}
-        />
+        >
+            {content}
+        </ReactMarkdown>
     </article>
 );
 
@@ -106,7 +107,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         <section className={styles.codeblock}>
             <span className={styles.language}>{makeTitleCase(language)}</span>
             <SyntaxHighlighter
-                children={children.toString().replace(/\n$/, "")}
                 style={nightOwl}
                 customStyle={{
                     padding: 0,
@@ -144,7 +144,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                 showLineNumbers
                 wrapLines
                 {...props}
-            />
+            >
+                {children.toString().replace(/\n$/, "")}
+            </SyntaxHighlighter>
         </section>
     );
 };

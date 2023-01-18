@@ -4,6 +4,6 @@ declare module "*.scss" {
 }
 
 declare module "*.png" {
-    var _: string;
+    const _: string;
     export default _;
 }

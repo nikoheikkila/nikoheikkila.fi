@@ -45,7 +45,7 @@ const onCreateNodes = async ({
     const value = createFilePath({ node, getNode });
 
     createNodeField({
-        name: `slug`,
+        name: "slug",
         node,
         value,
     });

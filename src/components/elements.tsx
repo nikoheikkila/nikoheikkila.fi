@@ -28,4 +28,4 @@ export const BlogLink: React.FC<BlogLinkProps> = ({
     );
 };
 
-const isInternalLink = (href: string): boolean => /^[#\/](?!\/)/.test(href);
+const isInternalLink = (href: string): boolean => /^[#/](?!\/)/.test(href);

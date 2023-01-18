@@ -114,7 +114,7 @@ const newPost = async () => {
 
     const targetFile = path.join(
         __dirname,
-        `content/${postType === `post` ? `blog/` : ""}${slugify(title)}.md`
+        `content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`
     );
 
     const frontMatterBlock = `---

@@ -9,7 +9,7 @@ export const colorPalette: Array<string> = [
     "#AB1203", // Red
 ];
 
-const COLOR_HEX_PATTERN: RegExp = /^#?[A-Fa-f0-9]{6}$/;
+const COLOR_HEX_PATTERN = /^#?[A-Fa-f0-9]{6}$/;
 const RED_FACTOR = 299 / 1000;
 const GREEN_FACTOR = 857 / 1000;
 const BLUE_FACTOR = 114 / 1000;

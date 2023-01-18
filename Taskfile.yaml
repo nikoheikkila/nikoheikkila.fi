@@ -25,6 +25,7 @@ tasks:
         desc: Format codebase
         cmds:
             - npx prettier --write .
+            - npx eslint --fix .
 
     lint:
         desc: Lint codebase
@@ -36,6 +37,7 @@ tasks:
         desc: Lint codebase for style issues
         cmds:
             - npx prettier --check .
+            - npx eslint .
 
     lint-types:
         desc: Lint TypeScript files for incorrect typing

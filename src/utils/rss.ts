@@ -1,6 +1,6 @@
 import { MarkdownRemarkConnection, SiteSiteMetadata as Meta } from "../types";
 
-type DeepPartial<T> = {
+export type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;
 };
 

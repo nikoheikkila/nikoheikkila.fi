@@ -13,8 +13,8 @@ const onCreatePages = async ({
     graphql,
     actions: { createPage, createSlice },
 }: CreatePagesArgs) => {
-    const blogIndex = path.resolve(`./src/templates/list.tsx`);
-    const blogPost = path.resolve(`./src/templates/post.tsx`);
+    const blogIndex = path.resolve("./src/templates/list.tsx");
+    const blogPost = path.resolve("./src/templates/post.tsx");
 
     const { data, errors } = await graphql<
         CreatePagesData,
