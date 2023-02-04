@@ -2817,6 +2817,11 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FooterQuery = { readonly site: { readonly siteMetadata: { readonly rss: string | null, readonly social: ReadonlyArray<{ readonly name: string | null, readonly url: string | null } | null> | null } | null } | null };
+
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
@@ -2851,12 +2856,22 @@ type IndexQueryVariables = Exact<{
 
 type IndexQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null, readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly timeToRead: number | null, readonly fields: { readonly hero: string | null, readonly slug: string | null } | null, readonly frontmatter: { readonly author: string | null, readonly excerpt: string | null, readonly hero: string | null, readonly lang: string | null, readonly type: string | null, readonly date: string | null, readonly title: string | null, readonly categories: ReadonlyArray<string | null> | null } | null } }> } };
 
+type PagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } }> } };
+
 type PostQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
 type PostQuery = { readonly site: { readonly siteMetadata: { readonly siteUrl: string | null, readonly title: string | null, readonly repository: string | null, readonly author: { readonly name: string | null } | null } | null } | null, readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly rawMarkdownBody: string | null, readonly timeToRead: number | null, readonly fields: { readonly slug: string | null } | null, readonly hero: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly original: { readonly src: string | null, readonly width: number | null, readonly height: number | null } | null } | null } | null, readonly frontmatter: { readonly lang: string | null, readonly title: string | null, readonly type: string | null, readonly date: string | null, readonly author: string | null, readonly excerpt: string | null, readonly categories: ReadonlyArray<string | null> | null } | null } | null };
+
+type SEOQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SEOQuery = { readonly site: { readonly siteMetadata: { readonly language: string | null, readonly title: string | null, readonly description: string | null, readonly siteUrl: string | null, readonly author: { readonly name: string | null } | null } | null } | null };
 
 
 }

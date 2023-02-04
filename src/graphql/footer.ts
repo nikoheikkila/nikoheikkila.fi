@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 export const getFooterLinks = () =>
-    useStaticQuery(graphql`
-        query {
+    useStaticQuery<Queries.FooterQuery>(graphql`
+        query Footer {
             site {
                 siteMetadata {
                     social {

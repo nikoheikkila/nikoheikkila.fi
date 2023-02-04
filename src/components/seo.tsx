@@ -23,17 +23,16 @@ const SEO: FunctionComponent<SEOProps> = ({
     lang = "en",
     categories = [],
 }) => {
-    const {
-        site: { siteMetadata },
-    } = getSEOData();
-
-    const siteURL = String(siteMetadata?.siteUrl);
+    const data = getSEOData();
+    const meta = data.site?.siteMetadata;
+    const siteURL = String(meta?.siteUrl);
     const pageURL = url === "/" ? siteURL : url;
-    const siteTitle = String(siteMetadata?.title);
-    const author = String(siteMetadata?.author?.name);
-    const metaDescription = String(
-        description || siteMetadata?.description
-    ).replace("\n", " ");
+    const siteTitle = String(meta?.title);
+    const author = String(meta?.author?.name);
+    const metaDescription = String(description || meta?.description).replace(
+        "\n",
+        " "
+    );
     const locale = lang === "en" ? "en_GB" : "fi_FI";
     const imageURL = siteURL + image?.original?.src;
     const isPost = type === "post";

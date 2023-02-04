@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import React, { ReactNode } from "react";
 
 interface BlogLinkProps {
-    href?: string;
+    href?: string | null;
     className?: string;
     children: ReactNode | ReactNode[];
 }

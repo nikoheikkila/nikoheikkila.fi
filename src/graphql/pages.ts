@@ -1,9 +1,9 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 export const getStaticPages = () => {
-    const data = useStaticQuery<Queries.Query>(
+    const data = useStaticQuery<Queries.PagesQuery>(
         graphql`
-            {
+            query Pages {
                 allMarkdownRemark(
                     filter: { frontmatter: { type: { eq: "page" } } }
                 ) {
