@@ -97,13 +97,6 @@ tasks:
             - yarn clean
             - yarn dev
 
-    dev-types:
-        deps:
-            - install
-        desc: Fetch and generate GraphQL types from development server
-        cmds:
-            - npx graphql-codegen --watch
-
     build:
         desc: Build the Gatsby production site
         deps:
