@@ -1,16 +1,11 @@
-import { HeadFC, Link } from "gatsby";
+import { HeadFC, Link, PageProps } from "gatsby";
 import React from "react";
 import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
-import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
-
-interface NotFoundProps {
-    location: Location;
-}
 
 const title = "Page Not Found";
 
-const NotFound: React.FC<NotFoundProps> = () => {
+const NotFound: React.FC<PageProps> = () => {
     return (
         <Layout type={LayoutType.SINGLE} title={title}>
             <h1>🤖 You have erred, but it is human</h1>
@@ -32,9 +27,7 @@ const NotFound: React.FC<NotFoundProps> = () => {
     );
 };
 
-export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
-    location,
-}) => {
+export const Head: HeadFC = ({ location }) => {
     return <SEO title={title} type="page" url={location.pathname} />;
 };
 

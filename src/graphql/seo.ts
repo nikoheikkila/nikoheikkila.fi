@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { Site } from "../types";
 
-type SEOData = { site: Site };
+type SEOData = { site: Queries.Site };
 
 export const getSEOData = () =>
     useStaticQuery<SEOData>(

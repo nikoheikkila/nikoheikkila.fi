@@ -1,6 +1,5 @@
 import { Link } from "gatsby";
 import React, { FunctionComponent } from "react";
-import { MarkdownRemarkEdge } from "../../types";
 import * as DateTime from "../../utils/datetime";
 import { formatReadingTime } from "../../utils/helpers";
 import Content from "../post/content";
@@ -18,12 +17,12 @@ interface ArticleCardProps {
 }
 
 interface ArticleViewProps {
-    edges: ReadonlyArray<MarkdownRemarkEdge>;
+    nodes: ReadonlyArray<Partial<Queries.MarkdownRemark>>;
     readonly location: Location;
 }
 
 export const ArticleView: React.FC<ArticleViewProps> = ({
-    edges,
+    nodes,
     location,
 }) => {
     return (
@@ -31,28 +30,29 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
             <h2 className={styles.header}>Latest Articles</h2>
             <hr></hr>
             <section className={styles.view}>
-                {edges
-                    .filter((edge) => edge.node.fields?.slug)
-                    .map((edge) => {
-                        const slug = edge.node.fields?.slug || "";
+                {nodes.map((node) => {
+                    const slug = node.fields?.slug || "";
+                    const title = node.frontmatter?.title || "";
+                    const excerpt = node.excerpt || "";
+                    const timeToRead = node.timeToRead || 0;
+                    const categories = (node.frontmatter?.categories || []).map(
+                        String
+                    );
+                    const date = DateTime.toDisplay(node.frontmatter?.date);
 
-                        return (
-                            <ArticleCard
-                                key={slug}
-                                slug={slug}
-                                location={location}
-                                title={edge.node.frontmatter?.title || ""}
-                                categories={(
-                                    edge.node.frontmatter?.categories || []
-                                ).map(String)}
-                                date={DateTime.toDisplay(
-                                    edge.node.frontmatter?.date
-                                )}
-                                excerpt={edge.node.excerpt || ""}
-                                timeToRead={edge.node.timeToRead || 0}
-                            />
-                        );
-                    })}
+                    return (
+                        <ArticleCard
+                            key={slug}
+                            slug={slug}
+                            location={location}
+                            title={title}
+                            categories={categories}
+                            date={date}
+                            excerpt={excerpt}
+                            timeToRead={timeToRead}
+                        />
+                    );
+                })}
             </section>
         </>
     );

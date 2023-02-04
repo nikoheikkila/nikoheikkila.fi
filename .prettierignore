@@ -1,5 +1,6 @@
 # General
 node_modules/
+*.d.ts
 
 # Gatsby
 /.cache/

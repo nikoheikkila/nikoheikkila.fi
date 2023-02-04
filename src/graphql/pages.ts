@@ -1,8 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { Query } from "../types";
 
 export const getStaticPages = () => {
-    const data: Query = useStaticQuery(
+    const data = useStaticQuery<Queries.Query>(
         graphql`
             {
                 allMarkdownRemark(

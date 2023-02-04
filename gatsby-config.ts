@@ -5,9 +5,10 @@ const environment = process.env.NODE_ENV;
 const isProduction = environment === "production";
 
 const config: GatsbyConfig = {
+    graphqlTypegen: true,
     siteMetadata: {
         language: "en",
-        title: "Blog | Niko Heikkilä",
+        title: "Niko Heikkilä",
         author: {
             name: "Niko Heikkilä",
         },

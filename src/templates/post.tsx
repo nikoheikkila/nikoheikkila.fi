@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, HeadFC } from "gatsby";
+import { graphql, HeadFC, PageProps } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import Layout, { LayoutType } from "../components/layout/layout";
@@ -12,16 +12,17 @@ import PostNavigation from "../components/post/navigation";
 import Subscribe from "../components/post/subscribe";
 import SEO from "../components/seo";
 import config from "../../gatsby-config";
-import { Route } from "../gatsby";
-import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 import * as DateTime from "../utils/datetime";
 import { combinePaths } from "../utils/helpers";
 
-interface PostProps {
-    data: Query;
-    location: Route;
-    pageContext: PageInfo & MarkdownRemarkEdge;
-}
+type PageContext = {
+    previous: Queries.MarkdownRemark;
+    next: Queries.MarkdownRemark;
+};
+type LocationState = {
+    previous?: string;
+};
+type PostProps = PageProps<Queries.PostQuery, PageContext, LocationState>;
 
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
     const slug = data.markdownRemark?.fields?.slug ?? "";
@@ -84,7 +85,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 export default Post;
 
 export const pageQuery = graphql`
-    query BlogPostBySlug($slug: String!) {
+    query Post($slug: String!) {
         site {
             siteMetadata {
                 siteUrl
@@ -126,9 +127,7 @@ export const pageQuery = graphql`
     }
 `;
 
-export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
-    data,
-}) => {
+export const Head: HeadFC<Queries.Query> = ({ data }) => {
     const hero = data.markdownRemark?.hero;
     const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
     const lang = data.markdownRemark?.frontmatter?.lang ?? "en";

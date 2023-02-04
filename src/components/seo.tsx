@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { getSEOData } from "../graphql/seo";
-import { ImageSharp } from "../types";
 import SchemaOrg from "./schema";
 
 interface SEOProps {
@@ -9,7 +8,7 @@ interface SEOProps {
     url: string;
     datePublished?: string;
     description?: string;
-    image?: ImageSharp;
+    image?: Queries.ImageSharp;
     lang?: string;
     categories?: string[];
 }
@@ -116,7 +115,7 @@ interface OpenGraphProps {
     author: string;
     date?: string;
     categories?: string[];
-    image?: ImageSharp;
+    image?: Queries.ImageSharp;
 }
 
 const OpenGraph: React.FC<OpenGraphProps> = ({
@@ -185,7 +184,7 @@ interface TwitterCardProps {
     description: string;
     siteURL: string;
     pageURL: string;
-    image?: ImageSharp;
+    image?: Queries.ImageSharp;
 }
 
 const TwitterCard: React.FC<TwitterCardProps> = ({

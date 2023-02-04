@@ -1,10 +1,9 @@
 import { CreatePagesArgs } from "gatsby";
 import path from "path";
-import { MarkdownRemarkConnection } from "../src/types";
 import slices from "./slices";
 
 interface CreatePagesData {
-    allMarkdownRemark: MarkdownRemarkConnection;
+    allMarkdownRemark: Queries.MarkdownRemarkConnection;
 }
 
 const postsPerPage = 30;

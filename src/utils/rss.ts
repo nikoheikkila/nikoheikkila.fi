@@ -1,14 +1,12 @@
-import { MarkdownRemarkConnection, SiteSiteMetadata as Meta } from "../types";
-
 export type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;
 };
 
 export type Serializable = {
     query: {
-        allMarkdownRemark: DeepPartial<MarkdownRemarkConnection>;
+        allMarkdownRemark: DeepPartial<Queries.MarkdownRemarkConnection>;
         site: {
-            siteMetadata: DeepPartial<Meta>;
+            siteMetadata: DeepPartial<Queries.SiteSiteMetadata>;
         };
     };
 };

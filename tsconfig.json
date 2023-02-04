@@ -11,5 +11,13 @@
         "noEmit": true,
         "skipLibCheck": true,
         "moduleResolution": "node"
-    }
+    },
+    "include": [
+        "./src/**/*",
+        "./gatsby/**/*",
+        "./gatsby-node.ts",
+        "./gatsby-ssr.tsx",
+        "./gatsby-browser.tsx",
+        "./gatsby-config.ts"
+    ]
 }

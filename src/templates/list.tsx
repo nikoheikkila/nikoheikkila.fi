@@ -1,31 +1,26 @@
 import React from "react";
-import { graphql, HeadFC } from "gatsby";
+import { graphql, HeadFC, PageProps } from "gatsby";
 import Layout, { LayoutType } from "../components/layout/layout";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
 import SEO from "../components/seo";
-import { MarkdownRemarkEdge, PageInfo, Query } from "../types";
 
-interface IndexProps {
-    data: Query;
-    location: Location;
-    pageContext: PageInfo & {
-        numberOfPages: number;
-    };
-}
+type PageContext = { currentPage: number; numberOfPages: number };
+type IndexProps = PageProps<Queries.IndexQuery, PageContext>;
 
 const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
     const {
-        allMarkdownRemark: { edges = [] },
+        allMarkdownRemark: { edges },
     } = data;
 
     const title = data.site?.siteMetadata?.title ?? "";
+    const nodes = edges.map((_) => _.node);
 
     return (
         <Layout type={LayoutType.LIST} title={title}>
             <BlogHeader title={title} />
-            <ArticleView edges={edges} location={location} />
+            <ArticleView nodes={nodes} location={location} />
             <Pagination
                 currentPage={pageContext.currentPage}
                 numberOfPages={pageContext.numberOfPages}
@@ -34,10 +29,7 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
     );
 };
 
-export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
-    data,
-    location,
-}) => {
+export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
     const title = data.site?.siteMetadata?.title ?? "";
 
     return <SEO title={title} url={location.pathname} type="page" />;
@@ -46,7 +38,7 @@ export const Head: HeadFC<Query, PageInfo & MarkdownRemarkEdge> = ({
 export default Index;
 
 export const pageQuery = graphql`
-    query BlogListQuery($skip: Int!, $limit: Int!) {
+    query Index($skip: Int!, $limit: Int!) {
         site {
             siteMetadata {
                 title
@@ -63,9 +55,14 @@ export const pageQuery = graphql`
                     excerpt(pruneLength: 160)
                     timeToRead
                     fields {
+                        hero
                         slug
                     }
                     frontmatter {
+                        author
+                        excerpt
+                        hero
+                        lang
                         type
                         date
                         title

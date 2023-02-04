@@ -1,6 +1,5 @@
 import { describe, expect, test } from "vitest";
 import * as RSS from "../../utils/rss";
-import { DeepPartial } from "../../utils/rss";
 
 describe("RSS", () => {
     describe(".serialize()", () => {
@@ -39,7 +38,7 @@ describe("RSS", () => {
                                     },
                                     frontmatter: {
                                         author: "Niko Heikkilä",
-                                        date: "2022-12-31" as unknown as DeepPartial<unknown>,
+                                        date: "2022-12-31",
                                         lang: "en",
                                         title: "Test Post",
                                         type: "post",

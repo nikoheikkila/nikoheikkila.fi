@@ -1,10 +1,9 @@
 import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import { CreateNodeArgs, Node } from "gatsby";
-import { MarkdownRemarkFrontmatter } from "../src/types";
 
 interface OnCreateNodeArgs extends CreateNodeArgs {
     node: Node & {
-        frontmatter: MarkdownRemarkFrontmatter;
+        frontmatter: Queries.MarkdownRemarkFrontmatter;
         hero: string | null;
         [key: string]: unknown;
     };
