@@ -50,7 +50,7 @@
         "@playwright/test": "1.30.0",
         "@sindresorhus/slugify": "2.2.0",
         "@types/inquirer": "9.0.3",
-        "@types/node": "18.11.18",
+        "@types/node": "18.13.0",
         "@types/react": "18.0.27",
         "@types/react-burger-menu": "2.8.3",
         "@types/react-dom": "18.0.10",
