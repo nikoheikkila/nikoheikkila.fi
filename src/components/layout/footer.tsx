@@ -29,7 +29,7 @@ const Footer: React.FunctionComponent = () => {
                         <FontAwesomeIcon
                             icon={["fab", link.name as IconName]}
                         />
-                        )<BlogLink href={link.url}>{link.name}</BlogLink>
+                        <BlogLink href={link.url}>{link.name}</BlogLink>
                     </span>
                 );
             })}
