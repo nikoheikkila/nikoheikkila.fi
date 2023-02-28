@@ -183,7 +183,7 @@ Remember that external dependencies are not limited to APIs running in a foreign
 
 You're a grown-up person. I won't chasten you for _not_ faking dependencies. You can test against a real filesystem, API, and an actual database to your heart's content. However, you _will_ realize the importance of test doubles when your previously so fast tests start to take longer and longer to run, and as a consequence, you run them less frequently, increasing the feedback loop and causing defects to arise. I hope you come back to read my guide then.
 
-In the next post, I will explain the importance of domain modelling and introduce the magnificent concept of parsing instead validating.
+In [the next post](/blog/clean-frontend-architecture-with-sveltekit/domain-modelling/), I will explain the importance of domain modelling and introduce the magnificent concept of parsing instead validating.
 
 [^1]: Beware of abusing the dependency injection technique! Some codebases are too keen on it by enforcing each class to have at least one interface to implement. This creates redundant indirection, which benefits no one, only showing that the author hasn't understood dependency injection.
 [^2]: If you're overwhelmed by the terminology around dummies, stubs, fakes, spies, and mocks, Uncle Bob has written a helpful dialogue called the [Little Mocker](https://blog.cleancoder.com/uncle-bob/2014/05/14/TheLittleMocker.html) where he explains the differences.
