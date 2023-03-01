@@ -11,7 +11,7 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_a
 
 The essence of software lies in the problems it helps us to solve. Software that doesn't offer a solution to the problem is only code for the joy of coding. What helps us to solve problems, then? Modelling the problem domain and formulating use cases from it.
 
-Use-case-driven development extends test-driven development and is crucial to **Hexagonal** and **Clean Architecture** patterns. We define the application's behaviour as one or more use cases, define formal acceptance tests for them, and fix the system until the tests are satisfied.
+Use-case-driven development extends **test-driven development** (TDD) and is crucial to **Hexagonal** and **Clean Architecture** patterns. We define the application's behaviour as one or more use cases, define formal acceptance tests for them, and fix the system until the tests are satisfied.
 
 This involves testing the use cases rather than the implementation details. Let your tests traverse your design and invoke anything they need once the correct behaviour is verified. Writing tests on higher behavioural levels also helps the stakeholders to understand the tests. You especially want stakeholders to understand the importance of your tests, or how else can you sell the effort to write those?
 
@@ -56,6 +56,8 @@ To implement the above, I have defined a class `PhotoBrowser` with several use c
 
 For each use case method, I invoke a collaborator class `APIGateway` injected as a constructor dependency. Through the gateway, I receive a list of records which I map to domain entities. I also validate the input parameters for loading photos and albums, as I don't want to abuse the Typicode API with known invalid inputs.
 
+> Do note that I'm heavily using object-oriented design in this application because TypeScript facilitates it for me. However, the points stand as well for functional design. If you choose to follow functional programming paradigm, then instead of injecting dependencies via class constructors you would typically inject them via curried function parameters.
+
 To group photos by album, I've written a [**utility function**](https://github.com/nikoheikkila/photo-browser/blob/main/src/lib/domain/Group.ts) taking a string key and an array of generic entities as inputs and returning an entity collection grouped by the said key. Unfortunately, at the time of writing this, Javascript doesn't yet offer a native grouping method for arrays[^1], but we can reasonably quickly write it as [a higher-order function](/blog/layman-s-guide-to-higher-order-functions/) using array reducing.
 
 In case you're wondering, I'm not handling the rejected JavaScript promises in my asynchronous methods. I'll explain the purpose of that later. You might also wonder who is calling these use case handlers. Rest assured, I shall reveal it all to you in due time.
@@ -64,7 +66,7 @@ In case you're wondering, I'm not handling the rejected JavaScript promises in m
 
 While developing the application, I noticed a curious detail. All the photos are square, and their width and height are present in URLs for full-size photos and its thumbnail. Therefore, I spiced up the use cases by including an additional one for parsing this information.
 
-> As a gallery visitor, I want to see the photos' exact width and height.
+> **As a gallery visitor, I want to see the photos' exact width and height.**
 
 I would expect the photo dimensions to be present in the JSON payload in a real-world use case. But, alas, I must do it myself. In the [implementation](https://github.com/nikoheikkila/photo-browser/blob/main/src/lib/services/PhotoCalculator.ts), for parsing the width and height, I extract the pathname of the `URL` object, match it against a regular expression, and parse the numeric data. If the result is not a number (`NaN`) or zero, I fall back to a default size that is close enough.
 
@@ -94,7 +96,7 @@ Now, say it louder:
 
 > **I shall keep my application design clean of any and all details!**
 
-One of the reasons for writing this guide is that I have seen too many frontend applications where application and networking logic is tightly coupled with the view layer. Typically, user interface components fetch data in the browser via AJAX requests, applying formatting on top of it and displaying it to the user. For example, in React, it's a widely used approach to fetch data inside a `useEffect` hook and fail it by specifying hook dependencies incorrectly.
+One of the reasons for writing this guide is that I have seen too many frontend applications where application and networking logic is tightly coupled with the view layer. Typically, user interface components fetch data in the browser via AJAX requests, applying formatting on top of it and displaying it to the user. For example, in React, it's a widely used approach to fetch data inside a `useEffect` hook and fail it by specifying hook dependencies incorrectly. You've probably come across an infinite rendering loop or two in your career.
 
 Some special utility libraries, such as **React Query**, endorse it as a best practice. In this fashion, components fetch data and render their HTML based on whether the internal state of a query is pending, rejected, or fulfilled. It does this so you don't have to touch the global state[^2]. But I'm afraid of no state, and neither should you be!
 
