@@ -14657,7 +14657,7 @@ __metadata:
     inquirer: 9.1.4
     playwright: 1.31.1
     prettier: 2.8.4
-    purify-ts: 1.3.2
+    purify-ts: 1.3.5
     react: 18.2.0
     react-burger-menu: 3.0.9
     react-dom: 18.2.0
@@ -16423,12 +16423,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"purify-ts@npm:1.3.2":
-  version: 1.3.2
-  resolution: "purify-ts@npm:1.3.2"
+"purify-ts@npm:1.3.5":
+  version: 1.3.5
+  resolution: "purify-ts@npm:1.3.5"
   dependencies:
     "@types/json-schema": 7.0.11
-  checksum: 3f61f3cafdfe2d7effbe89f28349af973166e729471a28d8614ffcb08109884cf64a212cfd7f5bd427f82074cd6dc73d5c5a0394413c3d51fec9f5127914e046
+  checksum: c74973cae79fbfaca27f68fa6b53d9b26f4f6ac633e23fc838d36431f4d1489d377738e3e2fc5879e70026f9d7f083aa3d614e1dd09463d6145814ec5a2159f9
   languageName: node
   linkType: hard
 
