@@ -19,7 +19,7 @@ In **Hexagonal Architecture**, the domain is the centrepiece of the whole puzzle
 
 So, what are the domain entities of a photo browsing application? Unsurprisingly, those would be the photos.
 
-In frontend applications, domain entities are typically designed for reading, while in backend applications, the entities are designed for writing[^2]. Hence, our photo entities do not contain any behaviour mutating their internal state, which keeps the domain clean and functional.
+In frontend applications, domain entities are typically designed for reading, while in backend applications, the entities are designed for reading and writing[^2]. Hence, our photo entities do not contain any behaviour mutating their internal state, which keeps the domain clean and functional.
 
 In TypeScript terms, a simple object passed to functions querying its properties will suffice for a read-only model. On the other hand, objects and functions or even a class with methods is a desirable choice for a writable model. Generally, the correct structure of the domain model will reveal itself incrementally as the design evolves, so don't rush to decide too soon.
 
@@ -29,11 +29,11 @@ In the previous post, we handled the incoming data through a gateway, which left
 
 [**Implementation**](https://github.com/nikoheikkila/photo-browser/blob/main/src/lib/domain/Photo.ts)
 
-In the context of a demo application, we could trust that the Typicode API obediently validates the photos it sends so that we only need to render them in our UI. However, years of working with external backend systems have taught me the exact opposite, which is also a sane foundation for all software engineers: trust but verify the correctness of your inputs.
+In the context of a demo application, we could trust that the Typicode API obediently validates the photos it sends so that we only need to render them in our UI. However, years of working with external backend systems have taught me the exact opposite: trust but verify the correctness of your inputs. It's also a sane foundation for all software engineers.
 
 How do we verify the incoming data, then? Since we receive JSON records, we could traverse the entire document tree and validate each key individually. However, the result would be utter chaos with tons of conditionals.
 
-Fortunately, there's a strategy which I see too rarely used in the real world. It's commonly dubbed as _"parse, do not validate"_[^1]. In a nutshell, you define a schema, which swallows your raw data and spits out a flawless domain entity. I fell in love with this concept when I first worked on a project involving distributed microservices and event-driven messaging. The data provided by an external microservice or a human should not linger in the system unchecked.
+Fortunately, there's a strategy which I see too rarely used in the real world. It's commonly dubbed as _parse, do not validate_[^1]. In a nutshell, you define a schema, which swallows your raw data and spits out a flawless domain entity. I fell in love with this concept when I first worked on a project involving distributed microservices and event-driven messaging. The data provided by an external microservice or a human should not linger in the system unchecked.
 
 One of the more valuable libraries following this strategy is [**Zod**](https://zod.dev/), but there are many alternatives with a repertoire focusing from pure objects to HTML form validation.
 
@@ -81,6 +81,8 @@ export function createPhoto(data: Dictionary): Result<Photo, Error> {
 }
 ```
 
+Irrelevant to the chosen paradigm, `createPhoto` is called in the service layer transforming the raw data from the API gateway to one or more domain models.
+
 ## Rendering the Domain
 
 Strongly-typed domain entities are a delight to work with when implementing UI components. For example, consider how we render a photo in our application as a Svelte component. I've removed some attributes from the HTML markup for brevity, but you can see the full implementation [here](https://github.com/nikoheikkila/photo-browser/blob/main/src/components/FullPhoto.svelte).
@@ -106,17 +108,19 @@ Strongly-typed domain entities are a delight to work with when implementing UI c
 </section>
 ```
 
-Previously, I advised keeping the responsibility of components in displaying the data passed to them. We can easily construct a view model from one or more domain entities with domain modelling. The result is effortless and type-safe to render.
+I will explain later how Svelte components work. For now, you should know that we can pass domain models as props by exporting a `let` variable in the script block of the component file.
+
+Previously, I advised keeping components responsible of only displaying the data passed to them. We can easily construct a view model from one or more domain entities with domain modelling. The result is effortless and type-safe to render.
 
 As I indicated in an earlier post, one caveat is that the Typicode API doesn't return the photo's width and height as part of the JSON response. Hence, I'm not embedding them directly into our photo model, even though they are technically part of the domain model. So instead, the above is an example of querying information from the domain model.
 
 ## Conclusion
 
-All design efforts should begin from the domain when solving business problems. What concepts are the users talking about? What data do these concepts hold? What is the behaviour we expect to see? Domain modelling answers all the questions by encapsulating data and behaviour in a well-defined and strongly-typed structure.
+All design efforts should begin from the domain when solving business problems. What concepts are the users talking about? What data do these concepts hold? What is the behaviour we expect to see? How are domain models talking to each other? Domain modelling answers all the above questions by encapsulating data and behaviour in a well-defined and strongly-typed fashion. Ideally, larger domain models are also composed from smaller domain models because we should prefer composition over inheritance.
 
 Don't obsess over primitive values such as strings and numbers. Instead, encapsulate your entire domain into models and value objects. As a result, the application becomes easier to reason, refactor, and maintain. Additionally, new team members will thank you for explaining the core business concepts in code. After all, a clean domain is above all documentation, too.
 
-In the next post, we will dig deeper into Svelte's server-side rendering capabilities and components. Having done the solid groundwork for our application, injecting any application framework or changing one is a breeze.
+In the next post, we will dig deeper into Svelte's server-side rendering capabilities and how it compiles components. Having done the solid groundwork for our application, injecting any application framework or changing one is a breeze. I hope the same applies to your current project.
 
 [^1]: Technically, we are parsing and validating, so the established nomenclature is off. I forgive the authors for that.
 [^2]: The pattern of separating domain models designed for reading from models designed for writing is known as [Command Query Responsibility Segregation (CQRS)](https://www.martinfowler.com/bliki/CQRS.html). It's a valuable design pattern when working with complex enterprise applications.
