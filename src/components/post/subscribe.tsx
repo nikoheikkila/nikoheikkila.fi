@@ -1,7 +1,7 @@
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GatsbyConfig } from "gatsby";
-import { Maybe } from "purify-ts";
+import { Maybe } from "purify-ts/Maybe";
 import React from "react";
 import { BlogLink } from "../elements";
 import * as styles from "./subscribe.module.scss";
