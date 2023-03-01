@@ -109,7 +109,7 @@ gateway.setError(new Error("A bad thing happened"));
 
 Despite the gateway instance being a private member of my service class, I can interact with it because I create it separately as a _test fixture_. Fixtures are mandatory for efficient tests because they are created anew for each test, resetting an existing state such as errors and stubs. Hence, I don't need to call any teardown method manually after each test.
 
-The above is much more efficient and developer-friendly than using mocks, forgetting to reset those, and trying to figure out why tests happen to affect each other. As a bonus, I don't need to install and manage external libraries for fakes. Your chosen programming language often offers enough to build stubs and fakes.
+The above is much more efficient and developer-friendly than using mocks, forgetting to reset those[^3], and trying to figure out why tests happen to affect each other. As a bonus, I don't need to install and manage external libraries for fakes. Your chosen programming language often offers enough to build stubs and fakes.
 
 ## Real Gateway
 
@@ -187,3 +187,4 @@ In [the next post](/blog/clean-frontend-architecture-with-sveltekit/domain-model
 
 [^1]: Beware of abusing the dependency injection technique! Some codebases are too keen on it by enforcing each class to have at least one interface to implement. This creates redundant indirection, which benefits no one, only showing that the author hasn't understood dependency injection.
 [^2]: If you're overwhelmed by the terminology around dummies, stubs, fakes, spies, and mocks, Uncle Bob has written a helpful dialogue called the [Little Mocker](https://blog.cleancoder.com/uncle-bob/2014/05/14/TheLittleMocker.html) where he explains the differences.
+[^3]: Popular test runner libraries such as **Jest** and **Vitest** support resetting the state of all mock objects after each test run, but it's common to forget configuring this and spending substantial time in debugging the failing expectations.
