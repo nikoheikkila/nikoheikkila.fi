@@ -51,15 +51,18 @@ I cannot fix the world, but I have a particular set of skills that can alleviate
 
 For this guide, I have constructed a cleanly architectured frontend application with Svelte and [**SvelteKit**](https://kit.svelte.dev/). Therefore, you only need to be comfortable reading TypeScript code in this [repository](https://github.com/nikoheikkila/photo-browser). Then, you may clone the repository and play with it as much as necessary to gain a better understanding.
 
+Throughout this guide, I will show code snippets that may have been modified slightly for brevity's sake. You're encouraged to view the full code examples in the repository.
+
 As the saying goes, the software is never finished. Therefore, I reserve the right to modify the contents of this guide and the example codebase accordingly. Since I intend to keep both the guide and repository open-source, you can help me improve them. Moreover, all the pages contain an _Edit Page_ link in the footer, allowing you to open a pull request to submit your improvements.
 
 ## Up Next
 
-In the [next post][part1], I will explain the purpose of defining use cases for a photo gallery application. If you have applied to a frontend developer position at [**Futurice**](https://futurice.com/careers), you might have encountered something similar during the recruitment process.
+In the [next post][part1], I will explain the purpose of defining use cases for a photo gallery application. If you have applied to a frontend developer position at [**Futurice**](https://futurice.com/careers), you might have encountered something similar during the recruitment process[^4].
 
 [^1]: In the past, but only so long until they decide to make a comeback.
 [^2]: In clean object-oriented design, a class is nothing more than a collection of partially applied functions.
 [^3]: Don't worry. Most of the content in this guide also applies to clean backend architecture.
+[^4]: Please, don't copy my work for any recruitment task purposes even though I would indeed be honored if you did that.
 
 [part1]: /blog/clean-frontend-architecture-with-sveltekit/discovering-the-use-cases
 [part2]: /blog/clean-frontend-architecture-with-sveltekit/handling-the-external-dependencies-with-gateway
