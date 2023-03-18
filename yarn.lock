@@ -2921,9 +2921,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/plugin-gatsby@npm:3.5.2":
-  version: 3.5.2
-  resolution: "@netlify/plugin-gatsby@npm:3.5.2"
+"@netlify/plugin-gatsby@npm:3.6.0":
+  version: 3.6.0
+  resolution: "@netlify/plugin-gatsby@npm:3.6.0"
   dependencies:
     "@netlify/functions": ^1.3.0
     "@netlify/ipx": ^1.3.3
@@ -2947,7 +2947,7 @@ __metadata:
   peerDependencies:
     "@gatsbyjs/reach-router": "*"
     common-tags: ^1.8.2
-  checksum: e9535c522ad1c517ab8dc60eb134a27fff6490e5b9c91323e0de8634eb8ac8dfe481e26e5e1a04434a287514ee061e5e0429725d5837913440e9e9cae4f73ba1
+  checksum: cb76f4573acfa445840c1f324cb236461bfd4c8f5a64ae1c69ac04d122c8ad5bd1ea014223bc63dc0c8e0caf8501bef97dcb990b7623490f32b17a1c381def6b
   languageName: node
   linkType: hard
 
@@ -14727,7 +14727,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": 6.3.0
     "@fortawesome/free-solid-svg-icons": 6.3.0
     "@fortawesome/react-fontawesome": 0.2.0
-    "@netlify/plugin-gatsby": 3.5.2
+    "@netlify/plugin-gatsby": 3.6.0
     "@playwright/experimental-ct-react": 1.31.2
     "@playwright/test": 1.31.2
     "@sindresorhus/slugify": 2.2.0
