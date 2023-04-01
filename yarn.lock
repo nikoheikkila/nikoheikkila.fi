@@ -4041,14 +4041,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.0.29":
-  version: 18.0.29
-  resolution: "@types/react@npm:18.0.29"
+"@types/react@npm:18.0.31":
+  version: 18.0.31
+  resolution: "@types/react@npm:18.0.31"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 75f56f81d80a1c15ee3fcd2039bdc5f7a70f49cf69827ee0fc8beece9809b234f245dd62552e91018d8f25792986bd513b44caf054554d5c5eb979a5f9460214
+  checksum: 6befbd5587e266905b50fd6bbd7c1cacd557bddf99e6a9862ca2f1d06df3dca71b9d485a37d010479730f021aab93b852d417c714de5efc2f41be0ff4c09b4db
   languageName: node
   linkType: hard
 
@@ -14714,7 +14714,7 @@ __metadata:
     "@sindresorhus/slugify": 2.2.0
     "@types/inquirer": 9.0.3
     "@types/node": 18.15.11
-    "@types/react": 18.0.29
+    "@types/react": 18.0.31
     "@types/react-burger-menu": 2.8.3
     "@types/react-dom": 18.0.11
     "@types/react-syntax-highlighter": 15.5.6
