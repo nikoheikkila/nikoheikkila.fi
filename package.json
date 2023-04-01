@@ -68,7 +68,7 @@
         "prettier": "2.8.7",
         "snyk": "1.1127.0",
         "subscriptions-transport-ws": "0.11.0",
-        "typescript": "5.0.2",
+        "typescript": "5.0.3",
         "vitest": "0.29.7"
     },
     "keywords": [
