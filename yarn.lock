@@ -9848,7 +9848,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-parcel-config@npm:^1.8.0":
+"gatsby-parcel-config@npm:1.8.0":
   version: 1.8.0
   resolution: "gatsby-parcel-config@npm:1.8.0"
   dependencies:
@@ -10021,9 +10021,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sharp@npm:5.8.0":
-  version: 5.8.0
-  resolution: "gatsby-plugin-sharp@npm:5.8.0"
+"gatsby-plugin-sharp@npm:5.8.1":
+  version: 5.8.1
+  resolution: "gatsby-plugin-sharp@npm:5.8.1"
   dependencies:
     "@babel/runtime": ^7.20.13
     async: ^3.2.4
@@ -10039,7 +10039,7 @@ __metadata:
     sharp: ^0.31.3
   peerDependencies:
     gatsby: ^5.0.0-next
-  checksum: a230276681b4b15e9ab17e8ac190de530f47b09ae72d2309c94462fb86b1147f2aaae5a41f35bf6d1566842e77d2f6e53599b72fe82a311605c181fe6dff8f01
+  checksum: c7de794a5e8d90db2bc3d2983ba30398506d1aa70ee8853db4f078d64ee62c7d3e8839eb2374d84a90b2ed83cb0d916cd154ea08b4b5425cf683c1f1f884ab4b
   languageName: node
   linkType: hard
 
@@ -10303,9 +10303,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.8.0":
-  version: 5.8.0
-  resolution: "gatsby@npm:5.8.0"
+"gatsby@npm:5.8.1":
+  version: 5.8.1
+  resolution: "gatsby@npm:5.8.1"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -10393,7 +10393,7 @@ __metadata:
     gatsby-legacy-polyfills: ^3.8.0
     gatsby-link: ^5.8.0
     gatsby-page-utils: ^3.8.0
-    gatsby-parcel-config: ^1.8.0
+    gatsby-parcel-config: 1.8.0
     gatsby-plugin-page-creator: ^5.8.0
     gatsby-plugin-typescript: ^5.8.0
     gatsby-plugin-utils: ^4.8.0
@@ -10479,7 +10479,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 58a814dcf0c86b7d62fc6fce1f1ca03b2b09941b607f95348eca416583f9564299fcdf14ec84120a6b38d7aa713d41df7a93b62ee4d60ea38fc04693eb06d962
+  checksum: b0204a29930ec2e1103ea156c11932b450a12a49d2716b3035b7eb78d27795dfe7108d1cb97844b4db2b737f870a8147f6dfc52682fdba9513c43277949ecf33
   languageName: node
   linkType: hard
 
@@ -14726,7 +14726,7 @@ __metadata:
     eslint-config-prettier: ^8.6.0
     eslint-plugin-react: latest
     esno: ^0.16.3
-    gatsby: 5.8.0
+    gatsby: 5.8.1
     gatsby-plugin-feed: 5.8.0
     gatsby-plugin-image: 3.8.0
     gatsby-plugin-manifest: 5.8.0
@@ -14734,7 +14734,7 @@ __metadata:
     gatsby-plugin-offline: 6.8.0
     gatsby-plugin-robots-txt: 1.8.0
     gatsby-plugin-sass: 6.8.0
-    gatsby-plugin-sharp: 5.8.0
+    gatsby-plugin-sharp: 5.8.1
     gatsby-plugin-sitemap: 6.8.0
     gatsby-remark-autolink-headers: 6.8.0
     gatsby-remark-copy-linked-files: 6.8.0
