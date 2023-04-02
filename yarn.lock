@@ -14757,7 +14757,7 @@ __metadata:
     remark-gfm: 3.0.1
     remark-math: 5.1.1
     sass: 1.60.0
-    snyk: 1.1127.0
+    snyk: 1.1133.0
     subscriptions-transport-ws: 0.11.0
     title: 3.5.3
     typescript: 5.0.3
@@ -18168,15 +18168,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:1.1127.0":
-  version: 1.1127.0
-  resolution: "snyk@npm:1.1127.0"
+"snyk@npm:1.1133.0":
+  version: 1.1133.0
+  resolution: "snyk@npm:1.1133.0"
   dependencies:
     "@sentry/node": ^7.36.0
     global-agent: ^3.0.0
   bin:
     snyk: bin/snyk
-  checksum: 9289641748ff5eb710e9e342d8e45549a5cdcb03f5349c6f8a2023df8ad71fb96cdd2b210f20722d0ce3a6099386ec58960a60406c285b108128991a997af424
+  checksum: fb18d36e3e546d4c464753677136d32fe497f9e36983dc169677914d17cfec7b9f889e1197d7298b32ce98abf09eeba1ae6dee7a1555f292c94045fa0c028ac4
   languageName: node
   linkType: hard
 
