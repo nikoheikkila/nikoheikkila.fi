@@ -44,7 +44,7 @@ I cannot fix the world, but I have a particular set of skills that can alleviate
 2. [**Handling the External Dependencies with Gateway**][part2]
 3. [**Domain Modelling**][part3]
 4. [**Server-Side Routes and Components**][part4]
-5. **Acceptance Testing**
+5. [**Building Confidence with Acceptance Testing**][part5]
 6. **Deploying the Site to Netlify**
 
 ## How to Read the Guide?
@@ -68,3 +68,4 @@ In the [next post][part1], I will explain the purpose of defining use cases for 
 [part2]: /blog/clean-frontend-architecture-with-sveltekit/handling-the-external-dependencies-with-gateway
 [part3]: /blog/clean-frontend-architecture-with-sveltekit/domain-modelling
 [part4]: /blog/clean-frontend-architecture-with-sveltekit/server-side-routes-and-components
+[part5]: /blog/clean-frontend-architecture-with-sveltekit/acceptance-testing
