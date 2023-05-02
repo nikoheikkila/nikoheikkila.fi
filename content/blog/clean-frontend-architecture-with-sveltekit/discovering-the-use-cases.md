@@ -5,7 +5,7 @@ lang: en
 excerpt: Why designing loosely coupled applications is crucial for managing complexity and sustaining maintainability.
 type: post
 categories: [guides, frontend, architecture, design]
-date: 2023-01-28
+date: 2023-01-29
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
@@ -122,7 +122,7 @@ Ultimately, I could take my services with me and integrate those into a micro-se
 
 I explained my application's top-level design and use cases in this post. To design cleanly architectured frontend applications, you should divide your design into separate modules and tie them neatly on the service layer. Do not couple the application use cases to your view layer.
 
-But the service layer is merely a scratch on the surface of my grand design. You must venture further to fully understand it. In the next post, I will explain how you can safely handle and test side effects using adapters.
+But the service layer is merely a scratch on the surface of my grand design. You must venture further to fully understand it. In [the next post](/blog/clean-frontend-architecture-with-sveltekit/handling-the-external-dependencies-with-gateway), I will explain how you can safely handle and test side effects using adapters.
 
 [^1]: There is a [TC39 proposal](https://tc39.es/proposal-array-grouping/) currently on stage 3 for native array grouping.
 [^2]: Demonising the global state is a card often played by developers who need help understanding the relevance of the state in business logic. Contrary to the famous catchphrase, the state is the root of all value.

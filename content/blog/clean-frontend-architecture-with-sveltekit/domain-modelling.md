@@ -120,7 +120,7 @@ All design efforts should begin from the domain when solving business problems. 
 
 Don't obsess over primitive values such as strings and numbers. Instead, encapsulate your entire domain into models and value objects. As a result, the application becomes easier to reason, refactor, and maintain. Additionally, new team members will thank you for explaining the core business concepts in code. After all, a clean domain is above all documentation, too.
 
-In the next post, we will dig deeper into Svelte's server-side rendering capabilities and how it compiles components. Having done the solid groundwork for our application, injecting any application framework or changing one is a breeze. I hope the same applies to your current project.
+In [the next post](/blog/clean-frontend-architecture-with-sveltekit/server-side-routes-and-components/), we will dig deeper into Svelte's server-side rendering capabilities and how it compiles components. Having done the solid groundwork for our application, injecting any application framework or changing one is a breeze. I hope the same applies to your current project.
 
 [^1]: Technically, we are parsing and validating, so the established nomenclature is off. I forgive the authors for that.
 [^2]: The pattern of separating domain models designed for reading from models designed for writing is known as [Command Query Responsibility Segregation (CQRS)](https://www.martinfowler.com/bliki/CQRS.html). It's a valuable design pattern when working with complex enterprise applications.
