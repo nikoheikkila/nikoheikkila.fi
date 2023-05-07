@@ -147,6 +147,6 @@ While browsing the test cases I've written, you probably encountered some overla
 
 In this post, I wanted to demonstrate how to efficiently test user interface construction and behaviour using two approaches to acceptance testing. You should pick the one that suits your needs better, or use both. Unfortunately, there is no correct answer other than the famous senior engineer catchphrase: _"It depends"_.
 
-In the next post, I will explain how to deliver the application to my users by setting up a continuous delivery pipeline. Cleanly architectured applications with stable test suites allow deploying new versions multiple times daily without significant pain. It must be nice, doesn't it?
+In [the next post](/blog/clean-frontend-architecture-with-sveltekit/continuous-deployments), I will explain how to deliver the application to my users by setting up a continuous delivery pipeline. Cleanly architectured applications with stable test suites allow deploying new versions multiple times daily without significant pain. It must be nice, doesn't it?
 
 [^1]: Here, I'm using the lexical separation [**Ted M. Young**](https://ted.dev/articles/2023/04/02/i-m-done-with-unit-and-integration-tests) coined when speaking of different levels of developer tests he writes. IO-free tests concern the domain and service behaviour, while the I/O-dependent tests verify the application works with external I/O sources as expected. This is more meaningful than plainly speaking of unit and integration tests.

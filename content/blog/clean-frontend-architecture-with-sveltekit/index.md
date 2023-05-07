@@ -45,7 +45,7 @@ I cannot fix the world, but I have a particular set of skills that can alleviate
 3. [**Domain Modelling**][part3]
 4. [**Server-Side Routes and Components**][part4]
 5. [**Building Confidence with Acceptance Testing**][part5]
-6. **Deploying the Site to Netlify**
+6. [**Enabling Safe and Continuous Deployments**][part6]
 
 ## How to Read the Guide?
 
@@ -69,3 +69,4 @@ In the [next post][part1], I will explain the purpose of defining use cases for 
 [part3]: /blog/clean-frontend-architecture-with-sveltekit/domain-modelling
 [part4]: /blog/clean-frontend-architecture-with-sveltekit/server-side-routes-and-components
 [part5]: /blog/clean-frontend-architecture-with-sveltekit/acceptance-testing
+[part6]: /blog/clean-frontend-architecture-with-sveltekit/continuous-deployments
