@@ -9,7 +9,7 @@
   "page-preview": false,
   "daily-notes": false,
   "templates": false,
-  "note-composer": true,
+  "note-composer": false,
   "command-palette": true,
   "slash-command": true,
   "editor-status": false,
@@ -18,13 +18,13 @@
   "zk-prefixer": false,
   "random-note": false,
   "outline": false,
-  "word-count": true,
+  "word-count": false,
   "slides": false,
   "audio-recorder": false,
   "workspaces": false,
   "file-recovery": false,
   "publish": false,
   "sync": false,
-  "canvas": true,
-  "bookmarks": true
+  "canvas": false,
+  "bookmarks": false
 }

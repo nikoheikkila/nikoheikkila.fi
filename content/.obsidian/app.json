@@ -1,5 +1,5 @@
 {
-  "readableLineLength": false,
+  "readableLineLength": true,
   "showFrontmatter": false,
   "foldHeading": true,
   "foldIndent": true,
