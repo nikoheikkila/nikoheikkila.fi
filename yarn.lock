@@ -3573,13 +3573,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/slugify@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@sindresorhus/slugify@npm:2.2.0"
+"@sindresorhus/slugify@npm:2.2.1":
+  version: 2.2.1
+  resolution: "@sindresorhus/slugify@npm:2.2.1"
   dependencies:
     "@sindresorhus/transliterate": ^1.0.0
     escape-string-regexp: ^5.0.0
-  checksum: 13c5cff81b94ec9130b74692b12acefa406be6ab20bc842cb2a751d850719f709ca2acfeb8b66dde7fd96d989360d97e620d783292ad963bab9df999cd1d3102
+  checksum: 6d651e99a4dfc63f1eccc5373f722af031f013bfce0b040b2c1151f5795f272f7c47146d8fc5f03afbb410c53c9f91f7cb1a50f402a8bf7dd1b691d8a450c712
   languageName: node
   linkType: hard
 
@@ -14828,7 +14828,7 @@ __metadata:
     "@netlify/plugin-gatsby": 3.6.2
     "@playwright/experimental-ct-react": 1.33.0
     "@playwright/test": 1.33.0
-    "@sindresorhus/slugify": 2.2.0
+    "@sindresorhus/slugify": 2.2.1
     "@types/inquirer": 9.0.3
     "@types/node": 18.16.9
     "@types/react": 18.2.6
