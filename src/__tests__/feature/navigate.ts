@@ -1,4 +1,4 @@
-import { Page } from "playwright";
+import { Page } from "@playwright/test";
 import { Locator } from "@playwright/test";
 
 export const toExternalSiteByClicking = async (
