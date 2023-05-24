@@ -32,7 +32,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
 
         await rssLink.click();
 
-        await page.waitForNavigation();
+        await page.waitForURL(/feed/);
         await expect(page).toHaveURL(/feed/);
     });
 

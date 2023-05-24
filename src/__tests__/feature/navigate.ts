@@ -17,5 +17,5 @@ export const toInternalPageByClicking = async (
     page: Page,
     locator: Locator
 ): Promise<void> => {
-    await Promise.all([page.waitForNavigation(), locator.click()]);
+    await Promise.all([page.waitForURL(/\//), locator.click()]);
 };

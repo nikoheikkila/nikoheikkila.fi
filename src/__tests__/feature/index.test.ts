@@ -17,16 +17,16 @@ test.describe.parallel("Given I'm on the index page", () => {
         page,
         baseURL,
     }) => {
-        await Promise.all([
-            page.waitForNavigation(),
-            page.click('a[rel="next"]'),
-        ]);
-        await expect(page).toHaveURL(`${baseURL}/2/`);
+        const previousURL = `${baseURL}/`;
+        const nextURL = `${baseURL}/2/`;
 
         await Promise.all([
-            page.waitForNavigation(),
+            page.waitForURL(nextURL),
+            page.click('a[rel="next"]'),
+        ]);
+        await Promise.all([
+            page.waitForURL(previousURL),
             page.click('a[rel="prev"]'),
         ]);
-        await expect(page).toHaveURL(`${baseURL}`);
     });
 });
