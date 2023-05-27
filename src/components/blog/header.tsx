@@ -13,18 +13,20 @@ const BlogHeader: React.FunctionComponent<HeaderProps> = ({
     url = "/",
 }) => (
     <header>
-        <section className={styles.grid}>
+        <section className={styles.container}>
             <Link to={url} rel="home">
                 <StaticImage
                     className={styles.logo}
-                    src="../../assets/profile.png"
+                    src="../../assets/profile.jpg"
                     alt={title}
-                    layout="fullWidth"
+                    height={256}
+                    width={256}
+                    placeholder="blurred"
                 />
             </Link>
-            <section className={styles.title}>
-                <h1>{title}</h1>
-            </section>
+        </section>
+        <section className={styles.title}>
+            <h1>{title}</h1>
         </section>
         <section className={styles.description}>
             <p>

@@ -1,41 +1,30 @@
 @import "_variables";
 
-.grid {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    align-items: center;
-
-    @include for-phone-only {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
+.container {
+    display: flex;
+    justify-content: center;
 }
 
 .logo {
-    justify-self: left;
-
-    @include for-phone-only {
-        margin: 0 auto;
-        max-width: 200px;
-    }
+    border-radius: 100%;
+    margin: 0 auto;
 }
 
 .title {
-    justify-self: right;
     text-align: center;
 
     & > h1,
     & > p {
-        margin: 5px 0;
+        margin-top: 50px;
     }
 
     & > h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
 }
 
 .description {
-    margin: 50px auto 0 auto;
+    margin: 0 auto;
     max-width: 60vw;
     text-align: center;
     line-height: 2rem;
