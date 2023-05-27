@@ -63,7 +63,7 @@ Playwright does a fantastic job creating test fixtures, such as the page you're 
 
 ```typescript
 test("has an accessible title", async ({ page }) => {
-    await expect(page).toHaveTitle(/Home/);
+	await expect(page).toHaveTitle(/Home/);
 });
 ```
 
@@ -71,11 +71,11 @@ I can also verify the visibility of the contents almost as quickly.
 
 ```typescript
 test("displays informative error when photo is not found", async ({ page }) => {
-    const alert = page.getByRole("alert");
+	const alert = page.getByRole("alert");
 
-    await page.goto("/photo/invalid");
+	await page.goto("/photo/invalid");
 
-    await expect(alert).toContainText(/Invalid photo ID 'invalid' given/);
+	await expect(alert).toContainText(/Invalid photo ID 'invalid' given/);
 });
 ```
 
@@ -127,13 +127,13 @@ Furthermore, you don't see any rigid coupling to a specific component. Rendering
 const arrange = (data: PageData) => render(Page, { data });
 
 test("contains a photo with accessible alternative text", async () => {
-    arrange({
-        photo: randomPhoto({ title: "My friend" }),
-    });
+	arrange({
+		photo: randomPhoto({ title: "My friend" }),
+	});
 
-    const photo = await screen.findByAltText("Caption: My friend");
+	const photo = await screen.findByAltText("Caption: My friend");
 
-    expect(photo).toBeVisible();
+	expect(photo).toBeVisible();
 });
 ```
 

@@ -30,7 +30,7 @@ To demonstrate this, let's write a quick curried function that formats a sum of 
 ```typescript
 type Formatter<T> = (a: T) => (b: T) => string;
 const numberFormatter: Formatter<number> = (decimals) => (euros) =>
-    euros.toFixed(decimals).replace(/\./, ",") + " €";
+	euros.toFixed(decimals).replace(/\./, ",") + " €";
 
 // Partial application to store our precision
 const toCurrencyString = numberFormatter(2);
@@ -41,21 +41,21 @@ const toCurrencyString = numberFormatter(2);
 ```typescript
 // [argument, expected result]
 const suites: [number, string][] = [
-    [-1, "-1,00 €"],
-    [0, "0,00 €"],
-    [1, "1,00 €"],
-    [10.01, "10,01 €"],
-    [59.0, "59,00 €"],
-    [Math.PI, "3,14 €"],
-    [NaN, "NaN €"],
+	[-1, "-1,00 €"],
+	[0, "0,00 €"],
+	[1, "1,00 €"],
+	[10.01, "10,01 €"],
+	[59.0, "59,00 €"],
+	[Math.PI, "3,14 €"],
+	[NaN, "NaN €"],
 ];
 
 for (const [euros, want] of suites) {
-    const got = toCurrencyString(euros);
+	const got = toCurrencyString(euros);
 
-    if (got !== want) {
-        throw `Got ${got}, but wanted ${want}`;
-    }
+	if (got !== want) {
+		throw `Got ${got}, but wanted ${want}`;
+	}
 }
 
 console.log("Congratulations! All tests passed.");

@@ -37,9 +37,9 @@ I'm going to declare methods for the following:
 type Dictionary<K = string, V = unknown> = Record<K, V>;
 
 export interface PhotoGateway<T = Dictionary> {
-    fetchPhotos(args: FetchParams): Promise<T[]>;
-    fetchPhoto(id: number): Promise<T>;
-    fetchPhotosByAlbumId(albumId: number, params: FetchParams): Promise<T[]>;
+	fetchPhotos(args: FetchParams): Promise<T[]>;
+	fetchPhoto(id: number): Promise<T>;
+	fetchPhotosByAlbumId(albumId: number, params: FetchParams): Promise<T[]>;
 }
 ```
 

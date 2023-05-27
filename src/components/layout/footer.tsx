@@ -8,33 +8,33 @@ import { useIcons } from "../hooks/useIcons";
 import * as styles from "./footer.module.scss";
 
 const Footer: React.FunctionComponent = () => {
-    useIcons([fab]);
+	useIcons([fab]);
 
-    const links = getFooterLinks();
-    const rss = links.site?.siteMetadata?.rss;
-    const social = links.site?.siteMetadata?.social || [];
+	const links = getFooterLinks();
+	const rss = links.site?.siteMetadata?.rss;
+	const social = links.site?.siteMetadata?.social || [];
 
-    return (
-        <footer className={styles.footer}>
-            <span className={styles.feed}>
-                <FontAwesomeIcon icon={faRss} />
-                <BlogLink href={rss}>RSS</BlogLink>
-            </span>
+	return (
+		<footer className={styles.footer}>
+			<span className={styles.feed}>
+				<FontAwesomeIcon icon={faRss} />
+				<BlogLink href={rss}>RSS</BlogLink>
+			</span>
 
-            {social.map((link) => {
-                if (!link?.name || !link?.url) return null;
+			{social.map((link) => {
+				if (!link?.name || !link?.url) return null;
 
-                return (
-                    <span key={link.name}>
-                        <FontAwesomeIcon
-                            icon={["fab", link.name as IconName]}
-                        />
-                        <BlogLink href={link.url}>{link.name}</BlogLink>
-                    </span>
-                );
-            })}
-        </footer>
-    );
+				return (
+					<span key={link.name}>
+						<FontAwesomeIcon
+							icon={["fab", link.name as IconName]}
+						/>
+						<BlogLink href={link.url}>{link.name}</BlogLink>
+					</span>
+				);
+			})}
+		</footer>
+	);
 };
 
 export default Footer;

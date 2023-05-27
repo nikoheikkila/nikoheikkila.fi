@@ -59,13 +59,13 @@ Subsequently, defining the parser is simple, thanks to Zod's friendly interface:
 
 ```typescript
 export function createPhoto(data: Dictionary): Photo {
-    const result = Photo.safeParse(data);
+	const result = Photo.safeParse(data);
 
-    if (!result.success) {
-        throw result.error;
-    }
+	if (!result.success) {
+		throw result.error;
+	}
 
-    return result.data;
+	return result.data;
 }
 ```
 
@@ -75,9 +75,9 @@ An alternative pattern, which I use when applicable, is to use a _monadic_ retur
 
 ```typescript
 export function createPhoto(data: Dictionary): Result<Photo, Error> {
-    const result = Photo.safeParse(data);
+	const result = Photo.safeParse(data);
 
-    return result.success ? Ok(result.data) : Err(result.error);
+	return result.success ? Ok(result.data) : Err(result.error);
 }
 ```
 

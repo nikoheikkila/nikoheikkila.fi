@@ -54,17 +54,17 @@ Here, the above specification would result in the following test code. The below
 
 ```javascript
 describe("Calculator", () => {
-    it("+ should add to current total", () => {
-        initialTotal = 5;
-        number = 7;
+	it("+ should add to current total", () => {
+		initialTotal = 5;
+		number = 7;
 
-        click(".plus");
-        fill(".input", number);
-        click(".run");
+		click(".plus");
+		fill(".input", number);
+		click(".run");
 
-        newTotal = $(".total").innerText;
-        expect(newTotal).toBe(initialTotal + number);
-    });
+		newTotal = $(".total").innerText;
+		expect(newTotal).toBe(initialTotal + number);
+	});
 });
 ```
 
@@ -145,8 +145,8 @@ Using a POM, the following operation of signing a user in...
 
 ```typescript
 await Promise.all([
-    page.fill("data-test-id=username", username),
-    page.fill("data-test-id=password", password),
+	page.fill("data-test-id=username", username),
+	page.fill("data-test-id=password", password),
 ]);
 
 await page.click("data-test-id=login");
@@ -193,18 +193,18 @@ In the browser, let's now fetch a random article from Wikipedia, "read" it, and 
 import { test, expect } from "@playwright/test";
 
 test("test", async ({ page }) => {
-    // Go to https://en.wikipedia.org/wiki/Main_Page
-    await page.goto("https://en.wikipedia.org/wiki/Main_Page");
+	// Go to https://en.wikipedia.org/wiki/Main_Page
+	await page.goto("https://en.wikipedia.org/wiki/Main_Page");
 
-    // Click text=Random article
-    await page.locator("text=Random article").click();
-    await expect(page).toHaveURL(
-        "https://en.wikipedia.org/wiki/Howie_Schwarzman"
-    );
+	// Click text=Random article
+	await page.locator("text=Random article").click();
+	await expect(page).toHaveURL(
+		"https://en.wikipedia.org/wiki/Howie_Schwarzman"
+	);
 
-    // Click text=Main page
-    await page.locator("text=Main page").click();
-    await expect(page).toHaveURL("https://en.wikipedia.org/wiki/Main_Page");
+	// Click text=Main page
+	await page.locator("text=Main page").click();
+	await expect(page).toHaveURL("https://en.wikipedia.org/wiki/Main_Page");
 });
 ```
 

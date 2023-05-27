@@ -1,22 +1,22 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:base"],
-    "automergeType": "branch",
-    "enabledManagers": ["npm"],
-    "schedule": ["every weekend"],
-    "commitBody": "[skip netlify]",
-    "constraints": {
-        "yarn": ">=3.3.0"
-    },
-    "packageRules": [
-        {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-            "automerge": true
-        },
-        {
-            "extends": "monorepo:gatsby",
-            "matchUpdateTypes": ["digest", "patch", "minor", "major"],
-            "groupName": "Gatsby packages"
-        }
-    ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:base"],
+	"automergeType": "branch",
+	"enabledManagers": ["npm"],
+	"schedule": ["every weekend"],
+	"commitBody": "[skip netlify]",
+	"constraints": {
+		"yarn": ">=3.3.0"
+	},
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true
+		},
+		{
+			"extends": "monorepo:gatsby",
+			"matchUpdateTypes": ["digest", "patch", "minor", "major"],
+			"groupName": "Gatsby packages"
+		}
+	]
 }

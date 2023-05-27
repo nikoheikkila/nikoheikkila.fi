@@ -25,14 +25,14 @@ In short, to implement SvelteKit's routing, all the data-bound routes must expor
 
 ```typescript
 export const load: PageLoad<Response> = async () => {
-    try {
-        return {
-            albums: await browser.withLimit(500).groupPhotosByAlbum(),
-        };
-    } catch (err: unknown) {
-        handleError(err);
-        throw errorWhileLoadingPhotos();
-    }
+	try {
+		return {
+			albums: await browser.withLimit(500).groupPhotosByAlbum(),
+		};
+	} catch (err: unknown) {
+		handleError(err);
+		throw errorWhileLoadingPhotos();
+	}
 };
 ```
 

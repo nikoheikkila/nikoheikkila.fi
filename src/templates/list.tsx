@@ -10,66 +10,66 @@ type PageContext = { currentPage: number; numberOfPages: number };
 type IndexProps = PageProps<Queries.IndexQuery, PageContext>;
 
 const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
-    const {
-        allMarkdownRemark: { edges },
-    } = data;
+	const {
+		allMarkdownRemark: { edges },
+	} = data;
 
-    const title = data.site?.siteMetadata?.title ?? "";
-    const nodes = edges.map((_) => _.node);
+	const title = data.site?.siteMetadata?.title ?? "";
+	const nodes = edges.map((_) => _.node);
 
-    return (
-        <Layout type={LayoutType.LIST} title={title}>
-            <BlogHeader title={title} />
-            <ArticleView nodes={nodes} location={location} />
-            <Pagination
-                currentPage={pageContext.currentPage}
-                numberOfPages={pageContext.numberOfPages}
-            />
-        </Layout>
-    );
+	return (
+		<Layout type={LayoutType.LIST} title={title}>
+			<BlogHeader title={title} />
+			<ArticleView nodes={nodes} location={location} />
+			<Pagination
+				currentPage={pageContext.currentPage}
+				numberOfPages={pageContext.numberOfPages}
+			/>
+		</Layout>
+	);
 };
 
 export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
-    const title = data.site?.siteMetadata?.title ?? "";
+	const title = data.site?.siteMetadata?.title ?? "";
 
-    return <SEO title={title} url={location.pathname} type="page" />;
+	return <SEO title={title} url={location.pathname} type="page" />;
 };
 
 export default Index;
 
 export const pageQuery = graphql`
-    query Index($skip: Int!, $limit: Int!) {
-        site {
-            siteMetadata {
-                title
-            }
-        }
-        allMarkdownRemark(
-            sort: { frontmatter: { date: DESC } }
-            filter: { frontmatter: { type: { ne: "page" } } }
-            limit: $limit
-            skip: $skip
-        ) {
-            edges {
-                node {
-                    excerpt(pruneLength: 160)
-                    timeToRead
-                    fields {
-                        hero
-                        slug
-                    }
-                    frontmatter {
-                        author
-                        excerpt
-                        hero
-                        lang
-                        type
-                        date
-                        title
-                        categories
-                    }
-                }
-            }
-        }
-    }
+	query Index($skip: Int!, $limit: Int!) {
+		site {
+			siteMetadata {
+				title
+			}
+		}
+		allMarkdownRemark(
+			sort: { frontmatter: { date: DESC } }
+			filter: { frontmatter: { type: { ne: "page" } } }
+			limit: $limit
+			skip: $skip
+		) {
+			edges {
+				node {
+					excerpt(pruneLength: 160)
+					timeToRead
+					fields {
+						hero
+						slug
+					}
+					frontmatter {
+						author
+						excerpt
+						hero
+						lang
+						type
+						date
+						title
+						categories
+					}
+				}
+			}
+		}
+	}
 `;

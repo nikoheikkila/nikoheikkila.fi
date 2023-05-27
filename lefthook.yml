@@ -1,4 +1,4 @@
 pre-commit:
-    commands:
-        lint:
-            run: task format lint -f
+  commands:
+    lint:
+      run: task format lint -f

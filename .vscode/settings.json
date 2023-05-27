@@ -1,7 +1,7 @@
 {
-    "files.associations": {
-        "*.ts": "typescriptreact",
-        "*.tsx": "typescriptreact"
-    },
-    "cSpell.words": ["cmds", "deps"]
+	"files.associations": {
+		"*.ts": "typescriptreact",
+		"*.tsx": "typescriptreact"
+	},
+	"cSpell.words": ["cmds", "deps"]
 }

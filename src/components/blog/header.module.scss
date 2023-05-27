@@ -1,39 +1,39 @@
 @import "_variables";
 
 .container {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .logo {
-    border-radius: 100%;
-    margin: 0 auto;
+	border-radius: 100%;
+	margin: 0 auto;
 }
 
 .title {
-    text-align: center;
+	text-align: center;
 
-    & > h1,
-    & > p {
-        margin-top: 50px;
-    }
+	& > h1,
+	& > p {
+		margin-top: 50px;
+	}
 
-    & > h1 {
-        font-size: 3.5rem;
-    }
+	& > h1 {
+		font-size: 3.5rem;
+	}
 }
 
 .description {
-    margin: 0 auto;
-    max-width: 60vw;
-    text-align: center;
-    line-height: 2rem;
+	margin: 0 auto;
+	max-width: 60vw;
+	text-align: center;
+	line-height: 2rem;
 
-    @include for-phone-only {
-        max-width: 80vw;
-    }
+	@include for-phone-only {
+		max-width: 80vw;
+	}
 
-    a {
-        color: $blue;
-    }
+	a {
+		color: $blue;
+	}
 }

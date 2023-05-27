@@ -1,9 +1,9 @@
 import { CreateSchemaCustomizationArgs } from "gatsby";
 
 const onCreateSchemaCustomization = ({
-    actions: { createTypes },
+	actions: { createTypes },
 }: CreateSchemaCustomizationArgs) =>
-    createTypes(`
+	createTypes(`
     type SitePage implements Node @dontInfer {
       path: String!
     }

@@ -4,25 +4,25 @@ $menuPaddingLeft: 20px;
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: fixed;
-    width: 32px;
-    height: 24px;
-    left: 10px;
-    top: 10px;
+	position: fixed;
+	width: 32px;
+	height: 24px;
+	left: 10px;
+	top: 10px;
 }
 
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+	height: 24px;
+	width: 24px;
 }
 
 .bm-cross {
-    background: #bdc3c7;
+	background: #bdc3c7;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: #eee;
+	background: #eee;
 }
 
 /*
@@ -30,52 +30,52 @@ Sidebar wrapper styles
 Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
 */
 .bm-menu-wrap {
-    position: fixed;
-    max-width: 75vw;
-    height: 100%;
+	position: fixed;
+	max-width: 75vw;
+	height: 100%;
 }
 
 /* General sidebar styles */
 .bm-menu {
-    background: #22272e;
-    overflow-y: hidden !important;
+	background: #22272e;
+	overflow-y: hidden !important;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-    margin: 20px 0 0 0;
-    padding-left: $menuPaddingLeft;
-    color: #b8b7ad;
+	margin: 20px 0 0 0;
+	padding-left: $menuPaddingLeft;
+	color: #b8b7ad;
 
-    a {
-        display: block;
-        font-size: 1em;
-        line-height: 1.75em;
-    }
+	a {
+		display: block;
+		font-size: 1em;
+		line-height: 1.75em;
+	}
 
-    a:hover {
-        cursor: pointer;
-    }
+	a:hover {
+		cursor: pointer;
+	}
 }
 
 /* Individual item */
 .bm-item {
-    display: inline-block;
+	display: inline-block;
 
-    &:focus-visible,
-    &:hover {
-        &::before {
-            content: "❯ ";
-        }
+	&:focus-visible,
+	&:hover {
+		&::before {
+			content: "❯ ";
+		}
 
-        font-weight: 700;
-        outline: none;
-        color: $teal;
-        text-shadow: 0px 0px 2px $teal;
-    }
+		font-weight: 700;
+		outline: none;
+		color: $teal;
+		text-shadow: 0px 0px 2px $teal;
+	}
 }
 
 /* Styling of overlay */
 .bm-overlay {
-    background: rgba(0, 0, 0, 1);
+	background: rgba(0, 0, 0, 1);
 }

@@ -1,23 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "CommonJS",
-        "jsx": "react",
-        "lib": ["dom", "ES2020"],
-        "strict": true,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noEmit": true,
-        "skipLibCheck": true,
-        "moduleResolution": "node"
-    },
-    "include": [
-        "./src/**/*",
-        "./gatsby/**/*",
-        "./gatsby-node.ts",
-        "./gatsby-ssr.tsx",
-        "./gatsby-browser.tsx",
-        "./gatsby-config.ts"
-    ]
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "CommonJS",
+		"jsx": "react",
+		"lib": ["dom", "ES2020"],
+		"strict": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"moduleResolution": "node"
+	},
+	"include": [
+		"./src/**/*",
+		"./gatsby/**/*",
+		"./gatsby-node.ts",
+		"./gatsby-ssr.tsx",
+		"./gatsby-browser.tsx",
+		"./gatsby-config.ts"
+	]
 }

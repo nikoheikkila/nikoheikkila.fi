@@ -2,54 +2,54 @@
 @import "menu";
 
 .list {
-    margin: 15px auto;
-    padding: 0 20px;
+	margin: 15px auto;
+	padding: 0 20px;
 
-    @include for-phone-only() {
-        width: 90vw;
-    }
+	@include for-phone-only() {
+		width: 90vw;
+	}
 
-    @include for-tablet-portrait-up() {
-        width: 80vw;
-    }
+	@include for-tablet-portrait-up() {
+		width: 80vw;
+	}
 
-    @include for-tablet-landscape-up() {
-        width: 75vw;
-    }
+	@include for-tablet-landscape-up() {
+		width: 75vw;
+	}
 
-    @include for-desktop-up() {
-        width: 65vw;
-    }
+	@include for-desktop-up() {
+		width: 65vw;
+	}
 
-    @include for-big-desktop-up() {
-        width: 50vw;
-    }
+	@include for-big-desktop-up() {
+		width: 50vw;
+	}
 }
 
 .single {
-    margin: 0 auto;
+	margin: 0 auto;
 
-    a {
-        color: $blue;
-    }
+	a {
+		color: $blue;
+	}
 
-    @include for-phone-only() {
-        width: 90vw;
-    }
+	@include for-phone-only() {
+		width: 90vw;
+	}
 
-    @include for-tablet-portrait-up() {
-        width: 85vw;
-    }
+	@include for-tablet-portrait-up() {
+		width: 85vw;
+	}
 
-    @include for-tablet-landscape-up() {
-        width: 80vw;
-    }
+	@include for-tablet-landscape-up() {
+		width: 80vw;
+	}
 
-    @include for-desktop-up() {
-        width: 50vw;
-    }
+	@include for-desktop-up() {
+		width: 50vw;
+	}
 
-    @include for-big-desktop-up() {
-        width: 35vw;
-    }
+	@include for-big-desktop-up() {
+		width: 35vw;
+	}
 }

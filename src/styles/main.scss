@@ -4,18 +4,18 @@
 @import url("https://api.fontshare.com/v2/css?f[]=bespoke-slab@700&f[]=bespoke-serif@400,700,401&display=swap");
 
 body {
-    margin: 0;
-    font-kerning: normal;
-    word-wrap: break-word;
-    font-feature-settings: "kern", "liga", "clig", "calt";
-    line-height: 40px;
+	margin: 0;
+	font-kerning: normal;
+	word-wrap: break-word;
+	font-feature-settings: "kern", "liga", "clig", "calt";
+	line-height: 40px;
 
-    background-color: $darkBg;
-    color: $darkFg;
+	background-color: $darkBg;
+	color: $darkFg;
 
-    font-weight: 400;
-    font-size: 16px;
-    font-family: "Bespoke Serif", $fontFamily;
+	font-weight: 400;
+	font-size: 16px;
+	font-family: "Bespoke Serif", $fontFamily;
 }
 
 h1,
@@ -24,45 +24,45 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Bespoke Slab", $fontFamily;
-    font-weight: 700;
+	font-family: "Bespoke Slab", $fontFamily;
+	font-weight: 700;
 }
 
 ol,
 ul {
-    padding-inline-start: 5px;
-    padding-left: 1.5em;
+	padding-inline-start: 5px;
+	padding-left: 1.5em;
 }
 
 li,
 p {
-    font-size: 1.2rem;
-    line-height: 1.75rem;
+	font-size: 1.2rem;
+	line-height: 1.75rem;
 }
 
 a {
-    color: inherit;
-    font-weight: 400;
-    text-decoration: none;
+	color: inherit;
+	font-weight: 400;
+	text-decoration: none;
 }
 
 hr {
-    border: 0;
-    border-top: 3px solid $purple;
-    margin: 2rem 0;
+	border: 0;
+	border-top: 3px solid $purple;
+	margin: 2rem 0;
 }
 
 section.footnotes {
-    margin: 50px 0;
+	margin: 50px 0;
 
-    p {
-        font-size: 0.9rem;
-    }
+	p {
+		font-size: 0.9rem;
+	}
 }
 
 ::selection {
-    background-color: $yellow;
-    color: invert($color: $darkFg);
+	background-color: $yellow;
+	color: invert($color: $darkFg);
 }
 
 /**
@@ -70,28 +70,28 @@ section.footnotes {
  * Because dark mode should be the default everywhere, ha-ha!
  */
 @media (prefers-color-scheme: light) {
-    $lightBackground: #fff;
+	$lightBackground: #fff;
 
-    body {
-        background-color: $lightBackground;
-        filter: $filter;
-    }
+	body {
+		background-color: $lightBackground;
+		filter: $filter;
+	}
 
-    /* Re-enable dark background for specific elements by filtering twice */
-    img,
-    video,
-    iframe,
-    input[type="checkbox"],
-    .gatsby-highlight {
-        filter: $filter;
-    }
+	/* Re-enable dark background for specific elements by filtering twice */
+	img,
+	video,
+	iframe,
+	input[type="checkbox"],
+	.gatsby-highlight {
+		filter: $filter;
+	}
 
-    /* Tweak other elements */
-    li::marker {
-        color: $lightBackground;
-    }
+	/* Tweak other elements */
+	li::marker {
+		color: $lightBackground;
+	}
 
-    ::selection {
-        background-color: hotpink;
-    }
+	::selection {
+		background-color: hotpink;
+	}
 }

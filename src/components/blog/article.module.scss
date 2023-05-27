@@ -1,66 +1,66 @@
 @import "_variables";
 
 .header {
-    margin-top: 80px;
-    font-size: 2em;
-    text-align: center;
+	margin-top: 80px;
+	font-size: 2em;
+	text-align: center;
 }
 
 .view {
-    display: grid;
-    gap: 16px;
-    grid-template-rows: auto;
+	display: grid;
+	gap: 16px;
+	grid-template-rows: auto;
 
-    box-sizing: border-box;
-    margin: 60px auto 0 auto;
+	box-sizing: border-box;
+	margin: 60px auto 0 auto;
 
-    @include for-phone-only() {
-        grid-template-columns: repeat(1, 1fr);
-    }
+	@include for-phone-only() {
+		grid-template-columns: repeat(1, 1fr);
+	}
 
-    @include for-tablet-portrait-up() {
-        grid-template-columns: repeat(2, 1fr);
-    }
+	@include for-tablet-portrait-up() {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-    @include for-tablet-landscape-up() {
-        grid-template-columns: repeat(3, 1fr);
-    }
+	@include for-tablet-landscape-up() {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-    @include for-desktop-up() {
-        grid-template-columns: repeat(3, 1fr);
-    }
+	@include for-desktop-up() {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-    @include for-big-desktop-up() {
-        grid-template-columns: repeat(3, 1fr);
-    }
+	@include for-big-desktop-up() {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .card {
-    box-sizing: border-box;
-    border: solid 6px #666;
-    padding: 20px;
-    outline: 0;
+	box-sizing: border-box;
+	border: solid 6px #666;
+	padding: 20px;
+	outline: 0;
 
-    &:hover {
-        border-color: $blue;
-        color: $blue;
-    }
+	&:hover {
+		border-color: $blue;
+		color: $blue;
+	}
 
-    &:active,
-    &:focus,
-    &:focus-visible {
-        border-color: $teal;
-        color: $teal;
-    }
+	&:active,
+	&:focus,
+	&:focus-visible {
+		border-color: $teal;
+		color: $teal;
+	}
 }
 
 .title {
-    display: block;
-    font-size: 1.35em;
-    line-height: 1.5em;
-    text-align: center;
+	display: block;
+	font-size: 1.35em;
+	line-height: 1.5em;
+	text-align: center;
 }
 
 .tags {
-    text-align: left;
+	text-align: left;
 }

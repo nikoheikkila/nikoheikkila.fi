@@ -1,16 +1,16 @@
 .pagination {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
 }
 
 .previous {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .next {
-    margin-left: 5px;
+	margin-left: 5px;
 }

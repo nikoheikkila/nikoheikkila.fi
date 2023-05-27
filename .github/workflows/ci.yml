@@ -3,127 +3,127 @@ name: Acceptance Tests
 on: [push]
 
 jobs:
-    commit_stage:
-        name: Commit Stage
-        runs-on: ubuntu-latest
+  commit_stage:
+    name: Commit Stage
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version-file: ".nvmrc"
-                  check-latest: true
-                  cache: yarn
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          check-latest: true
+          cache: yarn
 
-            - name: Install Task
-              uses: arduino/setup-task@v1
-              with:
-                  version: 3.x
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Cache task checksums
-              uses: actions/cache@v3
-              with:
-                  path: .task
-                  key: ${{ runner.os }}-task-commit-${{ hashFiles('Taskfile.yaml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-task-
-                      ${{ runner.os }}-
+      - name: Cache task checksums
+        uses: actions/cache@v3
+        with:
+          path: .task
+          key: ${{ runner.os }}-task-commit-${{ hashFiles('Taskfile.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-task-
+            ${{ runner.os }}-
 
-            - name: Cache Yarn files
-              uses: actions/cache@v3
-              with:
-                  path: .yarn
-                  key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-
-                      ${{ runner.os }}-
+      - name: Cache Yarn files
+        uses: actions/cache@v3
+        with:
+          path: .yarn
+          key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
 
-            - name: Install dependencies
-              run: task install
+      - name: Install dependencies
+        run: task install
 
-            - name: Lint Code Style
-              run: task lint-style
+      - name: Lint Code Style
+        run: task lint-style
 
-            - name: Check types
-              run: task lint-types
+      - name: Check types
+        run: task lint-types
 
-            - name: Run unit tests
-              run: task test-unit
+      - name: Run unit tests
+        run: task test-unit
 
-            - name: Run component tests
-              run: task test-react
+      - name: Run component tests
+        run: task test-react
 
-    acceptance_stage:
-        name: Acceptance Stage
+  acceptance_stage:
+    name: Acceptance Stage
 
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
 
-        runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version-file: ".nvmrc"
-                  check-latest: true
-                  cache: yarn
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          check-latest: true
+          cache: yarn
 
-            - name: Install Task
-              uses: arduino/setup-task@v1
-              with:
-                  version: 3.x
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Cache task checksums
-              uses: actions/cache@v3
-              with:
-                  path: .task
-                  key: ${{ runner.os }}-task-acceptance-${{ hashFiles('Taskfile.yaml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-task-
-                      ${{ runner.os }}-
+      - name: Cache task checksums
+        uses: actions/cache@v3
+        with:
+          path: .task
+          key: ${{ runner.os }}-task-acceptance-${{ hashFiles('Taskfile.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-task-
+            ${{ runner.os }}-
 
-            - name: Cache Yarn files
-              uses: actions/cache@v3
-              with:
-                  path: .yarn
-                  key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-
-                      ${{ runner.os }}-
+      - name: Cache Yarn files
+        uses: actions/cache@v3
+        with:
+          path: .yarn
+          key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
 
-            - name: Install dependencies
-              run: task install
+      - name: Install dependencies
+        run: task install
 
-            - name: Cache Gatsby Build Files
-              uses: actions/cache@v2
-              with:
-                  path: |
-                      .cache
-                      public
-                  key: ${{ runner.os }}-gatsby-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-gatsby-
-                      ${{ runner.os }}-
+      - name: Cache Gatsby Build Files
+        uses: actions/cache@v2
+        with:
+          path: |
+            .cache
+            public
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-
+            ${{ runner.os }}-
 
-            - name: Run E2E Tests
-              run: |
-                  npx playwright install
-                  task test-e2e
+      - name: Run E2E Tests
+        run: |
+          npx playwright install
+          task test-e2e
 
-            - name: Upload results of failed tests
-              uses: actions/upload-artifact@v2
-              if: failure()
-              with:
-                  name: test-results
-                  path: test-results/
+      - name: Upload results of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: test-results
+          path: test-results/
