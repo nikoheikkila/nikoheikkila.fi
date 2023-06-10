@@ -51,7 +51,7 @@
 		"@sindresorhus/slugify": "2.2.1",
 		"@types/inquirer": "9.0.3",
 		"@types/node": "18.16.17",
-		"@types/react": "18.2.10",
+		"@types/react": "18.2.11",
 		"@types/react-burger-menu": "2.8.3",
 		"@types/react-dom": "18.2.4",
 		"@types/react-syntax-highlighter": "15.5.7",
