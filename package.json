@@ -68,7 +68,7 @@
 		"snyk": "1.1177.0",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.0.4",
-		"vitest": "0.31.4"
+		"vitest": "0.32.0"
 	},
 	"keywords": [
 		"gatsby"
