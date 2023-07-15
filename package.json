@@ -65,7 +65,7 @@
 		"graphql-sse": "2.2.0",
 		"inquirer": "9.2.8",
 		"prettier": "2.8.8",
-		"snyk": "1.1187.0",
+		"snyk": "1.1190.0",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.0.4",
 		"vitest": "0.33.0"
