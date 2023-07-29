@@ -63,7 +63,7 @@
 		"eslint-plugin-react": "latest",
 		"esno": "^0.17.0",
 		"graphql-sse": "2.2.0",
-		"inquirer": "9.2.8",
+		"inquirer": "9.2.9",
 		"prettier": "2.8.8",
 		"snyk": "1.1193.0",
 		"subscriptions-transport-ws": "0.11.0",
