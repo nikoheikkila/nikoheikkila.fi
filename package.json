@@ -8,10 +8,10 @@
 		"node": ">=18.0"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-free": "6.4.0",
-		"@fortawesome/fontawesome-svg-core": "6.4.0",
-		"@fortawesome/free-brands-svg-icons": "6.4.0",
-		"@fortawesome/free-solid-svg-icons": "6.4.0",
+		"@fortawesome/fontawesome-free": "6.4.2",
+		"@fortawesome/fontawesome-svg-core": "6.4.2",
+		"@fortawesome/free-brands-svg-icons": "6.4.2",
+		"@fortawesome/free-solid-svg-icons": "6.4.2",
 		"@fortawesome/react-fontawesome": "0.2.0",
 		"dayjs": "1.11.9",
 		"gatsby": "5.11.0",
