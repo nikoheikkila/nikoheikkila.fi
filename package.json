@@ -45,7 +45,7 @@
 	},
 	"devDependencies": {
 		"@babel/helper-call-delegate": "7.12.13",
-		"@netlify/plugin-gatsby": "3.7.0",
+		"@netlify/plugin-gatsby": "3.7.1",
 		"@playwright/experimental-ct-react": "1.36.2",
 		"@playwright/test": "1.36.2",
 		"@sindresorhus/slugify": "2.2.1",
