@@ -3,7 +3,7 @@ import { Locator } from "@playwright/test";
 
 export const toExternalSiteByClicking = async (
 	page: Page,
-	locator: Locator
+	locator: Locator,
 ): Promise<Page> => {
 	const popupPromise = page.waitForEvent("popup");
 	await locator.click();
@@ -15,7 +15,7 @@ export const toExternalSiteByClicking = async (
 
 export const toInternalPageByClicking = async (
 	page: Page,
-	locator: Locator
+	locator: Locator,
 ): Promise<void> => {
 	await Promise.all([page.waitForURL(/\//), locator.click()]);
 };

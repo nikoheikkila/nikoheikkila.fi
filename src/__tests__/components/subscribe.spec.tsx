@@ -17,6 +17,6 @@ test("should display error for missing RSS URL", async ({ mount }) => {
 	const component = await mount(<Subscribe config={{}} />);
 
 	await expect(component).toContainText(
-		"No RSS feed configured for this site."
+		"No RSS feed configured for this site.",
 	);
 });

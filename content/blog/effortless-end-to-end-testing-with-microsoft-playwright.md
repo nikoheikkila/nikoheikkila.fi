@@ -199,7 +199,7 @@ test("test", async ({ page }) => {
 	// Click text=Random article
 	await page.locator("text=Random article").click();
 	await expect(page).toHaveURL(
-		"https://en.wikipedia.org/wiki/Howie_Schwarzman"
+		"https://en.wikipedia.org/wiki/Howie_Schwarzman",
 	);
 
 	// Click text=Main page

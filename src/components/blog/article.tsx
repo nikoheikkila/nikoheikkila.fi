@@ -36,7 +36,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
 					const excerpt = node.excerpt || "";
 					const timeToRead = node.timeToRead || 0;
 					const categories = (node.frontmatter?.categories || []).map(
-						String
+						String,
 					);
 					const date = DateTime.toDisplay(node.frontmatter?.date);
 

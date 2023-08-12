@@ -14,7 +14,7 @@ test("should display link back to posts catalog", async ({ mount }) => {
 				edit: "",
 				history: "",
 			}}
-		/>
+		/>,
 	);
 
 	const backLink = component.locator('a[rel="back"]');
@@ -33,7 +33,7 @@ test("should display link for editing the page", async ({ mount }) => {
 				edit: editURL,
 				history: "",
 			}}
-		/>
+		/>,
 	);
 
 	const editLink = component.locator("text=Edit Page");
@@ -52,7 +52,7 @@ test("should display link for viewing page history", async ({ mount }) => {
 				edit: "",
 				history: historyURL,
 			}}
-		/>
+		/>,
 	);
 
 	const historyLink = component.locator("text=View History");

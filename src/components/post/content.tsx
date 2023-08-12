@@ -25,7 +25,7 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 					if (!src) return <img alt={alt} {...props} />;
 					if (!alt || alt.length === 0)
 						console.warn(
-							`Alternative text not specified for image with URL: ${src}`
+							`Alternative text not specified for image with URL: ${src}`,
 						);
 
 					return (
