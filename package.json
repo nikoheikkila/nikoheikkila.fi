@@ -40,7 +40,7 @@
 		"rehype-katex": "6.0.3",
 		"remark-gfm": "3.0.1",
 		"remark-math": "5.1.1",
-		"sass": "1.64.2",
+		"sass": "1.65.1",
 		"title": "3.5.3"
 	},
 	"devDependencies": {
