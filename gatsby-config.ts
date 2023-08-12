@@ -141,7 +141,7 @@ const config: GatsbyConfig = {
 		"gatsby-plugin-netlify",
 	].concat(
 		// Load the PWA service worker only in production to enhance development experience.
-		isProduction ? ["gatsby-plugin-offline"] : []
+		isProduction ? ["gatsby-plugin-offline"] : [],
 	),
 };
 

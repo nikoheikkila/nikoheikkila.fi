@@ -104,7 +104,7 @@ const isValidPassword = validator(
 	longEnough,
 	hasUpperCase,
 	hasLowerCase,
-	hasNumbers
+	hasNumbers,
 );
 
 const validPasswords = [

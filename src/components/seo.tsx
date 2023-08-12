@@ -31,7 +31,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const author = String(meta?.author?.name);
 	const metaDescription = String(description || meta?.description).replace(
 		"\n",
-		" "
+		" ",
 	);
 	const locale = lang === "en" ? "en_GB" : "fi_FI";
 	const imageURL = siteURL + image?.original?.src;

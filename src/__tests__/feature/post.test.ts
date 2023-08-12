@@ -54,7 +54,7 @@ test.describe.parallel("Given I'm on a single post page", () => {
 
 		const github = await Navigate.toExternalSiteByClicking(
 			page,
-			historyLink
+			historyLink,
 		);
 
 		await expect(github).toHaveURL(/github\.com/);

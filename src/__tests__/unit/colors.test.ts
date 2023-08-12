@@ -22,7 +22,7 @@ describe("Colors", () => {
 			"given background color %s, foreground color is white",
 			(backgroundColor: string) => {
 				expect(Colors.foregroundColor(backgroundColor)).toBe("#FFFFFF");
-			}
+			},
 		);
 
 		test.each([
@@ -35,7 +35,7 @@ describe("Colors", () => {
 			"given background color %s, foreground color is black",
 			(backgroundColor: string) => {
 				expect(Colors.foregroundColor(backgroundColor)).toBe("#000000");
-			}
+			},
 		);
 
 		test("given invalid background color, throws error", () => {

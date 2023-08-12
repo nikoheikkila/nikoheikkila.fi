@@ -90,7 +90,7 @@ const onCreatePages = async ({
 	 * be '/{2..m}' where m is the maximum number of posts.
 	 */
 	const posts = edges.filter(
-		(page) => page.node.frontmatter?.type === "post"
+		(page) => page.node.frontmatter?.type === "post",
 	);
 	const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
