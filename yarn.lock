@@ -10362,9 +10362,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.12.1":
-  version: 5.12.1
-  resolution: "gatsby@npm:5.12.1"
+"gatsby@npm:5.12.3":
+  version: 5.12.3
+  resolution: "gatsby@npm:5.12.3"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -10541,7 +10541,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: c3c4e4cba0b72de9f9a6fc469f11407e7ee6865ad277bd1f06df94ca4ebee986b3c30640eee120a8507b1888ff53e2c6659ec10bc8547535c6fec87392f8d405
+  checksum: 3d8ca07f53d2e8613b249360b339e4f9bc096dd1e08deea7635c506a3ab20df2576063adec6725d0c44c59eac4587bbcdc503a57fbd54567a345535344796191
   languageName: node
   linkType: hard
 
@@ -14857,7 +14857,7 @@ __metadata:
     eslint-config-prettier: ^9.0.0
     eslint-plugin-react: latest
     esno: ^0.17.0
-    gatsby: 5.12.1
+    gatsby: 5.12.3
     gatsby-plugin-feed: 5.12.0
     gatsby-plugin-image: 3.12.0
     gatsby-plugin-manifest: 5.12.0
