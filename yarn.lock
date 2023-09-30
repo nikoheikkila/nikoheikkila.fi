@@ -10123,10 +10123,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-graphiql-explorer@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "gatsby-graphiql-explorer@npm:3.12.0"
-  checksum: 7fc71c8a493ebaf1a085db504706114db159f3fc04e02ff55d7ff0176265c0a6fa01af7ef5132ed404e26df764ea1ce1c8859b738198a10459cd5f3702abb9de
+"gatsby-graphiql-explorer@npm:^3.12.1":
+  version: 3.12.1
+  resolution: "gatsby-graphiql-explorer@npm:3.12.1"
+  checksum: 66ebc08680f87d0210df0e6fa75ba927c978caf246efd3adf905bf892795123014b549440af9f5f7c437be36d574d043130538a24770d37a62655999ade4b547
   languageName: node
   linkType: hard
 
@@ -10624,9 +10624,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.12.4":
-  version: 5.12.4
-  resolution: "gatsby@npm:5.12.4"
+"gatsby@npm:5.12.5":
+  version: 5.12.5
+  resolution: "gatsby@npm:5.12.5"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -10711,7 +10711,7 @@ __metadata:
     fs-extra: ^11.1.1
     gatsby-cli: ^5.12.1
     gatsby-core-utils: ^4.12.0
-    gatsby-graphiql-explorer: ^3.12.0
+    gatsby-graphiql-explorer: ^3.12.1
     gatsby-legacy-polyfills: ^3.12.0
     gatsby-link: ^5.12.0
     gatsby-page-utils: ^3.12.0
@@ -10803,7 +10803,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 7c4b27b6c1f4306854c85f62d7f9af4ee81ec98fa2a4063cd6bb1fc3cb8be7547277cf1fb06dc09c14ab3ccb247233bc42aa2a43a5848b89b8840445115d8407
+  checksum: e9066536c5c79c8e30aec034c25f3882a68589481d47c0862c8d473a4e9a9d3c2cf250d8f9f5ad624a509846bd994e3dd7641e1aca7cec5a415c1b68f1f3c880
   languageName: node
   linkType: hard
 
@@ -15403,7 +15403,7 @@ __metadata:
     eslint-config-prettier: ^9.0.0
     eslint-plugin-react: latest
     esno: ^0.17.0
-    gatsby: 5.12.4
+    gatsby: 5.12.5
     gatsby-plugin-feed: 5.12.0
     gatsby-plugin-image: 3.12.0
     gatsby-plugin-manifest: 5.12.0
