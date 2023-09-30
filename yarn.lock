@@ -10260,19 +10260,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-netlify@npm:5.1.0":
-  version: 5.1.0
-  resolution: "gatsby-plugin-netlify@npm:5.1.0"
+"gatsby-plugin-netlify@npm:5.1.1":
+  version: 5.1.1
+  resolution: "gatsby-plugin-netlify@npm:5.1.1"
   dependencies:
     "@babel/runtime": ^7.16.7
-    fs-extra: ^10.0.0
+    fs-extra: ^11.0.0
     gatsby-core-utils: ^4.0.0
     kebab-hash: ^0.1.2
     lodash.mergewith: ^4.6.2
     webpack-assets-manifest: ^5.0.6
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
-  checksum: 7b2dabf72f875f013ebc81af829cf33e72c5ad474b76e8425c98b210462f13598fa77938a34d6498bb58be1e5042579347eb4154178cac34303f08a90649805c
+  checksum: 75991919b22e6a87e143771356b89760f82733554258b17f31114680b33d8a66963ceab992b5689d38340f4528aea1753136354cbeb0d4c94bdec26ce3d50ea7
   languageName: node
   linkType: hard
 
@@ -15407,7 +15407,7 @@ __metadata:
     gatsby-plugin-feed: 5.12.0
     gatsby-plugin-image: 3.12.0
     gatsby-plugin-manifest: 5.12.0
-    gatsby-plugin-netlify: 5.1.0
+    gatsby-plugin-netlify: 5.1.1
     gatsby-plugin-offline: 6.12.0
     gatsby-plugin-robots-txt: 1.8.0
     gatsby-plugin-sass: 6.12.0
