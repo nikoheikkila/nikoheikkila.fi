@@ -4387,10 +4387,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/title@npm:3.4.1":
-  version: 3.4.1
-  resolution: "@types/title@npm:3.4.1"
-  checksum: 9f0d044344937adf304fe8d4a23b2de2968861d07845369841e07db4a412bb716592609f8909acb778a0fb216316beed2699ad173a8bef6a8066a4983f021f04
+"@types/title@npm:3.4.2":
+  version: 3.4.2
+  resolution: "@types/title@npm:3.4.2"
+  checksum: b04611895c86f6c8dc6e5c585503f1655190266bc4c56d3bad2062a87e748010260cd961582ecca679e5cf062c7d09991d750633d9c1bd604606d0226e64321a
   languageName: node
   linkType: hard
 
@@ -15426,7 +15426,7 @@ __metadata:
     "@types/react-burger-menu": 2.8.5
     "@types/react-dom": 18.2.7
     "@types/react-syntax-highlighter": 15.5.9
-    "@types/title": 3.4.1
+    "@types/title": 3.4.2
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
     dayjs: 1.11.10
