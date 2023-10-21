@@ -4287,12 +4287,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-burger-menu@npm:2.8.4":
-  version: 2.8.4
-  resolution: "@types/react-burger-menu@npm:2.8.4"
+"@types/react-burger-menu@npm:2.8.5":
+  version: 2.8.5
+  resolution: "@types/react-burger-menu@npm:2.8.5"
   dependencies:
     "@types/react": "*"
-  checksum: a33f3d57de5bf9595459c47f43375a785a088127f34d15522fd2982b3102adc0175b557a745bb0beabc9b2a01e3e94643deae2d75137ea42198be938f5a31d45
+  checksum: 36132657a8390e21538df95488a0a5a85bb42b5668238ff5b8f191f6e6fcfa7cc0f29e1b6e6099d85a40ef551bad011cf5eff7b4c0a47f3b5a71289c132b40c9
   languageName: node
   linkType: hard
 
@@ -15423,7 +15423,7 @@ __metadata:
     "@types/inquirer": 9.0.6
     "@types/node": 18.18.6
     "@types/react": 18.2.21
-    "@types/react-burger-menu": 2.8.4
+    "@types/react-burger-menu": 2.8.5
     "@types/react-dom": 18.2.7
     "@types/react-syntax-highlighter": 15.5.8
     "@types/title": 3.4.1
