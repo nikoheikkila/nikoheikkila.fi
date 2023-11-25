@@ -10151,7 +10151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-parcel-config@npm:^1.12.1":
+"gatsby-parcel-config@npm:1.12.1":
   version: 1.12.1
   resolution: "gatsby-parcel-config@npm:1.12.1"
   dependencies:
@@ -10604,9 +10604,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:5.12.9":
-  version: 5.12.9
-  resolution: "gatsby@npm:5.12.9"
+"gatsby@npm:5.12.11":
+  version: 5.12.11
+  resolution: "gatsby@npm:5.12.11"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -10695,7 +10695,7 @@ __metadata:
     gatsby-legacy-polyfills: ^3.12.0
     gatsby-link: ^5.12.1
     gatsby-page-utils: ^3.12.1
-    gatsby-parcel-config: ^1.12.1
+    gatsby-parcel-config: 1.12.1
     gatsby-plugin-page-creator: ^5.12.3
     gatsby-plugin-typescript: ^5.12.1
     gatsby-plugin-utils: ^4.12.3
@@ -10783,7 +10783,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: f81ca87c29dbaa27bad7696f2714074f62cdd9e4a2448c31fea8ea6eed6c20fbe901835e144ff06e9ebbab2c35129490b8cb9473dc2fef70f3183bc71ab67c44
+  checksum: eb225dfc256f6ff0eb4ee14f6ba5b1b4b74ace008ff518aa9808f2ff3e82b6cc7e83ed576af88fa37efc8ab1da97e9057a3b7ac8f7f3a5bb4a3bb1db7adb3984
   languageName: node
   linkType: hard
 
@@ -15438,7 +15438,7 @@ __metadata:
     eslint-config-prettier: ^9.0.0
     eslint-plugin-react: latest
     esno: ^0.17.0
-    gatsby: 5.12.9
+    gatsby: 5.12.11
     gatsby-plugin-feed: 5.12.3
     gatsby-plugin-image: 3.12.3
     gatsby-plugin-manifest: 5.12.3
