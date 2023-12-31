@@ -61,7 +61,7 @@
 		"eslint": "latest",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-react": "latest",
-		"esno": "^0.17.0",
+		"esno": "^4.0.0",
 		"graphql-sse": "2.5.2",
 		"inquirer": "9.2.12",
 		"prettier": "3.1.0",
