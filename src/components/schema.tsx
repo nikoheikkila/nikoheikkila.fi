@@ -89,7 +89,7 @@ const Schema: React.FC<SchemaProps> = ({
 					datePublished,
 					dateModified,
 				},
-		  ]
+			]
 		: baseSchema;
 
 	return (
