@@ -77,9 +77,10 @@ drafts
 # Local Netlify folder
 .netlify
 
-# Obsidian workspaces
-content/.obsidian/workspace
-content/.obsidian/workspace.json
+# Obsidian
+content/.obsidian/workspace*
+content/.obsidian/plugins/text-extractor/cache
+content/.trash
 
 # Playwright
 playwright-report/

@@ -1,0 +1,18 @@
+/**
+* To make checklists more readable after completing items, this CSS snippet removes the strikethrough.
+*
+
+/* These two affect preview mode */
+.markdown-preview-view ul > li.task-list-item.is-checked {
+  text-decoration: none;
+}
+
+.markdown-preview-view ol > li.task-list-item.is-checked {
+  text-decoration: none;
+}
+
+/* This affects edit mode */
+.markdown-source-view.mod-cm6
+  .HyperMD-task-line[data-task]:not([data-task=" "]) {
+  text-decoration: none;
+}

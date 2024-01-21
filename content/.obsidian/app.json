@@ -1,15 +1,15 @@
 {
-  "readableLineLength": true,
-  "showFrontmatter": false,
-  "foldHeading": true,
-  "foldIndent": true,
-  "alwaysUpdateLinks": true,
-  "showUnsupportedFiles": true,
-  "useMarkdownLinks": true,
-  "attachmentFolderPath": "./",
-  "legacyEditor": false,
-  "livePreview": true,
+  "spellcheck": false,
+  "trashOption": "local",
+  "vimMode": true,
   "promptDelete": false,
-  "showInlineTitle": false,
-  "vimMode": true
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "blog"
 }

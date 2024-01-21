@@ -2,6 +2,11 @@
   "file-explorer",
   "global-search",
   "switcher",
+  "outgoing-link",
+  "tag-pane",
+  "properties",
   "command-palette",
-  "slash-command"
+  "editor-status",
+  "outline",
+  "word-count"
 ]

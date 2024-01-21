@@ -1,8 +1,16 @@
 {
-  "baseFontSize": 15,
+  "accentColor": "",
   "cssTheme": "Prism",
-  "accentColor": "#8929ff",
-  "interfaceFontFamily": "JetBrainsMono Nerd Font",
-  "textFontFamily": "JetBrainsMono Nerd Font",
-  "monospaceFontFamily": "JetBrainsMono Nerd Font"
+  "interfaceFontFamily": "Avenir",
+  "textFontFamily": "Avenir",
+  "monospaceFontFamily": "MonoLisa Nerd Font,JetBrainsMonoNL Nerd Font Propo",
+  "translucency": true,
+  "baseFontSize": 23,
+  "showViewHeader": false,
+  "nativeMenus": true,
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "checkboxes",
+    "links"
+  ]
 }

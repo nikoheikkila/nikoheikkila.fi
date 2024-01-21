@@ -1,1 +1,70 @@
-{}
+{
+  "window:zoom-in": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "="
+    }
+  ],
+  "window:zoom-out": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "-"
+    }
+  ],
+  "editor:swap-line-up": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowUp"
+    }
+  ],
+  "editor:swap-line-down": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowDown"
+    }
+  ],
+  "global-search:open": [],
+  "omnisearch:show-modal": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "F"
+    }
+  ],
+  "editor:open-search": [],
+  "omnisearch:show-modal-infile": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "F"
+    }
+  ],
+  "zk-prefixer": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "N"
+    }
+  ],
+  "file-explorer:new-file": [],
+  "obsidian-style-settings:style-settings-class-toggle-obsidian-prism-theme-pt-focused-mode": [
+    {
+      "modifiers": [
+        "Ctrl"
+      ],
+      "key": "Z"
+    }
+  ]
+}

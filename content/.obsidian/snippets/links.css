@@ -1,0 +1,13 @@
+/**
+ * This makes [[internal links]] in edit mode show up in dashed underline to
+ * to make it easier to notice which items have notes and which don't 
+ * (or which are mistyped).
+ */
+
+.markdown-source-view.mod-cm6 .is-unresolved {
+  background-color: #e4001b;
+  color: #fff;
+  font-weight: 700;
+  text-decoration-style: dashed;
+  text-decoration-line: underline;
+}
