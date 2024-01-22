@@ -117,9 +117,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Run E2E Tests
-        run: |
-          npx playwright install
-          task test-e2e
+        run: task test-e2e
 
       - name: Upload results of failed tests
         uses: actions/upload-artifact@v2

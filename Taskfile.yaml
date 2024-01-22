@@ -82,6 +82,7 @@ tasks:
     deps:
       - build
     cmds:
+      - npx playwright install --with-deps
       - npx playwright test {{.CLI_ARGS}}
 
   dev:
