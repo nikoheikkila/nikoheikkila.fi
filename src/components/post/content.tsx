@@ -5,6 +5,7 @@ import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import rehypeRaw from "rehype-raw";
 import makeTitleCase from "title";
 import { BlogLink } from "../elements";
 import * as styles from "./content.module.scss";
@@ -19,8 +20,17 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 	<article className={styles.content}>
 		<ReactMarkdown
 			remarkPlugins={[remarkGfm, remarkMath]}
-			rehypePlugins={[rehypeKatex]}
+			// @ts-expect-error "rehype-raw does not have valid typings"
+			rehypePlugins={[rehypeRaw, rehypeKatex]}
 			components={{
+				iframe: ({ ...props }) => {
+					// Wrapper around iframe videos to make them responsive
+					return (
+						<section className={styles.video}>
+							<iframe {...props} />
+						</section>
+					);
+				},
 				img: ({ src, alt, ...props }) => {
 					if (!src) return <img alt={alt} {...props} />;
 					if (!alt || alt.length === 0)
