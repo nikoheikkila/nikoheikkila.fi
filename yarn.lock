@@ -4435,12 +4435,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.11.10":
-  version: 20.11.10
-  resolution: "@types/node@npm:20.11.10"
+"@types/node@npm:20.11.16":
+  version: 20.11.16
+  resolution: "@types/node@npm:20.11.16"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 58544f52c14d839cc5fca7a9f001303016aefa85fea684de9aa3c24a1340a55a03a6744fa20f601ca032a9f9d08b32c1ff074ccb75dcd57d61a1a65c50a949b1
+  checksum: 51f0831c1219bf4698e7430aeb9892237bd851deeb25ce23c5bb0ceefcc77c3b114e48f4e98d9fc26def5a87ba9d8079f0281dd37bee691140a93f133812c152
   languageName: node
   linkType: hard
 
@@ -15287,7 +15287,7 @@ __metadata:
     "@playwright/test": 1.41.1
     "@sindresorhus/slugify": 2.2.1
     "@types/inquirer": 9.0.7
-    "@types/node": 20.11.10
+    "@types/node": 20.11.16
     "@types/react": 18.2.21
     "@types/react-burger-menu": 2.8.7
     "@types/react-dom": 18.2.7
