@@ -8984,13 +8984,13 @@ __metadata:
   linkType: hard
 
 "esno@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "esno@npm:4.0.0"
+  version: 4.7.0
+  resolution: "esno@npm:4.7.0"
   dependencies:
-    tsx: ^4.1.0
+    tsx: ^4.7.1
   bin:
     esno: esno.js
-  checksum: cbd348a16ee5bbbebaeba51bd503e42c4f0680985037578f5c4fee4c65e0935539d717e50eb3836415ebf0eb89163440c8c6da8f4fae365aa2b520a66e75fc6b
+  checksum: dac9948b0fb27bda4cc8f5471fcb8f47e4a35eb4f2427a89aff49babdf2a19cb8b72f64f958f25fa0fe16ae4235080e876f1d835d170ec84a9b5d632b97c5715
   languageName: node
   linkType: hard
 
@@ -19745,9 +19745,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.1.0":
-  version: 4.7.0
-  resolution: "tsx@npm:4.7.0"
+"tsx@npm:^4.7.1":
+  version: 4.7.1
+  resolution: "tsx@npm:4.7.1"
   dependencies:
     esbuild: ~0.19.10
     fsevents: ~2.3.3
@@ -19757,7 +19757,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: a3a17fa8a40dbe0aff26fb2bc71a069e568152e0685b0bd9a31ea1091806274ba14882551433ed01efa7eae16f1aa965e2e47f3075ec1e914c42cf5dfce1f924
+  checksum: 7f77294c0eee9a9b203f89eb299ee80b393d6b4bf79ec01b650502213a23ea08d0dfc52e938b302ef27c97b70557f7f5a590c3174a7e3c8f1140c668eea4a3a2
   languageName: node
   linkType: hard
 
