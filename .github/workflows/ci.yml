@@ -41,7 +41,9 @@ jobs:
         id: yarn-cache
         uses: actions/cache@v4
         with:
-          path: .yarn
+          path: |
+            .yarn
+            node_modules
           key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -94,7 +96,9 @@ jobs:
         uses: actions/cache@v4
         id: yarn-cache
         with:
-          path: .yarn
+          path: |
+            .yarn
+            node_modules
           key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
