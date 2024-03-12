@@ -11,6 +11,7 @@ tasks:
 
   install:
     desc: Install dependencies with Yarn
+    run: once
     sources:
       - package.json
       - yarn.lock
@@ -23,6 +24,7 @@ tasks:
 
   format:
     desc: Format codebase
+    deps: [install]
     cmds:
       - npx prettier --write .
       - npx eslint --fix .
@@ -35,12 +37,14 @@ tasks:
 
   lint-style:
     desc: Lint codebase for style issues
+    deps: [install]
     cmds:
       - npx prettier --check .
       - npx eslint .
 
   lint-types:
     desc: Lint TypeScript files for incorrect typing
+    deps: [install]
     sources:
       - ./**/*.{ts,tsx}
     cmds:
@@ -52,35 +56,19 @@ tasks:
       - lint
     cmds:
       - task: test-unit
-      - task: test-react
       - task: test-e2e
 
   test-unit:
     desc: Run unit tests
-    deps:
-      - install
+    deps: [install]
     sources:
       - src/**/*.{ts,tsx}
     cmds:
-      - npx vitest
-
-  test-react:
-    desc: Run React component tests
-    summary: These tests are still experimental and may cause failures
-    deps:
-      - install
-    sources:
-      - src/**/*.ts
-      - src/**/*.tsx
-      - playwright-ct.config.ts
-    ignore_error: true
-    cmds:
-      - npx playwright test --config playwright-ct.config.ts {{.CLI_ARGS}}
+      - npx vitest run
 
   test-e2e:
     desc: Run end-to-end tests
-    deps:
-      - build
+    deps: [install, build]
     cmds:
       - npx playwright install --with-deps
       - npx playwright test {{.CLI_ARGS}}
@@ -91,17 +79,15 @@ tasks:
       - task: dev-gatsby
 
   dev-gatsby:
-    deps:
-      - install
     desc: Serve the Gatsby development site
+    deps: [install]
     cmds:
       - yarn clean
       - yarn dev
 
   build:
     desc: Build the Gatsby production site
-    deps:
-      - install
+    deps: [install]
     generates:
       - public/
       - .cache/
@@ -113,6 +99,7 @@ tasks:
 
   serve:
     desc: Serve the Gatsby production site
+    deps: [install]
     env:
       NODE_ENV: production
     cmds:
