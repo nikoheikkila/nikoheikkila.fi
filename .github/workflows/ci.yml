@@ -13,23 +13,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
           check-latest: true
           cache: yarn
 
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v2
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache task checksums
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .task
           key: ${{ runner.os }}-task-commit-${{ hashFiles('Taskfile.yaml') }}
@@ -38,7 +38,8 @@ jobs:
             ${{ runner.os }}-
 
       - name: Cache Yarn files
-        uses: actions/cache@v3
+        id: yarn-cache
+        uses: actions/cache@v4
         with:
           path: .yarn
           key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
@@ -47,6 +48,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: task install
 
       - name: Lint Code Style
@@ -64,23 +66,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
           check-latest: true
           cache: yarn
 
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v2
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache task checksums
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .task
           key: ${{ runner.os }}-task-acceptance-${{ hashFiles('Taskfile.yaml') }}
@@ -89,7 +91,8 @@ jobs:
             ${{ runner.os }}-
 
       - name: Cache Yarn files
-        uses: actions/cache@v3
+        uses: actions/cache@v4
+        id: yarn-cache
         with:
           path: .yarn
           key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
@@ -98,10 +101,11 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: task install
 
       - name: Cache Gatsby Build Files
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             .cache
