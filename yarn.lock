@@ -9887,8 +9887,8 @@ __metadata:
   linkType: hard
 
 "gatsby-adapter-netlify@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "gatsby-adapter-netlify@npm:1.1.1"
+  version: 1.1.7
+  resolution: "gatsby-adapter-netlify@npm:1.1.7"
   dependencies:
     "@babel/runtime": ^7.20.13
     "@netlify/cache-utils": ^5.1.5
@@ -9897,9 +9897,10 @@ __metadata:
     cookie: ^0.5.0
     fastq: ^1.15.0
     fs-extra: ^11.1.1
+    gatsby-core-utils: ^4.13.1
   peerDependencies:
     gatsby: ^5.10.0-alpha
-  checksum: c63e0032defc8e07b5268f397b5904697bb1306e5a798a329eaaddb05fcc37e093e0d1077cfee7ca6242bbe5ca793903f17387528256e4cc046271c769a51154
+  checksum: 4c04400bed595d046e06c6846ade04fd768abecb7da67076c6e9da74269ef8147964092aed7bc4c44b132c5e023125ea3318cbf52e67ab17c0e21dfbc0c7ad0b
   languageName: node
   linkType: hard
 
@@ -9975,6 +9976,30 @@ __metadata:
     tmp: ^0.2.1
     xdg-basedir: ^4.0.0
   checksum: 066aaac3d3acb52c7b6bee52d6b9b2ca3ef3c2f52b5a8b2bebfc1b9ef52286008f7b200c02da9df25beeb4c92c9861252f3330e5d68d3de7e02bf7c09cebf144
+  languageName: node
+  linkType: hard
+
+"gatsby-core-utils@npm:^4.13.1":
+  version: 4.13.1
+  resolution: "gatsby-core-utils@npm:4.13.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    ci-info: 2.0.0
+    configstore: ^5.0.1
+    fastq: ^1.15.0
+    file-type: ^16.5.4
+    fs-extra: ^11.1.1
+    got: ^11.8.6
+    hash-wasm: ^4.9.0
+    import-from: ^4.0.0
+    lmdb: 2.5.3
+    lock: ^1.1.0
+    node-object-hash: ^2.3.10
+    proper-lockfile: ^4.1.2
+    resolve-from: ^5.0.0
+    tmp: ^0.2.1
+    xdg-basedir: ^4.0.0
+  checksum: 18024206ae31a89ec0533b2d31c1d12f0f1cea09451e73daa49276bd1f1d84b47dc94602d97bc4d37fa203ffd66de33afaeffbe7ccc96569c8ef42251ddb1151
   languageName: node
   linkType: hard
 
