@@ -87,3 +87,7 @@ playwright-report/
 
 # Taskfile.dev
 .task/
+
+# Gatsby types
+gatsby-types.d.ts
+
