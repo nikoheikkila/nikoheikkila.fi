@@ -6,7 +6,7 @@ excerpt: Exploring the paradigm shift from speculative to factual communication 
 type: post
 categories: [agile, software, engineering]
 date: 2025-03-02
-hero: null
+hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/from-speculation-to-facts-mastering-vertical-slicing-in-software-engineering.jpg
 ---
 
 ## Benefits of Small Batches and Vertical Slicing
@@ -137,3 +137,5 @@ To a layperson, the user interface is the heart of the application, but for peop
 Why isn't everyone working in small batches? That is a good question. In my experience, somewhere in the past, people involved in software engineering established wrong defaults as their way of working. Specifically, the root cause of our problems with late delivery often points to the fallacy of parallelising work to be carried out in isolation, failing to communicate by succumbing to speculation, and ultimately missing essential learning opportunities uncovered by facing the facts.
 
 This blog post should have convinced you to question those defaults. The change starts small. Pick your next feature and ask your team what the smallest vertical slice that delivers value is. Deliver it end-to-end, gather feedback, and observe how your understanding evolves. The compounding effect of this approach, from faster delivery to better products to happier teams, will make speculative communication feel just as outdated as the waterfall model. Your future self will thank you for making the switch.
+
+Photo by <a href="https://unsplash.com/@biancablah?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Bianca Ackermann</a> on <a href="https://unsplash.com/photos/brown-bread-on-orange-table-dsrsjg-as-M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
