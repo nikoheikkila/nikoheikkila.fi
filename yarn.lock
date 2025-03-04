@@ -7863,10 +7863,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.10":
-  version: 1.11.10
-  resolution: "dayjs@npm:1.11.10"
-  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
+"dayjs@npm:1.11.13":
+  version: 1.11.13
+  resolution: "dayjs@npm:1.11.13"
+  checksum: f388db88a6aa93956c1f6121644e783391c7b738b73dbc54485578736565c8931bdfba4bb94e9b1535c6e509c97d5deb918bbe1ae6b34358d994de735055cca9
   languageName: node
   linkType: hard
 
@@ -15587,7 +15587,7 @@ __metadata:
     "@types/title": 3.4.3
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
-    dayjs: 1.11.10
+    dayjs: 1.11.13
     eslint: latest
     eslint-config-prettier: ^9.0.0
     eslint-plugin-react: latest
