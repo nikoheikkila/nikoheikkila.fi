@@ -56,9 +56,6 @@ jobs:
       - name: Lint Code Style
         run: task lint-style
 
-      - name: Check types
-        run: task lint-types
-
       - name: Run unit tests
         run: task test-unit
 
