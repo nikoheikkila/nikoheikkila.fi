@@ -46,8 +46,8 @@
 	},
 	"devDependencies": {
 		"@babel/helper-call-delegate": "7.12.13",
-		"@playwright/experimental-ct-react": "1.42.1",
-		"@playwright/test": "1.42.1",
+		"@playwright/experimental-ct-react": "1.50.1",
+		"@playwright/test": "1.50.1",
 		"@sindresorhus/slugify": "2.2.1",
 		"@types/inquirer": "9.0.7",
 		"@types/node": "20.11.25",
