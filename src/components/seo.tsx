@@ -100,7 +100,15 @@ interface MastodonVerificationProps {
 }
 
 const MastodonVerification: React.FC<MastodonVerificationProps> = ({ url }) => {
-	return <link rel="me" href={url} />;
+	const { href, host, pathname } = new URL(url);
+	const creator = `${pathname.slice(1)}@${host}`;
+
+	return (
+		<>
+			<meta name="fediverse:creator" content={creator} />
+			<link rel="me" href={href} />
+		</>
+	);
 };
 
 interface OpenGraphProps {
