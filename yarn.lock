@@ -11424,12 +11424,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-sse@npm:2.5.2":
-  version: 2.5.2
-  resolution: "graphql-sse@npm:2.5.2"
+"graphql-sse@npm:2.5.4":
+  version: 2.5.4
+  resolution: "graphql-sse@npm:2.5.4"
   peerDependencies:
     graphql: ">=0.11 <=16"
-  checksum: bcd35e2337a85536c7f78f1741ecad486c74e0571f449349dae50a61f152394e3f3731efd70e031a4b650fcad006f1c96c923d17f33db0ab580b2f169519c7c0
+  checksum: 3bfc6742ebfd898345ebf31c5a3b609122f84c67b56f3e1d2e0d74eb7d11c259549ff78918ab3d53c4de36476c01b9c905aa50a3a52e396ece4b2aad83abcaa8
   languageName: node
   linkType: hard
 
@@ -15609,7 +15609,7 @@ __metadata:
     gatsby-source-filesystem: 5.13.0
     gatsby-transformer-remark: 6.13.0
     gatsby-transformer-sharp: 5.13.0
-    graphql-sse: 2.5.2
+    graphql-sse: 2.5.4
     inquirer: 9.2.15
     prettier: 3.2.5
     purify-ts: 2.0.3
