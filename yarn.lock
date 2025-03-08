@@ -15493,7 +15493,7 @@ __metadata:
     graphql-sse: 2.5.4
     inquirer: 9.3.7
     prettier: 3.2.5
-    purify-ts: 2.0.3
+    purify-ts: 2.1.0
     react: 18.2.0
     react-burger-menu: 3.0.9
     react-dom: 18.2.0
@@ -17321,12 +17321,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"purify-ts@npm:2.0.3":
-  version: 2.0.3
-  resolution: "purify-ts@npm:2.0.3"
+"purify-ts@npm:2.1.0":
+  version: 2.1.0
+  resolution: "purify-ts@npm:2.1.0"
   dependencies:
     "@types/json-schema": 7.0.15
-  checksum: 6bc5ba6d83802ecfb8af1f3d4d64a625a429385ec1ec210621b073617e25b9f0b78682ab073285d6e0523ac30d0632677aeb02bf20b6f1507e11f3c371d335fb
+  checksum: 54cd5bbe2cf48382f51ca1d6157cf1b30062b2c779432ff7e62289b98e70a5af7cc55e6ab60d30edae08d9b86ff8fd6b136a9250ed322397db94be2a8ed9f592
   languageName: node
   linkType: hard
 
