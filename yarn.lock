@@ -15502,7 +15502,7 @@ __metadata:
     prettier: 3.2.5
     purify-ts: 2.1.0
     react: 18.2.0
-    react-burger-menu: 3.0.9
+    react-burger-menu: 3.1.0
     react-dom: 18.2.0
     react-markdown: 8.0.7
     react-syntax-highlighter: 15.6.1
@@ -17470,9 +17470,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-burger-menu@npm:3.0.9":
-  version: 3.0.9
-  resolution: "react-burger-menu@npm:3.0.9"
+"react-burger-menu@npm:3.1.0":
+  version: 3.1.0
+  resolution: "react-burger-menu@npm:3.1.0"
   dependencies:
     browserify-optional: ^1.0.0
     classnames: ^2.2.6
@@ -17482,7 +17482,7 @@ __metadata:
   peerDependencies:
     react: ">=0.14.0"
     react-dom: ">=0.14.0"
-  checksum: 551311daa79e7ae64ad987ed5113f500221cb8401362458dfb9d7b4c9ea1a39a3c51977d3d4b990877585f8ce6de90efca92710140e1b15b4da77d04ad6d9d6e
+  checksum: c2a4532d2a217fdc67362c2f7dccd3d0b8c17458ecf4337743dbcc333d913cf3227871738d6a80ae231ad5dc07256e900af569cc2d834bb9bbfe7f5cddedad91
   languageName: node
   linkType: hard
 
