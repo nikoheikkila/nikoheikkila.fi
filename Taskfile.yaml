@@ -22,50 +22,60 @@ tasks:
     desc: Format codebase
     deps: [install]
     cmds:
-      - npx biome format --write .
-      - npx biome lint --fix .
+      - bunx biome format --write .
+      - bunx biome lint --fix .
 
   lint:
     desc: Lint codebase for style issues
     deps: [install]
     cmds:
-      - npx biome format .
-      - npx biome lint .
+      - bunx biome format .
+      - bunx biome lint .
 
   test:
     desc: Run application test suite
     deps:
       - lint
     cmds:
-      - task: test-unit
-      - task: test-e2e
+      - task: test:unit
+      - task: test:e2e
 
-  test-unit:
+  test:unit:
     desc: Run unit tests
     deps: [install]
-    sources:
-      - src/**/*.{ts,tsx}
     cmds:
-      - npx vitest run
+      - bunx vitest run
 
-  test-e2e:
+  test:watch:
+    desc: Run unit tests in watch mode
+    deps: [install]
+    cmds:
+      - bunx vitest watch
+
+  test:coverage:
+    desc: Run unit tests with coverage reporting
+    deps: [install]
+    cmds:
+      - bunx vitest run --coverage
+
+  test:e2e:
     desc: Run end-to-end tests
     deps: [install, build]
     cmds:
-      - npx playwright install --with-deps
-      - npx playwright test {{.CLI_ARGS}}
+      - bunx playwright install --with-deps
+      - bunx playwright test {{.CLI_ARGS}}
 
   dev:
     desc: Run development server
     deps:
-      - task: dev-gatsby
+      - task: dev:gatsby
 
-  dev-gatsby:
+  dev:gatsby:
     desc: Serve the Gatsby development site
     deps: [install]
     cmds:
-      - npx gatsby clean
-      - npx gatsby develop
+      - bunx gatsby clean
+      - bunx gatsby develop
 
   build:
     desc: Build the Gatsby production site
@@ -85,4 +95,4 @@ tasks:
     env:
       NODE_ENV: production
     cmds:
-      - npx gatsby serve -p 8000
+      - bunx gatsby serve -p 8000
