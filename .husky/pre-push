@@ -28,13 +28,13 @@ call_lefthook()
     eval "$dir/node_modules/lefthook/bin/index.js $@"
   elif bundle exec lefthook -h >/dev/null 2>&1
   then
-    bundle exec lefthook $@
-  elif yarn lefthook -h >/dev/null 2>&1
+    bundle exec lefthook "$@"
+  elif bunx lefthook -h >/dev/null 2>&1
   then
-    yarn lefthook $@
+    bunx lefthook "$@"
   elif npx @evilmartians/lefthook -h >/dev/null 2>&1
   then
-    npx @evilmartians/lefthook $@
+    npx @evilmartians/lefthook "$@"
   else
     echo "Can't find lefthook in PATH"
   fi

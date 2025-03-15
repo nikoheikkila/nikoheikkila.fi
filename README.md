@@ -58,7 +58,7 @@ Feel free to check the [open issues](https://github.com/nikoheikkila/nikoheikkil
 
 ## ✍️ Writing
 
-To quickly bootstrap a new post or page draft use the CLI tool `new.js` at project root either via `yarn new` or invoking directly.
+To quickly bootstrap a new post or page draft use the CLI tool via `task new`.
 
 ## 📝 License
 

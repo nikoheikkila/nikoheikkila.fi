@@ -20,7 +20,11 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           check-latest: true
-          cache: yarn
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -37,24 +41,24 @@ jobs:
             ${{ runner.os }}-task-
             ${{ runner.os }}-
 
-      - name: Cache Yarn files
-        id: yarn-cache
+      - name: Cache Bun files
+        id: bun-cache
         uses: actions/cache@v4
         with:
           path: |
-            .yarn
+            $HOME/.bun/install/cache
             node_modules
-          key: ${{ runner.os }}-yarn-commit-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-bun-commit-${{ hashFiles('bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-bun-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        if: steps.bun-cache.outputs.cache-hit != 'true'
         run: task install
 
       - name: Lint Code Style
-        run: task lint-style
+        run: task lint
 
       - name: Run unit tests
         run: task test-unit
@@ -72,7 +76,11 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           check-latest: true
-          cache: yarn
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -89,20 +97,20 @@ jobs:
             ${{ runner.os }}-task-
             ${{ runner.os }}-
 
-      - name: Cache Yarn files
+      - name: Cache Bun files
         uses: actions/cache@v4
-        id: yarn-cache
+        id: bun-cache
         with:
           path: |
-            .yarn
+            $HOME/.bun/install/cache
             node_modules
-          key: ${{ runner.os }}-yarn-acceptance-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-bun-acceptance-${{ hashFiles('bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-bun-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        if: steps.bun-cache.outputs.cache-hit != 'true'
         run: task install
 
       - name: Cache Gatsby Build Files
@@ -111,7 +119,7 @@ jobs:
           path: |
             .cache
             public
-          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-
             ${{ runner.os }}-

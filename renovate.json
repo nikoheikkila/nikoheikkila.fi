@@ -2,12 +2,9 @@
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["config:base"],
 	"automergeType": "branch",
-	"enabledManagers": ["npm"],
+	"enabledManagers": ["bun"],
 	"schedule": ["every weekend"],
 	"commitBody": "[skip netlify]",
-	"constraints": {
-		"yarn": ">=3.3.0"
-	},
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],

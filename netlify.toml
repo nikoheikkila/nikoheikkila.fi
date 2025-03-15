@@ -1,6 +1,6 @@
 [build]
 base = "/"
-command = "yarn build"
+command = "bun run build"
 publish = "public/"
 
 [build.processing.css]
@@ -16,9 +16,6 @@ compress = true
 
 [build.environment]
 NODE_ENV = "production"
-# Workaround for Yarn v3 caching - see context:
-# https://github.com/netlify/build/issues/1535#issuecomment-1021947989
-YARN_CACHE_FOLDER = "/opt/buildhome/.yarn_cache"
 
 [[headers]]
 for = "/rss.xml"
