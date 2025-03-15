@@ -7,7 +7,7 @@ tasks:
     desc: Scaffold a new post or page
     interactive: true
     cmds:
-      - npx esno new.ts
+      - bun run new.ts
 
   install:
     desc: Install dependencies with Bun

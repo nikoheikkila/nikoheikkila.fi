@@ -1,4 +1,4 @@
-#!/usr/bin/env esno
+#!/usr/bin/env bun run
 import fs from "node:fs";
 import path from "node:path";
 import slugify from "@sindresorhus/slugify";
