@@ -42,7 +42,7 @@
 		"remark-gfm": "3.0.1",
 		"remark-math": "6.0.0",
 		"sass": "1.85.1",
-		"title": "3.5.3"
+		"title": "4.0.1"
 	},
 	"devDependencies": {
 		"@babel/helper-call-delegate": "7.12.13",
