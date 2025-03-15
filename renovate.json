@@ -1,6 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:base"],
+	"extends": ["config:recommended"],
 	"automergeType": "branch",
 	"enabledManagers": ["bun"],
 	"schedule": ["every weekend"],
@@ -11,7 +11,7 @@
 			"automerge": true
 		},
 		{
-			"extends": "monorepo:gatsby",
+			"extends": ["monorepo:gatsby"],
 			"matchUpdateTypes": ["digest", "patch", "minor", "major"],
 			"groupName": "Gatsby packages"
 		}
