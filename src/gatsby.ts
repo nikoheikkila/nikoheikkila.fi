@@ -1,6 +1,6 @@
 /* Custom types to support Gatsby internals */
 
-import { GatsbyLinkProps } from "gatsby-link";
+import type { GatsbyLinkProps } from "gatsby-link";
 
 export type State = {
 	previous?: string;

@@ -11,27 +11,14 @@ describe("Colors", () => {
 	});
 
 	describe(".foregroundColor()", () => {
-		test.each([
-			["#070092"],
-			["#295330"],
-			["#820009"],
-			["#763507"],
-			["#02070a"],
-			["#000600"],
-		])(
+		test.each([["#070092"], ["#295330"], ["#820009"], ["#763507"], ["#02070a"], ["#000600"]])(
 			"given background color %s, foreground color is white",
 			(backgroundColor: string) => {
 				expect(Colors.foregroundColor(backgroundColor)).toBe("#FFFFFF");
 			},
 		);
 
-		test.each([
-			["#f5a7ba"],
-			["#b8bfe0"],
-			["#a1f98b"],
-			["#f4ff93"],
-			["#f7f7f7"],
-		])(
+		test.each([["#f5a7ba"], ["#b8bfe0"], ["#a1f98b"], ["#f4ff93"], ["#f7f7f7"]])(
 			"given background color %s, foreground color is black",
 			(backgroundColor: string) => {
 				expect(Colors.foregroundColor(backgroundColor)).toBe("#000000");

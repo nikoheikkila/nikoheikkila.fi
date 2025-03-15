@@ -1,5 +1,6 @@
-import { IGatsbyImageData } from "gatsby-plugin-image";
-import React, { ReactNode } from "react";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
+import React from "react";
+import type { ReactNode } from "react";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import { Slice } from "gatsby";
@@ -16,12 +17,7 @@ interface LayoutProps {
 	children: Array<ReactNode>;
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = ({
-	type,
-	title,
-	cover,
-	children,
-}) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, children }) => {
 	return (
 		<>
 			<Slice alias="sidebar" />

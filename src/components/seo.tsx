@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
+import type { FunctionComponent } from "react";
 import { getSEOData } from "../graphql/seo";
 import SchemaOrg from "./schema";
 
@@ -29,10 +30,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const pageURL = url === "/" ? siteURL : url;
 	const siteTitle = String(meta?.title);
 	const author = String(meta?.author?.name);
-	const metaDescription = String(description || meta?.description).replace(
-		"\n",
-		" ",
-	);
+	const metaDescription = String(description || meta?.description).replace("\n", " ");
 	const locale = lang === "en" ? "en_GB" : "fi_FI";
 	const imageURL = siteURL + image?.original?.src;
 	const isPost = type === "post";
@@ -170,11 +168,7 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 					<meta name="article:author" content={author} />
 					<meta name="article:section" content="Technology" />
 					{categories.map((category) => (
-						<meta
-							key={category}
-							name="article:tag"
-							content={category}
-						/>
+						<meta key={category} name="article:tag" content={category} />
 					))}
 				</>
 			)}
@@ -194,14 +188,7 @@ interface TwitterCardProps {
 	image?: Queries.ImageSharp;
 }
 
-const TwitterCard: React.FC<TwitterCardProps> = ({
-	author,
-	title,
-	description,
-	siteURL,
-	pageURL,
-	image,
-}) => {
+const TwitterCard: React.FC<TwitterCardProps> = ({ author, title, description, siteURL, pageURL, image }) => {
 	const imageURL = siteURL + image?.original?.src;
 
 	return (

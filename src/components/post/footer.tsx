@@ -1,5 +1,5 @@
 import Tag from "../tag";
-import React, { FunctionComponent } from "react";
+import React, { type FunctionComponent } from "react";
 
 interface FooterProps {
 	categories?: readonly string[];

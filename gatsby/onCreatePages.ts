@@ -1,5 +1,5 @@
-import { CreatePagesArgs } from "gatsby";
-import path from "path";
+import path from "node:path";
+import type { CreatePagesArgs } from "gatsby";
 import slices from "./slices";
 
 interface CreatePagesData {
@@ -8,17 +8,11 @@ interface CreatePagesData {
 
 const postsPerPage = 30;
 
-const onCreatePages = async ({
-	graphql,
-	actions: { createPage, createSlice },
-}: CreatePagesArgs) => {
+const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: CreatePagesArgs) => {
 	const blogIndex = path.resolve("./src/templates/list.tsx");
 	const blogPost = path.resolve("./src/templates/post.tsx");
 
-	const { data, errors } = await graphql<
-		CreatePagesData,
-		Record<string, unknown>
-	>(`
+	const { data, errors } = await graphql<CreatePagesData, Record<string, unknown>>(`
 		{
 			allMarkdownRemark(
 				sort: { frontmatter: { date: DESC } }
@@ -47,16 +41,13 @@ const onCreatePages = async ({
 		throw new Error("createPages() query returned no data");
 	}
 
-	/**
-	 * Create reusable slices for common site components
-	 */
-	slices.forEach(({ id, component, context = {} }) => {
+	for (const { id, component, context = {} } of slices) {
 		createSlice({
 			id,
 			context,
 			component: path.resolve("src", "components", "layout", component),
 		});
-	});
+	}
 
 	/**
 	 * Create blog posts by first querying all page objects from GraphQL
@@ -71,8 +62,7 @@ const onCreatePages = async ({
 			return;
 		}
 
-		const previous =
-			index === edges.length - 1 ? null : edges[index + 1].node;
+		const previous = index === edges.length - 1 ? null : edges[index + 1].node;
 		const next = index === 0 ? null : edges[index - 1].node;
 
 		createPage({
@@ -89,9 +79,7 @@ const onCreatePages = async ({
 	 * a site structure where '/' is the first page and subsequent pages will
 	 * be '/{2..m}' where m is the maximum number of posts.
 	 */
-	const posts = edges.filter(
-		(page) => page.node.frontmatter?.type === "post",
-	);
+	const posts = edges.filter((page) => page.node.frontmatter?.type === "post");
 	const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
 	Array.from({ length: numberOfPages }).forEach((_, i) => {

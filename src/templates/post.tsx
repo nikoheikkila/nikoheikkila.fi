@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql, HeadFC, PageProps } from "gatsby";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { graphql, type HeadFC, type PageProps } from "gatsby";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import Layout, { LayoutType } from "../components/layout/layout";
 import { useIcons } from "../components/hooks/useIcons";
@@ -63,10 +63,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 			<Content content={body} />
 			<Subscribe config={config} />
 			<PostFooter categories={categories as string[]} />
-			<PostAttachments
-				previous={location.state?.previous}
-				urls={{ edit: editUrl, history: historyUrl }}
-			/>
+			<PostAttachments previous={location.state?.previous} urls={{ edit: editUrl, history: historyUrl }} />
 
 			<PostNavigation
 				next={{

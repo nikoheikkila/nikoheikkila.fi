@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
-import React, { FunctionComponent } from "react";
+import React from "react";
+import type { FunctionComponent } from "react";
 import * as DateTime from "../../utils/datetime";
 import { formatReadingTime } from "../../utils/helpers";
 import Content from "../post/content";
@@ -21,23 +22,18 @@ interface ArticleViewProps {
 	readonly location: Location;
 }
 
-export const ArticleView: React.FC<ArticleViewProps> = ({
-	nodes,
-	location,
-}) => {
+export const ArticleView: React.FC<ArticleViewProps> = ({ nodes, location }) => {
 	return (
 		<>
 			<h2 className={styles.header}>Latest Articles</h2>
-			<hr></hr>
+			<hr />
 			<section className={styles.view}>
 				{nodes.map((node) => {
 					const slug = node.fields?.slug || "";
 					const title = node.frontmatter?.title || "";
 					const excerpt = node.excerpt || "";
 					const timeToRead = node.timeToRead || 0;
-					const categories = (node.frontmatter?.categories || []).map(
-						String,
-					);
+					const categories = (node.frontmatter?.categories || []).map(String);
 					const date = DateTime.toDisplay(node.frontmatter?.date);
 
 					return (
@@ -68,12 +64,7 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	location,
 }) => {
 	return (
-		<Link
-			className={styles.card}
-			to={slug}
-			state={{ previous: location.pathname }}
-			data-testid="post-title"
-		>
+		<Link className={styles.card} to={slug} state={{ previous: location.pathname }} data-testid="post-title">
 			<ArticleTitle title={title} />
 			<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
 			<Content content={excerpt} />
@@ -82,9 +73,7 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	);
 };
 
-const ArticleTitle = ({ title }: { title: string }) => (
-	<h2 className={styles.title}>{title}</h2>
-);
+const ArticleTitle = ({ title }: { title: string }) => <h2 className={styles.title}>{title}</h2>;
 
 const TagList = ({ categories }: { categories: ReadonlyArray<string> }) => (
 	<section className={styles.tags}>

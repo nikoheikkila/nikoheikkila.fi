@@ -1,5 +1,5 @@
-import React from "react";
 import { Script, ScriptStrategy } from "gatsby";
+import React from "react";
 
 interface SchemaProps {
 	author?: string;
@@ -76,7 +76,7 @@ const Schema: React.FC<SchemaProps> = ({
 						url: canonicalUrl,
 						logo: {
 							"@type": "ImageObject",
-							url: canonicalUrl + "/favicon.png",
+							url: `${canonicalUrl}/favicon.png`,
 							width: 512,
 							height: 512,
 						},
@@ -93,11 +93,7 @@ const Schema: React.FC<SchemaProps> = ({
 		: baseSchema;
 
 	return (
-		<Script
-			id="json-ld"
-			type="application/ld+json"
-			strategy={ScriptStrategy.idle}
-		>
+		<Script id="json-ld" type="application/ld+json" strategy={ScriptStrategy.idle}>
 			{JSON.stringify(schema)}
 		</Script>
 	);

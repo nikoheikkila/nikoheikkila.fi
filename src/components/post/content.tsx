@@ -1,11 +1,12 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React from "react";
+import type { CSSProperties, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import rehypeRaw from "rehype-raw";
 import makeTitleCase from "title";
 import { BlogLink } from "../elements";
 import * as styles from "./content.module.scss";
@@ -32,21 +33,12 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 					);
 				},
 				img: ({ src, alt, ...props }) => {
-					if (!src) return <img alt={alt} {...props} />;
-					if (!alt || alt.length === 0)
-						console.warn(
-							`Alternative text not specified for image with URL: ${src}`,
-						);
+					if (!src) return null;
+					if (!alt || alt.length === 0) console.warn(`Alternative text not specified for image with URL: ${src}`);
 
 					return (
 						<BlogLink className={styles.photoframe} href={src}>
-							<img
-								className={styles.image}
-								src={src}
-								alt={alt}
-								title="Click for a larger version"
-								loading="lazy"
-							/>
+							<img className={styles.image} src={src} alt={alt} title="Click for a larger version" loading="lazy" />
 							<span className={styles.caption}>
 								<span>
 									<strong>Picture:</strong> {alt}
@@ -94,10 +86,8 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 	</article>
 );
 
-const extractAddedLineNumber = (line: string, index: number) =>
-	line.startsWith("+") ? index + 1 : 0;
-const extractRemovedLineNumber = (line: string, index: number) =>
-	line.startsWith("-") ? index + 1 : 0;
+const extractAddedLineNumber = (line: string, index: number) => (line.startsWith("+") ? index + 1 : 0);
+const extractRemovedLineNumber = (line: string, index: number) => (line.startsWith("-") ? index + 1 : 0);
 
 interface CodeBlockProps {
 	language: string;
@@ -166,11 +156,7 @@ interface InlineCodeProps {
 	children: ReactNode[];
 }
 
-const InlineCode: React.FC<InlineCodeProps> = ({
-	className,
-	children,
-	...props
-}) => {
+const InlineCode: React.FC<InlineCodeProps> = ({ className, children, ...props }) => {
 	return (
 		<code className={className} {...props}>
 			{children}

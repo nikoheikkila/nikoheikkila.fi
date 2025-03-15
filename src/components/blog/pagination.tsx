@@ -1,7 +1,7 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "gatsby";
-import React, { FunctionComponent } from "react";
+import React, { type FunctionComponent } from "react";
 import * as styles from "./pagination.module.scss";
 
 interface PaginationProps {
@@ -9,10 +9,7 @@ interface PaginationProps {
 	readonly numberOfPages: number;
 }
 
-const Pagination: FunctionComponent<PaginationProps> = ({
-	currentPage,
-	numberOfPages,
-}) => {
+const Pagination: FunctionComponent<PaginationProps> = ({ currentPage, numberOfPages }) => {
 	const isFirstPage = currentPage === 1;
 	const isLastPage = currentPage === numberOfPages;
 	const previousPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`;
@@ -23,10 +20,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({
 			{!isFirstPage && (
 				<li>
 					<Link to={previousPage} rel="prev">
-						<FontAwesomeIcon
-							icon={faArrowLeft}
-							className={styles.previous}
-						/>
+						<FontAwesomeIcon icon={faArrowLeft} className={styles.previous} />
 						Previous Page ({currentPage - 1}/{numberOfPages})
 					</Link>
 				</li>
@@ -35,10 +29,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({
 				<li>
 					<Link to={nextPage} rel="next">
 						Next Page ({currentPage + 1}/{numberOfPages})
-						<FontAwesomeIcon
-							icon={faArrowRight}
-							className={styles.next}
-						/>
+						<FontAwesomeIcon icon={faArrowRight} className={styles.next} />
 					</Link>
 				</li>
 			)}

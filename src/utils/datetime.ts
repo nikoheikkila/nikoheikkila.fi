@@ -7,8 +7,6 @@ const formats = {
 	machine: "YYYY-MM-DD",
 };
 
-export const toDisplay = (input?: DateInput): string =>
-	dayjs(input).format(formats.human);
+export const toDisplay = (input?: DateInput): string => dayjs(input).format(formats.human);
 
-export const toISOString = (input?: DateInput): string =>
-	dayjs(input).format(formats.machine);
+export const toISOString = (input?: DateInput): string => dayjs(input).format(formats.machine);

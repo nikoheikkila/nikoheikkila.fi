@@ -46,6 +46,7 @@
 	},
 	"devDependencies": {
 		"@babel/helper-call-delegate": "7.12.13",
+		"@biomejs/biome": "1.9.4",
 		"@playwright/experimental-ct-react": "1.51.0",
 		"@playwright/test": "1.51.0",
 		"@sindresorhus/slugify": "2.2.1",
@@ -56,37 +57,18 @@
 		"@types/react-dom": "18.3.5",
 		"@types/react-syntax-highlighter": "15.5.13",
 		"@types/title": "3.4.3",
-		"@typescript-eslint/eslint-plugin": "latest",
-		"@typescript-eslint/parser": "latest",
-		"eslint": "latest",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-react": "latest",
 		"esno": "^4.0.0",
 		"graphql-sse": "2.5.4",
 		"inquirer": "9.3.7",
-		"prettier": "3.2.5",
 		"snyk": "1.1295.4",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.8.2",
 		"vitest": "1.6.1"
 	},
-	"keywords": [
-		"gatsby"
-	],
+	"keywords": ["gatsby"],
 	"license": "MIT",
 	"scripts": {
-		"clean": "gatsby clean",
-		"build": "gatsby build --log-pages --write-to-file",
-		"dev": "gatsby develop --verbose",
-		"format": "prettier --write .",
-		"lint": "yarn lint:style && yarn lint:types",
-		"lint:style": "prettier --check .",
-		"lint:types": "tsc --noEmit",
-		"start": "yarn dev",
-		"serve": "gatsby serve -p 8000",
-		"test": "yarn format && yarn test:unit && yarn test:e2e",
-		"test:unit": "vitest",
-		"test:e2e": "playwright test"
+		"build": "gatsby build --log-pages --write-to-file"
 	},
 	"repository": {
 		"type": "git",

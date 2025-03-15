@@ -1,7 +1,7 @@
 import { faEdit, faHistory, faUndo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "gatsby";
-import React, { FunctionComponent } from "react";
+import React, { type FunctionComponent } from "react";
 import { BlogLink } from "../../components/elements";
 import * as styles from "./attachments.module.scss";
 
@@ -13,10 +13,7 @@ interface AttachmentProps {
 	};
 }
 
-const PostAttachments: FunctionComponent<AttachmentProps> = ({
-	previous,
-	urls,
-}) => {
+const PostAttachments: FunctionComponent<AttachmentProps> = ({ previous, urls }) => {
 	return (
 		<section className={styles.attachments}>
 			<p>

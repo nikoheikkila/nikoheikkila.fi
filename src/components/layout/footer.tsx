@@ -1,5 +1,5 @@
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faRss, IconName } from "@fortawesome/free-solid-svg-icons";
+import { faRss, type IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { getFooterLinks } from "../../graphql/footer";
@@ -26,9 +26,7 @@ const Footer: React.FunctionComponent = () => {
 
 				return (
 					<span key={link.name}>
-						<FontAwesomeIcon
-							icon={["fab", link.name as IconName]}
-						/>
+						<FontAwesomeIcon icon={["fab", link.name as IconName]} />
 						<BlogLink href={link.url}>{link.name}</BlogLink>
 					</span>
 				);

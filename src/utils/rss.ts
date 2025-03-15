@@ -11,9 +11,7 @@ export type Serializable = {
 	};
 };
 
-export const serialize = ({
-	query: { site, allMarkdownRemark },
-}: Serializable) => {
+export const serialize = ({ query: { site, allMarkdownRemark } }: Serializable) => {
 	return (allMarkdownRemark?.edges || []).map((edge) => {
 		const siteUrl = site?.siteMetadata?.siteUrl ?? "";
 		const slug = edge?.node?.fields?.slug ?? "";

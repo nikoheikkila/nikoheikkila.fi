@@ -1,4 +1,4 @@
-import { SliceInput } from "gatsby";
+import type { SliceInput } from "gatsby";
 
 const slices: SliceInput[] = [
 	{ id: "sidebar", component: "menu.tsx" },

@@ -1,4 +1,4 @@
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 
 interface HeroProps {
@@ -8,13 +8,7 @@ interface HeroProps {
 
 const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
 	<header>
-		<GatsbyImage
-			style={{ maxHeight: "90vh" }}
-			image={data}
-			alt={alt}
-			loading="eager"
-			objectFit="contain"
-		/>
+		<GatsbyImage style={{ maxHeight: "90vh" }} image={data} alt={alt} loading="eager" objectFit="contain" />
 	</header>
 );
 

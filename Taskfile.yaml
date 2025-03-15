@@ -15,8 +15,6 @@ tasks:
     sources:
       - package.json
       - yarn.lock
-    generates:
-      - node_modules/*
     cmds:
       - corepack enable
       - corepack prepare yarn@stable --activate
@@ -26,29 +24,15 @@ tasks:
     desc: Format codebase
     deps: [install]
     cmds:
-      - npx prettier --write .
-      - npx eslint --fix .
+      - npx biome format --write .
+      - npx biome lint --fix .
 
   lint:
-    desc: Lint codebase
-    deps:
-      - lint-style
-      - lint-types
-
-  lint-style:
     desc: Lint codebase for style issues
     deps: [install]
     cmds:
-      - npx prettier --check .
-      - npx eslint .
-
-  lint-types:
-    desc: Lint TypeScript files for incorrect typing
-    deps: [install]
-    sources:
-      - ./**/*.{ts,tsx}
-    cmds:
-      - npx tsc --noEmit
+      - npx biome format .
+      - npx biome lint .
 
   test:
     desc: Run application test suite
@@ -82,8 +66,8 @@ tasks:
     desc: Serve the Gatsby development site
     deps: [install]
     cmds:
-      - yarn clean
-      - yarn dev
+      - npx gatsby clean
+      - npx gatsby develop
 
   build:
     desc: Build the Gatsby production site
@@ -103,4 +87,4 @@ tasks:
     env:
       NODE_ENV: production
     cmds:
-      - yarn serve
+      - npx gatsby serve -p 8000

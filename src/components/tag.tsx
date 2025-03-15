@@ -1,5 +1,6 @@
 import slugify from "@sindresorhus/slugify";
-import React, { CSSProperties, useEffect, useState } from "react";
+import React from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 
 import { foregroundColor, randomColor } from "../utils/colors";
 
@@ -9,11 +10,7 @@ interface Props {
 	prefix?: string;
 }
 
-const Tag: React.FunctionComponent<Props> = ({
-	title,
-	className,
-	prefix = "#",
-}) => {
+const Tag: React.FunctionComponent<Props> = ({ title, className, prefix = "#" }) => {
 	const text = slugify(title, { decamelize: false, separator: "" });
 
 	const [style, setStyle] = useState<CSSProperties>({

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { type FunctionComponent } from "react";
 import { formatReadingTime } from "../../utils/helpers";
 import * as styles from "./header.module.scss";
 
@@ -10,13 +10,7 @@ interface HeaderProps {
 	readonly timeToRead: number;
 }
 
-const PostHeader: FunctionComponent<HeaderProps> = ({
-	title,
-	excerpt,
-	author,
-	datePublished,
-	timeToRead,
-}) => (
+const PostHeader: FunctionComponent<HeaderProps> = ({ title, excerpt, author, datePublished, timeToRead }) => (
 	<header className={styles.header} data-testid="post-header">
 		<h1 className={styles.title}>{title}</h1>
 
@@ -33,12 +27,8 @@ const PostHeader: FunctionComponent<HeaderProps> = ({
 						By {author} /{" "}
 					</span>
 				)}
-				{datePublished && (
-					<span data-testid="post-date">{datePublished} / </span>
-				)}
-				<span data-testid="post-ttr">
-					{formatReadingTime(timeToRead)}
-				</span>
+				{datePublished && <span data-testid="post-date">{datePublished} / </span>}
+				<span data-testid="post-ttr">{formatReadingTime(timeToRead)}</span>
 			</p>
 		</section>
 	</header>

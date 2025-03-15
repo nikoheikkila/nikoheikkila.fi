@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
-import React, { ReactNode } from "react";
+import React from "react";
+import type { ReactNode } from "react";
 
 interface BlogLinkProps {
 	href?: string | null;
@@ -7,11 +8,7 @@ interface BlogLinkProps {
 	children: ReactNode | ReactNode[];
 }
 
-export const BlogLink: React.FC<BlogLinkProps> = ({
-	href,
-	children,
-	...props
-}) => {
+export const BlogLink: React.FC<BlogLinkProps> = ({ href, children, ...props }) => {
 	if (!href) return <a {...props}>{children}</a>;
 
 	if (isInternalLink(href))

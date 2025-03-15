@@ -1,10 +1,7 @@
-import { Page } from "@playwright/test";
-import { Locator } from "@playwright/test";
+import type { Page } from "@playwright/test";
+import type { Locator } from "@playwright/test";
 
-export const toExternalSiteByClicking = async (
-	page: Page,
-	locator: Locator,
-): Promise<Page> => {
+export const toExternalSiteByClicking = async (page: Page, locator: Locator): Promise<Page> => {
 	const popupPromise = page.waitForEvent("popup");
 	await locator.click();
 	const popup = await popupPromise;
@@ -13,9 +10,6 @@ export const toExternalSiteByClicking = async (
 	return popup;
 };
 
-export const toInternalPageByClicking = async (
-	page: Page,
-	locator: Locator,
-): Promise<void> => {
+export const toInternalPageByClicking = async (page: Page, locator: Locator): Promise<void> => {
 	await Promise.all([page.waitForURL(/\//), locator.click()]);
 };

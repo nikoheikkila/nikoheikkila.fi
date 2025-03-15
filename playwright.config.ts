@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from "@playwright/test";
+import type { PlaywrightTestConfig } from "@playwright/test";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 
@@ -17,7 +17,7 @@ const config: PlaywrightTestConfig = {
 		trace: "retain-on-failure",
 	},
 	webServer: {
-		command: "yarn serve",
+		command: "task serve",
 		url: baseURL,
 		timeout: 120 * 1000,
 		reuseExistingServer: !process.env.CI,

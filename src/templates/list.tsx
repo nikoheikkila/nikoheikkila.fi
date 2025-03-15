@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, HeadFC, PageProps } from "gatsby";
+import { graphql, type HeadFC, type PageProps } from "gatsby";
 import Layout, { LayoutType } from "../components/layout/layout";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
@@ -21,10 +21,7 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 		<Layout type={LayoutType.LIST} title={title}>
 			<BlogHeader title={title} />
 			<ArticleView nodes={nodes} location={location} />
-			<Pagination
-				currentPage={pageContext.currentPage}
-				numberOfPages={pageContext.numberOfPages}
-			/>
+			<Pagination currentPage={pageContext.currentPage} numberOfPages={pageContext.numberOfPages} />
 		</Layout>
 	);
 };

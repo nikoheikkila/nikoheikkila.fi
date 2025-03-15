@@ -1,8 +1,4 @@
-import {
-	library,
-	IconDefinition,
-	IconPack,
-} from "@fortawesome/fontawesome-svg-core";
+import { library, type IconDefinition, type IconPack } from "@fortawesome/fontawesome-svg-core";
 
 type Icons = Array<IconDefinition | IconPack>;
 

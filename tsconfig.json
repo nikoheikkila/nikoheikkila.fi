@@ -14,6 +14,7 @@
 	},
 	"include": [
 		"./src/**/*",
+		"./src/gatsby-types.d.ts",
 		"./gatsby/**/*",
 		"./gatsby-node.ts",
 		"./gatsby-ssr.tsx",

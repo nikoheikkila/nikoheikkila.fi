@@ -1,11 +1,11 @@
 #!/usr/bin/env esno
+import fs from "node:fs";
+import path from "node:path";
 import slugify from "@sindresorhus/slugify";
-import fs from "fs";
-import inquirer, { PromptModule } from "inquirer";
-import path from "path";
+import inquirer, { type PromptModule } from "inquirer";
 import makeTitleCase from "title";
 import config from "./gatsby-config";
-import { SiteSiteMetadata as Meta } from "./src/types";
+import type { SiteSiteMetadata as Meta } from "./src/types";
 import * as DateTime from "./src/utils/datetime";
 
 const meta = config.siteMetadata as Meta;
@@ -104,18 +104,14 @@ const newPost = async () => {
 		return console.error(err instanceof Error ? err.message : String(err));
 	}
 
-	const { title, type, excerpt, categories, author, cover, date, language } =
-		prompt;
+	const { title, type, excerpt, categories, author, cover, date, language } = prompt;
 	const postType = Array.isArray(type) ? type[0] : type;
 	const postCategories = categories
 		.split(",")
 		.map((c) => c.trim())
 		.join(", ");
 
-	const targetFile = path.join(
-		__dirname,
-		`content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`,
-	);
+	const targetFile = path.join(__dirname, `content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`);
 
 	const frontMatterBlock = `---
 title: ${makeTitleCase(title)}

@@ -65,8 +65,7 @@ describe("RSS", () => {
 					categories: ["article"],
 					custom_elements: [
 						{
-							"content:encoded":
-								"<article>Hello World!</article>",
+							"content:encoded": "<article>Hello World!</article>",
 						},
 					],
 				},

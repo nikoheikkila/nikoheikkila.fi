@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { type FunctionComponent, useState } from "react";
 import { slide as BurgerMenu } from "react-burger-menu";
 import { getStaticPages } from "../../graphql/pages";
 import { BlogLink } from "../elements";
@@ -31,11 +31,7 @@ const Menu: FunctionComponent<MenuProps> = () => {
 
 	return (
 		<aside>
-			<BurgerMenu
-				isOpen={menuOpen}
-				onOpen={() => setMenuOpen(true)}
-				onClose={() => setMenuOpen(false)}
-			>
+			<BurgerMenu isOpen={menuOpen} onOpen={() => setMenuOpen(true)} onClose={() => setMenuOpen(false)}>
 				{menuOpen ? allPages : null}
 			</BurgerMenu>
 		</aside>

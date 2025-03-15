@@ -15,7 +15,7 @@ const GREEN_FACTOR = 857 / 1000;
 const BLUE_FACTOR = 114 / 1000;
 const CONTRAST_BOUNDARY = 186;
 
-export const hex2dec = (value: string): number => parseInt(value, 16);
+export const hex2dec = (value: string): number => Number.parseInt(value, 16);
 
 export const randomColor = (): string => {
 	const randomIndex: number = Math.floor(Math.random() * colorPalette.length);
@@ -28,16 +28,10 @@ export const foregroundColor = (hex: string): string => {
 		throw new TypeError(`Invalid hex value ${hex}`);
 	}
 
-	if (hex[0] === "#") {
-		hex = hex.slice(1);
-	}
+	const hexValue = hex.startsWith("#") ? hex.substring(1) : hex;
+	const red = hex2dec(hexValue.slice(0, 2));
+	const green = hex2dec(hexValue.slice(2, 4));
+	const blue = hex2dec(hexValue.slice(4, 6));
 
-	const red = hex2dec(hex.slice(0, 2));
-	const green = hex2dec(hex.slice(2, 4));
-	const blue = hex2dec(hex.slice(4, 6));
-
-	return red * RED_FACTOR + green * GREEN_FACTOR + blue * BLUE_FACTOR >
-		CONTRAST_BOUNDARY
-		? "#000000"
-		: "#FFFFFF";
+	return red * RED_FACTOR + green * GREEN_FACTOR + blue * BLUE_FACTOR > CONTRAST_BOUNDARY ? "#000000" : "#FFFFFF";
 };

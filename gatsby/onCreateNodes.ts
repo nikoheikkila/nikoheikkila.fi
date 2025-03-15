@@ -1,5 +1,5 @@
 import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
-import { CreateNodeArgs, Node } from "gatsby";
+import type { CreateNodeArgs, Node } from "gatsby";
 
 interface OnCreateNodeArgs extends CreateNodeArgs {
 	node: Node & {
@@ -50,8 +50,7 @@ const onCreateNodes = async ({
 	});
 };
 
-const isMarkdownNode = (node: Node): boolean =>
-	node.internal.type === "MarkdownRemark";
+const isMarkdownNode = (node: Node): boolean => node.internal.type === "MarkdownRemark";
 const isRemoteImage = (url: string): boolean => /^https?:\/\/+/.test(url);
 
 export default onCreateNodes;

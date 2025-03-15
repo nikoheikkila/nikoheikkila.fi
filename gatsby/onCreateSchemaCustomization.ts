@@ -1,8 +1,6 @@
-import { CreateSchemaCustomizationArgs } from "gatsby";
+import type { CreateSchemaCustomizationArgs } from "gatsby";
 
-const onCreateSchemaCustomization = ({
-	actions: { createTypes },
-}: CreateSchemaCustomizationArgs) =>
+const onCreateSchemaCustomization = ({ actions: { createTypes } }: CreateSchemaCustomizationArgs) =>
 	createTypes(`
     type SitePage implements Node @dontInfer {
       path: String!

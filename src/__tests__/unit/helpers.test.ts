@@ -17,9 +17,7 @@ describe("Helpers", () => {
 
 		test("given more than two minutes, returns a matching plural notation", () => {
 			const time = Math.floor(Math.random() * 100) + 3;
-			expect(Helpers.formatReadingTime(time)).toMatch(
-				/[0-9]+ minutes read/,
-			);
+			expect(Helpers.formatReadingTime(time)).toMatch(/[0-9]+ minutes read/);
 		});
 	});
 });

@@ -1,6 +1,6 @@
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from "gatsby";
 import { Maybe } from "purify-ts/Maybe";
 import React from "react";
 import { BlogLink } from "../elements";
@@ -15,12 +15,12 @@ const Subscribe: React.FC<SubscribeProps> = ({ config }) => {
 		.chainNullable((meta) => meta.rss)
 		.map(String)
 		.caseOf({
-			Nothing: () => <Error />,
+			Nothing: () => <RSSError />,
 			Just: (url) => <FeedLink url={url} />,
 		});
 };
 
-const Error = () => (
+const RSSError = () => (
 	<section className={styles.error}>
 		<p>
 			<strong>Error: </strong>No RSS feed configured for this site.
@@ -31,8 +31,7 @@ const Error = () => (
 const FeedLink: React.FC<{ url: string }> = ({ url }) => (
 	<section className={styles.subscribe} data-test-id="rss-subscribe">
 		<p>
-			<FontAwesomeIcon icon={faRss} /> Enjoyed what you read? Why not keep
-			yourself updated and grab the{" "}
+			<FontAwesomeIcon icon={faRss} /> Enjoyed what you read? Why not keep yourself updated and grab the{" "}
 			<BlogLink href={url}>RSS feed</BlogLink>.
 		</p>
 	</section>

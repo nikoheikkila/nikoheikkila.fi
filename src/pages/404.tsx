@@ -1,4 +1,4 @@
-import { HeadFC, Link, PageProps } from "gatsby";
+import { type HeadFC, Link, type PageProps } from "gatsby";
 import React from "react";
 import Layout, { LayoutType } from "../components/layout/layout";
 import SEO from "../components/seo";
@@ -11,15 +11,10 @@ const NotFound: React.FC<PageProps> = () => {
 			<h1>🤖 You have erred, but it is human</h1>
 
 			<p>
-				<code className="language-js">
-					REASON: ERR_CONTENT_NOT_FOUND
-				</code>
+				<code className="language-js">REASON: ERR_CONTENT_NOT_FOUND</code>
 			</p>
 
-			<p>
-				Alas, the content you so humbly requested is nowhere to be
-				found.
-			</p>
+			<p>Alas, the content you so humbly requested is nowhere to be found.</p>
 			<p>
 				Go back to <Link to="/">home</Link> instead?
 			</p>
