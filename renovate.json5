@@ -8,12 +8,17 @@
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-			"automerge": true
+			"automerge": true,
 		},
 		{
 			"extends": ["monorepo:gatsby"],
 			"matchUpdateTypes": ["digest", "patch", "minor", "major"],
 			"groupName": "Gatsby packages"
+		},
+		{
+			"extends": ["monorepo:remark"],
+			"groupName": "Remark",
+			"recreateWhen": "never"
 		}
 	]
 }
