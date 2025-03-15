@@ -63,7 +63,7 @@
 		"snyk": "1.1295.4",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.8.2",
-		"vitest": "1.6.1"
+		"vitest": "3.0.8"
 	},
 	"keywords": ["gatsby"],
 	"license": "MIT",
