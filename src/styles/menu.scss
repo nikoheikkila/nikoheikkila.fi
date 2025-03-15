@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 $menuPaddingLeft: 20px;
 
@@ -70,8 +70,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 		font-weight: 700;
 		outline: none;
-		color: $teal;
-		text-shadow: 0px 0px 2px $teal;
+		color: variables.$teal;
+		text-shadow: 0 0 2px variables.$teal;
 	}
 }
 

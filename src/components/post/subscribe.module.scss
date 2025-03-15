@@ -1,4 +1,4 @@
-@import "_variables";
+@use "../../styles/variables";
 $padding: 10px 5vw;
 
 .subscribe {
@@ -8,10 +8,10 @@ $padding: 10px 5vw;
 	justify-content: center;
 	text-align: center;
 	border-radius: 0.5rem;
-	border: solid 2px $darkSecondaryFg;
+	border: solid 2px variables.$darkSecondaryFg;
 	margin-bottom: 20px;
 	padding: $padding;
-	color: $darkSecondaryFg;
+	color: variables.$darkSecondaryFg;
 }
 
 .error {

@@ -133,6 +133,7 @@ const config: GatsbyConfig = {
 			options: {
 				sassOptions: {
 					includePaths: ["./src/styles"],
+					silenceDeprecations: ["legacy-js-api"],
 				},
 			},
 		},

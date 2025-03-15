@@ -1,27 +1,27 @@
-@import "_variables";
-@import "menu";
+@use "../../styles/variables";
+@use "../../styles/menu";
 
 .list {
 	margin: 15px auto;
 	padding: 0 20px;
 
-	@include for-phone-only() {
+	@include variables.for-phone-only() {
 		width: 90vw;
 	}
 
-	@include for-tablet-portrait-up() {
+	@include variables.for-tablet-portrait-up() {
 		width: 80vw;
 	}
 
-	@include for-tablet-landscape-up() {
+	@include variables.for-tablet-landscape-up() {
 		width: 75vw;
 	}
 
-	@include for-desktop-up() {
+	@include variables.for-desktop-up() {
 		width: 65vw;
 	}
 
-	@include for-big-desktop-up() {
+	@include variables.for-big-desktop-up() {
 		width: 50vw;
 	}
 }
@@ -30,26 +30,26 @@
 	margin: 0 auto;
 
 	a {
-		color: $blue;
+		color: variables.$blue;
 	}
 
-	@include for-phone-only() {
+	@include variables.for-phone-only() {
 		width: 90vw;
 	}
 
-	@include for-tablet-portrait-up() {
+	@include variables.for-tablet-portrait-up() {
 		width: 85vw;
 	}
 
-	@include for-tablet-landscape-up() {
+	@include variables.for-tablet-landscape-up() {
 		width: 80vw;
 	}
 
-	@include for-desktop-up() {
+	@include variables.for-desktop-up() {
 		width: 50vw;
 	}
 
-	@include for-big-desktop-up() {
+	@include variables.for-big-desktop-up() {
 		width: 35vw;
 	}
 }

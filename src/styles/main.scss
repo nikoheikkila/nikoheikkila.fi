@@ -1,5 +1,6 @@
-@import "_variables";
-@import "_gatsby";
+@use "sass:color";
+@use "_variables";
+@use "_gatsby";
 
 @import url("https://api.fontshare.com/v2/css?f[]=bespoke-slab@700&f[]=bespoke-serif@400,700,401&display=swap");
 
@@ -10,12 +11,12 @@ body {
 	font-feature-settings: "kern", "liga", "clig", "calt";
 	line-height: 40px;
 
-	background-color: $darkBg;
-	color: $darkFg;
+	background-color: variables.$darkBg;
+	color: variables.$darkFg;
 
 	font-weight: 400;
 	font-size: 16px;
-	font-family: "Bespoke Serif", $fontFamily;
+	font-family: "Bespoke Serif", variables.$fontFamily;
 }
 
 h1,
@@ -24,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Bespoke Slab", $fontFamily;
+	font-family: "Bespoke Slab", variables.$fontFamily;
 	font-weight: 700;
 }
 
@@ -48,7 +49,7 @@ a {
 
 hr {
 	border: 0;
-	border-top: 3px solid $purple;
+	border-top: 3px solid variables.$purple;
 	margin: 2rem 0;
 }
 
@@ -61,8 +62,8 @@ section.footnotes {
 }
 
 ::selection {
-	background-color: $yellow;
-	color: invert($color: $darkFg);
+	background-color: variables.$yellow;
+	color: color.invert($color: variables.$darkFg);
 }
 
 /**
@@ -74,7 +75,7 @@ section.footnotes {
 
 	body {
 		background-color: $lightBackground;
-		filter: $filter;
+		filter: variables.$filter;
 	}
 
 	/* Re-enable dark background for specific elements by filtering twice */
@@ -83,7 +84,7 @@ section.footnotes {
 	iframe,
 	input[type="checkbox"],
 	.gatsby-highlight {
-		filter: $filter;
+		filter: variables.$filter;
 	}
 
 	/* Tweak other elements */

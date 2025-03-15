@@ -1,4 +1,4 @@
-@import "_variables";
+@use "../../styles/variables";
 
 .header {
 	margin-top: 80px;
@@ -14,23 +14,23 @@
 	box-sizing: border-box;
 	margin: 60px auto 0 auto;
 
-	@include for-phone-only() {
+	@include variables.for-phone-only() {
 		grid-template-columns: repeat(1, 1fr);
 	}
 
-	@include for-tablet-portrait-up() {
+	@include variables.for-tablet-portrait-up() {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	@include for-tablet-landscape-up() {
+	@include variables.for-tablet-landscape-up() {
 		grid-template-columns: repeat(3, 1fr);
 	}
 
-	@include for-desktop-up() {
+	@include variables.for-desktop-up() {
 		grid-template-columns: repeat(3, 1fr);
 	}
 
-	@include for-big-desktop-up() {
+	@include variables.for-big-desktop-up() {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
@@ -42,15 +42,15 @@
 	outline: 0;
 
 	&:hover {
-		border-color: $blue;
-		color: $blue;
+		border-color: variables.$blue;
+		color: variables.$blue;
 	}
 
 	&:active,
 	&:focus,
 	&:focus-visible {
-		border-color: $teal;
-		color: $teal;
+		border-color: variables.$teal;
+		color: variables.$teal;
 	}
 }
 

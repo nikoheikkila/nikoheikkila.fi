@@ -1,4 +1,4 @@
-@import "_variables";
+@use "../../styles/variables";
 
 .container {
 	display: flex;
@@ -30,11 +30,11 @@
 	text-align: center;
 	line-height: 2rem;
 
-	@include for-phone-only {
+	@include variables.for-phone-only {
 		max-width: 80vw;
 	}
 
 	a {
-		color: $blue;
+		color: variables.$blue;
 	}
 }

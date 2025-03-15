@@ -1,4 +1,4 @@
-@import "_variables";
+@use "../../styles/variables";
 
 .content {
 	h1,
@@ -8,8 +8,8 @@
 	h5,
 	h6 {
 		text-align: center;
-		color: $teal;
-		text-decoration: $teal wavy underline;
+		color: variables.$teal;
+		text-decoration: variables.$teal wavy underline;
 		text-decoration-thickness: 0.06em;
 		text-underline-offset: 10px;
 	}
@@ -43,7 +43,7 @@
 		line-height: 1.75em;
 
 		code {
-			color: $hotpink;
+			color: variables.$hotpink;
 		}
 	}
 
@@ -60,7 +60,7 @@
 	}
 
 	blockquote {
-		border-left: 6px solid $yellow;
+		border-left: 6px solid variables.$yellow;
 		margin: 40px 0;
 		padding: 0 20px;
 		quotes: "\201C" "\201D" "\2018" "\2019";
@@ -85,9 +85,9 @@
 .photoframe {
 	display: block;
 	padding: 8px;
-	background-color: $darkGray;
+	background-color: variables.$darkGray;
 	margin-bottom: 60px;
-	box-shadow: 3px 3px 10px $darkGray;
+	box-shadow: 3px 3px 10px variables.$darkGray;
 }
 
 .image {
@@ -109,7 +109,7 @@
 .codeblock {
 	font-size: 16px;
 	margin: 60px 0;
-	background-color: $almostBlack;
+	background-color: variables.$almostBlack;
 	text-align: right;
 
 	.language {
