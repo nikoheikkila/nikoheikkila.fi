@@ -3,19 +3,19 @@ lang: en
 type: page
 title: What I'm Doing Now?
 author: Niko Heikkilä
-date: 2024-01-21
+date: 2025-03-25
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/now.jpg
 categories:
-    - Life
-    - Lists
-    - Now
+  - Life
+  - Lists
+  - Now
 ---
 
 This is my `/now` page intended to keep you — and perhaps myself — in the loop with my life. I can't fathom how to pull out a list like this accurately since I'm continually changing, but let me at least provide a bird's eye on my current life activities.
 
 ## Work Life
 
-Since 2020, I've been doing software consulting for my employer, [Futurice](https://futurice.com). It can be a harsh journey at times due to making business in the VUCA world, but every time I manage to build success with my team, whether improving the lives of my clients or my fellow team members, I rejoice. I lead a team of six software engineers, mentor juniors, and interview new hires.
+Since March 2024, I've been doing software consulting for my employer, [Polar Squad](https://polarsquad.com). My work involves in amplifying teams with their DevOps capabilities whether they need cloud architecture, developer platforms, or high-level advisory.
 
 In my work, I concentrate on lean software development and continuous value delivery. If those words do not mean anything to you, it's a fancy way of saying I solve business problems as efficiently as possible.
 
