@@ -1,28 +1,42 @@
 ---
 lang: en
 author: Niko Heikkilä
-date: 2022-02-26
+date: 2025-03-25
 type: page
 title: The Story
 excerpt: ...or how I learned to stop worrying and love the code.
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/story.jpg
 ---
-
 ## Hello! 🖖
 
 Thanks for visiting my site. Let me tell you a bit about myself.
 
-I'm a [software craftsperson](/blog/death-of-the-production-line-and-factory-workers-attitude) with a strong passion for making work and life better for software developers. The true spirit of craftspersonship is to know when to write code and, more importantly, when not to write. Not all problems need to be solved by code as more code leads to more errors.
+As a seasoned DevOps practitioner with a wealth of experience, I specialize in building high-performing engineering cultures that deliver exceptional business value.
+  
+My deep expertise in modern software development practices allows me to help organizations streamline their delivery pipelines and confidently embrace technical excellence.
+  
+My approach combines robust DevOps practices with Extreme Programming principles to create sustainable, scalable solutions. I excel at:
+  
+- Implementing mature CI/CD pipelines that reduce deployment risks and accelerate time-to-market.
+- Leading teams in Test-Driven Development (TDD) practices to ensure code quality and maintainability.
+- Facilitating pair/ensemble programming sessions that boost knowledge sharing and code quality.
+- Optimizing value streams through lean software development principles and Theory of Constraints.
+- Designing automated infrastructure solutions that enhance reliability and reduce operational overhead.  
+  
+My passion for mentoring teams in software craftsmanship principles and building collaborative engineering cultures is underpinned by a strong focus on delivering measurable business outcomes. I believe in the power of technical excellence and continuous improvement to drive tangible results.
+  
+I've successfully guided organizations through complex digital transformations, helping them overcome technical debt, reduce system complexity, and build self-sustaining engineering practices. My experience spans various industries, giving me unique insights into everyday challenges and proven solutions in different business contexts.
+  
+Key achievements include:  
+  
+- Reducing deployment lead times through optimized CI/CD practices.
+- Implementing infrastructure-as-code solutions that cut operational costs while improving reliability.
+- Building high-performing engineering teams that consistently deliver high-quality software.
+- Establishing metrics-driven improvement processes that align technical practices with business goals.
+  
+Whether you're looking to scale your cloud infrastructure, optimize your delivery pipeline, or build a more resilient engineering organization, I bring the technical depth and leadership experience to help you succeed.
 
-To solve problems without code, one must look further. One can find solutions to significant issues without opening the editor by coaching, mentoring, and continuously improving the process.
-
-When I write code, I like to do it in **Extreme Programming** (XP) style—that is, I take the best of practices and tune the knobs up to 11. I'm always ready to participate in pair and ensemble programming. I continuously integrate, deliver, and even deploy software in tiny batches. Isolation is the nemesis of great developers. XP and DevOps are the only worthy manifestations of agile software development. Scrum is less agile than the two, and SAFe is the least agile.
-
-I'm a strong proponent of Lean methodologies and **Theory of Constraints** as described in the books _The Goal_, _The Phoenix Project_, and _The Unicorn Project_. Most organisations and teams work on too many things simultaneously with too few resources, which I consider harmful. Fully utilising the team's capacity only creates more busyness than business, eventually killing teams' productivity, innovation, and empathy. The most agile way of working is to focus on the single most crucial task of the day, start it together, and finish it together. You don't need paid certificates to understand the power of one-piece flow in teams.
-
-Currently, I'm working as a full-stack software engineer in the digital consultancy business. I'm a generalist with a broad skillset who can handle the end-to-end value streams from analysis, design, development, and delivery of digital products. Obviously, all this happens concurrently in short iterations. Therefore, having a stable automated testing and deployment pipeline from the first day of the project is its greatest future asset. It radically shortens the time-to-market and increases customer value.
-
-Follow my rants in [Mastodon](https://fosstodon.org/@nikoheikkila) and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
+Follow my rants in [Mastodon](https://fosstodon.org/@nikoheikkila), [Bluesky](https://bsky.app/profile/nikoheikkila.fi), and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
 
 Yet I'm more than the letters you see, so don't hesitate to connect with me for any questions. Closing this chapter with my favourite quote from a revered mystic **G.I. Gurdjieff**.
 
