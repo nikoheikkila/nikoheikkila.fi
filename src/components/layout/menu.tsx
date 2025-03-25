@@ -14,7 +14,7 @@ const links = [
 		title: "Posts",
 	},
 	{
-		slug: "https://cv.nikoheikkila.fi",
+		slug: "https://linkedin.com/in/nikoheikkila",
 		title: "Skills",
 	},
 ];
