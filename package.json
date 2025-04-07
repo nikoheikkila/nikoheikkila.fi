@@ -58,7 +58,7 @@
 		"@playwright/test": "1.51.1",
 		"@sindresorhus/slugify": "2.2.1",
 		"@types/inquirer": "9.0.7",
-		"@types/node": "22.13.14",
+		"@types/node": "22.14.0",
 		"@types/react": "18.3.20",
 		"@types/react-burger-menu": "2.8.7",
 		"@types/react-dom": "18.3.6",
