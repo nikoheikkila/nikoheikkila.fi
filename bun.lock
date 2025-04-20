@@ -27,7 +27,7 @@
         "gatsby-source-filesystem": "5.14.0",
         "gatsby-transformer-remark": "6.14.0",
         "gatsby-transformer-sharp": "5.14.0",
-        "purify-ts": "2.1.0",
+        "purify-ts": "2.1.1",
         "react": "18.3.1",
         "react-burger-menu": "3.1.0",
         "react-dom": "18.3.1",
@@ -2717,7 +2717,7 @@
 
     "punycode": ["punycode@2.3.1", "", {}, "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg=="],
 
-    "purify-ts": ["purify-ts@2.1.0", "", { "dependencies": { "@types/json-schema": "7.0.15" } }, "sha512-+KNUHV9FxB9BbjadFdvxa+LNJIaqZmSF7CQH5Rv6+f0rBzsxm9FEqrvkALQbWYJobAja2ZCbBDUY7O4fH2znMA=="],
+    "purify-ts": ["purify-ts@2.1.1", "", { "dependencies": { "@types/json-schema": "7.0.15" } }, "sha512-usEWO44vu0GnfnvfmgT5L8LDO4dTHVC2kcITclDi2tbNGMEcbQm7IZADs8FD8chqni7tU5F0LZQRQdzFHndnPw=="],
 
     "qs": ["qs@6.13.0", "", { "dependencies": { "side-channel": "^1.0.6" } }, "sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg=="],
 
