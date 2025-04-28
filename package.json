@@ -67,7 +67,7 @@
 		"@vitest/coverage-v8": "^3.0.8",
 		"graphql-sse": "2.5.4",
 		"husky": "^9.1.7",
-		"inquirer": "12.5.2",
+		"inquirer": "12.6.0",
 		"snyk": "1.1296.2",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.8.3",
