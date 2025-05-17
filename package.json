@@ -68,7 +68,7 @@
 		"graphql-sse": "2.5.4",
 		"husky": "^9.1.7",
 		"inquirer": "12.6.1",
-		"snyk": "1.1296.2",
+		"snyk": "1.1297.1",
 		"subscriptions-transport-ws": "0.11.0",
 		"typescript": "5.8.3",
 		"vitest": "3.1.3"
