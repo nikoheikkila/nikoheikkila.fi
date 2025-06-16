@@ -5,7 +5,7 @@
 	"version": "1.0.0",
 	"author": "Niko Heikkilä <yo@nikoheikkila.fi>",
 	"engines": {
-		"node": ">=20.0"
+		"node": ">=22.0.0"
 	},
 	"bun": {
 		"typescript": {
