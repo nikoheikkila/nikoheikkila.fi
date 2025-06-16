@@ -46,7 +46,7 @@
 		"rehype-raw": "^7.0.0",
 		"remark-gfm": "3.0.1",
 		"remark-math": "6.0.0",
-		"sass": "1.89.1",
+		"sass": "1.89.2",
 		"title": "4.0.1"
 	},
 	"devDependencies": {
