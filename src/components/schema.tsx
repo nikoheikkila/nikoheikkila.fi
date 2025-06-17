@@ -1,5 +1,5 @@
 import { Script, ScriptStrategy } from "gatsby";
-import React from "react";
+import React, { useId } from "react";
 
 interface SchemaProps {
 	author?: string;
@@ -27,6 +27,7 @@ const Schema: React.FC<SchemaProps> = ({
 	title = "",
 	url = "",
 }) => {
+	const id = useId();
 	const baseSchema = [
 		{
 			"@context": "http://schema.org",
@@ -93,7 +94,7 @@ const Schema: React.FC<SchemaProps> = ({
 		: baseSchema;
 
 	return (
-		<Script id="json-ld" type="application/ld+json" strategy={ScriptStrategy.idle}>
+		<Script id={id} type="application/ld+json" strategy={ScriptStrategy.idle}>
 			{JSON.stringify(schema)}
 		</Script>
 	);

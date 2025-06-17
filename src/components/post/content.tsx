@@ -1,5 +1,5 @@
-import React from "react";
 import type { CSSProperties, ReactNode } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -38,7 +38,14 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 
 					return (
 						<BlogLink className={styles.photoframe} href={src}>
-							<img className={styles.image} src={src} alt={alt} title="Click for a larger version" loading="lazy" />
+							<img
+								className={styles.image}
+								src={src}
+								alt={alt}
+								title="Click for a larger version"
+								loading="lazy"
+								{...props}
+							/>
 							<span className={styles.caption}>
 								<span>
 									<strong>Picture:</strong> {alt}

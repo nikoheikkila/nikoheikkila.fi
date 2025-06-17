@@ -1,7 +1,20 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-	"files": { "ignoreUnknown": false, "ignore": ["content/.obsidian/", "src/gatsby-types.d.ts", "./test-results/"] },
+	"$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on",
+				"useSortedAttributes": "on",
+				"useSortedKeys": "on",
+				"useSortedProperties": "on"
+			}
+		}
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": ["src/**", "gatsby/**", "*.json", "*.ts"]
+	},
 	"formatter": {
 		"enabled": true,
 		"useEditorconfig": true,
@@ -11,25 +24,7 @@
 		"lineEnding": "lf",
 		"lineWidth": 120,
 		"attributePosition": "auto",
-		"bracketSpacing": true,
-		"ignore": [
-			"**/node_modules/",
-			"**/*.d.ts",
-			"./.cache/",
-			"./public/",
-			"./.netlify/",
-			"./content/.obsidian/",
-			"./playwright",
-			"./playwright-report"
-		]
-	},
-	"organizeImports": { "enabled": true },
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true
-		},
-		"ignore": ["**/node_modules/", "./.cache/", "./public/", "./.netlify/"]
+		"bracketSpacing": true
 	},
 	"javascript": {
 		"jsxRuntime": "reactClassic",
@@ -45,35 +40,19 @@
 			"bracketSpacing": true
 		}
 	},
-	"overrides": [
-		{
-			"include": ["*.ts", "*.tsx", "*.mts", "*.cts"],
-			"linter": {
-				"rules": {
-					"correctness": {
-						"noConstAssign": "off",
-						"noGlobalObjectCalls": "off",
-						"noInvalidConstructorSuper": "off",
-						"noNewSymbol": "off",
-						"noSetterReturn": "off",
-						"noUndeclaredVariables": "off",
-						"noUnreachable": "off",
-						"noUnreachableSuper": "off"
-					},
-					"style": { "noArguments": "error", "noVar": "error", "useConst": "error" },
-					"suspicious": {
-						"noDuplicateClassMembers": "off",
-						"noDuplicateObjectKeys": "off",
-						"noDuplicateParameters": "off",
-						"noFunctionAssign": "off",
-						"noImportAssign": "off",
-						"noRedeclare": "off",
-						"noUnsafeNegation": "off",
-						"useGetterReturn": "off",
-						"useValidTypeof": "off"
-					}
-				}
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"project": "recommended",
+			"react": "all",
+			"test": "all"
+		},
+		"rules": {
+			"recommended": true,
+			"nursery": {
+				"noNestedComponentDefinitions": "off"
 			}
 		}
-	]
+	},
+	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true }
 }

@@ -133,4 +133,6 @@ hero: ${cover}
   `);
 };
 
-newPost();
+newPost().catch((err) => {
+	console.error(err);
+});

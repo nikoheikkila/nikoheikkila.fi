@@ -83,13 +83,7 @@ const TagList = ({ categories }: { categories: ReadonlyArray<string> }) => (
 	</section>
 );
 
-const ArticleMetaData = ({
-	date,
-	timeToRead,
-}: {
-	date: string;
-	timeToRead: number;
-}) => (
+const ArticleMetaData = ({ date, timeToRead }: { date: string; timeToRead: number }) => (
 	<p>
 		<span>{date} </span>
 		{timeToRead > 0 && <span>{formatReadingTime(timeToRead)}</span>}
