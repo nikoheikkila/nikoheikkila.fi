@@ -51,7 +51,7 @@
 	},
 	"devDependencies": {
 		"@babel/helper-call-delegate": "7.12.13",
-		"@biomejs/biome": "2.0.0",
+		"@biomejs/biome": "2.0.4",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
 		"@playwright/experimental-ct-react": "1.53.0",
