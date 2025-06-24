@@ -53,7 +53,6 @@
         "@types/react-burger-menu": "2.8.7",
         "@types/react-dom": "18.3.7",
         "@types/react-syntax-highlighter": "15.5.13",
-        "@types/title": "4.0.0",
         "@vitest/coverage-v8": "^3.0.8",
         "graphql-sse": "2.5.4",
         "husky": "^9.1.7",
@@ -833,8 +832,6 @@
     "@types/semver": ["@types/semver@7.5.8", "", {}, "sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ=="],
 
     "@types/through": ["@types/through@0.0.33", "", { "dependencies": { "@types/node": "*" } }, "sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ=="],
-
-    "@types/title": ["@types/title@4.0.0", "", { "dependencies": { "title": "*" } }, "sha512-+/DoT3en4uDoeAq55IHtwLVWq51kCJVIjQFswW7kfw36p/mTa7gyf7vqAuoGdYmDcY7Mg7tgv6rfrnU7jNQ7BA=="],
 
     "@types/tmp": ["@types/tmp@0.0.33", "", {}, "sha512-gVC1InwyVrO326wbBZw+AO3u2vRXz/iRWq9jYhpG4W8LXyIgDv3ZmcLQ5Q4Gs+gFMyqx+viFoFT+l3p61QFCmQ=="],
 
