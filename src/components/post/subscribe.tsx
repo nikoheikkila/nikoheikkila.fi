@@ -1,7 +1,6 @@
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { GatsbyConfig } from "gatsby";
-import { Maybe } from "purify-ts/Maybe";
 import React from "react";
 import { BlogLink } from "../elements";
 import * as styles from "./subscribe.module.scss";
@@ -11,13 +10,13 @@ interface SubscribeProps {
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({ config }) => {
-	return Maybe.fromNullable(config.siteMetadata)
-		.chainNullable((meta) => meta.rss)
-		.map(String)
-		.caseOf({
-			Nothing: () => <RSSError />,
-			Just: (url) => <FeedLink url={url} />,
-		});
+	const url = config.siteMetadata?.rss;
+
+	if (!url) {
+		return <RSSError />;
+	}
+
+	return <FeedLink url={url.toString()} />;
 };
 
 const RSSError = () => (
