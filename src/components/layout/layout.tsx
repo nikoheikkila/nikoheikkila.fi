@@ -1,6 +1,7 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import type { ReactNode } from "react";
+import "../../styles/main.scss";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import { Slice } from "gatsby";

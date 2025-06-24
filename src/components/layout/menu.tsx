@@ -2,7 +2,6 @@ import React, { type FunctionComponent, useState } from "react";
 import { slide as BurgerMenu } from "react-burger-menu";
 import { getStaticPages } from "../../graphql/pages";
 import { BlogLink } from "../elements";
-import "../../styles/menu.scss";
 
 interface MenuProps {
 	readonly className?: string;
