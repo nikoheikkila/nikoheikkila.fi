@@ -120,24 +120,20 @@ const config: GatsbyConfig = {
 		siteUrl: "https://nikoheikkila.fi",
 		social: [
 			{
-				name: "dev",
-				url: "https://dev.to/nikoheikkila",
+				name: "bluesky",
+				url: "https://bsky.app/profile/nikoheikkila.fi",
 			},
 			{
-				name: "facebook",
-				url: "https://fb.me/heikkilaniko",
-			},
-			{
-				name: "github",
-				url: "https://github.com/nikoheikkila",
+				name: "mastodon",
+				url: "https://fosstodon.org/@nikoheikkila",
 			},
 			{
 				name: "linkedin",
 				url: "https://www.linkedin.com/in/nikoheikkila",
 			},
 			{
-				name: "mastodon",
-				url: "https://fosstodon.org/@nikoheikkila",
+				name: "github",
+				url: "https://github.com/nikoheikkila",
 			},
 		],
 		title: "Niko Heikkilä",
