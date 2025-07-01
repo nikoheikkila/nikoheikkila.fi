@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
 
 const environment = process.env.NODE_ENV;
@@ -90,7 +91,7 @@ const config: GatsbyConfig = {
 		{
 			options: {
 				output: "/robots.txt",
-				policy: [{ allow: "/", userAgent: "*" }],
+				policy: generatePolicies(disallowedCrawlers),
 			},
 			resolve: "gatsby-plugin-robots-txt",
 		},
