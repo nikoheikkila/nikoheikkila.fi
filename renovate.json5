@@ -1,24 +1,34 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:recommended"],
-	"automergeType": "branch",
-	"enabledManagers": ["bun"],
-	"schedule": ["every weekend"],
+	"extends": [
+		"config:recommended",
+		":automergeBranch",
+		":automergeMinor",
+		":automergeRequireAllStatusChecks",
+		":combinePatchMinorReleases",
+		":configMigration",
+		":dependencyDashboard",
+		":maintainLockFilesWeekly"
+	],
+	"enabledManagers": [
+		"bun"
+	],
+	"schedule": [
+		"every weekend"
+	],
 	"commitBody": "[skip netlify]",
 	"packageRules": [
 		{
-			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-			"automerge": true,
-		},
-		{
-			"extends": ["monorepo:gatsby"],
-			"matchUpdateTypes": ["digest", "patch", "minor", "major"],
+			"extends": [
+				"monorepo:gatsby"
+			],
+			"matchUpdateTypes": [
+				"digest",
+				"patch",
+				"minor",
+				"major"
+			],
 			"groupName": "Gatsby packages"
 		},
-		{
-			"extends": ["monorepo:remark"],
-			"groupName": "Remark",
-			"recreateWhen": "never"
-		}
 	]
 }
