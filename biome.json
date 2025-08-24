@@ -49,9 +49,6 @@
 		},
 		"rules": {
 			"recommended": true,
-			"nursery": {
-				"noNestedComponentDefinitions": "off"
-			},
 			"style": {
 				"noParameterAssign": "error",
 				"useAsConstAssertion": "error",
