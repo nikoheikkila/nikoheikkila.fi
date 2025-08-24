@@ -51,7 +51,7 @@
 		"@biomejs/biome": "2.0.6",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
-		"@playwright/test": "1.53.1",
+		"@playwright/test": "1.55.0",
 		"@sindresorhus/slugify": "2.2.1",
 		"@types/inquirer": "9.0.8",
 		"@types/node": "24.0.7",
