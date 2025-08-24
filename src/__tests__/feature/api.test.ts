@@ -10,7 +10,7 @@ test.describe
 
 			const body = await response.text();
 
-			expect(body).toMatchSnapshot();
+			expect(body).toMatchSnapshot("robots.txt");
 		});
 
 		test("/rss.xml should return valid RSS feed", async ({ request }) => {
