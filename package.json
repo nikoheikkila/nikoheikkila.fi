@@ -39,7 +39,7 @@
 		"react-burger-menu": "3.1.0",
 		"react-dom": "18.3.1",
 		"react-markdown": "8.0.7",
-		"react-syntax-highlighter": "15.6.1",
+		"react-syntax-highlighter": "15.6.5",
 		"rehype-katex": "6.0.3",
 		"rehype-raw": "^7.0.0",
 		"remark-gfm": "3.0.1",
