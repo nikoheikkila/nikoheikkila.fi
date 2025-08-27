@@ -1,11 +1,7 @@
 {
-	"name": "nikoheikkila.fi",
-	"private": true,
-	"description": "My personal website",
-	"version": "1.0.0",
 	"author": "Niko Heikkilä <yo@nikoheikkila.fi>",
-	"engines": {
-		"node": ">=22.0.0"
+	"bugs": {
+		"url": "https://github.com/nikoheikkila/nikoheikkila.fi/issues"
 	},
 	"bun": {
 		"typescript": {
@@ -47,6 +43,7 @@
 		"sass": "1.90.0",
 		"title": "4.0.1"
 	},
+	"description": "My personal website",
 	"devDependencies": {
 		"@biomejs/biome": "2.2.2",
 		"@commitlint/cli": "^19.8.0",
@@ -66,20 +63,23 @@
 		"typescript": "5.9.2",
 		"vitest": "3.2.4"
 	},
+	"engines": {
+		"node": ">=24.6.0"
+	},
 	"keywords": [
 		"gatsby"
 	],
 	"license": "MIT",
-	"scripts": {
-		"build": "bun run gatsby build --log-pages --write-to-file",
-		"prepare": "bun run husky"
-	},
+	"name": "nikoheikkila.fi",
+	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/nikoheikkila/nikoheikkila.fi"
 	},
-	"bugs": {
-		"url": "https://github.com/nikoheikkila/nikoheikkila.fi/issues"
+	"scripts": {
+		"build": "bun run gatsby build --log-pages --write-to-file",
+		"prepare": "bun run husky"
 	},
-	"snyk": true
+	"snyk": true,
+	"version": "1.0.0"
 }
