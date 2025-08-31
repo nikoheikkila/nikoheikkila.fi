@@ -7,7 +7,7 @@
         "@fortawesome/fontawesome-svg-core": "7.0.0",
         "@fortawesome/free-brands-svg-icons": "7.0.0",
         "@fortawesome/free-solid-svg-icons": "7.0.0",
-        "@fortawesome/react-fontawesome": "3.0.0",
+        "@fortawesome/react-fontawesome": "3.0.1",
         "dayjs": "1.11.13",
         "gatsby": "5.14.6",
         "gatsby-adapter-netlify": "^1.1.1",
@@ -414,7 +414,7 @@
 
     "@fortawesome/free-solid-svg-icons": ["@fortawesome/free-solid-svg-icons@7.0.0", "", { "dependencies": { "@fortawesome/fontawesome-common-types": "7.0.0" } }, "sha512-njSLAllkOddYDCXgTFboXn54Oe5FcvpkWq+FoetOHR64PbN0608kM02Lze0xtISGpXgP+i26VyXRQA0Irh3Obw=="],
 
-    "@fortawesome/react-fontawesome": ["@fortawesome/react-fontawesome@3.0.0", "", { "dependencies": { "semver": "^7.7.2" }, "peerDependencies": { "@fortawesome/fontawesome-svg-core": "~6 || ~7", "react": "^18.0.0 || ^19.0.0" } }, "sha512-x6boc1RLEjf/QPrMS20VJcabTZeGCb1hbwNybPPLjJohGPowXfjOpwQlVK6aH6MVKfCq2JXeHRIlx+tYpS18FA=="],
+    "@fortawesome/react-fontawesome": ["@fortawesome/react-fontawesome@3.0.1", "", { "dependencies": { "semver": "^7.7.2" }, "peerDependencies": { "@fortawesome/fontawesome-svg-core": "~6 || ~7", "react": "^18.0.0 || ^19.0.0" } }, "sha512-kpVyf85UHhQ+Y/TPyiNaUldqylhhXiVXv20z7sq+CLmhKLXWbzjIHaRPDrHIydnrL6Qq9oFwuNHq66alJdDM5Q=="],
 
     "@gatsbyjs/parcel-namer-relative-to-cwd": ["@gatsbyjs/parcel-namer-relative-to-cwd@2.14.0", "", { "dependencies": { "@babel/runtime": "^7.20.13", "@parcel/namer-default": "2.8.3", "@parcel/plugin": "2.8.3", "gatsby-core-utils": "^4.14.0" } }, "sha512-BWIIsz4oPLIUVAWr4Lgw4BGtJjjhb39+oTrXUa6rN0A+vS5qXrpkx1nGzVb5PJ2RJY9Paf4hNLZVW9LaLnGLBA=="],
 
