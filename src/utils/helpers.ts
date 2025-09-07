@@ -1,7 +1,14 @@
-import type { Route } from "../gatsby";
+interface Route {
+	pathname: string;
+	state?: {
+		previous: string;
+	};
+}
 
-const maxCups = 5;
-
+/**
+ * Pretty prints reading time with coffee cups
+ * @param minutes number of minutes to format
+ */
 export const formatReadingTime = (minutes: number): string => {
 	if (minutes < 1) {
 		return "";
@@ -10,28 +17,20 @@ export const formatReadingTime = (minutes: number): string => {
 	return formatCups(minutes);
 };
 
+/**
+ * Index page is either the home page or any page with path `/n`
+ * where `n` is a natural number > 0.
+ */
+export const isIndex = ({ pathname }: Route): boolean => /^\/\d*$/.test(pathname);
+export const getPreviousPage = ({ state }: Route): string => state?.previous ?? "/";
+export const combinePaths = (...paths: string[]): string => paths.join("").replace(/([^:]\/)\/+/g, "$1");
+
 const formatCups = (minutes: number, icon = "☕️"): string => {
+	const maxCups = 5;
 	const cups = Math.round(minutes / maxCups);
 	const time = `minute${minutes >= 2 ? "s" : ""}`;
 
 	const result: string[] = cups > maxCups ? new Array(Math.round(cups / Math.E)) : new Array(cups || 1);
 
 	return `${result.fill(icon).join("")} ${minutes} ${time} read`;
-};
-
-/**
- * Index page is either the home page or any page with path `/n`
- * where `n` is a natural number > 0.
- */
-export const isIndex = ({ pathname }: Route) => /^\/[0-9]*$/.test(pathname);
-
-export const getPreviousPage = ({ state }: Route): string => {
-	return state?.previous ?? "/";
-};
-
-export const combinePaths = (...paths: string[]): string => {
-	const pattern = /([^:]\/)\/+/g;
-	const substitute = "/";
-
-	return paths.join("").replace(pattern, substitute);
 };
