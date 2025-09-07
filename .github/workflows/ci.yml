@@ -32,15 +32,6 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache task checksums
-        uses: actions/cache@v4
-        with:
-          path: .task
-          key: ${{ runner.os }}-task-commit-${{ hashFiles('Taskfile.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-task-
-            ${{ runner.os }}-
-
       - name: Cache Bun files
         id: bun-cache
         uses: actions/cache@v4
@@ -87,15 +78,6 @@ jobs:
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cache task checksums
-        uses: actions/cache@v4
-        with:
-          path: .task
-          key: ${{ runner.os }}-task-acceptance-${{ hashFiles('Taskfile.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-task-
-            ${{ runner.os }}-
 
       - name: Cache Bun files
         uses: actions/cache@v4
