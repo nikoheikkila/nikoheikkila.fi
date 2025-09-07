@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "bun:test";
 import { generatePolicies } from "../../utils/robots";
 
 describe("Robots", () => {
@@ -13,8 +13,8 @@ describe("Robots", () => {
 
 		expect(result).toStrictEqual([
 			{
-				userAgent: "AIBot",
 				disallow: "/",
+				userAgent: "AIBot",
 			},
 		]);
 	});
@@ -24,12 +24,12 @@ describe("Robots", () => {
 
 		expect(result).toStrictEqual([
 			{
-				userAgent: "AIBot",
 				disallow: "/",
+				userAgent: "AIBot",
 			},
 			{
-				userAgent: "ClaudeBot",
 				disallow: "/",
+				userAgent: "ClaudeBot",
 			},
 		]);
 	});

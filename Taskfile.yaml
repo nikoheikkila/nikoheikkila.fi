@@ -44,19 +44,13 @@ tasks:
     desc: Run unit tests
     deps: [install]
     cmds:
-      - bunx vitest run
+      - bun test
 
   test:watch:
     desc: Run unit tests in watch mode
     deps: [install]
     cmds:
-      - bunx vitest watch
-
-  test:coverage:
-    desc: Run unit tests with coverage reporting
-    deps: [install]
-    cmds:
-      - bunx vitest run --coverage
+      - bun test --watch
 
   test:e2e:
     desc: Run end-to-end tests
