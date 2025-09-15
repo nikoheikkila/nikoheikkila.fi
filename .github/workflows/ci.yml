@@ -106,6 +106,9 @@ jobs:
             ${{ runner.os }}-gatsby-
             ${{ runner.os }}-
 
+      - name: Build site
+        run: task build
+
       - name: Run E2E Tests
         run: task test:e2e
 
