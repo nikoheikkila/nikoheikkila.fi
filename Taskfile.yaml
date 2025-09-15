@@ -38,13 +38,14 @@ tasks:
       - lint
     cmds:
       - task: test:unit
+      - task: build
       - task: test:e2e
 
   test:unit:
     desc: Run unit tests
     deps: [install]
     cmds:
-      - bun test
+      - bun test {{ .CLI_ARGS }}
 
   test:watch:
     desc: Run unit tests in watch mode
@@ -54,7 +55,7 @@ tasks:
 
   test:e2e:
     desc: Run end-to-end tests
-    deps: [install, build]
+    deps: [install]
     cmds:
       - bunx playwright install --with-deps
       - bunx playwright test {{.CLI_ARGS}}
@@ -68,8 +69,13 @@ tasks:
     desc: Serve the Gatsby development site
     deps: [install]
     cmds:
-      - bunx gatsby clean
+      - task: clean
       - bunx gatsby develop
+
+  clean:
+    desc: Clear build cache and artifacts
+    cmds:
+      - bunx gatsby clean
 
   build:
     desc: Build the Gatsby production site
