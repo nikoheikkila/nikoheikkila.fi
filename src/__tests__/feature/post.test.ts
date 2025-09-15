@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import * as Navigate from "./navigate";
 
 test.describe
@@ -13,17 +13,17 @@ test.describe
 		});
 
 		test("when I view it, then title should render correctly", async ({ page }) => {
-			const postHeader = page.locator("data-testid=post-header");
+			const postHeader = page.getByTestId("post-header");
 			await expect(postHeader).toBeVisible();
 		});
 
 		test("when I view it, then I should see a subscribe box", async ({ page }) => {
-			const subscribeBox = page.locator("data-test-id=rss-subscribe");
+			const subscribeBox = page.getByTestId("rss-subscribe");
 			await expect(subscribeBox).toBeVisible();
 		});
 
 		test("when I click the RSS link, then I should be redirected to the feed", async ({ page }) => {
-			const rssLink = page.locator("data-test-id=rss-subscribe").locator("a");
+			const rssLink = page.getByTestId("rss-subscribe").getByRole("link");
 
 			await rssLink.click();
 
@@ -32,21 +32,31 @@ test.describe
 		});
 
 		test("when I click the 'Edit' button, then I should be taken to GitHub web editor", async ({ page }) => {
-			const editLink = page.getByRole("link", { name: /Edit Page/ });
+			let github: Page;
 
-			const github = await Navigate.toExternalSiteByClicking(page, editLink);
+			await test.step("Locate and click edit link", async () => {
+				const editLink = page.getByRole("link", { name: /Edit Page/ });
+				github = await Navigate.toExternalSiteByClicking(page, editLink);
+			});
 
-			await expect(github).toHaveURL(/github\.com/);
-			await expect(github).toHaveTitle(/Sign in to GitHub/);
+			await test.step("Verify GitHub page opened correctly", async () => {
+				await expect(github).toHaveURL(/github\.com/);
+				await expect(github).toHaveTitle(/Sign in to GitHub/);
+			});
 		});
 
 		test("when I click the 'View History' button, then I should be taken to GitHub history view", async ({ page }) => {
-			const historyLink = page.getByRole("link", { name: /View History/ });
+			let github: Page;
 
-			const github = await Navigate.toExternalSiteByClicking(page, historyLink);
+			await test.step("Locate and click history link", async () => {
+				const historyLink = page.getByRole("link", { name: /View History/ });
+				github = await Navigate.toExternalSiteByClicking(page, historyLink);
+			});
 
-			await expect(github).toHaveURL(/github\.com/);
-			await expect(github).toHaveTitle(/History for/);
+			await test.step("Verify GitHub history page opened correctly", async () => {
+				await expect(github).toHaveURL(/github\.com/);
+				await expect(github).toHaveTitle(/History for/);
+			});
 		});
 	});
 
@@ -61,6 +71,6 @@ test.describe
 			const heroImage = page.locator("img[data-main-image]");
 
 			await expect(heroImage).toBeVisible();
-			await expect(heroImage.getAttribute("alt")).not.toBeNull();
+			await expect(heroImage).toHaveAttribute("alt");
 		});
 	});
