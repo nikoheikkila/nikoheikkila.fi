@@ -1,49 +1,77 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe
-	.parallel("Given I'm on the index page", () => {
+	.parallel("Given I visit the home page using a desktop browser", () => {
 		test.beforeEach(async ({ page }) => {
 			await page.goto("/");
 		});
 
-		test("when I query all the post titles, their count should be exactly 30", async ({ page }) => {
-			const posts = page.locator('[data-testid="post-title"]');
+		test("When I query all the post titles", async ({ page }) => {
+			const posts = page.getByTestId("post-title");
 
-			await expect(posts).toHaveCount(30);
+			await test.step("Then I should see all the posts", async () => {
+				await expect(posts).toHaveCount(30);
+			});
 		});
 
-		test("when I click the next/previous button, then I should visit the respective page", async ({
-			page,
-			baseURL,
-		}) => {
-			await test.step("Navigate to next page", async () => {
-				const nextURL = `${baseURL}/2/`;
-				await Promise.all([page.waitForURL(nextURL), page.getByRole("link", { name: /Next Page/ }).click()]);
-			});
+		test("When I click the 'Next' button, then I should visit the respective page", async ({ page }) => {
+			const nextPage = page.getByRole("link", { name: /Next Page/ });
 
-			await test.step("Navigate back to previous page", async () => {
-				const previousURL = `${baseURL}/`;
-				await Promise.all([page.waitForURL(previousURL), page.getByRole("link", { name: /Previous Page/ }).click()]);
+			await test.step("Then I should navigate to the next page", async () => {
+				await nextPage.click();
+				await expect(page).toHaveURL("/2/");
+			});
+		});
+
+		test("When I click the 'Previous' button", async ({ page }) => {
+			const previousPage = page.getByRole("link", { name: /Previous Page/ });
+
+			await test.step("Then I should navigate back to previous page", async () => {
+				await page.goto("/2");
+				await previousPage.click();
+				await expect(page).toHaveURL("/");
 			});
 		});
 	});
 
 test.describe
-	.parallel("Given I'm on the index page using mobile device", () => {
+	.parallel("Given I visit the home page using a mobile browser", () => {
+		test.use({
+			hasTouch: true,
+			viewport: {
+				width: 375,
+				height: 667,
+			},
+		});
+
 		test.beforeEach(async ({ page }) => {
-			await page.setViewportSize({ width: 375, height: 667 });
 			await page.goto("/");
 		});
 
-		test("when I view the page on mobile, then posts should render correctly", async ({ page }) => {
-			await test.step("Verify mobile layout renders posts", async () => {
-				const posts = page.getByTestId("post-title");
+		test("When I view the page", async ({ page }) => {
+			const posts = page.getByTestId("post-title");
+
+			await test.step("Then I should see all the posts", async () => {
 				await expect(posts).toHaveCount(30);
 			});
+		});
 
-			await test.step("Verify pagination controls are accessible on mobile", async () => {
-				const nextPageLink = page.getByRole("link", { name: /Next Page/ });
-				await expect(nextPageLink).toBeVisible();
+		test("When I click the 'Next' button, then I should visit the respective page", async ({ page }) => {
+			const nextPage = page.getByRole("link", { name: /Next Page/ });
+
+			await test.step("Then I should navigate to the next page", async () => {
+				await nextPage.click();
+				await expect(page).toHaveURL("/2/");
+			});
+		});
+
+		test("When I click the 'Previous' button", async ({ page }) => {
+			const previousPage = page.getByRole("link", { name: /Previous Page/ });
+
+			await test.step("Then I should navigate back to previous page", async () => {
+				await page.goto("/2");
+				await previousPage.click();
+				await expect(page).toHaveURL("/");
 			});
 		});
 	});
