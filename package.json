@@ -52,7 +52,7 @@
 		"@sindresorhus/slugify": "3.0.0",
 		"@types/bun": "latest",
 		"@types/inquirer": "9.0.9",
-		"@types/node": "24.3.3",
+		"@types/node": "24.5.2",
 		"@types/react": "19.1.13",
 		"@types/react-burger-menu": "2.8.7",
 		"@types/react-dom": "19.1.9",
