@@ -4,6 +4,14 @@ import * as Colors from "../../utils/colors";
 describe("Colors", () => {
 	const validHexPattern = /^#[A-Fa-f0-9]{6}$/;
 
+	describe(".hex2dec()", () => {
+		test("converts hex to decimal", () => {
+			expect(Colors.hex2dec("FF")).toBe(255);
+			expect(Colors.hex2dec("00")).toBe(0);
+			expect(Colors.hex2dec("7F")).toBe(127);
+		});
+	});
+
 	describe(".randomColor()", () => {
 		test("returns a valid random color", () => {
 			expect(Colors.randomColor()).toMatch(validHexPattern);
@@ -24,6 +32,11 @@ describe("Colors", () => {
 				expect(Colors.foregroundColor(backgroundColor)).toBe("#000000");
 			},
 		);
+
+		test("handles hex without # prefix", () => {
+			expect(Colors.foregroundColor("000000")).toBe("#FFFFFF");
+			expect(Colors.foregroundColor("FFFFFF")).toBe("#000000");
+		});
 
 		test("given invalid background color, throws error", () => {
 			expect(() => Colors.foregroundColor("123")).toThrowError(TypeError);
