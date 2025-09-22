@@ -1,28 +1,28 @@
-import React from "react";
+import { afterEach, beforeEach, mock } from "bun:test";
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, mock } from "bun:test";
+import React from "react";
 import cssModuleMock from "./mocks/css-modules";
 
 // Mock Gatsby components
 mock.module("gatsby", () => {
 	return {
+		GatsbyImage: (props: { image: unknown; alt: string; [key: string]: unknown }) => {
+			const { alt, ...rest } = props;
+			return React.createElement("img", { alt, ...rest });
+		},
+		graphql: mock(() => ({})),
 		Link: (props: { to: string; children: React.ReactNode; [key: string]: unknown }) => {
 			const { to, children, ...rest } = props;
 			return React.createElement("a", { href: to, ...rest }, children);
 		},
 		navigate: mock(() => {}),
-		StaticQuery: mock(() => null),
-		useStaticQuery: mock(() => ({})),
-		graphql: mock(() => ({})),
-		GatsbyImage: (props: { image: unknown; alt: string; [key: string]: unknown }) => {
-			const { alt, ...rest } = props;
-			return React.createElement("img", { alt, ...rest });
-		},
 		StaticImage: (props: { src: string; alt: string; [key: string]: unknown }) => {
 			const { src, alt, ...rest } = props;
-			return React.createElement("img", { src, alt, ...rest });
+			return React.createElement("img", { alt, src, ...rest });
 		},
+		StaticQuery: mock(() => null),
+		useStaticQuery: mock(() => ({})),
 	};
 });
 

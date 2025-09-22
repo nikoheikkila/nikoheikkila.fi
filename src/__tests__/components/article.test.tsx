@@ -1,20 +1,19 @@
 import { describe, expect, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import { ArticleCard, ArticleView } from "../../components/blog/article";
-import { createMockPost, createMockLocation } from "../test-utils";
+import { createMockLocation, createMockPost, render } from "./test-utils";
 
 describe("ArticleCard Component", () => {
 	const mockLocation = createMockLocation("/blog");
 
 	const defaultProps = {
-		title: "Test Article",
-		slug: "/blog/test-article",
-		excerpt: "This is a test excerpt",
 		categories: ["testing", "react"],
 		date: "January 1, 2024",
-		timeToRead: 5,
+		excerpt: "This is a test excerpt",
 		location: mockLocation,
+		slug: "/blog/test-article",
+		timeToRead: 5,
+		title: "Test Article",
 	};
 
 	test("renders article title", () => {
@@ -82,7 +81,7 @@ describe("ArticleView Component", () => {
 	const mockLocation = createMockLocation("/");
 
 	test("renders section header", () => {
-		const { container } = render(<ArticleView nodes={[]} location={mockLocation} />);
+		const { container } = render(<ArticleView location={mockLocation} nodes={[]} />);
 
 		const header = container.querySelector("h2");
 		expect(header?.textContent).toBe("Latest Articles");
@@ -92,22 +91,22 @@ describe("ArticleView Component", () => {
 		const mockPosts = [
 			{
 				...createMockPost(),
-				frontmatter: { ...createMockPost().frontmatter, title: "First Post" },
 				fields: { slug: "/blog/first" },
+				frontmatter: { ...createMockPost().frontmatter, title: "First Post" },
 			},
 			{
 				...createMockPost(),
-				frontmatter: { ...createMockPost().frontmatter, title: "Second Post" },
 				fields: { slug: "/blog/second" },
+				frontmatter: { ...createMockPost().frontmatter, title: "Second Post" },
 			},
 			{
 				...createMockPost(),
-				frontmatter: { ...createMockPost().frontmatter, title: "Third Post" },
 				fields: { slug: "/blog/third" },
+				frontmatter: { ...createMockPost().frontmatter, title: "Third Post" },
 			},
 		];
 
-		const { container } = render(<ArticleView nodes={mockPosts} location={mockLocation} />);
+		const { container } = render(<ArticleView location={mockLocation} nodes={mockPosts} />);
 
 		const titles = container.querySelectorAll("h2");
 		const titleTexts = Array.from(titles).map((t) => t.textContent);
@@ -118,7 +117,7 @@ describe("ArticleView Component", () => {
 	});
 
 	test("handles empty node list", () => {
-		const { container } = render(<ArticleView nodes={[]} location={mockLocation} />);
+		const { container } = render(<ArticleView location={mockLocation} nodes={[]} />);
 
 		const header = container.querySelector("h2");
 		expect(header?.textContent).toBe("Latest Articles");
@@ -133,7 +132,7 @@ describe("ArticleView Component", () => {
 			frontmatter: { title: "Incomplete Post" },
 		};
 
-		const { container } = render(<ArticleView nodes={[incompletePost]} location={mockLocation} />);
+		const { container } = render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);
 
 		const titles = container.querySelectorAll("h2");
 		const titleTexts = Array.from(titles).map((t) => t.textContent);

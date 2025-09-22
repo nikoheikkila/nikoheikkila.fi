@@ -54,6 +54,9 @@ jobs:
       - name: Run unit tests
         run: task test:unit
 
+      - name: Run component tests
+        run: task test:component
+
   acceptance_stage:
     name: Acceptance Stage
     runs-on: ubuntu-latest

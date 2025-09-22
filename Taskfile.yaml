@@ -16,7 +16,7 @@ tasks:
       - package.json
     generates:
       - bun.lock
-    cmd: bun install --frozen-lockfile
+    cmd: bun install
 
   format:
     desc: Format codebase
@@ -38,6 +38,7 @@ tasks:
       - lint
     cmds:
       - task: test:unit
+      - task: test:component
       - task: build
       - task: test:e2e
 
@@ -45,13 +46,28 @@ tasks:
     desc: Run unit and component tests
     deps: [install]
     cmds:
-      - bun test src/__tests__/unit src/__tests__/components {{ .CLI_ARGS }}
+      - bun test --config=src/__tests__/unit/bunfig.toml {{ .CLI_ARGS }}
 
-  test:watch:
+  test:unit:watch:
     desc: Run unit tests in watch mode
     deps: [install]
+    interactive: true
     cmds:
       - task: 'test:unit'
+        vars:
+          CLI_ARGS: '--watch'
+
+  test:component:
+    deps: [install]
+    cmds:
+      - bun test --config=src/__tests__/components/bunfig.toml {{ .CLI_ARGS }}
+
+  test:component:watch:
+    desc: Run unit tests in watch mode
+    deps: [install]
+    interactive: true
+    cmds:
+      - task: 'test:component'
         vars:
           CLI_ARGS: '--watch'
 

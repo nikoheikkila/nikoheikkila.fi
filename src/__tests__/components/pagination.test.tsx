@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import Pagination from "../../components/blog/pagination";
+import { render } from "./test-utils";
 
 describe("Pagination Component", () => {
 	test("shows only next page link on first page", () => {

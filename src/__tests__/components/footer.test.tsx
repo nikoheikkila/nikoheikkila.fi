@@ -1,10 +1,9 @@
-import { describe, expect, test, spyOn } from "bun:test";
+import { describe, expect, spyOn, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import Footer from "../../components/layout/footer";
-
 // Mock the graphql module using spyOn
 import * as footerGraphQL from "../../graphql/footer";
+import { render } from "./test-utils";
 
 describe("Footer Component", () => {
 	// Create a spy for getFooterLinks that we can control per test

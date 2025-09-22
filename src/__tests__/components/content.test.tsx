@@ -1,7 +1,7 @@
-import { describe, expect, test, spyOn } from "bun:test";
+import { describe, expect, spyOn, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import Content from "../../components/post/content";
+import { render } from "./test-utils";
 
 describe("Content Component", () => {
 	test("renders simple markdown content", () => {

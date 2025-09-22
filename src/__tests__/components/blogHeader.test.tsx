@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import BlogHeader from "../../components/blog/header";
+import { render } from "./test-utils";
 
 describe("BlogHeader Component", () => {
 	test("renders blog title", () => {

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import React from "react";
-import { render } from "../test-utils";
 import Tag from "../../components/tag";
+import { render } from "./test-utils";
 
 describe("Tag Component", () => {
 	test("renders with default prefix", () => {
@@ -19,14 +19,14 @@ describe("Tag Component", () => {
 	});
 
 	test("renders with custom prefix", () => {
-		const { container } = render(<Tag title="JavaScript" prefix="@" />);
+		const { container } = render(<Tag prefix="@" title="JavaScript" />);
 
 		const tag = container.querySelector("span");
 		expect(tag?.textContent).toBe("@javascript");
 	});
 
 	test("applies custom className", () => {
-		const { container } = render(<Tag title="Testing" className="custom-tag" />);
+		const { container } = render(<Tag className="custom-tag" title="Testing" />);
 
 		const tag = container.querySelector(".custom-tag");
 		expect(tag).toBeDefined();

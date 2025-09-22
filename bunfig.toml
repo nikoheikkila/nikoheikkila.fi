@@ -1,19 +1,7 @@
-[test]
-root = ["src/__tests__/unit", "src/__tests__/components"]
-preload = ["./src/__tests__/setup.ts"]
-coverage = true
-coverageReporter = ["text", "lcov"]
-coverageThreshold = 1.0
-coverageSkipTestFiles = true
-coveragePathIgnorePatterns = [
-  "**/*.spec.ts",
-  "**/*.spec.tsx",
-  "**/*.test.ts",
-  "**/*.test.tsx",
-  "src/__tests__/**",
-  "*.config.js",
-  "*.config.ts",
-  "src/graphql/**"
-]
-# Exclude Playwright feature tests
-ignore = ["src/__tests__/feature/**"]
+[install]
+exact = true
+auto = "auto"
+frozenLockfile = false
+
+[run]
+silent = true
