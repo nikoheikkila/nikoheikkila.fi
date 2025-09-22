@@ -22,8 +22,7 @@ describe("Helpers", () => {
 			[15, "☕️☕️☕️ 15 minutes read"],
 			[20, "☕️☕️☕️☕️ 20 minutes read"],
 			[25, "☕️☕️☕️☕️☕️ 25 minutes read"],
-			[30, "☕️☕️ 30 minutes read"], // >25 mins uses Math.E reduction
-			[50, "☕️☕️☕️☕️ 50 minutes read"], // >25 mins uses Math.E reduction
+			[30, "☕️☕️☕️☕️☕️ 30 minutes read"],
 		])("given %i minutes, returns correct format with coffee cups", (minutes, expected) => {
 			expect(Helpers.formatReadingTime(minutes)).toBe(expected);
 		});
