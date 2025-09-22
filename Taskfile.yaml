@@ -42,16 +42,18 @@ tasks:
       - task: test:e2e
 
   test:unit:
-    desc: Run unit tests
+    desc: Run unit and component tests
     deps: [install]
     cmds:
-      - bun test {{ .CLI_ARGS }}
+      - bun test src/__tests__/unit src/__tests__/components {{ .CLI_ARGS }}
 
   test:watch:
     desc: Run unit tests in watch mode
     deps: [install]
     cmds:
-      - bun test --watch
+      - task: 'test:unit'
+        vars:
+          CLI_ARGS: '--watch'
 
   test:e2e:
     desc: Run end-to-end tests

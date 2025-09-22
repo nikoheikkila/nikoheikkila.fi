@@ -27,10 +27,9 @@ export const combinePaths = (...paths: string[]): string => paths.join("").repla
 
 const formatCups = (minutes: number, icon = "☕️"): string => {
 	const maxCups = 5;
-	const cups = Math.round(minutes / maxCups);
+	const estimatedCups = Math.round(minutes / maxCups) || 1;
 	const time = `minute${minutes >= 2 ? "s" : ""}`;
-
-	const result: string[] = cups > maxCups ? new Array(Math.round(cups / Math.E)) : new Array(cups || 1);
+	const result = estimatedCups > maxCups ? new Array<string>(maxCups) : new Array<string>(estimatedCups);
 
 	return `${result.fill(icon).join("")} ${minutes} ${time} read`;
 };
