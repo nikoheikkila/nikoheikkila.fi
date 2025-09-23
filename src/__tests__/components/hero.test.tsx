@@ -1,38 +1,61 @@
 import { describe, expect, test } from "bun:test";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import Hero from "../../components/hero";
-import { createMockImage, render } from "./test-utils";
+
+const createMockImage = () => ({
+	childImageSharp: {
+		gatsbyImageData: {
+			height: 600,
+			images: {
+				fallback: {
+					sizes: "(max-width: 800px) 100vw, 800px",
+					src: "/test-image.jpg",
+					srcSet: "/test-image.jpg",
+				},
+				sources: [],
+			},
+			layout: "fixed",
+			width: 800,
+		},
+	},
+	original: {
+		height: 600,
+		src: "/test-image.jpg",
+		width: 800,
+	},
+});
 
 describe("Hero Component", () => {
 	const mockImageData = createMockImage().childImageSharp.gatsbyImageData;
 
 	test("renders hero image with correct alt text", () => {
 		const altText = "Beautiful landscape photo";
-		const { container } = render(<Hero alt={altText} data={mockImageData} />);
+		render(<Hero alt={altText} data={mockImageData} />);
 
-		const image = container.querySelector(`img[alt="${altText}"]`);
+		const image = screen.getByAltText(altText);
 		expect(image).toBeDefined();
 	});
 
 	test("renders within a header element", () => {
-		const { container } = render(<Hero alt="Test image" data={mockImageData} />);
+		render(<Hero alt="Test image" data={mockImageData} />);
 
-		const header = container.querySelector("header");
+		const header = screen.getByRole("banner");
 		expect(header).toBeDefined();
 	});
 
 	test("applies correct loading strategy", () => {
-		const { container } = render(<Hero alt="Test image" data={mockImageData} />);
+		render(<Hero alt="Test image" data={mockImageData} />);
 
-		const image = container.querySelector('img[alt="Test image"]');
-		expect(image?.getAttribute("loading")).toBe("eager");
+		const image = screen.getByAltText("Test image");
+		expect(image.getAttribute("loading")).toBe("eager");
 	});
 
 	test("renders GatsbyImage component", () => {
-		const { container } = render(<Hero alt="Styled image" data={mockImageData} />);
+		render(<Hero alt="Styled image" data={mockImageData} />);
 
-		const image = container.querySelector('img[alt="Styled image"]');
 		// GatsbyImage mock renders a regular img tag
+		const image = screen.getByAltText("Styled image");
 		expect(image).toBeDefined();
 	});
 });

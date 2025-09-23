@@ -1,55 +1,58 @@
 import { describe, expect, test } from "bun:test";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import Tag from "../../components/tag";
-import { render } from "./test-utils";
 
 describe("Tag Component", () => {
 	test("renders with default prefix", () => {
-		const { container } = render(<Tag title="React" />);
+		render(<Tag title="React" />);
 
-		const tag = container.querySelector("span");
-		expect(tag?.textContent).toBe("#react");
+		const tag = screen.getByText("#react");
+
+		expect(tag).toBeDefined();
 	});
 
 	test("slugifies the title correctly", () => {
-		const { container } = render(<Tag title="Test Category" />);
+		render(<Tag title="Test Category" />);
 
-		const tag = container.querySelector("span");
-		expect(tag?.textContent).toBe("#testcategory");
+		const tag = screen.getByText("#testcategory");
+
+		expect(tag).toBeDefined();
 	});
 
 	test("renders with custom prefix", () => {
-		const { container } = render(<Tag prefix="@" title="JavaScript" />);
+		render(<Tag prefix="@" title="JavaScript" />);
 
-		const tag = container.querySelector("span");
-		expect(tag?.textContent).toBe("@javascript");
+		const tag = screen.getByText("@javascript");
+
+		expect(tag).toBeDefined();
 	});
 
 	test("applies custom className", () => {
-		const { container } = render(<Tag className="custom-tag" title="Testing" />);
+		const className = "custom-tag";
+		render(<Tag className={className} title="Testing" />);
 
-		const tag = container.querySelector(".custom-tag");
-		expect(tag).toBeDefined();
-		expect(tag?.textContent).toBe("#testing");
+		const tag = screen.getByText("#testing");
+
+		expect(tag.className).toBe(className);
 	});
 
 	test("handles special characters in title", () => {
-		const { container } = render(<Tag title="C++ Programming!" />);
+		render(<Tag title="C++ Programming!" />);
 
-		// The slugify library converts "C++" to "c" not "cpp"
-		const tag = container.querySelector("span");
-		expect(tag?.textContent).toBe("#cprogramming");
+		const tag = screen.getByText("#cprogramming");
+
+		expect(tag).toBeDefined();
 	});
 
 	test("applies inline styles for colors", () => {
-		const { container } = render(<Tag title="Styled" />);
+		render(<Tag title="Styled" />);
 
-		const tag = container.querySelector("span");
-		const styles = tag?.getAttribute("style");
+		const { style } = screen.getByText("#styled");
 
-		expect(styles).toContain("display: inline-block");
-		expect(styles).toContain("padding: 0px 10px");
-		expect(styles).toContain("margin: 4px");
-		expect(styles).toContain("border-radius: 50px");
+		expect(style.display).toBe("inline-block");
+		expect(style.padding).toBe("0px 10px");
+		expect(style.margin).toBe("4px");
+		expect(style.borderRadius).toBe("50px");
 	});
 });

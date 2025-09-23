@@ -1,81 +1,78 @@
 import { describe, expect, test } from "bun:test";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import Pagination from "../../components/blog/pagination";
-import { render } from "./test-utils";
 
 describe("Pagination Component", () => {
 	test("shows only next page link on first page", () => {
-		const { container } = render(<Pagination currentPage={1} numberOfPages={5} />);
+		render(<Pagination currentPage={1} numberOfPages={5} />);
 
-		const links = container.querySelectorAll("a");
+		const links = screen.getAllByRole("link");
 		expect(links.length).toBe(1);
 
-		const nextLink = Array.from(links).find((link) => link.textContent?.includes("Next Page"));
+		const nextLink = screen.getByRole("link", { name: /next page/i });
 		expect(nextLink).toBeDefined();
-		expect(nextLink?.getAttribute("href")).toBe("/2");
+		expect(nextLink.getAttribute("href")).toBe("/2");
 	});
 
 	test("shows both previous and next links on middle pages", () => {
-		const { container } = render(<Pagination currentPage={3} numberOfPages={5} />);
+		render(<Pagination currentPage={3} numberOfPages={5} />);
 
-		const links = container.querySelectorAll("a");
+		const links = screen.getAllByRole("link");
 		expect(links.length).toBe(2);
 
-		const previousLink = Array.from(links).find((link) => link.textContent?.includes("Previous Page"));
+		const previousLink = screen.getByRole("link", { name: /previous page/i });
 		expect(previousLink).toBeDefined();
-		expect(previousLink?.getAttribute("href")).toBe("/2");
+		expect(previousLink.getAttribute("href")).toBe("/2");
 
-		const nextLink = Array.from(links).find((link) => link.textContent?.includes("Next Page"));
+		const nextLink = screen.getByRole("link", { name: /next page/i });
 		expect(nextLink).toBeDefined();
-		expect(nextLink?.getAttribute("href")).toBe("/4");
+		expect(nextLink.getAttribute("href")).toBe("/4");
 	});
 
 	test("shows only previous page link on last page", () => {
-		const { container } = render(<Pagination currentPage={5} numberOfPages={5} />);
+		render(<Pagination currentPage={5} numberOfPages={5} />);
 
-		const links = container.querySelectorAll("a");
+		const links = screen.getAllByRole("link");
 		expect(links.length).toBe(1);
 
-		const previousLink = Array.from(links).find((link) => link.textContent?.includes("Previous Page"));
+		const previousLink = screen.getByRole("link", { name: /previous page/i });
 		expect(previousLink).toBeDefined();
-		expect(previousLink?.getAttribute("href")).toBe("/4");
+		expect(previousLink.getAttribute("href")).toBe("/4");
 	});
 
 	test("correctly handles page 2 previous link to root", () => {
-		const { container } = render(<Pagination currentPage={2} numberOfPages={5} />);
+		render(<Pagination currentPage={2} numberOfPages={5} />);
 
-		const links = container.querySelectorAll("a");
-		const previousLink = Array.from(links).find((link) => link.textContent?.includes("Previous Page"));
+		const previousLink = screen.getByRole("link", { name: /previous page/i });
 		expect(previousLink).toBeDefined();
-		expect(previousLink?.getAttribute("href")).toBe("/");
+		expect(previousLink.getAttribute("href")).toBe("/");
 	});
 
 	test("displays correct page numbers in links", () => {
-		const { container } = render(<Pagination currentPage={3} numberOfPages={10} />);
+		render(<Pagination currentPage={3} numberOfPages={10} />);
 
-		const links = container.querySelectorAll("a");
-		const previousLink = Array.from(links).find((link) => link.textContent?.includes("Previous Page (2/10)"));
-		const nextLink = Array.from(links).find((link) => link.textContent?.includes("Next Page (4/10)"));
+		const previousLink = screen.getByRole("link", { name: /previous page \(2\/10\)/i });
+		const nextLink = screen.getByRole("link", { name: /next page \(4\/10\)/i });
 
 		expect(previousLink).toBeDefined();
 		expect(nextLink).toBeDefined();
 	});
 
 	test("renders nothing for single page", () => {
-		const { container } = render(<Pagination currentPage={1} numberOfPages={1} />);
+		render(<Pagination currentPage={1} numberOfPages={1} />);
 
-		const links = container.querySelectorAll("a");
+		const links = screen.queryAllByRole("link");
 		expect(links.length).toBe(0);
 	});
 
 	test("has proper rel attributes for SEO", () => {
-		const { container } = render(<Pagination currentPage={3} numberOfPages={5} />);
+		render(<Pagination currentPage={3} numberOfPages={5} />);
 
-		const links = container.querySelectorAll("a");
-		const previousLink = Array.from(links).find((link) => link.textContent?.includes("Previous Page"));
-		const nextLink = Array.from(links).find((link) => link.textContent?.includes("Next Page"));
+		const previousLink = screen.getByRole("link", { name: /previous page/i });
+		const nextLink = screen.getByRole("link", { name: /next page/i });
 
-		expect(previousLink?.getAttribute("rel")).toBe("prev");
-		expect(nextLink?.getAttribute("rel")).toBe("next");
+		expect(previousLink.getAttribute("rel")).toBe("prev");
+		expect(nextLink.getAttribute("rel")).toBe("next");
 	});
 });

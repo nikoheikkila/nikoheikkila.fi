@@ -1,7 +1,38 @@
 import { describe, expect, test } from "bun:test";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { ArticleCard, ArticleView } from "../../components/blog/article";
-import { createMockLocation, createMockPost, render } from "./test-utils";
+
+const createMockLocation = (pathname = "/") => ({
+	hash: "",
+	host: "example.com",
+	hostname: "example.com",
+	href: `https://example.com${pathname}`,
+	key: "default",
+	origin: "https://example.com",
+	pathname,
+	port: "",
+	protocol: "https:",
+	search: "",
+	state: null,
+});
+
+const createMockPost = (overrides = {}) => ({
+	excerpt: "This is a test post excerpt",
+	fields: {
+		slug: "/blog/test-post",
+	},
+	frontmatter: {
+		author: "Test Author",
+		categories: ["testing", "react"],
+		date: "2024-01-01",
+		lang: "en",
+		title: "Test Post",
+		...overrides,
+	},
+	html: "<p>Test post content</p>",
+	timeToRead: 5,
+});
 
 describe("ArticleCard Component", () => {
 	const mockLocation = createMockLocation("/blog");
@@ -17,63 +48,65 @@ describe("ArticleCard Component", () => {
 	};
 
 	test("renders article title", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const title = container.querySelector("h2");
-		expect(title?.textContent).toBe(defaultProps.title);
+		const { textContent } = screen.getByRole("heading");
+
+		expect(textContent).toBe(defaultProps.title);
 	});
 
 	test("renders article excerpt", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const excerpt = container.querySelector("article p");
-		expect(excerpt?.textContent).toBe(defaultProps.excerpt);
+		const excerpt = screen.getByText(defaultProps.excerpt);
+
+		expect(excerpt).toBeDefined();
 	});
 
 	test("renders article date", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const dateSpan = container.querySelector("p span:first-child");
-		expect(dateSpan?.textContent?.trim()).toContain(defaultProps.date);
+		const dateSpan = screen.getByText(defaultProps.date);
+
+		expect(dateSpan).toBeDefined();
 	});
 
 	test("renders reading time when provided", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const readingTime = container.querySelector("p span:last-child");
-		expect(readingTime?.textContent).toContain("5 minutes read");
+		const readingTime = screen.getByText("5 minutes read", {
+			exact: false,
+		});
+
+		expect(readingTime).toBeDefined();
 	});
 
 	test("does not render reading time when zero", () => {
-		const { container } = render(<ArticleCard {...defaultProps} timeToRead={0} />);
+		render(<ArticleCard {...defaultProps} timeToRead={0} />);
 
-		const spans = container.querySelectorAll("p span");
-		const hasReadingTime = Array.from(spans).some((span) => span.textContent?.includes("minutes read"));
-		expect(hasReadingTime).toBe(false);
+		const readingTime = screen.queryByText("5 minutes read", {
+			exact: false,
+		});
+
+		expect(readingTime).toBeNull();
 	});
 
 	test("renders all categories as tags", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const tags = container.querySelectorAll("section span");
-		const tagTexts = Array.from(tags).map((tag) => tag.textContent);
+		const firstTag = screen.getByText("#testing");
+		const secondTag = screen.getByText("#react");
 
-		expect(tagTexts).toContain("#testing");
-		expect(tagTexts).toContain("#react");
+		expect(firstTag).toBeDefined();
+		expect(secondTag).toBeDefined();
 	});
 
 	test("links to correct article URL", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
+		render(<ArticleCard {...defaultProps} />);
 
-		const link = container.querySelector("a[data-testid='post-title']");
-		expect(link?.getAttribute("href")).toBe(defaultProps.slug);
-	});
+		const link = screen.getByTestId("post-title");
 
-	test("passes previous location in state", () => {
-		const { container } = render(<ArticleCard {...defaultProps} />);
-
-		const link = container.querySelector("a[data-testid='post-title']");
-		expect(link).toBeDefined();
+		expect(link.getAttribute("href")).toBe(defaultProps.slug);
 	});
 });
 
@@ -81,10 +114,11 @@ describe("ArticleView Component", () => {
 	const mockLocation = createMockLocation("/");
 
 	test("renders section header", () => {
-		const { container } = render(<ArticleView location={mockLocation} nodes={[]} />);
+		render(<ArticleView location={mockLocation} nodes={[]} />);
 
-		const header = container.querySelector("h2");
-		expect(header?.textContent).toBe("Latest Articles");
+		const { textContent } = screen.getByRole("heading");
+
+		expect(textContent).toBe("Latest Articles");
 	});
 
 	test("renders multiple articles", () => {
@@ -106,10 +140,10 @@ describe("ArticleView Component", () => {
 			},
 		];
 
-		const { container } = render(<ArticleView location={mockLocation} nodes={mockPosts} />);
+		render(<ArticleView location={mockLocation} nodes={mockPosts} />);
 
-		const titles = container.querySelectorAll("h2");
-		const titleTexts = Array.from(titles).map((t) => t.textContent);
+		const titles = screen.getAllByRole("heading");
+		const titleTexts = Array.from(titles).map((title) => title.textContent);
 
 		expect(titleTexts).toContain("First Post");
 		expect(titleTexts).toContain("Second Post");
@@ -117,12 +151,12 @@ describe("ArticleView Component", () => {
 	});
 
 	test("handles empty node list", () => {
-		const { container } = render(<ArticleView location={mockLocation} nodes={[]} />);
+		render(<ArticleView location={mockLocation} nodes={[]} />);
 
-		const header = container.querySelector("h2");
-		expect(header?.textContent).toBe("Latest Articles");
+		const { textContent } = screen.getByRole("heading");
+		const articles = screen.queryAllByTestId("post-title");
 
-		const articles = container.querySelectorAll("a[data-testid='post-title']");
+		expect(textContent).toBe("Latest Articles");
 		expect(articles.length).toBe(0);
 	});
 
@@ -132,10 +166,10 @@ describe("ArticleView Component", () => {
 			frontmatter: { title: "Incomplete Post" },
 		};
 
-		const { container } = render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);
+		render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);
 
-		const titles = container.querySelectorAll("h2");
-		const titleTexts = Array.from(titles).map((t) => t.textContent);
-		expect(titleTexts).toContain("Incomplete Post");
+		const titles = Array.from(screen.getAllByRole("heading")).map((title) => title.textContent);
+
+		expect(titles).toContain("Incomplete Post");
 	});
 });

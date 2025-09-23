@@ -1,9 +1,8 @@
 import { describe, expect, spyOn, test } from "bun:test";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import Footer from "../../components/layout/footer";
-// Mock the graphql module using spyOn
 import * as footerGraphQL from "../../graphql/footer";
-import { render } from "./test-utils";
 
 describe("Footer Component", () => {
 	// Create a spy for getFooterLinks that we can control per test
@@ -22,41 +21,45 @@ describe("Footer Component", () => {
 
 	test("renders RSS feed link", () => {
 		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		const { container } = render(<Footer />);
+		render(<Footer />);
 
-		const links = container.querySelectorAll("a");
-		const rssLink = Array.from(links).find((link) => link.textContent?.includes("RSS"));
+		const rssLink = screen.getByRole("link", { name: /rss/i });
 		expect(rssLink).toBeDefined();
 	});
 
 	test("renders RSS icon", () => {
 		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		const { container } = render(<Footer />);
+		render(<Footer />);
 
-		// Check footer spans which contain icons and text
-		const footerSpans = container.querySelectorAll("footer span");
-		expect(footerSpans.length).toBeGreaterThan(0);
+		// Check that the footer contains RSS icon and link
+		const footer = screen.getByRole("contentinfo");
+		expect(footer).toBeDefined();
+		const rssElements = screen.getAllByText(/rss/i);
+		expect(rssElements.length).toBeGreaterThan(0);
 	});
 
 	test("renders all social media links", () => {
 		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		const { container } = render(<Footer />);
+		render(<Footer />);
 
-		const links = container.querySelectorAll("a");
-		const linkTexts = Array.from(links).map((link) => link.textContent?.toLowerCase());
+		const githubLink = screen.getByRole("link", { name: /github/i });
+		const twitterLink = screen.getByRole("link", { name: /twitter/i });
+		const linkedinLink = screen.getByRole("link", { name: /linkedin/i });
 
-		expect(linkTexts).toContain("github");
-		expect(linkTexts).toContain("twitter");
-		expect(linkTexts).toContain("linkedin");
+		expect(githubLink).toBeDefined();
+		expect(twitterLink).toBeDefined();
+		expect(linkedinLink).toBeDefined();
 	});
 
 	test("renders social media icons", () => {
 		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		const { container } = render(<Footer />);
+		render(<Footer />);
 
-		// Check that we have footer spans for RSS + 3 social links
-		const footerSpans = container.querySelectorAll("footer > span");
-		expect(footerSpans.length).toBe(4);
+		// Check that we have all the social icons by checking for multiple elements
+		expect(screen.getAllByText("github").length).toBeGreaterThan(0);
+		expect(screen.getAllByText("twitter").length).toBeGreaterThan(0);
+		expect(screen.getAllByText("linkedin").length).toBeGreaterThan(0);
+		expect(screen.getAllByText(/rss/i).length).toBeGreaterThan(0);
 	});
 
 	test("handles missing social links gracefully", () => {
@@ -69,15 +72,15 @@ describe("Footer Component", () => {
 			},
 		});
 
-		const { container } = render(<Footer />);
+		render(<Footer />);
 
-		const links = container.querySelectorAll("a");
-		const rssLink = Array.from(links).find((link) => link.textContent?.includes("RSS"));
+		const rssLink = screen.getByRole("link", { name: /rss/i });
 		expect(rssLink).toBeDefined();
 
-		// Only RSS span should be present
-		const footerSpans = container.querySelectorAll("footer > span");
-		expect(footerSpans.length).toBe(1);
+		// Should only have RSS, no social links
+		expect(screen.queryByText("github")).toBeNull();
+		expect(screen.queryByText("twitter")).toBeNull();
+		expect(screen.queryByText("linkedin")).toBeNull();
 	});
 
 	test("handles social links with missing data", () => {
@@ -94,14 +97,11 @@ describe("Footer Component", () => {
 			},
 		});
 
-		const { container } = render(<Footer />);
-
-		const links = container.querySelectorAll("a");
-		const linkTexts = Array.from(links).map((link) => link.textContent?.toLowerCase());
+		render(<Footer />);
 
 		// Only valid links should render
-		expect(linkTexts).toContain("github");
+		expect(screen.getByRole("link", { name: /github/i })).toBeDefined();
 		// Invalid links should not render
-		expect(linkTexts).not.toContain("twitter");
+		expect(screen.queryByRole("link", { name: /twitter/i })).toBeNull();
 	});
 });
