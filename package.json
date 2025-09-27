@@ -46,8 +46,8 @@
 	"description": "My personal website",
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",
-		"@commitlint/cli": "^19.8.1",
-		"@commitlint/config-conventional": "^19.8.1",
+		"@commitlint/cli": "^20.0.0",
+		"@commitlint/config-conventional": "^20.0.0",
 		"@happy-dom/global-registrator": "^18.0.1",
 		"@playwright/test": "1.55.0",
 		"@sindresorhus/slugify": "3.0.0",
