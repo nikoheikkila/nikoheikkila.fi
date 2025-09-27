@@ -64,7 +64,7 @@
 		"happy-dom": "^18.0.1",
 		"husky": "^9.1.7",
 		"inquirer": "12.9.6",
-		"snyk": "1.1299.0",
+		"snyk": "1.1299.1",
 		"typescript": "5.9.2"
 	},
 	"engines": {
