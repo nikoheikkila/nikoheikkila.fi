@@ -11,7 +11,8 @@
 		":maintainLockFilesWeekly"
 	],
 	"enabledManagers": [
-		"bun"
+		"bun",
+		"github-actions"
 	],
 	"schedule": [
 		"every weekend"
