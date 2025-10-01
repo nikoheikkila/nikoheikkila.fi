@@ -17,7 +17,4 @@ runs:
         echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
 
     - name: Install Task
-      uses: arduino/setup-task@v2
-      with:
-        version: 3.x
-        repo-token: ${{ github.token }}
+      uses: go-task/setup-task@v1
