@@ -1,0 +1,26 @@
+name: Setup Development Environment
+description: Sets up Node.js, Bun, and Task for the workflow
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: ".nvmrc"
+        check-latest: true
+
+    - name: Install Bun
+      shell: bash
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+    - name: Install Task
+      uses: arduino/setup-task@v2
+      with:
+        version: 3.x
+        repo-token: ${{ github.token }}

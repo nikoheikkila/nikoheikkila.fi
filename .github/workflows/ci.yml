@@ -12,41 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-          check-latest: true
-
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
-
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          version: 3.x
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cache Bun files
-        id: bun-cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            $HOME/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-commit-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-            ${{ runner.os }}-
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
 
       - name: Install dependencies
-        if: steps.bun-cache.outputs.cache-hit != 'true'
-        run: task install
+        uses: ./.github/actions/install-dependencies
+        with:
+          cache-key-suffix: commit
 
       - name: Lint Code Style
         run: task lint
@@ -62,41 +34,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-          check-latest: true
-
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
-
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          version: 3.x
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cache Bun files
-        uses: actions/cache@v4
-        id: bun-cache
-        with:
-          path: |
-            $HOME/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-acceptance-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-            ${{ runner.os }}-
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
 
       - name: Install dependencies
-        if: steps.bun-cache.outputs.cache-hit != 'true'
-        run: task install
+        uses: ./.github/actions/install-dependencies
+        with:
+          cache-key-suffix: acceptance
 
       - name: Cache Gatsby Build Files
         uses: actions/cache@v4
