@@ -56,7 +56,7 @@
 		"@testing-library/user-event": "^14.6.1",
 		"@types/bun": "^1.2.22",
 		"@types/inquirer": "9.0.9",
-		"@types/node": "24.7.0",
+		"@types/node": "24.7.2",
 		"@types/react": "19.2.2",
 		"@types/react-burger-menu": "2.8.7",
 		"@types/react-dom": "19.2.1",
