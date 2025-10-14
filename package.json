@@ -61,7 +61,7 @@
 		"@types/react-burger-menu": "2.8.7",
 		"@types/react-dom": "19.2.1",
 		"@types/react-syntax-highlighter": "15.5.13",
-		"happy-dom": "^19.0.0",
+		"happy-dom": "^20.0.0",
 		"husky": "^9.1.7",
 		"inquirer": "12.9.6",
 		"snyk": "1.1300.0",
