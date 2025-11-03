@@ -2,7 +2,8 @@ import React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import Layout, { LayoutType } from "../components/layout/layout";
+import Layout from "../components/layout/layout";
+import { LayoutType } from "../components/layout/types";
 import { useIcons } from "../components/hooks/useIcons";
 import PostAttachments from "../components/post/attachments";
 import Content from "../components/post/content";
@@ -81,6 +82,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
 export default Post;
 
+// biome-ignore lint/style/useComponentExportOnlyModules: Gatsby requires pageQuery export
 export const pageQuery = graphql`
 	query Post($slug: String!) {
 		site {

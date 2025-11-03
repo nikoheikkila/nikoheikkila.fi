@@ -5,11 +5,7 @@ import "../../styles/main.scss";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import { Slice } from "gatsby";
-
-export enum LayoutType {
-	LIST = "list",
-	SINGLE = "single",
-}
+import { LayoutType } from "./types";
 
 interface LayoutProps {
 	type: LayoutType;

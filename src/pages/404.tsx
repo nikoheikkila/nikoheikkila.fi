@@ -1,6 +1,7 @@
 import { type HeadFC, Link, type PageProps } from "gatsby";
 import React from "react";
-import Layout, { LayoutType } from "../components/layout/layout";
+import Layout from "../components/layout/layout";
+import { LayoutType } from "../components/layout/types";
 import SEO from "../components/seo";
 
 const title = "Page Not Found";

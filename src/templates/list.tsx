@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
-import Layout, { LayoutType } from "../components/layout/layout";
+import Layout from "../components/layout/layout";
+import { LayoutType } from "../components/layout/types";
 import { ArticleView } from "../components/blog/article";
 import BlogHeader from "../components/blog/header";
 import Pagination from "../components/blog/pagination";
@@ -34,6 +35,7 @@ export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
 
 export default Index;
 
+// biome-ignore lint/style/useComponentExportOnlyModules: Gatsby requires pageQuery export
 export const pageQuery = graphql`
 	query Index($skip: Int!, $limit: Int!) {
 		site {
