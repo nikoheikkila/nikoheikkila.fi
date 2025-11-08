@@ -3,21 +3,31 @@
 @use "_gatsby";
 @use "menu";
 
-@import url("https://api.fontshare.com/v2/css?f[]=bespoke-slab@700&f[]=bespoke-serif@400,700,401&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=synonym@400&f[]=amulya@700&display=swap");
 
 body {
 	margin: 0;
 	font-kerning: normal;
 	word-wrap: break-word;
 	font-feature-settings: "kern", "liga", "clig", "calt";
-	line-height: 40px;
+	line-height: 1.65;
+	letter-spacing: -0.011em; // Optical adjustment for Synonym
 
 	background-color: variables.$darkBg;
 	color: variables.$darkFg;
 
+	// Base font size for standard displays
 	font-weight: 400;
-	font-size: 16px;
-	font-family: "Bespoke Serif", variables.$fontFamily;
+	font-size: 17px;
+	font-family: "Synonym", variables.$fontFamily;
+
+	// Retina display optimization
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		font-size: 18px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
 }
 
 h1,
@@ -26,8 +36,16 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Bespoke Slab", variables.$fontFamily;
+	font-family: "Amulya", variables.$fontFamily;
 	font-weight: 700;
+	letter-spacing: -0.02em; // Tighter spacing for display font
+	line-height: 1.15;
+
+	// Better rendering on Retina
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 }
 
 ol,
@@ -38,14 +56,23 @@ ul {
 
 li,
 p {
-	font-size: 1.2rem;
-	line-height: 1.75rem;
+	// Base size for standard displays
+	font-size: 1.05rem;
+	line-height: 1.75;
+	margin-bottom: 1.5rem;
+
+	// Slightly larger for Retina
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		font-size: 1.125rem;
+		line-height: 1.8;
+	}
 }
 
 a {
 	color: inherit;
 	font-weight: 400;
 	text-decoration: none;
+	transition: color 0.2s ease-in-out;
 }
 
 hr {
@@ -72,28 +99,40 @@ section.footnotes {
  * Because dark mode should be the default everywhere, ha-ha!
  */
 @media (prefers-color-scheme: light) {
-	$lightBackground: #fff;
-
 	body {
-		background-color: $lightBackground;
-		filter: variables.$filter;
+		background-color: variables.$lightBg;
+		color: variables.$lightFg;
 	}
 
-	/* Re-enable dark background for specific elements by filtering twice */
-	img,
-	video,
-	iframe,
-	input[type="checkbox"],
-	.gatsby-highlight {
-		filter: variables.$filter;
+	h1,
+	h2 {
+		color: variables.$lightFg;
 	}
 
-	/* Tweak other elements */
-	li::marker {
-		color: $lightBackground;
+	a {
+		color: inherit;
+	}
+
+	hr {
+		border-top-color: variables.$lightBlue;
 	}
 
 	::selection {
-		background-color: hotpink;
+		background-color: variables.$lightTeal;
+		color: variables.$lightBg;
+	}
+
+	/* Code blocks */
+	.gatsby-highlight {
+		background-color: variables.$almostBlack !important;
+		border-color: rgba(37, 99, 235, 0.3);
+	}
+
+	pre[class*="language-"] {
+		background-color: variables.$almostBlack !important;
+	}
+
+	code[class*="language-"] {
+		color: rgb(226, 232, 240) !important;
 	}
 }

@@ -1,23 +1,48 @@
 .header {
 	text-align: center;
-	margin-bottom: 60px;
+	margin-bottom: 80px;
+	padding-bottom: 40px;
+	border-bottom: 2px solid rgba(157, 255, 236, 0.2);
+
+	@media (prefers-color-scheme: light) {
+		border-bottom-color: rgba(148, 163, 184, 0.3);
+	}
 }
 
 .title {
-	font-size: 3.2rem;
-	line-height: 4rem;
-	margin-bottom: 50px;
+	font-size: 3rem;
+	line-height: 1.1;
+	margin-bottom: 30px;
+	color: rgba(157, 255, 236, 1);
+	letter-spacing: -0.025em;
+
+	// Larger on Retina
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		font-size: 3.5rem;
+	}
+
+	@media (prefers-color-scheme: light) {
+		color: rgb(6, 182, 212);
+	}
 }
 
 .excerpt {
-	font-size: 1.35rem;
+	font-size: 1.25rem;
 	font-style: italic;
-	line-height: 1.5em;
-	margin-bottom: 50px;
+	line-height: 1.6;
+	margin-bottom: 40px;
+	color: rgba(236, 233, 230, 0.85);
+	font-weight: 400;
+
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		font-size: 1.35rem;
+		line-height: 1.65;
+	}
 }
 
 .meta {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
+	color: rgba(157, 157, 157, 1);
 }
 
 .author {

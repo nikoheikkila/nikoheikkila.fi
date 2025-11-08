@@ -2,7 +2,7 @@
 
 .list {
 	margin: 15px auto;
-	padding: 0 20px;
+	padding: 0 32px;
 
 	@include variables.for-phone-only() {
 		width: 90vw;
@@ -27,9 +27,30 @@
 
 .single {
 	margin: 0 auto;
+	padding: 0 24px;
 
 	a {
 		color: variables.$blue;
+		font-weight: 500;
+		text-decoration: underline;
+		text-decoration-color: rgba(83, 155, 245, 0.4);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+
+		@media (prefers-color-scheme: light) {
+			color: variables.$lightBlue;
+			text-decoration-color: rgba(37, 99, 235, 0.5);
+		}
+
+		&:hover {
+			color: variables.$teal;
+			text-decoration-color: variables.$teal;
+
+			@media (prefers-color-scheme: light) {
+				color: variables.$lightTeal;
+				text-decoration-color: variables.$lightTeal;
+			}
+		}
 	}
 
 	@include variables.for-phone-only() {

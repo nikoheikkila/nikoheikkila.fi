@@ -5,14 +5,23 @@ $red: #fd3300;
 $teal: rgb(157, 255, 236);
 $purple: rgb(108, 67, 246);
 
-$darkBg: rgb(27, 39, 51);
-$darkFg: rgb(236, 233, 230);
-$darkSecondaryFg: rgb(157, 157, 157);
-$gray: rgb(73, 73, 73);
-$darkGray: rgb(23, 23, 23);
-$almostBlack: rgb(10, 10, 10);
+// Dark theme colors (default)
+$darkBg: rgb(30, 41, 59); // Slightly lighter for better readability
+$darkFg: rgb(241, 245, 249); // Brighter text for better contrast
+$darkSecondaryFg: rgb(148, 163, 184); // Improved secondary text contrast
+$gray: rgb(100, 116, 139);
+$darkGray: rgb(30, 41, 59);
+$almostBlack: rgb(15, 23, 42);
 $darkHl: $blue;
 $yellow: #ffc600;
+
+// Light theme colors
+$lightBg: rgb(248, 250, 252); // Soft off-white for reduced eye strain
+$lightFg: rgb(15, 23, 42); // Dark slate for excellent readability
+$lightSecondaryFg: rgb(71, 85, 105);
+$lightBlue: #2563eb; // Darker blue for better light mode contrast
+$lightTeal: rgb(6, 182, 212); // Adjusted teal for light mode
+$lightGray: rgb(226, 232, 240);
 
 $hotpink: #ff00ff;
 

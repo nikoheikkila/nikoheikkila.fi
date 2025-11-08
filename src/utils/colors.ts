@@ -1,5 +1,5 @@
-/* Define colors of the rainbow */
-export const colorPalette: Array<string> = [
+/* Define colors of the rainbow - darker, more saturated for dark mode */
+export const colorPaletteDark: Array<string> = [
 	"#8d00ca", // Violet
 	"#4B0082", // Indigo
 	"#1351AA", // Blue
@@ -7,6 +7,17 @@ export const colorPalette: Array<string> = [
 	"#BAD523", // Yellow
 	"#9d3700", // Orange
 	"#AB1203", // Red
+];
+
+/* Softer, more muted colors for light mode */
+export const colorPaletteLight: Array<string> = [
+	"#c084fc", // Soft purple
+	"#818cf8", // Soft indigo
+	"#60a5fa", // Soft blue
+	"#34d399", // Soft green
+	"#fbbf24", // Soft yellow
+	"#fb923c", // Soft orange
+	"#f87171", // Soft red
 ];
 
 const COLOR_HEX_PATTERN = /^#?[A-Fa-f0-9]{6}$/;
@@ -17,10 +28,11 @@ const CONTRAST_BOUNDARY = 186;
 
 export const hex2dec = (value: string): number => Number.parseInt(value, 16);
 
-export const randomColor = (): string => {
-	const randomIndex: number = Math.floor(Math.random() * colorPalette.length);
+export const randomColor = (useLightMode = false): string => {
+	const palette = useLightMode ? colorPaletteLight : colorPaletteDark;
+	const randomIndex: number = Math.floor(Math.random() * palette.length);
 
-	return colorPalette[randomIndex];
+	return palette[randomIndex];
 };
 
 export const foregroundColor = (hex: string): string => {

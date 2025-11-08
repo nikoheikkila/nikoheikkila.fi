@@ -8,11 +8,11 @@
 
 .view {
 	display: grid;
-	gap: 16px;
+	gap: 24px;
 	grid-template-rows: auto;
 
 	box-sizing: border-box;
-	margin: 60px auto 0 auto;
+	margin: 80px auto 0 auto;
 
 	@include variables.for-phone-only() {
 		grid-template-columns: repeat(1, 1fr);
@@ -37,13 +37,19 @@
 
 .card {
 	box-sizing: border-box;
-	border: solid 6px #666;
-	padding: 20px;
+	border: solid 3px rgba(102, 102, 102, 0.3);
+	border-radius: 8px;
+	padding: 28px;
 	outline: 0;
+	background: rgba(30, 41, 59, 0.3);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
 	&:hover {
 		border-color: variables.$blue;
 		color: variables.$blue;
+		box-shadow: 0 8px 24px rgba(83, 155, 245, 0.2);
+		transform: translateY(-2px);
 	}
 
 	&:active,
@@ -51,14 +57,36 @@
 	&:focus-visible {
 		border-color: variables.$teal;
 		color: variables.$teal;
+		box-shadow: 0 8px 24px rgba(157, 255, 236, 0.2);
+	}
+
+	@media (prefers-color-scheme: light) {
+		background: rgba(255, 255, 255, 0.8);
+		border-color: rgba(148, 163, 184, 0.3);
+		box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+
+		&:hover {
+			border-color: variables.$lightBlue;
+			color: variables.$lightBlue;
+			box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+		}
+
+		&:active,
+		&:focus,
+		&:focus-visible {
+			border-color: variables.$lightTeal;
+			color: variables.$lightTeal;
+			box-shadow: 0 8px 24px rgba(6, 182, 212, 0.15);
+		}
 	}
 }
 
 .title {
 	display: block;
-	font-size: 1.35em;
-	line-height: 1.5em;
+	font-size: 1.4em;
+	line-height: 1.4em;
 	text-align: center;
+	margin-bottom: 16px;
 }
 
 .tags {

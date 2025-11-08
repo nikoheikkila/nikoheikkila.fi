@@ -1,6 +1,5 @@
 import slugify from "@sindresorhus/slugify";
-import React from "react";
-import { type CSSProperties, useEffect, useState } from "react";
+import React, { type CSSProperties, useEffect, useState } from "react";
 
 import { foregroundColor, randomColor } from "../utils/colors";
 
@@ -14,22 +13,27 @@ const Tag: React.FunctionComponent<Props> = ({ title, className, prefix = "#" })
 	const text = slugify(title, { decamelize: false, separator: "" });
 
 	const [style, setStyle] = useState<CSSProperties>({
-		display: "inline-block",
-		padding: "0 10px",
-		margin: 4,
-		borderRadius: 50,
 		backgroundColor: "transparent",
+		borderRadius: 50,
 		color: "inherit",
+		display: "inline-block",
+		fontWeight: 500,
+		margin: 4,
+		padding: "0 10px",
 	});
 
 	useEffect(() => {
-		const backgroundColor = randomColor();
+		const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		const useLightMode = !prefersDarkMode;
+
+		const backgroundColor = randomColor(useLightMode);
 		const color = foregroundColor(backgroundColor);
 
 		setStyle((style) => ({
 			...style,
-			backgroundColor,
-			color,
+			backgroundColor: useLightMode ? `${backgroundColor}20` : backgroundColor,
+			border: useLightMode ? `1px solid ${backgroundColor}40` : "none",
+			color: useLightMode ? backgroundColor : color,
 		}));
 	}, []);
 
