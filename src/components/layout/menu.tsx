@@ -30,8 +30,8 @@ const Menu: FunctionComponent<MenuProps> = () => {
 
 	return (
 		<aside>
-			<BurgerMenu isOpen={menuOpen} onOpen={() => setMenuOpen(true)} onClose={() => setMenuOpen(false)}>
-				{menuOpen ? allPages : null}
+			<BurgerMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} onOpen={() => setMenuOpen(true)}>
+				{allPages}
 			</BurgerMenu>
 		</aside>
 	);
