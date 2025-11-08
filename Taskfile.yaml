@@ -24,9 +24,15 @@ tasks:
     cmds:
       - bunx biome check --write .
 
+  typegen:
+    desc: Generate GraphQL TypeScript types
+    deps: [install]
+    cmds:
+      - bun run scripts/generate-types.ts
+
   lint:
     desc: Lint codebase for style issues
-    deps: [install]
+    deps: [install, typegen]
     cmds:
       - bunx tsc --noEmit
       - bunx biome check .
@@ -94,6 +100,7 @@ tasks:
     desc: Clear build cache and artifacts
     cmds:
       - bunx gatsby clean
+      - rm -f src/gatsby-types.d.ts
 
   build:
     desc: Build the Gatsby production site
