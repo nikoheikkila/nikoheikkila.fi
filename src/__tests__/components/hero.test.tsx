@@ -1,5 +1,6 @@
-import { describe, expect, test } from "bun:test";
-import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { render } from "vitest-browser-react";
+import { page } from "vitest/browser";
 import React from "react";
 import Hero from "../../components/hero";
 
@@ -29,33 +30,33 @@ const createMockImage = () => ({
 describe("Hero Component", () => {
 	const mockImageData = createMockImage().childImageSharp.gatsbyImageData;
 
-	test("renders hero image with correct alt text", () => {
+	test("renders hero image with correct alt text", async () => {
 		const altText = "Beautiful landscape photo";
-		render(<Hero alt={altText} data={mockImageData} />);
+		await render(<Hero alt={altText} data={mockImageData} />);
 
-		const image = screen.getByAltText(altText);
-		expect(image).toBeDefined();
+		const image = page.getByAltText(altText);
+		await expect.element(image).toBeInTheDocument();
 	});
 
-	test("renders within a header element", () => {
-		render(<Hero alt="Test image" data={mockImageData} />);
+	test("renders within a header element", async () => {
+		await render(<Hero alt="Test image" data={mockImageData} />);
 
-		const header = screen.getByRole("banner");
-		expect(header).toBeDefined();
+		const header = page.getByRole("banner");
+		await expect.element(header).toBeInTheDocument();
 	});
 
-	test("applies correct loading strategy", () => {
-		render(<Hero alt="Test image" data={mockImageData} />);
+	test("applies correct loading strategy", async () => {
+		await render(<Hero alt="Test image" data={mockImageData} />);
 
-		const image = screen.getByAltText("Test image");
-		expect(image.getAttribute("loading")).toBe("eager");
+		const image = page.getByAltText("Test image");
+		await expect.element(image).toHaveAttribute("loading", "eager");
 	});
 
-	test("renders GatsbyImage component", () => {
-		render(<Hero alt="Styled image" data={mockImageData} />);
+	test("renders GatsbyImage component", async () => {
+		await render(<Hero alt="Styled image" data={mockImageData} />);
 
 		// GatsbyImage mock renders a regular img tag
-		const image = screen.getByAltText("Styled image");
-		expect(image).toBeDefined();
+		const image = page.getByAltText("Styled image");
+		await expect.element(image).toBeInTheDocument();
 	});
 });

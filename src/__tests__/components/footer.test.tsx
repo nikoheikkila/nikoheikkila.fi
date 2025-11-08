@@ -1,69 +1,143 @@
-import { describe, expect, spyOn, test } from "bun:test";
-import { render, screen } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
+import { render } from "vitest-browser-react";
+import { page } from "vitest/browser";
 import React from "react";
 import Footer from "../../components/layout/footer";
-import * as footerGraphQL from "../../graphql/footer";
+
+// Mock the footer GraphQL module
+vi.mock("../../graphql/footer", () => ({
+	getFooterLinks: vi.fn(),
+}));
 
 describe("Footer Component", () => {
-	// Create a spy for getFooterLinks that we can control per test
-	const mockFooterData = {
-		site: {
-			siteMetadata: {
-				rss: "/feed.xml",
-				social: [
-					{ name: "github", url: "https://github.com/testuser" },
-					{ name: "twitter", url: "https://twitter.com/testuser" },
-					{ name: "linkedin", url: "https://linkedin.com/in/testuser" },
-				],
+	test("renders RSS feed link", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
+			site: {
+				siteMetadata: {
+					rss: "/feed.xml",
+					social: [
+						{ name: "github", url: "https://github.com/testuser" },
+						{
+							name: "twitter",
+							url: "https://twitter.com/testuser",
+						},
+						{
+							name: "linkedin",
+							url: "https://linkedin.com/in/testuser",
+						},
+					],
+				},
 			},
-		},
-	};
+		});
 
-	test("renders RSS feed link", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		render(<Footer />);
+		await render(<Footer />);
 
-		const rssLink = screen.getByRole("link", { name: /rss/i });
-		expect(rssLink).toBeDefined();
+		const rssLink = page.getByRole("link", { name: /rss/i });
+		await expect.element(rssLink).toBeInTheDocument();
 	});
 
-	test("renders RSS icon", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		render(<Footer />);
+	test("renders RSS icon", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
+			site: {
+				siteMetadata: {
+					rss: "/feed.xml",
+					social: [
+						{ name: "github", url: "https://github.com/testuser" },
+						{
+							name: "twitter",
+							url: "https://twitter.com/testuser",
+						},
+						{
+							name: "linkedin",
+							url: "https://linkedin.com/in/testuser",
+						},
+					],
+				},
+			},
+		});
+
+		await render(<Footer />);
 
 		// Check that the footer contains RSS icon and link
-		const footer = screen.getByRole("contentinfo");
-		expect(footer).toBeDefined();
-		const rssElements = screen.getAllByText(/rss/i);
+		const footer = page.getByRole("contentinfo");
+		await expect.element(footer).toBeInTheDocument();
+
+		const rssElements = page.getByText(/rss/i).all();
 		expect(rssElements.length).toBeGreaterThan(0);
 	});
 
-	test("renders all social media links", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		render(<Footer />);
+	test("renders all social media links", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
+			site: {
+				siteMetadata: {
+					rss: "/feed.xml",
+					social: [
+						{ name: "github", url: "https://github.com/testuser" },
+						{
+							name: "twitter",
+							url: "https://twitter.com/testuser",
+						},
+						{
+							name: "linkedin",
+							url: "https://linkedin.com/in/testuser",
+						},
+					],
+				},
+			},
+		});
 
-		const githubLink = screen.getByRole("link", { name: /github/i });
-		const twitterLink = screen.getByRole("link", { name: /twitter/i });
-		const linkedinLink = screen.getByRole("link", { name: /linkedin/i });
+		await render(<Footer />);
 
-		expect(githubLink).toBeDefined();
-		expect(twitterLink).toBeDefined();
-		expect(linkedinLink).toBeDefined();
+		const githubLink = page.getByRole("link", { name: /github/i });
+		const twitterLink = page.getByRole("link", { name: /twitter/i });
+		const linkedinLink = page.getByRole("link", { name: /linkedin/i });
+
+		await expect.element(githubLink).toBeInTheDocument();
+		await expect.element(twitterLink).toBeInTheDocument();
+		await expect.element(linkedinLink).toBeInTheDocument();
 	});
 
-	test("renders social media icons", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue(mockFooterData);
-		render(<Footer />);
+	test("renders social media icons", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
+			site: {
+				siteMetadata: {
+					rss: "/feed.xml",
+					social: [
+						{ name: "github", url: "https://github.com/testuser" },
+						{
+							name: "twitter",
+							url: "https://twitter.com/testuser",
+						},
+						{
+							name: "linkedin",
+							url: "https://linkedin.com/in/testuser",
+						},
+					],
+				},
+			},
+		});
+
+		await render(<Footer />);
 
 		// Check that we have all the social icons by checking for multiple elements
-		expect(screen.getAllByText("github").length).toBeGreaterThan(0);
-		expect(screen.getAllByText("twitter").length).toBeGreaterThan(0);
-		expect(screen.getAllByText("linkedin").length).toBeGreaterThan(0);
-		expect(screen.getAllByText(/rss/i).length).toBeGreaterThan(0);
+		const githubElements = page.getByText("github").all();
+		const twitterElements = page.getByText("twitter").all();
+		const linkedinElements = page.getByText("linkedin").all();
+		const rssElements = page.getByText(/rss/i).all();
+
+		expect(githubElements.length).toBeGreaterThan(0);
+		expect(twitterElements.length).toBeGreaterThan(0);
+		expect(linkedinElements.length).toBeGreaterThan(0);
+		expect(rssElements.length).toBeGreaterThan(0);
 	});
 
-	test("handles missing social links gracefully", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue({
+	test("handles missing social links gracefully", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
 					rss: "/feed.xml",
@@ -72,19 +146,24 @@ describe("Footer Component", () => {
 			},
 		});
 
-		render(<Footer />);
+		await render(<Footer />);
 
-		const rssLink = screen.getByRole("link", { name: /rss/i });
-		expect(rssLink).toBeDefined();
+		const rssLink = page.getByRole("link", { name: /rss/i });
+		await expect.element(rssLink).toBeInTheDocument();
 
 		// Should only have RSS, no social links
-		expect(screen.queryByText("github")).toBeNull();
-		expect(screen.queryByText("twitter")).toBeNull();
-		expect(screen.queryByText("linkedin")).toBeNull();
+		const githubLink = page.getByText("github");
+		const twitterLink = page.getByText("twitter");
+		const linkedinLink = page.getByText("linkedin");
+
+		await expect.element(githubLink).not.toBeInTheDocument();
+		await expect.element(twitterLink).not.toBeInTheDocument();
+		await expect.element(linkedinLink).not.toBeInTheDocument();
 	});
 
-	test("handles social links with missing data", () => {
-		spyOn(footerGraphQL, "getFooterLinks").mockReturnValue({
+	test("handles social links with missing data", async () => {
+		const { getFooterLinks } = await import("../../graphql/footer");
+		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
 					rss: "/feed.xml",
@@ -97,11 +176,14 @@ describe("Footer Component", () => {
 			},
 		});
 
-		render(<Footer />);
+		await render(<Footer />);
 
 		// Only valid links should render
-		expect(screen.getByRole("link", { name: /github/i })).toBeDefined();
+		const githubLink = page.getByRole("link", { name: /github/i });
+		await expect.element(githubLink).toBeInTheDocument();
+
 		// Invalid links should not render
-		expect(screen.queryByRole("link", { name: /twitter/i })).toBeNull();
+		const twitterLink = page.getByRole("link", { name: /twitter/i });
+		await expect.element(twitterLink).not.toBeInTheDocument();
 	});
 });

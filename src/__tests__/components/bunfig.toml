@@ -1,9 +1,0 @@
-[test]
-root = "./src/__tests__/components"
-preload = ["./src/__tests__/components/setup.ts"]
-coverage = true
-coverageReporter = ["text", "lcov"]
-coverageThreshold = 1.0
-coveragePathIgnorePatterns = [
-	"!src/components/**"
-]

@@ -1,5 +1,6 @@
-import { describe, expect, test } from "bun:test";
-import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { render } from "vitest-browser-react";
+import { page } from "vitest/browser";
 import React from "react";
 import { ArticleCard, ArticleView } from "../../components/blog/article";
 
@@ -47,129 +48,131 @@ describe("ArticleCard Component", () => {
 		title: "Test Article",
 	};
 
-	test("renders article title", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("renders article title", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const { textContent } = screen.getByRole("heading");
-
-		expect(textContent).toBe(defaultProps.title);
+		const heading = page.getByRole("heading");
+		await expect.element(heading).toHaveTextContent(defaultProps.title);
 	});
 
-	test("renders article excerpt", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("renders article excerpt", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const excerpt = screen.getByText(defaultProps.excerpt);
-
-		expect(excerpt).toBeDefined();
+		const excerpt = page.getByText(defaultProps.excerpt);
+		await expect.element(excerpt).toBeInTheDocument();
 	});
 
-	test("renders article date", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("renders article date", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const dateSpan = screen.getByText(defaultProps.date);
-
-		expect(dateSpan).toBeDefined();
+		const dateSpan = page.getByText(defaultProps.date);
+		await expect.element(dateSpan).toBeInTheDocument();
 	});
 
-	test("renders reading time when provided", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("renders reading time when provided", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const readingTime = screen.getByText("5 minutes read", {
+		const readingTime = page.getByText("5 minutes read", {
 			exact: false,
 		});
-
-		expect(readingTime).toBeDefined();
+		await expect.element(readingTime).toBeInTheDocument();
 	});
 
-	test("does not render reading time when zero", () => {
-		render(<ArticleCard {...defaultProps} timeToRead={0} />);
+	test("does not render reading time when zero", async () => {
+		await render(<ArticleCard {...defaultProps} timeToRead={0} />);
 
-		const readingTime = screen.queryByText("5 minutes read", {
+		const readingTime = page.getByText("5 minutes read", {
 			exact: false,
 		});
-
-		expect(readingTime).toBeNull();
+		await expect.element(readingTime).not.toBeInTheDocument();
 	});
 
-	test("renders all categories as tags", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("renders all categories as tags", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const firstTag = screen.getByText("#testing");
-		const secondTag = screen.getByText("#react");
+		const firstTag = page.getByText("#testing");
+		const secondTag = page.getByText("#react");
 
-		expect(firstTag).toBeDefined();
-		expect(secondTag).toBeDefined();
+		await expect.element(firstTag).toBeInTheDocument();
+		await expect.element(secondTag).toBeInTheDocument();
 	});
 
-	test("links to correct article URL", () => {
-		render(<ArticleCard {...defaultProps} />);
+	test("links to correct article URL", async () => {
+		await render(<ArticleCard {...defaultProps} />);
 
-		const link = screen.getByTestId("post-title");
-
-		expect(link.getAttribute("href")).toBe(defaultProps.slug);
+		const link = page.getByTestId("post-title");
+		await expect.element(link).toHaveAttribute("href", defaultProps.slug);
 	});
 });
 
 describe("ArticleView Component", () => {
 	const mockLocation = createMockLocation("/");
 
-	test("renders section header", () => {
-		render(<ArticleView location={mockLocation} nodes={[]} />);
+	test("renders section header", async () => {
+		await render(<ArticleView location={mockLocation} nodes={[]} />);
 
-		const { textContent } = screen.getByRole("heading");
-
-		expect(textContent).toBe("Latest Articles");
+		const heading = page.getByRole("heading");
+		await expect.element(heading).toHaveTextContent("Latest Articles");
 	});
 
-	test("renders multiple articles", () => {
+	test("renders multiple articles", async () => {
 		const mockPosts = [
 			{
 				...createMockPost(),
 				fields: { slug: "/blog/first" },
-				frontmatter: { ...createMockPost().frontmatter, title: "First Post" },
+				frontmatter: {
+					...createMockPost().frontmatter,
+					title: "First Post",
+				},
 			},
 			{
 				...createMockPost(),
 				fields: { slug: "/blog/second" },
-				frontmatter: { ...createMockPost().frontmatter, title: "Second Post" },
+				frontmatter: {
+					...createMockPost().frontmatter,
+					title: "Second Post",
+				},
 			},
 			{
 				...createMockPost(),
 				fields: { slug: "/blog/third" },
-				frontmatter: { ...createMockPost().frontmatter, title: "Third Post" },
+				frontmatter: {
+					...createMockPost().frontmatter,
+					title: "Third Post",
+				},
 			},
 		];
 
-		render(<ArticleView location={mockLocation} nodes={mockPosts} />);
+		await render(<ArticleView location={mockLocation} nodes={mockPosts} />);
 
-		const titles = screen.getAllByRole("heading");
-		const titleTexts = Array.from(titles).map((title) => title.textContent);
+		const firstPost = page.getByText("First Post");
+		const secondPost = page.getByText("Second Post");
+		const thirdPost = page.getByText("Third Post");
 
-		expect(titleTexts).toContain("First Post");
-		expect(titleTexts).toContain("Second Post");
-		expect(titleTexts).toContain("Third Post");
+		await expect.element(firstPost).toBeInTheDocument();
+		await expect.element(secondPost).toBeInTheDocument();
+		await expect.element(thirdPost).toBeInTheDocument();
 	});
 
-	test("handles empty node list", () => {
-		render(<ArticleView location={mockLocation} nodes={[]} />);
+	test("handles empty node list", async () => {
+		await render(<ArticleView location={mockLocation} nodes={[]} />);
 
-		const { textContent } = screen.getByRole("heading");
-		const articles = screen.queryAllByTestId("post-title");
+		const heading = page.getByRole("heading");
+		await expect.element(heading).toHaveTextContent("Latest Articles");
 
-		expect(textContent).toBe("Latest Articles");
-		expect(articles.length).toBe(0);
+		const articles = page.getByTestId("post-title");
+		await expect.element(articles).not.toBeInTheDocument();
 	});
 
-	test("handles nodes with missing data gracefully", () => {
+	test("handles nodes with missing data gracefully", async () => {
 		const incompletePost = {
 			fields: { slug: "/test" },
 			frontmatter: { title: "Incomplete Post" },
 		};
 
-		render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);
+		await render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);
 
-		const titles = Array.from(screen.getAllByRole("heading")).map((title) => title.textContent);
-
-		expect(titles).toContain("Incomplete Post");
+		const postTitle = page.getByText("Incomplete Post");
+		await expect.element(postTitle).toBeInTheDocument();
 	});
 });

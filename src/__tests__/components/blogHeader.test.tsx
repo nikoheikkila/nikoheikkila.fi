@@ -1,61 +1,66 @@
-import { describe, expect, test } from "bun:test";
-import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { render } from "vitest-browser-react";
+import { page } from "vitest/browser";
 import React from "react";
 import BlogHeader from "../../components/blog/header";
 
 describe("BlogHeader Component", () => {
-	test("renders blog title", () => {
+	test("renders blog title", async () => {
 		const title = "My Awesome Blog";
-		render(<BlogHeader title={title} />);
+		await render(<BlogHeader title={title} />);
 
-		const { textContent } = screen.getByRole("heading", { level: 1 });
-		expect(textContent).toBe(title);
+		const heading = page.getByRole("heading", { level: 1 });
+		await expect.element(heading).toHaveTextContent(title);
 	});
 
-	test("renders profile image with correct alt text", () => {
+	test("renders profile image with correct alt text", async () => {
 		const title = "Test Blog";
-		render(<BlogHeader title={title} />);
+		await render(<BlogHeader title={title} />);
 
 		// Since the image appears to be mocked and not rendering, check for the link instead
-		const homeLink = screen.getByRole("link", { name: "" });
-		expect(homeLink).toBeDefined();
+		const homeLink = page.getByRole("link", { name: "" }).first();
+		await expect.element(homeLink).toBeInTheDocument();
 	});
 
-	test("has home link with default url", () => {
-		render(<BlogHeader title="Blog" />);
+	test("has home link with default url", async () => {
+		await render(<BlogHeader title="Blog" />);
 
-		const homeLink = screen.getByRole("link", { name: "" });
-		expect(homeLink.getAttribute("href")).toBe("/");
+		const homeLink = page.getByRole("link", { name: "" }).first();
+		await expect.element(homeLink).toHaveAttribute("href", "/");
 	});
 
-	test("uses custom URL when provided", () => {
+	test("uses custom URL when provided", async () => {
 		const customUrl = "/custom-home";
-		render(<BlogHeader title="Blog" url={customUrl} />);
+		await render(<BlogHeader title="Blog" url={customUrl} />);
 
-		const homeLink = screen.getByRole("link", { name: "" });
-		expect(homeLink.getAttribute("href")).toBe(customUrl);
+		const homeLink = page.getByRole("link", { name: "" }).first();
+		await expect.element(homeLink).toHaveAttribute("href", customUrl);
 	});
 
-	test("renders description with about link", () => {
-		render(<BlogHeader title="Blog" />);
+	test("renders description with about link", async () => {
+		await render(<BlogHeader title="Blog" />);
 
-		const aboutLink = screen.getByRole("link", { name: /the longer story of me/i });
-		expect(aboutLink).toBeDefined();
-		expect(aboutLink.getAttribute("href")).toBe("/about");
+		const aboutLink = page.getByRole("link", {
+			name: /the longer story of me/i,
+		});
+		await expect.element(aboutLink).toBeInTheDocument();
+		await expect.element(aboutLink).toHaveAttribute("href", "/about");
 	});
 
-	test("renders subscribe to feed link", () => {
-		render(<BlogHeader title="Blog" />);
+	test("renders subscribe to feed link", async () => {
+		await render(<BlogHeader title="Blog" />);
 
-		const feedLink = screen.getByRole("link", { name: /subscribe to my feed/i });
-		expect(feedLink).toBeDefined();
-		expect(feedLink.getAttribute("href")).toBe("/feed");
+		const feedLink = page.getByRole("link", {
+			name: /subscribe to my feed/i,
+		});
+		await expect.element(feedLink).toBeInTheDocument();
+		await expect.element(feedLink).toHaveAttribute("href", "/feed");
 	});
 
-	test("contains welcome message", () => {
-		render(<BlogHeader title="Blog" />);
+	test("contains welcome message", async () => {
+		await render(<BlogHeader title="Blog" />);
 
-		const welcomeText = screen.getByText(/hello, traveller/i);
-		expect(welcomeText).toBeDefined();
+		const welcomeText = page.getByText(/hello, traveller/i);
+		await expect.element(welcomeText).toBeInTheDocument();
 	});
 });

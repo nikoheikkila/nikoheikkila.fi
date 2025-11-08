@@ -1,11 +1,11 @@
-import { describe, expect, spyOn, test } from "bun:test";
+import { describe, expect, test, vi } from "vitest";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { purgeIcons, useIcons } from "../../components/hooks/useIcons";
 
 describe("useIcons Hook", () => {
 	test("adds icons to library", () => {
-		const librarySpy = spyOn(library, "add");
+		const librarySpy = vi.spyOn(library, "add");
 		const icons = [faRss];
 
 		useIcons(icons);
@@ -14,7 +14,7 @@ describe("useIcons Hook", () => {
 	});
 
 	test("purgeIcons resets the library", () => {
-		const libraryResetSpy = spyOn(library, "reset");
+		const libraryResetSpy = vi.spyOn(library, "reset");
 
 		purgeIcons();
 
