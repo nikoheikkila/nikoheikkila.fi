@@ -9,14 +9,12 @@ declare global {
 	};
 }
 
-// Vitest Browser Mode handles DOM setup automatically
 // Mock Gatsby's loader to prevent prefetch errors in tests
 globalThis.___loader = {
 	enqueue: () => {},
 	hovering: () => {},
 };
 
-// Suppress console warnings from gatsby-plugin-image and components
 const originalWarn = console.warn;
 console.warn = (...args: unknown[]) => {
 	const message = args[0];

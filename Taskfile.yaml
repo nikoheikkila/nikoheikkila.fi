@@ -28,6 +28,7 @@ tasks:
     desc: Lint codebase for style issues
     deps: [install]
     cmds:
+      - bunx tsc --noEmit
       - bunx biome check .
 
   test:

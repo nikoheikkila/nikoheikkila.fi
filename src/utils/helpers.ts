@@ -1,7 +1,8 @@
 interface Route {
 	pathname: string;
 	state?: {
-		previous: string;
+		previous?: string;
+		[key: string]: unknown;
 	};
 }
 
@@ -23,7 +24,7 @@ export const formatReadingTime = (minutes: number): string => {
  */
 export const isIndex = ({ pathname }: Route): boolean => /^\/\d*$/.test(pathname);
 export const getPreviousPage = ({ state }: Route): string => state?.previous ?? "/";
-export const combinePaths = (...paths: string[]): string => paths.join("").replace(/([^:]\/)\/+/g, "$1");
+export const combinePaths = (...paths: string[]): string => paths.join("").replaceAll(/([^:]\/)\/+/g, "$1");
 
 const formatCups = (minutes: number, icon = "☕️"): string => {
 	const maxCups = 5;

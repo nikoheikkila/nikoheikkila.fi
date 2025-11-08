@@ -58,19 +58,23 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 				a({ children, ...props }) {
 					return <BlogLink {...props}>{children}</BlogLink>;
 				},
-				code({ inline, className, children, ...props }) {
+				code({ className, children, ...props }) {
+					// Check if it's inline code by looking at the node type
 					const match = /language-(\w+)/.exec(className || "");
 					const [, language] = Array.from(match || []);
+					const childrenArray = Array.isArray(children) ? children : [children];
 
-					if (inline || !language) {
+					// If there's no language specified, treat as inline code
+					if (!language) {
 						return (
 							<InlineCode className={className} {...props}>
-								{children}
+								{childrenArray}
 							</InlineCode>
 						);
 					}
 
-					const lines = children.toString().split("\n");
+					const childString = convertChildrenToString(children);
+					const lines = childString.split("\n");
 
 					return (
 						<CodeBlock
@@ -79,12 +83,11 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 							removedLines={lines.map(extractRemovedLineNumber)}
 							{...props}
 						>
-							{children}
+							{childrenArray}
 						</CodeBlock>
 					);
 				},
 			}}
-			// @ts-expect-error "rehype-raw does not have valid typings"
 			rehypePlugins={[rehypeRaw, rehypeKatex]}
 			remarkPlugins={[remarkGfm, remarkMath]}
 		>
@@ -95,6 +98,16 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 
 const extractAddedLineNumber = (line: string, index: number) => (line.startsWith("+") ? index + 1 : 0);
 const extractRemovedLineNumber = (line: string, index: number) => (line.startsWith("-") ? index + 1 : 0);
+
+const convertChildrenToString = (children: ReactNode): string => {
+	if (typeof children === "string") {
+		return children;
+	}
+	if (typeof children === "number" || typeof children === "boolean") {
+		return String(children);
+	}
+	return "";
+};
 
 interface CodeBlockProps {
 	language: string;
@@ -110,6 +123,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 	children = [],
 	...props
 }) => {
+	// Convert children to string safely
+	const childString = Array.isArray(children)
+		? children.map(convertChildrenToString).join("")
+		: convertChildrenToString(children);
+
 	return (
 		<section className={styles.codeblock}>
 			<span className={styles.language}>{makeTitleCase(language)}</span>
@@ -152,7 +170,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 				wrapLines
 				{...props}
 			>
-				{children.toString().replace(/\n$/, "")}
+				{childString.replace(/\n$/, "")}
 			</SyntaxHighlighter>
 		</section>
 	);

@@ -4,24 +4,30 @@ import { page } from "vitest/browser";
 import React from "react";
 import { ArticleCard, ArticleView } from "../../components/blog/article";
 
-const createMockLocation = (pathname = "/") => ({
-	hash: "",
-	host: "example.com",
-	hostname: "example.com",
-	href: `https://example.com${pathname}`,
-	key: "default",
-	origin: "https://example.com",
-	pathname,
-	port: "",
-	protocol: "https:",
-	search: "",
-	state: null,
-});
+const createMockLocation = (pathname = "/"): Location =>
+	({
+		hash: "",
+		host: "example.com",
+		hostname: "example.com",
+		href: `https://example.com${pathname}`,
+		key: "default",
+		origin: "https://example.com",
+		pathname,
+		port: "",
+		protocol: "https:",
+		search: "",
+		state: null,
+		ancestorOrigins: {} as DOMStringList,
+		assign: () => {},
+		reload: () => {},
+		replace: () => {},
+	}) as Location;
 
 const createMockPost = (overrides = {}) => ({
 	excerpt: "This is a test post excerpt",
 	fields: {
 		slug: "/blog/test-post",
+		hero: null,
 	},
 	frontmatter: {
 		author: "Test Author",
@@ -29,6 +35,9 @@ const createMockPost = (overrides = {}) => ({
 		date: "2024-01-01",
 		lang: "en",
 		title: "Test Post",
+		excerpt: null,
+		hero: null,
+		type: null,
 		...overrides,
 	},
 	html: "<p>Test post content</p>",
@@ -119,7 +128,7 @@ describe("ArticleView Component", () => {
 		const mockPosts = [
 			{
 				...createMockPost(),
-				fields: { slug: "/blog/first" },
+				fields: { slug: "/blog/first", hero: null },
 				frontmatter: {
 					...createMockPost().frontmatter,
 					title: "First Post",
@@ -127,7 +136,7 @@ describe("ArticleView Component", () => {
 			},
 			{
 				...createMockPost(),
-				fields: { slug: "/blog/second" },
+				fields: { slug: "/blog/second", hero: null },
 				frontmatter: {
 					...createMockPost().frontmatter,
 					title: "Second Post",
@@ -135,7 +144,7 @@ describe("ArticleView Component", () => {
 			},
 			{
 				...createMockPost(),
-				fields: { slug: "/blog/third" },
+				fields: { slug: "/blog/third", hero: null },
 				frontmatter: {
 					...createMockPost().frontmatter,
 					title: "Third Post",
@@ -165,9 +174,18 @@ describe("ArticleView Component", () => {
 	});
 
 	test("handles nodes with missing data gracefully", async () => {
-		const incompletePost = {
-			fields: { slug: "/test" },
-			frontmatter: { title: "Incomplete Post" },
+		const incompletePost: Partial<Queries.MarkdownRemark> = {
+			fields: { slug: "/test", hero: null },
+			frontmatter: {
+				title: "Incomplete Post",
+				author: null,
+				categories: null,
+				date: null,
+				excerpt: null,
+				hero: null,
+				lang: null,
+				type: null,
+			},
 		};
 
 		await render(<ArticleView location={mockLocation} nodes={[incompletePost]} />);

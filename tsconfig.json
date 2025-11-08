@@ -1,16 +1,16 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"module": "CommonJS",
+		"module": "NodeNext",
 		"jsx": "react",
-		"lib": ["dom", "ES2020"],
+		"lib": ["dom", "ES2022"],
 		"strict": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"noEmit": true,
 		"skipLibCheck": true,
-		"moduleResolution": "node"
+		"moduleResolution": "nodenext"
 	},
 	"include": [
 		"./src/**/*",

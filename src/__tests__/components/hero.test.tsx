@@ -3,32 +3,24 @@ import { render } from "vitest-browser-react";
 import { page } from "vitest/browser";
 import React from "react";
 import Hero from "../../components/hero";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 
-const createMockImage = () => ({
-	childImageSharp: {
-		gatsbyImageData: {
-			height: 600,
-			images: {
-				fallback: {
-					sizes: "(max-width: 800px) 100vw, 800px",
-					src: "/test-image.jpg",
-					srcSet: "/test-image.jpg",
-				},
-				sources: [],
-			},
-			layout: "fixed",
-			width: 800,
+const createMockImage = (): IGatsbyImageData => ({
+	height: 600,
+	images: {
+		fallback: {
+			sizes: "(max-width: 800px) 100vw, 800px",
+			src: "/test-image.jpg",
+			srcSet: "/test-image.jpg",
 		},
+		sources: [],
 	},
-	original: {
-		height: 600,
-		src: "/test-image.jpg",
-		width: 800,
-	},
+	layout: "fixed",
+	width: 800,
 });
 
 describe("Hero Component", () => {
-	const mockImageData = createMockImage().childImageSharp.gatsbyImageData;
+	const mockImageData = createMockImage();
 
 	test("renders hero image with correct alt text", async () => {
 		const altText = "Beautiful landscape photo";

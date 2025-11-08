@@ -11,7 +11,7 @@ vi.mock("../../graphql/footer", () => ({
 
 describe("Footer Component", () => {
 	test("renders RSS feed link", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
@@ -38,7 +38,7 @@ describe("Footer Component", () => {
 	});
 
 	test("renders RSS icon", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
@@ -69,7 +69,7 @@ describe("Footer Component", () => {
 	});
 
 	test("renders all social media links", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
@@ -101,7 +101,7 @@ describe("Footer Component", () => {
 	});
 
 	test("renders social media icons", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
@@ -136,7 +136,7 @@ describe("Footer Component", () => {
 	});
 
 	test("handles missing social links gracefully", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
@@ -162,7 +162,7 @@ describe("Footer Component", () => {
 	});
 
 	test("handles social links with missing data", async () => {
-		const { getFooterLinks } = await import("../../graphql/footer");
+		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({
 			site: {
 				siteMetadata: {
