@@ -23,7 +23,7 @@ const Menu: FunctionComponent<MenuProps> = () => {
 	const staticPages = getStaticPages();
 
 	const allPages = [...links, ...staticPages].map(({ slug, title }) => (
-		<BlogLink key={slug} href={slug || ""}>
+		<BlogLink href={slug || ""} key={slug}>
 			{title}
 		</BlogLink>
 	));

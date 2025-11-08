@@ -22,15 +22,13 @@ tasks:
     desc: Format codebase
     deps: [install]
     cmds:
-      - bunx biome format --write .
-      - bunx biome lint --fix .
+      - bunx biome check --write .
 
   lint:
     desc: Lint codebase for style issues
     deps: [install]
     cmds:
-      - bunx biome format .
-      - bunx biome lint .
+      - bunx biome check .
 
   test:
     desc: Run application test suite

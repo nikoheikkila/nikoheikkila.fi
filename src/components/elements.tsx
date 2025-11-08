@@ -19,7 +19,7 @@ export const BlogLink: React.FC<BlogLinkProps> = ({ href, children, ...props }) 
 		);
 
 	return (
-		<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+		<a href={href} rel="noopener noreferrer" target="_blank" {...props}>
 			{children}
 		</a>
 	);

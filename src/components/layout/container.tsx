@@ -9,7 +9,7 @@ export const ListContainer: FunctionComponent<WithChildren> = ({ children }) => 
 	const id = useId();
 
 	return (
-		<main id={id} className={styles.list}>
+		<main className={styles.list} id={id}>
 			{children}
 		</main>
 	);
@@ -19,7 +19,7 @@ export const SinglePostContainer: FunctionComponent<WithChildren> = ({ children 
 	const id = useId();
 
 	return (
-		<main id={id} className={styles.single}>
+		<main className={styles.single} id={id}>
 			{children}
 		</main>
 	);

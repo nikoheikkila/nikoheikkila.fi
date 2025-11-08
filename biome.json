@@ -4,7 +4,7 @@
 		"enabled": true,
 		"actions": {
 			"source": {
-				"organizeImports": "on",
+				"organizeImports": "off",
 				"useSortedAttributes": "on",
 				"useSortedKeys": "off",
 				"useSortedProperties": "on"

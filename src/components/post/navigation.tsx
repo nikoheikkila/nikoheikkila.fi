@@ -19,7 +19,7 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({ previous, next }) 
 		<ul>
 			<li>
 				{previous?.slug && (
-					<Link to={previous.slug} rel="prev">
+					<Link rel="prev" to={previous.slug}>
 						<FontAwesomeIcon icon={faArrowLeft} style={{ paddingRight: "5px" }} />
 						{previous.title}
 					</Link>
@@ -27,7 +27,7 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({ previous, next }) 
 			</li>
 			<li>
 				{next?.slug && (
-					<Link to={next.slug} rel="next">
+					<Link rel="next" to={next.slug}>
 						{next.title}
 						<FontAwesomeIcon icon={faArrowRight} style={{ paddingLeft: "5px" }} />
 					</Link>

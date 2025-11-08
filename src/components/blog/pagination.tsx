@@ -19,17 +19,17 @@ const Pagination: FunctionComponent<PaginationProps> = ({ currentPage, numberOfP
 		<ul className={styles.pagination}>
 			{!isFirstPage && (
 				<li>
-					<Link to={previousPage} rel="prev">
-						<FontAwesomeIcon icon={faArrowLeft} className={styles.previous} />
+					<Link rel="prev" to={previousPage}>
+						<FontAwesomeIcon className={styles.previous} icon={faArrowLeft} />
 						Previous Page ({currentPage - 1}/{numberOfPages})
 					</Link>
 				</li>
 			)}
 			{!isLastPage && (
 				<li>
-					<Link to={nextPage} rel="next">
+					<Link rel="next" to={nextPage}>
 						Next Page ({currentPage + 1}/{numberOfPages})
-						<FontAwesomeIcon icon={faArrowRight} className={styles.next} />
+						<FontAwesomeIcon className={styles.next} icon={faArrowRight} />
 					</Link>
 				</li>
 			)}

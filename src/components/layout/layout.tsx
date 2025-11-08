@@ -20,7 +20,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 			<Slice alias="sidebar" />
 			{cover && (
 				<header>
-					<Hero data={cover} alt={title} />
+					<Hero alt={title} data={cover} />
 				</header>
 			)}
 			{type === LayoutType.LIST && (

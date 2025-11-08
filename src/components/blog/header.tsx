@@ -11,14 +11,14 @@ interface HeaderProps {
 const BlogHeader: React.FunctionComponent<HeaderProps> = ({ title, url = "/" }) => (
 	<header>
 		<section className={styles.container}>
-			<Link to={url} rel="home">
+			<Link rel="home" to={url}>
 				<StaticImage
-					className={styles.logo}
-					src="../../assets/profile.jpg"
 					alt={title}
+					className={styles.logo}
 					height={256}
-					width={256}
 					placeholder="blurred"
+					src="../../assets/profile.jpg"
+					width={256}
 				/>
 			</Link>
 		</section>

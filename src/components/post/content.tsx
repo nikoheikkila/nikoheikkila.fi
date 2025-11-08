@@ -20,9 +20,6 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = ({ content }) => (
 	<article className={styles.content}>
 		<ReactMarkdown
-			remarkPlugins={[remarkGfm, remarkMath]}
-			// @ts-expect-error "rehype-raw does not have valid typings"
-			rehypePlugins={[rehypeRaw, rehypeKatex]}
 			components={{
 				iframe: ({ ...props }) => {
 					// Wrapper around iframe videos to make them responsive
@@ -39,11 +36,11 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 					return (
 						<BlogLink className={styles.photoframe} href={src}>
 							<img
-								className={styles.image}
-								src={src}
 								alt={alt}
-								title="Click for a larger version"
+								className={styles.image}
 								loading="lazy"
+								src={src}
+								title="Click for a larger version"
 								{...props}
 							/>
 							<span className={styles.caption}>
@@ -77,8 +74,8 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 
 					return (
 						<CodeBlock
-							language={language.replace("diff-", "")}
 							addedLines={lines.map(extractAddedLineNumber)}
+							language={language.replace("diff-", "")}
 							removedLines={lines.map(extractRemovedLineNumber)}
 							{...props}
 						>
@@ -87,6 +84,9 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 					);
 				},
 			}}
+			// @ts-expect-error "rehype-raw does not have valid typings"
+			rehypePlugins={[rehypeRaw, rehypeKatex]}
+			remarkPlugins={[remarkGfm, remarkMath]}
 		>
 			{content}
 		</ReactMarkdown>
@@ -114,7 +114,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 		<section className={styles.codeblock}>
 			<span className={styles.language}>{makeTitleCase(language)}</span>
 			<SyntaxHighlighter
-				style={nightOwl}
 				customStyle={{
 					padding: 0,
 					fontSize: "1.0rem",
@@ -149,6 +148,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 					return { style };
 				}}
 				showLineNumbers
+				style={nightOwl}
 				wrapLines
 				{...props}
 			>

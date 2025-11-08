@@ -19,9 +19,9 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 	const nodes = edges.map((_) => _.node);
 
 	return (
-		<Layout type={LayoutType.LIST} title={title}>
+		<Layout title={title} type={LayoutType.LIST}>
 			<BlogHeader title={title} />
-			<ArticleView nodes={nodes} location={location} />
+			<ArticleView location={location} nodes={nodes} />
 			<Pagination currentPage={pageContext.currentPage} numberOfPages={pageContext.numberOfPages} />
 		</Layout>
 	);
@@ -30,7 +30,7 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
 	const title = data.site?.siteMetadata?.title ?? "";
 
-	return <SEO title={title} url={location.pathname} type="page" />;
+	return <SEO title={title} type="page" url={location.pathname} />;
 };
 
 export default Index;

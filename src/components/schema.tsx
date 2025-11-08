@@ -94,7 +94,7 @@ const Schema: React.FC<SchemaProps> = ({
 		: baseSchema;
 
 	return (
-		<Script id={id} type="application/ld+json" strategy={ScriptStrategy.idle}>
+		<Script id={id} strategy={ScriptStrategy.idle} type="application/ld+json">
 			{JSON.stringify(schema)}
 		</Script>
 	);

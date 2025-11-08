@@ -37,7 +37,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 
 	return (
 		<>
-			<BasicMeta title={title} description={description} />
+			<BasicMeta description={description} title={title} />
 			<MastodonVerification url="https://fosstodon.org/@nikoheikkila" />
 
 			<OpenGraph
@@ -64,16 +64,16 @@ const SEO: FunctionComponent<SEOProps> = ({
 			/>
 
 			<SchemaOrg
-				isBlogPost={isPost}
-				url={pageURL}
-				title={title}
-				image={imageURL}
-				description={metaDescription}
-				datePublished={datePublished}
-				defaultTitle={title}
 				author={author}
 				canonicalUrl={pageURL}
+				datePublished={datePublished}
+				defaultTitle={title}
+				description={metaDescription}
+				image={imageURL}
+				isBlogPost={isPost}
 				organization={siteTitle}
+				title={title}
+				url={pageURL}
 			/>
 		</>
 	);
@@ -88,7 +88,7 @@ const BasicMeta: React.FC<BasicMetaProps> = ({ title, description }) => {
 	return (
 		<>
 			<title>{title}</title>
-			<meta name="description" content={description} />
+			<meta content={description} name="description" />
 		</>
 	);
 };
@@ -103,8 +103,8 @@ const MastodonVerification: React.FC<MastodonVerificationProps> = ({ url }) => {
 
 	return (
 		<>
-			<meta name="fediverse:creator" content={creator} />
-			<link rel="me" href={href} />
+			<meta content={creator} name="fediverse:creator" />
+			<link href={href} rel="me" />
 		</>
 	);
 };
@@ -146,35 +146,35 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 
 	return (
 		<>
-			<meta name="og:title" content={title} />
-			<meta name="og:description" content={description} />
+			<meta content={title} name="og:title" />
+			<meta content={description} name="og:description" />
 			{image && (
 				<>
-					<meta name="og:image" content={imageURL} />
-					<meta name="og:image:alt" content={title} />
-					<meta name="og:image:width" content={imageWidth} />
-					<meta name="og:image:height" content={imageHeight} />
-					<meta name="og:image:type" content={imageType} />
+					<meta content={imageURL} name="og:image" />
+					<meta content={title} name="og:image:alt" />
+					<meta content={imageWidth} name="og:image:width" />
+					<meta content={imageHeight} name="og:image:height" />
+					<meta content={imageType} name="og:image:type" />
 				</>
 			)}
 
-			<meta name="og:url" content={pageURL} />
+			<meta content={pageURL} name="og:url" />
 
-			{isPage && <meta name="og:type" content="website" />}
+			{isPage && <meta content="website" name="og:type" />}
 			{isPost && (
 				<>
-					<meta name="og:type" content="article" />
-					<meta name="article:published_time" content={date} />
-					<meta name="article:author" content={author} />
-					<meta name="article:section" content="Technology" />
+					<meta content="article" name="og:type" />
+					<meta content={date} name="article:published_time" />
+					<meta content={author} name="article:author" />
+					<meta content="Technology" name="article:section" />
 					{categories.map((category) => (
-						<meta key={category} name="article:tag" content={category} />
+						<meta content={category} key={category} name="article:tag" />
 					))}
 				</>
 			)}
 
-			<meta name="og:locale" content={locale} />
-			<meta name="og:site_name" content={siteTitle} />
+			<meta content={locale} name="og:locale" />
+			<meta content={siteTitle} name="og:site_name" />
 		</>
 	);
 };
@@ -193,17 +193,17 @@ const TwitterCard: React.FC<TwitterCardProps> = ({ author, title, description, s
 
 	return (
 		<>
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="twitter:creator" content={author} />
-			<meta name="twitter:title" content={title} />
-			<meta name="twitter:description" content={description} />
-			<meta name="twitter:site" content={author} />
-			<meta name="twitter:domain" content={siteURL} />
-			<meta name="twitter:url" content={pageURL} />
+			<meta content="summary_large_image" name="twitter:card" />
+			<meta content={author} name="twitter:creator" />
+			<meta content={title} name="twitter:title" />
+			<meta content={description} name="twitter:description" />
+			<meta content={author} name="twitter:site" />
+			<meta content={siteURL} name="twitter:domain" />
+			<meta content={pageURL} name="twitter:url" />
 			{image && (
 				<>
-					<meta name="twitter:image" content={imageURL} />
-					<meta name="twitter:image:alt" content={title} />
+					<meta content={imageURL} name="twitter:image" />
+					<meta content={title} name="twitter:image:alt" />
 				</>
 			)}
 		</>

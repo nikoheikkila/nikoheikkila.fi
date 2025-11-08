@@ -38,14 +38,14 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ nodes, location }) => 
 
 					return (
 						<ArticleCard
-							key={slug}
-							slug={slug}
-							location={location}
-							title={title}
 							categories={categories}
 							date={date}
 							excerpt={excerpt}
+							key={slug}
+							location={location}
+							slug={slug}
 							timeToRead={timeToRead}
+							title={title}
 						/>
 					);
 				})}
@@ -64,7 +64,7 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	location,
 }) => {
 	return (
-		<Link className={styles.card} to={slug} state={{ previous: location.pathname }} data-testid="post-title">
+		<Link className={styles.card} data-testid="post-title" state={{ previous: location.pathname }} to={slug}>
 			<ArticleTitle title={title} />
 			<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
 			<Content content={excerpt} />

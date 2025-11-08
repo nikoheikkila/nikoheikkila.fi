@@ -53,7 +53,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 	useIcons([fab]);
 
 	return (
-		<Layout type={LayoutType.SINGLE} title={title} cover={coverImage}>
+		<Layout cover={coverImage} title={title} type={LayoutType.SINGLE}>
 			<PostHeader
 				author={author}
 				datePublished={datePublished}
@@ -141,14 +141,14 @@ export const Head: HeadFC<Queries.Query> = ({ data }) => {
 
 	return (
 		<SEO
-			title={postTitle}
+			categories={categories.map(String)}
+			datePublished={date}
 			description={excerpt}
-			lang={lang}
 			image={cover}
+			lang={lang}
+			title={postTitle}
 			type={type}
 			url={postUrl}
-			datePublished={date}
-			categories={categories.map(String)}
 		/>
 	);
 };
