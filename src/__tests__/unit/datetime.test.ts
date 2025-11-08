@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import * as DateTime from "../../utils/datetime";
 
 describe("DateTime", () => {

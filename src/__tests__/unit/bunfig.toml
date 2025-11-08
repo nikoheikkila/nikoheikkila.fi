@@ -1,5 +1,0 @@
-[test]
-root = "./src/__tests__/unit"
-coverage = true
-coverageReporter = ["text", "lcov"]
-coverageThreshold = 1.0

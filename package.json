@@ -63,11 +63,13 @@
 		"@types/react-syntax-highlighter": "15.5.13",
 		"@vitejs/plugin-react": "5.1.0",
 		"@vitest/browser-playwright": "4.0.8",
+		"@vitest/coverage-v8": "4.0.8",
 		"happy-dom": "^20.0.0",
 		"husky": "^9.1.7",
 		"inquirer": "12.10.0",
 		"snyk": "1.1300.2",
 		"typescript": "5.9.3",
+		"vitest": "4.0.8",
 		"vitest-browser-react": "2.0.2"
 	},
 	"engines": {
@@ -85,8 +87,7 @@
 	},
 	"scripts": {
 		"build": "bun run gatsby build --log-pages --write-to-file",
-		"prepare": "bun run husky",
-		"test:browser": "vitest run"
+		"prepare": "bun run husky"
 	},
 	"snyk": true,
 	"version": "1.0.0"
