@@ -1,4 +1,4 @@
-name: Acceptance Tests
+name: CI
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  commit_stage:
-    name: Commit Stage
+  unit_tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
-          cache-key-suffix: commit
+          cache-key-suffix: unit
 
       - name: Lint Code Style
         run: task lint
@@ -29,11 +29,26 @@ jobs:
       - name: Run unit tests
         run: task test:unit
 
+  component_tests:
+    name: Component Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          cache-key-suffix: component
       - name: Run component tests
         run: task test:component
 
-  acceptance_stage:
-    name: Acceptance Stage
+  acceptance_tests:
+    name: Acceptance Tests
     runs-on: ubuntu-latest
 
     steps:
