@@ -7,23 +7,18 @@
 	h4,
 	h5,
 	h6 {
-		text-align: center;
 		color: variables.$teal;
-		text-decoration: variables.$teal wavy underline;
-		text-decoration-thickness: 0.08em;
-		text-underline-offset: 12px;
 		margin-top: 3rem;
 		margin-bottom: 1.5rem;
 
 		@media (prefers-color-scheme: light) {
 			color: variables.$lightTeal;
-			text-decoration-color: variables.$lightTeal;
 		}
 	}
 
 	h1 {
 		font-size: 2.25rem;
-		line-height: 1.2;
+		line-height: 1.3em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 2.5rem;
@@ -31,7 +26,7 @@
 	}
 	h2 {
 		font-size: 1.875rem;
-		line-height: 1.25;
+		line-height: 1.35em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 2rem;
@@ -39,7 +34,7 @@
 	}
 	h3 {
 		font-size: 1.625rem;
-		line-height: 1.3;
+		line-height: 1.4em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 1.75rem;
@@ -47,7 +42,7 @@
 	}
 	h4 {
 		font-size: 1.375rem;
-		line-height: 1.35;
+		line-height: 1.45em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 1.5rem;
@@ -55,7 +50,7 @@
 	}
 	h5 {
 		font-size: 1.1875rem;
-		line-height: 1.4;
+		line-height: 1.5em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 1.25rem;
@@ -63,7 +58,7 @@
 	}
 	h6 {
 		font-size: 1rem;
-		line-height: 1.45;
+		line-height: 1.55em;
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 1.125rem;
@@ -85,13 +80,7 @@
 
 	ul {
 		li {
-			padding: 8px 0;
-			list-style-type: none;
-
-			&:before {
-				content: "–";
-				margin-right: 0.5rem;
-			}
+			padding: 4px 0;
 		}
 	}
 

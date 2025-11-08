@@ -11,19 +11,15 @@ body {
 	word-wrap: break-word;
 	font-feature-settings: "kern", "liga", "clig", "calt";
 	line-height: 1.65;
-	letter-spacing: -0.011em; // Optical adjustment for Synonym
 
 	background-color: variables.$darkBg;
 	color: variables.$darkFg;
 
-	// Base font size for standard displays
 	font-weight: 400;
 	font-size: 17px;
 	font-family: "Synonym", variables.$fontFamily;
 
-	// Retina display optimization
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-		font-size: 18px;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
@@ -38,10 +34,8 @@ h5,
 h6 {
 	font-family: "Amulya", variables.$fontFamily;
 	font-weight: 700;
-	letter-spacing: -0.02em; // Tighter spacing for display font
 	line-height: 1.15;
 
-	// Better rendering on Retina
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -56,12 +50,8 @@ ul {
 
 li,
 p {
-	// Base size for standard displays
-	font-size: 1.05rem;
 	line-height: 1.75;
-	margin-bottom: 1.5rem;
 
-	// Slightly larger for Retina
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 		font-size: 1.125rem;
 		line-height: 1.8;

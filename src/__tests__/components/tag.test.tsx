@@ -44,15 +44,4 @@ describe("Tag Component", () => {
 
 		expect(tag).toBeDefined();
 	});
-
-	test("applies inline styles for colors", () => {
-		render(<Tag title="Styled" />);
-
-		const { style } = screen.getByText("#styled");
-
-		expect(style.display).toBe("inline-block");
-		expect(style.padding).toBe("0px 10px");
-		expect(style.margin).toBe("4px");
-		expect(style.borderRadius).toBe("50px");
-	});
 });

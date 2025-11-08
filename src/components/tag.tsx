@@ -17,9 +17,10 @@ const Tag: React.FunctionComponent<Props> = ({ title, className, prefix = "#" })
 		borderRadius: 50,
 		color: "inherit",
 		display: "inline-block",
+		fontSize: "0.9rem",
 		fontWeight: 500,
 		margin: 4,
-		padding: "0 10px",
+		padding: "4px 12px",
 	});
 
 	useEffect(() => {
