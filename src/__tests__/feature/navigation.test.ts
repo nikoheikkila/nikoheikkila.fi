@@ -17,7 +17,8 @@ test.describe
 			});
 
 			await test.step("And menu should close by clicking on the overlay", async () => {
-				await menuOverlay.click();
+				await expect(menuOverlay).toBeVisible();
+				await page.mouse.click(100, 100);
 				await expect(menuContainer).toBeHidden();
 			});
 		});
@@ -67,7 +68,8 @@ test.describe
 			});
 
 			await test.step("And menu should close by clicking on the overlay", async () => {
-				await menuOverlay.click();
+				await expect(menuOverlay).toBeVisible();
+				await page.mouse.click(100, 100);
 				await expect(menuContainer).toBeHidden();
 			});
 		});
