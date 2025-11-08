@@ -2,7 +2,7 @@
 title: "AI-Augmented Software Development: Hype, Vibes and Smoking Production Environments"
 author: Niko Heikkilä
 lang: en
-excerpt: To be written later...
+excerpt: Generative AI won't save your software delivery process, and may even drown it in half-baked code, context switching, and complexity.
 type: post
 categories: [ai, software, xp, professionalism]
 date: 2025-03-25
