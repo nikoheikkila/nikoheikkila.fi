@@ -27,6 +27,8 @@ tasks:
   typegen:
     desc: Generate GraphQL TypeScript types
     deps: [install]
+    status:
+      - test -f src/gatsby-types.d.ts
     cmds:
       - bun run scripts/generate-types.ts
 
