@@ -20,8 +20,6 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
-        with:
-          cache-key-suffix: unit
 
       - name: Lint Code Style
         run: task lint
@@ -42,8 +40,6 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
-        with:
-          cache-key-suffix: component
       - name: Run component tests
         run: task test:component
 
@@ -60,8 +56,6 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
-        with:
-          cache-key-suffix: acceptance
 
       - name: Cache Gatsby Build Files
         uses: actions/cache@v4

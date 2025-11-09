@@ -1,11 +1,6 @@
 name: Install Dependencies
 description: Caches and installs Bun dependencies
 
-inputs:
-  cache-key-suffix:
-    description: 'Suffix for the cache key to allow different caches per job'
-    required: true
-
 runs:
   using: composite
   steps:
@@ -16,7 +11,7 @@ runs:
         path: |
           $HOME/.bun/install/cache
           node_modules
-        key: ${{ runner.os }}-bun-${{ inputs.cache-key-suffix }}-${{ hashFiles('bun.lock') }}
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
         restore-keys: |
           ${{ runner.os }}-bun-
           ${{ runner.os }}-
