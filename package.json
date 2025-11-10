@@ -96,6 +96,7 @@
 		"core-js",
 		"core-js-pure",
 		"es5-ext",
-		"gatsby-cli"
+		"gatsby-cli",
+		"sharp"
 	]
 }
