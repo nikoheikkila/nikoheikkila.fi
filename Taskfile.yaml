@@ -16,7 +16,7 @@ tasks:
       - package.json
     generates:
       - bun.lock
-    cmd: bun install
+    cmd: bun install --frozen-lockfile
 
   format:
     desc: Format codebase

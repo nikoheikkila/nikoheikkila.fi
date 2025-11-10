@@ -5,10 +5,10 @@ publish = "public/"
 
 [build.processing.css]
 bundle = true
-minify = false
+minify = true
 [build.processing.js]
 bundle = true
-minify = false
+minify = true
 [build.processing.html]
 pretty_urls = true
 [build.processing.images]
@@ -16,3 +16,5 @@ compress = true
 
 [build.environment]
 NODE_ENV = "production"
+BUN_VERSION = "latest"
+BUN_FLAGS = "--frozen-lockfile"
