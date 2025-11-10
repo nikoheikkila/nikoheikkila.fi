@@ -1,0 +1,11 @@
+/rss.xml
+  Cache-Control: no-cache
+
+/.well-known/webfinger
+  Content-Type: application/jrd+json
+
+/.well-known/host-meta
+  Content-Type: application/xml
+
+/.well-known/nodeinfo
+  Content-Type: application/jrd+json

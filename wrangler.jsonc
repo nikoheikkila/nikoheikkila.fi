@@ -17,33 +17,5 @@
     "NODE_ENV": "production",
     "NODE_VERSION": "24",
     "BUN_VERSION": "latest"
-  },
-  
-  // Headers configuration
-  "routes": [
-    {
-      "pattern": "/rss.xml",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
-    },
-    {
-      "pattern": "/.well-known/webfinger",
-      "headers": {
-        "Content-Type": "application/jrd+json"
-      }
-    },
-    {
-      "pattern": "/.well-known/host-meta",
-      "headers": {
-        "Content-Type": "application/xml"
-      }
-    },
-    {
-      "pattern": "/.well-known/nodeinfo",
-      "headers": {
-        "Content-Type": "application/jrd+json"
-      }
-    }
-  ]
+  }
 }
