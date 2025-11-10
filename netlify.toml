@@ -36,9 +36,3 @@ Content-Type = "application/xml"
 for = "/.well-known/nodeinfo"
 [headers.values]
 Content-Type = "application/jrd+json"
-
-[[redirects]]
-from = "/feed"
-to = "/rss.xml"
-status = 200
-force = true
