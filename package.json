@@ -90,13 +90,5 @@
 		"prepare": "bun run husky"
 	},
 	"snyk": true,
-	"version": "1.0.0",
-	"trustedDependencies": [
-		"@parcel/watcher",
-		"core-js",
-		"core-js-pure",
-		"es5-ext",
-		"gatsby-cli",
-		"sharp"
-	]
+	"version": "1.0.0"
 }
