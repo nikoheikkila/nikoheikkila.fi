@@ -4,12 +4,6 @@ description: Sets up Node.js, Bun, and Task for the workflow
 runs:
   using: composite
   steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version-file: ".nvmrc"
-        check-latest: true
-
     - name: Install Bun
       uses: oven-sh/setup-bun@v2
       with:
