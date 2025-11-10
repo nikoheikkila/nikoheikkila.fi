@@ -6,12 +6,6 @@
   "compatibility_date": "2025-01-01",
   "pages_build_output_dir": "public",
   
-  // Build configuration
-  "build": {
-    "command": "bun run build",
-    "cwd": "/"
-  },
-  
   // Environment variables
   "vars": {
     "NODE_ENV": "production",
