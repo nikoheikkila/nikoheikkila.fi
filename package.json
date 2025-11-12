@@ -70,7 +70,8 @@
 		"snyk": "1.1300.2",
 		"typescript": "5.9.3",
 		"vitest": "4.0.8",
-		"vitest-browser-react": "2.0.2"
+		"vitest-browser-react": "2.0.2",
+		"wrangler": "4.47.0"
 	},
 	"engines": {
 		"node": ">=24.6.0"
