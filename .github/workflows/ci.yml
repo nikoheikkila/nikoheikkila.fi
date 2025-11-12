@@ -46,6 +46,8 @@ jobs:
   acceptance_tests:
     name: Acceptance Tests
     runs-on: ubuntu-latest
+    outputs:
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
 
     steps:
       - name: Checkout repository
@@ -74,9 +76,36 @@ jobs:
       - name: Run E2E Tests
         run: task test:e2e
 
-      - name: Upload results of failed tests
+      - name: Upload static assets
+        id: upload
         uses: actions/upload-artifact@v5
-        if: failure()
         with:
-          name: test-results
-          path: test-results/
+          name: static-assets
+          retention-days: 1
+          path: |
+            wrangler.jsonc
+            public/
+
+  deploy:
+    name: Deploy to CloudFlare
+    if: github.ref_name == 'main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [acceptance_tests]
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.deployment-url }}
+
+    steps:
+      - name: Download static assets
+        uses: actions/download-artifact@v6
+        with:
+          artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+
