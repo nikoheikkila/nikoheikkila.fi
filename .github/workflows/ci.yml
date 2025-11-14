@@ -94,9 +94,6 @@ jobs:
     if: github.event_name == 'pull_request' && github.base_ref == 'main'
     runs-on: ubuntu-latest
     needs: [unit_tests, component_tests, acceptance_tests]
-    environment:
-      name: pr-${{ github.event.pull_request.number }}
-      url: ${{ steps.deploy.outputs.deployment-url }}
     outputs:
       deployment-url: ${{ steps.deploy.outputs.deployment-url }}
 
