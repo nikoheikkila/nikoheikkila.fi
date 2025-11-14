@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  WRANGLER_VERSION: "4.47.0"
+
 jobs:
   unit_tests:
     name: Unit Tests
@@ -86,9 +89,51 @@ jobs:
             wrangler.jsonc
             public/
 
+  deploy-preview:
+    name: Deploy to Preview
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    needs: [unit_tests, component_tests, acceptance_tests]
+    environment:
+      name: pr-${{ github.event.pull_request.number }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    outputs:
+      deployment-url: ${{ steps.deploy.outputs.deployment-url }}
+
+    steps:
+      - name: Download static assets
+        uses: actions/download-artifact@v6
+        with:
+          artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          wranglerVersion: ${{ env.WRANGLER_VERSION }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: versions upload --preview-alias pr-${{ github.event.pull_request.number }}
+
+  lighthouse-preview:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    needs: [ deploy-preview ]
+    env:
+      LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
+
+    steps:
+      - name: Run Audit
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: ${{ needs.deploy-preview.outputs.deployment-url }}
+          runs: 3
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
   deploy:
-    name: Deploy to CloudFlare
-    if: github.ref_name == 'main' && github.event_name == 'push'
+    name: Deploy to Production
+    if: github.event_name == 'push' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     needs: [unit_tests, component_tests, acceptance_tests]
     environment:
@@ -107,7 +152,7 @@ jobs:
         id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
-          wranglerVersion: "4.47.0"
+          wranglerVersion: ${{ env.WRANGLER_VERSION }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
