@@ -1,9 +1,15 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "blog",
-  "compatibility_date": "2025-11-12",
-  "assets": {
-	"directory": "./public",
-    "not_found_handling": "404-page"
-  }
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "blog",
+	"compatibility_date": "2025-11-12",
+	"assets": {
+		"directory": "./public",
+		"not_found_handling": "404-page"
+	},
+	"routes": [
+		{
+			"pattern": "nikoheikkila.fi",
+			"custom_domain": true
+		}
+	]
 }
