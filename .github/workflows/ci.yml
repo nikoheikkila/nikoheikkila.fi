@@ -116,9 +116,9 @@ jobs:
           command: versions upload --preview-alias pr-${{ github.event.pull_request.number }}
 
   lighthouse-preview:
-    name: Lighthouse Audit
+    name: Lighthouse Audit for Preview
     runs-on: ubuntu-latest
-    needs: [ deploy-preview ]
+    needs: [deploy-preview]
     env:
       LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
 
@@ -157,7 +157,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
   lighthouse:
-    name: Lighthouse Audit
+    name: Lighthouse Audit for Production
     runs-on: ubuntu-latest
     needs: [deploy]
     env:
