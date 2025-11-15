@@ -1,29 +1,23 @@
-$filter: invert(100%) hue-rotate(180deg);
-
-$blue: #539bf5;
-$red: #fd3300;
-$teal: rgb(157, 255, 236);
-$purple: rgb(108, 67, 246);
-
-// Dark theme colors (default)
-$darkBg: rgb(30, 41, 59); // Slightly lighter for better readability
-$darkFg: rgb(241, 245, 249); // Brighter text for better contrast
-$darkSecondaryFg: rgb(148, 163, 184); // Improved secondary text contrast
-$gray: rgb(100, 116, 139);
-$darkGray: rgb(30, 41, 59);
-$almostBlack: rgb(15, 23, 42);
-$darkHl: $blue;
+$teal: rgb(102, 178, 178);
 $yellow: #ffc600;
 
-// Light theme colors
-$lightBg: rgb(248, 250, 252); // Soft off-white for reduced eye strain
-$lightFg: rgb(15, 23, 42); // Dark slate for excellent readability
-$lightSecondaryFg: rgb(71, 85, 105);
-$lightBlue: #2563eb; // Darker blue for better light mode contrast
-$lightTeal: rgb(6, 182, 212); // Adjusted teal for light mode
-$lightGray: rgb(226, 232, 240);
+// Dark theme colors (default)
+$darkBg: rgb(30, 41, 59);
+$darkFg: rgb(241, 245, 249);
+$darkSecondaryFg: rgb(222, 223, 231);
+$gray: rgb(60, 72, 83);
+$darkGray: rgb(30, 41, 59);
+$almostBlack: rgb(15, 23, 42);
+$code: rgb(226, 232, 240);
 
-$hotpink: #ff00ff;
+// Light theme colors
+$lightBg: rgb(248, 248, 248);
+$lightFg: rgb(2, 10, 21);
+$lightSecondaryFg: rgb(28, 34, 42);
+$lightBlue: #11476e;
+$lightGray: rgb(226, 232, 240);
+$lightTeal: rgb(0,76,76);
+$lightCode: rgb(15, 23, 42);
 
 $fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
 	Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

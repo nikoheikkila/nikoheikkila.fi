@@ -29,8 +29,9 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 
 export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
 	const title = data.site?.siteMetadata?.title ?? "";
+	const description = data.site?.siteMetadata?.description ?? "";
 
-	return <SEO title={title} type="page" url={location.pathname} />;
+	return <SEO description={description} title={title} type="page" url={location.pathname} />;
 };
 
 export default Index;
@@ -65,7 +66,6 @@ export const pageQuery = graphql`
 						type
 						date
 						title
-						categories
 					}
 				}
 			}

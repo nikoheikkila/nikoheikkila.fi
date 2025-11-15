@@ -67,7 +67,7 @@ a {
 
 hr {
 	border: 0;
-	border-top: 3px solid variables.$purple;
+	border-top: 3px solid variables.$teal;
 	margin: 2rem 0;
 }
 
@@ -108,8 +108,12 @@ section.footnotes {
 	}
 
 	::selection {
-		background-color: variables.$lightTeal;
+		background-color: variables.$teal;
 		color: variables.$lightBg;
+
+		@media (prefers-color-scheme: light) {
+			background-color: variables.$lightTeal;
+		}
 	}
 
 	/* Code blocks */

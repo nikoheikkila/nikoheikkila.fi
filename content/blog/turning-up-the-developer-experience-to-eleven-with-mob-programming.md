@@ -3,7 +3,6 @@ title: Turning up the Developer Experience to Eleven with Mob Programming
 author: Niko Heikkilä
 lang: en
 type: post
-categories: [agile, mobprogramming, collaboration, lean]
 date: 2022-08-08
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/turning-up-the-developer-experience-to-eleven-with-mob-programming.webp
 excerpt: |

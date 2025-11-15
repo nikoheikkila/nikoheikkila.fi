@@ -5,7 +5,6 @@ lang: en
 excerpt: |
     We are in a creative business instead of a factory floor. You don't want to be productive — you want to be effective.
 type: post
-categories: [agile, teamwork, programming, design, thinking]
 date: 2022-08-22
 hero: null
 ---

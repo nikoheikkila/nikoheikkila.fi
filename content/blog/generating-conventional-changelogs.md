@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/generating-conve
 title: Generating Conventional Changelogs
 type: post
 excerpt: Spicing up your release notes with awesome changelog power.
-categories:
-    - Git
-    - Fish
-    - Shell
-    - Tips
 ---
 
 As an open-source maintainer, I have a severe obsession for informative release notes and I cringe every time I see release notes with the dreadful _"Bug fixes and minor improvements"_ line in it. I like to write my release notes as accurately as possible which is tedious by hand. I decided to use scripting power to ease it.

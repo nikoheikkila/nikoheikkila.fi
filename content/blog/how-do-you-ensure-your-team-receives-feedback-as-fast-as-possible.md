@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: It happened once upon a time, during the code review...
 type: post
-categories: [codereview, design, management, feedback]
 date: 2022-05-08
 hero: null
 ---

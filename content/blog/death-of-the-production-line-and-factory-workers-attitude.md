@@ -6,10 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/death-of-the-pro
 title: Death of the Production Line and Factory Workers Attitude
 type: post
 excerpt: Whether you're a practical nurse, a salesperson, or a senior software architect, it all begins from the community (and a head full of strong will).
-categories:
-    - career
-    - software
-    - craftsmanship
 ---
 
 I often find myself asking whether I'm in the right profession, working as a software developer. It's a question I've answered negatively in the past, but for a couple of years now the answer has been increasingly confident.

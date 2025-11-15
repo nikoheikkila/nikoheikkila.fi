@@ -6,10 +6,6 @@ type: post
 date: 2015-03-22
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/keybase-io-secure-communication-without-hassle.png
 excerpt: I've been playing with Keybase.io, a message encryption service for a while now.
-categories:
-    - Security
-    - Apps
-    - Encryption
 ---
 
 I've played with this service for a while now after I received an invitation to the alpha. Yes, it's alpha, not even beta. Keeping that in mind Keybase works pretty flawlessly already.

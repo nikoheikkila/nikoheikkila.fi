@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/kickstarting-the
 title: Kickstarting the Open-Source Culture in Your Company
 type: post
 excerpt: Thinking of selling open-source to your employer? Read this guide for a swift path to glory.
-categories:
-    - opensource
-    - github
-    - culture
-    - workplace
 ---
 
 By the 2020s, every software company in existence should be using open-source code as building blocks for their products. Better than that, every company should also be giving back to the open-source community by making regular contributions.

@@ -6,10 +6,6 @@ title: Uses
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/keychron.jpg
 type: page
 excerpt: The tools I use to survive my hectic days as a software engineer.
-categories:
-  - Tools
-  - Software
-  - Apps
 ---
 
 Some people are often puzzled about my setup or want to hear my recommendations for a given task. On this page, I will describe the tools I use to survive my day, accompanied with links for the readers to try them out. I keep this page updated as often as possible. That probably won't happen more often than every other year, but anyway...

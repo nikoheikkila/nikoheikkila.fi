@@ -6,10 +6,6 @@ type: post
 date: 2017-12-03
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/three-lessons.jpg
 excerpt: Do not fear PHP, explore tools, and watch your back with continuous integration.
-categories:
-    - PHP
-    - Tooling
-    - Continuous Integration
 ---
 
 Last month I had the pleasure of achieving my first full year as a professional web developer in a [Finnish company centered around online payments][1].

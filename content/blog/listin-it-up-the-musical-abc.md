@@ -6,9 +6,6 @@ type: post
 date: 2016-05-27
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/listin-it-up-the-musical-abc.png
 excerpt: This week I challenged myself to another hopeless, yet interesting, listing project.
-categories:
-    - Music
-    - Lists
 ---
 
 This week I challenged myself to another hopeless, yet interesting, listing project. I decided to take a deep dive into my music library and surface with _music for all letters_ – from a regular English alphabet, mind you.

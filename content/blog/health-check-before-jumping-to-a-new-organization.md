@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Dear recruiters, don't talk to me about your tech stack.
 type: post
-categories: [career, recruiting, agile]
 date: 2021-05-09
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/health-check-before-jumping-to-a-new-organization.jpg
 ---

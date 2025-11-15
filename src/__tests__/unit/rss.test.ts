@@ -31,7 +31,6 @@ describe("RSS", () => {
 									},
 									frontmatter: {
 										author: "Niko Heikkilä",
-										categories: ["article"],
 										date: "2022-12-31",
 										lang: "en",
 										title: "Test Post",
@@ -56,7 +55,6 @@ describe("RSS", () => {
 			const expected = [
 				{
 					author: "Niko Heikkilä",
-					categories: ["article"],
 					custom_elements: [
 						{
 							"content:encoded": "<article>Hello World!</article>",

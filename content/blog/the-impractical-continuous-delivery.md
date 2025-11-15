@@ -6,10 +6,6 @@ type: post
 date: 2018-04-29
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/the-impractical-continuous-delivery.jpg
 excerpt: This week I participated in a 2-day training session about pragmatic solutions in Continuous Integration, Delivery, and Deployment.
-categories:
-    - Continuous Delivery
-    - Continous Integration
-    - Software Development
 ---
 
 This week I participated in a 2-day training session about pragmatic solutions in Continuous Integration, Delivery, and Deployment. I was there because one of our strategic goals at work is to increase the velocity of our product development.

@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: After a long detour, we peek into the internals of SvelteKit and how its conventions merge with our clean architecture ideals resulting in a maintainable frontend application.
 type: post
-categories: [guides, frontend, architecture, design, svelte]
 date: 2023-05-02
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---

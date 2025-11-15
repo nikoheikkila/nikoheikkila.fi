@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Once upon a time, two software companies were competing in the same business domain. The first one has been out of business for a while now. The latter one thrives.
 type: post
-categories: [devops, agile, scrum, management]
 date: 2022-01-01
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/dev-ops-is-the-interface-your-organisation-implements-it.jpg
 ---

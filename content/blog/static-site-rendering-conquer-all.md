@@ -6,10 +6,6 @@ type: post
 date: 2019-04-19
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/static-site-rendering-conquer-all.png
 excerpt: Goodbye WordPress, it has been quite a journey.
-categories:
-    - WordPress
-    - Gatsby
-    - Now
 ---
 
 Recently I began migrating my blog from an old - but not vulnerable - WordPress installation to [_Gatsby_][gatsby]. The migration went well save a brief downtime due to DNS misconfigurations. Now, the result lies in before your very eyes. Let's talk about changes later, though.

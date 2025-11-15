@@ -6,9 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/why-i-m-quitting
 title: Why I'm Quitting Twitter
 type: post
 excerpt: Recently I ended a long relationship with Twitter, and I'm relieved.
-categories:
-    - Announcements
-    - Twitter
 ---
 
 Recently I ended a long relationship with _Twitter_, and I'm relieved.

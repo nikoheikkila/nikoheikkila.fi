@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: "When I'm too lazy to set up a computer manually."
 type: post
-categories: [nodejs, zx, opensource, automation]
 date: 2022-05-07
 hero: null
 ---

@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: What good does a clean architecture do if you cannot safely deliver it to the hands of your users? Unit tests help to a point, but the real confidence lives in automated acceptance tests.
 type: post
-categories: [guides, frontend, architecture, design, svelte]
 date: 2023-05-03
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---

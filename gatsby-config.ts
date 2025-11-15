@@ -114,7 +114,7 @@ const config: GatsbyConfig = {
 		author: {
 			name: "Niko Heikkilä",
 		},
-		description: "A blog by Niko Heikkilä. Powered by coffee, VS Code, and Gatsby.",
+		description: "Making work and life better for modern software engineers.",
 		language: "en",
 		repository: "https://github.com/nikoheikkila/nikoheikkila.fi",
 		rss: "/feed",

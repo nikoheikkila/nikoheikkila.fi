@@ -6,10 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/fight-the-inner-
 title: Fight the Inner Impostor with Just-In-Time Learning
 type: post
 excerpt: Don't plunge headfirst learning all the things that won't benefit you now. Instead, accept that your knowledge is never complete.
-categories:
-    - self-help
-    - motivation
-    - learning
 ---
 
 This post might come off like a weird spiritual tip for a developer, but bear with me a minute...

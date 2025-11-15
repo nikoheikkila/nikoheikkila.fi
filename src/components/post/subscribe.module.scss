@@ -11,7 +11,13 @@ $padding: 10px 5vw;
 	border: solid 2px variables.$darkSecondaryFg;
 	margin-bottom: 20px;
 	padding: $padding;
-	color: variables.$darkSecondaryFg;
+	background-color: variables.$lightSecondaryFg;
+	color: variables.$darkFg;
+
+	@media (prefers-color-scheme: light) {
+		background-color: variables.$darkFg;
+		color: variables.$lightFg;
+	}
 }
 
 .error {

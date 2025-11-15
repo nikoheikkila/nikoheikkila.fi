@@ -3,7 +3,6 @@ title: Test-Driven Development on a Bus Ride to Hell
 author: Niko Heikkilä
 lang: en
 type: post
-categories: [tdd, engineering, agile, movies]
 date: 2022-09-17
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/test-driven-development-on-a-bus-ride-to-hell.jpg
 excerpt: |

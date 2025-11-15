@@ -70,11 +70,16 @@
 		margin-bottom: 1.5rem;
 
 		code {
-			color: variables.$hotpink;
-			background: rgba(255, 0, 255, 0.1);
+			background-color: variables.$lightTeal;
+			color: variables.$code;
 			padding: 2px 6px;
 			border-radius: 3px;
 			font-size: 0.95em;
+
+			@media (prefers-color-scheme: light) {
+				background-color: variables.$darkSecondaryFg;
+				color: variables.$lightCode;
+			}
 		}
 	}
 
@@ -85,16 +90,16 @@
 	}
 
 	blockquote {
-		border-left: 5px solid variables.$yellow;
+		border-left: 5px solid variables.$lightTeal;
 		margin: 2.5rem 0;
 		padding: 1rem 1.5rem;
 		quotes: "\201C" "\201D" "\2018" "\2019";
-		background: rgba(255, 198, 0, 0.05);
+		background-color: variables.$lightSecondaryFg;
 		border-radius: 0 4px 4px 0;
 
 		@media (prefers-color-scheme: light) {
-			background: rgba(254, 243, 199, 0.5);
-			border-left-color: rgb(234, 179, 8);
+			background-color: variables.$darkFg;
+			border-left-color: variables.$teal;
 		}
 
 		p {

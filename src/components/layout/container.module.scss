@@ -1,7 +1,7 @@
 @use "../../styles/variables";
 
 .list {
-	margin: 15px auto;
+	margin: 0 auto;
 	padding: 0 32px;
 
 	@include variables.for-phone-only() {
@@ -30,7 +30,7 @@
 	padding: 0 24px;
 
 	a {
-		color: variables.$blue;
+		color: variables.$teal;
 		font-weight: 500;
 		text-decoration: underline;
 		text-decoration-color: rgba(83, 155, 245, 0.4);
@@ -38,7 +38,7 @@
 		text-underline-offset: 3px;
 
 		@media (prefers-color-scheme: light) {
-			color: variables.$lightBlue;
+			color: variables.$lightTeal;
 			text-decoration-color: rgba(37, 99, 235, 0.5);
 		}
 
@@ -48,7 +48,6 @@
 
 			@media (prefers-color-scheme: light) {
 				color: variables.$lightTeal;
-				text-decoration-color: variables.$lightTeal;
 			}
 		}
 	}

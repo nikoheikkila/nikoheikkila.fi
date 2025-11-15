@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Passes the tests, reveals intention, has no duplication, and contains the fewest elements.
 type: post
-categories: [design, xp, tdd]
 date: 2022-06-27
 hero: null
 ---

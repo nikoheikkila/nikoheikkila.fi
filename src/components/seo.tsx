@@ -11,7 +11,6 @@ interface SEOProps {
 	description?: string;
 	image?: Queries.ImageSharp;
 	lang?: string;
-	categories?: string[];
 }
 
 const SEO: FunctionComponent<SEOProps> = ({
@@ -22,7 +21,6 @@ const SEO: FunctionComponent<SEOProps> = ({
 	datePublished,
 	description = "",
 	lang = "en",
-	categories = [],
 }) => {
 	const data = getSEOData();
 	const meta = data.site?.siteMetadata;
@@ -42,7 +40,6 @@ const SEO: FunctionComponent<SEOProps> = ({
 
 			<OpenGraph
 				author={author}
-				categories={categories}
 				date={datePublished}
 				description={metaDescription}
 				image={image}
@@ -119,7 +116,6 @@ interface OpenGraphProps {
 	pageURL: string;
 	author: string;
 	date?: string;
-	categories?: string[];
 	image?: Queries.ImageSharp;
 }
 
@@ -133,7 +129,6 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 	pageURL,
 	author,
 	date = "",
-	categories = [],
 	image = undefined,
 }) => {
 	const imageURL = image?.original?.src ? siteURL + image?.original?.src : "";
@@ -167,9 +162,6 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 					<meta content={date} name="article:published_time" />
 					<meta content={author} name="article:author" />
 					<meta content="Technology" name="article:section" />
-					{categories.map((category) => (
-						<meta content={category} key={category} name="article:tag" />
-					))}
 				</>
 			)}
 

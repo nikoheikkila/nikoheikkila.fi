@@ -31,7 +31,6 @@ const createMockPost = (overrides = {}) => ({
 	},
 	frontmatter: {
 		author: "Test Author",
-		categories: ["testing", "react"],
 		date: "2024-01-01",
 		lang: "en",
 		title: "Test Post",
@@ -48,7 +47,6 @@ describe("ArticleCard Component", () => {
 	const mockLocation = createMockLocation("/blog");
 
 	const defaultProps = {
-		categories: ["testing", "react"],
 		date: "January 1, 2024",
 		excerpt: "This is a test excerpt",
 		location: mockLocation,
@@ -94,16 +92,6 @@ describe("ArticleCard Component", () => {
 			exact: false,
 		});
 		await expect.element(readingTime).not.toBeInTheDocument();
-	});
-
-	test("renders all categories as tags", async () => {
-		await render(<ArticleCard {...defaultProps} />);
-
-		const firstTag = page.getByText("#testing");
-		const secondTag = page.getByText("#react");
-
-		await expect.element(firstTag).toBeInTheDocument();
-		await expect.element(secondTag).toBeInTheDocument();
 	});
 
 	test("links to correct article URL", async () => {
@@ -179,7 +167,6 @@ describe("ArticleView Component", () => {
 			frontmatter: {
 				title: "Incomplete Post",
 				author: null,
-				categories: null,
 				date: null,
 				excerpt: null,
 				hero: null,

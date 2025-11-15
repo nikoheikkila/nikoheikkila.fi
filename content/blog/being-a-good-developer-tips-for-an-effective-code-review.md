@@ -6,12 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/being-a-good-dev
 title: "Being a Good Developer: Tips for an Effective Code Review"
 type: post
 excerpt: Walk another mile and make the code review a joyful experience.
-categories:
-    - code review
-    - pairing
-    - mobbing
-    - continuous integration
-    - code quality
 ---
 
 > **Hey!** An earlier revision of this post described how to survive the world of pull request workflows. However, since then, I've grown more convinced that asynchronous development is among the well-known root causes why software teams struggle to ship working code fast. Thus, I've decided to rewrite this post to reflect the way I currently think, enjoy!

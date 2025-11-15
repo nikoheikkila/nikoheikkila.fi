@@ -7,7 +7,6 @@ import { LayoutType } from "../components/layout/types";
 import { useIcons } from "../components/hooks/useIcons";
 import PostAttachments from "../components/post/attachments";
 import Content from "../components/post/content";
-import PostFooter from "../components/post/footer";
 import PostHeader from "../components/post/header";
 import PostNavigation from "../components/post/navigation";
 import Subscribe from "../components/post/subscribe";
@@ -35,7 +34,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 	const date = data.markdownRemark?.frontmatter?.date ?? "";
 	const postTitle = data.markdownRemark?.frontmatter?.title ?? "";
 	const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
-	const categories = data.markdownRemark?.frontmatter?.categories ?? [];
 
 	const repository = data.site?.siteMetadata?.repository ?? "";
 	const title = data.site?.siteMetadata?.title ?? "";
@@ -63,7 +61,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 			/>
 			<Content content={body} />
 			<Subscribe config={config} />
-			<PostFooter categories={categories as string[]} />
 			<PostAttachments previous={location.state?.previous} urls={{ edit: editUrl, history: historyUrl }} />
 
 			<PostNavigation
@@ -120,7 +117,6 @@ export const pageQuery = graphql`
 				date
 				author
 				excerpt
-				categories
 			}
 		}
 	}
@@ -137,11 +133,9 @@ export const Head: HeadFC<Queries.Query> = ({ data }) => {
 	const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
 	const postUrl = combinePaths(siteUrl, slug);
 	const date = data.markdownRemark?.frontmatter?.date ?? "";
-	const categories = data.markdownRemark?.frontmatter?.categories ?? [];
 
 	return (
 		<SEO
-			categories={categories.map(String)}
 			datePublished={date}
 			description={excerpt}
 			image={cover}

@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: How organizing your day brings a sense of clarity and calm into this mad, mad world.
 type: post
-categories: [productivity, tools, opensource, golang]
 date: 2021-03-20
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/blocking-time-for-tasks-with-toggl.jpg
 ---

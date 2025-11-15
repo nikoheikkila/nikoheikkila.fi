@@ -6,7 +6,6 @@ type: post
 hero: null
 date: 2022-04-18
 excerpt: During a mentoring session, I was recently asked for tips on how to keep up with the tech world.
-categories: [mentoring, reading, links]
 ---
 
 There are too many places to mention, but I'll list a few here:

@@ -23,7 +23,6 @@ export const serialize = ({ query: { site, allMarkdownRemark } }: Serializable) 
 			title: edge?.node?.frontmatter?.title,
 			description: edge?.node?.excerpt,
 			date: edge?.node?.frontmatter?.date,
-			categories: edge?.node?.frontmatter?.categories,
 			guid: edge?.node?.internal?.contentDigest,
 			author: edge?.node?.frontmatter?.author,
 			custom_elements: [
@@ -57,7 +56,6 @@ export const rssQuery = `{
           lang
           title
           type
-          categories
         }
       }
     }

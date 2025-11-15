@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: A heartfelt defense to a provocation about AI-assisted programming.
 type: post
-categories: [ai, llm, agents]
 date: 2025-06-10
 hero: null
 ---

@@ -6,10 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/my-21st-century-
 title: My 21st Century Note-Taking Workflow
 type: post
 excerpt: A fully automated pipeline from raw ideas to text documents.
-categories:
-    - productivity
-    - writing
-    - tools
 ---
 
 Taking notes is a serious business. While I'm not your typical person journaling everything they see or hear, I write a lot whether it be articles, documentation or code. All of those require an optimised workflow for capturing the ideas, refining them, and finally shaping them to actual distributable fruits of thought.

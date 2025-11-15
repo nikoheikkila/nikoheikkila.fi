@@ -6,12 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/customize-your-s
 title: Customizing Your Shell Prompt for Productivity
 type: post
 excerpt: To developers, command line is a natural environment for daily work. It makes sense then to customize it to be as helpful as possible.
-categories:
-    - Tips
-    - Terminal
-    - Bash
-    - Zsh
-    - Fish
 ---
 
 To developers, the command line is a natural environment for daily work. It makes sense then to customize it to be as helpful as possible.

@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: A better experience for publishing Python packages.
 type: post
-categories: [python, opensource, tools]
 date: 2022-01-30
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/publicator.jpg
 ---

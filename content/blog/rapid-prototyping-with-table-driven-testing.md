@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/rapid-prototypin
 title: Rapid Prototyping with Table-Driven Testing
 type: post
 excerpt: Lazy developers ain't got time for installing test libraries
-categories:
-    - testing
-    - typescript
-    - golang
-    - productivity
 ---
 
 Developers often need to work with something from scratch. Usually, it's a couple of lines of code whose suitability to real business logic needs to be measured before using. Sometimes you might get an idea you want to play around.

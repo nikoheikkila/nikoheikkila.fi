@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: How do you practice small batches — micro-commits — as part of your daily workflow? Let me show you.
 type: post
-categories: [git, testing, tips]
 date: 2022-11-05
 hero: null
 ---

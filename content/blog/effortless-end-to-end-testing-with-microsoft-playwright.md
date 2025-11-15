@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/effortless-end-t
 title: Effortless End-To-End Testing with Microsoft Playwright
 type: post
 excerpt: How can we improve the developer experience in writing tedious browser-based tests?
-categories:
-    - testing
-    - automation
-    - frontend
-    - productivity
 ---
 
 > _Don't care about reading much, eh? Too bad, but you can also skip the content and head over to my [Playwright Kickstarter repository][kickstarter] and learn how to use it for robust automated end-to-end testing with your frontend applications._

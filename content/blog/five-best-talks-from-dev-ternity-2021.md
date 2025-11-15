@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: No agile bullshit bingo nor marketing talks.
 type: post
-categories: [conferences]
 date: 2022-03-12
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/five-best-talks-from-dev-ternity-2021.jpg
 ---

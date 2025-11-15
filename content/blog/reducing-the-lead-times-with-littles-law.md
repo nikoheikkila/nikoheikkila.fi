@@ -5,7 +5,6 @@ lang: en
 excerpt: Are your features taking ages to deliver? Beat those long lead times by reducing the work in progress and increasing throughput.
 type: post
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/factory.jpg
-categories: [agile, processes, extremeprogramming, continuousdelivery]
 date: 2021-03-28
 ---
 

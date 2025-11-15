@@ -6,12 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/the-unsurprising
 title: The Unsurprising Truth about What Motivates Developers
 type: post
 excerpt: A take on autonomy, mastery, and purpose as driving forces.
-categories:
-    - motivation
-    - career
-    - autonomy
-    - mastery
-    - purpose
 ---
 
 Throughout the observed history, human motivation has adapted to demands and economies of the current age. The first establishment, Motivation 1.0, provided us with the tools for surviving in a harsh and dangerous environment – why care about anything else than obtaining food and not being eaten by predators? During the industrialization era, Motivation 2.0 enabled considerable leaps in manufacturing and productivity with its system of rewards and punishments ultimately paving the way for modern digital work. However, to develop as a creative craftsman instead of a wage slave, we need Motivation 3.0.

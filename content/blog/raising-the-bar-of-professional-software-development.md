@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: "It's about committing to standards"
 type: post
-categories: [professionalism, mentoring, craftspersonship]
 date: 2022-01-30
 hero: null
 ---

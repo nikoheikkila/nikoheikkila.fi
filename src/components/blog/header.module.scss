@@ -26,16 +26,15 @@
 
 	& > h1 {
 		font-size: 3.5rem;
-		line-height: 1.1;
-		color: rgba(157, 255, 236, 1);
+		line-height: 1.2em;
+		color: variables.$teal;
 
-		// Larger on Retina for better presence
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			font-size: 4rem;
 		}
 
 		@media (prefers-color-scheme: light) {
-			color: rgb(6, 182, 212);
+			color: variables.$lightTeal;
 		}
 	}
 }
@@ -48,7 +47,6 @@
 	font-size: 1.05rem;
 	font-weight: 400;
 
-	// Slightly larger for Retina
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 		font-size: 1.125rem;
 		line-height: 1.75;
@@ -59,22 +57,14 @@
 	}
 
 	a {
-		color: variables.$blue;
+		color: variables.$teal;
 		font-weight: 500;
 		text-decoration: underline;
 		text-decoration-thickness: 2px;
 		text-underline-offset: 3px;
 
 		@media (prefers-color-scheme: light) {
-			color: variables.$lightBlue;
-		}
-
-		&:hover {
-			color: variables.$teal;
-
-			@media (prefers-color-scheme: light) {
-				color: variables.$lightTeal;
-			}
+			color: variables.$lightTeal;
 		}
 	}
 }

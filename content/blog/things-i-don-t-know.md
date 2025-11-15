@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/things-i-don-t-k
 title: The Definitive List of Things I Don't Know
 type: post
 excerpt: The IT industry has serious problem and we as professionals are responsible for fixing it by admitting the world that we don't need to know everything.
-categories:
-    - Lists
-    - Programming
-    - Career
-    - Beginners
 ---
 
 I often ponder my work and where I want to head with it. Thus, it's only logical to understand what I need to learn to get there. Moreover, the more I think of things I don't know, the more assured I grow about the importance of admitting them instead of hiding them.

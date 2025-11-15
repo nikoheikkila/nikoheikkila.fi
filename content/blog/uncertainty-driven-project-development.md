@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Embrace the known unknowns
 type: post
-categories: [agile, estimating, project management, planning]
 date: 2022-02-12
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/uncertainty-driven-project-development.jpg
 ---

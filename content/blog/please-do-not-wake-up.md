@@ -6,11 +6,6 @@ type: post
 date: 2017-08-21
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/please-do-not-wake-up.jpg
 excerpt: A blog entry where some nerd shares their one vital attitude to face shabby terrorism and fascism with.
-categories:
-    - Politics
-    - Xenophobia
-    - Terrorism
-    - Fascism
 ---
 
 The [stabbing spree](https://yle.fi/uutiset/osasto/news/two_dead_several_injured_in_turku_knife_attack/9784909) that took place in Turku, Finland last Friday was indeed a horrific act of terror leaving many a person in shock and wondering about the state of security in our beloved home country. To many, Finland no more feels like a warm and safe haven able to distance itself from outside vitriol. It was also an event that is — as usual — being sardonically embraced by those identifying themselves with newly arisen nationalistic and populistic far-right movements (you may call them “alt-right” or, as I and many others prefer, nazis).

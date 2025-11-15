@@ -6,11 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/layman-s-guide-t
 title: Layman's Guide to Higher-Order Functions
 type: post
 excerpt: An introduction to higher-order functions I wish I've had in school.
-categories:
-    - beginners
-    - functional programming
-    - typescript
-    - react
 ---
 
 The single most important topic in functional programming is to understand what a **function** is. Inherently, a function is a way to map the input value of some type to output value of another type. To put it in other words, you give your function a problem, and it returns a solution.

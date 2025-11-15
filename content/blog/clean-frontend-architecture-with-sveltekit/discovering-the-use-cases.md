@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Why designing loosely coupled applications is crucial for managing complexity and sustaining maintainability.
 type: post
-categories: [guides, frontend, architecture, design]
 date: 2023-01-29
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---

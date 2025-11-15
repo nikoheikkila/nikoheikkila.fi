@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: A gentle introduction to the ZOMBIES development pattern
 type: post
-categories: [tdd, testing, patterns, refactoring]
 date: 2022-02-13
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/growing-software-guided-by-the-living-dead.jpg
 ---

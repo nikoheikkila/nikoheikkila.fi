@@ -6,10 +6,6 @@ hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/first-four-weeks
 title: First Four Weeks at Futurice
 type: post
 excerpt: Ruminations of relocating and refactoring oneself for a new career in a new town.
-categories:
-    - career
-    - onboarding
-    - life
 ---
 
 Earlier in the summer of 2020, I made a bold decision to refresh and broaden my career from a product company to software consultancy.

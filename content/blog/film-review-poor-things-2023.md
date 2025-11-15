@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: "Yorgos Lanthimos fuses anarchy and resilience into a stunning narrative. Bella Baxter's journey—a mix of deformed science, personal growth, and unyielding spirit—awakens profound insights into humanity, standing testimony to highly creative cinema."
 type: post
-categories: [films, cinema]
 date: 2024-01-15
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/poor-things.jpg
 ---

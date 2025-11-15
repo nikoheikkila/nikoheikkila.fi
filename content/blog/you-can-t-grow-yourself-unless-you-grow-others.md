@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Mentoring is sometimes seen as a practice reserved for experienced professionals while in truth everyone can and should start mentoring their peers.
 type: post
-categories: [agile, mentorship, career, softskills]
 date: 2021-04-24
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/you-can-t-grow-yourself-unless-you-grow-others.jpg
 ---

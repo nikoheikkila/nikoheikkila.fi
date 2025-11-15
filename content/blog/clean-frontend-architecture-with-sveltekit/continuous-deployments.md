@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: In the previous post, I described how to build a stable and fast acceptance test suite helping me to produce quick and repeatable proofs that my solution works. So what purpose does it serve us?
 type: post
-categories: [guides, frontend, architecture, design, svelte]
 date: 2023-05-07
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---

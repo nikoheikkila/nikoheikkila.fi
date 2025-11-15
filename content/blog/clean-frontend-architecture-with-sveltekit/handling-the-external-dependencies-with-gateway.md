@@ -4,7 +4,6 @@ author: Niko Heikkilä
 lang: en
 excerpt: Contrary to some beliefs, side effects have a place in clean architecture. In fact, they enjoy our utmost care and attention.
 type: post
-categories: [guides, frontend, architecture, design]
 date: 2023-01-31
 hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
 ---

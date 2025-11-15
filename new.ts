@@ -16,7 +16,6 @@ interface PromptAttributes {
 	readonly language: string;
 	readonly excerpt: string;
 	readonly type: string[] | string;
-	readonly categories: string;
 	readonly date: string;
 	readonly cover: string | null;
 }
@@ -72,12 +71,6 @@ const newPost = async () => {
 			},
 			{
 				type: "input",
-				name: "categories",
-				message: "Post categories (separated by comma): ",
-				default: "",
-			},
-			{
-				type: "input",
 				name: "date",
 				message: "Publication date (YYYY-MM-DD): ",
 				default: DateTime.toISOString(),
@@ -104,12 +97,8 @@ const newPost = async () => {
 		return console.error(err instanceof Error ? err.message : String(err));
 	}
 
-	const { title, type, excerpt, categories, author, cover, date, language } = prompt;
+	const { title, type, excerpt, author, cover, date, language } = prompt;
 	const postType = Array.isArray(type) ? type[0] : type;
-	const postCategories = categories
-		.split(",")
-		.map((c) => c.trim())
-		.join(", ");
 
 	const targetFile = path.join(__dirname, `content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`);
 
@@ -119,7 +108,6 @@ author: ${author}
 lang: ${language}
 excerpt: ${excerpt}
 type: ${postType}
-categories: [${postCategories}]
 date: ${date}
 hero: ${cover}
 ---`.trim();
