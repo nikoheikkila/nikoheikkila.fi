@@ -135,9 +135,9 @@ jobs:
     needs: [unit_tests, component_tests, acceptance_tests]
     environment:
       name: production
-      url: ${{ steps.deploy.outputs.deployment-url }}
+      url: ${{ steps.urls.outputs.production }}
     outputs:
-      deployment-url: ${{ steps.deploy.outputs.deployment-url }}
+      deployment-url: ${{ steps.urls.outputs.production }}
 
     steps:
       - name: Download static assets
@@ -146,12 +146,19 @@ jobs:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
 
       - name: Deploy
-        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: ${{ env.WRANGLER_VERSION }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Record deployment
+        id: urls
+        run: |
+          url="$(jq -r '.routes[0] | select(.custom_domain == true) | .pattern' < wrangler.jsonc)"
+
+          echo "[Open production deploy ↗]($url)" >> "$GITHUB_STEP_SUMMARY"
+          echo "production=$url" >> "$GITHUB_OUTPUT"
 
   lighthouse:
     name: Lighthouse Audit for Production
