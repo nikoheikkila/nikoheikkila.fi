@@ -35,7 +35,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 
 	return (
 		<>
-			<BasicMeta description={description} title={title} />
+			<BasicMeta description={metaDescription} title={title} />
 			<MastodonVerification url="https://fosstodon.org/@nikoheikkila" />
 
 			<OpenGraph
