@@ -41,7 +41,7 @@ jobs:
         run: task terraform:ci:plan
 
       - name: Upload Terraform Plan
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tfplan
           path: infra/tfplan
@@ -70,7 +70,7 @@ jobs:
         uses: go-task/setup-task@v1
 
       - name: Download Terraform Plan
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: tfplan
           path: infra/
