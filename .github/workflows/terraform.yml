@@ -75,5 +75,8 @@ jobs:
           name: tfplan
           path: infra/
 
+      - name: Terraform Init
+        run: task terraform:ci:init
+
       - name: Run Terraform Deploy
         run: task terraform:ci:deploy
