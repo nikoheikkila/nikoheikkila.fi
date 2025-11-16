@@ -87,13 +87,7 @@ tasks:
     cmd: bunx playwright install --with-deps
 
   dev:
-    desc: Run development server
-    deps:
-      - task: dev:gatsby
-
-  dev:gatsby:
     desc: Serve the Gatsby development site
-    deps: [install]
     cmds:
       - task: clean
       - bunx gatsby develop
@@ -111,7 +105,6 @@ tasks:
       - public/
       - .cache/
     env:
-      GATSBY_CPU_COUNT: logical_cores
       NODE_ENV: production
     cmds:
       - bun run build

@@ -2,12 +2,11 @@ import type { GatsbyConfig } from "gatsby";
 import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
 
-const environment = process.env.NODE_ENV;
-const isProduction = environment === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 const config: GatsbyConfig = {
 	flags: {
-		DEV_SSR: false,
+		DEV_SSR: true,
 		FAST_DEV: true,
 		PRESERVE_FILE_DOWNLOAD_CACHE: true,
 	},
@@ -107,7 +106,7 @@ const config: GatsbyConfig = {
 		"gatsby-plugin-sitemap",
 		"gatsby-adapter-netlify",
 	].concat(
-		// Load the PWA service worker only in production to enhance development experience.
+		// Load the PWA service worker only in production to enhance the development experience.
 		isProduction ? ["gatsby-plugin-offline"] : [],
 	),
 	siteMetadata: {
