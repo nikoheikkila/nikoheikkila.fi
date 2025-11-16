@@ -27,6 +27,7 @@ tasks:
     deps: [init]
     sources:
       - "./**/*.tf"
+      - "./**/*.yml"
       - ".terraform.lock.hcl"
     generates:
       - "{{ .TFPLAN }}"
