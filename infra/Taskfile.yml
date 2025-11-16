@@ -5,6 +5,12 @@ vars:
   OP_ARGS: "--env-file=../.env"
 
 tasks:
+  validate:
+    desc: Format Terraform codebase
+    cmds:
+      - terraform fmt -recursive -check
+      - terraform validate
+
   init:
     desc: Initialize Terraform (local)
     run: once
@@ -14,17 +20,11 @@ tasks:
       - .terraform.lock.hcl
     cmds:
       - op run {{ .OP_ARGS }} -- terraform init
-
-  validate:
-    desc: Format Terraform codebase
-    deps: [init]
-    cmds:
-      - terraform fmt -recursive -check
-      - terraform validate
+      - task: validate
 
   plan:
     desc: Plan Terraform changes (local)
-    deps: [init, validate]
+    deps: [init]
     sources:
       - "./**/*.tf"
       - ".terraform.lock.hcl"
@@ -44,7 +44,9 @@ tasks:
   ci:init:
     desc: Initialize Terraform (CI)
     run: once
-    cmd: terraform init
+    cmds:
+      - terraform init
+      - task: validate
 
   ci:plan:
     desc: Plan Terraform changes (CI)
