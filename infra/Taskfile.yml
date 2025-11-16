@@ -43,19 +43,14 @@ tasks:
 
   ci:init:
     desc: Initialize Terraform (CI)
-    run: once
     cmds:
       - terraform init
       - task: validate
 
   ci:plan:
     desc: Plan Terraform changes (CI)
-    deps: [ci:init, validate]
-    cmds:
-      - terraform plan -out={{ .TFPLAN }}
+    cmd: terraform plan -out={{ .TFPLAN }}
 
   ci:deploy:
     desc: Apply Terraform changes from plan file (CI)
-    deps: [ci:init]
-    cmds:
-      - terraform apply {{ .TFPLAN }}
+    cmd: terraform apply {{ .TFPLAN }}
