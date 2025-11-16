@@ -19,7 +19,7 @@ tasks:
     generates:
       - .terraform.lock.hcl
     cmds:
-      - op run {{ .OP_ARGS }} -- terraform init
+      - op run {{ .OP_ARGS }} -- terraform init {{ .CLI_ARGS }}
       - task: validate
 
   plan:
@@ -32,7 +32,7 @@ tasks:
     generates:
       - "{{ .TFPLAN }}"
     cmds:
-      - op run {{ .OP_ARGS }} -- terraform plan -out={{ .TFPLAN }}
+      - op run {{ .OP_ARGS }} -- terraform plan -out={{ .TFPLAN }} {{ .CLI_ARGS }}
 
   deploy:
     desc: Apply Terraform changes from plan file (local)
@@ -40,7 +40,7 @@ tasks:
     sources:
       - "{{ .TFPLAN }}"
     cmds:
-      - op run {{ .OP_ARGS }} -- terraform apply {{ .TFPLAN }}
+      - op run {{ .OP_ARGS }} -- terraform apply {{ .TFPLAN }} {{ .CLI_ARGS }}
 
   ci:init:
     desc: Initialize Terraform (CI)
