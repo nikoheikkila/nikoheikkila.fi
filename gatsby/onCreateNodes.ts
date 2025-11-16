@@ -4,8 +4,6 @@ import type { CreateNodeArgs, Node } from "gatsby";
 interface OnCreateNodeArgs extends CreateNodeArgs {
 	node: Node & {
 		frontmatter: Queries.MarkdownRemarkFrontmatter;
-		hero: string | null;
-		[key: string]: unknown;
 	};
 }
 
