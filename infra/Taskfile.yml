@@ -1,0 +1,59 @@
+version: "3"
+
+vars:
+  TFPLAN: "tfplan"
+  OP_ARGS: "--env-file=../.env"
+
+tasks:
+  init:
+    desc: Initialize Terraform (local)
+    run: once
+    sources:
+      - "./**/*.tf"
+    generates:
+      - .terraform.lock.hcl
+    cmds:
+      - op run {{ .OP_ARGS }} -- terraform init
+
+  validate:
+    desc: Format Terraform codebase
+    deps: [init]
+    cmds:
+      - terraform fmt -recursive -check
+      - terraform validate
+
+  plan:
+    desc: Plan Terraform changes (local)
+    deps: [init, validate]
+    sources:
+      - "./**/*.tf"
+      - ".terraform.lock.hcl"
+    generates:
+      - "{{ .TFPLAN }}"
+    cmds:
+      - op run {{ .OP_ARGS }} -- terraform plan -out={{ .TFPLAN }}
+
+  deploy:
+    desc: Apply Terraform changes from plan file (local)
+    deps: [plan]
+    sources:
+      - "{{ .TFPLAN }}"
+    cmds:
+      - op run {{ .OP_ARGS }} -- terraform apply {{ .TFPLAN }}
+
+  ci:init:
+    desc: Initialize Terraform (CI)
+    run: once
+    cmd: terraform init
+
+  ci:plan:
+    desc: Plan Terraform changes (CI)
+    deps: [ci:init, validate]
+    cmds:
+      - terraform plan -out={{ .TFPLAN }}
+
+  ci:deploy:
+    desc: Apply Terraform changes from plan file (CI)
+    deps: [ci:init]
+    cmds:
+      - terraform apply {{ .TFPLAN }}
