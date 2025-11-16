@@ -8,7 +8,7 @@ interface CreatePagesData {
 
 const postsPerPage = 30;
 
-const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: CreatePagesArgs) => {
+const onCreatePages = async ({ graphql, reporter, actions: { createPage, createSlice } }: CreatePagesArgs) => {
 	const blogIndex = path.resolve("./src/templates/list.tsx");
 	const blogPost = path.resolve("./src/templates/post.tsx");
 
@@ -34,11 +34,11 @@ const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: 
 	`);
 
 	if (errors) {
-		throw new Error(errors);
+		return reporter.panicOnBuild("Error while running GraphQL query in createPages.");
 	}
 
 	if (!data) {
-		throw new Error("createPages() query returned no data");
+		return reporter.panicOnBuild("createPages() query returned no data");
 	}
 
 	for (const { id, component, context = {} } of slices) {
@@ -68,7 +68,6 @@ const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: 
 		createPage({
 			path: slug,
 			component: blogPost,
-			defer: hasDSG() ? index > postsPerPage : false,
 			context: { slug, previous, next },
 		});
 	});
@@ -77,7 +76,7 @@ const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: 
 	 * Create index page by filtering the actual blog posts from all page
 	 * objects and creating an index-based array of those. Result will be
 	 * a site structure where '/' is the first page and subsequent pages will
-	 * be '/{2..m}' where m is the maximum number of posts.
+	 * be '/{2...m}' where m is the maximum number of posts.
 	 */
 	const posts = edges.filter((page) => page.node.frontmatter?.type === "post");
 	const numberOfPages = Math.ceil(posts.length / postsPerPage);
@@ -88,7 +87,6 @@ const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: 
 		createPage({
 			path: i === 0 ? "/" : `/${currentPage}`,
 			component: blogIndex,
-			defer: hasDSG() ? currentPage > 1 : false,
 			context: {
 				limit: postsPerPage,
 				skip: i * postsPerPage,
@@ -97,10 +95,6 @@ const onCreatePages = async ({ graphql, actions: { createPage, createSlice } }: 
 			},
 		});
 	});
-};
-
-const hasDSG = (): boolean => {
-	return process.env.GATSBY_ENABLE_DSG === "true";
 };
 
 export default onCreatePages;
