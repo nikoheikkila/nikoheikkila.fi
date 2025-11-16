@@ -1,6 +1,9 @@
 version: "3"
-dotenv:
-  - .env
+
+includes:
+  terraform:
+    taskfile: ./infra/Taskfile.yml
+    dir: ./infra
 
 tasks:
   new:
