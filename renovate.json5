@@ -12,7 +12,8 @@
 	],
 	"enabledManagers": [
 		"bun",
-		"github-actions"
+		"github-actions",
+		"terraform"
 	],
 	"schedule": [
 		"every weekend"
