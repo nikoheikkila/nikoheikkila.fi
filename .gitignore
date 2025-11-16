@@ -46,10 +46,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# dotenv environment variables file
-.env*
-!.env.example
-
 # Gatsby files
 .cache/
 public
@@ -80,4 +76,3 @@ playwright-report/
 
 # Gatsby types
 gatsby-types.d.ts
-

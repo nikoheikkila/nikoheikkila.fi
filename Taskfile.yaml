@@ -26,6 +26,7 @@ tasks:
     deps: [install]
     cmds:
       - bunx biome check --write .
+      - task: terraform:format
 
   typegen:
     desc: Generate GraphQL TypeScript types

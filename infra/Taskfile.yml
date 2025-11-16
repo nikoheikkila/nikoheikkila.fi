@@ -2,14 +2,25 @@ version: "3"
 
 vars:
   TFPLAN: "tfplan"
-  OP_ARGS: "--env-file=../.env"
+  OP_ARGS: "--env-file='.env'"
 
 tasks:
+  format:
+    desc: Format Terraform codebase
+    cmds:
+      - terraform fmt -recursive
+
   validate:
     desc: Format Terraform codebase
     cmds:
       - terraform fmt -recursive -check
       - terraform validate
+
+  run:
+    desc: Run Terraform commands
+    cmd: op run {{ .OP_ARGS }} -- terraform {{ .command }} {{ .CLI_ARGS }}
+    requires:
+      vars: [command, OP_ARGS]
 
   init:
     desc: Initialize Terraform (local)
@@ -19,7 +30,9 @@ tasks:
     generates:
       - .terraform.lock.hcl
     cmds:
-      - op run {{ .OP_ARGS }} -- terraform init {{ .CLI_ARGS }}
+      - task: run
+        vars:
+          command: "init"
       - task: validate
 
   plan:
@@ -31,8 +44,10 @@ tasks:
       - ".terraform.lock.hcl"
     generates:
       - "{{ .TFPLAN }}"
-    cmds:
-      - op run {{ .OP_ARGS }} -- terraform plan -out={{ .TFPLAN }} {{ .CLI_ARGS }}
+    cmd:
+      task: run
+      vars:
+        command: "plan -out={{ .TFPLAN }}"
 
   deploy:
     desc: Apply Terraform changes from plan file (local)
@@ -40,7 +55,9 @@ tasks:
     sources:
       - "{{ .TFPLAN }}"
     cmds:
-      - op run {{ .OP_ARGS }} -- terraform apply {{ .TFPLAN }} {{ .CLI_ARGS }}
+      - task: run
+        vars:
+          command: "apply {{ .TFPLAN }}"
 
   ci:init:
     desc: Initialize Terraform (CI)
