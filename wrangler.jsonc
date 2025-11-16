@@ -4,6 +4,7 @@
 	"compatibility_date": "2025-11-12",
 	"workers_dev": true,
 	"preview_urls": true,
+	"account_id": "062f0fa13aa03208ea85092e2e89480f",
 	"assets": {
 		"directory": "./public",
 		"not_found_handling": "404-page"
@@ -12,6 +13,13 @@
 		{
 			"pattern": "nikoheikkila.fi",
 			"custom_domain": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "BLOG",
+			"bucket_name": "blog",
+			"jurisdiction": "eu"
 		}
 	]
 }

@@ -14,6 +14,14 @@ DNS records are managed using a hybrid approach:
 - **Deployment**: Terraform reads YAML and creates Cloudflare DNS records
 - **Zone**: `nikoheikkila.fi` (ID: `d1561b53f2558d8285b1217e13fc9e68`)
 
+### R2 Storage (`r2.tf`)
+
+- **Bucket**: `blog` (jurisdiction: EU)
+- **Location**: EEUR (Eastern Europe)
+- **Purpose**: Object storage for blog assets
+- **Management**: Fully managed via Terraform
+- **Terraform Resource**: `cloudflare_r2_bucket.blog`
+
 ### Cloudflare Workers (`workers.tf`)
 
 - **Purpose**: Serves the static blog site with Cloudflare Workers Assets
@@ -42,6 +50,12 @@ DNS records are managed using a hybrid approach:
 
 - **Managed via**: Terraform (`workers.tf`)
 - **Purpose**: Track custom domain mapping in IaC
+- **Deployment**: `task deploy` (see Taskfile)
+
+### R2 Buckets
+
+- **Managed via**: Terraform (`r2.tf`)
+- **Purpose**: Object storage infrastructure for blog assets
 - **Deployment**: `task deploy` (see Taskfile)
 
 ## Why This Hybrid Approach?
