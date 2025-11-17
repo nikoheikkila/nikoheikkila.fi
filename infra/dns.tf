@@ -15,3 +15,17 @@ resource "cloudflare_dns_record" "records" {
   proxied  = each.value.proxied
   comment  = each.value.comment
 }
+
+resource "cloudflare_page_rule" "www_redirect" {
+  zone_id  = var.zone_id
+  target   = "www.${var.domain_name}/*"
+  priority = 1
+  status   = "active"
+
+  actions = {
+    forwarding_url = {
+      url         = "https://${var.domain_name}/$1"
+      status_code = 301
+    }
+  }
+}
