@@ -3,7 +3,7 @@ import React from "react";
 import type { FunctionComponent } from "react";
 import * as DateTime from "../../utils/datetime";
 import { formatReadingTime } from "../../utils/helpers";
-import Content from "../post/content";
+import Excerpt from "../post/excerpt";
 import * as styles from "./article.module.scss";
 
 interface ArticleCardProps {
@@ -62,7 +62,7 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 		<Link className={styles.card} data-testid="post-title" state={{ previous: location.pathname }} to={slug}>
 			<ArticleTitle title={title} />
 			<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
-			<Content content={excerpt} />
+			<Excerpt content={excerpt} />
 		</Link>
 	);
 };

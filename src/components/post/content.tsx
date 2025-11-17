@@ -1,8 +1,42 @@
 import type { CSSProperties, ReactNode } from "react";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+// Register only languages used in blog posts to reduce bundle size
+import bash from "react-syntax-highlighter/dist/esm/languages/hljs/bash";
+import diff from "react-syntax-highlighter/dist/esm/languages/hljs/diff";
+import dockerfile from "react-syntax-highlighter/dist/esm/languages/hljs/dockerfile";
+import gherkin from "react-syntax-highlighter/dist/esm/languages/hljs/gherkin";
+import go from "react-syntax-highlighter/dist/esm/languages/hljs/go";
+import haskell from "react-syntax-highlighter/dist/esm/languages/hljs/haskell";
+import javascript from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
+import markdown from "react-syntax-highlighter/dist/esm/languages/hljs/markdown";
+import php from "react-syntax-highlighter/dist/esm/languages/hljs/php";
+import plaintext from "react-syntax-highlighter/dist/esm/languages/hljs/plaintext";
+import python from "react-syntax-highlighter/dist/esm/languages/hljs/python";
+import typescript from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
+import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
+import yaml from "react-syntax-highlighter/dist/esm/languages/hljs/yaml";
+
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("diff", diff);
+SyntaxHighlighter.registerLanguage("dockerfile", dockerfile);
+SyntaxHighlighter.registerLanguage("gherkin", gherkin);
+SyntaxHighlighter.registerLanguage("go", go);
+SyntaxHighlighter.registerLanguage("haskell", haskell);
+SyntaxHighlighter.registerLanguage("html", xml);
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("markdown", markdown);
+SyntaxHighlighter.registerLanguage("php", php);
+SyntaxHighlighter.registerLanguage("plain", plaintext);
+SyntaxHighlighter.registerLanguage("python", python);
+SyntaxHighlighter.registerLanguage("svelte", xml); // Use XML for Svelte (similar to HTML)
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("yaml", yaml);
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
