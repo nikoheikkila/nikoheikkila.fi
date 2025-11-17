@@ -14,7 +14,7 @@ resource "cloudflare_r2_custom_domain" "blog_custom_domain" {
   domain       = "r2.${var.domain_name}"
   zone_id      = var.zone_id
   enabled      = true
-  jurisdiction = "eu"
+  jurisdiction = cloudflare_r2_bucket.blog.jurisdiction
 }
 
 resource "cloudflare_tiered_cache" "r2" {
