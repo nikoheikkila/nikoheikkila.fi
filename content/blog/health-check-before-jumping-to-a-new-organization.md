@@ -5,7 +5,7 @@ lang: en
 excerpt: Dear recruiters, don't talk to me about your tech stack.
 type: post
 date: 2021-05-09
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/health-check-before-jumping-to-a-new-organization.jpg
+hero: https://r2.nikoheikkila.fi/health-check-before-jumping-to-a-new-organization.jpg
 ---
 
 Many software developers who have at least a couple of years of experience in this industry are often barraged with headhunting letters from recruiters. Unfortunately, I have seen too many letters sent *en masse* vaguely describing an open position for some unnamed client followed by a generic description of a typical tech stack.

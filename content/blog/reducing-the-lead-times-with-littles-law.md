@@ -4,7 +4,7 @@ author: Niko Heikkilä
 lang: en
 excerpt: Are your features taking ages to deliver? Beat those long lead times by reducing the work in progress and increasing throughput.
 type: post
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/factory.jpg
+hero: https://r2.nikoheikkila.fi/factory.jpg
 date: 2021-03-28
 ---
 
@@ -16,7 +16,7 @@ First, let's define the terms.
 
 **Throughput** is the measured amount of backlog items a team can complete in a fixed period, which is usually a day.
 
-![Little's Law illustrated with a picture of cute robots dividing the average work-in-progress with average throughput and receiving the average lead time as a result.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/reducing-the-lead-times-with-littles-law.png)
+![Little's Law illustrated with a picture of cute robots dividing the average work-in-progress with average throughput and receiving the average lead time as a result.](https://r2.nikoheikkila.fi/reducing-the-lead-times-with-littles-law.png)
 
 **Example:**
 

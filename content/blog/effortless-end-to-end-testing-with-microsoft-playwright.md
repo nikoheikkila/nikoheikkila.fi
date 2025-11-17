@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2022-04-17
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/effortless-end-to-end-testing-with-microsoft-playwright.jpg
+hero: https://r2.nikoheikkila.fi/effortless-end-to-end-testing-with-microsoft-playwright.jpg
 title: Effortless End-To-End Testing with Microsoft Playwright
 type: post
 excerpt: How can we improve the developer experience in writing tedious browser-based tests?
@@ -77,7 +77,7 @@ Meanwhile, QA struggles to write and maintain an exhaustive test set when not te
 
 Let's put this in the form of a picture.
 
-![A breakdown of test suites that either quality assurance specialists or software developers typically write.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/DevQATests.png)
+![A breakdown of test suites that either quality assurance specialists or software developers typically write.](https://r2.nikoheikkila.fi/DevQATests.png)
 
 The root cause of flaky E2E tests is naturally failed communication, but sometimes choosing the right tools may also help. For example, the QA boomers (pardon the expression) who have been working in the software business for decades often write E2E tests with **Robot Framework** and **Selenium**.
 

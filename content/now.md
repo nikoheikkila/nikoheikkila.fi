@@ -4,7 +4,7 @@ type: page
 title: What I'm Doing Now?
 author: Niko Heikkilä
 date: 2025-03-25
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/now.jpg
+hero: https://r2.nikoheikkila.fi/now.jpg
 ---
 
 This is my `/now` page intended to keep you — and perhaps myself — in the loop with my life. I can't fathom how to pull out a list like this accurately since I'm continually changing, but let me at least provide a bird's eye on my current life activities.

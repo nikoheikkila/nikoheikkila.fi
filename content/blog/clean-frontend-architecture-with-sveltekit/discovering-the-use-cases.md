@@ -5,7 +5,7 @@ lang: en
 excerpt: Why designing loosely coupled applications is crucial for managing complexity and sustaining maintainability.
 type: post
 date: 2023-01-29
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 The essence of software lies in the problems it helps us to solve. Software that doesn't offer a solution to the problem is only code for the joy of coding. What helps us to solve problems, then? Modelling the problem domain and formulating use cases from it.

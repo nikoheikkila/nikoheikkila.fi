@@ -3,7 +3,7 @@ lang: en
 author: Niko Heikkilä
 date: 2025-03-25
 title: Uses
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/keychron.jpg
+hero: https://r2.nikoheikkila.fi/keychron.jpg
 type: page
 excerpt: The tools I use to survive my hectic days as a software engineer.
 ---
@@ -57,7 +57,7 @@ Most apps offer a limited free plan which you should check out too, if it covers
 ### Web Services
 
 -   [**1Password** 💰](https://1password.com) with a Business subscription paid by my employer. I use it to store passwords, secure notes, software licenses, movie tickets, and SSH keys. It's the best password manager out there, and using anything else would cause me a mental breakdown.
--   [**DigitalOcean Spaces** 💰](https://www.digitalocean.com/products/spaces) to serve static assets to this blog and other purposes.
+-   [**CloudFlare R2** 💰](https://www.cloudflare.com/r2/) to serve static assets to this blog and other purposes.
 -   [**iCloud** 💰](https://www.dropbox.com) with a 50 GB subscription to dump all my random things into.
 -   [**HEY** 💰](https://www.hey.com/), for the email. I didn't know I needed its powerful features until I screened out the first obnoxious marketer sending unsolicited sales emails.
 -   [**Fastmail** 💰](https://fastmail.com/) for using a custom domain as my email since HEY for Domains is, sadly, another product.

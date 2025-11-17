@@ -4,7 +4,7 @@ title: Three Lessons I’ve Learned as a Professional Web Developer
 author: Niko Heikkilä
 type: post
 date: 2017-12-03
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/three-lessons.jpg
+hero: https://r2.nikoheikkila.fi/three-lessons.jpg
 excerpt: Do not fear PHP, explore tools, and watch your back with continuous integration.
 ---
 

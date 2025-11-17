@@ -5,7 +5,7 @@ lang: en
 excerpt: "Yorgos Lanthimos fuses anarchy and resilience into a stunning narrative. Bella Baxter's journey—a mix of deformed science, personal growth, and unyielding spirit—awakens profound insights into humanity, standing testimony to highly creative cinema."
 type: post
 date: 2024-01-15
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/poor-things.jpg
+hero: https://r2.nikoheikkila.fi/poor-things.jpg
 ---
 
 Whenever there is a new film from the master of anarchistic cinema, **Yorgos Lanthimos**, I must remind myself to bring something to support my jaws into the theatre, for they are guaranteed to drop. It has happened multiple times, beginning with his first international film, _The Lobster_ (2015), continuing to _The Killing of Sacred Deer_ (2017), and finally, to a lesser extent, with _The Favourite_ (2018). His latest entry, nominated for five and winner of two Golden Globe awards, is no exception save for one aspect: it is his best work to date.

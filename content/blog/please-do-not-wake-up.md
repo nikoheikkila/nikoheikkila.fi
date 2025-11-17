@@ -4,7 +4,7 @@ title: Please, Do Not ‘Wake Up’
 author: Niko Heikkilä
 type: post
 date: 2017-08-21
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/please-do-not-wake-up.jpg
+hero: https://r2.nikoheikkila.fi/please-do-not-wake-up.jpg
 excerpt: A blog entry where some nerd shares their one vital attitude to face shabby terrorism and fascism with.
 ---
 

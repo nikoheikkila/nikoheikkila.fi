@@ -5,7 +5,7 @@ lang: en
 excerpt: Recently, I finished an excellent cooperation gig with a client. While my main tasks were focused on helping them design and develop their digital service, I wouldn't be a great consultant if I would just silently fade away on the last day of my contract.
 type: post
 date: 2023-10-14
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/five-essential-pointers-for-improving-your-product-and-process-quality.jpg
+hero: https://r2.nikoheikkila.fi/five-essential-pointers-for-improving-your-product-and-process-quality.jpg
 ---
 
 One technique of ensuring my work will be remembered is giving back professional pointers on how the client can improve the quality of their product and process after I'm gone.

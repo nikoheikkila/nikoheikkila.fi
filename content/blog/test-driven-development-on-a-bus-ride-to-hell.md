@@ -4,7 +4,7 @@ author: Niko Heikkilä
 lang: en
 type: post
 date: 2022-09-17
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/test-driven-development-on-a-bus-ride-to-hell.jpg
+hero: https://r2.nikoheikkila.fi/test-driven-development-on-a-bus-ride-to-hell.jpg
 excerpt: |
     Want to learn TDD while saving innocent civilians from dying?
     Hop on board the bus!

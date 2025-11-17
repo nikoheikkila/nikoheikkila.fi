@@ -5,7 +5,7 @@ lang: en
 excerpt: Contrary to some beliefs, side effects have a place in clean architecture. In fact, they enjoy our utmost care and attention.
 type: post
 date: 2023-01-31
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 In the previous post, I designed our service and use case handlers. However, it had one glaring detail I left unexplained: _the gateway_.

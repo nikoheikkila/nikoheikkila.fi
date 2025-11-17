@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-10-15
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/fight-the-inner-impostor-with-just-in-time-learning.jpg
+hero: https://r2.nikoheikkila.fi/fight-the-inner-impostor-with-just-in-time-learning.jpg
 title: Fight the Inner Impostor with Just-In-Time Learning
 type: post
 excerpt: Don't plunge headfirst learning all the things that won't benefit you now. Instead, accept that your knowledge is never complete.

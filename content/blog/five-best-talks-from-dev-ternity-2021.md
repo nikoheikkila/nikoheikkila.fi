@@ -5,7 +5,7 @@ lang: en
 excerpt: No agile bullshit bingo nor marketing talks.
 type: post
 date: 2022-03-12
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/five-best-talks-from-dev-ternity-2021.jpg
+hero: https://r2.nikoheikkila.fi/five-best-talks-from-dev-ternity-2021.jpg
 ---
 
 The promise on [**DevTernity**](https://devternity.com) conference homepage is to turn developers into architects and engineering leaders. A bold mission, which many major players in the thought leadership business would find a formidable challenge to overcome.

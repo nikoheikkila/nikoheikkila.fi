@@ -5,7 +5,7 @@ lang: en
 excerpt: A practical guide for craftspeople seeking to avoid the most common pitfalls when designing modern frontend applications.
 type: post
 date: 2023-01-28
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 Long gone in the past[^1] are websites that purely displayed static, seldom changing content to visitors. Today, almost all user interfaces are _web applications_ instead of _websites_.

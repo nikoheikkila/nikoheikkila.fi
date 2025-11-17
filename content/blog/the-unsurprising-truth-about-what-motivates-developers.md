@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-10-26
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/the-unsurprising-truth-about-what-motivates-developers.jpg
+hero: https://r2.nikoheikkila.fi/the-unsurprising-truth-about-what-motivates-developers.jpg
 title: The Unsurprising Truth about What Motivates Developers
 type: post
 excerpt: A take on autonomy, mastery, and purpose as driving forces.

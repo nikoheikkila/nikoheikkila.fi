@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-11-24
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/checking-a-web-page-for-dead-links.png
+hero: https://r2.nikoheikkila.fi/checking-a-web-page-for-dead-links.png
 title: Checking a Web Page for Dead Links
 type: post
 excerpt: A Golang Command-Line Tutorial

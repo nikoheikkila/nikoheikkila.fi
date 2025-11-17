@@ -5,7 +5,7 @@ date: 2025-03-25
 type: page
 title: The Story
 excerpt: ...or how I learned to stop worrying and love the code.
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/story.jpg
+hero: https://r2.nikoheikkila.fi/story.jpg
 ---
 ## Hello! 🖖
 

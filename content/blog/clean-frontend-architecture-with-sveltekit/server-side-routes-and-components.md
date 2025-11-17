@@ -5,7 +5,7 @@ lang: en
 excerpt: After a long detour, we peek into the internals of SvelteKit and how its conventions merge with our clean architecture ideals resulting in a maintainable frontend application.
 type: post
 date: 2023-05-02
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 In the previous chapters, I have demonstrated the power of designing and testing a backend within the frontend, but you can only walk so far. I haven't touched the powerful capabilities of **SvelteKit** yet. It's time to fix that and get my server-side routes and components to visualise the data users asked for.

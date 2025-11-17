@@ -5,7 +5,7 @@ lang: en
 excerpt: Once upon a time, two software companies were competing in the same business domain. The first one has been out of business for a while now. The latter one thrives.
 type: post
 date: 2022-01-01
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/dev-ops-is-the-interface-your-organisation-implements-it.jpg
+hero: https://r2.nikoheikkila.fi/dev-ops-is-the-interface-your-organisation-implements-it.jpg
 ---
 
 ## Long Time Ago in a Software Company, Far Far Away

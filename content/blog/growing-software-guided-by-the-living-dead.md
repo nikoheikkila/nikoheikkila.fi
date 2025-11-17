@@ -5,7 +5,7 @@ lang: en
 excerpt: A gentle introduction to the ZOMBIES development pattern
 type: post
 date: 2022-02-13
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/growing-software-guided-by-the-living-dead.jpg
+hero: https://r2.nikoheikkila.fi/growing-software-guided-by-the-living-dead.jpg
 ---
 
 While dipping our toes with test-driven development for the first time, a significant obstacle is usually finding out how to write our first tests. Happy cases are easy to start with, but a better way involves mapping your inputs to expected outputs—watch out, ZOMBIES!

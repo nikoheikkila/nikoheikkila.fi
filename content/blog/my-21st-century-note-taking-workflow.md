@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2021-02-07
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/my-21st-century-note-taking-workflow.jpg
+hero: https://r2.nikoheikkila.fi/my-21st-century-note-taking-workflow.jpg
 title: My 21st Century Note-Taking Workflow
 type: post
 excerpt: A fully automated pipeline from raw ideas to text documents.

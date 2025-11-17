@@ -5,7 +5,7 @@ lang: en
 excerpt: All design efforts should begin from the domain when solving business problems. How do we model the domain of a photo browsing application?
 type: post
 date: 2023-02-28
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 Whether you follow the domain-driven design or not, clean domain modelling is one of the most crucial problems we software engineers must tackle. Why is that? Because domain modelling helps us establish a shared language with stakeholders and manage the essential complexity within our product.

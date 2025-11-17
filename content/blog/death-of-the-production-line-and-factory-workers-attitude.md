@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-11-18
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/death-of-the-production-line-and-factory-workers-attitude.jpg
+hero: https://r2.nikoheikkila.fi/death-of-the-production-line-and-factory-workers-attitude.jpg
 title: Death of the Production Line and Factory Workers Attitude
 type: post
 excerpt: Whether you're a practical nurse, a salesperson, or a senior software architect, it all begins from the community (and a head full of strong will).

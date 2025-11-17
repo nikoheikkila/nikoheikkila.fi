@@ -5,7 +5,7 @@ lang: en
 excerpt: In the previous post, I described how to build a stable and fast acceptance test suite helping me to produce quick and repeatable proofs that my solution works. So what purpose does it serve us?
 type: post
 date: 2023-05-07
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 The goal of every software team is to deliver the solution into their users' hands sooner than later. In this post, I will explain how to set up a CI/CD-oriented workflow for the Photo Browser that grants confidence in my changes both locally and in the continuous delivery pipeline.

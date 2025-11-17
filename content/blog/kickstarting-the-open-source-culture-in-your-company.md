@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2020-06-15
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/kickstarting-the-open-source-culture-in-your-company.jpg
+hero: https://r2.nikoheikkila.fi/kickstarting-the-open-source-culture-in-your-company.jpg
 title: Kickstarting the Open-Source Culture in Your Company
 type: post
 excerpt: Thinking of selling open-source to your employer? Read this guide for a swift path to glory.

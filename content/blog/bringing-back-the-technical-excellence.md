@@ -5,7 +5,7 @@ lang: en
 excerpt: In this post, I present a brief — constantly evolving — guide on gradually bringing back technical excellence and driving down development costs.
 type: post
 date: 2021-11-15
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/bringing-back-the-technical-excellence.jpg
+hero: https://r2.nikoheikkila.fi/bringing-back-the-technical-excellence.jpg
 ---
 
 > In software, legacy code is a code that runs in production.

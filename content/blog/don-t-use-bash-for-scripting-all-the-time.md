@@ -2,7 +2,7 @@
 lang: en
 author: Niko Heikkilä
 date: 2019-05-05
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/don-t-use-bash-for-scripting-all-the-time.png
+hero: https://r2.nikoheikkila.fi/don-t-use-bash-for-scripting-all-the-time.png
 title: Don't Use Bash for Scripting (All the Time)
 type: post
 excerpt: When the complexity of your script grows it's time to drop the Bash. With modern tools it can be easy, fast, and fun.

@@ -5,7 +5,7 @@ lang: en
 excerpt: What good does a clean architecture do if you cannot safely deliver it to the hands of your users? Unit tests help to a point, but the real confidence lives in automated acceptance tests.
 type: post
 date: 2023-05-03
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/clean_frontend_architecture_with_sveltekit.jpg
+hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---
 
 In the previous chapters, you saw how the heart of our architecture — services, gateways, and domain models — were covered with behavioural IO-free[^1] tests. However, omitting the acceptance tests at a higher level still leaves a lot of ground to cover, and I'm not entirely confident that my web application will satisfy the users' needs when I deploy it.

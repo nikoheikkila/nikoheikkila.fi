@@ -32,7 +32,7 @@ To facilitate it, I've created a few custom Git commands. Few people know that y
 
 The animation below[^1] shows how I work with micro-commits.
 
-![A GIF recording of my Git workflow in terminal](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/micro-commits-with-git.gif)
+![A GIF recording of my Git workflow in terminal](https://r2.nikoheikkila.fi/micro-commits-with-git.gif)
 
 Does this feel oddly familiar? You're correct because it's an application of **Kent Beck's** famous `test && commit || revert` workflow. Let's break down the steps you saw above.
 

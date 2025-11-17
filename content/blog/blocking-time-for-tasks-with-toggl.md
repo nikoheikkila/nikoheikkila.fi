@@ -5,7 +5,7 @@ lang: en
 excerpt: How organizing your day brings a sense of clarity and calm into this mad, mad world.
 type: post
 date: 2021-03-20
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/blocking-time-for-tasks-with-toggl.jpg
+hero: https://r2.nikoheikkila.fi/blocking-time-for-tasks-with-toggl.jpg
 ---
 
 For people doing mainly project work, planning daily tasks is a constant struggle, which can cause severe issues with productivity and mental well-being.
@@ -26,7 +26,7 @@ Don't worry. With time blocking, you get to keep your regular breaks and days of
 
 After dividing your days into slices, your day might look a bit like in the picture below. Note that the themes are only examples, and I usually write those down precisely to help me later recall what I worked on.
 
-![An example sketch of how I might block time for different tasks throughout the day.](https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/timeblocking.png)
+![An example sketch of how I might block time for different tasks throughout the day.](https://r2.nikoheikkila.fi/timeblocking.png)
 
 ## How Do I Split the Day?
 

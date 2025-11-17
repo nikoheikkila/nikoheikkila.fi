@@ -4,7 +4,7 @@ title: "Quick Tip: Faking Dates in PHP with Carbon"
 author: Niko Heikkilä
 type: post
 date: 2018-06-24
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/quick-tip-faking-dates-in-php-with-carbon.jpg
+hero: https://r2.nikoheikkila.fi/quick-tip-faking-dates-in-php-with-carbon.jpg
 excerpt: Often there are scenarios where our code depends on the current time. Carbon handles this eloquently.
 ---
 

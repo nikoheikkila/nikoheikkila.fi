@@ -4,7 +4,7 @@ title: Static Site Rendering Conquer All
 author: Niko Heikkilä
 type: post
 date: 2019-04-19
-hero: https://nikoheikkila.ams3.cdn.digitaloceanspaces.com/Blog/static-site-rendering-conquer-all.png
+hero: https://r2.nikoheikkila.fi/static-site-rendering-conquer-all.png
 excerpt: Goodbye WordPress, it has been quite a journey.
 ---
 
