@@ -18,68 +18,46 @@
 
 	h1 {
 		font-size: 2.25rem;
-		line-height: 1.3em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 2.5rem;
-		}
+		line-height: 1.3;
 	}
 	h2 {
 		font-size: 1.875rem;
-		line-height: 1.35em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 2rem;
-		}
+		line-height: 1.35;
 	}
 	h3 {
 		font-size: 1.625rem;
-		line-height: 1.4em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 1.75rem;
-		}
+		line-height: 1.4;
 	}
 	h4 {
 		font-size: 1.375rem;
-		line-height: 1.45em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 1.5rem;
-		}
+		line-height: 1.45;
 	}
 	h5 {
 		font-size: 1.1875rem;
-		line-height: 1.5em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 1.25rem;
-		}
+		line-height: 1.5;
 	}
 	h6 {
 		font-size: 1rem;
-		line-height: 1.55em;
-
-		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			font-size: 1.125rem;
-		}
+		line-height: 1.55;
 	}
 
 	p {
-		line-height: 1.9;
+		line-height: 1.75;
 		margin-bottom: 1.5rem;
 
-		code {
+		pre, code {
 			background-color: variables.$lightTeal;
 			color: variables.$code;
 			padding: 2px 6px;
 			border-radius: 3px;
-			font-size: 0.95em;
 
 			@media (prefers-color-scheme: light) {
 				background-color: variables.$darkSecondaryFg;
 				color: variables.$lightCode;
 			}
+
+			text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%
 		}
 	}
 
@@ -94,23 +72,17 @@
 		margin: 2.5rem 0;
 		padding: 1rem 1.5rem;
 		quotes: "\201C" "\201D" "\2018" "\2019";
-		background-color: variables.$lightSecondaryFg;
+		background-color: rgba(0, 0, 0, 0.2);
 		border-radius: 0 4px 4px 0;
 
 		@media (prefers-color-scheme: light) {
-			background-color: variables.$darkFg;
+			background-color: rgba(0, 0, 0, 0.05);
 			border-left-color: variables.$teal;
 		}
 
 		p {
 			font-size: 1.1875em;
-			line-height: 1.65;
-			font-weight: 400;
-
-			@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-				font-size: 1.25em;
-				line-height: 1.7;
-			}
+			line-height: 1.75;
 		}
 
 		p:not(:last-of-type) {
@@ -150,7 +122,6 @@
 .caption {
 	text-align: center;
 	font-style: italic;
-	font-size: 1rem;
 
 	span {
 		display: block;
@@ -158,7 +129,6 @@
 }
 
 .codeblock {
-	font-size: 16px;
 	margin: 3rem 0;
 	background-color: variables.$almostBlack;
 	text-align: right;

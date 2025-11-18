@@ -20,6 +20,13 @@ import python from "react-syntax-highlighter/dist/esm/languages/hljs/python";
 import typescript from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
 import yaml from "react-syntax-highlighter/dist/esm/languages/hljs/yaml";
+import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import makeTitleCase from "title";
+import { BlogLink } from "../elements";
+import * as styles from "./content.module.scss";
 
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("diff", diff);
@@ -37,13 +44,6 @@ SyntaxHighlighter.registerLanguage("python", python);
 SyntaxHighlighter.registerLanguage("svelte", xml); // Use XML for Svelte (similar to HTML)
 SyntaxHighlighter.registerLanguage("typescript", typescript);
 SyntaxHighlighter.registerLanguage("yaml", yaml);
-import rehypeKatex from "rehype-katex";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import makeTitleCase from "title";
-import { BlogLink } from "../elements";
-import * as styles from "./content.module.scss";
 
 import "katex/dist/katex.min.css";
 
@@ -167,11 +167,15 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 			<span className={styles.language}>{makeTitleCase(language)}</span>
 			<SyntaxHighlighter
 				customStyle={{
-					padding: 0,
+					padding: "8px 0 8px 12px",
 					fontSize: "1.0rem",
 					lineHeight: "2.0rem",
 				}}
 				language={language}
+				lineNumberStyle={{
+					opacity: 0.3,
+					textAlign: "center",
+				}}
 				lineProps={(lineNumber) => {
 					const style: CSSProperties = {
 						display: "block",
@@ -183,7 +187,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 						return {
 							style: {
 								...style,
-								backgroundColor: "rgba(0, 255, 0, 0.2)",
+								color: "rgba(0, 255, 0, 0.05",
 							},
 						};
 					}
@@ -192,7 +196,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 						return {
 							style: {
 								...style,
-								backgroundColor: "rgba(255, 0, 0, 0.3)",
+								color: "rgba(255, 0, 0, 0.05)",
 							},
 						};
 					}

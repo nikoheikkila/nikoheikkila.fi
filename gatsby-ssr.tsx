@@ -17,7 +17,7 @@ function configureHtml(setHtmlAttributes: (attributes: React.ClassAttributes<HTM
 }
 
 function configureFonts(setHeadComponents: (children: React.ReactNode[]) => void) {
-	const fontUrl = "https://api.fontshare.com/v2/css?f[]=synonym@400&f[]=amulya@700&display=swap";
+	const fontUrl = "https://api.fontshare.com/v2/css?f[]=synonym@400,500&f[]=amulya@700&display=swap";
 
 	setHeadComponents([
 		<link

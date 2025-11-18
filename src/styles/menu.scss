@@ -51,8 +51,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 	a {
 		display: block;
-		font-size: 1em;
-		line-height: 1.75em;
+		line-height: 1.75;
 	}
 
 	a:hover {
@@ -70,13 +69,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
 			content: "❯ ";
 		}
 
-		font-weight: 700;
 		outline: none;
 		color: variables.$teal;
-		text-shadow: 0 0 2px variables.$teal;
 
 		@media (prefers-color-scheme: light) {
-			color: variables.$lightTeal;
+			color: variables.$teal;
 		}
 	}
 }

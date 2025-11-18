@@ -8,19 +8,22 @@ body {
 	font-kerning: normal;
 	word-wrap: break-word;
 	font-feature-settings: "kern", "liga", "clig", "calt";
-	line-height: 1.65;
 
 	background-color: variables.$darkBg;
 	color: variables.$darkFg;
 
 	font-weight: 400;
-	font-size: 17px;
+	font-size: 21px;
 	font-family: "Synonym", variables.$fontFamily;
 
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
+	}
+
+	@media (prefers-color-scheme: light) {
+		font-weight: 500;
 	}
 }
 
@@ -32,7 +35,6 @@ h5,
 h6 {
 	font-family: "Amulya", variables.$fontFamily;
 	font-weight: 700;
-	line-height: 1.15;
 
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 		-webkit-font-smoothing: antialiased;
@@ -47,18 +49,9 @@ ul {
 }
 
 li,
-p {
-	line-height: 1.75;
-
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-		font-size: 1.125rem;
-		line-height: 1.8;
-	}
-}
 
 a {
 	color: inherit;
-	font-weight: 400;
 	text-decoration: none;
 	transition: color 0.2s ease-in-out;
 }
@@ -73,12 +66,12 @@ section.footnotes {
 	margin: 50px 0;
 
 	p {
-		font-size: 0.9rem;
+		font-size: 1.25rem;
 	}
 }
 
 ::selection {
-	background-color: variables.$yellow;
+	background-color: variables.$teal;
 	color: color.invert($color: variables.$darkFg);
 }
 
@@ -106,12 +99,7 @@ section.footnotes {
 	}
 
 	::selection {
-		background-color: variables.$teal;
-		color: variables.$lightBg;
-
-		@media (prefers-color-scheme: light) {
-			background-color: variables.$lightTeal;
-		}
+		background-color: variables.$yellow;
 	}
 
 	/* Code blocks */

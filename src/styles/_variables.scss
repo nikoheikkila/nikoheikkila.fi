@@ -1,8 +1,9 @@
 $teal: rgb(102, 178, 178);
-$yellow: #ffc600;
+$yellow: #f8edc7;
 
 // Dark theme colors (default)
 $darkBg: rgb(30, 41, 59);
+$darkSecondaryBg: rgb(30, 46, 73);
 $darkFg: rgb(241, 245, 249);
 $darkSecondaryFg: rgb(222, 223, 231);
 $gray: rgb(60, 72, 83);
@@ -11,8 +12,9 @@ $almostBlack: rgb(15, 23, 42);
 $code: rgb(226, 232, 240);
 
 // Light theme colors
-$lightBg: rgb(248, 248, 248);
-$lightFg: rgb(2, 10, 21);
+$lightBg: #fffff8;
+$lightSecondaryBg: #f9f9dc;
+$lightFg: #111111;
 $lightSecondaryFg: rgb(28, 34, 42);
 $lightBlue: #11476e;
 $lightGray: rgb(226, 232, 240);

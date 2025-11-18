@@ -13,7 +13,7 @@
 
 .title {
 	font-size: 2.5rem;
-	line-height: 1.5em;
+	line-height: 1.5;
 	padding-top: 50px;
 	color: variables.$teal;
 	letter-spacing: -0.025em;
@@ -24,17 +24,11 @@
 }
 
 .excerpt {
-	font-size: 1.25rem;
+	font-size: 1.35rem;
 	font-style: italic;
-	line-height: 1.6;
+	line-height: 1.5;
 	margin-bottom: 40px;
 	color: variables.$darkSecondaryFg;
-	font-weight: 400;
-
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-		font-size: 1.35rem;
-		line-height: 1.65;
-	}
 
 	@media (prefers-color-scheme: light) {
 		color: variables.$lightFg;
@@ -42,7 +36,7 @@
 }
 
 .meta {
-	font-size: 1.1rem;
+	font-size: 1.35rem;
 	color: variables.$darkSecondaryFg;
 
 	@media (prefers-color-scheme: light) {
@@ -51,7 +45,6 @@
 }
 
 .author {
-	font-weight: 700;
 	color: variables.$darkSecondaryFg;
 
 	@media (prefers-color-scheme: light) {
