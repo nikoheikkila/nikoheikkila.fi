@@ -5,7 +5,7 @@ locals {
 resource "cloudflare_dns_record" "records" {
   for_each = local.dns_config.dns_records
 
-  zone_id = var.zone_id
+  zone_id = local.zone_id
   name    = each.value.name
   type    = each.value.type
   # TXT records must be enclosed in quotes
@@ -17,14 +17,14 @@ resource "cloudflare_dns_record" "records" {
 }
 
 resource "cloudflare_page_rule" "www_redirect" {
-  zone_id  = var.zone_id
-  target   = "www.${var.domain_name}/*"
+  zone_id  = local.zone_id
+  target   = "www.${local.domain}/*"
   priority = 1
   status   = "active"
 
   actions = {
     forwarding_url = {
-      url         = "https://${var.domain_name}/$1"
+      url         = "https://${local.domain}/$1"
       status_code = 301
     }
   }

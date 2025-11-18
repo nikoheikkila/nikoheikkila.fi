@@ -31,7 +31,3 @@ terraform {
 # API token is configured via CLOUDFLARE_API_TOKEN environment variable
 provider "cloudflare" {
 }
-
-data "cloudflare_zone" "main" {
-  zone_id = var.zone_id
-}

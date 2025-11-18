@@ -3,6 +3,7 @@ version: "3"
 vars:
   TFPLAN: "tfplan"
   OP_ARGS: "--env-file='.env'"
+  TFVARS: "cloudflare.tfvars"
 
 tasks:
   format:
@@ -47,7 +48,7 @@ tasks:
     cmd:
       task: run
       vars:
-        command: "plan -out={{ .TFPLAN }}"
+        command: "plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
 
   deploy:
     desc: Apply Terraform changes from plan file (local)
@@ -67,7 +68,7 @@ tasks:
 
   ci:plan:
     desc: Plan Terraform changes (CI)
-    cmd: terraform plan -out={{ .TFPLAN }}
+    cmd: terraform plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
 
   ci:deploy:
     desc: Apply Terraform changes from plan file (CI)
