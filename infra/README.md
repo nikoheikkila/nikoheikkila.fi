@@ -12,7 +12,7 @@ DNS records are managed using a hybrid approach:
 
 - **Configuration**: YAML file (`dns.yml`) for easy maintenance
 - **Deployment**: Terraform reads YAML and creates Cloudflare DNS records
-- **Zone**: `nikoheikkila.fi` (ID: `d1561b53f2558d8285b1217e13fc9e68`)
+- **Zone**: `nikoheikkila.fi` (ID available via `terraform output zone_id`)
 
 ### R2 Storage (`r2.tf`)
 
@@ -76,7 +76,36 @@ DNS records are managed using a hybrid approach:
    - Terraform state tracks all infrastructure changes
    - R2 backend provides reliable, cost-effective storage
 
-## Secrets Management
+## Configuration
+
+### Variables
+
+The following variables can be configured in `cloudflare.tfvars`:
+
+- **`account_id`** (required): CloudFlare account ID (32-character hex string)
+- **`domain`** (optional): Primary domain name (default: `nikoheikkila.fi`)
+- **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
+- **`r2_bucket_location`** (optional): R2 bucket location (default: `EEUR`, options: WNAM, ENAM, WEUR, EEUR, APAC)
+- **`r2_storage_class`** (optional): R2 storage class (default: `Standard`, options: Standard, InfrequentAccess)
+- **`worker_service_name`** (optional): CloudFlare Worker service name (default: `blog`)
+
+All variables except `account_id` have sensible defaults and typically don't need to be changed.
+
+### Outputs
+
+The following outputs are available after applying the configuration:
+
+- **`zone_id`**: CloudFlare zone ID
+- **`zone_name`**: Domain name
+- **`r2_bucket_id`**: R2 bucket identifier
+- **`r2_bucket_name`**: R2 bucket name
+- **`r2_custom_domain`**: Custom domain for R2 bucket access
+- **`worker_custom_domain`**: Worker custom domain hostname
+- **`dns_record_count`**: Total number of DNS records managed
+
+View outputs with: `task run -- output` or `terraform output`
+
+### Secrets Management
 
 All sensitive credentials are managed via **1Password**:
 
@@ -84,9 +113,9 @@ All sensitive credentials are managed via **1Password**:
 - `AWS_ACCESS_KEY_ID`: R2 access key for state backend
 - `AWS_SECRET_ACCESS_KEY`: R2 secret key for state backend
 
-Secrets are referenced in `.env` file using 1Password CLI references:
+Secrets are referenced in `.env` file using 1Password CLI references.
 
-Commands are executed with: `op run --env-file="../.env" -- <command>`
+Commands are executed with: `op run --env-file=".env" -- <command>`
 
 ## Common Tasks
 
@@ -112,12 +141,12 @@ See `.github/workflows/terraform.yml` for CI/CD pipeline details.
 # 1. Edit DNS records
 $EDITOR dns.yml
 
-# 2. Validate and plan
-task terraform:plan
+# 2. Validate and plan (from infra directory)
+task plan
 
 # 3. Review changes carefully
 # 4. Apply if changes look correct
-task terraform:deploy
+task deploy
 ```
 
 ### Worker Deployment
