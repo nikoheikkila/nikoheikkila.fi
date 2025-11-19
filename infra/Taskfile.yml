@@ -73,12 +73,9 @@ tasks:
       - plan.txt
     cmds:
       - terraform plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
-      - terraform show {{ .TFPLAN }} > plan.txt
+      - terraform show -no-color {{ .TFPLAN }} > plan.txt
 
   ci:deploy:
     desc: Apply Terraform changes from plan file (CI)
-    generates:
-      - outputs.txt
     cmds:
       - terraform apply {{ .TFPLAN }}
-      - terraform output > outputs.txt

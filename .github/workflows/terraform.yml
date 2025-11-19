@@ -91,14 +91,3 @@ jobs:
 
       - name: Run Terraform Deploy
         run: task terraform:ci:deploy
-
-      - name: Upload Outputs to Summary
-        working-directory: infra
-        run: |
-          {
-            echo "## Terraform Outputs"
-            echo ""
-            echo "\`\`\`"
-            cat outputs.txt
-            echo "\`\`\`"
-          } >> "$GITHUB_STEP_SUMMARY"
