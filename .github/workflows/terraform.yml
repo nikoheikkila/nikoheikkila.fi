@@ -40,6 +40,17 @@ jobs:
       - name: Terraform Plan
         run: task terraform:ci:plan
 
+      - name: Upload Plan to Summary
+        working-directory: infra
+        run: |
+          {
+            echo "## Terraform Plan"
+            echo ""
+            echo "\`\`\`terraform"
+            cat plan.txt
+            echo "\`\`\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload Terraform Plan
         uses: actions/upload-artifact@v5
         with:
@@ -80,3 +91,14 @@ jobs:
 
       - name: Run Terraform Deploy
         run: task terraform:ci:deploy
+
+      - name: Upload Outputs to Summary
+        working-directory: infra
+        run: |
+          {
+            echo "## Terraform Outputs"
+            echo ""
+            echo "\`\`\`"
+            cat outputs.txt
+            echo "\`\`\`"
+          } >> "$GITHUB_STEP_SUMMARY"

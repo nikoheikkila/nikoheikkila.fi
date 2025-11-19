@@ -68,8 +68,17 @@ tasks:
 
   ci:plan:
     desc: Plan Terraform changes (CI)
-    cmd: terraform plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
+    generates:
+      - "{{ .TFPLAN }}"
+      - plan.txt
+    cmds:
+      - terraform plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
+      - terraform show {{ .TFPLAN }} > plan.txt
 
   ci:deploy:
     desc: Apply Terraform changes from plan file (CI)
-    cmd: terraform apply {{ .TFPLAN }}
+    generates:
+      - outputs.txt
+    cmds:
+      - terraform apply {{ .TFPLAN }}
+      - terraform output > outputs.txt
