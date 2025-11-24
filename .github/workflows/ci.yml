@@ -138,6 +138,9 @@ jobs:
       url: ${{ steps.urls.outputs.production }}
     outputs:
       deployment-url: ${{ steps.urls.outputs.production }}
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
 
     steps:
       - name: Download static assets
