@@ -136,6 +136,8 @@
 	overflow: hidden;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 	border: 1px solid rgba(83, 155, 245, 0.2);
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 
 	.language {
 		padding: 8px 12px;
