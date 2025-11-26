@@ -6,8 +6,6 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const config: GatsbyConfig = {
 	flags: {
-		DEV_SSR: true,
-		FAST_DEV: true,
 		PRESERVE_FILE_DOWNLOAD_CACHE: true,
 	},
 	graphqlTypegen: true,
@@ -40,13 +38,6 @@ const config: GatsbyConfig = {
 			options: {
 				name: "blog",
 				path: "./content",
-			},
-			resolve: "gatsby-source-filesystem",
-		},
-		{
-			options: {
-				name: "assets",
-				path: "./src/assets",
 			},
 			resolve: "gatsby-source-filesystem",
 		},
@@ -118,6 +109,8 @@ const config: GatsbyConfig = {
 		repository: "https://github.com/nikoheikkila/nikoheikkila.fi",
 		rss: "/feed",
 		siteUrl: "https://nikoheikkila.fi",
+		cover: "https://r2.nikoheikkila.fi/cover.png",
+		title: "Niko Heikkilä",
 		social: [
 			{
 				name: "bluesky",
@@ -136,7 +129,6 @@ const config: GatsbyConfig = {
 				url: "https://github.com/nikoheikkila",
 			},
 		],
-		title: "Niko Heikkilä",
 	},
 	trailingSlash: "always",
 };

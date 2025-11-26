@@ -1,5 +1,6 @@
 import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import type { CreateNodeArgs, Node } from "gatsby";
+import config from "../gatsby-config";
 
 interface OnCreateNodeArgs extends CreateNodeArgs {
 	node: Node & {
@@ -19,24 +20,22 @@ const onCreateNodes = async ({
 	}
 
 	const { id, frontmatter } = node;
-	const { hero } = frontmatter;
+	const hero = String(frontmatter.hero ?? config.siteMetadata?.cover);
 
-	if (hero && isRemoteImage(hero)) {
-		const fileNode = await createRemoteFileNode({
-			url: hero,
-			parentNodeId: id,
-			createNode,
-			createNodeId,
-			getCache,
+	const fileNode = await createRemoteFileNode({
+		url: hero,
+		parentNodeId: id,
+		createNode,
+		createNodeId,
+		getCache,
+	});
+
+	if (fileNode) {
+		createNodeField({
+			node,
+			name: "hero",
+			value: fileNode.id,
 		});
-
-		if (fileNode) {
-			createNodeField({
-				node,
-				name: "hero",
-				value: fileNode.id,
-			});
-		}
 	}
 
 	const value = createFilePath({ node, getNode });
@@ -49,6 +48,5 @@ const onCreateNodes = async ({
 };
 
 const isMarkdownNode = (node: Node): boolean => node.internal.type === "MarkdownRemark";
-const isRemoteImage = (url: string): boolean => /^https?:\/\/+/.test(url);
 
 export default onCreateNodes;

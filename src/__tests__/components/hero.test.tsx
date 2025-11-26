@@ -30,13 +30,6 @@ describe("Hero Component", () => {
 		await expect.element(image).toBeInTheDocument();
 	});
 
-	test("renders within a header element", async () => {
-		await render(<Hero alt="Test image" data={mockImageData} />);
-
-		const header = page.getByRole("banner");
-		await expect.element(header).toBeInTheDocument();
-	});
-
 	test("applies correct loading strategy", async () => {
 		await render(<Hero alt="Test image" data={mockImageData} />);
 

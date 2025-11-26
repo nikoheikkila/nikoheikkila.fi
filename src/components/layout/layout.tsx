@@ -18,11 +18,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 	return (
 		<>
 			<Slice alias="sidebar" />
-			{cover && (
-				<header>
-					<Hero alt={title} data={cover} />
-				</header>
-			)}
+			<header>{cover && <Hero alt={title} data={cover} />}</header>
 			{type === LayoutType.LIST && (
 				<ListContainer>
 					<section>{children}</section>

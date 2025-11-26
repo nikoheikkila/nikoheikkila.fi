@@ -1,43 +1,9 @@
 @use "../../styles/variables";
 
-.container {
-	display: flex;
-	justify-content: center;
-}
-
-.logo {
-	margin-top: 50px;
-	border-radius: 100%;
-	box-shadow: 0 4px 16px rgba(157, 255, 236, 0.3);
-	transition: transform 0.3s ease;
-
-	&:hover {
-		transform: scale(1.05);
-	}
-}
-
-.title {
-	text-align: center;
-
-	& > h1,
-	& > p {
-		margin-top: 50px;
-	}
-
-	& > h1 {
-		font-size: 3.5rem;
-		color: variables.$teal;
-
-		@media (prefers-color-scheme: light) {
-			color: variables.$lightTeal;
-		}
-	}
-}
-
 .description {
-	margin: 0 auto;
-	max-width: 60vw;
+	margin: 60px auto 0 auto;
 	text-align: center;
+	font-size: 1.6rem;
 	line-height: 1.75;
 
 	@include variables.for-phone-only {

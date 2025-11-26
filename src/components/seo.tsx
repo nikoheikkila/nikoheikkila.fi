@@ -30,7 +30,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const author = String(meta?.author?.name);
 	const metaDescription = String(description || meta?.description).replace("\n", " ");
 	const locale = lang === "en" ? "en_GB" : "fi_FI";
-	const imageURL = siteURL + image?.original?.src;
+	const imageUrl = String(image ? siteURL + image?.original?.src : meta?.cover);
 	const isPost = type === "post";
 
 	return (
@@ -42,7 +42,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 				author={author}
 				date={datePublished}
 				description={metaDescription}
-				image={image}
+				imageUrl={imageUrl}
 				locale={locale}
 				pageURL={pageURL}
 				siteTitle={siteTitle}
@@ -51,24 +51,14 @@ const SEO: FunctionComponent<SEOProps> = ({
 				type={type}
 			/>
 
-			<TwitterCard
-				author={author}
-				description={metaDescription}
-				image={image}
-				pageURL={pageURL}
-				siteURL={siteURL}
-				title={title}
-			/>
-
 			<SchemaOrg
 				author={author}
 				canonicalUrl={pageURL}
 				datePublished={datePublished}
 				defaultTitle={title}
 				description={metaDescription}
-				image={imageURL}
+				imageUrl={imageUrl}
 				isBlogPost={isPost}
-				organization={siteTitle}
 				title={title}
 				url={pageURL}
 			/>
@@ -116,11 +106,10 @@ interface OpenGraphProps {
 	pageURL: string;
 	author: string;
 	date?: string;
-	image?: Queries.ImageSharp;
+	imageUrl?: string;
 }
 
 const OpenGraph: React.FC<OpenGraphProps> = ({
-	siteURL,
 	siteTitle,
 	type,
 	locale,
@@ -129,13 +118,8 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 	pageURL,
 	author,
 	date = "",
-	image = undefined,
+	imageUrl = "",
 }) => {
-	const imageURL = image?.original?.src ? siteURL + image?.original?.src : "";
-	const imageWidth = String(image?.original?.width);
-	const imageHeight = String(image?.original?.height);
-	const imageType = `image/${image?.original?.src?.split(".").pop()}`;
-
 	const isPage = type === "page";
 	const isPost = type === "post";
 
@@ -143,18 +127,9 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 		<>
 			<meta content={title} name="og:title" />
 			<meta content={description} name="og:description" />
-			{image && (
-				<>
-					<meta content={imageURL} name="og:image" />
-					<meta content={title} name="og:image:alt" />
-					<meta content={imageWidth} name="og:image:width" />
-					<meta content={imageHeight} name="og:image:height" />
-					<meta content={imageType} name="og:image:type" />
-				</>
-			)}
-
+			<meta content={imageUrl} name="og:image" />
+			<meta content={title} name="og:image:alt" />
 			<meta content={pageURL} name="og:url" />
-
 			{isPage && <meta content="website" name="og:type" />}
 			{isPost && (
 				<>
@@ -167,37 +142,6 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 
 			<meta content={locale} name="og:locale" />
 			<meta content={siteTitle} name="og:site_name" />
-		</>
-	);
-};
-
-interface TwitterCardProps {
-	author: string;
-	title: string;
-	description: string;
-	siteURL: string;
-	pageURL: string;
-	image?: Queries.ImageSharp;
-}
-
-const TwitterCard: React.FC<TwitterCardProps> = ({ author, title, description, siteURL, pageURL, image }) => {
-	const imageURL = siteURL + image?.original?.src;
-
-	return (
-		<>
-			<meta content="summary_large_image" name="twitter:card" />
-			<meta content={author} name="twitter:creator" />
-			<meta content={title} name="twitter:title" />
-			<meta content={description} name="twitter:description" />
-			<meta content={author} name="twitter:site" />
-			<meta content={siteURL} name="twitter:domain" />
-			<meta content={pageURL} name="twitter:url" />
-			{image && (
-				<>
-					<meta content={imageURL} name="twitter:image" />
-					<meta content={title} name="twitter:image:alt" />
-				</>
-			)}
 		</>
 	);
 };

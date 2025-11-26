@@ -8,11 +8,10 @@ interface SchemaProps {
 	dateModified?: string;
 	defaultTitle?: string;
 	description?: string;
-	image?: string;
+	imageUrl?: string | null;
 	isBlogPost?: boolean;
 	title?: string;
 	url?: string;
-	organization?: string;
 }
 
 const Schema: React.FC<SchemaProps> = ({
@@ -22,7 +21,7 @@ const Schema: React.FC<SchemaProps> = ({
 	datePublished = "",
 	defaultTitle = "",
 	description = "",
-	image = "",
+	imageUrl = "",
 	isBlogPost = true,
 	title = "",
 	url = "",
@@ -50,7 +49,7 @@ const Schema: React.FC<SchemaProps> = ({
 							position: 1,
 							item: {
 								"@id": url,
-								image,
+								image: imageUrl,
 								name: title,
 							},
 						},
@@ -65,7 +64,7 @@ const Schema: React.FC<SchemaProps> = ({
 					headline: title,
 					image: {
 						"@type": "ImageObject",
-						url: image,
+						url: imageUrl,
 					},
 					description,
 					author: {

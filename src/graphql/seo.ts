@@ -7,6 +7,7 @@ export const getSEOData = () =>
 				siteMetadata {
 					language
 					title
+					cover
 					description
 					siteUrl
 					author {

@@ -20,6 +20,7 @@
 		"gatsby-plugin-image": "3.15.0",
 		"gatsby-plugin-manifest": "5.15.0",
 		"gatsby-plugin-offline": "6.15.0",
+		"gatsby-plugin-remote-images": "3.6.6",
 		"gatsby-plugin-robots-txt": "1.8.0",
 		"gatsby-plugin-sass": "6.15.0",
 		"gatsby-plugin-sharp": "5.15.0",

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BlogHeader Component > renders profile image with correct alt text 1`] = `
+<div>
+  <header>
+    <section
+      class="_description_1m5hj_1"
+    >
+      <p>
+        👋🏻 Hello, traveller! I’m a software craftsperson with a strong passion for making work and life better for software engineers. This blog contains insights related to modern software engineering practices. Read
+        <a
+          href="/about"
+        >
+           the longer story of me
+        </a>
+        , and if you liked what you read
+        <a
+          href="/feed"
+        >
+           subscribe to my feed
+        </a>
+        .
+      </p>
+    </section>
+  </header>
+</div>
+`;
