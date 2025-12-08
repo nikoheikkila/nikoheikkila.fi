@@ -59,9 +59,7 @@ drafts
 
 # Test artifacts
 /src/__tests__/feature/screenshots/
-
-# Local Netlify folder
-.netlify
+/src/__tests__/components/screenshots/
 
 # Obsidian
 content/.obsidian/workspace*

@@ -13,7 +13,7 @@ task dev
 # Create new blog post or page interactively
 task new
 
-# Run all tests (unit + e2e)
+# Run all tests (unit, component, and e2e)
 task test
 
 # Format and lint codebase
@@ -31,6 +31,9 @@ task serve
 ```bash
 # Run specific unit test file
 task test:unit -- src/__tests__/unit/helpers.test.ts
+
+# Run specific component test file
+task test:unit -- src/__tests__/component/helpers.test.ts
 
 # Run specific e2e test
 task test:e2e -- src/__tests__/feature/index.test.ts
@@ -53,10 +56,10 @@ This is a **Gatsby-based static site generator** for a personal blog with the fo
 - **Runtime**: Bun (replaces Node.js for faster builds and testing)
 - **Framework**: Gatsby 5 with TypeScript
 - **Styling**: Sass with custom CSS architecture
-- **Testing**: Bun (unit tests) + Playwright (E2E tests)
+- **Testing**: Vitest (unit and component tests) + Playwright (E2E tests)
 - **Linting/Formatting**: Biome (replaces ESLint + Prettier)
 - **Task Runner**: Task (Taskfile.yaml)
-- **Deployment**: Netlify with automatic deployments
+- **Deployment**: Cloudflare with automatic deployments
 
 ### Directory Structure
 ```
@@ -80,7 +83,7 @@ This is a **Gatsby-based static site generator** for a personal blog with the fo
 ## Development Workflow
 
 ### Component Development
-- **Modular architecture**: Components organized by domain (blog, layout, post, elements)
+- **Modular architecture**: Components organised by domain (blog, layout, post, elements)
 - **TypeScript-first**: All components use TypeScript with generated Gatsby types
 - **Custom hooks**: Located in `src/components/hooks/`
 - **Icon management**: FontAwesome icons managed through `useIcons` hook
@@ -94,11 +97,10 @@ This is a **Gatsby-based static site generator** for a personal blog with the fo
 
 This project follows a **use case-driven testing approach** (Classicist TDD school):
 
-### Unit Testing (Bun)
-- **Location**: `src/__tests__/unit/`
-- **Framework**: Bun's built-in test runner
-- **Pattern**: Test behaviors/use cases rather than individual functions
-- **Example**: `helpers.test.ts` tests utility functions with descriptive scenario names
+### Unit and Component Testing (Vitest)
+- **Location**: `src/__tests__/unit/` and `src/__tests__/component/`
+- **Framework**: Vitest test runner
+- **Pattern**: Test behaviours / use cases rather than individual functions
 
 ### E2E Testing (Playwright)
 - **Location**: `src/__tests__/feature/`
@@ -224,12 +226,6 @@ expect(firstPostPage1).not.toBe(firstPostPage2);
 ```
 
 ## Deployment
-
-### Netlify Configuration
-- **Build command**: `task build`
-- **Publish directory**: `public/`
-- **Branch**: Automatic deployments from `main` branch
-- **Build environment**: Node.js with Bun runtime
 
 ### Build Process
 1. **Content processing**: Markdown files transformed to HTML via `gatsby-transformer-remark`

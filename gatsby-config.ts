@@ -95,7 +95,6 @@ const config: GatsbyConfig = {
 			resolve: "gatsby-plugin-sass",
 		},
 		"gatsby-plugin-sitemap",
-		"gatsby-adapter-netlify",
 	].concat(
 		// Load the PWA service worker only in production to enhance the development experience.
 		isProduction ? ["gatsby-plugin-offline"] : [],
