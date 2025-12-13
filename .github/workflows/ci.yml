@@ -81,7 +81,7 @@ jobs:
 
       - name: Upload static assets
         id: upload
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: static-assets
           retention-days: 1
@@ -99,7 +99,7 @@ jobs:
 
     steps:
       - name: Download static assets
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
 
@@ -144,7 +144,7 @@ jobs:
 
     steps:
       - name: Download static assets
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
 
