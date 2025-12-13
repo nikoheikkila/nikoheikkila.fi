@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Cache Bun files
       id: bun-cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: |
           $HOME/.bun/install/cache
