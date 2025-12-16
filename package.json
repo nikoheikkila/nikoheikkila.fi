@@ -61,7 +61,7 @@
 		"@types/react-burger-menu": "2.8.7",
 		"@types/react-dom": "19.2.3",
 		"@types/react-syntax-highlighter": "15.5.13",
-		"@vitejs/plugin-react": "5.1.1",
+		"@vitejs/plugin-react": "5.1.2",
 		"@vitest/browser-playwright": "4.0.15",
 		"@vitest/coverage-v8": "4.0.15",
 		"happy-dom": "20.0.11",
