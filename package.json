@@ -66,7 +66,7 @@
 		"@vitest/coverage-v8": "4.0.16",
 		"happy-dom": "20.0.11",
 		"husky": "9.1.7",
-		"inquirer": "13.1.0",
+		"inquirer": "13.2.0",
 		"lighthouse": "13.0.1",
 		"snyk": "1.1301.2",
 		"typescript": "5.9.3",
