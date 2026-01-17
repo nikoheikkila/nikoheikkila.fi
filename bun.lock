@@ -63,7 +63,7 @@
         "husky": "9.1.7",
         "inquirer": "13.2.0",
         "lighthouse": "13.0.1",
-        "snyk": "1.1301.2",
+        "snyk": "1.1302.0",
         "typescript": "5.9.3",
         "vitest": "4.0.16",
         "vitest-browser-react": "2.0.2",
@@ -3212,7 +3212,7 @@
 
     "snapsvg-cjs": ["snapsvg-cjs@0.0.6", "", { "dependencies": { "snapsvg": "0.5.1" }, "peerDependencies": { "eve": "~0.5.1" } }, "sha512-7NNvoGrc3BQvWz5rWK1DsD5/Vni4STswz5B3JrBADboQWcN8OBVGjYVJFPT5JkUXb2iVnEflZANhufEpEcTHXw=="],
 
-    "snyk": ["snyk@1.1301.2", "", { "dependencies": { "@sentry/node": "^7.36.0", "global-agent": "^3.0.0" }, "bin": { "snyk": "bin/snyk" } }, "sha512-FUTV/2WStY0GyvJROvxKPa2A3FzgVNIUB8rR2LMiR1to9onrnyO233HEIOS1HU+dJTXHFSh8z3fMze2TqPt58w=="],
+    "snyk": ["snyk@1.1302.0", "", { "dependencies": { "@sentry/node": "^7.36.0", "global-agent": "^3.0.0" }, "bin": { "snyk": "bin/snyk" } }, "sha512-H2VH8SnWoneuyJgpImvaEY0nViggP4K8h73mjZWcMkBzuMELZcQHfDc4PWg4Tm+p+CVlndmCbDMTPRaCkOWEnQ=="],
 
     "socket.io": ["socket.io@4.8.3", "", { "dependencies": { "accepts": "~1.3.4", "base64id": "~2.0.0", "cors": "~2.8.5", "debug": "~4.4.1", "engine.io": "~6.6.0", "socket.io-adapter": "~2.5.2", "socket.io-parser": "~4.2.4" } }, "sha512-2Dd78bqzzjE6KPkD5fHZmDAKRNe3J15q+YHDrIsy9WEkqttc7GY+kT9OBLSMaPbQaEd0x1BjcmtMtXkfpc+T5A=="],
 
