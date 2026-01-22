@@ -20,12 +20,12 @@ I will omit the middle step eliminating the anti-patterns and embracing the reme
 
 # The Five Ideals
 
--   [The Five Ideals](#the-five-ideals)
-    -   [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
-    -   [2. The Joy Must Flow](#2-the-joy-must-flow)
-    -   [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
-    -   [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
-    -   [5. Focus on the Core](#5-focus-on-the-core)
+* [The Five Ideals](#the-five-ideals)
+	* [1. Keep It Simple, Keep It Local](#1-keep-it-simple-keep-it-local)
+	* [2. The Joy Must Flow](#2-the-joy-must-flow)
+	* [3. Improve Yourself and Your Work](#3-improve-yourself-and-your-work)
+	* [4. Maintain a Psychologically Safe Workplace](#4-maintain-a-psychologically-safe-workplace)
+	* [5. Focus on the Core](#5-focus-on-the-core)
 
 ## 1. Keep It Simple, Keep It Local
 
@@ -87,7 +87,7 @@ Developers block time for self-studying techniques and methodologies that help t
 
 ## 4. Maintain a Psychologically Safe Workplace
 
-> "Psychological safety is one of the top predictors of team performance. [Google](https://diversity.lbl.gov/2019/05/13/the-quest-to-build-the-most-effective-teams/) established to what degree team members feel safe to talk about problems, to say what they think without fear of castigation and of being ridiculed or blamed."
+> "Psychological safety is one of the top predictors of team performance. Google established to what degree team members feel safe to talk about problems, to say what they think without fear of castigation and of being ridiculed or blamed."
 
 💀 **Anti-Patterns**
 

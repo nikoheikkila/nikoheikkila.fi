@@ -90,7 +90,7 @@ If built-in language features are not enough there are handy frameworks created 
 
 ## How I Did It
 
-As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.js). The script is written in Javascript and has the following features which would be difficult or even foolish to implement with Bash:
+As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.ts). The script is written in Javascript and has the following features which would be difficult or even foolish to implement with Bash:
 
 -   Interactive prompts and ability to pass given data through validator functions
 -   Transforming sentences to SEO-friendly slugs (eg. `Blog Post Title` to `blog-post-title`)
@@ -102,7 +102,7 @@ I'm not saying it would be impossible to do these things with Bash but it would 
 
 One concrete upside is that I'm able to use logic from several 3rd party modules to achieve most of these. With Bash, I would have to find the proper logic from somewhere, copypaste them to dedicated files and `source` those in my code. While this approach would have worked, it would have been frustrating and prone to errors.
 
-For this topic, I like to cite **Sindre Sorhus** who argues strongly for using [small and focused modules](https://blog.sindresorhus.com/small-focused-modules-9238d977a92a) instead of reinventing the wheel:
+For this topic, I like to cite **Sindre Sorhus** who argues strongly for using [small and focused modules](https://sindresorhus.com/blog/small-focused-modules) instead of reinventing the wheel:
 
 > Some years ago. Before Node.js and npm. I had a large database of code snippets I used to copy-paste into projects when I needed it. They were small utilities that sometimes came in handy. npm is now my snippet database. Why copy-paste when you can `require` it and with the benefit of having a clear intent. Fixing a bug in a snippet means updating one module instead of manually fixing all the instances where the snippet is used.
 

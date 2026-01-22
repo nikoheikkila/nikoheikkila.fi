@@ -14,14 +14,13 @@ For over 10 years I've written to a platform for which the experience, safety, a
 
 When a new wave of federated social networks (or "fediverse") spearheaded by _[Mastodon](https://joinmastodon.org)_ solidified itself, I saw my chance to be someone who could live a better life online. Because I know the platform I'm contributing to won't be actively destroying other people's lives. Unlike Twitter, Mastodon instances are built and moderated _by_ users _for_ users without business incentives which makes them better in every way.
 
-So as of today, I will no longer update my Twitter account. It's going to be hard and I might have regrets which means I won't delete my account yet. Instead, I've set up a [_cross-posting_ bridge](https://crossposter.masto.donte.com.br/) from my English Mastodon account to Twitter. Don't bother replying to me because I won't be logging in to check my mentions anymore.
+So as of today, I will no longer update my Twitter account. It's going to be hard and I might have regrets which means I won't delete my account yet. Instead, I've set up a _cross-posting_ bridge from my English Mastodon account to Twitter. Don't bother replying to me because I won't be logging in to check my mentions anymore.
 
 If you're interested in my content, here's a list of social accounts I'm still active in addition to this blog:
 
 -   [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
 -   [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
 -   [_Fosstodon_](https://fosstodon.org/@nikoheikkila) for my short posts in English.
--   [_mastodontti.fi_](https://mastodontti.fi/@nikoheikkila) for my short posts in Finnish.
 
 I'm also on _Facebook_ and _LinkedIn_. However, those accounts are more restricted, so if I have no idea who you are I'm going to decline your request. I welcome you to follow me on the sites above because I'm certain my best content is still ahead of me.
 
