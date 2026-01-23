@@ -13,10 +13,22 @@
 	"enabledManagers": [
 		"bun",
 		"github-actions",
-		"terraform"
+		"terraform",
+		"custom.regex"
 	],
 	"schedule": [
 		"every weekend"
+	],
+	"customManagers": [
+		{
+			"customType": "regex",
+			"managerFilePatterns": ["/^\\.github/workflows/.*\\.ya?ml$/"],
+			"matchStrings": [
+				"WRANGLER_VERSION:\\s*[\"']?(?<currentValue>\\d+\\.\\d+\\.\\d+)[\"']?"
+			],
+			"depNameTemplate": "wrangler",
+			"datasourceTemplate": "npm"
+		}
 	],
 	"packageRules": [
 		{
@@ -31,5 +43,9 @@
 			],
 			"groupName": "Gatsby packages"
 		},
+		{
+			"matchPackageNames": ["wrangler"],
+			"groupName": "Wrangler"
+		}
 	]
 }
