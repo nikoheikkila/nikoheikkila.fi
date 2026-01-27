@@ -68,7 +68,7 @@
 		"husky": "9.1.7",
 		"inquirer": "13.2.0",
 		"lighthouse": "13.0.1",
-		"snyk": "1.1302.0",
+		"snyk": "1.1302.1",
 		"typescript": "5.9.3",
 		"vitest": "4.0.17",
 		"vitest-browser-react": "2.0.2",
