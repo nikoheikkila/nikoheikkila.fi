@@ -40,7 +40,7 @@
 		"rehype-raw": "7.0.0",
 		"remark-gfm": "4.0.1",
 		"remark-math": "6.0.0",
-		"sass": "1.97.2",
+		"sass": "1.97.3",
 		"title": "4.0.1"
 	},
 	"description": "My personal website",
