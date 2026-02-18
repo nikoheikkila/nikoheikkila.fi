@@ -94,7 +94,10 @@
 	"snyk": true,
 	"version": "1.0.0",
 	"resolutions": {
-		"sharp": "0.34.5"
+		"sharp": "0.34.5",
+		"character-entities": "2.0.2",
+		"character-entities-html4": "2.1.0",
+		"character-entities-legacy": "3.0.0"
 	},
 	"trustedDependencies": [
 		"@parcel/watcher",
