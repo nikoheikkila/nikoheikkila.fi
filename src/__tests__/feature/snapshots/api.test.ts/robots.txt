@@ -19,9 +19,6 @@ Disallow: /
 User-agent: amazon-kendra-
 Disallow: /
 
-User-agent: Amazonbot
-Disallow: /
-
 User-agent: Andibot
 Disallow: /
 
@@ -29,12 +26,6 @@ User-agent: Anomura
 Disallow: /
 
 User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Applebot
-Disallow: /
-
-User-agent: Applebot-Extended
 Disallow: /
 
 User-agent: Awario
@@ -55,13 +46,7 @@ Disallow: /
 User-agent: BuddyBot
 Disallow: /
 
-User-agent: Bytespider
-Disallow: /
-
 User-agent: Bytespider-commercial
-Disallow: /
-
-User-agent: CCBot
 Disallow: /
 
 User-agent: ChatGPT Agent
@@ -80,9 +65,6 @@ User-agent: Claude-User
 Disallow: /
 
 User-agent: Claude-Web
-Disallow: /
-
-User-agent: ClaudeBot
 Disallow: /
 
 User-agent: Cloudflare-AutoRAG
@@ -127,9 +109,6 @@ Disallow: /
 User-agent: FacebookBot
 Disallow: /
 
-User-agent: facebookexternalhit
-Disallow: /
-
 User-agent: Factset_spyderbot
 Disallow: /
 
@@ -143,9 +122,6 @@ User-agent: Gemini-Deep-Research
 Disallow: /
 
 User-agent: Google-CloudVertexBot
-Disallow: /
-
-User-agent: Google-Extended
 Disallow: /
 
 User-agent: Google-Firebase
@@ -164,9 +140,6 @@ User-agent: GoogleOther-Image
 Disallow: /
 
 User-agent: GoogleOther-Video
-Disallow: /
-
-User-agent: GPTBot
 Disallow: /
 
 User-agent: iaskspider/2.0
@@ -194,9 +167,6 @@ User-agent: LinerBot
 Disallow: /
 
 User-agent: Linguee Bot
-Disallow: /
-
-User-agent: meta-externalagent
 Disallow: /
 
 User-agent: Meta-ExternalAgent
@@ -275,9 +245,6 @@ User-agent: quillbot.com
 Disallow: /
 
 User-agent: SBIntuitionsBot
-Disallow: /
-
-User-agent: Scrapy
 Disallow: /
 
 User-agent: ShapBot
