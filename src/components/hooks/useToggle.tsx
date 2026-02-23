@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type ReturnHook = [boolean, () => void];
 
-export default function (initialValue?: boolean): ReturnHook {
+export default function useToggle(initialValue?: boolean): ReturnHook {
 	const [status, setStatus] = useState<boolean>(Boolean(initialValue));
 	const toggleStatus = () => setStatus(!status);
 
