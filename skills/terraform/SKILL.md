@@ -22,6 +22,9 @@ All commands must be run within the `infra/` directory:
 ```bash
 cd infra/
 
+# Initialize Terraform providers and backend
+task init
+
 # Format Terraform code
 task format
 

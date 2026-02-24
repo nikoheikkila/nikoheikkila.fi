@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(task test:*)",
-      "Bash(task lint:*)"
+		"Bash(cd:*)",
+      	"Bash(task:*)"
     ]
   }
 }
