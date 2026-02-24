@@ -23,16 +23,28 @@ resource "cloudflare_dns_record" "records" {
 
 # Redirect www subdomain to root domain with 301 permanent redirect
 # This consolidates traffic and improves SEO
-resource "cloudflare_page_rule" "www_redirect" {
-  zone_id  = local.zone_id
-  target   = "www.${local.domain}/*"
-  priority = 1
-  status   = "active"
+# Migrated from cloudflare_page_rule to cloudflare_ruleset (Page Rules are deprecated)
+resource "cloudflare_ruleset" "www_redirect" {
+  zone_id     = local.zone_id
+  name        = "Redirect www to root domain"
+  description = "301 redirect from www to root domain"
+  kind        = "zone"
+  phase       = "http_request_dynamic_redirect"
 
-  actions = {
-    forwarding_url = {
-      url         = "https://${local.domain}/$1"
-      status_code = 301
+  rules = [{
+    ref         = "www_to_root_redirect"
+    description = "Redirect www subdomain to root domain"
+    expression  = "(http.host eq \"www.${local.domain}\")"
+    action      = "redirect"
+    action_parameters = {
+      from_value = {
+        status_code = 301
+        target_url = {
+          expression = "concat(\"https://${local.domain}\", http.request.uri.path)"
+        }
+        preserve_query_string = true
+      }
     }
-  }
+    enabled = true
+  }]
 }
