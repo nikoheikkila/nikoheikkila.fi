@@ -10,8 +10,18 @@ on:
   pull_request_review:
     types: [submitted]
 
+# Restrict default permissions to read-only
+permissions:
+  contents: read
+
+# Cancel in-progress runs per issue/PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   claude:
+    name: Run Claude Code
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
@@ -19,24 +29,21 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
-      actions: read # Required for Claude to read CI results on PRs
+      contents: write         # Required for Claude to push commits
+      pull-requests: write    # Required for Claude to comment on PRs
+      issues: write           # Required for Claude to comment on issues
+      id-token: write         # Required for Claude Code OIDC authentication
+      actions: read           # Required for reading workflow run info
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Run Claude Code
         id: claude
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-action@426380f01bad0a17200865605a85cb28926dccbf # v1.0.9
+        timeout-minutes: 60
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          # Allows Claude to read CI results on PRs
-          additional_permissions: |
-            actions: read
-          claude_args: |
-            --allowed-tools Read,Write,Edit,Bash,mcp__github_inline_comment__create_inline_comment
