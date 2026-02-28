@@ -31,7 +31,7 @@
         "react-burger-menu": "3.1.0",
         "react-dom": "19.2.4",
         "react-markdown": "10.1.0",
-        "react-syntax-highlighter": "16.1.0",
+        "react-syntax-highlighter": "16.1.1",
         "rehype-katex": "7.0.1",
         "rehype-raw": "7.0.0",
         "remark-gfm": "4.0.1",
@@ -2975,7 +2975,7 @@
 
     "react-server-dom-webpack": ["react-server-dom-webpack@0.0.0-experimental-c8b778b7f-20220825", "", { "dependencies": { "acorn": "^6.2.1", "loose-envify": "^1.1.0", "neo-async": "^2.6.1" }, "peerDependencies": { "react": "0.0.0-experimental-c8b778b7f-20220825", "webpack": "^5.59.0" } }, "sha512-JyCjbp6ZvkH/T0EuVPdceYlC8u5WqWDSJr2KxDvc81H2eJ+7zYUN++IcEycnR2F+HmER8QVgxfotnIx352zi+w=="],
 
-    "react-syntax-highlighter": ["react-syntax-highlighter@16.1.0", "", { "dependencies": { "@babel/runtime": "^7.28.4", "highlight.js": "^10.4.1", "highlightjs-vue": "^1.0.0", "lowlight": "^1.17.0", "prismjs": "^1.30.0", "refractor": "^5.0.0" }, "peerDependencies": { "react": ">= 0.14.0" } }, "sha512-E40/hBiP5rCNwkeBN1vRP+xow1X0pndinO+z3h7HLsHyjztbyjfzNWNKuAsJj+7DLam9iT4AaaOZnueCU+Nplg=="],
+    "react-syntax-highlighter": ["react-syntax-highlighter@16.1.1", "", { "dependencies": { "@babel/runtime": "^7.28.4", "highlight.js": "^10.4.1", "highlightjs-vue": "^1.0.0", "lowlight": "^1.17.0", "prismjs": "^1.30.0", "refractor": "^5.0.0" }, "peerDependencies": { "react": ">= 0.14.0" } }, "sha512-PjVawBGy80C6YbC5DDZJeUjBmC7skaoEUdvfFQediQHgCL7aKyVHe57SaJGfQsloGDac+gCpTfRdtxzWWKmCXA=="],
 
     "read": ["read@1.0.7", "", { "dependencies": { "mute-stream": "~0.0.4" } }, "sha512-rSOKNYUmaxy0om1BNjMN4ezNT6VKK+2xF4GBhc81mkH7L60i6dp8qPYrkndNLT3QPphoII3maL9PVC9XmhHwVQ=="],
 
