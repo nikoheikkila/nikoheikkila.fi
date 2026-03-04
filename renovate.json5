@@ -8,7 +8,7 @@
 		":combinePatchMinorReleases",
 		":configMigration",
 		":dependencyDashboard",
-		":maintainLockFilesWeekly"
+		":maintainLockFilesDisabled"
 	],
 	"enabledManagers": [
 		"bun",
@@ -22,7 +22,9 @@
 	"customManagers": [
 		{
 			"customType": "regex",
-			"managerFilePatterns": ["/^\\.github/workflows/.*\\.ya?ml$/"],
+			"managerFilePatterns": [
+				"/^\\.github/workflows/.*\\.ya?ml$/"
+			],
 			"matchStrings": [
 				"WRANGLER_VERSION:\\s*[\"']?(?<currentValue>\\d+\\.\\d+\\.\\d+)[\"']?"
 			],
@@ -44,7 +46,9 @@
 			"groupName": "Gatsby packages"
 		},
 		{
-			"matchPackageNames": ["wrangler"],
+			"matchPackageNames": [
+				"wrangler"
+			],
 			"groupName": "Wrangler"
 		}
 	]
