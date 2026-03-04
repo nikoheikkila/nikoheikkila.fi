@@ -23,17 +23,20 @@ jobs:
   claude:
     name: Run Claude Code
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      github.event.sender.type != 'Bot' &&
+      (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+        (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      )
     runs-on: ubuntu-latest
     permissions:
-      contents: write         # Required for Claude to push commits
-      pull-requests: write    # Required for Claude to comment on PRs
-      issues: write           # Required for Claude to comment on issues
-      id-token: write         # Required for Claude Code OIDC authentication
-      actions: read           # Required for reading workflow run info
+      contents: write # Required for Claude to push commits
+      pull-requests: write # Required for Claude to comment on PRs
+      issues: write # Required for Claude to comment on issues
+      id-token: write # Required for Claude Code OIDC authentication
+      actions: read # Required for reading workflow run info
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
