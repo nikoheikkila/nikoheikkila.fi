@@ -15,10 +15,6 @@ tasks:
   install:
     desc: Install dependencies with Bun
     run: once
-    sources:
-      - package.json
-    generates:
-      - bun.lock
     cmd: bun install --frozen-lockfile
 
   format:
