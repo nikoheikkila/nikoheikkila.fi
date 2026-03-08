@@ -41,8 +41,8 @@
       },
       "devDependencies": {
         "@biomejs/biome": "2.4.4",
-        "@commitlint/cli": "20.4.2",
-        "@commitlint/config-conventional": "20.4.2",
+        "@commitlint/cli": "20.4.3",
+        "@commitlint/config-conventional": "20.4.3",
         "@happy-dom/global-registrator": "20.7.0",
         "@playwright/test": "1.58.2",
         "@sindresorhus/slugify": "3.0.0",
@@ -367,9 +367,9 @@
 
     "@cloudflare/workerd-windows-64": ["@cloudflare/workerd-windows-64@1.20260301.1", "", { "os": "win32", "cpu": "x64" }, "sha512-Q0wMJ4kcujXILwQKQFc1jaYamVsNvjuECzvRrTI8OxGFMx2yq9aOsswViE4X1gaS2YQQ5u0JGwuGi5WdT1Lt7A=="],
 
-    "@commitlint/cli": ["@commitlint/cli@20.4.2", "", { "dependencies": { "@commitlint/format": "^20.4.0", "@commitlint/lint": "^20.4.2", "@commitlint/load": "^20.4.0", "@commitlint/read": "^20.4.0", "@commitlint/types": "^20.4.0", "tinyexec": "^1.0.0", "yargs": "^17.0.0" }, "bin": { "commitlint": "./cli.js" } }, "sha512-YjYSX2yj/WsVoxh9mNiymfFS2ADbg2EK4+1WAsMuckwKMCqJ5PDG0CJU/8GvmHWcv4VRB2V02KqSiecRksWqZQ=="],
+    "@commitlint/cli": ["@commitlint/cli@20.4.3", "", { "dependencies": { "@commitlint/format": "^20.4.3", "@commitlint/lint": "^20.4.3", "@commitlint/load": "^20.4.3", "@commitlint/read": "^20.4.3", "@commitlint/types": "^20.4.3", "tinyexec": "^1.0.0", "yargs": "^17.0.0" }, "bin": { "commitlint": "./cli.js" } }, "sha512-Z37EMoDT7+Upg500vlr/vZrgRsb6Xc5JAA3Tv7BYbobnN/ZpqUeZnSLggBg2+1O+NptRDtyujr2DD1CPV2qwhA=="],
 
-    "@commitlint/config-conventional": ["@commitlint/config-conventional@20.4.2", "", { "dependencies": { "@commitlint/types": "^20.4.0", "conventional-changelog-conventionalcommits": "^9.1.0" } }, "sha512-rwkTF55q7Q+6dpSKUmJoScV0f3EpDlWKw2UPzklkLS4o5krMN1tPWAVOgHRtyUTMneIapLeQwaCjn44Td6OzBQ=="],
+    "@commitlint/config-conventional": ["@commitlint/config-conventional@20.4.3", "", { "dependencies": { "@commitlint/types": "^20.4.3", "conventional-changelog-conventionalcommits": "^9.2.0" } }, "sha512-9RtLySbYQAs8yEqWEqhSZo9nYhbm57jx7qHXtgRmv/nmeQIjjMcwf6Dl+y5UZcGWgWx435TAYBURONaJIuCjWg=="],
 
     "@commitlint/config-validator": ["@commitlint/config-validator@20.4.3", "", { "dependencies": { "@commitlint/types": "^20.4.3", "ajv": "^8.11.0" } }, "sha512-jCZpZFkcSL3ZEdL5zgUzFRdytv3xPo8iukTe9VA+QGus/BGhpp1xXSVu2B006GLLb2gYUAEGEqv64kTlpZNgmA=="],
 
