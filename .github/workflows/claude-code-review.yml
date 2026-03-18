@@ -8,11 +8,6 @@ on:
 permissions:
   contents: read
 
-# Cancel in-progress runs when a new run is triggered
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   claude-review:
     if: github.event.pull_request.user.type != 'Bot'
