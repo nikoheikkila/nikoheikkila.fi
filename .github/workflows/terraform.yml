@@ -32,7 +32,7 @@ jobs:
           terraform_version: 1.13.5
 
       - name: Install Task
-        uses: go-task/setup-task@v1
+        uses: go-task/setup-task@v2
 
       - name: Terraform Init
         run: task terraform:ci:init
@@ -78,7 +78,7 @@ jobs:
           terraform_version: 1.13.5
 
       - name: Install Task
-        uses: go-task/setup-task@v1
+        uses: go-task/setup-task@v2
 
       - name: Download Terraform Plan
         uses: actions/download-artifact@v8
