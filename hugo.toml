@@ -1,0 +1,47 @@
+baseURL = "https://nikoheikkila.fi/"
+languageCode = "en"
+title = "Niko Heikkilä"
+enableRobotsTXT = true
+paginate = 30
+paginatePath = ""
+
+[params]
+  author = "Niko Heikkilä"
+  description = "Making work and life better for modern software engineers."
+  repository = "https://github.com/nikoheikkila/nikoheikkila.fi"
+  cover = "https://r2.nikoheikkila.fi/cover.png"
+  rss = "/feed"
+
+[params.social]
+  bluesky = "https://bsky.app/profile/nikoheikkila.fi"
+  mastodon = "https://fosstodon.org/@nikoheikkila"
+  linkedin = "https://www.linkedin.com/in/nikoheikkila/"
+  github = "https://github.com/nikoheikkila"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.extensions.typographer]
+  disable = false
+
+[markup.highlight]
+  style = "dracula"
+  lineNos = true
+  lineNumbersInTable = false
+  noClasses = true
+
+[sitemap]
+  filename = "sitemap-index.xml"
+
+[permalinks]
+  blog = "/blog/:filename/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[mediaTypes."application/rss+xml"]
+  suffixes = ["xml"]
+
+[outputFormats.RSS]
+  mediaType = "application/rss+xml"
+  baseName = "rss"
