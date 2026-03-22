@@ -1,0 +1,60 @@
+$teal: rgb(102, 178, 178);
+$yellow: #f8edc7;
+
+// Dark theme colors (default)
+$darkBg: rgb(30, 41, 59);
+$darkSecondaryBg: rgb(30, 46, 73);
+$darkFg: rgb(241, 245, 249);
+$darkSecondaryFg: rgb(222, 223, 231);
+$gray: rgb(60, 72, 83);
+$darkGray: rgb(30, 41, 59);
+$almostBlack: rgb(15, 23, 42);
+$code: rgb(226, 232, 240);
+
+// Light theme colors
+$lightBg: #fffff8;
+$lightSecondaryBg: #f9f9dc;
+$lightFg: #111111;
+$lightSecondaryFg: rgb(28, 34, 42);
+$lightBlue: #11476e;
+$lightGray: rgb(226, 232, 240);
+$lightTeal: rgb(0,76,76);
+$lightCode: rgb(15, 23, 42);
+
+$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+	Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+@mixin for-phone-only {
+	@media (max-width: 599px) {
+		@content;
+	}
+}
+@mixin for-tablet-portrait-up {
+	@media (min-width: 600px) {
+		@content;
+	}
+}
+@mixin for-tablet-landscape-up {
+	@media (min-width: 900px) {
+		@content;
+	}
+}
+@mixin for-desktop-up {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+@mixin for-big-desktop-up {
+	@media (min-width: 1800px) {
+		@content;
+	}
+}
+
+@mixin hr($color, $width) {
+	hr {
+		border-top: solid $width $color;
+		border-bottom: none;
+		opacity: 1;
+		margin: 45px 0;
+	}
+}

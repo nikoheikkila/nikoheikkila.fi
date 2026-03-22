@@ -1,0 +1,73 @@
+@use "variables" as *;
+
+.layout-container--list {
+	margin: 0 auto;
+	padding: 0 32px;
+
+	@include for-phone-only() {
+		width: 90vw;
+	}
+
+	@include for-tablet-portrait-up() {
+		width: 80vw;
+	}
+
+	@include for-tablet-landscape-up() {
+		width: 75vw;
+	}
+
+	@include for-desktop-up() {
+		width: 65vw;
+	}
+
+	@include for-big-desktop-up() {
+		width: 50vw;
+	}
+}
+
+.layout-container--single {
+	margin: 0 auto;
+	padding: 0 24px;
+
+	a {
+		color: $teal;
+		text-decoration: underline;
+		text-decoration-color: rgba(83, 155, 245, 0.4);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+
+		@media (prefers-color-scheme: light) {
+			color: $lightTeal;
+			text-decoration-color: rgba(37, 99, 235, 0.5);
+		}
+
+		&:hover {
+			color: $teal;
+			text-decoration-color: $teal;
+
+			@media (prefers-color-scheme: light) {
+				color: $lightTeal;
+			}
+		}
+	}
+
+	@include for-phone-only() {
+		width: 90vw;
+	}
+
+	@include for-tablet-portrait-up() {
+		width: 85vw;
+	}
+
+	@include for-tablet-landscape-up() {
+		width: 80vw;
+	}
+
+	@include for-desktop-up() {
+		width: 50vw;
+	}
+
+	@include for-big-desktop-up() {
+		width: 35vw;
+	}
+}

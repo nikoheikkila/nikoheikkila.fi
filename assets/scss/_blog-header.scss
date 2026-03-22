@@ -1,0 +1,23 @@
+@use "variables" as *;
+
+.blog-header__description {
+	margin: 60px auto 0 auto;
+	text-align: center;
+	font-size: 1.6rem;
+	line-height: 1.75;
+
+	@include for-phone-only {
+		max-width: 80vw;
+	}
+
+	a {
+		color: $teal;
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+
+		@media (prefers-color-scheme: light) {
+			color: $lightTeal;
+		}
+	}
+}
