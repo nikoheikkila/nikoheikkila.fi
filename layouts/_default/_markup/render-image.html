@@ -1,0 +1,13 @@
+<a class="photoframe" href="{{ .Destination | safeURL }}">
+  <img
+    src="{{ .Destination | safeURL }}"
+    alt="{{ .Text }}"
+    {{ with .Title }}title="{{ . }}"{{ end }}
+    loading="lazy"
+    class="image"
+  />
+  <span class="caption">
+    <span><strong>Picture:</strong> {{ .Text }}</span><br>
+    <span><strong>Click for a larger version.</strong></span>
+  </span>
+</a>

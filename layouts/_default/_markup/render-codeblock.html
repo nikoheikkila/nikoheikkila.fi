@@ -1,0 +1,4 @@
+<section class="codeblock">
+  {{ with .Type }}<span class="language">{{ . | title }}</span>{{ end }}
+  {{ transform.Highlight .Inner (.Type | default "text") "lineNos=true,lineNumbersInTable=false" }}
+</section>

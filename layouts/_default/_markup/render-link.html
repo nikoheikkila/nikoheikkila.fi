@@ -1,0 +1,6 @@
+{{ $isInternal := or (strings.HasPrefix .Destination "/") (strings.HasPrefix .Destination "#") (not (strings.Contains .Destination "://")) -}}
+{{ if $isInternal -}}
+<a href="{{ .Destination | safeURL }}">{{ .Text | safeHTML }}</a>
+{{- else -}}
+<a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}</a>
+{{- end }}
