@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-task test
+task lint

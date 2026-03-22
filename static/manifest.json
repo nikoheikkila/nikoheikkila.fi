@@ -1,0 +1,16 @@
+{
+  "name": "Niko Heikkilä",
+  "short_name": "Niko",
+  "description": "Making work and life better for modern software engineers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#663399",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

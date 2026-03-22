@@ -13,7 +13,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["src/**", "gatsby/**", "*.json", "*.ts"]
+		"includes": ["src/__tests__/**", "*.json", "*.ts"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -44,7 +44,6 @@
 		"enabled": true,
 		"domains": {
 			"project": "recommended",
-			"react": "all",
 			"test": "all"
 		},
 		"rules": {
