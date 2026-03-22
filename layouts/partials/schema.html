@@ -1,0 +1,61 @@
+{{- $cover := .Params.hero | default .Site.Params.cover -}}
+{{- $author := .Params.author | default .Site.Params.author -}}
+{{- $description := .Params.description | default .Site.Params.description -}}
+
+{{- $websiteSchema := dict
+  "@context" "http://schema.org"
+  "@type" "WebSite"
+  "url" .Permalink
+  "name" .Title
+  "alternateName" .Site.Title
+-}}
+
+{{- $schema := slice $websiteSchema -}}
+
+{{- if .IsPage -}}
+  {{- $breadcrumb := dict
+    "@context" "http://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" (slice (dict
+      "@type" "ListItem"
+      "position" 1
+      "item" (dict
+        "@id" .Permalink
+        "image" $cover
+        "name" .Title
+      )
+    ))
+  -}}
+
+  {{- $blogPosting := dict
+    "@context" "http://schema.org"
+    "@type" "BlogPosting"
+    "url" .Permalink
+    "name" .Title
+    "alternateName" .Site.Title
+    "headline" .Title
+    "image" (dict "@type" "ImageObject" "url" $cover)
+    "description" $description
+    "author" (dict "@type" "Person" "name" $author)
+    "publisher" (dict
+      "@type" "Organization"
+      "url" .Site.BaseURL
+      "logo" (dict
+        "@type" "ImageObject"
+        "url" (print .Site.BaseURL "favicon.png")
+        "width" 512
+        "height" 512
+      )
+      "name" .Site.Title
+    )
+    "mainEntityOfPage" (dict "@type" "WebSite" "@id" .Site.BaseURL)
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  -}}
+
+  {{- $schema = $schema | append $breadcrumb | append $blogPosting -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{- $schema | jsonify (dict "indent" "  ") | safeHTML }}
+</script>
