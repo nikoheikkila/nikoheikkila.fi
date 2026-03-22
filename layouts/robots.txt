@@ -1,0 +1,9 @@
+{{- $baseURL := .Site.BaseURL | strings.TrimRight "/" -}}
+{{- range $i, $c := .Site.Data.robots.crawlers -}}
+{{- if $i }}
+{{ end -}}
+User-agent: {{ $c }}
+Disallow: /
+{{ end -}}
+Sitemap: {{ $baseURL }}/sitemap-index.xml
+Host: {{ $baseURL }}
