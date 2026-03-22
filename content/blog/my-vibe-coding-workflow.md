@@ -2,8 +2,7 @@
 title: My Vibe-Coding Workflow
 author: Niko Heikkilä
 lang: en
-excerpt: By far, the least sexy way of working with coding agents in 2026.
-type: post
+description: By far, the least sexy way of working with coding agents in 2026.
 date: 2026-02-18
 hero: https://r2.nikoheikkila.fi/my-vibe-coding-workflow.jpg
 ---

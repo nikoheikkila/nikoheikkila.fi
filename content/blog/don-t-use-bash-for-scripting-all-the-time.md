@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2019-05-05
 hero: https://r2.nikoheikkila.fi/don-t-use-bash-for-scripting-all-the-time.png
 title: Don't Use Bash for Scripting (All the Time)
-type: post
-excerpt: When the complexity of your script grows it's time to drop the Bash. With modern tools it can be easy, fast, and fun.
+description: When the complexity of your script grows it's time to drop the Bash. With modern tools it can be easy, fast, and fun.
 ---
 
 Writing scripts is a subset of coding we sometimes can't avoid nor should be afraid of. The standard tool for writing scripts is Bash for UNIX environments and PowerShell for Windows environments. In this post, I explain when it's appropriate to use Bash for scripting and when it's not.

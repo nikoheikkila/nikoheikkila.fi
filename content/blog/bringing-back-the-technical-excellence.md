@@ -2,8 +2,7 @@
 title: "Bringing Back the Technical Excellence: Rules of Thumb for Effective Software Lifecycle Management"
 author: Niko Heikkilä
 lang: en
-excerpt: In this post, I present a brief — constantly evolving — guide on gradually bringing back technical excellence and driving down development costs.
-type: post
+description: In this post, I present a brief — constantly evolving — guide on gradually bringing back technical excellence and driving down development costs.
 date: 2021-11-15
 hero: https://r2.nikoheikkila.fi/bringing-back-the-technical-excellence.jpg
 ---

@@ -2,10 +2,9 @@
 lang: en
 title: Squashing Software Defects with Eisenhower Matrix
 author: Niko Heikkilä
-type: post
 hero: https://r2.nikoheikkila.fi/squashing-software-defects-with-eisenhower-matrix.jpg
 date: 2017-12-05
-excerpt: If only Trump would come up with something as genious.
+description: If only Trump would come up with something as genious.
 ---
 
 Both in my work and personal life, I've used a plethora of project management tools but only Trello has stuck. However, even Trello can be useless unless you start taking care of your board systematically.

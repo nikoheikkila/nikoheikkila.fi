@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2019-05-25
 hero: https://r2.nikoheikkila.fi/generating-conventional-changelogs.png
 title: Generating Conventional Changelogs
-type: post
-excerpt: Spicing up your release notes with awesome changelog power.
+description: Spicing up your release notes with awesome changelog power.
 ---
 
 As an open-source maintainer, I have a severe obsession for informative release notes and I cringe every time I see release notes with the dreadful _"Bug fixes and minor improvements"_ line in it. I like to write my release notes as accurately as possible which is tedious by hand. I decided to use scripting power to ease it.

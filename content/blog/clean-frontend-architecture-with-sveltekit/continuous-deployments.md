@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Enabling Safe and Continuous Deployments"
 author: Niko Heikkilä
 lang: en
-excerpt: In the previous post, I described how to build a stable and fast acceptance test suite helping me to produce quick and repeatable proofs that my solution works. So what purpose does it serve us?
-type: post
+description: In the previous post, I described how to build a stable and fast acceptance test suite helping me to produce quick and repeatable proofs that my solution works. So what purpose does it serve us?
 date: 2023-05-07
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

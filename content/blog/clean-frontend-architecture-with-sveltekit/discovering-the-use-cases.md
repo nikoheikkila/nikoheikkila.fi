@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Discovering the Use Cases"
 author: Niko Heikkilä
 lang: en
-excerpt: Why designing loosely coupled applications is crucial for managing complexity and sustaining maintainability.
-type: post
+description: Why designing loosely coupled applications is crucial for managing complexity and sustaining maintainability.
 date: 2023-01-29
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

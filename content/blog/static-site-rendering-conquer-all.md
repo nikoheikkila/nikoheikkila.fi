@@ -2,10 +2,9 @@
 lang: en
 title: Static Site Rendering Conquer All
 author: Niko Heikkilä
-type: post
 date: 2019-04-19
 hero: https://r2.nikoheikkila.fi/static-site-rendering-conquer-all.png
-excerpt: Goodbye WordPress, it has been quite a journey.
+description: Goodbye WordPress, it has been quite a journey.
 ---
 
 Recently I began migrating my blog from an old - but not vulnerable - WordPress installation to [_Gatsby_][gatsby]. The migration went well save a brief downtime due to DNS misconfigurations. Now, the result lies in before your very eyes. Let's talk about changes later, though.

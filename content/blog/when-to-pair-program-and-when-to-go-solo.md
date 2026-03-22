@@ -2,8 +2,7 @@
 title: When to Pair Program and When to Go Solo
 author: Niko Heikkilä
 lang: en
-excerpt: Despite all the praise pair programming gets, it is not a silver bullet and we should carefully practise it to get the most benefit from it.
-type: post
+description: Despite all the praise pair programming gets, it is not a silver bullet and we should carefully practise it to get the most benefit from it.
 date: 2021-05-23
 hero: https://r2.nikoheikkila.fi/when-to-pair-program-and-when-to-go-solo.jpg
 ---

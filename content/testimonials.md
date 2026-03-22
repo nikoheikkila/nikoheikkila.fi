@@ -2,9 +2,8 @@
 lang: en
 author: Niko Heikkilä
 date: 2023-05-05
-type: page
 title: "Testimonials: The Wall of Recognition"
-excerpt: Here is a collection of kind words people have said about me and my work over the years. If you ever get to work with me, I'm fairly confident you will find these agreeable.
+description: Here is a collection of kind words people have said about me and my work over the years. If you ever get to work with me, I'm fairly confident you will find these agreeable.
 ---
 ### What People I've Worked With Say
 

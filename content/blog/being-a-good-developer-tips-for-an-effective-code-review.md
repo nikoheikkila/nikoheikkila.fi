@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2021-09-11
 hero: https://r2.nikoheikkila.fi/being-a-good-developer-six-tips-for-a-painless-code-review.jpg
 title: "Being a Good Developer: Tips for an Effective Code Review"
-type: post
-excerpt: Walk another mile and make the code review a joyful experience.
+description: Walk another mile and make the code review a joyful experience.
 ---
 
 > **Hey!** An earlier revision of this post described how to survive the world of pull request workflows. However, since then, I've grown more convinced that asynchronous development is among the well-known root causes why software teams struggle to ship working code fast. Thus, I've decided to rewrite this post to reflect the way I currently think, enjoy!

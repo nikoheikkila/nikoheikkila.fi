@@ -2,8 +2,7 @@
 title: Blocking Time for Tasks with Toggl
 author: Niko Heikkilä
 lang: en
-excerpt: How organizing your day brings a sense of clarity and calm into this mad, mad world.
-type: post
+description: How organizing your day brings a sense of clarity and calm into this mad, mad world.
 date: 2021-03-20
 hero: https://r2.nikoheikkila.fi/blocking-time-for-tasks-with-toggl.jpg
 ---

@@ -2,10 +2,9 @@
 lang: en
 title: "Listin’ It Up: The Musical ABC"
 author: Niko Heikkilä
-type: post
 date: 2016-05-27
 hero: https://r2.nikoheikkila.fi/listin-it-up-the-musical-abc.png
-excerpt: This week I challenged myself to another hopeless, yet interesting, listing project.
+description: This week I challenged myself to another hopeless, yet interesting, listing project.
 ---
 
 This week I challenged myself to another hopeless, yet interesting, listing project. I decided to take a deep dive into my music library and surface with _music for all letters_ – from a regular English alphabet, mind you.

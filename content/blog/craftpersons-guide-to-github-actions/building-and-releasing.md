@@ -2,8 +2,7 @@
 title: "Craftsperson's Guide to GitHub Actions #3: Building and Releasing"
 author: Niko Heikkilä
 lang: en
-excerpt: Complete your GitHub Action journey by building production artifacts, implementing semantic versioning, and creating automated release pipelines that verify your action works in real-world conditions before reaching users.
-type: post
+description: Complete your GitHub Action journey by building production artifacts, implementing semantic versioning, and creating automated release pipelines that verify your action works in real-world conditions before reaching users.
 date: 2026-01-08
 hero: null
 ---

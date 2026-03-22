@@ -1,6 +1,5 @@
 ---
 lang: en
-type: page
 title: What I'm Doing Now?
 author: Niko Heikkilä
 date: 2025-03-25

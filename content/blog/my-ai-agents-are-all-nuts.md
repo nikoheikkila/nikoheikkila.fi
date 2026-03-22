@@ -2,8 +2,7 @@
 title: My AI Agents Are All Nuts
 author: Niko Heikkilä
 lang: en
-excerpt: A heartfelt defense to a provocation about AI-assisted programming.
-type: post
+description: A heartfelt defense to a provocation about AI-assisted programming.
 date: 2025-06-10
 hero: null
 ---

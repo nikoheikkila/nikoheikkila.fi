@@ -2,8 +2,7 @@
 title: The Essentials of Simple Design
 author: Niko Heikkilä
 lang: en
-excerpt: Passes the tests, reveals intention, has no duplication, and contains the fewest elements.
-type: post
+description: Passes the tests, reveals intention, has no duplication, and contains the fewest elements.
 date: 2022-06-27
 hero: null
 ---

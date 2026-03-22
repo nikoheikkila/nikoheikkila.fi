@@ -2,8 +2,7 @@
 title: A Practical Guide to Micro-Commits
 author: Niko Heikkilä
 lang: en
-excerpt: How do you practice small batches — micro-commits — as part of your daily workflow? Let me show you.
-type: post
+description: How do you practice small batches — micro-commits — as part of your daily workflow? Let me show you.
 date: 2022-11-05
 hero: null
 ---

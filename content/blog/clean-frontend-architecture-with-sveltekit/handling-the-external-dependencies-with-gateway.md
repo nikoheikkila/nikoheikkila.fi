@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Handling the External Dependencies with Gateway"
 author: Niko Heikkilä
 lang: en
-excerpt: Contrary to some beliefs, side effects have a place in clean architecture. In fact, they enjoy our utmost care and attention.
-type: post
+description: Contrary to some beliefs, side effects have a place in clean architecture. In fact, they enjoy our utmost care and attention.
 date: 2023-01-31
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

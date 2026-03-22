@@ -2,8 +2,7 @@
 title: Reducing the Lead Times with Little's Law
 author: Niko Heikkilä
 lang: en
-excerpt: Are your features taking ages to deliver? Beat those long lead times by reducing the work in progress and increasing throughput.
-type: post
+description: Are your features taking ages to deliver? Beat those long lead times by reducing the work in progress and increasing throughput.
 hero: https://r2.nikoheikkila.fi/factory.jpg
 date: 2021-03-28
 ---

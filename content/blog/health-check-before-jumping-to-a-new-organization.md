@@ -2,8 +2,7 @@
 title: Health Check Before Jumping to a New Organization
 author: Niko Heikkilä
 lang: en
-excerpt: Dear recruiters, don't talk to me about your tech stack.
-type: post
+description: Dear recruiters, don't talk to me about your tech stack.
 date: 2021-05-09
 hero: https://r2.nikoheikkila.fi/health-check-before-jumping-to-a-new-organization.jpg
 ---

@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2022-04-17
 hero: https://r2.nikoheikkila.fi/effortless-end-to-end-testing-with-microsoft-playwright.jpg
 title: Effortless End-To-End Testing with Microsoft Playwright
-type: post
-excerpt: How can we improve the developer experience in writing tedious browser-based tests?
+description: How can we improve the developer experience in writing tedious browser-based tests?
 ---
 
 > _Don't care about reading much, eh? Too bad, but you can also skip the content and head over to my [Playwright Kickstarter repository][kickstarter] and learn how to use it for robust automated end-to-end testing with your frontend applications._

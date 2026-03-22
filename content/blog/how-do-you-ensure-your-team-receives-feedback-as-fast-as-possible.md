@@ -2,8 +2,7 @@
 title: How do you ensure your team receives feedback as fast as possible?
 author: Niko Heikkilä
 lang: en
-excerpt: It happened once upon a time, during the code review...
-type: post
+description: It happened once upon a time, during the code review...
 date: 2022-05-08
 hero: null
 ---

@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Domain Modelling"
 author: Niko Heikkilä
 lang: en
-excerpt: All design efforts should begin from the domain when solving business problems. How do we model the domain of a photo browsing application?
-type: post
+description: All design efforts should begin from the domain when solving business problems. How do we model the domain of a photo browsing application?
 date: 2023-02-28
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

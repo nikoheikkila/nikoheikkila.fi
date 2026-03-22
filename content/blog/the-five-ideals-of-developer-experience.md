@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2020-01-06
 hero: https://r2.nikoheikkila.fi/the-five-ideals-of-developer-experience.jpg
 title: The Five Ideals of Developer Experience
-type: post
-excerpt: Assessing the anti-patterns and embracing the remedies.
+description: Assessing the anti-patterns and embracing the remedies.
 ---
 
 Developer experience is a term often thrown loosely without much explanation. You might have come across it in developer communities describing how easy it's to work with some public APIs or your company might have participated in one of the myriad best workplace competitions. Job advertisements may promise a heavenly developer experience by offering table tennis or a fridge full of beers and pizza as a work benefit. However, to me, developer experience is all about getting my job done while maintaining my competence in this profession.

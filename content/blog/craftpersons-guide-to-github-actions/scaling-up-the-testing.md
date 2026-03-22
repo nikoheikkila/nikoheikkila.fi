@@ -2,8 +2,7 @@
 title: "Craftsperson's Guide to GitHub Actions #2: Scaling up the Testing"
 author: Niko Heikkilä
 lang: en
-excerpt: Move beyond basic unit tests with property-based testing to discover hidden edge cases and mutation testing to verify your tests actually work. Learn how to achieve genuine confidence in your GitHub Actions code.
-type: post
+description: Move beyond basic unit tests with property-based testing to discover hidden edge cases and mutation testing to verify your tests actually work. Learn how to achieve genuine confidence in your GitHub Actions code.
 date: 2025-12-10
 hero: null
 ---

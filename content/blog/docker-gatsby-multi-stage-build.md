@@ -2,10 +2,9 @@
 lang: en
 title: Serving Gatsby Site with Docker Multi-Stage Build
 author: Niko Heikkilä
-type: post
 date: 2019-04-23
 hero: https://r2.nikoheikkila.fi/docker-gatsby-multi-stage-build.png
-excerpt: In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
+description: In this tutorial, we will build a multi-stage Docker build using a popular static site generator Gatsby.
 ---
 
 Developing and deploying static sites can be managed with a wide variety of techniques. If _Docker_ is already a part of your tooling you can drop your content as a container to any platform in the world be it _Kubernetes_, _OpenShift_ or your friend's laptop.

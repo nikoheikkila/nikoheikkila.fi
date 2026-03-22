@@ -2,8 +2,7 @@
 title: Five Essential Pointers for Improving Your Product and Process Quality
 author: Niko Heikkilä
 lang: en
-excerpt: Recently, I finished an excellent cooperation gig with a client. While my main tasks were focused on helping them design and develop their digital service, I wouldn't be a great consultant if I would just silently fade away on the last day of my contract.
-type: post
+description: Recently, I finished an excellent cooperation gig with a client. While my main tasks were focused on helping them design and develop their digital service, I wouldn't be a great consultant if I would just silently fade away on the last day of my contract.
 date: 2023-10-14
 hero: https://r2.nikoheikkila.fi/five-essential-pointers-for-improving-your-product-and-process-quality.jpg
 ---

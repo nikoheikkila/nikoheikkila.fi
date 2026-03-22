@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Server-Side Routes and Components"
 author: Niko Heikkilä
 lang: en
-excerpt: After a long detour, we peek into the internals of SvelteKit and how its conventions merge with our clean architecture ideals resulting in a maintainable frontend application.
-type: post
+description: After a long detour, we peek into the internals of SvelteKit and how its conventions merge with our clean architecture ideals resulting in a maintainable frontend application.
 date: 2023-05-02
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

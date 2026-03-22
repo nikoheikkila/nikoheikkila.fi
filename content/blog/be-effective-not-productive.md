@@ -2,9 +2,8 @@
 title: Be Effective, Not Productive
 author: Niko Heikkilä
 lang: en
-excerpt: |
+description: |
     We are in a creative business instead of a factory floor. You don't want to be productive — you want to be effective.
-type: post
 date: 2022-08-22
 hero: null
 ---

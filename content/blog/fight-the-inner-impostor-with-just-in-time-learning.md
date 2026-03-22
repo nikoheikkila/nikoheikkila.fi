@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2020-10-15
 hero: https://r2.nikoheikkila.fi/fight-the-inner-impostor-with-just-in-time-learning.jpg
 title: Fight the Inner Impostor with Just-In-Time Learning
-type: post
-excerpt: Don't plunge headfirst learning all the things that won't benefit you now. Instead, accept that your knowledge is never complete.
+description: Don't plunge headfirst learning all the things that won't benefit you now. Instead, accept that your knowledge is never complete.
 ---
 
 This post might come off like a weird spiritual tip for a developer, but bear with me a minute...

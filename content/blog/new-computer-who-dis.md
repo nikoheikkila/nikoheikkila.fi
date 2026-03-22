@@ -2,8 +2,7 @@
 title: New Computer — Who Dis?
 author: Niko Heikkilä
 lang: en
-excerpt: "When I'm too lazy to set up a computer manually."
-type: post
+description: "When I'm too lazy to set up a computer manually."
 date: 2022-05-07
 hero: null
 ---

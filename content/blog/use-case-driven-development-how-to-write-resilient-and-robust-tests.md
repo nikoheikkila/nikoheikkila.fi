@@ -2,9 +2,8 @@
 title: "Use Case Driven Development: How to Write Resilient and Robust Tests"
 author: Niko Heikkilä
 lang: en
-excerpt: |
+description: |
     Do you want your automated tests to be resilient? Do you hate when your tests break when you refactor or rewrite parts of the functionality? High-level end-to-end tests guarantee this, but their problems arise from flakiness and slowness.
-type: post
 date: 2022-08-20
 hero: null
 ---

@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2019-11-24
 hero: https://r2.nikoheikkila.fi/checking-a-web-page-for-dead-links.png
 title: Checking a Web Page for Dead Links
-type: post
-excerpt: A Golang Command-Line Tutorial
+description: A Golang Command-Line Tutorial
 ---
 
 There is no content on the web that is immune to rotting and growing moss. Blog posts start festering with old dead links pointing to nowhere, and images blank out when a server hosting them goes away. The cure is to periodically check for any dead content, which is a crazy thing to do by hand. Luckily, we can automate this boring stuff by using computers.

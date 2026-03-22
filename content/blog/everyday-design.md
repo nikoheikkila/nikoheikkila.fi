@@ -2,11 +2,10 @@
 title: Everyday Design
 author: Niko Heikkilä
 lang: en
-excerpt: >
+description: >
     Why do most developers struggle while changing code?
     The answer lies in how we think about software design.
     Learn how focusing on behavioural thinking can elevate your code quality.
-type: post
 date: 2025-11-25
 hero: null
 ---

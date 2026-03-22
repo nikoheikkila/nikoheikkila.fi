@@ -2,8 +2,7 @@
 title: You Can't Grow Yourself Unless You Grow Others
 author: Niko Heikkilä
 lang: en
-excerpt: Mentoring is sometimes seen as a practice reserved for experienced professionals while in truth everyone can and should start mentoring their peers.
-type: post
+description: Mentoring is sometimes seen as a practice reserved for experienced professionals while in truth everyone can and should start mentoring their peers.
 date: 2021-04-24
 hero: https://r2.nikoheikkila.fi/you-can-t-grow-yourself-unless-you-grow-others.jpg
 ---

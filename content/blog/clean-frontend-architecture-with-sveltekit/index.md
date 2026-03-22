@@ -2,8 +2,7 @@
 title: "Clean Frontend Architecture with SvelteKit: Preface"
 author: Niko Heikkilä
 lang: en
-excerpt: A practical guide for craftspeople seeking to avoid the most common pitfalls when designing modern frontend applications.
-type: post
+description: A practical guide for craftspeople seeking to avoid the most common pitfalls when designing modern frontend applications.
 date: 2023-01-28
 hero: https://r2.nikoheikkila.fi/clean_frontend_architecture_with_sveltekit.jpg
 ---

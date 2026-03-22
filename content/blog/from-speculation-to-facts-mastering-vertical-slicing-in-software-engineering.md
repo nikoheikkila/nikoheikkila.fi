@@ -2,8 +2,7 @@
 title: From Speculation to Facts – Mastering Vertical Slicing in Software Engineering
 author: Niko Heikkilä
 lang: en
-excerpt: Exploring the paradigm shift from speculative to factual communication in software engineering. Using vertical slicing, teams deliver better software sooner, gaining insights from early user feedback increasing the probability of the overall project success.
-type: post
+description: Exploring the paradigm shift from speculative to factual communication in software engineering. Using vertical slicing, teams deliver better software sooner, gaining insights from early user feedback increasing the probability of the overall project success.
 date: 2025-03-02
 hero: https://r2.nikoheikkila.fi/from-speculation-to-facts-mastering-vertical-slicing-in-software-engineering.jpg
 ---

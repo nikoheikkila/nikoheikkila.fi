@@ -2,8 +2,7 @@
 title: "Craftsperson's Guide to GitHub Actions #1: Designing for Success"
 author: Niko Heikkilä
 lang: en
-excerpt: Discover how to design testable GitHub Actions by avoiding common pitfalls like implicit dependencies and global state. Learn to separate business logic from infrastructure using dependency injection for fast, reliable testing.
-type: post
+description: Discover how to design testable GitHub Actions by avoiding common pitfalls like implicit dependencies and global state. Learn to separate business logic from infrastructure using dependency injection for fast, reliable testing.
 date: 2025-12-04
 hero: null
 ---

@@ -2,10 +2,9 @@
 title: Turning up the Developer Experience to Eleven with Mob Programming
 author: Niko Heikkilä
 lang: en
-type: post
 date: 2022-08-08
 hero: https://r2.nikoheikkila.fi/turning-up-the-developer-experience-to-eleven-with-mob-programming.webp
-excerpt: |
+description: |
     My team and I have now practised mob programming for half a year. Transitioning from working asynchronously and integrating changes late in the process to working synchronously and integrating continuously has not been without pain. However, in the end, the benefits have far outweighed the detriments.
 ---
 

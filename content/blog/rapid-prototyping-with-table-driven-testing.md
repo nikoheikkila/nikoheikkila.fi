@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2020-03-27
 hero: https://r2.nikoheikkila.fi/rapid-prototyping-with-table-driven-testing.jpg
 title: Rapid Prototyping with Table-Driven Testing
-type: post
-excerpt: Lazy developers ain't got time for installing test libraries
+description: Lazy developers ain't got time for installing test libraries
 ---
 
 Developers often need to work with something from scratch. Usually, it's a couple of lines of code whose suitability to real business logic needs to be measured before using. Sometimes you might get an idea you want to play around.

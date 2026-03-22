@@ -2,10 +2,9 @@
 lang: en
 title: Sanctity of the Slow Web
 author: Niko Heikkilä
-type: post
 hero: null
 date: 2022-04-18
-excerpt: During a mentoring session, I was recently asked for tips on how to keep up with the tech world.
+description: During a mentoring session, I was recently asked for tips on how to keep up with the tech world.
 ---
 
 There are too many places to mention, but I'll list a few here:

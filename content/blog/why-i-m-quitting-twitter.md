@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2019-08-02
 hero: https://r2.nikoheikkila.fi/why-i-m-quitting-twitter.jpg
 title: Why I'm Quitting Twitter
-type: post
-excerpt: Recently I ended a long relationship with Twitter, and I'm relieved.
+description: Recently I ended a long relationship with Twitter, and I'm relieved.
 ---
 
 Recently I ended a long relationship with _Twitter_, and I'm relieved.

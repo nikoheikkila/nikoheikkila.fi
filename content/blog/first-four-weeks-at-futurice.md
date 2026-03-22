@@ -4,8 +4,7 @@ author: Niko Heikkilä
 date: 2020-09-13
 hero: https://r2.nikoheikkila.fi/first-four-weeks-at-futurice.jpg
 title: First Four Weeks at Futurice
-type: post
-excerpt: Ruminations of relocating and refactoring oneself for a new career in a new town.
+description: Ruminations of relocating and refactoring oneself for a new career in a new town.
 ---
 
 Earlier in the summer of 2020, I made a bold decision to refresh and broaden my career from a product company to software consultancy.

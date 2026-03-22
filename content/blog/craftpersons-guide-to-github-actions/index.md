@@ -2,8 +2,7 @@
 title: Craftsperson's Guide to GitHub Actions
 author: Niko Heikkilä
 lang: en
-excerpt: Learn to build production-ready GitHub Actions with clean architecture, comprehensive testing strategies, and reliable release pipelines, transforming fragile automation scripts into maintainable software.
-type: post
+description: Learn to build production-ready GitHub Actions with clean architecture, comprehensive testing strategies, and reliable release pipelines, transforming fragile automation scripts into maintainable software.
 date: 2025-12-03
 hero: null
 ---

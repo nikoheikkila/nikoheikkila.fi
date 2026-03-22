@@ -2,8 +2,7 @@
 title: Uncertainty-Driven Project Development
 author: Niko Heikkilä
 lang: en
-excerpt: Embrace the known unknowns
-type: post
+description: Embrace the known unknowns
 date: 2022-02-12
 hero: https://r2.nikoheikkila.fi/uncertainty-driven-project-development.jpg
 ---

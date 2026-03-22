@@ -2,8 +2,7 @@
 title: Growing Software Guided by the Living Dead
 author: Niko Heikkilä
 lang: en
-excerpt: A gentle introduction to the ZOMBIES development pattern
-type: post
+description: A gentle introduction to the ZOMBIES development pattern
 date: 2022-02-13
 hero: https://r2.nikoheikkila.fi/growing-software-guided-by-the-living-dead.jpg
 ---

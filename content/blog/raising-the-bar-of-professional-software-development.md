@@ -2,8 +2,7 @@
 title: Raising the Bar of Professional Software Development
 author: Niko Heikkilä
 lang: en
-excerpt: "It's about committing to standards"
-type: post
+description: "It's about committing to standards"
 date: 2022-01-30
 hero: null
 ---

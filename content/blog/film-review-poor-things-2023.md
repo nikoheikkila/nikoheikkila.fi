@@ -2,8 +2,7 @@
 title: "Film Review: Poor Things (2023)"
 author: Niko Heikkilä
 lang: en
-excerpt: "Yorgos Lanthimos fuses anarchy and resilience into a stunning narrative. Bella Baxter's journey—a mix of deformed science, personal growth, and unyielding spirit—awakens profound insights into humanity, standing testimony to highly creative cinema."
-type: post
+description: "Yorgos Lanthimos fuses anarchy and resilience into a stunning narrative. Bella Baxter's journey—a mix of deformed science, personal growth, and unyielding spirit—awakens profound insights into humanity, standing testimony to highly creative cinema."
 date: 2024-01-15
 hero: https://r2.nikoheikkila.fi/poor-things.jpg
 ---

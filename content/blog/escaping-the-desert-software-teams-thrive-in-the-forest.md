@@ -2,8 +2,7 @@
 title: "Escaping the Desert: Software Teams Thrive in the Forest"
 author: Niko Heikkilä
 lang: en
-excerpt: Stuck carrying sandbags when you could be planting trees? Embark on a journey from the Desert to the Forest with me.
-type: post
+description: Stuck carrying sandbags when you could be planting trees? Embark on a journey from the Desert to the Forest with me.
 date: 2025-03-08
 hero: https://r2.nikoheikkila.fi/forest-and-desert.jpg
 ---

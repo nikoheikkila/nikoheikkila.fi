@@ -2,9 +2,8 @@
 lang: en
 author: Niko Heikkilä
 date: 2025-03-25
-type: page
 title: The Story
-excerpt: ...or how I learned to stop worrying and love the code.
+description: ...or how I learned to stop worrying and love the code.
 hero: https://r2.nikoheikkila.fi/story.jpg
 ---
 ## Hello! 🖖
