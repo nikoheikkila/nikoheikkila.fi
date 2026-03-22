@@ -24,56 +24,18 @@ tasks:
       - bunx biome check --write .
       - task: terraform:format
 
-  typegen:
-    desc: Generate GraphQL TypeScript types
-    deps: [install]
-    status:
-      - test -f src/gatsby-types.d.ts
-    cmds:
-      - bun run scripts/generate-types.ts
-
   lint:
     desc: Lint codebase for style issues
-    deps: [install, typegen]
+    deps: [install]
     cmds:
-      - bunx tsc --noEmit
       - bunx biome check .
 
   test:
     desc: Run application test suite
-    deps:
-      - lint
     cmds:
-      - task: test:unit
-      - task: test:component
+      - task: lint
       - task: build
       - task: test:e2e
-
-  test:unit:
-    desc: Run unit tests
-    deps: [install]
-    cmds:
-      - bunx vitest run --project=unit {{ .CLI_ARGS }}
-
-  test:unit:watch:
-    desc: Run unit tests in watch mode
-    deps: [install]
-    interactive: true
-    cmds:
-      - bunx vitest watch --project=unit
-
-  test:component:
-    desc: Run component tests
-    deps: [install, playwright]
-    cmds:
-      - bunx vitest run --project=component {{ .CLI_ARGS }}
-
-  test:component:watch:
-    desc: Run component tests in watch mode
-    deps: [install, playwright]
-    interactive: true
-    cmds:
-      - bunx vitest watch --project=component
 
   test:e2e:
     desc: Run end-to-end tests
@@ -87,32 +49,27 @@ tasks:
     cmd: bunx playwright install --with-deps
 
   dev:
-    desc: Serve the Gatsby development site
+    desc: Serve the Hugo development site
     cmds:
-      - task: clean
-      - bunx gatsby develop
+      - hugo server --port 8000 --buildDrafts
 
   clean:
     desc: Clear build cache and artifacts
     cmds:
-      - bunx gatsby clean
-      - rm -f src/gatsby-types.d.ts
+      - rm -rf public resources
 
   build:
-    desc: Build the Gatsby production site
-    deps: [install]
+    desc: Build the Hugo production site
     generates:
       - public/
-      - .cache/
     env:
-      NODE_ENV: production
+      HUGO_ENV: production
     cmds:
-      - bun run build
+      - hugo --minify
 
   serve:
-    desc: Serve the Gatsby production site
-    deps: [install]
+    desc: Serve the Hugo production site
     env:
-      NODE_ENV: production
+      HUGO_ENV: production
     cmds:
-      - bunx gatsby serve -p 8000
+      - hugo server --port 8000 --appendPort=false --disableLiveReload --renderToMemory
