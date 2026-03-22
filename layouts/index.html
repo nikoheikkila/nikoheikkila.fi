@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ partial "blog-header.html" . }}
+  {{ $paginator := .Paginate (where .Site.RegularPages "Section" "blog") 30 }}
+  <section class="article-list">
+    {{ range $paginator.Pages }}
+      {{ partial "article-card.html" . }}
+    {{ end }}
+  </section>
+  {{ partial "pagination.html" $paginator }}
+{{ end }}

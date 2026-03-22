@@ -1,0 +1,16 @@
+<a class="article-card" data-testid="post-title" href="{{ .RelPermalink }}">
+  <h2 class="article-title">{{ .Title }}</h2>
+  <p class="article-meta">
+    <span>{{ .Date.Format "January 2, 2006" }} </span>
+    {{ $minutes := .ReadingTime }}
+    {{ $cups := 1 }}
+    {{ if gt $minutes 5 }}{{ $cups = 2 }}{{ end }}
+    {{ if gt $minutes 10 }}{{ $cups = 3 }}{{ end }}
+    {{ if gt $minutes 15 }}{{ $cups = 4 }}{{ end }}
+    {{ if gt $minutes 20 }}{{ $cups = 5 }}{{ end }}
+    {{ $emoji := "" }}
+    {{ range seq $cups }}{{ $emoji = printf "%s☕️ " $emoji }}{{ end }}
+    <span>{{ printf "%s%d minutes read" $emoji $minutes }}</span>
+  </p>
+  <p class="article-excerpt">{{ .Params.description | default .Summary }}</p>
+</a>

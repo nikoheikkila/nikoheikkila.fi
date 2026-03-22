@@ -1,0 +1,14 @@
+{{ if or .HasNext .HasPrev }}
+<ul class="pagination">
+  {{ if .HasNext }}
+    <li>
+      <a href="{{ .Next.URL }}">Next Page ({{ .Next.PageNumber }}/{{ .TotalPages }})</a>
+    </li>
+  {{ end }}
+  {{ if .HasPrev }}
+    <li>
+      <a href="{{ .Prev.URL }}">Previous Page ({{ .Prev.PageNumber }}/{{ .TotalPages }})</a>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}
