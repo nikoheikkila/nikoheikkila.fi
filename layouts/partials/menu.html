@@ -1,0 +1,18 @@
+<aside id="sidebar">
+  <div class="bm-burger-button" role="button" aria-label="Open menu" tabindex="0">
+    <span class="bm-burger-bars"></span>
+    <span class="bm-burger-bars"></span>
+    <span class="bm-burger-bars"></span>
+  </div>
+  <div class="bm-overlay"></div>
+  <nav class="bm-menu-wrap" aria-hidden="true">
+    <div class="bm-menu">
+      <div class="bm-item-list">
+        <a href="/">Posts</a>
+        {{ range where .Site.RegularPages "Type" "page" }}
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </nav>
+</aside>
