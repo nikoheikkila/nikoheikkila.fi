@@ -1,0 +1,11 @@
+<header class="post-header" data-testid="post-header">
+  <h1 class="post-header__title">{{ .Title }}</h1>
+  {{ with .Params.description }}
+    <p class="post-header__excerpt">{{ . }}</p>
+  {{ end }}
+  <div class="post-header__meta">
+    <span data-testid="post-author">By {{ .Params.author | default .Site.Params.author }}</span>
+    <time datetime="{{ .Date.Format "2006-01-02" }}" data-testid="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+    <span data-testid="post-ttr">{{ .ReadingTime }} min read</span>
+  </div>
+</header>

@@ -1,0 +1,10 @@
+{{ $repository := .Site.Params.repository }}
+{{ $filePath := .File.Path }}
+{{ $editURL := printf "%s/edit/main/content/%s" $repository $filePath }}
+{{ $historyURL := printf "%s/commits/main/content/%s" $repository $filePath }}
+
+<nav class="post-attachments" aria-label="Post actions">
+  <a href="/">← Back to Posts</a>
+  <a href="{{ $editURL }}" target="_blank" rel="noopener noreferrer">Edit Page</a>
+  <a href="{{ $historyURL }}" target="_blank" rel="noopener noreferrer">View History</a>
+</nav>

@@ -1,0 +1,10 @@
+{{ $prev := .PrevInSection }}
+{{ $next := .NextInSection }}
+<nav class="post-navigation" aria-label="Post navigation">
+  {{ with $next }}
+    <a href="{{ .RelPermalink }}" rel="next">← {{ .Title }}</a>
+  {{ end }}
+  {{ with $prev }}
+    <a href="{{ .RelPermalink }}" rel="prev">{{ .Title }} →</a>
+  {{ end }}
+</nav>

@@ -1,0 +1,15 @@
+{{ define "hero" }}
+  {{ partial "hero.html" . }}
+{{ end }}
+
+{{ define "main" }}
+  <article>
+    {{ partial "post-header.html" . }}
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+    {{ partial "subscribe.html" . }}
+    {{ partial "post-attachments.html" . }}
+    {{ partial "post-navigation.html" . }}
+  </article>
+{{ end }}

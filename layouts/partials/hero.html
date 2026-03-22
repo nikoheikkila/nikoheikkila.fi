@@ -1,0 +1,9 @@
+{{ $heroURL := .Params.hero | default .Site.Params.cover }}
+{{ if $heroURL }}
+  <div class="hero">
+    <img data-main-image
+         src="{{ $heroURL }}"
+         alt="{{ .Title }}"
+         loading="lazy" />
+  </div>
+{{ end }}
