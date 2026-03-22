@@ -1,15 +1,9 @@
 name: Setup Development Environment
-description: Sets up Node.js, Bun, and Task for the workflow
+description: Sets up Bun, Task, and Hugo for the workflow
 
 runs:
   using: composite
   steps:
-    # Despite using Bun, we need Node.js for Gatsby to build correctly.
-    - name: Setup Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: 24
-
     - name: Install Bun
       uses: oven-sh/setup-bun@v2
       with:
@@ -17,3 +11,9 @@ runs:
 
     - name: Install Task
       uses: go-task/setup-task@v2
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: 'latest'
+        extended: true

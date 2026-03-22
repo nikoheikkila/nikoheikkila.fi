@@ -10,42 +10,6 @@ env:
   WRANGLER_VERSION: "4.72.0"
 
 jobs:
-  unit_tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup environment
-        uses: ./.github/actions/setup-environment
-
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-
-      - name: Lint Code Style
-        run: task lint
-
-      - name: Run unit tests
-        run: task test:unit
-
-  component_tests:
-    name: Component Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup environment
-        uses: ./.github/actions/setup-environment
-
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-      - name: Run component tests
-        run: task test:component
-
   acceptance_tests:
     name: Acceptance Tests
     runs-on: ubuntu-latest
@@ -62,16 +26,17 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
 
-      - name: Cache Gatsby Build Files
+      - name: Cache Hugo Build Files
         uses: actions/cache@v5
         with:
-          path: |
-            .cache
-            public
-          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/bun.lock') }}
+          path: resources/_gen
+          key: ${{ runner.os }}-hugo-${{ hashFiles('hugo.toml', 'hugo.yaml', 'hugo.json', 'assets/**', 'layouts/**') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-
+            ${{ runner.os }}-hugo-
             ${{ runner.os }}-
+
+      - name: Lint Code Style
+        run: task lint
 
       - name: Build site
         run: task build
@@ -93,7 +58,7 @@ jobs:
     name: Deploy to Preview
     if: github.event_name == 'pull_request' && github.base_ref == 'main'
     runs-on: ubuntu-latest
-    needs: [unit_tests, component_tests, acceptance_tests]
+    needs: [acceptance_tests]
     outputs:
       deployment-url: ${{ steps.deploy.outputs.deployment-url }}
 
@@ -132,7 +97,7 @@ jobs:
     name: Deploy to Production
     if: github.event_name == 'push' && github.ref_name == 'main'
     runs-on: ubuntu-latest
-    needs: [unit_tests, component_tests, acceptance_tests]
+    needs: [acceptance_tests]
     environment:
       name: production
       url: ${{ steps.urls.outputs.production }}
