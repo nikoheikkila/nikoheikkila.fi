@@ -69,7 +69,7 @@
 		"inquirer": "13.3.2",
 		"lighthouse": "13.0.3",
 		"snyk": "1.1303.1",
-		"typescript": "5.9.3",
+		"typescript": "6.0.2",
 		"vitest": "4.1.0",
 		"vitest-browser-react": "2.1.0",
 		"wrangler": "4.77.0"
