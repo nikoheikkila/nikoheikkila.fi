@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  WRANGLER_VERSION: "4.77.0"
+  WRANGLER_VERSION: "4.78.0"
 
 jobs:
   unit_tests:
