@@ -42,10 +42,15 @@ export default defineConfig({
 			"react-syntax-highlighter/dist/esm/languages/hljs/yaml",
 			"react-syntax-highlighter/dist/esm/styles/hljs",
 		],
-		esbuildOptions: {
-			loader: {
-				".js": "jsx",
-			},
+		rolldownOptions: {
+			plugins: [
+				{
+					name: "js-as-jsx",
+					transform(code, id) {
+						if (id.endsWith(".js")) return { code, map: null, moduleType: "jsx" };
+					},
+				},
+			],
 		},
 	},
 });

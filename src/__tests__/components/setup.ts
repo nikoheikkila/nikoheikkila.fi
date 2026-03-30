@@ -15,6 +15,21 @@ globalThis.___loader = {
 	hovering: () => {},
 };
 
+// Mock gatsby module to avoid browser runtime errors caused by missing build-time data
+// (e.g. redirects.json that gatsby generates during build but doesn't exist in test env)
+vi.mock("gatsby", () => ({
+	Link: ({ to, children, ...props }: { to: string; children: React.ReactNode; [key: string]: unknown }) =>
+		React.createElement("a", { href: to, ...props }, children),
+	Slice: ({ alias }: { alias: string }) => React.createElement("div", { "data-slice": alias }),
+	Script: ({ src, ...props }: { src?: string; [key: string]: unknown }) =>
+		React.createElement("script", { src, ...props }),
+	ScriptStrategy: {
+		postHydrate: "post-hydrate",
+		idle: "idle",
+		offMainThread: "off-main-thread",
+	},
+}));
+
 const originalWarn = console.warn;
 console.warn = (...args: unknown[]) => {
 	const message = args[0];

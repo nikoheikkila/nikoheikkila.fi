@@ -149,3 +149,8 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Hot reload problems**: Restart dev server if hot reload stops working
 - **Asset loading**: Static assets are served from `/static` directory
 - **Note**: `task dev` runs `task clean` first, which deletes generated types
+
+### Component Test Issues
+
+- **Gatsby mock required**: Component tests must mock the `gatsby` module in `src/__tests__/components/setup.ts`. Gatsby's browser runtime (`cache-dir/find-path.js`) calls `redirects_default.forEach()` during module initialization, but `redirects_default` is data generated at Gatsby build time and does not exist in the Vitest browser environment. Without the mock, all component test files fail to import.
+- **Vite dep optimization**: This project uses Rolldown (not esbuild) for `optimizeDeps`. Use `optimizeDeps.rolldownOptions` — `optimizeDeps.esbuildOptions` is deprecated and silently ignored in newer Vite versions.
