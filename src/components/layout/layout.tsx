@@ -2,6 +2,9 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import type { ReactNode } from "react";
 import "../../styles/main.scss";
+import SearchBar from "../../search/components/searchBar";
+import SearchModal from "../../search/components/searchModal";
+import { useSearch } from "../../search/components/useSearch";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import { Slice } from "gatsby";
@@ -15,10 +18,13 @@ interface LayoutProps {
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, children }) => {
+	const { query, setQuery, results, isModalOpen, submitSearch, closeModal } = useSearch();
+
 	return (
 		<>
 			<Slice alias="sidebar" />
-			<header>{cover && <Hero alt={title} data={cover} />}</header>
+			<SearchBar onSubmit={submitSearch} query={query} setQuery={setQuery} />
+			<header style={{ textAlign: "center" }}>{cover && <Hero alt={title} data={cover} />}</header>
 			{type === LayoutType.LIST && (
 				<ListContainer>
 					<section>{children}</section>
@@ -31,6 +37,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 					<Slice alias="footer" />
 				</SinglePostContainer>
 			)}
+			<SearchModal isModalOpen={isModalOpen} onClose={closeModal} query={query} results={results} />
 		</>
 	);
 };

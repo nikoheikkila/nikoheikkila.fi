@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import { searchNormalizer, searchQuery } from "./src/search";
 import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
 
@@ -93,6 +94,18 @@ const config: GatsbyConfig = {
 				},
 			},
 			resolve: "gatsby-plugin-sass",
+		},
+		{
+			options: {
+				engine: "flexsearch",
+				index: ["title", "excerpt"],
+				name: "posts",
+				normalizer: searchNormalizer,
+				query: searchQuery,
+				ref: "id",
+				store: ["slug", "title", "excerpt", "date"],
+			},
+			resolve: "gatsby-plugin-local-search",
 		},
 		"gatsby-plugin-sitemap",
 	].concat(

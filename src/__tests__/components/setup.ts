@@ -28,6 +28,7 @@ vi.mock("gatsby", () => ({
 		idle: "idle",
 		offMainThread: "off-main-thread",
 	},
+	navigate: vi.fn(),
 }));
 
 const originalWarn = console.warn;

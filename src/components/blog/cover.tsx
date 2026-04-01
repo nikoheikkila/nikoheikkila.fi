@@ -12,7 +12,7 @@ export const src = "https://r2.nikoheikkila.fi/cover.png";
 
 export const Cover: React.FunctionComponent<CoverProps> = ({ title, url }) => {
 	return (
-		<Link rel="home" to={url}>
+		<Link rel="home" style={{ display: "block", textAlign: "center" }} to={url}>
 			<StaticImage alt={title} height={630} placeholder="blurred" src={src} width={1200} />
 		</Link>
 	);

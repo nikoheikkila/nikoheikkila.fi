@@ -1,0 +1,194 @@
+@use "../../styles/variables";
+
+.searchForm {
+	margin: 0 auto;
+	padding: 16px 32px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	@include variables.for-phone-only() {
+		width: 90vw;
+	}
+
+	@include variables.for-tablet-portrait-up() {
+		width: 50vw;
+	}
+
+	@include variables.for-desktop-up() {
+		width: 35vw;
+	}
+}
+
+.searchIcon {
+	color: variables.$gray;
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightGray;
+	}
+}
+
+.searchInput {
+	flex: 1;
+	padding: 8px 12px;
+	border: 1px solid variables.$gray;
+	border-radius: 4px;
+	background: variables.$darkSecondaryBg;
+	color: variables.$darkFg;
+	font-family: variables.$fontFamily;
+	font-size: 1rem;
+
+	&::placeholder {
+		color: variables.$gray;
+	}
+
+	&:focus {
+		outline: 2px solid variables.$teal;
+		outline-offset: 1px;
+	}
+
+	@media (prefers-color-scheme: light) {
+		background: variables.$lightSecondaryBg;
+		color: variables.$lightFg;
+		border-color: variables.$lightGray;
+
+		&::placeholder {
+			color: variables.$lightGray;
+		}
+
+		&:focus {
+			outline-color: variables.$lightTeal;
+		}
+	}
+}
+
+.backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 1000;
+	border: none;
+	padding: 0;
+	cursor: default;
+}
+
+.modal {
+	position: fixed;
+	top: 10vh;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1001;
+	background: variables.$darkSecondaryBg;
+	border: 1px solid variables.$gray;
+	border-radius: 8px;
+	padding: 24px;
+	max-height: 70vh;
+	overflow-y: auto;
+
+	@include variables.for-phone-only() {
+		width: 90vw;
+	}
+
+	@include variables.for-tablet-portrait-up() {
+		width: 50vw;
+	}
+
+	@include variables.for-desktop-up() {
+		width: 35vw;
+	}
+
+	@media (prefers-color-scheme: light) {
+		background: variables.$lightBg;
+		border-color: variables.$lightGray;
+	}
+}
+
+.modalHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+	color: variables.$darkSecondaryFg;
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightSecondaryFg;
+	}
+}
+
+.closeButton {
+	background: none;
+	border: none;
+	color: variables.$darkSecondaryFg;
+	cursor: pointer;
+	font-size: 1.25rem;
+	padding: 4px 8px;
+
+	&:hover {
+		color: variables.$teal;
+	}
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightSecondaryFg;
+
+		&:hover {
+			color: variables.$lightTeal;
+		}
+	}
+}
+
+.resultItem {
+	padding: 12px 8px;
+	border-bottom: 1px solid variables.$gray;
+	border-radius: 4px;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	@media (prefers-color-scheme: light) {
+		border-color: variables.$lightGray;
+	}
+}
+
+.resultItemActive {
+	background: variables.$almostBlack;
+
+	@media (prefers-color-scheme: light) {
+		background: variables.$lightSecondaryBg;
+	}
+}
+
+.resultTitle {
+	color: variables.$teal;
+	font-size: 1.1rem;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightTeal;
+	}
+}
+
+.resultExcerpt {
+	margin: 4px 0 0;
+	color: variables.$darkSecondaryFg;
+	font-size: 0.9rem;
+	line-height: 1.4;
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightSecondaryFg;
+	}
+}
+
+.emptyState {
+	color: variables.$darkSecondaryFg;
+	text-align: center;
+	padding: 24px 0;
+
+	@media (prefers-color-scheme: light) {
+		color: variables.$lightSecondaryFg;
+	}
+}
