@@ -24,7 +24,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 		<>
 			<Slice alias="sidebar" />
 			<SearchBar onSubmit={submitSearch} query={query} setQuery={setQuery} />
-			<header>{cover && <Hero alt={title} data={cover} />}</header>
+			<header style={{ textAlign: "center" }}>{cover && <Hero alt={title} data={cover} />}</header>
 			{type === LayoutType.LIST && (
 				<ListContainer>
 					<section>{children}</section>

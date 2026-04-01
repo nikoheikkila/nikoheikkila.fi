@@ -1,7 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-test.describe.configure({ mode: "serial" });
-
 test.describe("Given I navigate to the site using a desktop browser", () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto("/", { waitUntil: "networkidle" });
@@ -24,7 +22,7 @@ test.describe("Given I navigate to the site using a desktop browser", () => {
 			const modal = page.getByRole("dialog", { name: /search results/i });
 			await expect(modal).toBeVisible();
 
-			const results = modal.getByTestId("search-result");
+			const results = modal.getByRole("article");
 			await expect(results.first()).toBeVisible();
 		});
 	});
@@ -40,8 +38,7 @@ test.describe("Given I navigate to the site using a desktop browser", () => {
 
 		await test.step("Then clicking a result should navigate to the post", async () => {
 			const modal = page.getByRole("dialog", { name: /search results/i });
-			const firstResult = modal.getByTestId("search-result").first();
-			const link = firstResult.getByRole("link");
+			const link = modal.getByRole("article").first().getByRole("link");
 			await link.click();
 
 			await expect(page).toHaveURL(/\/blog\//);
@@ -100,7 +97,7 @@ test.describe("Given I navigate to the site using a desktop browser", () => {
 		});
 
 		await test.step("Then clicking the backdrop should close the modal", async () => {
-			const backdrop = page.getByTestId("search-backdrop");
+			const backdrop = page.getByRole("button", { name: /dismiss search results/i });
 			await backdrop.click({ position: { x: 10, y: 10 } });
 			const modal = page.getByRole("dialog", { name: /search results/i });
 			await expect(modal).toBeHidden();
@@ -118,8 +115,8 @@ test.describe("Given I navigate to the site using a desktop browser", () => {
 
 		await test.step("Then pressing ArrowDown should highlight the first result", async () => {
 			await page.keyboard.press("ArrowDown");
-			const results = page.getByTestId("search-result");
-			await expect(results.first()).toHaveClass(/resultItemActive/);
+			const modal = page.getByRole("dialog", { name: /search results/i });
+			await expect(modal.getByRole("article").first()).toHaveClass(/resultItemActive/);
 		});
 
 		await test.step("And pressing Enter should navigate to the highlighted result", async () => {
@@ -159,7 +156,7 @@ test.describe("Given I navigate to the site using a mobile browser", () => {
 			const modal = page.getByRole("dialog", { name: /search results/i });
 			await expect(modal).toBeVisible();
 
-			const results = modal.getByTestId("search-result");
+			const results = modal.getByRole("article");
 			await expect(results.first()).toBeVisible();
 		});
 	});
@@ -175,8 +172,7 @@ test.describe("Given I navigate to the site using a mobile browser", () => {
 
 		await test.step("Then tapping a result should navigate to the post", async () => {
 			const modal = page.getByRole("dialog", { name: /search results/i });
-			const firstResult = modal.getByTestId("search-result").first();
-			const link = firstResult.getByRole("link");
+			const link = modal.getByRole("article").first().getByRole("link");
 			await link.tap();
 
 			await expect(page).toHaveURL(/\/blog\//);

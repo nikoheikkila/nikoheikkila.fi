@@ -4,7 +4,8 @@
       "Bash(cd:*)",
       "Bash(task:*)",
       "Bash(bunx biome:*)",
-      "Bash(bunx playwright:*)"
+      "Bash(bunx playwright:*)",
+      "mcp__github__pull_request_read"
     ]
   }
 }

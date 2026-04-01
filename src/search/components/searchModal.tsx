@@ -10,6 +10,43 @@ interface SearchModalProps {
 	onClose: () => void;
 }
 
+type ModalHeaderProps = {
+	query: string;
+	resultCount: number;
+	onClose: () => void;
+};
+
+const ModalHeader: React.FC<ModalHeaderProps> = ({ query, resultCount, onClose }) => (
+	<div className={styles.modalHeader}>
+		<span>
+			{resultCount} result{resultCount !== 1 && "s"} for &ldquo;{query}&rdquo;
+		</span>
+		<button aria-label="Close search results" className={styles.closeButton} onClick={onClose} type="button">
+			&times;
+		</button>
+	</div>
+);
+
+type ResultListProps = {
+	results: SearchResultData[];
+	query: string;
+	activeIndex: number;
+	activeRef: React.Ref<HTMLDivElement>;
+};
+
+const ResultList: React.FC<ResultListProps> = ({ results, query, activeIndex, activeRef }) =>
+	results.length > 0 ? (
+		<div>
+			{results.map((result, index) => (
+				<div key={result.id} ref={index === activeIndex ? activeRef : undefined}>
+					<SearchResult isActive={index === activeIndex} result={result} />
+				</div>
+			))}
+		</div>
+	) : (
+		<p className={styles.emptyState}>No results found for &ldquo;{query}&rdquo;</p>
+	);
+
 const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, results, query, onClose }) => {
 	const [activeIndex, setActiveIndex] = useState(-1);
 	const activeRef = useRef<HTMLDivElement>(null);
@@ -56,36 +93,19 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 	if (!isModalOpen) return null;
 
 	return (
-		// biome-ignore lint/a11y/noStaticElementInteractions: backdrop dismiss pattern - ESC key handled globally via useEffect
-		// biome-ignore lint/a11y/useKeyWithClickEvents: ESC key handler is registered globally via useEffect
-		<div className={styles.backdrop} data-testid="search-backdrop" onClick={onClose}>
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: stopPropagation prevents backdrop click from closing modal */}
-			<div
-				aria-label="Search results"
-				aria-modal="true"
-				className={styles.modal}
-				onClick={(e) => e.stopPropagation()}
-				role="dialog"
-			>
-				<div className={styles.modalHeader}>
-					<span>
-						{results.length} result{results.length !== 1 && "s"} for &ldquo;{query}&rdquo;
-					</span>
-					<button aria-label="Close search results" className={styles.closeButton} onClick={onClose} type="button">
-						&times;
-					</button>
-				</div>
-				{results.length > 0 ? (
-					results.map((result, index) => (
-						<div key={result.id} ref={index === activeIndex ? activeRef : undefined}>
-							<SearchResult isActive={index === activeIndex} result={result} />
-						</div>
-					))
-				) : (
-					<p className={styles.emptyState}>No results found for &ldquo;{query}&rdquo;</p>
-				)}
+		<>
+			<button
+				aria-label="Dismiss search results"
+				className={styles.backdrop}
+				onClick={onClose}
+				tabIndex={-1}
+				type="button"
+			/>
+			<div aria-label="Search results" aria-modal="true" className={styles.modal} role="dialog">
+				<ModalHeader onClose={onClose} query={query} resultCount={results.length} />
+				<ResultList activeIndex={activeIndex} activeRef={activeRef} query={query} results={results} />
 			</div>
-		</div>
+		</>
 	);
 };
 

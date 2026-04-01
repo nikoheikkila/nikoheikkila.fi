@@ -91,8 +91,8 @@ describe("SearchModal Component", () => {
 		const results = [createMockSearchResult()];
 		await render(<SearchModal isModalOpen={true} onClose={onClose} query="test" results={results} />);
 
-		const backdrop = page.getByTestId("search-backdrop");
-		await backdrop.click();
+		const backdrop = page.getByRole("button", { name: /dismiss search results/i });
+		await backdrop.click({ position: { x: 5, y: 5 } });
 
 		expect(onClose).toHaveBeenCalled();
 	});
@@ -105,7 +105,7 @@ describe("SearchModal Component", () => {
 		];
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="test" results={results} />);
 
-		const resultElements = page.getByTestId("search-result").all();
+		const resultElements = page.getByRole("article").all();
 		expect(resultElements.length).toBe(3);
 	});
 
@@ -126,7 +126,7 @@ describe("SearchModal Component", () => {
 
 		await userEvent.keyboard("{ArrowDown}");
 
-		const resultElements = page.getByTestId("search-result").all();
+		const resultElements = page.getByRole("article").all();
 		await expect.element(resultElements[0]).toHaveClass(/resultItemActive/);
 		await expect.element(resultElements[1]).not.toHaveClass(/resultItemActive/);
 	});
@@ -141,7 +141,7 @@ describe("SearchModal Component", () => {
 		await userEvent.keyboard("{ArrowDown}");
 		await userEvent.keyboard("{ArrowDown}");
 
-		const resultElements = page.getByTestId("search-result").all();
+		const resultElements = page.getByRole("article").all();
 		await expect.element(resultElements[1]).toHaveClass(/resultItemActive/);
 
 		await userEvent.keyboard("{ArrowUp}");
@@ -159,7 +159,7 @@ describe("SearchModal Component", () => {
 		await userEvent.keyboard("{ArrowDown}");
 		await userEvent.keyboard("{ArrowDown}");
 
-		const resultElements = page.getByTestId("search-result").all();
+		const resultElements = page.getByRole("article").all();
 		await expect.element(resultElements[0]).toHaveClass(/resultItemActive/);
 	});
 });

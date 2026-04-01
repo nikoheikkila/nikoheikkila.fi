@@ -67,13 +67,17 @@
 	inset: 0;
 	background: rgba(0, 0, 0, 0.6);
 	z-index: 1000;
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	padding-top: 10vh;
+	border: none;
+	padding: 0;
+	cursor: default;
 }
 
 .modal {
+	position: fixed;
+	top: 10vh;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1001;
 	background: variables.$darkSecondaryBg;
 	border: 1px solid variables.$gray;
 	border-radius: 8px;

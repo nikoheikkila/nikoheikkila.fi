@@ -7,13 +7,7 @@ interface HeroProps {
 }
 
 const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
-	<GatsbyImage
-		alt={alt}
-		image={data}
-		loading="eager"
-		objectFit="contain"
-		style={{ margin: "0 auto", maxHeight: "80vh" }}
-	/>
+	<GatsbyImage alt={alt} image={data} loading="eager" objectFit="contain" style={{ maxHeight: "80vh" }} />
 );
 
 export default Hero;

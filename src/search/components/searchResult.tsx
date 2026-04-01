@@ -16,12 +16,12 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FunctionComponent<SearchResultProps> = ({ result, isActive }) => (
-	<div className={`${styles.resultItem} ${isActive ? styles.resultItemActive : ""}`} data-testid="search-result">
+	<article className={`${styles.resultItem} ${isActive ? styles.resultItemActive : ""}`}>
 		<BlogLink className={styles.resultTitle} href={result.slug}>
 			{result.title}
 		</BlogLink>
 		<p className={styles.resultExcerpt}>{result.excerpt}</p>
-	</div>
+	</article>
 );
 
 export default SearchResult;
