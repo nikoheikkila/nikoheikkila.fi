@@ -50,6 +50,7 @@ The key architectural decisions are described below.
 │   │   ├── hooks/    # Custom hooks (useIcons, useToggle)
 │   │   ├── layout/   # Layout and structural components (container, footer, menu)
 │   │   └── post/     # Post-specific components (content, header, navigation, subscribe)
+│   ├── search/       # Client-side search (FlexSearch index, built at gatsby build time)
 │   ├── graphql/      # GraphQL query fragments
 │   ├── templates/    # Gatsby page templates
 │   │   ├── list.tsx  # Blog index template (pagination)
@@ -90,6 +91,8 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Unit tests**: Run in Node environment, 100% coverage enforced (lines, functions, branches, statements)
 - **Component tests**: Run in real browsers (Chromium, Firefox, WebKit) via `@vitest/browser-playwright`
 - **E2E tests**: Run against the production build served on port 8000
+- **Locator strategy**: Never use `data-testid` attributes. Always use web-first locators (`getByRole`, `getByLabel`, `getByText`). Scope locators to a parent when the page has multiple elements of the same role (e.g., `modal.getByRole("article")` vs `page.getByRole("article")`)
+- **SSR hydration in E2E**: Pages with React-controlled components (forms, inputs) need `waitUntil: "networkidle"` in `page.goto()` to ensure React has hydrated before interaction. Without it, native form submission can reload the page.
 - **Full suite order**: lint → unit → component → build → e2e
 
 ## Deployment
@@ -143,6 +146,11 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Type generation**: Run `task typegen` to generate TypeScript types from GraphQL (or `task build` which triggers it)
 - **Cache issues**: Use `task clean` to clear build cache and delete `src/gatsby-types.d.ts`
 
+### Image & Layout Issues
+
+- **GatsbyImage + flexbox**: Do not use `display: flex` on elements wrapping `GatsbyImage`. It breaks the visibility/loading mechanism (image stays `visibility: hidden`). Use `text-align: center` instead — constrained-layout `GatsbyImage` renders as `inline-block`.
+- **FlexSearch version**: `gatsby-plugin-local-search` and `react-use-flexsearch` require FlexSearch 0.6.x API (`FlexSearch.create()`, `.import()`, `.export()`). FlexSearch 0.8.x has an incompatible API. Pin to `flexsearch@0.6.32`.
+
 ### Development Server Issues
 
 - **Port conflicts**: Development server runs on <http://localhost:8000>
@@ -154,3 +162,4 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 
 - **Gatsby mock required**: Component tests must mock the `gatsby` module in `src/__tests__/components/setup.ts`. Gatsby's browser runtime (`cache-dir/find-path.js`) calls `redirects_default.forEach()` during module initialization, but `redirects_default` is data generated at Gatsby build time and does not exist in the Vitest browser environment. Without the mock, all component test files fail to import.
 - **Vite dep optimization**: This project uses Rolldown (not esbuild) for `optimizeDeps`. Use `optimizeDeps.rolldownOptions` — `optimizeDeps.esbuildOptions` is deprecated and silently ignored in newer Vite versions.
+- **Controlled input race conditions**: When Playwright's `fill()` + `press("Enter")` runs faster than React re-renders, `onSubmit` handlers can see stale prop values. Use functional state updates (`setState(prev => ...)`) in submit handlers to read the latest accumulated state instead of relying on closure-captured values.
