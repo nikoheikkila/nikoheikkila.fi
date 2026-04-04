@@ -75,7 +75,7 @@
 		"snyk": "1.1303.2",
 		"vitest": "4.1.2",
 		"vitest-browser-react": "2.1.0",
-		"wrangler": "4.77.0"
+		"wrangler": "4.80.0"
 	},
 	"engines": {
 		"node": ">=24.6.0"
