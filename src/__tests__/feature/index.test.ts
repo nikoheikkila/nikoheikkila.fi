@@ -27,7 +27,7 @@ test.describe
 			const previousPage = page.getByRole("link", { name: /Previous Page/ });
 
 			await test.step("Then I should navigate back to previous page", async () => {
-				await page.goto("/2");
+				await page.goto("/2", { waitUntil: "networkidle" });
 				await previousPage.click();
 				await expect(page).toHaveURL("/");
 			});
@@ -69,7 +69,7 @@ test.describe
 			const previousPage = page.getByRole("link", { name: /Previous Page/ });
 
 			await test.step("Then I should navigate back to previous page", async () => {
-				await page.goto("/2");
+				await page.goto("/2", { waitUntil: "networkidle" });
 				await previousPage.click();
 				await expect(page).toHaveURL("/");
 			});
