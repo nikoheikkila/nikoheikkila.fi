@@ -34,7 +34,7 @@ test.describe
 			});
 
 			await test.step("And I should see social links", async () => {
-				await expect(socialLinks).toHaveCount(4);
+				await expect(socialLinks).toHaveCount(3);
 			});
 
 			await test.step("And the RSS link should navigate to feed", async () => {

@@ -36,7 +36,7 @@ Key achievements include:
   
 Whether you're looking to scale your cloud infrastructure, optimize your delivery pipeline, or build a more resilient engineering organization, I bring the technical depth and leadership experience to help you succeed.
 
-Follow my rants in [Mastodon](https://fosstodon.org/@nikoheikkila), [Bluesky](https://bsky.app/profile/nikoheikkila.fi), and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
+Follow my rants in [Bluesky](https://bsky.app/profile/nikoheikkila.fi) and [LinkedIn](https://www.linkedin.com/in/nikoheikkila/).
 
 Yet I'm more than the letters you see, so don't hesitate to connect with me for any questions. Closing this chapter with my favourite quote from a revered mystic **G.I. Gurdjieff**.
 

@@ -8,6 +8,8 @@ type: post
 excerpt: Recently I ended a long relationship with Twitter, and I'm relieved.
 ---
 
+> **Update (20th April 2026):** Years later, Mastodon didn't turn out to be the Twitter replacement I hoped for. _[Bluesky](https://bsky.app/profile/nikoheikkila.fi)_ has inherited the throne for now, and that's where you'll find me. I'm keeping this post online for historical reasons, but I don't endorse joining Twitter (now X) or Mastodon to anyone anymore.
+
 Recently I ended a long relationship with _Twitter_, and I'm relieved.
 
 For over 10 years I've written to a platform for which the experience, safety, and justice of users is irrelevant. For reasons well understood, people can't stop using it and arguing about how to use it. This is a product that never improves, that defends harmful content, and makes people unhappy. But there is money in it. A lot of money. In fact, their entire business depends on users but they never listen to them. I knew it wasn't good for me but I couldn't stop either.
@@ -18,9 +20,9 @@ So as of today, I will no longer update my Twitter account. It's going to be har
 
 If you're interested in my content, here's a list of social accounts I'm still active in addition to this blog:
 
--   [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
--   [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
--   [_Fosstodon_](https://fosstodon.org/@nikoheikkila) for my short posts in English.
+- [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
+- [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
+- [_Fosstodon_](https://fosstodon.org/@nikoheikkila) for my short posts in English.
 
 I'm also on _Facebook_ and _LinkedIn_. However, those accounts are more restricted, so if I have no idea who you are I'm going to decline your request. I welcome you to follow me on the sites above because I'm certain my best content is still ahead of me.
 

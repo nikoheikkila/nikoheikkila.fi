@@ -36,7 +36,6 @@ const SEO: FunctionComponent<SEOProps> = ({
 	return (
 		<>
 			<BasicMeta description={metaDescription} title={title} />
-			<MastodonVerification url="https://fosstodon.org/@nikoheikkila" />
 
 			<OpenGraph
 				author={author}
@@ -76,22 +75,6 @@ const BasicMeta: React.FC<BasicMetaProps> = ({ title, description }) => {
 		<>
 			<title>{title}</title>
 			<meta content={description} name="description" />
-		</>
-	);
-};
-
-interface MastodonVerificationProps {
-	url: string;
-}
-
-const MastodonVerification: React.FC<MastodonVerificationProps> = ({ url }) => {
-	const { href, host, pathname } = new URL(url);
-	const creator = `${pathname.slice(1)}@${host}`;
-
-	return (
-		<>
-			<meta content={creator} name="fediverse:creator" />
-			<link href={href} rel="me" />
 		</>
 	);
 };

@@ -32,7 +32,7 @@ task test
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
 
 -   Github: [@nikoheikkila](https://github.com/nikoheikkila)
--   Mastodon: [@nikoheikkila](https://fosstodon.org/@nikoheikkila)
+-   Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
 -   DEV: [nikoheikkila](https://dev.to/nikoheikkila)
 -   LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 

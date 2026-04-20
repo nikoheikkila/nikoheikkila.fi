@@ -129,10 +129,6 @@ const config: GatsbyConfig = {
 				url: "https://bsky.app/profile/nikoheikkila.fi",
 			},
 			{
-				name: "mastodon",
-				url: "https://fosstodon.org/@nikoheikkila",
-			},
-			{
 				name: "linkedin",
 				url: "https://www.linkedin.com/in/nikoheikkila",
 			},
