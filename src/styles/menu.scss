@@ -39,7 +39,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-	background: #22272e;
+	background: variables.$darkBg;
 	overflow-y: hidden !important;
 }
 
@@ -47,7 +47,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item-list {
 	margin: 20px 0 0 0;
 	padding-left: $menuPaddingLeft;
-	color: #b8b7ad;
+	color: variables.$darkSecondaryFg;
 
 	a {
 		display: block;
@@ -69,11 +69,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 			content: "❯ ";
 		}
 
-		outline: none;
-		color: variables.$teal;
+		outline: 3px solid variables.$tealText;
+		outline-offset: 2px;
+		color: variables.$tealText;
 
 		@media (prefers-color-scheme: light) {
-			color: variables.$teal;
+			outline-color: variables.$lightTeal;
+			color: variables.$lightTeal;
 		}
 	}
 }

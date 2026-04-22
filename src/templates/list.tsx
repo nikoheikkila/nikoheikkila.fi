@@ -21,6 +21,7 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 
 	return (
 		<Layout title={title} type={LayoutType.LIST}>
+			<h1 className="visuallyHidden">{title}</h1>
 			<Cover title={title} url="/" />
 			<BlogHeader />
 			<ArticleView location={location} nodes={nodes} />

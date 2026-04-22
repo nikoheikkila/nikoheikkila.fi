@@ -97,7 +97,7 @@ describe("ArticleCard Component", () => {
 	test("links to correct article URL", async () => {
 		await render(<ArticleCard {...defaultProps} />);
 
-		const link = page.getByTestId("post-title");
+		const link = page.getByRole("link", { name: defaultProps.title });
 		await expect.element(link).toHaveAttribute("href", defaultProps.slug);
 	});
 });
@@ -157,7 +157,7 @@ describe("ArticleView Component", () => {
 		const heading = page.getByRole("heading");
 		await expect.element(heading).toHaveTextContent("Latest Articles");
 
-		const articles = page.getByTestId("post-title");
+		const articles = page.getByRole("article");
 		await expect.element(articles).not.toBeInTheDocument();
 	});
 

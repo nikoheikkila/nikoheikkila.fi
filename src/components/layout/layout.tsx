@@ -22,9 +22,16 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 
 	return (
 		<>
+			<a className="skipLink" href="#main-content">
+				Skip to main content
+			</a>
 			<Slice alias="sidebar" />
 			<SearchBar onSubmit={submitSearch} query={query} setQuery={setQuery} />
-			<header style={{ textAlign: "center" }}>{cover && <Hero alt={title} data={cover} />}</header>
+			{cover && (
+				<header style={{ textAlign: "center" }}>
+					<Hero alt={title} data={cover} />
+				</header>
+			)}
 			{type === LayoutType.LIST && (
 				<ListContainer>
 					<section>{children}</section>

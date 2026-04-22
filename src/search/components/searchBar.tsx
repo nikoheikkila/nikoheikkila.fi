@@ -21,7 +21,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ query, setQuery, o
 	return (
 		<search>
 			<form className={styles.searchForm} onSubmit={handleSubmit}>
-				<FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} />
+				<FontAwesomeIcon aria-hidden="true" className={styles.searchIcon} icon={faMagnifyingGlass} />
 				<input
 					aria-label="Search posts"
 					className={styles.searchInput}

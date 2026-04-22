@@ -29,11 +29,11 @@ const Menu: FunctionComponent<MenuProps> = () => {
 	));
 
 	return (
-		<aside>
+		<nav aria-label="Main">
 			<BurgerMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} onOpen={() => setMenuOpen(true)}>
 				{allPages}
 			</BurgerMenu>
-		</aside>
+		</nav>
 	);
 };
 

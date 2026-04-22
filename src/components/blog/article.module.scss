@@ -4,7 +4,7 @@
 	margin-top: 80px;
 	font-size: 2rem;
 	text-align: center;
-	color: variables.$teal;
+	color: variables.$tealText;
 
 	@media (prefers-color-scheme: light) {
 		color: variables.$lightTeal;
@@ -41,19 +41,24 @@
 }
 
 .card {
+	position: relative;
 	box-sizing: border-box;
 	border: solid 3px variables.$gray;
 	border-radius: 8px;
 	padding: 28px;
-	outline: 0;
 	background: variables.$darkSecondaryBg;
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
 	&:hover {
-		border-color: variables.$teal;
+		border-color: variables.$tealText;
 		box-shadow: 0 8px 24px rgba(83, 155, 245, 0.5);
 		transform: translateY(-2px);
+	}
+
+	&:focus-within {
+		outline: 3px solid variables.$tealText;
+		outline-offset: 3px;
 	}
 
 	@media (prefers-color-scheme: light) {
@@ -64,17 +69,35 @@
 			border-color: variables.$lightGray;
 			box-shadow: 0 8px 24px variables.$lightGray;
 		}
+
+		&:focus-within {
+			outline-color: variables.$lightTeal;
+		}
 	}
 }
 
 .title {
-	display: block;
 	font-size: 1.5rem;
-	color: variables.$teal;
 	text-align: center;
 	margin-bottom: 16px;
 
-	@media (prefers-color-scheme: light) {
-		color: variables.$lightTeal;
+	a {
+		display: block;
+		color: variables.$tealText;
+		text-decoration: none;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+		}
+
+		&:focus-visible {
+			outline: none;
+		}
+
+		@media (prefers-color-scheme: light) {
+			color: variables.$lightTeal;
+		}
 	}
 }

@@ -47,9 +47,13 @@ const ResultList: React.FC<ResultListProps> = ({ results, query, activeIndex, ac
 		<p className={styles.emptyState}>No results found for &ldquo;{query}&rdquo;</p>
 	);
 
+const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, results, query, onClose }) => {
 	const [activeIndex, setActiveIndex] = useState(-1);
 	const activeRef = useRef<HTMLDivElement>(null);
+	const modalRef = useRef<HTMLDivElement>(null);
+	const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: reset active index when results change
 	useEffect(() => {
@@ -62,6 +66,16 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 	}, [activeIndex]);
 
 	useEffect(() => {
+		if (!isModalOpen) {
+			previouslyFocusedRef.current?.focus();
+			return;
+		}
+		previouslyFocusedRef.current = document.activeElement as HTMLElement;
+		const firstFocusable = modalRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
+		firstFocusable?.focus();
+	}, [isModalOpen]);
+
+	useEffect(() => {
 		if (!isModalOpen) return;
 
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,6 +83,22 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 				case "Escape":
 					onClose();
 					break;
+				case "Tab": {
+					const focusable = modalRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+					if (!focusable || focusable.length === 0) break;
+					const first = focusable[0];
+					const last = focusable[focusable.length - 1];
+					if (e.shiftKey) {
+						if (document.activeElement === first) {
+							e.preventDefault();
+							last.focus();
+						}
+					} else if (document.activeElement === last) {
+						e.preventDefault();
+						first.focus();
+					}
+					break;
+				}
 				case "ArrowDown":
 					e.preventDefault();
 					setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
@@ -101,7 +131,7 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 				tabIndex={-1}
 				type="button"
 			/>
-			<div aria-label="Search results" aria-modal="true" className={styles.modal} role="dialog">
+			<div aria-label="Search results" aria-modal="true" className={styles.modal} ref={modalRef} role="dialog">
 				<ModalHeader onClose={onClose} query={query} resultCount={results.length} />
 				<ResultList activeIndex={activeIndex} activeRef={activeRef} query={query} results={results} />
 			</div>

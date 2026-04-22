@@ -10,9 +10,9 @@ interface ExcerptProps {
  * like react-markdown, syntax highlighting, and math rendering.
  */
 const Excerpt: React.FC<ExcerptProps> = ({ content }) => (
-	<article className={styles.content}>
+	<section className={styles.content}>
 		<p>{content}</p>
-	</article>
+	</section>
 );
 
 export default Excerpt;

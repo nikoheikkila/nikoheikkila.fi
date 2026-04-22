@@ -55,11 +55,10 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 	<article className={styles.content}>
 		<ReactMarkdown
 			components={{
-				iframe: ({ ...props }) => {
-					// Wrapper around iframe videos to make them responsive
+				iframe: ({ title, ...props }) => {
 					return (
 						<section className={styles.video}>
-							<iframe {...props} />
+							<iframe title={title ?? "Embedded media"} {...props} />
 						</section>
 					);
 				},
