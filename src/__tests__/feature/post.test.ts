@@ -4,7 +4,7 @@ import * as Navigate from "./navigate";
 test.describe
 	.parallel("Given I'm on a single post page", () => {
 		test.beforeEach(async ({ page }) => {
-			const title = page.getByTestId("post-title").first();
+			const title = page.getByRole("article").first().getByRole("link");
 
 			await page.goto("/");
 			await Navigate.toInternalPageByClicking(page, title);
@@ -13,8 +13,8 @@ test.describe
 		});
 
 		test("when I view it, then title should render correctly", async ({ page }) => {
-			const postHeader = page.getByTestId("post-header");
-			await expect(postHeader).toBeVisible();
+			const postTitle = page.getByRole("heading", { level: 1 });
+			await expect(postTitle).toBeVisible();
 		});
 
 		test("when I view it, then I should see a subscribe box", async ({ page }) => {

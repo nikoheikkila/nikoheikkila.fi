@@ -18,16 +18,16 @@ const PostAttachments: FunctionComponent<AttachmentProps> = ({ previous, urls })
 		<section className={styles.attachments}>
 			<p>
 				<Link rel="back" to={previous ?? "/"}>
-					<FontAwesomeIcon icon={faUndo} /> Back to posts
+					<FontAwesomeIcon aria-hidden="true" icon={faUndo} /> Back to posts
 				</Link>
 
 				<BlogLink href={urls.edit}>
-					<FontAwesomeIcon icon={faEdit} />
+					<FontAwesomeIcon aria-hidden="true" icon={faEdit} />
 					Edit Page
 				</BlogLink>
 
 				<BlogLink href={urls.history}>
-					<FontAwesomeIcon icon={faHistory} />
+					<FontAwesomeIcon aria-hidden="true" icon={faHistory} />
 					View History
 				</BlogLink>
 			</p>

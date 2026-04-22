@@ -7,7 +7,7 @@ test.describe
 		});
 
 		test("When I query all the post titles", async ({ page }) => {
-			const posts = page.getByTestId("post-title");
+			const posts = page.getByRole("article");
 
 			await test.step("Then I should see all the posts", async () => {
 				await expect(posts).toHaveCount(30);
@@ -49,7 +49,7 @@ test.describe
 		});
 
 		test("When I view the page", async ({ page }) => {
-			const posts = page.getByTestId("post-title");
+			const posts = page.getByRole("article");
 
 			await test.step("Then I should see all the posts", async () => {
 				await expect(posts).toHaveCount(30);

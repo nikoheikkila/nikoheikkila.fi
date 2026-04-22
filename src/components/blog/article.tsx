@@ -59,15 +59,17 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	location,
 }) => {
 	return (
-		<Link className={styles.card} data-testid="post-title" state={{ previous: location.pathname }} to={slug}>
-			<ArticleTitle title={title} />
+		<article className={styles.card}>
+			<h3 className={styles.title}>
+				<Link state={{ previous: location.pathname }} to={slug}>
+					{title}
+				</Link>
+			</h3>
 			<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
 			<Excerpt content={excerpt} />
-		</Link>
+		</article>
 	);
 };
-
-const ArticleTitle = ({ title }: { title: string }) => <h2 className={styles.title}>{title}</h2>;
 
 const ArticleMetaData = ({ date, timeToRead }: { date: string; timeToRead: number }) => (
 	<p>

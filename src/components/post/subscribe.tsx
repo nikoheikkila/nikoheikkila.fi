@@ -20,7 +20,7 @@ const Subscribe: React.FC<SubscribeProps> = ({ config }) => {
 };
 
 const RSSError = () => (
-	<section className={styles.error}>
+	<section className={styles.error} role="alert">
 		<p>
 			<strong>Error: </strong>No RSS feed configured for this site.
 		</p>
@@ -30,8 +30,8 @@ const RSSError = () => (
 const FeedLink: React.FC<{ url: string }> = ({ url }) => (
 	<section className={styles.subscribe} data-testid="rss-subscribe">
 		<p>
-			<FontAwesomeIcon icon={faRss} /> Enjoyed what you read? Why not keep yourself updated and grab the{" "}
-			<BlogLink href={url}>RSS feed</BlogLink>.
+			<FontAwesomeIcon aria-hidden="true" icon={faRss} /> Enjoyed what you read? Why not keep yourself updated and grab
+			the <BlogLink href={url}>RSS feed</BlogLink>.
 		</p>
 	</section>
 );

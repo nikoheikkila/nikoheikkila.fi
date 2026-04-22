@@ -20,7 +20,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ currentPage, numberOfP
 			{!isFirstPage && (
 				<li>
 					<Link rel="prev" to={previousPage}>
-						<FontAwesomeIcon className={styles.previous} icon={faArrowLeft} />
+						<FontAwesomeIcon aria-hidden="true" className={styles.previous} icon={faArrowLeft} />
 						Previous Page ({currentPage - 1}/{numberOfPages})
 					</Link>
 				</li>
@@ -29,7 +29,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ currentPage, numberOfP
 				<li>
 					<Link rel="next" to={nextPage}>
 						Next Page ({currentPage + 1}/{numberOfPages})
-						<FontAwesomeIcon className={styles.next} icon={faArrowRight} />
+						<FontAwesomeIcon aria-hidden="true" className={styles.next} icon={faArrowRight} />
 					</Link>
 				</li>
 			)}

@@ -121,10 +121,14 @@
 	color: variables.$darkSecondaryFg;
 	cursor: pointer;
 	font-size: 1.25rem;
-	padding: 4px 8px;
+	min-width: 44px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
 	&:hover {
-		color: variables.$teal;
+		color: variables.$tealText;
 	}
 
 	@media (prefers-color-scheme: light) {
@@ -152,14 +156,16 @@
 
 .resultItemActive {
 	background: variables.$almostBlack;
+	border-left: 3px solid variables.$tealText;
 
 	@media (prefers-color-scheme: light) {
 		background: variables.$lightSecondaryBg;
+		border-left-color: variables.$lightTeal;
 	}
 }
 
 .resultTitle {
-	color: variables.$teal;
+	color: variables.$tealText;
 	font-size: 1.1rem;
 	text-decoration: none;
 

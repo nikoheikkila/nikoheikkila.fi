@@ -9,7 +9,7 @@ interface BlogLinkProps {
 }
 
 export const BlogLink: React.FC<BlogLinkProps> = ({ href, children, ...props }) => {
-	if (!href) return <a {...props}>{children}</a>;
+	if (!href) return <span {...props}>{children}</span>;
 
 	if (isInternalLink(href))
 		return (
