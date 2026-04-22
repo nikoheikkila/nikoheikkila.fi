@@ -59,7 +59,6 @@
 	&:focus-within {
 		outline: 3px solid variables.$tealText;
 		outline-offset: 3px;
-		border-radius: 8px;
 	}
 
 	@media (prefers-color-scheme: light) {

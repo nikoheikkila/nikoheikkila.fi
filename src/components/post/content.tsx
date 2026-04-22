@@ -56,7 +56,6 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 		<ReactMarkdown
 			components={{
 				iframe: ({ title, ...props }) => {
-					// Wrapper around iframe videos to make them responsive
 					return (
 						<section className={styles.video}>
 							<iframe title={title ?? "Embedded media"} {...props} />
