@@ -71,7 +71,7 @@
 		"husky": "9.1.7",
 		"inquirer": "13.4.2",
 		"lighthouse": "13.1.0",
-		"typescript": "6.0.2",
+		"typescript": "6.0.3",
 		"snyk": "1.1304.0",
 		"vitest": "4.1.4",
 		"vitest-browser-react": "2.2.0",
