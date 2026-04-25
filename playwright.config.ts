@@ -2,6 +2,7 @@ import { defineConfig, type PlaywrightTestConfig } from "@playwright/test";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const isPipeline = process.env.CI !== undefined;
+const gitHubActionsReporter = "./playwright-github-reporter.ts";
 
 const baseConfiguration: PlaywrightTestConfig = {
 	fullyParallel: true,
@@ -31,7 +32,7 @@ const pipelineConfiguration: PlaywrightTestConfig = {
 	forbidOnly: true,
 	globalTimeout: 60 * 60 * 1000,
 	name: "E2E Tests (CI)",
-	reporter: "github",
+	reporter: [["dot"], [gitHubActionsReporter]],
 	timeout: 60 * 1000,
 	webServer: {
 		command: "task serve",
