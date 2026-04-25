@@ -60,6 +60,7 @@ The key architectural decisions are described below.
 │   └── __tests__/    # Test files
 │       ├── unit/         # Unit tests (Vitest, Node environment)
 │       ├── components/   # Component tests (Vitest, browser environment)
+│       │   └── a11y/     # Accessibility-focused component tests (axe-core)
 │       └── feature/      # E2E tests (Playwright)
 ├── gatsby/           # Gatsby Node.js APIs (onCreatePages, onCreateNodes, slices, schema)
 ├── infra/            # Terraform infrastructure (Cloudflare DNS, R2, Workers)
@@ -93,6 +94,8 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **E2E tests**: Run against the production build served on port 8000
 - **Locator strategy**: Never use `data-testid` attributes. Always use web-first locators (`getByRole`, `getByLabel`, `getByText`). Scope locators to a parent when the page has multiple elements of the same role (e.g., `modal.getByRole("article")` vs `page.getByRole("article")`)
 - **SSR hydration in E2E**: Pages with React-controlled components (forms, inputs) need `waitUntil: "networkidle"` in `page.goto()` to ensure React has hydrated before interaction. Without it, native form submission can reload the page.
+- **Accessibility matcher**: `toHaveNoA11yViolations` (defined in `src/__tests__/components/a11y.ts`, registered globally via `setup.ts`) runs an axe-core scan with WCAG 2.2 A+AA tags by default. Call it on the `container` from `render()`: `await expect(container).toHaveNoA11yViolations()`. Pass `RunOptions` as a second argument for per-call rule overrides. E2E accessibility scans use `AxeBuilder` from `@axe-core/playwright` — see the playwright skill.
+- **test.each over loops**: Never use `for`/`forEach` inside a test body to iterate over cases. Use `test.each` so each case becomes a named, individually reportable test.
 - **Full suite order**: lint → unit → component → build → e2e
 
 ## Deployment
@@ -163,3 +166,4 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Gatsby mock required**: Component tests must mock the `gatsby` module in `src/__tests__/components/setup.ts`. Gatsby's browser runtime (`cache-dir/find-path.js`) calls `redirects_default.forEach()` during module initialization, but `redirects_default` is data generated at Gatsby build time and does not exist in the Vitest browser environment. Without the mock, all component test files fail to import.
 - **Vite dep optimization**: This project uses Rolldown (not esbuild) for `optimizeDeps`. Use `optimizeDeps.rolldownOptions` — `optimizeDeps.esbuildOptions` is deprecated and silently ignored in newer Vite versions.
 - **Controlled input race conditions**: When Playwright's `fill()` + `press("Enter")` runs faster than React re-renders, `onSubmit` handlers can see stale prop values. Use functional state updates (`setState(prev => ...)`) in submit handlers to read the latest accumulated state instead of relying on closure-captured values.
+- **Color contrast in component tests**: Components import their own `.module.scss` but not `main.scss`, so globally-set foreground colors are absent. If a component's SCSS sets a dark background without a matching foreground, axe's `color-contrast` rule will fire as a false positive. Suppress it with `{ rules: { "color-contrast": { enabled: false } } }` and add a comment noting the E2E scan covers it. Do not suppress it globally.
