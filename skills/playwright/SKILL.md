@@ -66,7 +66,7 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 
 - ❌ `page.waitForTimeout()` - Never use hard-coded timeouts
 - ❌ `page.locator(".css-class")` - Avoid CSS selectors when possible
-- ❌ `data-test-id` - Use `data-testid` (standard convention)
+- ❌ `data-testid` / `data-test-id` - Never use test-id attributes; this project requires web-first locators only
 - ❌ Inline comments explaining assertions - Use descriptive test steps instead
 - ❌ `any` types - Import proper types like `Page` from Playwright
 
@@ -83,6 +83,29 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 - Use `toMatchAriaSnapshot` for component structure validation
 - Test screen reader compatibility with semantic HTML
 - Verify focus management and skip links functionality
+
+#### Axe-Core Integration
+
+Use `@axe-core/playwright` to run WCAG 2.2 AA scans in E2E tests. Existing page-archetype scans live in `src/__tests__/feature/a11y.test.ts`.
+
+```typescript
+import { expect, test, type Page } from "@playwright/test";
+import { AxeBuilder } from "@axe-core/playwright";
+
+const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
+
+test("page passes WCAG 2.2 AA", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+  expect(results.violations).toEqual([]);
+});
+```
+
+Notes:
+- Always use `waitUntil: "networkidle"` so React has hydrated and all styles are applied before the scan.
+- The `region` rule is tagged `best-practice`, not WCAG — it does **not** run with the WCAG tag filter above.
+- Disable a specific rule only when it produces a documented false positive: `.disableRules(["rule-id"])`.
+- E2E scans test the full page with production CSS; they catch color-contrast issues that component tests cannot (component tests lack `main.scss`).
 
 ### Blog-Specific Test Patterns
 
