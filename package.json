@@ -48,6 +48,7 @@
 	},
 	"description": "My personal website",
 	"devDependencies": {
+		"@axe-core/playwright": "4.11.2",
 		"@biomejs/biome": "2.4.12",
 		"@commitlint/cli": "20.5.0",
 		"@commitlint/config-conventional": "20.5.0",
@@ -67,12 +68,13 @@
 		"@vitejs/plugin-react": "5.2.0",
 		"@vitest/browser-playwright": "4.1.4",
 		"@vitest/coverage-v8": "4.1.4",
+		"axe-core": "4.11.3",
 		"happy-dom": "20.9.0",
 		"husky": "9.1.7",
 		"inquirer": "13.4.2",
 		"lighthouse": "13.1.0",
-		"typescript": "6.0.3",
 		"snyk": "1.1304.0",
+		"typescript": "6.0.3",
 		"vitest": "4.1.4",
 		"vitest-browser-react": "2.2.0",
 		"wrangler": "4.83.0"
