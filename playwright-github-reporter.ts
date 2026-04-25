@@ -33,19 +33,11 @@ export default class GitHubReporter implements Reporter {
 	}
 
 	public onStdOut(chunk: string | Buffer, _: TestCase, __: TestResult): void {
-		if (this.quiet) {
-			return;
-		}
-
-		this.info(chunk.toString("utf-8"));
+		this.onLog(chunk);
 	}
 
 	public onStdErr(chunk: string | Buffer, _: TestCase, __: TestResult): void {
-		if (this.quiet) {
-			return;
-		}
-
-		this.error(chunk.toString("utf-8"));
+		this.onLog(chunk);
 	}
 
 	public onError(error: TestError): void {
@@ -80,6 +72,14 @@ export default class GitHubReporter implements Reporter {
 		if (result.status !== "passed") {
 			this.setFailed("Test run failed");
 		}
+	}
+
+	private onLog(chunk: string | Buffer): void {
+		if (this.quiet) {
+			return;
+		}
+
+		this.info(chunk.toString("utf-8"));
 	}
 
 	private duration(result: FullResult): string {
