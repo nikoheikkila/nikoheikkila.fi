@@ -74,3 +74,4 @@ playwright-report/
 
 # Gatsby types
 gatsby-types.d.ts
+/.vitest-attachments

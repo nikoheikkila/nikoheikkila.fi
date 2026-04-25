@@ -1,5 +1,6 @@
 import { vi } from "vitest";
 import React from "react";
+import "./a11y";
 
 // Declare types for Gatsby globals
 declare global {
@@ -14,6 +15,12 @@ globalThis.___loader = {
 	enqueue: () => {},
 	hovering: () => {},
 };
+
+// Set document-level attributes required by axe-core in component tests
+document.documentElement.setAttribute("lang", "en");
+if (!document.title) {
+	document.title = "Component Test";
+}
 
 // Mock gatsby module to avoid browser runtime errors caused by missing build-time data
 // (e.g. redirects.json that gatsby generates during build but doesn't exist in test env)
