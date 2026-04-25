@@ -10,7 +10,8 @@
 		"emitDecoratorMetadata": true,
 		"noEmit": true,
 		"skipLibCheck": true,
-		"moduleResolution": "nodenext"
+		"moduleResolution": "nodenext",
+		"types": ["node"]
 	},
 	"include": [
 		"./src/**/*",
