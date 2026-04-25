@@ -1,4 +1,12 @@
-import type { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from "@playwright/test/reporter";
+import type {
+	FullConfig,
+	FullResult,
+	Reporter,
+	Suite,
+	TestCase,
+	TestResult,
+	TestError,
+} from "@playwright/test/reporter";
 import fs from "node:fs";
 import os from "node:os";
 
@@ -9,10 +17,12 @@ export default class GitHubReporter implements Reporter {
 	private failures = 0;
 	private timeouts = 0;
 	private skips = 0;
+	private quiet = false;
 
 	public onBegin(config: FullConfig, suite: Suite): void {
 		this.suites = suite.suites.length;
 		this.total = suite.allTests().length;
+		this.quiet = config.quiet;
 
 		this.info(`Starting a test run with ${this.total} tests`);
 		this.debug(`Playwright Configuration${os.EOL.repeat(2)}${JSON.stringify(config, null, 2)}`);
@@ -20,6 +30,27 @@ export default class GitHubReporter implements Reporter {
 
 	public onTestBegin(test: TestCase, _result: TestResult): void {
 		this.debug(`Starting test ${test.title}`);
+	}
+
+	public onStdOut(chunk: string | Buffer, _: TestCase, __: TestResult): void {
+		if (this.quiet) {
+			return;
+		}
+
+		this.info(chunk.toString("utf-8"));
+	}
+
+	public onStdErr(chunk: string | Buffer, _: TestCase, __: TestResult): void {
+		if (this.quiet) {
+			return;
+		}
+
+		this.error(chunk.toString("utf-8"));
+	}
+
+	public onError(error: TestError): void {
+		const message = error.cause?.message || error.message || "Unknown error";
+		this.error(message);
 	}
 
 	public onTestEnd(test: TestCase, result: TestResult) {
@@ -44,13 +75,14 @@ export default class GitHubReporter implements Reporter {
 
 	public async onEnd(result: FullResult): Promise<void> {
 		this.notice(`${this.passes} passed (${this.duration(result)})`);
-
 		await this.saveSummary();
+
+		if (result.status !== "passed") {
+			this.setFailed("Test run failed");
+		}
 	}
 
 	private duration(result: FullResult): string {
-		// 34 passed (39.1s)
-
 		return `${(result.duration / 1000).toFixed(1)}s`;
 	}
 
@@ -80,6 +112,12 @@ export default class GitHubReporter implements Reporter {
 		].join(os.EOL);
 	}
 
+	private debug(message: string): void {
+		if (this.isDebug) {
+			process.stdout.write(`::debug::${message}${os.EOL}`);
+		}
+	}
+
 	private info(message: string): void {
 		process.stdout.write(message + os.EOL);
 	}
@@ -92,10 +130,9 @@ export default class GitHubReporter implements Reporter {
 		process.stdout.write(`::error::${message}${os.EOL}`);
 	}
 
-	private debug(message: string): void {
-		if (this.isDebug) {
-			process.stdout.write(`::debug::${message}${os.EOL}`);
-		}
+	private setFailed(message: string): never {
+		this.error(message);
+		process.exit(1);
 	}
 
 	private get isDebug(): boolean {
