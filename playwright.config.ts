@@ -2,9 +2,10 @@ import { defineConfig, type PlaywrightTestConfig } from "@playwright/test";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const isPipeline = process.env.CI !== undefined;
-const gitHubActionsReporter = "./playwright-github-reporter.ts";
+const gitHubActionsReporter = "./playwright-github-reporter.mts";
 
 const baseConfiguration: PlaywrightTestConfig = {
+	name: "Acceptance Tests",
 	fullyParallel: true,
 	reporter: "list",
 	snapshotPathTemplate: "{testDir}/snapshots/{testFilePath}/{arg}{ext}",
@@ -19,7 +20,6 @@ const baseConfiguration: PlaywrightTestConfig = {
 };
 
 const localConfiguration: PlaywrightTestConfig = {
-	name: "E2E Tests (Local)",
 	webServer: {
 		command: "task serve",
 		reuseExistingServer: true,
@@ -31,7 +31,6 @@ const localConfiguration: PlaywrightTestConfig = {
 const pipelineConfiguration: PlaywrightTestConfig = {
 	forbidOnly: true,
 	globalTimeout: 60 * 60 * 1000,
-	name: "E2E Tests (CI)",
 	reporter: [["dot"], [gitHubActionsReporter]],
 	timeout: 60 * 1000,
 	webServer: {
