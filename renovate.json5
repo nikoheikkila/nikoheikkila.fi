@@ -30,6 +30,17 @@
 			],
 			"depNameTemplate": "wrangler",
 			"datasourceTemplate": "npm"
+		},
+		{
+			"customType": "regex",
+			"managerFilePatterns": [
+				"/^\\.github/workflows/.+\\.ya?ml$/"
+			],
+			"matchStrings": [
+				"image: mcr\\.microsoft\\.com/playwright:v(?<currentValue>[\\d.]+)-noble"
+			],
+			"depNameTemplate": "@playwright/test",
+			"datasourceTemplate": "npm"
 		}
 	],
 	"packageRules": [
@@ -50,6 +61,12 @@
 				"wrangler"
 			],
 			"groupName": "Wrangler"
+		},
+		{
+			"matchPackageNames": [
+				"@playwright/test"
+			],
+			"groupName": "Playwright"
 		}
 	]
 }

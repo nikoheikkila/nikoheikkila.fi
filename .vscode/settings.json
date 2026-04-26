@@ -3,5 +3,11 @@
 		"*.ts": "typescriptreact",
 		"*.tsx": "typescriptreact"
 	},
-	"cSpell.words": ["cmds", "deps"]
+	"cSpell.words": [
+		"cmds",
+		"deps"
+	],
+	"editor.formatOnSave": true,
+	"files.autoSave": "afterDelay",
+	"editor.defaultFormatter": "biomejs.biome"
 }

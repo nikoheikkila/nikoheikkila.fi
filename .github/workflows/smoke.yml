@@ -1,0 +1,39 @@
+name: Smoke Test
+
+on:
+  workflow_call:
+    inputs:
+      site_url:
+        description: "Site URL to run the smoke test against"
+        required: false
+        type: string
+        default: "https://nikoheikkila.fi"
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: "Site URL to run the smoke test against"
+        required: false
+        type: string
+        default: "https://nikoheikkila.fi"
+
+jobs:
+  smoke:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      options: --user 1001
+    env:
+      APP_URL: ${{ inputs.site_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - name: Run smoke tests
+        run: task test:e2e --project="Smoke Tests"

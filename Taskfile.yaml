@@ -19,14 +19,12 @@ tasks:
 
   format:
     desc: Format codebase
-    deps: [install]
     cmds:
       - bunx biome check --write .
       - task: terraform:format
 
   typegen:
     desc: Generate GraphQL TypeScript types
-    deps: [install]
     status:
       - test -f src/gatsby-types.d.ts
     cmds:
@@ -34,16 +32,15 @@ tasks:
 
   lint:
     desc: Lint codebase for style issues
-    deps: [install, typegen]
+    deps: [typegen]
     cmds:
       - bunx tsc --noEmit
       - bunx biome check .
 
   test:
     desc: Run application test suite
-    deps:
-      - lint
     cmds:
+      - task: lint
       - task: test:unit
       - task: test:component
       - task: build
@@ -51,33 +48,28 @@ tasks:
 
   test:unit:
     desc: Run unit tests
-    deps: [install]
     cmds:
       - bunx vitest run --project=unit {{ .CLI_ARGS }}
 
   test:unit:watch:
     desc: Run unit tests in watch mode
-    deps: [install]
     interactive: true
     cmds:
       - bunx vitest watch --project=unit
 
   test:component:
     desc: Run component tests
-    deps: [install, playwright]
     cmds:
       - bunx vitest run --project=component {{ .CLI_ARGS }}
 
   test:component:watch:
     desc: Run component tests in watch mode
-    deps: [install, playwright]
     interactive: true
     cmds:
       - bunx vitest watch --project=component
 
   test:e2e:
     desc: Run end-to-end tests
-    deps: [install, playwright]
     cmds:
       - bunx playwright test {{.CLI_ARGS}}
 
@@ -100,7 +92,6 @@ tasks:
 
   build:
     desc: Build the Gatsby production site
-    deps: [install]
     generates:
       - public/
       - .cache/
@@ -111,7 +102,6 @@ tasks:
 
   serve:
     desc: Serve the Gatsby production site
-    deps: [install]
     env:
       NODE_ENV: production
     cmds:
