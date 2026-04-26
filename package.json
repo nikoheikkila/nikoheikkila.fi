@@ -78,7 +78,7 @@
 		"typescript": "6.0.3",
 		"vitest": "4.1.4",
 		"vitest-browser-react": "2.2.0",
-		"wrangler": "4.83.0"
+		"wrangler": "4.85.0"
 	},
 	"engines": {
 		"node": ">=24.6.0"
