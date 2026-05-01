@@ -49,6 +49,7 @@
         "@commitlint/cli": "20.5.2",
         "@commitlint/config-conventional": "20.5.0",
         "@happy-dom/global-registrator": "20.9.0",
+        "@nikoheikkila/playwright-github-actions-reporter": "0.0.2",
         "@playwright/test": "1.59.1",
         "@sindresorhus/slugify": "3.0.0",
         "@testing-library/dom": "10.4.1",
@@ -692,6 +693,8 @@
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.2", "", { "dependencies": { "@tybys/wasm-util": "^0.10.1" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-sNXv5oLJ7ob93xkZ1XnxisYhGYXfaG9f65/ZgYuAu3qt7b3NadcOEhLvx28hv31PgX8SZJRYrAIPQilQmFpLVw=="],
 
     "@nicolo-ribaudo/eslint-scope-5-internals": ["@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1", "", { "dependencies": { "eslint-scope": "5.1.1" } }, "sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg=="],
+
+    "@nikoheikkila/playwright-github-actions-reporter": ["@nikoheikkila/playwright-github-actions-reporter@0.0.2", "", { "dependencies": { "@actions/core": "^3.0.1" }, "peerDependencies": { "@playwright/test": "^1.59.1" } }, "sha512-DwFQekt8tzKYtvJnZwclG2YE0dYUFNN4MNPqUbZvr067xEpg/UidkgBU4KW+eWGoLhUf5wTy5cVabNml97zgJQ=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 

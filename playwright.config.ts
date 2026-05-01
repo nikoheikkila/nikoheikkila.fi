@@ -2,7 +2,7 @@ import { defineConfig, type PlaywrightTestConfig } from "@playwright/test";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const isPipeline = process.env.CI !== undefined;
-const gitHubActionsReporter = "./playwright-github-reporter.mts";
+const gitHubActionsReporter = "@nikoheikkila/playwright-github-actions-reporter";
 
 const baseConfiguration: PlaywrightTestConfig = {
 	name: "Acceptance Tests",
