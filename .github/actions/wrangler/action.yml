@@ -1,0 +1,50 @@
+name: Deploy to CloudFlare
+description: Uses the Wrangler CLI to deploy the project to CloudFlare Workers
+
+inputs:
+  cloudflare-account-id:
+    description: The CloudFlare account ID to use for the deployment
+    required: true
+  cloudflare-api-token:
+    description: The CloudFlare API token to use for the deployment
+    required: true
+  node-version:
+    description: The version of Node.js to use for the deployment
+    required: false
+    default: '24'
+
+outputs:
+  preview-url:
+    description: The URL of the preview deployment
+    value: ${{ steps.preview.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Deploy to Preview
+      if: github.event_name == 'pull_request'
+      id: preview
+      shell: bash
+      env:
+        CLOUDFLARE_ACCOUNT_ID: ${{ inputs.cloudflare-account-id }}
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        ALIAS: pr-${{ github.event.pull_request.number }}
+      run: |
+        output=$(npx wrangler versions upload --preview-alias "${ALIAS}")
+        printf '%s\n' "$output"
+        url=$(grep -oE "https://${ALIAS}[^ ]+" <<< "$output" | head -1)
+        echo "url=${url}" >> "$GITHUB_OUTPUT"
+
+    - name: Deploy to Production
+      if: github.event_name == 'push' && github.ref_name == 'main'
+      id: production
+      shell: bash
+      env:
+        CLOUDFLARE_ACCOUNT_ID: ${{ inputs.cloudflare-account-id }}
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+      run: npx wrangler deploy

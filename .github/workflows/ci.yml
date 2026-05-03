@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  WRANGLER_VERSION: "4.87.0"
-
 jobs:
   unit_tests:
     name: Unit Tests
@@ -85,9 +82,7 @@ jobs:
         with:
           name: static-assets
           retention-days: 1
-          path: |
-            wrangler.jsonc
-            public/
+          path: public/
 
   deploy-preview:
     name: Deploy to Preview
@@ -95,22 +90,24 @@ jobs:
     runs-on: ubuntu-latest
     needs: [unit_tests, component_tests, acceptance_tests]
     outputs:
-      deployment-url: ${{ steps.deploy.outputs.deployment-url }}
+      deployment-url: ${{ steps.deploy.outputs.preview-url }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
       - name: Download static assets
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
+          path: public
 
       - name: Deploy
         id: deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: ./.github/actions/wrangler
         with:
-          wranglerVersion: ${{ env.WRANGLER_VERSION }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: versions upload --preview-alias pr-${{ github.event.pull_request.number }}
+          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
   lighthouse-preview:
     name: Lighthouse Audit for Preview
@@ -143,17 +140,20 @@ jobs:
       cancel-in-progress: false
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
       - name: Download static assets
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
+          path: public
 
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: ./.github/actions/wrangler
         with:
-          wranglerVersion: ${{ env.WRANGLER_VERSION }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Record deployment
         id: urls
