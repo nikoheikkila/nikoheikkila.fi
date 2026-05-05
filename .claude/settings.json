@@ -1,15 +1,15 @@
 {
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "task lint 2>&1"
-          }
-        ]
-      }
-    ]
-  }
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Edit|Write",
+				"hooks": [
+					{
+						"type": "command",
+						"command": ".claude/lint.sh"
+					}
+				]
+			}
+		]
+	}
 }

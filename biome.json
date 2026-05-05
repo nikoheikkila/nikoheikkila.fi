@@ -12,8 +12,8 @@
 		}
 	},
 	"files": {
-		"ignoreUnknown": false,
-		"includes": ["src/**", "gatsby/**", "*.json", "*.ts"]
+		"ignoreUnknown": true,
+		"includes": ["**", "!content/**/*"]
 	},
 	"formatter": {
 		"enabled": true,

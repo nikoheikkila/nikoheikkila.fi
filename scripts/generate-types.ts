@@ -41,9 +41,7 @@ const readStdout = async () => {
 			}
 
 			if (attempts >= maxAttempts) {
-				console.warn(
-					"⚠️  Types file not found after polling, killing process anyway"
-				);
+				console.warn("⚠️  Types file not found after polling, killing process anyway");
 				gatsby.kill("SIGTERM");
 			}
 
