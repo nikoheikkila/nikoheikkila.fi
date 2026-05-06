@@ -20,6 +20,9 @@ const config: GatsbyConfig = {
 					{
 						options: {
 							maxWidth: 960,
+							quality: 80,
+							withAvif: true,
+							withWebp: true,
 						},
 						resolve: "gatsby-remark-images",
 					},

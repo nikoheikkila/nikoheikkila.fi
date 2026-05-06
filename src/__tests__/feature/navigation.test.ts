@@ -3,23 +3,22 @@ import { expect, test } from "@playwright/test";
 test.describe
 	.parallel("Given I navigate to the site using a desktop browser", () => {
 		test.beforeEach(async ({ page }) => {
-			await page.goto("/");
+			await page.goto("/", { waitUntil: "networkidle" });
 		});
 
 		test("When I click the burger menu button", async ({ page }) => {
-			const burgerMenuButton = page.locator(".bm-burger-button");
-			const menuContainer = page.locator(".bm-menu");
-			const menuOverlay = page.locator(".bm-overlay");
+			const nav = page.getByRole("navigation", { name: /main/i });
+			const openButton = nav.getByRole("button", { name: /open menu/i });
+			const menuPanel = nav.locator("div[id]");
 
 			await test.step("Then the sidebar menu should be visible", async () => {
-				await burgerMenuButton.click();
-				await expect(menuContainer).toBeVisible();
+				await openButton.click();
+				await expect(menuPanel).toBeVisible();
 			});
 
 			await test.step("And menu should close by clicking on the overlay", async () => {
-				await expect(menuOverlay).toBeVisible();
-				await page.mouse.click(100, 100);
-				await expect(menuContainer).toBeHidden();
+				await page.mouse.click(300, 300);
+				await expect(menuPanel).toBeHidden();
 			});
 		});
 
@@ -54,23 +53,22 @@ test.describe
 		});
 
 		test.beforeEach(async ({ page }) => {
-			await page.goto("/");
+			await page.goto("/", { waitUntil: "networkidle" });
 		});
 
 		test("When I click the burger menu button", async ({ page }) => {
-			const burgerMenuButton = page.locator(".bm-burger-button");
-			const menuContainer = page.locator(".bm-menu");
-			const menuOverlay = page.locator(".bm-overlay");
+			const nav = page.getByRole("navigation", { name: /main/i });
+			const openButton = nav.getByRole("button", { name: /open menu/i });
+			const menuPanel = nav.locator("div[id]");
 
 			await test.step("Then the sidebar menu should be visible", async () => {
-				await burgerMenuButton.click();
-				await expect(menuContainer).toBeVisible();
+				await openButton.click();
+				await expect(menuPanel).toBeVisible();
 			});
 
 			await test.step("And menu should close by clicking on the overlay", async () => {
-				await expect(menuOverlay).toBeVisible();
-				await page.mouse.click(100, 100);
-				await expect(menuContainer).toBeHidden();
+				await page.mouse.click(300, 300);
+				await expect(menuPanel).toBeHidden();
 			});
 		});
 

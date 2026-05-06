@@ -23,6 +23,7 @@ function configureFonts(setHeadComponents: (children: React.ReactNode[]) => void
 	setHeadComponents([
 		<link crossOrigin="anonymous" href="https://api.fontshare.com" key="preconnect-fontshare-api" rel="preconnect" />,
 		<link crossOrigin="anonymous" href="https://cdn.fontshare.com" key="preconnect-fontshare-cdn" rel="preconnect" />,
+		<link crossOrigin="anonymous" href="https://r2.nikoheikkila.fi" key="preconnect-r2-cdn" rel="preconnect" />,
 		<link href={fontUrl} key="fontshare-stylesheet" rel="stylesheet" />,
 	]);
 }
