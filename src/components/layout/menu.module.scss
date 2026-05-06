@@ -1,1 +1,85 @@
-@use "../../styles/menu";
+@use "../../styles/variables";
+
+$menuPaddingLeft: 20px;
+
+.burger {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	height: 24px;
+	justify-content: space-between;
+	left: 10px;
+	padding: 0;
+	position: fixed;
+	top: 10px;
+	width: 32px;
+	z-index: 1100;
+}
+
+.burgerBar {
+	background: variables.$teal;
+	display: block;
+	height: 3px;
+	width: 100%;
+
+	@media (prefers-color-scheme: light) {
+		background: variables.$lightFg;
+	}
+}
+
+.overlay {
+	cursor: default;
+	inset: 0;
+	position: fixed;
+	z-index: 999;
+}
+
+.menu {
+	background: variables.$almostBlack;
+	height: 100vh;
+	left: 0;
+	max-width: 75vw;
+	overflow-y: auto;
+	padding: 60px 32px 20px $menuPaddingLeft;
+	position: fixed;
+	top: 0;
+	transform: translateX(-100%);
+	transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
+	visibility: hidden;
+	z-index: 1000;
+
+	a {
+		color: variables.$darkSecondaryFg;
+		display: block;
+		line-height: 1.75;
+
+		&::before {
+			content: "❯ ";
+			opacity: 0;
+		}
+
+		&:focus-visible,
+		&:hover {
+			color: variables.$tealText;
+			outline: 3px solid variables.$tealText;
+			outline-offset: 2px;
+
+			&::before {
+				opacity: 1;
+			}
+
+			@media (prefers-color-scheme: light) {
+				color: variables.$lightTeal;
+				outline-color: variables.$lightTeal;
+			}
+		}
+	}
+}
+
+.menuOpen {
+	transform: translateX(0);
+	transition: transform 0.3s ease-in-out, visibility 0s;
+	visibility: visible;
+}

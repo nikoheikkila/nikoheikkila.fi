@@ -1,7 +1,8 @@
-import React, { type FunctionComponent, useState } from "react";
-import { slide as BurgerMenu } from "react-burger-menu";
+import React, { type FunctionComponent, useId } from "react";
 import { getStaticPages } from "../../graphql/pages";
 import { BlogLink } from "../elements";
+import useToggle from "../hooks/useToggle";
+import * as styles from "./menu.module.scss";
 
 interface MenuProps {
 	readonly className?: string;
@@ -19,7 +20,8 @@ const links = [
 ];
 
 const Menu: FunctionComponent<MenuProps> = () => {
-	const [menuOpen, setMenuOpen] = useState<boolean>(false);
+	const menuId = useId();
+	const [isOpen, toggle] = useToggle(false);
 	const staticPages = getStaticPages();
 
 	const allPages = [...links, ...staticPages].map(({ slug, title }) => (
@@ -30,9 +32,22 @@ const Menu: FunctionComponent<MenuProps> = () => {
 
 	return (
 		<nav aria-label="Main">
-			<BurgerMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} onOpen={() => setMenuOpen(true)}>
+			<button
+				aria-controls={menuId}
+				aria-expanded={isOpen}
+				aria-label={isOpen ? "Close menu" : "Open menu"}
+				className={styles.burger}
+				onClick={toggle}
+				type="button"
+			>
+				<span aria-hidden="true" className={styles.burgerBar} />
+				<span aria-hidden="true" className={styles.burgerBar} />
+				<span aria-hidden="true" className={styles.burgerBar} />
+			</button>
+			{isOpen && <div aria-hidden="true" className={styles.overlay} onClick={toggle} />}
+			<div className={isOpen ? `${styles.menu} ${styles.menuOpen}` : styles.menu} id={menuId}>
 				{allPages}
-			</BurgerMenu>
+			</div>
 		</nav>
 	);
 };
