@@ -79,6 +79,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **TypeScript-first**: All components use TypeScript with generated Gatsby types
 - **Custom hooks**: Located in `src/components/hooks/`
 - **Icon management**: FontAwesome icons managed through `useIcons` hook
+- **Element IDs must use `useId()`**: Biome's `useUniqueElementIds` rule rejects static string `id` attributes. Use `useId()` from React and wire the result to both `id` on the target element and `aria-controls` on the controlling element.
 
 ### Styling Approach
 
@@ -93,7 +94,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Component tests**: Run in real browsers (Chromium, Firefox, WebKit) via `@vitest/browser-playwright`
 - **E2E tests**: Run against the production build served on port 8000
 - **Locator strategy**: Never use `data-testid` attributes. Always use web-first locators (`getByRole`, `getByLabel`, `getByText`). Scope locators to a parent when the page has multiple elements of the same role (e.g., `modal.getByRole("article")` vs `page.getByRole("article")`)
-- **SSR hydration in E2E**: Pages with React-controlled components (forms, inputs) need `waitUntil: "networkidle"` in `page.goto()` to ensure React has hydrated before interaction. Without it, native form submission can reload the page.
+- **SSR hydration in E2E**: Any page with React-controlled interactive elements — not just forms and inputs, but also toggle buttons, hook-driven components, and anything relying on a React event handler — needs `waitUntil: "networkidle"` in `page.goto()` to ensure hydration has completed before interaction. Without it, clicks silently do nothing because the `onClick` handler has not been attached yet.
 - **Accessibility matcher**: `toHaveNoA11yViolations` (defined in `src/__tests__/components/a11y.ts`, registered globally via `setup.ts`) runs an axe-core scan with WCAG 2.2 A+AA tags by default. Call it on the `container` from `render()`: `await expect(container).toHaveNoA11yViolations()`. Pass `RunOptions` as a second argument for per-call rule overrides. E2E accessibility scans use `AxeBuilder` from `@axe-core/playwright` — see the playwright skill.
 - **test.each over loops**: Never use `for`/`forEach` inside a test body to iterate over cases. Use `test.each` so each case becomes a named, individually reportable test.
 - **Full suite order**: lint → unit → component → build → e2e
@@ -148,6 +149,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **GraphQL queries**: Run `task dev` to access GraphQL explorer at `localhost:8000/___graphql`
 - **Type generation**: Run `task typegen` to generate TypeScript types from GraphQL (or `task build` which triggers it)
 - **Cache issues**: Use `task clean` to clear build cache and delete `src/gatsby-types.d.ts`
+- **React SSR drops event handler props**: Gatsby's `setHeadComponents` renders via React's `renderToString`, which does not serialize event handler props (`onLoad`, `onClick`, etc.) to HTML attributes. The `<link media="print" onLoad="this.media='all'">` non-blocking font trick silently breaks in `gatsby-ssr.tsx` — the stylesheet is permanently `media="print"` and fonts never load. Use a plain `<link rel="stylesheet">` with `preconnect` hints instead.
 
 ### Image & Layout Issues
 
@@ -163,6 +165,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 
 ### Component Test Issues
 
+- **`toBeHidden()` requires `visibility: hidden`**: `transform: translateX(-100%)` moves an element off-screen visually, but Playwright's `toBeHidden()` / `toBeVisible()` only respond to `visibility: hidden`, `display: none`, or `opacity: 0`. Animated slide-in panels must pair the transform with `visibility: hidden` on the closed state and `visibility: visible` on the open state, using a `transition: visibility 0s delay` to hide after the transform completes and `transition: visibility 0s` (no delay) to show before it starts.
 - **Gatsby mock required**: Component tests must mock the `gatsby` module in `src/__tests__/components/setup.ts`. Gatsby's browser runtime (`cache-dir/find-path.js`) calls `redirects_default.forEach()` during module initialization, but `redirects_default` is data generated at Gatsby build time and does not exist in the Vitest browser environment. Without the mock, all component test files fail to import.
 - **Vite dep optimization**: This project uses Rolldown (not esbuild) for `optimizeDeps`. Use `optimizeDeps.rolldownOptions` — `optimizeDeps.esbuildOptions` is deprecated and silently ignored in newer Vite versions.
 - **Controlled input race conditions**: When Playwright's `fill()` + `press("Enter")` runs faster than React re-renders, `onSubmit` handlers can see stale prop values. Use functional state updates (`setState(prev => ...)`) in submit handlers to read the latest accumulated state instead of relying on closure-captured values.
