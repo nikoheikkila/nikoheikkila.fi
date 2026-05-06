@@ -59,7 +59,8 @@ drafts
 
 # Test artifacts
 /src/__tests__/feature/screenshots/
-/src/__tests__/components/screenshots/
+/src/__tests__/components/__screenshots__
+/.vitest-attachments
 
 # Obsidian
 content/.obsidian/workspace*
@@ -74,4 +75,3 @@ playwright-report/
 
 # Gatsby types
 gatsby-types.d.ts
-/.vitest-attachments
