@@ -43,7 +43,7 @@ output=$(bunx vitest related --run "${EXISTING[@]}" 2>&1) || rc=$?
 
 if [[ $rc -ne 0 ]]; then
 	jq -cn --arg ctx "$output" \
-		'{"hookSpecificOutput":{"hookEventName":"Stop","additionalContext":$ctx}}'
+		'{"decision":"block","reason":$ctx}'
 fi
 
 exit "$rc"
