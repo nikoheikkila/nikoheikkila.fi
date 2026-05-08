@@ -128,16 +128,29 @@ const config: GatsbyConfig = {
 		title: "Niko Heikkilä",
 		social: [
 			{
-				name: "bluesky",
+				name: "Bluesky",
+				icon: "bluesky",
 				url: "https://bsky.app/profile/nikoheikkila.fi",
 			},
 			{
-				name: "linkedin",
-				url: "https://www.linkedin.com/in/nikoheikkila",
+				name: "LinkedIn",
+				icon: "linkedin",
+				url: "https://cv.nikoheikkila.fi",
 			},
 			{
-				name: "github",
+				name: "GitHub",
+				icon: "github",
 				url: "https://github.com/nikoheikkila",
+			},
+			{
+				name: "Telegram",
+				icon: "telegram",
+				url: "https://telegram.nikoheikkila.fi",
+			},
+			{
+				name: "Signal",
+				icon: "signal-messenger",
+				url: "https://signal.nikoheikkila.fi",
 			},
 		],
 	},

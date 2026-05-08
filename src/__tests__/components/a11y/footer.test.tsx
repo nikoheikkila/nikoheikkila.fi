@@ -15,8 +15,8 @@ const setupFooterLinks = async () => {
 			siteMetadata: {
 				rss: "/rss.xml",
 				social: [
-					{ name: "github", url: "https://github.com/testuser" },
-					{ name: "linkedin", url: "https://linkedin.com/in/testuser" },
+					{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
+					{ name: "LinkedIn", url: "https://linkedin.com/in/testuser", icon: "linkedin" },
 				],
 			},
 		},

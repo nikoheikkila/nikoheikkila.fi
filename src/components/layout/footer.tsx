@@ -16,6 +16,10 @@ const Footer: React.FunctionComponent = () => {
 
 	return (
 		<footer className={styles.footer}>
+			<p>
+				<strong>Got something to say? Get in touch!</strong>
+			</p>
+
 			<span className={styles.feed}>
 				<FontAwesomeIcon aria-hidden="true" icon={faRss} />
 				<BlogLink href={rss}>RSS</BlogLink>
@@ -26,7 +30,7 @@ const Footer: React.FunctionComponent = () => {
 
 				return (
 					<span key={link.name}>
-						<FontAwesomeIcon aria-hidden="true" icon={["fab", link.name as IconName]} />
+						<FontAwesomeIcon aria-hidden="true" icon={["fab", link.icon as IconName]} />
 						<BlogLink href={link.url}>{link.name}</BlogLink>
 					</span>
 				);

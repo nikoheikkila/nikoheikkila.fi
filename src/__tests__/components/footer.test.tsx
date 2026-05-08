@@ -17,14 +17,16 @@ describe("Footer Component", () => {
 				siteMetadata: {
 					rss: "/feed.xml",
 					social: [
-						{ name: "github", url: "https://github.com/testuser" },
+						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "twitter",
+							name: "Twitter",
 							url: "https://twitter.com/testuser",
+							icon: "twitter",
 						},
 						{
-							name: "linkedin",
+							name: "LinkedIn",
 							url: "https://linkedin.com/in/testuser",
+							icon: "linkedin",
 						},
 					],
 				},
@@ -44,14 +46,16 @@ describe("Footer Component", () => {
 				siteMetadata: {
 					rss: "/feed.xml",
 					social: [
-						{ name: "github", url: "https://github.com/testuser" },
+						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "twitter",
+							name: "Twitter",
 							url: "https://twitter.com/testuser",
+							icon: "twitter",
 						},
 						{
-							name: "linkedin",
+							name: "LinkedIn",
 							url: "https://linkedin.com/in/testuser",
+							icon: "linkedin",
 						},
 					],
 				},
@@ -75,14 +79,16 @@ describe("Footer Component", () => {
 				siteMetadata: {
 					rss: "/feed.xml",
 					social: [
-						{ name: "github", url: "https://github.com/testuser" },
+						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "twitter",
+							name: "Twitter",
 							url: "https://twitter.com/testuser",
+							icon: "twitter",
 						},
 						{
-							name: "linkedin",
+							name: "LinkedIn",
 							url: "https://linkedin.com/in/testuser",
+							icon: "linkedin",
 						},
 					],
 				},
@@ -107,14 +113,16 @@ describe("Footer Component", () => {
 				siteMetadata: {
 					rss: "/feed.xml",
 					social: [
-						{ name: "github", url: "https://github.com/testuser" },
+						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "twitter",
+							name: "Twitter",
 							url: "https://twitter.com/testuser",
+							icon: "twitter",
 						},
 						{
-							name: "linkedin",
+							name: "LinkedIn",
 							url: "https://linkedin.com/in/testuser",
+							icon: "linkedin",
 						},
 					],
 				},
@@ -168,9 +176,9 @@ describe("Footer Component", () => {
 				siteMetadata: {
 					rss: "/feed.xml",
 					social: [
-						{ name: "github", url: "https://github.com/test" },
-						{ name: null, url: "https://example.com" },
-						{ name: "twitter", url: null },
+						{ name: "GitHub", url: "https://github.com/test", icon: "github" },
+						{ name: null, url: "https://example.com", icon: "" },
+						{ name: "Twitter", url: null, icon: "twitter" },
 					],
 				},
 			},

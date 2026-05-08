@@ -7,6 +7,7 @@ export const getFooterLinks = () =>
 				siteMetadata {
 					social {
 						name
+						icon
 						url
 					}
 					rss

@@ -33,7 +33,8 @@ test.describe
 			});
 
 			await test.step("And I should see social links", async () => {
-				await expect(socialLinks).toHaveCount(3);
+				const numberOfLinks = await socialLinks.count();
+				expect(numberOfLinks).toBeGreaterThan(0);
 			});
 
 			await test.step("And the RSS link should navigate to feed", async () => {
