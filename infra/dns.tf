@@ -31,20 +31,19 @@ resource "cloudflare_ruleset" "www_redirect" {
   kind        = "zone"
   phase       = "http_request_dynamic_redirect"
 
-  rules = [{
-    ref         = "www_to_root_redirect"
-    description = "Redirect www subdomain to root domain"
-    expression  = "(http.host eq \"www.${local.domain}\")"
-    action      = "redirect"
-    action_parameters = {
-      from_value = {
-        status_code = 301
-        target_url = {
-          expression = "concat(\"https://${local.domain}\", http.request.uri.path)"
-        }
-        preserve_query_string = true
-      }
-    }
-    enabled = true
-  }]
+  rules = local.redirect_rules
+}
+
+# Proxied CNAME records for redirect subdomains
+# proxied = true is required so Cloudflare intercepts traffic and applies the ruleset redirect
+resource "cloudflare_dns_record" "redirects" {
+  for_each = { for r in local.redirects_config.redirects : r.from => r if !contains(keys(local.dns_config.dns_records), r.from) }
+
+  zone_id = local.zone_id
+  name    = "${each.value.from}.${local.domain}"
+  type    = "CNAME"
+  content = local.domain
+  ttl     = 1
+  proxied = true
+  comment = "Redirect proxy record for ${each.value.from}.${local.domain}"
 }

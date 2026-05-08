@@ -98,6 +98,27 @@ All variables have sensible defaults except `account_id`.
 - If state is locked, check for concurrent operations
 - Only force-unlock with extreme caution: `task run -- force-unlock <LOCK_ID>`
 
+## Redirect Infrastructure
+
+Subdomain redirects are managed via `infra/redirects.yml` and applied automatically through `infra/locals.tf` and `infra/dns.tf`. To add a redirect, append an entry to `redirects.yml` and run `task plan` then `task deploy` — no HCL changes needed.
+
+**redirects.yml schema:**
+
+```yaml
+redirects:
+  - from: subdomain        # subdomain prefix, e.g. "cv" → cv.nikoheikkila.fi
+    to: "https://..."      # redirect target URL
+    status: 301            # HTTP status code
+    preserve_path: true    # optional: appends request path to target (default: false)
+```
+
+**Key constraints to be aware of:**
+
+- **One ruleset per phase per zone**: Cloudflare allows only one `cloudflare_ruleset` resource per phase. All redirect rules (including the www→root redirect) are merged into the single `cloudflare_ruleset.www_redirect` resource via `local.redirect_rules` in `locals.tf`. Never create a second ruleset for the same phase.
+- **Proxied DNS required**: Each redirect subdomain needs a proxied CNAME record pointing to the root domain so Cloudflare intercepts traffic before it reaches the origin. These are created automatically from `redirects.yml` by `cloudflare_dns_record.redirects` in `dns.tf`.
+- **DNS conflict filter**: Entries whose `from` key already exists in `dns_config.dns_records` (i.e. `dns.yml`) are excluded from `cloudflare_dns_record.redirects` to prevent duplicate record conflicts. This is how the `www` entry coexists in both files.
+- **`target_url` form**: Use `{ value = "..." }` for static external URLs. Use `{ expression = "concat(\"...\", http.request.uri.path)" }` when `preserve_path: true` to forward the request path. The `preserve_path` field in the YAML controls which form is used.
+
 ## Infrastructure Troubleshooting
 
 ### Scenario: Validation Fails

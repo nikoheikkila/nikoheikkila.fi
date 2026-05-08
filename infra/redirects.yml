@@ -1,0 +1,17 @@
+# Specifies redirects in a list of objects:
+# <from>.nikoheikkila.fi redirects to <to> with HTTP status <status>
+# Optional: preserve_path: true appends the request path to the target URL
+redirects:
+  - from: www
+    to: "https://nikoheikkila.fi"
+    status: 301
+    preserve_path: true
+  - from: cv
+    to: "https://www.linkedin.com/in/nikoheikkila"
+    status: 301
+  - from: signal
+    to: "https://signal.me/#eu/PecaGWnMT_jP9eyfXbvUfAP2kK0uX_4p1-7W3hiynBewSvJ_rJVF2YvAIOCdANwE"
+    status: 301
+  - from: telegram
+    to: "https://t.me/nikoheikkila"
+    status: 301
