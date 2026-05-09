@@ -15,3 +15,9 @@ redirects:
   - from: telegram
     to: "https://t.me/nikoheikkila"
     status: 301
+  - from: short
+    to: "https://bsky.app/profile/nikoheikkila.fi"
+    status: 301
+  - from: git
+    to: "https://github.com/nikoheikkila"
+    status: 301

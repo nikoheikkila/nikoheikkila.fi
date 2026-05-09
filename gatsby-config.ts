@@ -130,7 +130,7 @@ const config: GatsbyConfig = {
 			{
 				name: "Bluesky",
 				icon: "bluesky",
-				url: "https://bsky.app/profile/nikoheikkila.fi",
+				url: "https://short.nikoheikkila.fi",
 			},
 			{
 				name: "LinkedIn",
@@ -140,7 +140,7 @@ const config: GatsbyConfig = {
 			{
 				name: "GitHub",
 				icon: "github",
-				url: "https://github.com/nikoheikkila",
+				url: "https://git.nikoheikkila.fi",
 			},
 			{
 				name: "Telegram",
