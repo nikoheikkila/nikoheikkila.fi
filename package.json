@@ -54,7 +54,7 @@
 		"@commitlint/config-conventional": "21.0.1",
 		"@happy-dom/global-registrator": "20.9.0",
 		"@nikoheikkila/playwright-github-actions-reporter": "1.0.0",
-		"@playwright/test": "1.59.1",
+		"@playwright/test": "1.60.0",
 		"@sindresorhus/slugify": "3.0.0",
 		"@testing-library/dom": "10.4.1",
 		"@testing-library/react": "16.3.2",
@@ -102,7 +102,8 @@
 		"sharp": "0.34.5",
 		"character-entities": "2.0.2",
 		"character-entities-html4": "2.1.0",
-		"character-entities-legacy": "3.0.0"
+		"character-entities-legacy": "3.0.0",
+		"playwright-core": "1.60.0"
 	},
 	"trustedDependencies": [
 		"@parcel/watcher",
