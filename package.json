@@ -71,7 +71,7 @@
 		"axe-core": "4.11.4",
 		"happy-dom": "20.9.0",
 		"husky": "9.1.7",
-		"inquirer": "14.0.1",
+		"inquirer": "14.0.2",
 		"lighthouse": "13.3.0",
 		"snyk": "1.1305.0",
 		"typescript": "6.0.3",
