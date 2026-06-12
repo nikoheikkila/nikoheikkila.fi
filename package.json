@@ -68,7 +68,7 @@
 		"@vitejs/plugin-react": "5.2.0",
 		"@vitest/browser-playwright": "4.1.8",
 		"@vitest/coverage-v8": "4.1.8",
-		"axe-core": "4.11.4",
+		"axe-core": "4.12.1",
 		"happy-dom": "20.10.2",
 		"husky": "9.1.7",
 		"inquirer": "14.0.2",
