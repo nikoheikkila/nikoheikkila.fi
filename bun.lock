@@ -55,7 +55,7 @@
         "@testing-library/react": "16.3.2",
         "@testing-library/user-event": "14.6.1",
         "@types/bun": "1.3.14",
-        "@types/inquirer": "9.0.9",
+        "@types/inquirer": "9.0.10",
         "@types/node": "25.9.2",
         "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
@@ -1009,7 +1009,7 @@
 
     "@types/http-proxy": ["@types/http-proxy@1.17.17", "", { "dependencies": { "@types/node": "*" } }, "sha512-ED6LB+Z1AVylNTu7hdzuBqOgMnvG/ld6wGCG8wFnAzKX5uyW2K3WD52v0gnLCTK/VLpXtKckgWuyScYK6cSPaw=="],
 
-    "@types/inquirer": ["@types/inquirer@9.0.9", "", { "dependencies": { "@types/through": "*", "rxjs": "^7.2.0" } }, "sha512-/mWx5136gts2Z2e5izdoRCo46lPp5TMs9R15GTSsgg/XnZyxDWVqoVU3R9lWnccKpqwsJLvRoxbCjoJtZB7DSw=="],
+    "@types/inquirer": ["@types/inquirer@9.0.10", "", { "dependencies": { "@types/through": "*", "rxjs": "^7.2.0" } }, "sha512-vFW2WbXwO9eZpRT5GJGFJ/shgyMNnYozmnjakt9jCQSS1lvqX8pZEQMjJ9RdDPct/YxwciQ8+V8OYn9euIrZDA=="],
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
