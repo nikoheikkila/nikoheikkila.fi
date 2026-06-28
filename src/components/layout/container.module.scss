@@ -1,14 +1,15 @@
 @use "../../styles/variables";
 
 .list {
-	margin: 0 auto;
 	padding: 0 32px;
+	margin: 0 auto;
 
 	@include variables.for-phone-only() {
 		width: 90vw;
 	}
 
 	@include variables.for-tablet-portrait-up() {
+		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 80vw;
 	}
 
@@ -26,14 +27,14 @@
 }
 
 .single {
-	margin: 0 auto;
 	padding: 0 24px;
+	margin: 0 auto;
 
 	a {
 		color: variables.$teal;
 		text-decoration: underline;
-		text-decoration-color: rgba(83, 155, 245, 0.4);
 		text-decoration-thickness: 2px;
+		text-decoration-color: rgba(83, 155, 245, 0.4);
 		text-underline-offset: 3px;
 
 		@media (prefers-color-scheme: light) {
@@ -56,6 +57,7 @@
 	}
 
 	@include variables.for-tablet-portrait-up() {
+		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 85vw;
 	}
 

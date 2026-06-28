@@ -7,9 +7,9 @@
 	h4,
 	h5,
 	h6 {
-		color: variables.$tealText;
 		margin-top: 3rem;
 		margin-bottom: 1.5rem;
+		color: variables.$tealText;
 
 		@media (prefers-color-scheme: light) {
 			color: variables.$lightTeal;
@@ -42,37 +42,39 @@
 	}
 
 	p {
-		line-height: 1.75;
 		margin-bottom: 1.5rem;
+		line-height: 1.75;
 
-		pre, code {
+		pre,
+		code {
 			background-color: variables.$lightTeal;
 			color: variables.$code;
 			padding: 2px 6px;
 			border-radius: 3px;
 
 			@media (prefers-color-scheme: light) {
-				background-color: variables.$darkSecondaryFg;
 				color: variables.$lightCode;
+				background-color: variables.$darkSecondaryFg;
 			}
 
 			text-size-adjust: 100%;
-			-webkit-text-size-adjust: 100%
+			-webkit-text-size-adjust: 100%;
 		}
 	}
 
-	ul, ol {
+	ul,
+	ol {
 		li {
 			padding: 4px 0;
 		}
 	}
 
 	blockquote {
-		border-left: 5px solid variables.$lightTeal;
-		margin: 2.5rem 0;
 		padding: 1rem 1.5rem;
+		margin: 2.5rem 0;
 		quotes: "\201C" "\201D" "\2018" "\2019";
 		background-color: rgba(0, 0, 0, 0.2);
+		border-left: 5px solid variables.$lightTeal;
 		border-radius: 0 4px 4px 0;
 
 		@media (prefers-color-scheme: light) {
@@ -92,24 +94,24 @@
 
 	video {
 		display: flex;
-		margin: 0 auto;
 		max-width: 100%;
 		height: auto;
+		margin: 0 auto;
 	}
 }
 
 .photoframe {
 	display: block;
 	padding: 12px;
-	background-color: variables.$darkGray;
 	margin-bottom: 3rem;
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+	background-color: variables.$darkGray;
 	border-radius: 4px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 
 	&:hover {
-		transform: translateY(-4px);
 		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+		transform: translateY(-4px);
 	}
 }
 
@@ -120,8 +122,8 @@
 }
 
 .caption {
-	text-align: center;
 	font-style: italic;
+	text-align: center;
 
 	span {
 		display: block;
@@ -142,26 +144,27 @@
 	.language {
 		padding: 8px 12px;
 		font-size: 0.75rem;
+		color: rgba(157, 157, 157, 0.8);
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		color: rgba(157, 157, 157, 0.8);
 	}
 
+	/* biome-ignore lint/style/noDescendingSpecificity: .codeblock pre is a distinct scope that does not overlap with .content p pre in practice */
 	pre {
-		margin: 0;
 		padding: 1.5rem;
+		margin: 0;
 	}
 }
 
 .video {
 	position: relative;
-	overflow: hidden;
 	width: 100%;
+	overflow: hidden;
 
 	&::after {
 		display: block;
-		content: "";
 		padding-top: 56.25%;
+		content: "";
 	}
 
 	iframe {

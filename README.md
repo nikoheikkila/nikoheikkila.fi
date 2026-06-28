@@ -31,10 +31,10 @@ task test
 
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
 
--   Github: [@nikoheikkila](https://github.com/nikoheikkila)
--   Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
--   DEV: [nikoheikkila](https://dev.to/nikoheikkila)
--   LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
+- Github: [@nikoheikkila](https://github.com/nikoheikkila)
+- Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
+- DEV: [nikoheikkila](https://dev.to/nikoheikkila)
+- LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
 ## 🤝 Contributing
 

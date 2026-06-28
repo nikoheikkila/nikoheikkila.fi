@@ -1,9 +1,9 @@
 @use "../../styles/variables";
 
 .header {
-	text-align: center;
-	margin: 50px 0;
 	padding-bottom: 50px;
+	margin: 50px 0;
+	text-align: center;
 	border-bottom: 2px solid rgba(157, 255, 236, 0.2);
 
 	@media (prefers-color-scheme: light) {
@@ -12,9 +12,9 @@
 }
 
 .title {
+	padding-top: 50px;
 	font-size: 2.5rem;
 	line-height: 1.5;
-	padding-top: 50px;
 	color: variables.$tealText;
 	letter-spacing: -0.025em;
 
@@ -24,10 +24,10 @@
 }
 
 .excerpt {
+	margin-bottom: 40px;
 	font-size: 1.35rem;
 	font-style: italic;
 	line-height: 1.5;
-	margin-bottom: 40px;
 	color: variables.$darkSecondaryFg;
 
 	@media (prefers-color-scheme: light) {

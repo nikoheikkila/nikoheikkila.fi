@@ -44,7 +44,7 @@ const Menu: FunctionComponent<MenuProps> = () => {
 				<span aria-hidden="true" className={styles.burgerBar} />
 				<span aria-hidden="true" className={styles.burgerBar} />
 			</button>
-			{isOpen && <div aria-hidden="true" className={styles.overlay} onClick={toggle} />}
+			{!!isOpen && <div aria-hidden="true" className={styles.overlay} onClick={toggle} />}
 			<div className={isOpen ? `${styles.menu} ${styles.menuOpen}` : styles.menu} id={menuId}>
 				{allPages}
 			</div>

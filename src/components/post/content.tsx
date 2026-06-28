@@ -161,6 +161,34 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 		? children.map(convertChildrenToString).join("")
 		: convertChildrenToString(children);
 
+	const getLineProps = (lineNumber: number): { style: CSSProperties } => {
+		const style: CSSProperties = {
+			display: "block",
+			width: "fit-content",
+			paddingRight: 10,
+		};
+
+		if (addedLines.includes(lineNumber)) {
+			return {
+				style: {
+					...style,
+					color: "rgba(0, 255, 0, 0.05",
+				},
+			};
+		}
+
+		if (removedLines.includes(lineNumber)) {
+			return {
+				style: {
+					...style,
+					color: "rgba(255, 0, 0, 0.05)",
+				},
+			};
+		}
+
+		return { style };
+	};
+
 	return (
 		<section className={styles.codeblock}>
 			<span className={styles.language}>{makeTitleCase(language)}</span>
@@ -175,33 +203,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 					opacity: 0.3,
 					textAlign: "center",
 				}}
-				lineProps={(lineNumber) => {
-					const style: CSSProperties = {
-						display: "block",
-						width: "fit-content",
-						paddingRight: 10,
-					};
-
-					if (addedLines.includes(lineNumber)) {
-						return {
-							style: {
-								...style,
-								color: "rgba(0, 255, 0, 0.05",
-							},
-						};
-					}
-
-					if (removedLines.includes(lineNumber)) {
-						return {
-							style: {
-								...style,
-								color: "rgba(255, 0, 0, 0.05)",
-							},
-						};
-					}
-
-					return { style };
-				}}
+				lineProps={getLineProps}
 				showLineNumbers
 				style={nightOwl}
 				wrapLines

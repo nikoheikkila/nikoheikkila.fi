@@ -3,26 +3,26 @@
 $menuPaddingLeft: 20px;
 
 .burger {
-	background: none;
-	border: none;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	height: 24px;
-	justify-content: space-between;
-	left: 10px;
-	padding: 0;
 	position: fixed;
 	top: 10px;
-	width: 32px;
+	left: 10px;
 	z-index: 1100;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 32px;
+	height: 24px;
+	padding: 0;
+	cursor: pointer;
+	background: none;
+	border: none;
 }
 
 .burgerBar {
-	background: variables.$teal;
 	display: block;
-	height: 3px;
 	width: 100%;
+	height: 3px;
+	background: variables.$teal;
 
 	@media (prefers-color-scheme: light) {
 		background: variables.$lightFg;
@@ -30,30 +30,30 @@ $menuPaddingLeft: 20px;
 }
 
 .overlay {
-	cursor: default;
-	inset: 0;
 	position: fixed;
+	inset: 0;
 	z-index: 999;
+	cursor: default;
 }
 
 .menu {
-	background: variables.$almostBlack;
-	height: 100vh;
-	left: 0;
-	max-width: 75vw;
-	overflow-y: auto;
-	padding: 60px 32px 20px $menuPaddingLeft;
 	position: fixed;
 	top: 0;
+	left: 0;
+	z-index: 1000;
+	visibility: hidden;
+	max-width: 75vw;
+	height: 100vh;
+	padding: 60px 32px 20px $menuPaddingLeft;
+	overflow-y: auto;
+	background: variables.$almostBlack;
 	transform: translateX(-100%);
 	transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
-	visibility: hidden;
-	z-index: 1000;
 
 	a {
-		color: variables.$darkSecondaryFg;
 		display: block;
 		line-height: 1.75;
+		color: variables.$darkSecondaryFg;
 
 		&::before {
 			content: "❯ ";
@@ -79,7 +79,7 @@ $menuPaddingLeft: 20px;
 }
 
 .menuOpen {
+	visibility: visible;
 	transform: translateX(0);
 	transition: transform 0.3s ease-in-out, visibility 0s;
-	visibility: visible;
 }

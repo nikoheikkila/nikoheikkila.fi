@@ -18,6 +18,8 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ query, setQuery, o
 		onSubmit();
 	};
 
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
+
 	return (
 		<search>
 			<form className={styles.searchForm} onSubmit={handleSubmit}>
@@ -25,7 +27,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ query, setQuery, o
 				<input
 					aria-label="Search posts"
 					className={styles.searchInput}
-					onChange={(e) => setQuery(e.target.value)}
+					onChange={handleChange}
 					placeholder="Search..."
 					type="search"
 					value={query}

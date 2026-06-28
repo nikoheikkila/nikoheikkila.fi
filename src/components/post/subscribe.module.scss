@@ -6,23 +6,23 @@ $padding: 10px 5vw;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	text-align: center;
-	border-radius: 0.5rem;
-	border: solid 2px variables.$darkSecondaryFg;
-	margin-bottom: 20px;
 	padding: $padding;
-	background-color: variables.$lightSecondaryFg;
+	margin-bottom: 20px;
 	color: variables.$darkFg;
+	text-align: center;
+	background-color: variables.$lightSecondaryFg;
+	border: solid 2px variables.$darkSecondaryFg;
+	border-radius: 0.5rem;
 
 	@media (prefers-color-scheme: light) {
-		background-color: variables.$darkFg;
 		color: variables.$lightFg;
+		background-color: variables.$darkFg;
 	}
 }
 
 .error {
-	color: #ff6b6b;
-	font-size: 0.8rem;
-	margin-top: 0.5rem;
 	padding: $padding;
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: #ff6b6b;
 }

@@ -4,18 +4,18 @@
 
 body {
 	margin: 0;
-	font-kerning: normal;
-	word-wrap: break-word;
-	font-feature-settings: "kern", "liga", "clig", "calt";
-
-	background-color: variables.$darkBg;
-	color: variables.$darkFg;
+	font-family: "Synonym", variables.$fontFamily;
+	font-size: 1.3125rem;
 
 	font-weight: 400;
-	font-size: 1.3125rem;
-	font-family: "Synonym", variables.$fontFamily;
+	font-feature-settings: "kern", "liga", "clig", "calt";
+	font-kerning: normal;
+	color: variables.$darkFg;
+	word-wrap: break-word;
 
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	background-color: variables.$darkBg;
+
+	@media (min-resolution: 192dpi) {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
@@ -35,7 +35,7 @@ h6 {
 	font-family: "Amulya", variables.$fontFamily;
 	font-weight: 700;
 
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	@media (min-resolution: 192dpi) {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
@@ -48,7 +48,6 @@ ul {
 }
 
 li,
-
 a {
 	color: inherit;
 	text-decoration: none;
@@ -56,9 +55,9 @@ a {
 }
 
 hr {
+	margin: 2rem 0;
 	border: 0;
 	border-top: 3px solid variables.$teal;
-	margin: 2rem 0;
 }
 
 section.footnotes {
@@ -70,8 +69,8 @@ section.footnotes {
 }
 
 ::selection {
-	background-color: variables.$teal;
 	color: color.invert($color: variables.$darkFg);
+	background-color: variables.$teal;
 }
 
 :focus-visible {
@@ -91,32 +90,9 @@ section.footnotes {
 	padding: 0;
 	margin: -1px;
 	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
-}
-
-.skipLink {
-	@extend .visuallyHidden;
-
-	&:focus {
-		position: fixed;
-		clip: auto;
-		width: auto;
-		height: auto;
-		top: 8px;
-		left: 8px;
-		padding: 12px 16px;
-		background: variables.$tealText;
-		color: variables.$darkBg;
-		z-index: 2000;
-		border-radius: 4px;
-		text-decoration: none;
-	}
-}
-
-html {
-	scroll-behavior: smooth;
+	clip: rect(0, 0, 0, 0);
 }
 
 :target,
@@ -125,13 +101,40 @@ html {
 	scroll-margin-bottom: 40px;
 }
 
+.skipLink {
+	@extend .visuallyHidden;
+
+	&:focus {
+		position: fixed;
+		top: 8px;
+		left: 8px;
+		z-index: 2000;
+		width: auto;
+		height: auto;
+		padding: 12px 16px;
+		color: variables.$darkBg;
+		text-decoration: none;
+		background: variables.$tealText;
+		border-radius: 4px;
+		clip: auto;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
+		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
 		animation-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
 		animation-iteration-count: 1 !important;
+		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
 		transition-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
 		scroll-behavior: auto !important;
 	}
 }
@@ -142,8 +145,8 @@ html {
  */
 @media (prefers-color-scheme: light) {
 	body {
-		background-color: variables.$lightBg;
 		color: variables.$lightFg;
+		background-color: variables.$lightBg;
 	}
 
 	h1,
@@ -165,15 +168,18 @@ html {
 
 	/* Code blocks */
 	.gatsby-highlight {
+		/* biome-ignore lint/complexity/noImportantStyles: overrides PrismJS inline styles in light mode */
 		background-color: variables.$almostBlack !important;
 		border-color: rgba(37, 99, 235, 0.3);
 	}
 
 	pre[class*="language-"] {
+		/* biome-ignore lint/complexity/noImportantStyles: overrides PrismJS inline styles in light mode */
 		background-color: variables.$almostBlack !important;
 	}
 
 	code[class*="language-"] {
+		/* biome-ignore lint/complexity/noImportantStyles: overrides PrismJS inline styles in light mode */
 		color: rgb(226, 232, 240) !important;
 	}
 }

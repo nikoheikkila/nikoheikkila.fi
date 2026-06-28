@@ -18,7 +18,7 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({ previous, next }) 
 	<section className={styles.navigation}>
 		<ul>
 			<li>
-				{previous?.slug && (
+				{!!previous?.slug && (
 					<Link rel="prev" to={previous.slug}>
 						<FontAwesomeIcon aria-hidden="true" icon={faArrowLeft} style={{ paddingRight: "5px" }} />
 						{previous.title}
@@ -26,7 +26,7 @@ const PostNavigation: FunctionComponent<NavigationProps> = ({ previous, next }) 
 				)}
 			</li>
 			<li>
-				{next?.slug && (
+				{!!next?.slug && (
 					<Link rel="next" to={next.slug}>
 						{next.title}
 						<FontAwesomeIcon aria-hidden="true" icon={faArrowRight} style={{ paddingLeft: "5px" }} />

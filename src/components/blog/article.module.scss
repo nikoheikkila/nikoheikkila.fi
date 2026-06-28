@@ -3,8 +3,8 @@
 .header {
 	margin-top: 80px;
 	font-size: 2rem;
-	text-align: center;
 	color: variables.$tealText;
+	text-align: center;
 
 	@media (prefers-color-scheme: light) {
 		color: variables.$lightTeal;
@@ -12,11 +12,10 @@
 }
 
 .view {
-	display: grid;
-	gap: 24px;
-	grid-template-rows: auto;
-
 	box-sizing: border-box;
+	display: grid;
+	grid-template-rows: auto;
+	gap: 24px;
 	margin: 80px auto 0 auto;
 
 	@include variables.for-phone-only() {
@@ -24,6 +23,7 @@
 	}
 
 	@include variables.for-tablet-portrait-up() {
+		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		grid-template-columns: repeat(2, 1fr);
 	}
 
@@ -43,12 +43,12 @@
 .card {
 	position: relative;
 	box-sizing: border-box;
-	border: solid 3px variables.$gray;
-	border-radius: 8px;
 	padding: 28px;
 	background: variables.$darkSecondaryBg;
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border: solid 3px variables.$gray;
+	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 	&:hover {
 		border-color: variables.$tealText;
@@ -77,9 +77,9 @@
 }
 
 .title {
+	margin-bottom: 16px;
 	font-size: 1.5rem;
 	text-align: center;
-	margin-bottom: 16px;
 
 	a {
 		display: block;
@@ -87,9 +87,9 @@
 		text-decoration: none;
 
 		&::before {
-			content: "";
 			position: absolute;
 			inset: 0;
+			content: "";
 		}
 
 		&:focus-visible {
