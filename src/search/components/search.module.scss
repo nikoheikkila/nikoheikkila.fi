@@ -1,17 +1,18 @@
 @use "../../styles/variables";
 
 .searchForm {
-	margin: 0 auto;
-	padding: 16px 32px;
 	display: flex;
-	align-items: center;
 	gap: 8px;
+	align-items: center;
+	padding: 16px 32px;
+	margin: 0 auto;
 
 	@include variables.for-phone-only() {
 		width: 90vw;
 	}
 
 	@include variables.for-tablet-portrait-up() {
+		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 50vw;
 	}
 
@@ -31,12 +32,12 @@
 .searchInput {
 	flex: 1;
 	padding: 8px 12px;
-	border: 1px solid variables.$gray;
-	border-radius: 4px;
-	background: variables.$darkSecondaryBg;
-	color: variables.$darkFg;
 	font-family: variables.$fontFamily;
 	font-size: 1rem;
+	color: variables.$darkFg;
+	background: variables.$darkSecondaryBg;
+	border: 1px solid variables.$gray;
+	border-radius: 4px;
 
 	&::placeholder {
 		color: variables.$gray;
@@ -48,8 +49,8 @@
 	}
 
 	@media (prefers-color-scheme: light) {
-		background: variables.$lightSecondaryBg;
 		color: variables.$lightFg;
+		background: variables.$lightSecondaryBg;
 		border-color: variables.$lightGray;
 
 		&::placeholder {
@@ -65,31 +66,32 @@
 .backdrop {
 	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.6);
 	z-index: 1200;
-	border: none;
 	padding: 0;
 	cursor: default;
+	background: rgba(0, 0, 0, 0.6);
+	border: none;
 }
 
 .modal {
 	position: fixed;
 	top: 10vh;
 	left: 50%;
-	transform: translateX(-50%);
 	z-index: 1201;
+	max-height: 70vh;
+	padding: 24px;
+	overflow-y: auto;
 	background: variables.$darkSecondaryBg;
 	border: 1px solid variables.$gray;
 	border-radius: 8px;
-	padding: 24px;
-	max-height: 70vh;
-	overflow-y: auto;
+	transform: translateX(-50%);
 
 	@include variables.for-phone-only() {
 		width: 90vw;
 	}
 
 	@include variables.for-tablet-portrait-up() {
+		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 50vw;
 	}
 
@@ -105,8 +107,8 @@
 
 .modalHeader {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 16px;
 	color: variables.$darkSecondaryFg;
 
@@ -116,16 +118,16 @@
 }
 
 .closeButton {
-	background: none;
-	border: none;
-	color: variables.$darkSecondaryFg;
-	cursor: pointer;
-	font-size: 1.25rem;
-	min-width: 44px;
-	min-height: 44px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	font-size: 1.25rem;
+	color: variables.$darkSecondaryFg;
+	cursor: pointer;
+	background: none;
+	border: none;
 
 	&:hover {
 		color: variables.$tealText;
@@ -165,8 +167,8 @@
 }
 
 .resultTitle {
-	color: variables.$tealText;
 	font-size: 1.1rem;
+	color: variables.$tealText;
 	text-decoration: none;
 
 	&:hover {
@@ -180,9 +182,9 @@
 
 .resultExcerpt {
 	margin: 4px 0 0;
-	color: variables.$darkSecondaryFg;
 	font-size: 0.9rem;
 	line-height: 1.4;
+	color: variables.$darkSecondaryFg;
 
 	@media (prefers-color-scheme: light) {
 		color: variables.$lightSecondaryFg;
@@ -190,9 +192,9 @@
 }
 
 .emptyState {
+	padding: 24px 0;
 	color: variables.$darkSecondaryFg;
 	text-align: center;
-	padding: 24px 0;
 
 	@media (prefers-color-scheme: light) {
 		color: variables.$lightSecondaryFg;

@@ -2,9 +2,9 @@
 
 .description {
 	margin: 60px auto 0 auto;
-	text-align: center;
 	font-size: 1.6rem;
 	line-height: 1.75;
+	text-align: center;
 
 	@include variables.for-phone-only {
 		max-width: 80vw;
