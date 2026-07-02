@@ -48,7 +48,7 @@
 	"description": "My personal website",
 	"devDependencies": {
 		"@actions/core": "3.0.1",
-		"@axe-core/playwright": "4.11.3",
+		"@axe-core/playwright": "4.12.1",
 		"@biomejs/biome": "2.5.1",
 		"@commitlint/cli": "21.0.2",
 		"@commitlint/config-conventional": "21.0.2",
