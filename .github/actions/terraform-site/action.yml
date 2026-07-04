@@ -1,0 +1,45 @@
+name: Deploy site with Terraform
+description: Deploys the built static site to Cloudflare Workers and R2 using Terraform
+
+inputs:
+  cloudflare-api-token:
+    description: CloudFlare API token used by the Terraform provider and for R2 access
+    required: true
+  workspace:
+    description: Terraform workspace to deploy (default = production, pr-<n> = preview)
+    required: false
+    default: default
+
+outputs:
+  url:
+    description: The URL of the deployment
+    value: ${{ steps.output.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v4
+      with:
+        terraform_version: 1.13.5
+        terraform_wrapper: false
+
+    - name: Install Task
+      uses: go-task/setup-task@v2
+
+    - name: Deploy
+      shell: bash
+      working-directory: infra/site
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+      run: task ci:deploy WORKSPACE='${{ inputs.workspace }}'
+
+    - name: Read deployment URL
+      id: output
+      shell: bash
+      working-directory: infra/site
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+      run: |
+        . ./r2-credentials.sh
+        echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"

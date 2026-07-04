@@ -90,7 +90,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [unit_tests, component_tests, acceptance_tests]
     outputs:
-      deployment-url: ${{ steps.deploy.outputs.preview-url }}
+      deployment-url: ${{ steps.deploy.outputs.url }}
+    concurrency:
+      group: deploy-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout repository
@@ -104,10 +107,10 @@ jobs:
 
       - name: Deploy
         id: deploy
-        uses: ./.github/actions/wrangler
+        uses: ./.github/actions/terraform-site
         with:
-          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workspace: pr-${{ github.event.pull_request.number }}
 
   lighthouse-preview:
     name: Lighthouse Audit for Preview
@@ -132,9 +135,9 @@ jobs:
     needs: [unit_tests, component_tests, acceptance_tests]
     environment:
       name: production
-      url: ${{ steps.urls.outputs.production }}
+      url: ${{ steps.deploy.outputs.url }}
     outputs:
-      deployment-url: ${{ steps.urls.outputs.production }}
+      deployment-url: ${{ steps.deploy.outputs.url }}
     concurrency:
       group: deploy-production
       cancel-in-progress: false
@@ -150,18 +153,14 @@ jobs:
           path: public
 
       - name: Deploy
-        uses: ./.github/actions/wrangler
+        id: deploy
+        uses: ./.github/actions/terraform-site
         with:
-          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workspace: default
 
       - name: Record deployment
-        id: urls
-        run: |
-          url="https://$(jq -r '.routes[0] | select(.custom_domain == true) | .pattern' < wrangler.jsonc)"
-
-          echo "[Open production deploy ↗]($url)" >> "$GITHUB_STEP_SUMMARY"
-          echo "production=$url" >> "$GITHUB_OUTPUT"
+        run: echo "[Open production deploy ↗](${{ steps.deploy.outputs.url }})" >> "$GITHUB_STEP_SUMMARY"
 
   lighthouse:
     name: Lighthouse Audit for Production

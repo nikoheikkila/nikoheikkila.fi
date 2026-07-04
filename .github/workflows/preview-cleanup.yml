@@ -1,0 +1,32 @@
+name: Preview Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  destroy:
+    name: Destroy Preview Deployment
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.13.5
+          terraform_wrapper: false
+
+      - name: Install Task
+        uses: go-task/setup-task@v2
+
+      - name: Destroy preview
+        working-directory: infra/site
+        run: task ci:destroy WORKSPACE=pr-${{ github.event.pull_request.number }}
