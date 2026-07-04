@@ -34,6 +34,8 @@ const main = async (): Promise<void> => {
 		throw new Error("Could not resolve the Cloudflare API token ID");
 	}
 
+	// SHA-256 is not a security choice here: the R2 API contract defines the S3 secret
+	// access key as the plain SHA-256 digest of the API token, so no other algorithm works.
 	const secretAccessKey = createHash("sha256").update(token).digest("hex");
 
 	process.stdout.write(`export AWS_ACCESS_KEY_ID=${accessKeyId}\nexport AWS_SECRET_ACCESS_KEY=${secretAccessKey}\n`);
