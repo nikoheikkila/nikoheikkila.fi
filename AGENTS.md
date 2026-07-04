@@ -37,7 +37,7 @@ The key architectural decisions are described below.
 - **Testing**: Vitest (unit tests in Node, component tests in real browsers via Playwright) + Playwright (E2E)
 - **Static Analysis**: Biome 2 (linting and formatting)
 - **Task Runner**: Task (see Taskfile.yaml)
-- **Deployment**: Cloudflare Pages with Terraform provider and 1Password for secrets management
+- **Deployment**: Cloudflare Workers + R2, fully managed via Terraform (`infra/` and `infra/site/`) with 1Password for secrets management
 
 ### Directory Structure
 
