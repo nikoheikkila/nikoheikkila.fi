@@ -79,17 +79,14 @@ A separate Terraform root module deploying the built static site:
    - The site deployment changes on every merge and per pull request (`infra/site/`)
 
 2. **State Isolation**:
-   - Each site environment lives in its own Terraform workspace and state file,
-     so preview deployments never touch production or core infrastructure state
+   - Each site environment lives in its own Terraform workspace and state file in the
+     R2 backend, so preview deployments never touch production or core infrastructure
+     state
 
 3. **Terraform Only**:
    - The Cloudflare provider cannot upload Workers static assets (that flow requires
      Wrangler), so the site is served from R2 instead — every part of the deployment
      is plain Terraform with no extra tooling
-
-4. **State Management**:
-   - Terraform state tracks all infrastructure changes
-   - R2 backend provides reliable, cost-effective storage
 
 ## Configuration
 

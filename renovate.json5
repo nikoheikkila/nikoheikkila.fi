@@ -32,12 +32,6 @@
 				"major"
 			],
 			"groupName": "Gatsby packages"
-		},
-		{
-			"matchPackageNames": [
-				"wrangler"
-			],
-			"groupName": "Wrangler"
 		}
 	]
 }
