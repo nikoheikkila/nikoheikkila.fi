@@ -6,9 +6,7 @@ locals {
   suffix        = local.is_production ? "" : "-${terraform.workspace}"
   worker_name   = "${var.worker_service_name}${local.suffix}"
   bucket_name   = "site${local.suffix}"
-}
 
-locals {
   files = fileset(var.dist_dir, "**")
 
   extensions = { for f in local.files : f => try(regex("\\.([^./]+)$", f)[0], "") }
