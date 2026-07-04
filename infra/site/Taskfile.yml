@@ -1,0 +1,109 @@
+version: "3"
+
+vars:
+  TFPLAN: "tfplan"
+  OP_ARGS: "--env-file='../.env'"
+  TFVARS: "cloudflare.tfvars"
+  WORKSPACE: '{{ .WORKSPACE | default "default" }}'
+
+# R2 does not implement the AWS flexible checksum extensions used by
+# recent AWS SDKs, so restrict checksums to where they are required.
+env:
+  AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+  AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+
+tasks:
+  format:
+    desc: Format Terraform codebase
+    cmds:
+      - terraform fmt -recursive
+
+  validate:
+    desc: Validate Terraform codebase
+    cmds:
+      - terraform fmt -recursive -check
+      - terraform validate
+
+  run:
+    desc: Run Terraform commands
+    cmd: op run {{ .OP_ARGS }} -- sh -c '. ./r2-credentials.sh && terraform {{ .command }} {{ .CLI_ARGS }}'
+    requires:
+      vars: [command, OP_ARGS]
+
+  init:
+    desc: Initialize Terraform (local)
+    run: once
+    sources:
+      - "./**/*.tf"
+    generates:
+      - .terraform.lock.hcl
+    cmds:
+      - task: run
+        vars:
+          command: "init"
+      - task: validate
+
+  plan:
+    desc: Plan the site deployment for the given WORKSPACE (local)
+    deps: [init]
+    cmds:
+      - task: run
+        vars:
+          command: "workspace select -or-create=true {{ .WORKSPACE }}"
+      - task: run
+        vars:
+          command: "plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
+
+  deploy:
+    desc: Apply the site deployment from plan file (local)
+    deps: [plan]
+    cmds:
+      - task: run
+        vars:
+          command: "apply {{ .TFPLAN }}"
+
+  destroy:
+    desc: Destroy a preview deployment for the given WORKSPACE (local)
+    deps: [init]
+    preconditions:
+      - sh: test "{{ .WORKSPACE }}" != "default"
+        msg: Refusing to destroy the production deployment
+    cmds:
+      - task: run
+        vars:
+          command: "workspace select {{ .WORKSPACE }}"
+      - task: run
+        vars:
+          command: "destroy -var-file={{ .TFVARS }}"
+      - task: run
+        vars:
+          command: "workspace select default"
+      - task: run
+        vars:
+          command: "workspace delete {{ .WORKSPACE }}"
+
+  ci:deploy:
+    desc: Deploy the site for the given WORKSPACE (CI)
+    cmds:
+      - |
+        . ./r2-credentials.sh
+        terraform init
+        terraform workspace select -or-create=true {{ .WORKSPACE }}
+        terraform apply -auto-approve -var-file={{ .TFVARS }}
+
+  ci:destroy:
+    desc: Destroy a preview deployment for the given WORKSPACE (CI)
+    preconditions:
+      - sh: test "{{ .WORKSPACE }}" != "default"
+        msg: Refusing to destroy the production deployment
+    cmds:
+      - |
+        . ./r2-credentials.sh
+        terraform init
+        if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
+          echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
+          exit 0
+        fi
+        terraform destroy -auto-approve -var-file={{ .TFVARS }}
+        terraform workspace select default
+        terraform workspace delete {{ .WORKSPACE }}

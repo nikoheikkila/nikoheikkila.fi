@@ -5,6 +5,10 @@ includes:
     taskfile: ./infra/Taskfile.yml
     dir: ./infra
 
+  site:
+    taskfile: ./infra/site/Taskfile.yml
+    dir: ./infra/site
+
 tasks:
   new:
     desc: Scaffold a new post or page
