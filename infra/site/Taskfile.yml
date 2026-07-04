@@ -3,8 +3,11 @@ version: "3"
 vars:
   TFPLAN: "tfplan"
   OP_ARGS: "--env-file='../.env'"
-  TFVARS: "cloudflare.tfvars"
+  TFVARS: "../cloudflare.tfvars"
   WORKSPACE: '{{ .WORKSPACE | default "default" }}'
+  # The ~700 uploaded objects are tiny independent PUT/HEAD calls that
+  # parallelise safely well beyond Terraform's default of 10.
+  PARALLELISM: 30
 
 # R2 does not implement the AWS flexible checksum extensions used by
 # recent AWS SDKs, so restrict checksums to where they are required.
@@ -28,6 +31,7 @@ tasks:
     desc: Compile the Worker script
     sources:
       - worker.ts
+      - redirects.json
     generates:
       - worker.js
     cmds:
@@ -35,7 +39,7 @@ tasks:
 
   run:
     desc: Run Terraform commands
-    cmd: op run {{ .OP_ARGS }} -- sh -ec 'creds="$(bun run ./r2-credentials.ts)"; eval "$creds"; terraform {{ .command }} {{ .CLI_ARGS }}'
+    cmd: op run {{ .OP_ARGS }} -- bun run ./r2-credentials.ts -- terraform {{ .command }} {{ .CLI_ARGS }}
     requires:
       vars: [command, OP_ARGS]
 
@@ -61,7 +65,7 @@ tasks:
           command: "workspace select -or-create=true {{ .WORKSPACE }}"
       - task: run
         vars:
-          command: "plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
+          command: "plan -parallelism={{ .PARALLELISM }} -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
 
   deploy:
     desc: Apply the site deployment from plan file (local)
@@ -69,7 +73,7 @@ tasks:
     cmds:
       - task: run
         vars:
-          command: "apply {{ .TFPLAN }}"
+          command: "apply -parallelism={{ .PARALLELISM }} {{ .TFPLAN }}"
 
   destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (local)
@@ -83,7 +87,7 @@ tasks:
           command: "workspace select {{ .WORKSPACE }}"
       - task: run
         vars:
-          command: "destroy -var-file={{ .TFVARS }}"
+          command: "destroy -parallelism={{ .PARALLELISM }} -var-file={{ .TFVARS }}"
       - task: run
         vars:
           command: "workspace select default"
@@ -95,13 +99,9 @@ tasks:
     desc: Deploy the site for the given WORKSPACE (CI)
     deps: [build]
     cmds:
-      - |
-        set -e
-        creds="$(bun run ./r2-credentials.ts)"
-        eval "$creds"
-        terraform init
-        terraform workspace select -or-create=true {{ .WORKSPACE }}
-        terraform apply -auto-approve -var-file={{ .TFVARS }}
+      - bun run ./r2-credentials.ts -- terraform init
+      - bun run ./r2-credentials.ts -- terraform workspace select -or-create=true {{ .WORKSPACE }}
+      - bun run ./r2-credentials.ts -- terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
 
   ci:destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (CI)
@@ -111,14 +111,12 @@ tasks:
         msg: Refusing to destroy the production deployment
     cmds:
       - |
-        set -e
-        creds="$(bun run ./r2-credentials.ts)"
-        eval "$creds"
-        terraform init
-        if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
-          echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
-          exit 0
-        fi
-        terraform destroy -auto-approve -var-file={{ .TFVARS }}
-        terraform workspace select default
-        terraform workspace delete {{ .WORKSPACE }}
+        bun run ./r2-credentials.ts -- sh -ec '
+          terraform init
+          if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
+            echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
+            exit 0
+          fi
+          terraform destroy -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
+          terraform workspace select default
+          terraform workspace delete {{ .WORKSPACE }}'

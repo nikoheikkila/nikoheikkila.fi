@@ -15,12 +15,7 @@ resource "cloudflare_workers_script" "site" {
       name         = "SITE"
       type         = "r2_bucket"
       bucket_name  = cloudflare_r2_bucket.site.name
-      jurisdiction = "eu"
-    },
-    {
-      name = "REDIRECTS"
-      type = "plain_text"
-      text = jsonencode(local.redirects)
+      jurisdiction = cloudflare_r2_bucket.site.jurisdiction
     },
   ]
 

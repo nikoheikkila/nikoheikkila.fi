@@ -41,8 +41,18 @@ tasks:
     deps: [install, typegen]
     cmds:
       - bunx tsc --noEmit
-      - bunx tsc --noEmit --project infra/site
+      - task: lint:site
       - bunx biome check .
+
+  lint:site:
+    desc: Type-check the site deployment scripts
+    internal: true
+    sources:
+      - infra/site/*.ts
+      - infra/site/tsconfig.json
+      - infra/site/redirects.json
+    cmds:
+      - bunx tsc --noEmit --project infra/site
 
   test:
     desc: Run application test suite

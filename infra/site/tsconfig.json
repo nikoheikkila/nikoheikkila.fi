@@ -3,6 +3,7 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
 		"lib": ["ESNext"],
 		"types": ["@cloudflare/workers-types"],
 		"strict": true,

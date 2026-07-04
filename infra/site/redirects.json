@@ -1,0 +1,4 @@
+{
+	"/feed": { "to": "/rss.xml", "status": 301 },
+	"/feed/": { "to": "/rss.xml", "status": 301 }
+}

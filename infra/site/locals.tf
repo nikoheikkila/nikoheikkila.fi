@@ -2,16 +2,14 @@
 # and the upload inventory from the build output.
 
 locals {
-  environment = terraform.workspace == "default" ? "production" : terraform.workspace
-  worker_name = terraform.workspace == "default" ? var.worker_service_name : "${var.worker_service_name}-${terraform.workspace}"
-  bucket_name = terraform.workspace == "default" ? "site" : "site-${terraform.workspace}"
+  is_production = terraform.workspace == "default"
+  suffix        = local.is_production ? "" : "-${terraform.workspace}"
+  worker_name   = "${var.worker_service_name}${local.suffix}"
+  bucket_name   = "site${local.suffix}"
 }
 
-# _headers and _redirects are Workers static assets conventions with no effect when
-# serving from R2 — their rules are reproduced by content_types, cache_controls and
-# redirects below, so they are excluded from the upload set.
 locals {
-  files = toset([for f in fileset(var.dist_dir, "**") : f if !contains(["_headers", "_redirects"], f)])
+  files = fileset(var.dist_dir, "**")
 
   extensions = { for f in local.files : f => try(regex("\\.([^./]+)$", f)[0], "") }
 
@@ -39,22 +37,16 @@ locals {
     xml         = "application/xml"
   }
 
-  # Extensionless well-known documents need explicit content types
-  content_type_overrides = {
-    ".well-known/webfinger" = "application/jrd+json"
-    ".well-known/host-meta" = "application/xml"
-    ".well-known/nodeinfo"  = "application/jrd+json"
-  }
-
   content_types = {
     for f in local.files :
-    f => lookup(local.content_type_overrides, f, lookup(local.mime_types, local.extensions[f], "application/octet-stream"))
+    f => lookup(local.mime_types, local.extensions[f], "application/octet-stream")
   }
 
   immutable  = "public, max-age=31536000, immutable"
   revalidate = "public, max-age=0, must-revalidate"
 
-  # Caching policy: hashed build artifacts are immutable, documents must revalidate
+  # Caching policy (formerly static/_headers): hashed build artifacts are
+  # immutable, documents must revalidate
   cache_controls = {
     for f in local.files :
     f => (
@@ -65,11 +57,5 @@ locals {
       local.extensions[f] == "html" ? local.revalidate :
       null
     )
-  }
-
-  # Path redirects served by the Worker (injected as JSON through a plain-text binding)
-  redirects = {
-    "/feed"  = { to = "/rss.xml", status = 301 }
-    "/feed/" = { to = "/rss.xml", status = 301 }
   }
 }

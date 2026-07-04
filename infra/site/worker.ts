@@ -3,15 +3,15 @@
  *
  * Terraform uploads the Gatsby build output to R2 (see storage.tf) and binds the
  * bucket as SITE. Trailing-slash canonicalisation mirrors Gatsby's
- * `trailingSlash: "always"` setting, and path redirects arrive as JSON through
- * the REDIRECTS plain-text binding.
+ * `trailingSlash: "always"` setting, and path redirects (formerly
+ * static/_redirects) are bundled in from redirects.json.
  *
  * The Worker is compiled to worker.js with `task build` before Terraform runs.
  */
+import redirectsJson from "./redirects.json";
 
 interface Env {
 	SITE: R2Bucket;
-	REDIRECTS?: string;
 }
 
 interface Redirect {
@@ -19,17 +19,9 @@ interface Redirect {
 	status: number;
 }
 
-type Redirects = Record<string, Redirect>;
+const redirects: Record<string, Redirect> = redirectsJson;
 
 const asKey = (pathname: string): string => pathname.slice(1);
-
-const parseRedirects = (raw: string | undefined): Redirects => {
-	try {
-		return JSON.parse(raw ?? "{}") as Redirects;
-	} catch {
-		return {};
-	}
-};
 
 const redirectResponse = (url: URL, location: string, status: number): Response => {
 	const target = new URL(location, url.origin);
@@ -101,7 +93,6 @@ export default {
 			return new Response("Bad Request", { status: 400 });
 		}
 
-		const redirects = parseRedirects(env.REDIRECTS);
 		if (Object.hasOwn(redirects, pathname)) {
 			const { to, status } = redirects[pathname];
 			return redirectResponse(url, to, status);

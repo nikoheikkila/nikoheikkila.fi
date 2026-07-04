@@ -65,6 +65,6 @@ provider "aws" {
   s3_use_path_style = true
 
   endpoints {
-    s3 = "https://062f0fa13aa03208ea85092e2e89480f.eu.r2.cloudflarestorage.com"
+    s3 = "https://${var.account_id}.eu.r2.cloudflarestorage.com"
   }
 }
