@@ -5,32 +5,46 @@
  * bucket as SITE. Trailing-slash canonicalisation mirrors Gatsby's
  * `trailingSlash: "always"` setting, and path redirects arrive as JSON through
  * the REDIRECTS plain-text binding.
+ *
+ * The Worker is compiled to worker.js with `task build` before Terraform runs.
  */
 
-const asKey = (pathname) => pathname.slice(1);
+interface Env {
+	SITE: R2Bucket;
+	REDIRECTS?: string;
+}
 
-const parseRedirects = (raw) => {
+interface Redirect {
+	to: string;
+	status: number;
+}
+
+type Redirects = Record<string, Redirect>;
+
+const asKey = (pathname: string): string => pathname.slice(1);
+
+const parseRedirects = (raw: string | undefined): Redirects => {
 	try {
-		return JSON.parse(raw ?? "{}");
+		return JSON.parse(raw ?? "{}") as Redirects;
 	} catch {
 		return {};
 	}
 };
 
-const redirectResponse = (url, location, status) => {
+const redirectResponse = (url: URL, location: string, status: number): Response => {
 	const target = new URL(location, url.origin);
 	target.search = url.search;
 	return Response.redirect(target.toString(), status);
 };
 
-const headersFor = (object) => {
+const headersFor = (object: R2Object): Headers => {
 	const headers = new Headers();
 	object.writeHttpMetadata(headers);
 	headers.set("etag", object.httpEtag);
 	return headers;
 };
 
-const contentRange = (range, size) => {
+const contentRange = (range: R2Range, size: number): string => {
 	if ("suffix" in range) {
 		return `bytes ${size - range.suffix}-${size - 1}/${size}`;
 	}
@@ -39,9 +53,10 @@ const contentRange = (range, size) => {
 	return `bytes ${start}-${end}/${size}`;
 };
 
-const respondWith = (request, object) => {
+const respondWith = (request: Request, object: R2Object | R2ObjectBody): Response => {
 	const headers = headersFor(object);
-	if (object.body === undefined) {
+	const body = "body" in object ? object.body : undefined;
+	if (body === undefined) {
 		return new Response(null, { status: 304, headers });
 	}
 	let status = 200;
@@ -50,10 +65,10 @@ const respondWith = (request, object) => {
 		headers.set("content-range", contentRange(object.range, object.size));
 		status = 206;
 	}
-	return new Response(request.method === "HEAD" ? null : object.body, { status, headers });
+	return new Response(request.method === "HEAD" ? null : body, { status, headers });
 };
 
-const serveObject = async (request, env, key) => {
+const serveObject = async (request: Request, env: Env, key: string): Promise<Response | null> => {
 	const object = await env.SITE.get(key, {
 		onlyIf: request.headers,
 		range: request.headers.has("range") ? request.headers : undefined,
@@ -61,7 +76,7 @@ const serveObject = async (request, env, key) => {
 	return object === null ? null : respondWith(request, object);
 };
 
-const notFound = async (request, env) => {
+const notFound = async (request: Request, env: Env): Promise<Response> => {
 	const object = await env.SITE.get("404.html");
 	if (object === null) {
 		return new Response("Not Found", { status: 404 });
@@ -73,13 +88,13 @@ const notFound = async (request, env) => {
 };
 
 export default {
-	async fetch(request, env) {
+	async fetch(request, env): Promise<Response> {
 		if (request.method !== "GET" && request.method !== "HEAD") {
 			return new Response("Method Not Allowed", { status: 405, headers: { allow: "GET, HEAD" } });
 		}
 
 		const url = new URL(request.url);
-		let pathname;
+		let pathname: string;
 		try {
 			pathname = decodeURIComponent(url.pathname);
 		} catch {
@@ -109,4 +124,4 @@ export default {
 
 		return notFound(request, env);
 	},
-};
+} satisfies ExportedHandler<Env>;

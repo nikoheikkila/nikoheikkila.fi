@@ -41,6 +41,7 @@ tasks:
     deps: [install, typegen]
     cmds:
       - bunx tsc --noEmit
+      - bunx tsc --noEmit --project infra/site
       - bunx biome check .
 
   test:

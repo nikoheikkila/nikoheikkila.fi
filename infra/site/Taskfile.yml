@@ -24,9 +24,18 @@ tasks:
       - terraform fmt -recursive -check
       - terraform validate
 
+  build:
+    desc: Compile the Worker script
+    sources:
+      - worker.ts
+    generates:
+      - worker.js
+    cmds:
+      - bun build ./worker.ts --outfile ./worker.js
+
   run:
     desc: Run Terraform commands
-    cmd: op run {{ .OP_ARGS }} -- sh -c '. ./r2-credentials.sh && terraform {{ .command }} {{ .CLI_ARGS }}'
+    cmd: op run {{ .OP_ARGS }} -- sh -ec 'creds="$(bun run ./r2-credentials.ts)"; eval "$creds"; terraform {{ .command }} {{ .CLI_ARGS }}'
     requires:
       vars: [command, OP_ARGS]
 
@@ -45,7 +54,7 @@ tasks:
 
   plan:
     desc: Plan the site deployment for the given WORKSPACE (local)
-    deps: [init]
+    deps: [init, build]
     cmds:
       - task: run
         vars:
@@ -64,7 +73,7 @@ tasks:
 
   destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (local)
-    deps: [init]
+    deps: [init, build]
     preconditions:
       - sh: test "{{ .WORKSPACE }}" != "default"
         msg: Refusing to destroy the production deployment
@@ -84,21 +93,27 @@ tasks:
 
   ci:deploy:
     desc: Deploy the site for the given WORKSPACE (CI)
+    deps: [build]
     cmds:
       - |
-        . ./r2-credentials.sh
+        set -e
+        creds="$(bun run ./r2-credentials.ts)"
+        eval "$creds"
         terraform init
         terraform workspace select -or-create=true {{ .WORKSPACE }}
         terraform apply -auto-approve -var-file={{ .TFVARS }}
 
   ci:destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (CI)
+    deps: [build]
     preconditions:
       - sh: test "{{ .WORKSPACE }}" != "default"
         msg: Refusing to destroy the production deployment
     cmds:
       - |
-        . ./r2-credentials.sh
+        set -e
+        creds="$(bun run ./r2-credentials.ts)"
+        eval "$creds"
         terraform init
         if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
           echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."

@@ -36,8 +36,9 @@ A separate Terraform root module deploying the built static site:
 
 - **Static files**: Gatsby build output (`public/`) uploaded to an R2 bucket through the
   S3-compatible API (`aws_s3_object`)
-- **Worker**: `site/worker.js` serves the bucket with trailing-slash canonicalisation,
-  conditional requests, range requests, and path redirects (`/feed` → `/rss.xml`)
+- **Worker**: `site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
+  with trailing-slash canonicalisation, conditional requests, range requests, and path
+  redirects (`/feed` → `/rss.xml`)
 - **Environments**: Terraform workspaces — `default` deploys production (worker `blog`,
   bucket `site`), `pr-<n>` deploys a pull request preview (worker `blog-pr-<n>`,
   bucket `site-pr-<n>`, served from `workers.dev`)

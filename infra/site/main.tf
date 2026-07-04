@@ -50,7 +50,7 @@ provider "cloudflare" {
 
 # The AWS provider talks to the R2 S3-compatible API for object uploads.
 # Credentials for it (and for the state backend) are derived at runtime from
-# CLOUDFLARE_API_TOKEN by r2-credentials.sh, so no separate R2 keys are needed.
+# CLOUDFLARE_API_TOKEN by r2-credentials.ts, so no separate R2 keys are needed.
 # R2 does not implement the AWS flexible checksum extensions, so uploads additionally
 # require AWS_REQUEST_CHECKSUM_CALCULATION=when_required and
 # AWS_RESPONSE_CHECKSUM_VALIDATION=when_required in the environment (set by the Taskfile).
