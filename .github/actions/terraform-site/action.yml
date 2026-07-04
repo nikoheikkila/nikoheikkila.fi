@@ -3,7 +3,13 @@ description: Deploys or destroys a static site environment on Cloudflare Workers
 
 inputs:
   cloudflare-api-token:
-    description: CloudFlare API token used by the Terraform provider and for R2 access
+    description: CloudFlare API token used by the Terraform provider
+    required: true
+  r2-access-key-id:
+    description: R2 access key ID for the state backend and object uploads
+    required: true
+  r2-secret-access-key:
+    description: R2 secret access key for the state backend and object uploads
     required: true
   workspace:
     description: Terraform workspace to target (default = production, pr-<n> = preview)
@@ -53,6 +59,8 @@ runs:
       working-directory: infra/site
       env:
         CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
       run: task 'ci:${{ inputs.operation }}' WORKSPACE='${{ inputs.workspace }}'
 
     - name: Read deployment URL
@@ -61,5 +69,6 @@ runs:
       shell: bash
       working-directory: infra/site
       env:
-        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
-      run: echo "url=$(bun run ./r2-credentials.ts -- terraform output -raw url)" >> "$GITHUB_OUTPUT"
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
+      run: echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"

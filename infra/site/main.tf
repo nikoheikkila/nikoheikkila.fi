@@ -48,9 +48,9 @@ terraform {
 provider "cloudflare" {
 }
 
-# The AWS provider talks to the R2 S3-compatible API for object uploads.
-# Credentials for it (and for the state backend) are derived at runtime from
-# CLOUDFLARE_API_TOKEN by r2-credentials.ts, so no separate R2 keys are needed.
+# The AWS provider talks to the R2 S3-compatible API for object uploads,
+# reusing the same credentials as the state backend (AWS_ACCESS_KEY_ID and
+# AWS_SECRET_ACCESS_KEY, provided by 1Password locally and GitHub secrets in CI).
 # R2 does not implement the AWS flexible checksum extensions, so uploads additionally
 # require AWS_REQUEST_CHECKSUM_CALCULATION=when_required and
 # AWS_RESPONSE_CHECKSUM_VALIDATION=when_required in the environment (set by the Taskfile).

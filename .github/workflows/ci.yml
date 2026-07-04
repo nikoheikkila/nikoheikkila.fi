@@ -110,6 +110,8 @@ jobs:
         uses: ./.github/actions/terraform-site
         with:
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          r2-secret-access-key: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
           workspace: pr-${{ github.event.pull_request.number }}
 
   lighthouse-preview:
@@ -157,6 +159,8 @@ jobs:
         uses: ./.github/actions/terraform-site
         with:
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          r2-secret-access-key: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
           workspace: default
 
       - name: Record deployment

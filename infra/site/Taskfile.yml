@@ -39,7 +39,7 @@ tasks:
 
   run:
     desc: Run Terraform commands
-    cmd: op run {{ .OP_ARGS }} -- bun run ./r2-credentials.ts -- terraform {{ .command }} {{ .CLI_ARGS }}
+    cmd: op run {{ .OP_ARGS }} -- terraform {{ .command }} {{ .CLI_ARGS }}
     requires:
       vars: [command, OP_ARGS]
 
@@ -99,9 +99,9 @@ tasks:
     desc: Deploy the site for the given WORKSPACE (CI)
     deps: [build]
     cmds:
-      - bun run ./r2-credentials.ts -- terraform init
-      - bun run ./r2-credentials.ts -- terraform workspace select -or-create=true {{ .WORKSPACE }}
-      - bun run ./r2-credentials.ts -- terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
+      - terraform init
+      - terraform workspace select -or-create=true {{ .WORKSPACE }}
+      - terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
 
   ci:destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (CI)
@@ -111,12 +111,12 @@ tasks:
         msg: Refusing to destroy the production deployment
     cmds:
       - |
-        bun run ./r2-credentials.ts -- sh -ec '
-          terraform init
-          if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
-            echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
-            exit 0
-          fi
-          terraform destroy -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
-          terraform workspace select default
-          terraform workspace delete {{ .WORKSPACE }}'
+        set -e
+        terraform init
+        if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
+          echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
+          exit 0
+        fi
+        terraform destroy -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
+        terraform workspace select default
+        terraform workspace delete {{ .WORKSPACE }}

@@ -20,7 +20,6 @@
 		"./gatsby-node.ts",
 		"./gatsby-ssr.tsx",
 		"./gatsby-browser.tsx",
-		"./gatsby-config.ts",
-		"./infra/site/r2-credentials.ts"
+		"./gatsby-config.ts"
 	]
 }
