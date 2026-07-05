@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Hooks inherit the session shell's working directory, which may be a
+# subdirectory — vitest must resolve its config from the repo root.
+cd "${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+
 INPUT=$(cat)
 
 # Avoid infinite loops if a continuation was already triggered by this hook

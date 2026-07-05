@@ -12,7 +12,7 @@ tasks:
       - terraform fmt -recursive
 
   validate:
-    desc: Format Terraform codebase
+    desc: Validate Terraform codebase
     cmds:
       - terraform fmt -recursive -check
       - terraform validate
