@@ -25,6 +25,10 @@ resource "cloudflare_workers_script" "site" {
       error_message = "Build output is missing — run `task build` at the repository root before deploying the site."
     }
   }
+
+  # Serve traffic only after every file is uploaded, so a deployment (or the
+  # initial cutover from Workers static assets) never exposes a partial site.
+  depends_on = [aws_s3_object.files]
 }
 
 # Serve the Worker on its workers.dev subdomain: preview URLs for pull requests,
