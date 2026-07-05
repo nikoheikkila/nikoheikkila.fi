@@ -43,6 +43,8 @@ task clean
 
 ## Running Specific Tests
 
+`task test:unit` always collects coverage (`--coverage` is baked into the task) and enforces the 100% threshold from `vitest.config.ts`. Filtering to a single file (as below) scopes the coverage report — and the threshold check — to just the files that test loads, so it stays accurate for one-file runs and won't fail because of unrelated gaps elsewhere in the codebase; it will still fail if the filtered file itself isn't fully covered.
+
 ```bash
 # Run specific unit test file
 task test:unit -- src/__tests__/unit/helpers.test.ts

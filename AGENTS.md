@@ -93,7 +93,8 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 
 ### Testing Architecture
 
-- **Unit tests**: Run in Node environment, 100% coverage enforced (lines, functions, branches, statements)
+- **Unit tests**: Run in Node environment, 100% coverage enforced (lines, functions, branches, statements) via `task test:unit` (which passes `--coverage`). Includes both `src/__tests__/unit/**` and `infra/site/*.test.ts` (e.g. the Cloudflare Worker) — both are matched by the same `include` glob in `vitest.unit.config.ts` and share one coverage report.
+- **Coverage config lives in the root `vitest.config.ts`, never in a project file**: Vitest's `projects` feature (used here to split `vitest.unit.config.ts`/`vitest.component.config.ts`) treats `coverage` as a root-only option — a `coverage` block declared inside a project config is silently ignored, with no warning. `task test:component` deliberately gets no `--coverage` flag and no threshold, since only unit tests are held to 100%.
 - **Component tests**: Run in real browsers (Chromium, Firefox, WebKit) via `@vitest/browser-playwright`
 - **E2E tests**: Run against the production build served on port 8000
 - **Locator strategy**: Never use `data-testid` attributes. Always use web-first locators (`getByRole`, `getByLabel`, `getByText`). Scope locators to a parent when the page has multiple elements of the same role (e.g., `modal.getByRole("article")` vs `page.getByRole("article")`)
@@ -143,6 +144,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **TypeScript strict mode**: Full type safety with generated types
 - **JSX conventions**: Classic JSX runtime (`jsx: "react"`), double quotes, trailing commas, tab indentation
 - **Import sorting**: Handled by Biome's `useSortedAttributes` assist
+- **No unsafe type escapes**: Avoid `as unknown as T` casts and `!` non-null assertions, especially in test mocks/fakes. When faking a large interface but only a few members are actually used (e.g. a Cloudflare `R2Bucket`), implement every member with a correct signature — stub the unused ones so they throw — and type the object directly as the target interface, so no cast is needed. For a value that's provably non-null in context but typed as nullable, construct it so it's non-null by construction (e.g. build a `ReadableStream` directly) instead of asserting `!`.
 
 ### File Naming
 
@@ -179,6 +181,10 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **Missing `ETag` on HTML responses**: Cloudflare strips `ETag` from 200 `text/html` responses at the edge on both previews and production. Assets keep their etags and conditional requests still work — this is expected, not a Worker bug.
 - **Terraform provider quirks** (workers.dev subdomain data source, AWS checksum env vars, R2 range behaviour): documented in the terraform skill.
 - **Relocating a Terraform module directory can silently un-ignore its artifacts**: a `.gitignore`'s unanchored patterns (e.g. `tfplan`, `.terraform/`) only cascade into directories actually nested underneath it. Moving the module that owns the `.gitignore` away from a sibling module leaves that sibling's build artifacts untracked — every root module directory needs its own `.gitignore`.
+
+### Unit Test Issues
+
+- **Extensionless imports can silently resolve to a stale build artifact**: `infra/site/worker.js` is a gitignored, previously-compiled Bun bundle sitting right next to `worker.ts`. An extensionless `import worker from "./worker"` can resolve to the stale `.js` file instead of the TypeScript source — tests still pass (the bundle is usually functionally equivalent) but coverage silently attributes to the wrong file, and behavior can drift from source between builds. Import the source explicitly — `import worker from "./worker.ts"` — which requires `allowImportingTsExtensions: true` in `infra/site/tsconfig.json`. See the terraform skill's "Testing the Worker" section for the full pattern (hand-rolled `R2Bucket` fake, no miniflare).
 
 ### Component Test Issues
 

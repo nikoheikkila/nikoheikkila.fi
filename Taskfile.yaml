@@ -68,7 +68,7 @@ tasks:
     desc: Run unit tests
     deps: [install]
     cmds:
-      - bunx vitest run --project=unit {{ .CLI_ARGS }}
+      - bunx vitest run --project=unit --coverage {{ .CLI_ARGS }}
 
   test:unit:watch:
     desc: Run unit tests in watch mode
