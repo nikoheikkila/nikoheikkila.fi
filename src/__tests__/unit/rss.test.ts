@@ -71,5 +71,29 @@ describe("RSS", () => {
 
 			expect(actual).toStrictEqual(expected);
 		});
+
+		test("returns an empty array when there are no edges", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: {},
+					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
+				},
+			};
+
+			expect(RSS.serialize(data)).toStrictEqual([]);
+		});
+
+		test("falls back to an empty URL when the site URL and slug are missing", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: { edges: [{ node: {} }] },
+					site: { siteMetadata: {} },
+				},
+			};
+
+			const [entry] = RSS.serialize(data);
+
+			expect(entry.url).toBe("");
+		});
 	});
 });
