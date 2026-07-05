@@ -1,0 +1,29 @@
+name: Preview Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  destroy:
+    name: Destroy Preview Deployment
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Destroy preview
+        uses: ./.github/actions/terraform-site
+        with:
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          r2-secret-access-key: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          workspace: pr-${{ github.event.pull_request.number }}
+          operation: destroy

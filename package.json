@@ -50,6 +50,7 @@
 		"@actions/core": "3.0.1",
 		"@axe-core/playwright": "4.12.1",
 		"@biomejs/biome": "2.5.1",
+		"@cloudflare/workers-types": "5.20260704.1",
 		"@commitlint/cli": "21.2.0",
 		"@commitlint/config-conventional": "21.2.0",
 		"@happy-dom/global-registrator": "20.10.6",
@@ -76,8 +77,7 @@
 		"snyk": "1.1305.2",
 		"typescript": "6.0.3",
 		"vitest": "4.1.9",
-		"vitest-browser-react": "2.2.0",
-		"wrangler": "4.107.0"
+		"vitest-browser-react": "2.2.0"
 	},
 	"engines": {
 		"node": ">=24.6.0"

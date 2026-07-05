@@ -1,16 +1,20 @@
 name: Terraform
 
+# The site deployment module (infra/site) is exercised by the CI workflow on
+# every pull request and push, so it is excluded from this infrastructure plan.
 on:
   pull_request:
     branches:
       - main
     paths:
       - "infra/**"
+      - "!infra/site/**"
   push:
     branches:
       - main
     paths:
       - "infra/**"
+      - "!infra/site/**"
   workflow_dispatch:
 
 jobs:

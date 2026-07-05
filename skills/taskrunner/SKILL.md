@@ -91,8 +91,28 @@ task test    # Full suite: lint → unit → component → build → e2e
 task build   # Verify the site builds successfully with the new content
 ```
 
+## Infrastructure & Deployment Tasks
+
+The Terraform modules are exposed as root-level namespaces — no `cd` needed (see the terraform skill for details):
+
+```bash
+# Core infrastructure (runs in infra/)
+task terraform:validate
+task terraform:plan
+task terraform:deploy
+
+# Site deployment (runs in infra/site; needs `task build` first)
+task site:validate
+task site:plan WORKSPACE=pr-123
+task site:deploy WORKSPACE=pr-123
+task site:destroy WORKSPACE=pr-123
+```
+
+**Gotcha**: only pass `-- <extra args>` to tasks that run a *single* command. Multi-command tasks (e.g. `site:destroy`, `site:plan`) append `{{.CLI_ARGS}}` to every command they run, so extra flags break intermediate steps like `terraform workspace select`.
+
 ### After editing infrastructure
 
 ```bash
-cd infra && task validate && task plan    # Validate and preview changes
+task terraform:validate && task terraform:plan    # Validate and preview changes
+task site:validate                                # When infra/site was touched
 ```

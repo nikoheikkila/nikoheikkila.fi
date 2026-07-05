@@ -7,36 +7,55 @@ description: Instructions for managing the Cloudflare infrastructure with Terraf
 
 ## Terraform Configuration
 
-Infrastructure is managed in the `infra/` directory using Terraform with Cloudflare provider:
+Everything is managed with Terraform and the Cloudflare provider across **two root modules with separate state**:
+
+`infra/` — long-lived core infrastructure:
 
 - **Zone**: Domain configuration for `nikoheikkila.fi`
 - **DNS**: Records defined in YAML (`dns.yml`) for easier maintenance
-- **R2 Storage**: Blog assets bucket with custom domain
-- **Workers**: Custom domain mapping for Cloudflare Workers
-- **State Backend**: Stored in Cloudflare R2 bucket
+- **R2 Storage**: Blog assets bucket with custom domain (`r2.nikoheikkila.fi`)
+- **Workers**: Custom domain mapping (`nikoheikkila.fi` → service `blog`)
+- **State Backend**: Stored in the Cloudflare R2 bucket `terraform`
+
+`infra/site/` — the site deployment (changes on every merge and per pull request):
+
+- **Static files**: Gatsby build output (`public/`) uploaded to a per-environment R2 bucket via `aws_s3_object`
+- **Worker**: `worker.ts` (compiled to `worker.js` by Bun — a gitignored build artifact) serves the bucket with trailing-slash canonicalisation, conditional/range requests, and the path redirects bundled from `redirects.json`
+- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (worker `blog-pr-<n>`, bucket `site-pr-<n>`) at `https://blog-pr-<n>.yo-062.workers.dev`
+- **Headers policy**: per-object `content_type`/`cache_control` set at upload time in `locals.tf` (replaces the former `static/_headers`)
+
+Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
 
 ## Infrastructure Commands
 
-All commands must be run within the `infra/` directory:
+Both modules are reachable from the repo root via Taskfile namespaces (`terraform:` and `site:`), or run the same tasks from inside their directories:
 
 ```bash
-cd infra/
+# Core infrastructure (infra/)
+task terraform:init        # Initialize providers and backend
+task terraform:format      # Format Terraform code
+task terraform:validate    # fmt -check + terraform validate
+task terraform:plan        # Plan infrastructure changes
+task terraform:deploy      # Apply changes (after careful review)
 
-# Initialize Terraform providers and backend
-task init
-
-# Format Terraform code
-task format
-
-# Validate configuration
-task validate
-
-# Plan infrastructure changes
-task plan
-
-# Apply changes (after careful review)
-task deploy
+# Site deployment (infra/site) — requires `task build` first so public/ exists
+task site:validate                  # fmt -check + terraform validate
+task site:plan WORKSPACE=pr-123     # Plan a preview deployment
+task site:deploy WORKSPACE=pr-123   # Apply it (deploys to workers.dev)
+task site:destroy WORKSPACE=pr-123  # Tear a preview down (interactive confirm)
+task site:deploy                    # Production (default workspace) — CI's job; avoid locally
 ```
+
+Site module guardrails to know about:
+
+- A plan/apply fails with a precondition error if `public/` is missing — run `task build` first. `worker.js` is compiled automatically by the `site:build` task dependency; never edit it by hand.
+- `site:destroy` and `site:ci:destroy` refuse the `default` workspace, so previews cannot destroy production.
+- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:destroy -- -auto-approve` breaks: `{{.CLI_ARGS}}` is appended to *every* terraform invocation in the task, including `workspace select`). For a non-interactive destroy use the CI task with 1Password: `cd infra/site && op run --env-file='../.env' -- task ci:destroy WORKSPACE=pr-123`.
+- R2 does not implement AWS flexible checksums; the site Taskfile exports `AWS_REQUEST_CHECKSUM_CALCULATION=when_required` and `AWS_RESPONSE_CHECKSUM_VALIDATION=when_required`. Raw `terraform` invocations outside the Taskfile need those variables too.
+
+### CI deployment flow
+
+The `.github/actions/terraform-site` composite action (inputs: `workspace`, `operation: deploy|destroy`) runs `task ci:deploy`/`ci:destroy`. `ci.yml` deploys workspace `pr-<n>` on every pull request and `default` on merge to `main`; `preview-cleanup.yml` destroys the PR workspace when it closes. Secrets: `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` (the account-wide R2 token, shared with the state backend).
 
 See all commands by running `task -a` in the `infra/` directory.
 
@@ -52,6 +71,8 @@ Terraform variables are configured in `infra/cloudflare.tfvars`:
 - **`worker_service_name`** (optional): Worker service name (default: `blog`)
 
 All variables have sensible defaults except `account_id`.
+
+The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
 
 ## DNS Management Workflow
 
@@ -119,6 +140,14 @@ redirects:
 - **DNS conflict filter**: Entries whose `from` key already exists in `dns_config.dns_records` (i.e. `dns.yml`) are excluded from `cloudflare_dns_record.redirects` to prevent duplicate record conflicts. This is how the `www` entry coexists in both files.
 - **`target_url` form**: Use `{ value = "..." }` for static external URLs. Use `{ expression = "concat(\"...\", http.request.uri.path)" }` when `preserve_path: true` to forward the request path. The `preserve_path` field in the YAML controls which form is used.
 
+## Provider Quirks (learned the hard way)
+
+- **No data source for the account workers.dev subdomain**: the Cloudflare provider (v5) exposes only the per-script `cloudflare_workers_script_subdomain`. The account-level subdomain (`yo-062`) is pinned as the `workers_dev_subdomain` variable in `infra/site/variables.tf`; refresh it from `GET /accounts/{account_id}/workers/subdomain` if it ever changes.
+- **AWS provider checksum settings are env vars, not HCL**: `request_checksum_calculation` is rejected as a provider argument in v6 — only `AWS_REQUEST_CHECKSUM_CALCULATION`/`AWS_RESPONSE_CHECKSUM_VALIDATION` environment variables work.
+- **Inspecting provider schemas** (`terraform providers schema -json`) requires a fully initialized backend. To probe resource attributes without credentials, create a scratch directory containing only a `terraform { required_providers { ... } }` stub, run `terraform init` there, and dump the schema from it.
+- **R2 populates `object.range` even for full reads**: the Worker must only answer `206` when the request actually carries a `Range` header (see the comment in `infra/site/worker.ts`).
+- **Cloudflare strips `ETag` from 200 `text/html` responses at the edge**: assets keep their etags and conditional requests still work. Production behaves identically — do not chase this as a Worker bug.
+
 ## Infrastructure Troubleshooting
 
 ### Scenario: Validation Fails
@@ -127,6 +156,12 @@ redirects:
 - Check HCL syntax in `.tf` files
 - Verify YAML syntax in `dns.yml`
 - Ensure variable types match definitions
+- `there is no package for ... cached in .terraform/providers` means the local provider cache is stale — re-run `op run --env-file='.env' -- terraform init` in the module directory
+
+### Scenario: S3 Operations Return 403 AccessDenied
+
+- The R2 access keys authenticate but lack access to the target bucket: check the R2 API token's bucket scope in the Cloudflare dashboard (it must be account-wide since site buckets are created per pull request)
+- Diagnostic fallback: S3 credentials can be derived from any Cloudflare API token with R2 permissions (access key = token ID from `/user/tokens/verify`, secret = SHA-256 hex of the token value) to compare scopes
 
 ### Scenario: Plan Contains Unexpected Changes
 
@@ -166,3 +201,5 @@ Available outputs:
 - `r2_custom_domain`: Custom domain for R2 access
 - `worker_custom_domain`: Worker hostname
 - `dns_record_count`: Number of managed DNS records
+
+The site module outputs (per workspace): `url` (deployment URL, read by CI), `worker_name`, and `bucket_name`.

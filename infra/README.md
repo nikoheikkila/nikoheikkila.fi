@@ -24,12 +24,26 @@ DNS records are managed using a hybrid approach:
 
 ### Cloudflare Workers (`workers.tf`)
 
-- **Purpose**: Serves the static blog site with Cloudflare Workers Assets
+- **Purpose**: Custom domain mapping for the Worker serving the blog
 - **Custom Domain**: `nikoheikkila.fi`
 - **Environment**: `production`
-- **Deployment**: Managed via Wrangler CLI
-- **Configuration**: `wrangler.jsonc` (in root directory)
+- **Deployment**: Worker script and static files are managed by the site module (`site/`)
 - **Terraform Resource**: `cloudflare_workers_custom_domain.blog`
+
+### Site Deployment (`site/`)
+
+A separate Terraform root module deploying the built static site:
+
+- **Static files**: Gatsby build output (`public/`) uploaded to an R2 bucket through the
+  S3-compatible API (`aws_s3_object`)
+- **Worker**: `site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
+  with trailing-slash canonicalisation, conditional requests, range requests, and path
+  redirects (`/feed` → `/rss.xml`)
+- **Environments**: Terraform workspaces — `default` deploys production (worker `blog`,
+  bucket `site`), `pr-<n>` deploys a pull request preview (worker `blog-pr-<n>`,
+  bucket `site-pr-<n>`, served from `workers.dev`)
+- **Caching and content types**: set per object at upload time (see `site/locals.tf`),
+  replacing the previous `_headers` and `_redirects` files
 
 ## Management Approach
 
@@ -42,9 +56,9 @@ DNS records are managed using a hybrid approach:
 
 ### Worker Code & Configuration
 
-- **Managed via**: Wrangler CLI (`wrangler.jsonc`)
-- **Deployment**: `wrangler deploy`
-- **Configuration**: Compatibility date, assets, and routes in `wrangler.jsonc`
+- **Managed via**: Terraform (`site/`)
+- **Deployment**: `task site:deploy` locally, GitHub Actions in CI
+- **Configuration**: Compatibility date and bindings in `site/worker.tf`
 
 ### Worker Infrastructure (Custom Domains)
 
@@ -58,23 +72,21 @@ DNS records are managed using a hybrid approach:
 - **Purpose**: Object storage infrastructure for blog assets
 - **Deployment**: `task deploy` (see Taskfile)
 
-## Why This Hybrid Approach?
+## Why Two Root Modules?
 
 1. **Separation of Concerns**:
-   - DNS and infrastructure changes are infrequent and need careful review
-   - Worker code changes frequently during development
+   - DNS and infrastructure changes are infrequent and need careful review (`infra/`)
+   - The site deployment changes on every merge and per pull request (`infra/site/`)
 
-2. **CI/CD Integration**:
-   - Wrangler is optimized for Worker deployments in CI/CD pipelines
-   - Terraform manages stable infrastructure configuration
+2. **State Isolation**:
+   - Each site environment lives in its own Terraform workspace and state file in the
+     R2 backend, so preview deployments never touch production or core infrastructure
+     state
 
-3. **Developer Experience**:
-   - Wrangler provides excellent DX (preview URLs, tail logs, etc.)
-   - YAML DNS configuration is easier to edit than HCL
-
-4. **State Management**:
-   - Terraform state tracks all infrastructure changes
-   - R2 backend provides reliable, cost-effective storage
+3. **Terraform Only**:
+   - The Cloudflare provider cannot upload Workers static assets (that flow requires
+     Wrangler), so the site is served from R2 instead — every part of the deployment
+     is plain Terraform with no extra tooling
 
 ## Configuration
 
@@ -151,8 +163,20 @@ task deploy
 
 ### Worker Deployment
 
-The CloudFlare Worker hosting the site is always deployed by GitHub Actions for preview and production.
-Do not touch it manually.
+The CloudFlare Worker hosting the site is deployed by GitHub Actions for preview and production
+through the `site/` module. To deploy manually from a local build:
+
+```bash
+# Preview (workspace pr-<n>)
+task site:plan WORKSPACE=pr-123
+task site:deploy WORKSPACE=pr-123
+
+# Tear the preview down again
+task site:destroy WORKSPACE=pr-123
+
+# Production
+task site:deploy
+```
 
 ### State Lock Issues
 

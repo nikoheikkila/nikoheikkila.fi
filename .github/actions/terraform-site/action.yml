@@ -1,0 +1,74 @@
+name: Deploy site with Terraform
+description: Deploys or destroys a static site environment on Cloudflare Workers and R2 using Terraform
+
+inputs:
+  cloudflare-api-token:
+    description: CloudFlare API token used by the Terraform provider
+    required: true
+  r2-access-key-id:
+    description: R2 access key ID for the state backend and object uploads
+    required: true
+  r2-secret-access-key:
+    description: R2 secret access key for the state backend and object uploads
+    required: true
+  workspace:
+    description: Terraform workspace to target (default = production, pr-<n> = preview)
+    required: false
+    default: default
+  operation:
+    description: Terraform operation to run (deploy or destroy)
+    required: false
+    default: deploy
+
+outputs:
+  url:
+    description: The URL of the deployment (deploy operation only)
+    value: ${{ steps.output.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v4
+      with:
+        terraform_version: 1.15.7
+        terraform_wrapper: false
+
+    - name: Cache Terraform providers
+      uses: actions/cache@v6
+      with:
+        path: ~/.terraform.d/plugin-cache
+        key: ${{ runner.os }}-terraform-providers-${{ hashFiles('infra/site/.terraform.lock.hcl') }}
+
+    - name: Enable Terraform provider cache
+      shell: bash
+      run: |
+        mkdir -p ~/.terraform.d/plugin-cache
+        echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >> "$GITHUB_ENV"
+
+    - name: Install Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Install Task
+      uses: go-task/setup-task@v2
+
+    - name: Run Terraform
+      shell: bash
+      working-directory: infra/site
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
+      run: task 'ci:${{ inputs.operation }}' WORKSPACE='${{ inputs.workspace }}'
+
+    - name: Read deployment URL
+      if: ${{ inputs.operation == 'deploy' }}
+      id: output
+      shell: bash
+      working-directory: infra/site
+      env:
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
+      run: echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"

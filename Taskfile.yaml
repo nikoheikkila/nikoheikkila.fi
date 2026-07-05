@@ -5,6 +5,10 @@ includes:
     taskfile: ./infra/Taskfile.yml
     dir: ./infra
 
+  site:
+    taskfile: ./infra/site/Taskfile.yml
+    dir: ./infra/site
+
 tasks:
   new:
     desc: Scaffold a new post or page
@@ -37,7 +41,18 @@ tasks:
     deps: [install, typegen]
     cmds:
       - bunx tsc --noEmit
+      - task: lint:site
       - bunx biome check .
+
+  lint:site:
+    desc: Type-check the site deployment scripts
+    internal: true
+    sources:
+      - infra/site/*.ts
+      - infra/site/tsconfig.json
+      - infra/site/redirects.json
+    cmds:
+      - bunx tsc --noEmit --project infra/site
 
   test:
     desc: Run application test suite
