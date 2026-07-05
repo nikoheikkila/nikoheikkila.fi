@@ -38,7 +38,7 @@ The key architectural decisions are described below.
 - **Testing**: Vitest (unit tests in Node, component tests in real browsers via Playwright) + Playwright (E2E)
 - **Static Analysis**: Biome 2 (linting and formatting)
 - **Task Runner**: Task (see Taskfile.yaml)
-- **Deployment**: Cloudflare Workers + R2, fully managed via Terraform (`infra/` and `infra/site/`) with 1Password for secrets management
+- **Deployment**: Cloudflare Workers + R2, fully managed via Terraform (`infra/cloudflare/` and `infra/site/`) with 1Password for secrets management
 
 ### Directory Structure
 
@@ -64,7 +64,9 @@ The key architectural decisions are described below.
 │       │   └── a11y/     # Accessibility-focused component tests (axe-core)
 │       └── feature/      # E2E tests (Playwright)
 ├── gatsby/           # Gatsby Node.js APIs (onCreatePages, onCreateNodes, slices, schema)
-├── infra/            # Terraform infrastructure (Cloudflare DNS, R2, Workers)
+├── infra/            # Terraform infrastructure
+│   ├── cloudflare/   # Cloudflare zone, DNS, R2, redirects, Worker custom domain
+│   └── site/         # Static site deployment (build output to R2, served by a Worker)
 ├── scripts/          # Build utility scripts (type generation)
 ├── skills/           # Claude Code skill definitions (symlinked from .claude/skills)
 └── static/           # Static assets
@@ -104,7 +106,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 
 ### Hosting Model
 
-- **Terraform only** — Wrangler is not used. Two root modules: `infra/` (zone, DNS, R2, redirects, Worker custom domain) and `infra/site/` (the site itself: build output uploaded to R2, served by a Worker). See the terraform skill for commands and provider quirks.
+- **Terraform only** — Wrangler is not used. Two root modules: `infra/cloudflare/` (zone, DNS, R2, redirects, Worker custom domain) and `infra/site/` (the site itself: build output uploaded to R2, served by a Worker). Shared inputs (`infra/.env`, `infra/cloudflare.tfvars`) live one level up, outside both module directories. See the terraform skill for commands and provider quirks.
 - **Environments are Terraform workspaces**: every pull request gets a preview (worker `blog-pr-<n>` at `https://blog-pr-<n>.yo-062.workers.dev`) deployed by CI and destroyed automatically when the PR closes; merging to `main` deploys production (worker `blog` on `nikoheikkila.fi`).
 - **Secrets**: 1Password (`op run --env-file='.env'`) locally; `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_R2_ACCESS_KEY_ID`/`SECRET` GitHub secrets in CI.
 
@@ -176,6 +178,7 @@ Top-level components in `src/components/`: `elements.tsx`, `hero.tsx`, `schema.t
 - **PR workflows silently missing**: when a pull request has merge conflicts, GitHub cannot create the merge ref and `pull_request` workflows do not run at all — no failure, just absence (only default-setup CodeQL checks appear). Check `gh pr view <n> --json mergeable` before debugging anything else.
 - **Missing `ETag` on HTML responses**: Cloudflare strips `ETag` from 200 `text/html` responses at the edge on both previews and production. Assets keep their etags and conditional requests still work — this is expected, not a Worker bug.
 - **Terraform provider quirks** (workers.dev subdomain data source, AWS checksum env vars, R2 range behaviour): documented in the terraform skill.
+- **Relocating a Terraform module directory can silently un-ignore its artifacts**: a `.gitignore`'s unanchored patterns (e.g. `tfplan`, `.terraform/`) only cascade into directories actually nested underneath it. Moving the module that owns the `.gitignore` away from a sibling module leaves that sibling's build artifacts untracked — every root module directory needs its own `.gitignore`.
 
 ### Component Test Issues
 

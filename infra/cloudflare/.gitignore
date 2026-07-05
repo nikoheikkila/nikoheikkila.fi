@@ -22,6 +22,3 @@ override.tf.json
 # CLI configuration files
 .terraformrc
 terraform.rc
-
-# Compiled Worker bundle (built from site/worker.ts)
-site/worker.js

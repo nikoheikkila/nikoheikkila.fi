@@ -96,7 +96,7 @@ task build   # Verify the site builds successfully with the new content
 The Terraform modules are exposed as root-level namespaces — no `cd` needed (see the terraform skill for details):
 
 ```bash
-# Core infrastructure (runs in infra/)
+# Core infrastructure (runs in infra/cloudflare/)
 task terraform:validate
 task terraform:plan
 task terraform:deploy

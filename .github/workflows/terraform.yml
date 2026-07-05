@@ -7,14 +7,12 @@ on:
     branches:
       - main
     paths:
-      - "infra/**"
-      - "!infra/site/**"
+      - "infra/cloudflare/**"
   push:
     branches:
       - main
     paths:
-      - "infra/**"
-      - "!infra/site/**"
+      - "infra/cloudflare/**"
   workflow_dispatch:
 
 jobs:
@@ -45,7 +43,7 @@ jobs:
         run: task terraform:ci:plan
 
       - name: Upload Plan to Summary
-        working-directory: infra
+        working-directory: infra/cloudflare
         run: |
           {
             echo "## Terraform Plan"
@@ -59,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: tfplan
-          path: infra/tfplan
+          path: infra/cloudflare/tfplan
           retention-days: 1
 
   deploy:
@@ -88,7 +86,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: tfplan
-          path: infra/
+          path: infra/cloudflare/
 
       - name: Terraform Init
         run: task terraform:ci:init

@@ -9,7 +9,7 @@ description: Instructions for managing the Cloudflare infrastructure with Terraf
 
 Everything is managed with Terraform and the Cloudflare provider across **two root modules with separate state**:
 
-`infra/` — long-lived core infrastructure:
+`infra/cloudflare/` — long-lived core infrastructure:
 
 - **Zone**: Domain configuration for `nikoheikkila.fi`
 - **DNS**: Records defined in YAML (`dns.yml`) for easier maintenance
@@ -26,12 +26,17 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 
 Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
 
+Inputs shared by both modules live at the common parent, `infra/`, not inside either module directory — each module references them with `../` (see `OP_ARGS`/`TFVARS` in each `Taskfile.yml`):
+
+- `infra/.env` — 1Password CLI references for `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
+- `infra/cloudflare.tfvars` — variables described under [Infrastructure Variables](#infrastructure-variables) below
+
 ## Infrastructure Commands
 
 Both modules are reachable from the repo root via Taskfile namespaces (`terraform:` and `site:`), or run the same tasks from inside their directories:
 
 ```bash
-# Core infrastructure (infra/)
+# Core infrastructure (infra/cloudflare/)
 task terraform:init        # Initialize providers and backend
 task terraform:format      # Format Terraform code
 task terraform:validate    # fmt -check + terraform validate
@@ -57,7 +62,7 @@ Site module guardrails to know about:
 
 The `.github/actions/terraform-site` composite action (inputs: `workspace`, `operation: deploy|destroy`) runs `task ci:deploy`/`ci:destroy`. `ci.yml` deploys workspace `pr-<n>` on every pull request and `default` on merge to `main`; `preview-cleanup.yml` destroys the PR workspace when it closes. Secrets: `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` (the account-wide R2 token, shared with the state backend).
 
-See all commands by running `task -a` in the `infra/` directory.
+See all commands by running `task -a` in the `infra/cloudflare/` directory.
 
 ## Infrastructure Variables
 
@@ -76,8 +81,8 @@ The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) a
 
 ## DNS Management Workflow
 
-1. **Edit DNS records**: Edit `infra/dns.yml`
-2. **Plan changes**: `task plan` (from infra directory)
+1. **Edit DNS records**: Edit `infra/cloudflare/dns.yml`
+2. **Plan changes**: `task plan` (from `infra/cloudflare/` directory)
 3. **Review carefully**: Check TTL, priority, proxied settings
 4. **Apply**: `task deploy`
 5. **Verify**: Check DNS propagation
@@ -118,10 +123,11 @@ The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) a
 - Credentials are managed via 1Password environment variables
 - If state is locked, check for concurrent operations
 - Only force-unlock with extreme caution: `task run -- force-unlock <LOCK_ID>`
+- The backend's `bucket`/`key` values are hardcoded strings, unrelated to the module's local directory path — renaming or relocating a root module directory never requires a state migration or `terraform state mv`; just re-run `terraform init` from the new location and it reattaches to the same remote state
 
 ## Redirect Infrastructure
 
-Subdomain redirects are managed via `infra/redirects.yml` and applied automatically through `infra/locals.tf` and `infra/dns.tf`. To add a redirect, append an entry to `redirects.yml` and run `task plan` then `task deploy` — no HCL changes needed.
+Subdomain redirects are managed via `infra/cloudflare/redirects.yml` and applied automatically through `infra/cloudflare/locals.tf` and `infra/cloudflare/dns.tf`. To add a redirect, append an entry to `redirects.yml` and run `task plan` then `task deploy` — no HCL changes needed.
 
 **redirects.yml schema:**
 
@@ -156,7 +162,7 @@ redirects:
 - Check HCL syntax in `.tf` files
 - Verify YAML syntax in `dns.yml`
 - Ensure variable types match definitions
-- `there is no package for ... cached in .terraform/providers` means the local provider cache is stale — re-run `op run --env-file='.env' -- terraform init` in the module directory
+- `there is no package for ... cached in .terraform/providers` means the local provider cache is stale — re-run `op run --env-file='../.env' -- terraform init` in the module directory
 
 ### Scenario: S3 Operations Return 403 AccessDenied
 
@@ -166,7 +172,7 @@ redirects:
 ### Scenario: Plan Contains Unexpected Changes
 
 - Check if manual changes were made via Cloudflare UI
-- Verify variable values in `cloudflare.tfvars`
+- Verify variable values in `infra/cloudflare.tfvars`
 - Review git diff to see what changed in code
 - Check for provider version changes
 
@@ -183,12 +189,18 @@ redirects:
 - Check `CLOUDFLARE_API_TOKEN` has sufficient permissions
 - Verify R2 credentials for state backend access
 
+### Scenario: Terraform Artifacts Show Up as Untracked After Restructuring
+
+- `.gitignore` patterns without a leading/middle slash (e.g. `tfplan`, `.terraform/`) cascade into every subdirectory below the `.gitignore` file itself — including a sibling module that merely happens to be nested underneath it at the time.
+- If that `.gitignore` moves (e.g. as part of relocating the module directory that owns it) while a sibling module stays put, the sibling silently loses ignore coverage the moment it's no longer nested underneath — its `.terraform/`, `tfplan`, and compiled bundles start showing as untracked.
+- Fix: give every Terraform root module directory (`infra/cloudflare/`, `infra/site/`) its own `.gitignore` with the standard artifact patterns (`tfplan`, `*.tfplan`, `*.tfstate*`, `.terraform/`, crash logs, override files, `.terraformrc`) rather than relying on a parent's file to cascade down.
+
 ### Infrastructure Outputs
 
 View infrastructure outputs:
 
 ```bash
-cd infra/
+cd infra/cloudflare/
 task run -- output
 ```
 

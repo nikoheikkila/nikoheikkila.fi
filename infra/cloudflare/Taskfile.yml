@@ -2,8 +2,8 @@ version: "3"
 
 vars:
   TFPLAN: "tfplan"
-  OP_ARGS: "--env-file='.env'"
-  TFVARS: "cloudflare.tfvars"
+  OP_ARGS: "--env-file='../.env'"
+  TFVARS: "../cloudflare.tfvars"
 
 tasks:
   format:

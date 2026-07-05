@@ -2,8 +2,8 @@ version: "3"
 
 includes:
   terraform:
-    taskfile: ./infra/Taskfile.yml
-    dir: ./infra
+    taskfile: ./infra/cloudflare/Taskfile.yml
+    dir: ./infra/cloudflare
 
   site:
     taskfile: ./infra/site/Taskfile.yml

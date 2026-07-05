@@ -2,7 +2,7 @@
 # Uploads the Gatsby build output to R2 and serves it with a Cloudflare Worker.
 #
 # Environments are modelled as Terraform workspaces:
-#   - default   → production (worker "blog", bucket "site", custom domain from ../workers.tf)
+#   - default   → production (worker "blog", bucket "site", custom domain from ../cloudflare/workers.tf)
 #   - pr-<n>    → pull request preview (worker "blog-pr-<n>", bucket "site-pr-<n>", workers.dev URL)
 
 terraform {

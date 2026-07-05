@@ -27,22 +27,22 @@ DNS records are managed using a hybrid approach:
 - **Purpose**: Custom domain mapping for the Worker serving the blog
 - **Custom Domain**: `nikoheikkila.fi`
 - **Environment**: `production`
-- **Deployment**: Worker script and static files are managed by the site module (`site/`)
+- **Deployment**: Worker script and static files are managed by the site module (`../site/`)
 - **Terraform Resource**: `cloudflare_workers_custom_domain.blog`
 
-### Site Deployment (`site/`)
+### Site Deployment (`../site/`)
 
 A separate Terraform root module deploying the built static site:
 
 - **Static files**: Gatsby build output (`public/`) uploaded to an R2 bucket through the
   S3-compatible API (`aws_s3_object`)
-- **Worker**: `site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
+- **Worker**: `../site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
   with trailing-slash canonicalisation, conditional requests, range requests, and path
   redirects (`/feed` → `/rss.xml`)
 - **Environments**: Terraform workspaces — `default` deploys production (worker `blog`,
   bucket `site`), `pr-<n>` deploys a pull request preview (worker `blog-pr-<n>`,
   bucket `site-pr-<n>`, served from `workers.dev`)
-- **Caching and content types**: set per object at upload time (see `site/locals.tf`),
+- **Caching and content types**: set per object at upload time (see `../site/locals.tf`),
   replacing the previous `_headers` and `_redirects` files
 
 ## Management Approach
@@ -56,9 +56,9 @@ A separate Terraform root module deploying the built static site:
 
 ### Worker Code & Configuration
 
-- **Managed via**: Terraform (`site/`)
+- **Managed via**: Terraform (`../site/`)
 - **Deployment**: `task site:deploy` locally, GitHub Actions in CI
-- **Configuration**: Compatibility date and bindings in `site/worker.tf`
+- **Configuration**: Compatibility date and bindings in `../site/worker.tf`
 
 ### Worker Infrastructure (Custom Domains)
 
@@ -75,7 +75,7 @@ A separate Terraform root module deploying the built static site:
 ## Why Two Root Modules?
 
 1. **Separation of Concerns**:
-   - DNS and infrastructure changes are infrequent and need careful review (`infra/`)
+   - DNS and infrastructure changes are infrequent and need careful review (`infra/cloudflare/`)
    - The site deployment changes on every merge and per pull request (`infra/site/`)
 
 2. **State Isolation**:
@@ -92,7 +92,7 @@ A separate Terraform root module deploying the built static site:
 
 ### Variables
 
-The following variables can be configured in `cloudflare.tfvars`:
+The following variables can be configured in `../cloudflare.tfvars`:
 
 - **`account_id`** (required): CloudFlare account ID (32-character hex string)
 - **`domain`** (optional): Primary domain name (default: `nikoheikkila.fi`)
@@ -127,7 +127,7 @@ All sensitive credentials are managed via **1Password**:
 
 Secrets are referenced in `.env` file using 1Password CLI references.
 
-Commands are executed with: `op run --env-file=".env" -- <command>`
+Commands are executed with: `op run --env-file="../.env" -- <command>`
 
 ## Common Tasks
 
@@ -164,7 +164,7 @@ task deploy
 ### Worker Deployment
 
 The CloudFlare Worker hosting the site is deployed by GitHub Actions for preview and production
-through the `site/` module. To deploy manually from a local build:
+through the `../site/` module. To deploy manually from a local build:
 
 ```bash
 # Preview (workspace pr-<n>)

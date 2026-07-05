@@ -1,6 +1,6 @@
 # Cloudflare Worker serving the static site from R2.
 # The production custom domain mapping (nikoheikkila.fi → service "blog")
-# is managed separately in ../workers.tf.
+# is managed separately in ../cloudflare/workers.tf.
 
 resource "cloudflare_workers_script" "site" {
   account_id  = var.account_id
