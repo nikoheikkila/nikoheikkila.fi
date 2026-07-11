@@ -75,7 +75,7 @@
 		"inquirer": "14.0.2",
 		"lighthouse": "13.4.0",
 		"snyk": "1.1305.2",
-		"typescript": "6.0.3",
+		"typescript": "7.0.2",
 		"vitest": "4.1.9",
 		"vitest-browser-react": "2.2.0"
 	},
