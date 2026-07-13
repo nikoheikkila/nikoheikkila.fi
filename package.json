@@ -67,8 +67,8 @@
 		"@types/react-dom": "19.2.3",
 		"@types/react-syntax-highlighter": "15.5.13",
 		"@vitejs/plugin-react": "5.2.0",
-		"@vitest/browser-playwright": "4.1.9",
-		"@vitest/coverage-v8": "4.1.9",
+		"@vitest/browser-playwright": "4.1.10",
+		"@vitest/coverage-v8": "4.1.10",
 		"axe-core": "4.12.1",
 		"happy-dom": "20.10.6",
 		"husky": "9.1.7",
@@ -76,7 +76,7 @@
 		"lighthouse": "13.4.0",
 		"snyk": "1.1305.2",
 		"typescript": "7.0.2",
-		"vitest": "4.1.9",
+		"vitest": "4.1.10",
 		"vitest-browser-react": "2.2.0"
 	},
 	"engines": {
