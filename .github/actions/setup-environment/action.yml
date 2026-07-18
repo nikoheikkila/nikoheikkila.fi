@@ -6,7 +6,7 @@ runs:
   steps:
     # Despite using Bun, we need Node.js for Gatsby to build correctly.
     - name: Setup Node.js
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version: 24
 
