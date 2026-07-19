@@ -1,7 +1,7 @@
 ---
 lang: en
 author: Niko Heikkilä
-date: 2025-03-25
+date: 2026-07-19
 title: Uses
 hero: https://r2.nikoheikkila.fi/keychron.jpg
 type: page
@@ -21,7 +21,7 @@ Therefore, I work with...
 -   **MacBook Pro 2023** with M3 Pro CPU and 36 GB RAM for all my personal and work needs.
 -   [**Autonomous Standing Desk**](https://www.autonomous.ai/standing-desks/smartdesk-2-home) since getting up off my ass helps me stay more alert when feeling drowsy.
 -   [**Lenovo ThinkVision P27u-20 27-inch 4K display**](https://www.lenovo.com/fi/fi/p/accessories-and-software/monitors/professional/62cbrat6eu). I used to have a curved monitor, but decided that a sharp Retina display for coding is ultimately better.
--   [**Blue Yeti USB microphone**](https://www.bluemic.com/en-us/products/yeti/), since pair and ensemble programming require constant and clear communication. I sometimes visit podcasts too. It has a great physical mute button, and I can plug in my [**Bose QuietComfort 35**](https://www.bose.fi/fi_fi/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html) headphones via a 3.5mm jack for zero-latency audio feedback for my voice.
+-   [**Blue Yeti USB microphone**](https://www.bluemic.com/en-us/products/yeti/), since pair and ensemble programming require constant and clear communication. I sometimes visit podcasts too. It has a great physical mute button, and I can plug in my [**Sennheiser HD 560S**](https://www.sennheiser-hearing.com/p/hd-560s/ckyy9r5q0016i0c96sk5d9tog/) headphones via a 3.5mm jack for zero-latency audio feedback for my voice.
 -   **Mozi AR-2 BaseStand** lifts my laptop to a comfortable height for my eyes, which helps with neck pain.
 -   [**Keychron Q 11**](https://www.keychron.com/products/keychron-q11-qmk-custom-mechanical-keyboard) mechanical split keyboard with brown Gateron switches and a satisfying tactile bump.
 -   [**Logitech MX Master 3S**](https://www.logitech.com/fi-fi/products/mice/mx-master-3s.html) mouse with custom macros for taking, e.g. screenshots. Nearly all the other mice feel too tiny for my hands.
@@ -35,19 +35,20 @@ Most apps offer a limited free plan which you should check out too, if it covers
 
 ### Desktop Applications
 
--   [**Arc**](https://arc.net/) for browsing the web. I'm stunned how poorly other browsers have implemented the fast user profile switching, command panel, and other niceties.
+-   [**Arc**](https://arc.net/) for browsing the web. I'm stunned how poorly other browsers have implemented the fast user profile switching, command panel, and other niceties. While it's no longer actively developed, I'm keeping my eye on [Zen](https://zen-browser.app/) as its rightful heir.
 -   [**IntelliJ IDEA** 💰](https://www.jetbrains.com/idea/) for larger codebases that crave safe and automatic refactoring tools.
 -   [**Visual Studio Code**](https://code.visualstudio.com/) for general-purpose programming activities.
 -   [**Raycast** 💰](https://www.raycast.com/) to boost my productivity with a variety of workflows and snippets.
 -   [**Cleanshot X** 💰](https://cleanshot.com/) to capture screenshots and record videos. It's rather useful for reporting issues with websites.
--   [**MindNode** 💰](https://mindnode.com) for drawing, exporting, and sharing mind maps. [**Miro**](https://miro.com/) covers the same need as well.
 -   [**Obsidian** 💰](https://obsidian.md) for writing notes, drafts, checklists, and keeping a personal journal around. I kick off each day with a daily journal page, including a to-do list for important tasks. Previously, I used **Notion** for this, but Obsidian is more simple with its pure local Markdown approach.
 -   [**Insomnia**](https://insomnia.rest/) for testing REST, gRPC and GraphQL APIs.
--   [**Todoist** 💰](https://todoist.com) for reminding me to pay my monthly bills and a heap of other stuff.
+-   [**Todoist** 💰](https://todoist.com) is excellent for _inboxing_, also known as "get that stuff out of your
+    head for later".
 
 ### Terminal Applications
 
--   [**Neovim**](https://neovim.io/) with [**LazyVim**](https://www.lazyvim.org/) preset configuration for quick single-file edits and working with files over SSH.
+-   **Claude Code** and **GitHub Copilot CLI** for agentic engineering.
+-   [**Neovim**](https://neovim.io/) with [my custom configuration](https://github.com/nikoheikkila/nvim) for writing Markdown, performing quick single-file edits and working with files over SSH.
 -   [**Warp**](https://www.warp.dev/), a GPU-powered terminal with agentic AI capabilities.
 -   [**Friendly Interactive Shell (Fish)**](https://fishshell.com/) with the [**Oh-My-Fish**](https://github.com/oh-my-fish/oh-my-fish) framework and the [**Starship**](https://starship.rs/) prompt customization.
 -   [**Z**](https://github.com/rupa/z/) script to quickly jump to a project.
@@ -59,9 +60,8 @@ Most apps offer a limited free plan which you should check out too, if it covers
 -   [**1Password** 💰](https://1password.com) with a Business subscription paid by my employer. I use it to store passwords, secure notes, software licenses, movie tickets, and SSH keys. It's the best password manager out there, and using anything else would cause me a mental breakdown.
 -   [**CloudFlare R2** 💰](https://www.cloudflare.com/r2/) to serve static assets to this blog and other purposes.
 -   [**iCloud** 💰](https://www.dropbox.com) with a 50 GB subscription to dump all my random things into.
--   [**HEY** 💰](https://www.hey.com/), for the email. I didn't know I needed its powerful features until I screened out the first obnoxious marketer sending unsolicited sales emails.
--   [**Fastmail** 💰](https://fastmail.com/) for using a custom domain as my email since HEY for Domains is, sadly, another product.
+-   [**Fastmail** 💰](https://fastmail.com/) for all my email needs. I cancelled my HEY subscription due to DHH
+    growing utterly nazified.
 -   [**GitHub**](https://github.com/) for storing my code unless work projects require otherwise.
-- [**Grammarly** 💰](https://www.grammarly.com/) for automatically proofreading the blog posts and other texts I write.
 
 In the end, I use too much everything so I've probably forgotten the most. 🤷‍♂️
