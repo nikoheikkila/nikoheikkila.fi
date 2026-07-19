@@ -1,0 +1,6 @@
+{
+	// Align MD013 with textwidth/colorcolumn = 120 (lua/config/options.lua)
+	"default": true,
+	"MD013": false,
+	"MD030": false
+}
