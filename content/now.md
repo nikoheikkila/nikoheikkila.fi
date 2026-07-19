@@ -3,7 +3,7 @@ lang: en
 type: page
 title: What I'm Doing Now?
 author: Niko Heikkilä
-date: 2025-03-25
+date: 2026-07-19
 hero: https://r2.nikoheikkila.fi/now.jpg
 ---
 
@@ -11,7 +11,7 @@ This is my `/now` page intended to keep you — and perhaps myself — in the lo
 
 ## Work Life
 
-Since March 2024, I've been doing software consulting for my employer, [Polar Squad](https://polarsquad.com). My work involves in amplifying teams with their DevOps capabilities whether they need cloud architecture, developer platforms, or high-level advisory.
+Since March 2024, I've been doing software consulting for my employer, [Polar Squad](https://polarsquad.com). My work involves amplifying teams with their DevOps capabilities whether they need cloud architecture, developer platforms, or high-level advisory.
 
 In my work, I concentrate on lean software development and continuous value delivery. If those words do not mean anything to you, it's a fancy way of saying I solve business problems as efficiently as possible.
 
