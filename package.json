@@ -73,7 +73,7 @@
 		"happy-dom": "20.11.0",
 		"husky": "9.1.7",
 		"inquirer": "14.0.2",
-		"lighthouse": "13.4.0",
+		"lighthouse": "13.4.1",
 		"snyk": "1.1306.1",
 		"typescript": "7.0.2",
 		"vitest": "4.1.10",
