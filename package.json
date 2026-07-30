@@ -12,7 +12,7 @@
 		"@fortawesome/fontawesome-svg-core": "7.3.1",
 		"@fortawesome/free-brands-svg-icons": "7.3.1",
 		"@fortawesome/free-solid-svg-icons": "7.3.1",
-		"@fortawesome/react-fontawesome": "3.4.0",
+		"@fortawesome/react-fontawesome": "3.5.0",
 		"dayjs": "1.11.21",
 		"flexsearch": "0.8.212",
 		"gatsby": "5.16.1",
