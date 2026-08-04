@@ -102,9 +102,23 @@ export const toPlainText = (markdown: string): string => {
 	const withoutLinks = withoutImages.replace(/\[([^\]]*)]\([^)]*\)/g, "$1");
 	const withoutHeadings = withoutLinks.replace(/^#{1,6}\s+/gm, "");
 	const withoutEmphasis = withoutHeadings.replace(/(\*\*\*|\*\*|\*|___|__|_|~~)/g, "");
-	const withoutHtml = withoutEmphasis.replace(/<[^>]+>/g, "");
+	const withoutHtml = stripHtmlTags(withoutEmphasis);
 
 	return withoutHtml.replace(/\s+/g, " ").trim();
+};
+
+// A single pass over `<[^>]+>` leaves behind reconstructed tags from overlapping
+// matches (e.g. "<scr<script>ipt>"), so repeat the replacement to a fixed point.
+const stripHtmlTags = (input: string): string => {
+	let current = input;
+	let previous: string;
+
+	do {
+		previous = current;
+		current = current.replace(/<[^>]+>/g, "");
+	} while (current !== previous);
+
+	return current;
 };
 
 export const toPublishedAt = (date: string): string => new Date(`${date}T00:00:00.000Z`).toISOString();

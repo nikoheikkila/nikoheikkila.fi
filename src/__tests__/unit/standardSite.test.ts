@@ -129,6 +129,7 @@ describe("StandardSite", () => {
 			["This is _italic_ text.", "This is italic text."],
 			["This is ~~struck~~ text.", "This is struck text."],
 			["Raw <strong>html</strong> tags.", "Raw html tags."],
+			["Overlapping <scr<script>ipt> tags.", "Overlapping ipt> tags."],
 			["Line one\n\n\nLine   two", "Line one Line two"],
 		])("given markdown %s, returns %s", (markdown, expected) => {
 			expect(StandardSite.toPlainText(markdown)).toBe(expected);
