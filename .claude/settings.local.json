@@ -1,11 +1,10 @@
 {
 	"permissions": {
-		"allow": [
-			"Bash(cd:*)",
-			"Bash(task:*)",
-			"Bash(bunx biome:*)",
-			"Bash(bunx playwright:*)",
-			"mcp__github__pull_request_read"
-		]
+		"allow": ["Bash(task:*)"]
+	},
+	"enabledPlugins": {
+		"code-review@claude-plugins-official": true,
+		"code-simplifier@claude-plugins-official": true,
+		"typescript-lsp@claude-plugins-official": true
 	}
 }
