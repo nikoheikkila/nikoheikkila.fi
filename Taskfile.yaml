@@ -16,6 +16,12 @@ tasks:
     cmds:
       - bun run new.ts
 
+  standard:
+    desc: Publish content as standard.site records on the AT Protocol
+    deps: [install]
+    cmds:
+      - op run --env-file='.env' -- bun run scripts/standard-site.ts {{ .CLI_ARGS }}
+
   install:
     desc: Install dependencies with Bun
     run: once
@@ -42,6 +48,7 @@ tasks:
     cmds:
       - bunx tsc --noEmit
       - task: lint:site
+      - task: lint:scripts
       - bunx biome check .
 
   lint:site:
@@ -53,6 +60,15 @@ tasks:
       - infra/site/redirects.json
     cmds:
       - bunx tsc --noEmit --project infra/site
+
+  lint:scripts:
+    desc: Type-check the standalone Bun scripts
+    internal: true
+    sources:
+      - scripts/*.ts
+      - scripts/tsconfig.json
+    cmds:
+      - bunx tsc --noEmit --project scripts
 
   test:
     desc: Run application test suite
