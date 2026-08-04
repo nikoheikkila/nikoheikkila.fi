@@ -1,16 +1,20 @@
 import path from "node:path";
 import type { CreatePagesArgs } from "gatsby";
 import slices from "./slices";
+import { documentUriFor, publicationUriFor, type StandardSiteManifest } from "../src/utils/standardSite";
 
 interface CreatePagesData {
 	allMarkdownRemark: Queries.MarkdownRemarkConnection;
 }
 
 const postsPerPage = 30;
+const emptyManifest: StandardSiteManifest = { did: "", publication: "", documents: {} };
 
-const onCreatePages = async ({ graphql, reporter, actions: { createPage, createSlice } }: CreatePagesArgs) => {
+const onCreatePages = async ({ graphql, reporter, cache, actions: { createPage, createSlice } }: CreatePagesArgs) => {
 	const blogIndex = path.resolve("./src/templates/list.tsx");
 	const blogPost = path.resolve("./src/templates/post.tsx");
+	const manifest = ((await cache.get("standardSite")) as StandardSiteManifest | undefined) ?? emptyManifest;
+	const publicationUri = publicationUriFor(manifest);
 
 	const { data, errors } = await graphql<CreatePagesData, Record<string, unknown>>(`
 		{
@@ -64,11 +68,16 @@ const onCreatePages = async ({ graphql, reporter, actions: { createPage, createS
 
 		const previous = index === edges.length - 1 ? null : edges[index + 1].node;
 		const next = index === 0 ? null : edges[index - 1].node;
+		const documentUri = documentUriFor(manifest, slug);
+
+		if (post.node.frontmatter?.type === "post" && publicationUri && !documentUri) {
+			reporter.warn(`standard.site: no document record found for post at ${slug}`);
+		}
 
 		createPage({
 			path: slug,
 			component: blogPost,
-			context: { slug, previous, next },
+			context: { slug, previous, next, standardSite: { publicationUri, documentUri } },
 		});
 	});
 
@@ -92,6 +101,7 @@ const onCreatePages = async ({ graphql, reporter, actions: { createPage, createS
 				skip: i * postsPerPage,
 				numberOfPages,
 				currentPage,
+				standardSite: { publicationUri },
 			},
 		});
 	});
