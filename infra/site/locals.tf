@@ -35,9 +35,16 @@ locals {
     xml         = "application/xml"
   }
 
+  # Extensions derived from the filename regex don't identify this file correctly
+  # (it yields "publication"), so its content type is looked up by full path instead.
+  content_type_overrides = {
+    ".well-known/site.standard.publication" = "text/plain; charset=utf-8"
+  }
+
   content_types = {
     for f in local.files :
-    f => lookup(local.mime_types, local.extensions[f], "application/octet-stream")
+    f => lookup(local.content_type_overrides, f,
+    lookup(local.mime_types, local.extensions[f], "application/octet-stream"))
   }
 
   immutable  = "public, max-age=31536000, immutable"
@@ -49,6 +56,7 @@ locals {
     for f in local.files :
     f => (
       f == "rss.xml" ? "no-cache" :
+      f == ".well-known/site.standard.publication" ? local.revalidate :
       startswith(f, "static/") ? local.immutable :
       startswith(f, "page-data/") ? local.revalidate :
       contains(["js", "mjs", "css"], local.extensions[f]) ? local.immutable :
