@@ -2,6 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 import { searchNormalizer, searchQuery } from "./src/search";
 import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
+import { socialLinks } from "./src/utils/social";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -9,30 +10,30 @@ const config: GatsbyConfig = {
 	flags: {
 		PRESERVE_FILE_DOWNLOAD_CACHE: true,
 	},
-	graphqlTypegen: true,
+	graphqlTypegen: {
+		generateOnBuild: true,
+	},
 	plugins: [
 		"gatsby-plugin-image",
 		"gatsby-transformer-sharp",
-		"gatsby-plugin-sharp",
+		{
+			options: {
+				defaults: {
+					// One fewer breakpoint than the [750, 1080, 1366, 1920] default.
+					breakpoints: [750, 1080, 1920],
+				},
+			},
+			resolve: "gatsby-plugin-sharp",
+		},
 		{
 			options: {
 				plugins: [
-					{
-						options: {
-							maxWidth: 960,
-							quality: 80,
-							withAvif: true,
-							withWebp: true,
-						},
-						resolve: "gatsby-remark-images",
-					},
 					{
 						options: {
 							icon: false,
 						},
 						resolve: "gatsby-remark-autolink-headers",
 					},
-					"gatsby-remark-copy-linked-files",
 					"gatsby-remark-smartypants",
 				],
 			},
@@ -126,33 +127,7 @@ const config: GatsbyConfig = {
 		siteUrl: "https://nikoheikkila.fi",
 		cover: "https://r2.nikoheikkila.fi/cover.png",
 		title: "Niko Heikkilä",
-		social: [
-			{
-				name: "Bluesky",
-				icon: "bluesky",
-				url: "https://short.nikoheikkila.fi",
-			},
-			{
-				name: "LinkedIn",
-				icon: "linkedin",
-				url: "https://cv.nikoheikkila.fi",
-			},
-			{
-				name: "GitHub",
-				icon: "github",
-				url: "https://git.nikoheikkila.fi",
-			},
-			{
-				name: "Telegram",
-				icon: "telegram",
-				url: "https://telegram.nikoheikkila.fi",
-			},
-			{
-				name: "Signal",
-				icon: "signal-messenger",
-				url: "https://signal.nikoheikkila.fi",
-			},
-		],
+		social: socialLinks,
 	},
 	trailingSlash: "always",
 };

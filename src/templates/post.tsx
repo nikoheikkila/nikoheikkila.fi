@@ -1,10 +1,8 @@
 import React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
-import { fab } from "@fortawesome/free-brands-svg-icons";
 import Layout from "../components/layout/layout";
 import { LayoutType } from "../components/layout/types";
-import { useIcons } from "../components/hooks/useIcons";
 import PostAttachments from "../components/post/attachments";
 import Content from "../components/post/content";
 import PostHeader from "../components/post/header";
@@ -47,8 +45,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
 	const cover = hero?.childImageSharp;
 	const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
-
-	useIcons([fab]);
 
 	return (
 		<Layout cover={coverImage} title={title} type={LayoutType.SINGLE}>
