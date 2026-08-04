@@ -1,15 +1,33 @@
 name: CI
 
 on:
+  # paths-ignore is deliberately absent from `pull_request`: a skipped workflow
+  # never reports its required status checks, which would leave PRs unmergeable.
   push:
     branches: [main]
+    paths-ignore:
+      - ".claude/**"
+      - ".vscode/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+      - ".github/CONTRIBUTING.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README.md"
+      - "CODE_OF_CONDUCT.md"
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   unit_tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-unit-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout repository
@@ -20,9 +38,11 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
+        with:
+          save-cache: "true"
 
       - name: Lint Code Style
-        run: task lint
+        run: task lint:style
 
       - name: Run unit tests
         run: task test:unit
@@ -30,6 +50,9 @@ jobs:
   component_tests:
     name: Component Tests
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-component-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout repository
@@ -40,12 +63,16 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
+
       - name: Run component tests
         run: task test:component
 
   acceptance_tests:
     name: Acceptance Tests
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-acceptance-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     outputs:
       artifact_id: ${{ steps.upload.outputs.artifact-id }}
 
@@ -59,22 +86,23 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
 
-      - name: Cache Gatsby Build Files
-        uses: actions/cache@v6
+      - name: Restore Gatsby build output
+        uses: actions/cache/restore@v6
         with:
-          path: |
-            .cache
-            public
-          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/bun.lock') }}
+          path: public
+          key: gatsby-public-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-
-            ${{ runner.os }}-
+            gatsby-public-${{ runner.os }}-
 
       - name: Build site
+        id: build
         run: task build
 
+      - name: Type-check
+        run: task lint:types
+
       - name: Run E2E Tests
-        run: task test:e2e
+        run: task test:e2e args='--with-deps chromium ffmpeg'
 
       - name: Upload static assets
         id: upload
@@ -82,7 +110,22 @@ jobs:
         with:
           name: static-assets
           retention-days: 1
-          path: public/
+          # Webpack does not emit source maps, but gatsby-plugin-offline still
+          # copies Workbox's own, and stale ones can survive in a restored public/.
+          # Excluding them keeps all of it out of R2, along with build metadata the
+          # Worker never serves.
+          path: |
+            public/
+            !public/**/*.js.map
+            !public/webpack.stats.json
+            !public/chunk-map.json
+
+      - name: Save Gatsby build output
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        uses: actions/cache/save@v6
+        with:
+          path: public
+          key: gatsby-public-${{ runner.os }}-${{ github.sha }}
 
   deploy-preview:
     name: Deploy to Preview
@@ -118,6 +161,9 @@ jobs:
     name: Lighthouse Audit for Preview
     runs-on: ubuntu-latest
     needs: [deploy-preview]
+    concurrency:
+      group: ci-lighthouse-preview-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     env:
       LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
 
@@ -126,7 +172,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: ${{ needs.deploy-preview.outputs.deployment-url }}
-          runs: 3
+          runs: 1
           uploadArtifacts: true
           temporaryPublicStorage: true
 
@@ -178,6 +224,6 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: ${{ needs.deploy.outputs.deployment-url }}
-          runs: 3
+          runs: 1
           uploadArtifacts: true
           temporaryPublicStorage: true

@@ -1,5 +1,5 @@
-import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faRss, type IconName } from "@fortawesome/free-solid-svg-icons";
+import { socialIcons } from "./socialIcons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { getFooterLinks } from "../../graphql/footer";
@@ -8,7 +8,7 @@ import { useIcons } from "../hooks/useIcons";
 import * as styles from "./footer.module.scss";
 
 const Footer: React.FunctionComponent = () => {
-	useIcons([fab]);
+	useIcons(socialIcons);
 
 	const links = getFooterLinks();
 	const rss = links.site?.siteMetadata?.rss;

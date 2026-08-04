@@ -11,8 +11,14 @@ import Bun from "bun";
 
 console.log("🔧 Generating GraphQL types...");
 
+/**
+ * Port 8000 belongs to `task serve` and Playwright's web server. Colliding
+ * there makes gatsby-cli prompt for another port, which deadlocks on piped
+ * stdio. CI=1 additionally suppresses interactive prompts and progress bars.
+ */
 const gatsby = Bun.spawn({
-	cmd: ["bunx", "gatsby", "develop"],
+	cmd: ["bunx", "gatsby", "develop", "--port", "8999"],
+	env: { ...process.env, CI: "1" },
 	stdout: "pipe",
 	stderr: "pipe",
 });
@@ -26,7 +32,9 @@ const readStdout = async () => {
 
 		if (output.includes("Generating GraphQL and TypeScript types")) {
 			const typesFile = Bun.file("src/gatsby-types.d.ts");
-			const maxAttempts = 10;
+			// The log line announces the *start* of codegen; the file lands at
+			// the end. Allow 10s so a cold filesystem doesn't fail spuriously.
+			const maxAttempts = 100;
 			let attempts = 0;
 
 			while (attempts < maxAttempts) {

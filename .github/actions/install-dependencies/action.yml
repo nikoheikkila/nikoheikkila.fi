@@ -1,22 +1,31 @@
 name: Install Dependencies
-description: Caches and installs Bun dependencies
+description: Restores the Bun install cache and installs dependencies
+
+inputs:
+  save-cache:
+    description: Set to `true` to save cache
+    required: false
+    default: "false"
 
 runs:
   using: composite
   steps:
-    - name: Cache Bun files
+    - name: Restore node_modules
       id: bun-cache
-      uses: actions/cache@v6
+      uses: actions/cache/restore@v6
       with:
-        path: |
-          $HOME/.bun/install/cache
-          node_modules
-        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+        path: node_modules
+        key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
         restore-keys: |
-          ${{ runner.os }}-bun-
-          ${{ runner.os }}-
+          bun-${{ runner.os }}-
 
     - name: Install dependencies
-      if: steps.bun-cache.outputs.cache-hit != 'true'
       shell: bash
       run: task install
+
+    - name: Save node_modules
+      if: inputs.save-cache == 'true' && steps.bun-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v6
+      with:
+        path: node_modules
+        key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}

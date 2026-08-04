@@ -1,5 +1,10 @@
 version: "3"
 
+# Gatsby derives its worker count from *physical* cores, which on an SMT host
+# (every GitHub-hosted runner) is half the available parallelism.
+env:
+  GATSBY_CPU_COUNT: logical_cores
+
 includes:
   terraform:
     taskfile: ./infra/cloudflare/Taskfile.yml
@@ -38,11 +43,20 @@ tasks:
 
   lint:
     desc: Lint codebase for style issues
+    deps: [lint:style, lint:types]
+
+  lint:style:
+    desc: Check formatting and lint rules
+    deps: [install]
+    cmds:
+      - bunx biome check .
+
+  lint:types:
+    desc: Type-check the application and deployment scripts
     deps: [install, typegen]
     cmds:
       - bunx tsc --noEmit
       - task: lint:site
-      - bunx biome check .
 
   lint:site:
     desc: Type-check the site deployment scripts
@@ -99,12 +113,14 @@ tasks:
   playwright:
     desc: Install Playwright browsers
     internal: true
-    cmd: bunx playwright install --with-deps
+    run: once
+    vars:
+      args: '{{ .args | default "--with-deps chromium firefox webkit" }}'
+    cmd: bunx playwright install {{ .args }}
 
   dev:
     desc: Serve the Gatsby development site
     cmds:
-      - task: clean
       - bunx gatsby develop
 
   clean:
