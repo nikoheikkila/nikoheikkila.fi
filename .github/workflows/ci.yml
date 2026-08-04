@@ -70,6 +70,14 @@ jobs:
             ${{ runner.os }}-gatsby-
             ${{ runner.os }}-
 
+      - name: Sync standard.site records
+        if: github.event_name == 'push' && github.ref_name == 'main'
+        continue-on-error: true
+        run: bun run scripts/standard-site.ts
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+
       - name: Build site
         run: task build
 
@@ -83,6 +91,7 @@ jobs:
           name: static-assets
           retention-days: 1
           path: public/
+          include-hidden-files: true
 
   deploy-preview:
     name: Deploy to Preview
