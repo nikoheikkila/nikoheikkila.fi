@@ -3,14 +3,20 @@ import type { FunctionComponent } from "react";
 import { getSEOData } from "../graphql/seo";
 import SchemaOrg from "./schema";
 
+interface HeroImage {
+	original?: { src?: string | null } | null;
+}
+
 interface SEOProps {
 	title: string;
 	type: string;
 	url: string;
 	datePublished?: string;
 	description?: string;
-	image?: Queries.ImageSharp;
+	image?: HeroImage;
 	lang?: string;
+	standardSitePublicationUri?: string;
+	standardSiteDocumentUri?: string;
 }
 
 const SEO: FunctionComponent<SEOProps> = ({
@@ -21,6 +27,8 @@ const SEO: FunctionComponent<SEOProps> = ({
 	datePublished,
 	description = "",
 	lang = "en",
+	standardSitePublicationUri = "",
+	standardSiteDocumentUri = "",
 }) => {
 	const data = getSEOData();
 	const meta = data.site?.siteMetadata;
@@ -61,6 +69,22 @@ const SEO: FunctionComponent<SEOProps> = ({
 				title={title}
 				url={pageURL}
 			/>
+
+			<StandardSite documentUri={standardSiteDocumentUri} publicationUri={standardSitePublicationUri} />
+		</>
+	);
+};
+
+interface StandardSiteProps {
+	publicationUri: string;
+	documentUri: string;
+}
+
+const StandardSite: React.FC<StandardSiteProps> = ({ publicationUri, documentUri }) => {
+	return (
+		<>
+			{documentUri !== "" && <link href={documentUri} rel="site.standard.document" />}
+			{publicationUri !== "" && <link href={publicationUri} rel="site.standard.publication" />}
 		</>
 	);
 };

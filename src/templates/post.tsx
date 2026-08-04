@@ -18,6 +18,7 @@ import { combinePaths } from "../utils/helpers";
 type PageContext = {
 	previous: Queries.MarkdownRemark;
 	next: Queries.MarkdownRemark;
+	standardSite: { publicationUri: string; documentUri: string };
 };
 type LocationState = {
 	previous?: string;
@@ -122,7 +123,7 @@ export const pageQuery = graphql`
 	}
 `;
 
-export const Head: HeadFC<Queries.Query> = ({ data }) => {
+export const Head: HeadFC<Queries.PostQuery, PageContext> = ({ data, pageContext }) => {
 	const hero = data.markdownRemark?.hero;
 	const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
 	const lang = data.markdownRemark?.frontmatter?.lang ?? "en";
@@ -140,6 +141,8 @@ export const Head: HeadFC<Queries.Query> = ({ data }) => {
 			description={excerpt}
 			image={cover}
 			lang={lang}
+			standardSiteDocumentUri={pageContext.standardSite.documentUri}
+			standardSitePublicationUri={pageContext.standardSite.publicationUri}
 			title={postTitle}
 			type={type}
 			url={postUrl}

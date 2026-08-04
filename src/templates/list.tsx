@@ -8,7 +8,7 @@ import Pagination from "../components/blog/pagination";
 import SEO from "../components/seo";
 import { Cover } from "../components/blog/cover";
 
-type PageContext = { currentPage: number; numberOfPages: number };
+type PageContext = { currentPage: number; numberOfPages: number; standardSite: { publicationUri: string } };
 type IndexProps = PageProps<Queries.IndexQuery, PageContext>;
 
 const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
@@ -30,11 +30,18 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 	);
 };
 
-export const Head: HeadFC<Queries.Query> = ({ data, location }) => {
+export const Head: HeadFC<Queries.IndexQuery, PageContext> = ({ data, location, pageContext }) => {
 	const title = data.site?.siteMetadata?.title ?? "";
-	const description = data.site?.siteMetadata?.description ?? "";
 
-	return <SEO description={description} title={title} type="page" url={location.pathname} />;
+	return (
+		<SEO
+			description=""
+			standardSitePublicationUri={pageContext.standardSite.publicationUri}
+			title={title}
+			type="page"
+			url={location.pathname}
+		/>
+	);
 };
 
 export default Index;
