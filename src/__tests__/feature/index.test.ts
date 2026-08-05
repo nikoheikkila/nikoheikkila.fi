@@ -75,3 +75,55 @@ test.describe
 			});
 		});
 	});
+
+test.describe("Pagination boundaries", () => {
+	test("First index page has no Previous Page link", async ({ page }) => {
+		await test.step("Given I'm on the home page (first index page)", async () => {
+			await page.goto("/", { waitUntil: "networkidle" });
+		});
+
+		await test.step("When I look for a 'Previous Page' link", async () => {
+			const previousPage = page.getByRole("link", { name: /Previous Page/ });
+
+			await expect(previousPage).toHaveCount(0);
+		});
+	});
+
+	test("Last index page has no Next Page link", async ({ page }) => {
+		await test.step("Given I navigate directly to /3/ (the last paginated index page)", async () => {
+			await page.goto("/3/", { waitUntil: "networkidle" });
+
+			await expect(page.getByRole("article").first()).toBeVisible();
+		});
+
+		await test.step("When I look for a 'Next Page' link", async () => {
+			const nextPage = page.getByRole("link", { name: /Next Page/ });
+
+			await expect(nextPage).toHaveCount(0);
+		});
+
+		await test.step("And I look for a 'Previous Page' link", async () => {
+			const previousPage = page.getByRole("link", { name: /Previous Page/ });
+
+			await expect(previousPage).toBeVisible();
+			await expect(previousPage).toHaveAttribute("href", "/2/");
+		});
+	});
+
+	test("Directly visiting a numbered pagination route loads the correct page", async ({ page }) => {
+		await test.step("Given I navigate directly to /2/ by typing the URL (no client-side navigation)", async () => {
+			const response = await page.goto("/2/", { waitUntil: "networkidle" });
+
+			expect(response?.status()).toBe(200);
+			await expect(page.getByRole("heading", { name: "Latest Articles" })).toBeVisible();
+		});
+
+		await test.step("When I inspect the pagination links", async () => {
+			const previousPage = page.getByRole("link", { name: /Previous Page/ });
+			const nextPage = page.getByRole("link", { name: /Next Page/ });
+
+			await expect(previousPage).toHaveAttribute("href", "/");
+			await expect(nextPage).toHaveAttribute("href", "/3/");
+		});
+	});
+});

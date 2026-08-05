@@ -59,6 +59,9 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 - ✅ Test mobile viewports with `test.use({ viewport: { width: 375, height: 667 }, hasTouch: true })`
 - ✅ Wait for elements to become visible rather than using timeouts
 - ✅ Test keyboard navigation for accessibility compliance
+- ✅ **Strictly separate Given/When/Then**: setup belongs in `beforeEach` or before the first step (Given), the action gets its own `test.step("When ...")`, and every assertion lives in its own `test.step("Then ...")` / `test.step("And ...")`. Never bury an assertion inside a "When" step, and never leave a "When" step without a matching "Then" step.
+- ✅ **Discover content dynamically**: never hardcode a specific post slug, title, or other content value that an editor could rename or reorder later (e.g. `/blog/some-post-title/`). Instead locate it structurally — `page.getByRole("article").nth(n)`, the last item in a list, a link's `href` — so the test keeps working after content changes.
+- ✅ Always assert `null`/`undefined` possibilities explicitly (e.g. `expect(response).not.toBeNull()`, `expect(src).not.toBeNull()`) instead of narrowing with `if`.
 
 ### Anti-Patterns
 
@@ -67,8 +70,10 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 - ❌ `page.waitForTimeout()` - Never use hard-coded timeouts
 - ❌ `page.locator(".css-class")` - Avoid CSS selectors when possible
 - ❌ `data-testid` / `data-test-id` - Never use test-id attributes; this project requires web-first locators only
-- ❌ Inline comments explaining assertions - Use descriptive test steps instead
+- ❌ Inline comments explaining assertions or restating what a step/test title already says - Use descriptive test steps instead, and don't add a comment next to a step whose title already describes it
 - ❌ `any` types - Import proper types like `Page` from Playwright
+- ❌ `if (!value) throw new Error(...)` to narrow a possibly-`null`/`undefined` value - Use `expect(value).not.toBeNull()` (or `.toBeTruthy()`) instead; Playwright assertions are the check, not manual control flow
+- ❌ A Playwright test that never touches real navigation, network, or browser-only behavior (e.g. it only renders static markup from props already available at render time) - That belongs in a Vitest component test under `src/__tests__/components/`, not here; keep E2E coverage for actual end-to-end scenarios
 
 ### Mobile Viewport Testing
 
@@ -158,6 +163,8 @@ export const toInternalPageByClicking = async (page: Page, locator: Locator): Pr
   await Promise.all([page.waitForURL(/\//), locator.click()]);
 };
 ```
+
+**Gotcha**: `toInternalPageByClicking`'s wait pattern (`/\//`) matches almost any URL, including the page you're already on. If you don't know the destination URL ahead of time (e.g. clicking into a dynamically-discovered post), `page.waitForURL(/\//)` can resolve immediately against the *current* URL instead of waiting for the click's navigation to finish, and the test proceeds against a stale page. When the destination isn't a known, specific pattern, capture the link's `href` and `page.goto()` it directly instead of using this helper.
 
 #### Content Validation
 

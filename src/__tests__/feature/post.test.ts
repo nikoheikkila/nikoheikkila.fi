@@ -61,6 +61,47 @@ test.describe
 	});
 
 test.describe
+	.parallel("Given I'm on a blog post containing a fenced code block", () => {
+		test.beforeEach(async ({ page }) => {
+			await page.goto("/blog/hello-neovim-my-old-friend/", { waitUntil: "networkidle" });
+		});
+
+		test("Code block renders with a visible language label and line numbers", async ({ page }) => {
+			const codeRegion = page.getByRole("region", { name: /code block$/ });
+			const languageLabel = codeRegion.locator("xpath=preceding-sibling::span[1]");
+			const firstLineNumber = codeRegion.locator(".react-syntax-highlighter-line-number").first();
+
+			await test.step("When I locate the code block region", async () => {
+				await expect(codeRegion).toHaveAttribute("role", "region");
+			});
+
+			await test.step("Then it should expose an accessible name and a visible language label", async () => {
+				await expect(codeRegion).toHaveAccessibleName(/code block$/);
+				await expect(languageLabel).toHaveText("Sh");
+			});
+
+			await test.step("And it should render line numbers starting at 1", async () => {
+				await expect(firstLineNumber).toHaveText("1");
+			});
+		});
+
+		test("Code block region is keyboard focusable for horizontal scrolling", async ({ page }) => {
+			const codeRegion = page.getByRole("region", { name: /code block$/ });
+
+			await test.step("When I press Tab until the code region receives focus", async () => {
+				await expect(async () => {
+					await page.keyboard.press("Tab");
+					await expect(codeRegion).toBeFocused({ timeout: 100 });
+				}).toPass({ timeout: 10_000 });
+			});
+
+			await test.step("Then the region should be focusable via tabindex", async () => {
+				await expect(codeRegion).toHaveAttribute("tabindex", "0");
+			});
+		});
+	});
+
+test.describe
 	.parallel("Given I'm on a page with cover image", () => {
 		test.beforeEach(async ({ page }) => {
 			await page.goto("/about");
@@ -72,5 +113,26 @@ test.describe
 
 			await expect(heroImage).toBeVisible();
 			await expect(heroImage).toHaveAttribute("alt");
+		});
+
+		test("Cover image on pages resolves to a real, successfully-loaded image", async ({ page }) => {
+			const heroImage = page.locator("img[data-main-image]");
+
+			await test.step("When the page finishes loading", async () => {
+				await expect(heroImage).toBeVisible();
+			});
+
+			await test.step("Then the image should have loaded with non-zero dimensions", async () => {
+				const naturalWidth = await heroImage.evaluate((image: HTMLImageElement) => image.naturalWidth);
+				expect(naturalWidth).toBeGreaterThan(0);
+			});
+
+			await test.step("And the resolved image src should respond with HTTP 200", async () => {
+				const src = await heroImage.getAttribute("src");
+				expect(src).not.toBeNull();
+
+				const response = await page.request.get(new URL(src ?? "", page.url()).toString());
+				expect(response.status()).toBe(200);
+			});
 		});
 	});
