@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
 
+type StructuredDataEntry = {
+	"@type": string;
+	url?: string;
+	itemListElement?: unknown[];
+};
+
 test.describe("Given I open a blog post page", () => {
 	test.beforeEach(async ({ page }) => {
 		const title = page.getByRole("article").first().getByRole("link");
@@ -66,12 +72,6 @@ test.describe("Given I open a blog post page", () => {
 			expect(() => JSON.parse(rawContent ?? "")).not.toThrow();
 		});
 
-		type StructuredDataEntry = {
-			"@type": string;
-			url?: string;
-			itemListElement?: unknown[];
-		};
-
 		const structuredData: StructuredDataEntry[] = JSON.parse(rawContent ?? "");
 
 		await test.step("And it should contain a WebSite entry whose url matches the page", async () => {
@@ -79,18 +79,15 @@ test.describe("Given I open a blog post page", () => {
 
 			const website = structuredData.find((entry) => entry["@type"] === "WebSite");
 
-			if (!website?.url) throw new Error("Expected a WebSite entry with a url");
-
-			expect(new URL(website.url).pathname).toBe(new URL(page.url()).pathname);
+			expect(website?.url).toBeTruthy();
+			expect(new URL(website?.url ?? "").pathname).toBe(new URL(page.url()).pathname);
 		});
 
 		await test.step("And it should contain a BreadcrumbList entry with itemListElement entries", async () => {
 			const breadcrumbList = structuredData.find((entry) => entry["@type"] === "BreadcrumbList");
 
-			if (!breadcrumbList?.itemListElement) throw new Error("Expected a BreadcrumbList entry with itemListElement");
-
-			expect(Array.isArray(breadcrumbList.itemListElement)).toBe(true);
-			expect(breadcrumbList.itemListElement.length).toBeGreaterThan(0);
+			expect(Array.isArray(breadcrumbList?.itemListElement)).toBe(true);
+			expect(breadcrumbList?.itemListElement?.length).toBeGreaterThan(0);
 		});
 	});
 });

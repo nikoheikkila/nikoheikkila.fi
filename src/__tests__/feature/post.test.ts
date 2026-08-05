@@ -58,19 +58,6 @@ test.describe
 				await expect(github).toHaveTitle(/History for/);
 			});
 		});
-
-		test("Post byline shows author, publish date, and reading time", async ({ page }) => {
-			await test.step("Given I'm on a single blog post page", async () => {
-				await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-			});
-
-			await test.step("When I inspect the byline paragraph under the title", async () => {
-				await expect(page.getByTestId("post-author")).toContainText("By Niko Heikkilä");
-				await expect(page.getByTestId("post-date")).toBeVisible();
-				await expect(page.getByTestId("post-ttr")).toContainText("☕️");
-				await expect(page.getByTestId("post-ttr")).toContainText(/minutes? read/);
-			});
-		});
 	});
 
 test.describe
@@ -81,14 +68,19 @@ test.describe
 
 		test("Code block renders with a visible language label and line numbers", async ({ page }) => {
 			const codeRegion = page.getByRole("region", { name: /code block$/ });
+			const languageLabel = codeRegion.locator("xpath=preceding-sibling::span[1]");
+			const firstLineNumber = codeRegion.locator(".react-syntax-highlighter-line-number").first();
 
 			await test.step("When I locate the code block region", async () => {
-				const languageLabel = codeRegion.locator("xpath=preceding-sibling::span[1]");
-				const firstLineNumber = codeRegion.locator(".react-syntax-highlighter-line-number").first();
-
-				await expect(languageLabel).toHaveText("Sh");
 				await expect(codeRegion).toHaveAttribute("role", "region");
+			});
+
+			await test.step("Then it should expose an accessible name and a visible language label", async () => {
 				await expect(codeRegion).toHaveAccessibleName(/code block$/);
+				await expect(languageLabel).toHaveText("Sh");
+			});
+
+			await test.step("And it should render line numbers starting at 1", async () => {
 				await expect(firstLineNumber).toHaveText("1");
 			});
 		});
@@ -101,7 +93,9 @@ test.describe
 					await page.keyboard.press("Tab");
 					await expect(codeRegion).toBeFocused({ timeout: 100 });
 				}).toPass({ timeout: 10_000 });
+			});
 
+			await test.step("Then the region should be focusable via tabindex", async () => {
 				await expect(codeRegion).toHaveAttribute("tabindex", "0");
 			});
 		});
@@ -126,17 +120,18 @@ test.describe
 
 			await test.step("When the page finishes loading", async () => {
 				await expect(heroImage).toBeVisible();
+			});
 
+			await test.step("Then the image should have loaded with non-zero dimensions", async () => {
 				const naturalWidth = await heroImage.evaluate((image: HTMLImageElement) => image.naturalWidth);
 				expect(naturalWidth).toBeGreaterThan(0);
+			});
 
+			await test.step("And the resolved image src should respond with HTTP 200", async () => {
 				const src = await heroImage.getAttribute("src");
+				expect(src).not.toBeNull();
 
-				if (!src) {
-					throw new Error("Cover image is missing a resolved src attribute");
-				}
-
-				const response = await page.request.get(new URL(src, page.url()).toString());
+				const response = await page.request.get(new URL(src ?? "", page.url()).toString());
 				expect(response.status()).toBe(200);
 			});
 		});

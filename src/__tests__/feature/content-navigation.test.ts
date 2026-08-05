@@ -2,7 +2,12 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Given I'm on a blog post that has both older and newer neighbouring content", () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto("/blog/my-vibe-coding-workflow/", { waitUntil: "networkidle" });
+		await page.goto("/", { waitUntil: "networkidle" });
+
+		const secondLatestPost = page.getByRole("article").nth(1).getByRole("link");
+		const href = await secondLatestPost.getAttribute("href");
+
+		await page.goto(href ?? "/", { waitUntil: "networkidle" });
 	});
 
 	test("When I scroll to the bottom navigation list below 'Back to posts' / 'Edit Page' / 'View History'", async ({
@@ -43,7 +48,19 @@ test.describe("Given I'm on a blog post that has both older and newer neighbouri
 
 test.describe("Given I'm on the very first post published (oldest by date)", () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto("/blog/listin-it-up-the-musical-abc/", { waitUntil: "networkidle" });
+		await page.goto("/", { waitUntil: "networkidle" });
+
+		let nextPage = page.getByRole("link", { name: /Next Page/ });
+		while ((await nextPage.count()) > 0) {
+			const nextPageHref = await nextPage.getAttribute("href");
+			await page.goto(nextPageHref ?? "/", { waitUntil: "networkidle" });
+			nextPage = page.getByRole("link", { name: /Next Page/ });
+		}
+
+		const oldestPost = page.getByRole("article").last().getByRole("link");
+		const oldestPostHref = await oldestPost.getAttribute("href");
+
+		await page.goto(oldestPostHref ?? "/", { waitUntil: "networkidle" });
 	});
 
 	test("When I inspect the content navigation list", async ({ page }) => {

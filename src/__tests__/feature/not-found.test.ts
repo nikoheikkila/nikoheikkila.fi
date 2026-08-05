@@ -10,6 +10,7 @@ test.describe("Given I'm on the custom 404 page", () => {
 
 	test("When the page finishes loading", async ({ page }) => {
 		await test.step("Then the HTTP response status should be 404", async () => {
+			expect(response).not.toBeNull();
 			expect(response?.status()).toBe(404);
 		});
 
