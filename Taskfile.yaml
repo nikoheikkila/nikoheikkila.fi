@@ -30,7 +30,7 @@ tasks:
     desc: Format codebase
     deps: [install]
     cmds:
-      - bunx biome check --write .
+      - bunx biome check --write --unsafe .
       - task: terraform:format
 
   typegen:
@@ -116,7 +116,9 @@ tasks:
     run: once
     vars:
       args: '{{ .args | default "--with-deps chromium firefox webkit" }}'
-    cmd: bunx playwright install {{ .args }}
+    cmds:
+      - bunx playwright init-agents --loop=claude
+      - bunx playwright install {{ .args }}
 
   dev:
     desc: Serve the Gatsby development site
