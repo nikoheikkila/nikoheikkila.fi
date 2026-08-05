@@ -71,8 +71,8 @@
 		"@vitest/coverage-v8": "4.1.10",
 		"axe-core": "4.12.1",
 		"happy-dom": "20.11.1",
-		"husky": "9.1.7",
 		"inquirer": "14.0.2",
+		"lefthook": "2.1.10",
 		"lighthouse": "13.4.1",
 		"snyk": "1.1306.2",
 		"typescript": "7.0.2",
@@ -94,7 +94,7 @@
 	},
 	"scripts": {
 		"build": "bun run gatsby build --log-pages --write-to-file",
-		"prepare": "bun run husky"
+		"prepare": "lefthook install"
 	},
 	"snyk": true,
 	"version": "1.0.0",

@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: false
+  commands:
+    format:
+      glob: "*"
+      run: task format
+      stage_fixed: true
+    lint:
+      run: task lint
+
+commit-msg:
+  commands:
+    commitlint:
+      run: bunx commitlint --edit {1}
+
+pre-push:
+  commands:
+    test:
+      run: task test
