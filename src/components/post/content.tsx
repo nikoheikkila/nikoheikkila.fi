@@ -193,6 +193,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 		<section className={styles.codeblock}>
 			<span className={styles.language}>{makeTitleCase(language)}</span>
 			<SyntaxHighlighter
+				aria-label={`${makeTitleCase(language)} code block`}
 				customStyle={{
 					padding: "8px 0 8px 12px",
 					fontSize: "1.0rem",
@@ -204,8 +205,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 					textAlign: "center",
 				}}
 				lineProps={getLineProps}
+				role="region"
 				showLineNumbers
 				style={nightOwl}
+				tabIndex={0}
 				wrapLines
 				{...props}
 			>
