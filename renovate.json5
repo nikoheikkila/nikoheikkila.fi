@@ -1,12 +1,11 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
-		"config:recommended",
+		"config:best-practices",
 		":automergeBranch",
 		":automergeMinor",
 		":automergeRequireAllStatusChecks",
 		":combinePatchMinorReleases",
-		":configMigration",
 		":dependencyDashboard",
 		":maintainLockFilesDisabled"
 	],
