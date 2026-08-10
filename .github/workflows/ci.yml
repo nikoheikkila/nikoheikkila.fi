@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Setup environment
         uses: ./.github/actions/setup-environment
@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Setup environment
         uses: ./.github/actions/setup-environment
@@ -78,7 +78,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Setup environment
         uses: ./.github/actions/setup-environment
@@ -87,7 +87,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
 
       - name: Restore Gatsby build output
-        uses: actions/cache/restore@v6
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: public
           key: gatsby-public-${{ runner.os }}-${{ github.sha }}
@@ -106,7 +106,7 @@ jobs:
 
       - name: Upload static assets
         id: upload
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: static-assets
           retention-days: 1
@@ -122,7 +122,7 @@ jobs:
 
       - name: Save Gatsby build output
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
-        uses: actions/cache/save@v6
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: public
           key: gatsby-public-${{ runner.os }}-${{ github.sha }}
@@ -140,10 +140,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Download static assets
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
           path: public
@@ -169,7 +169,7 @@ jobs:
 
     steps:
       - name: Run Audit
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
         with:
           urls: ${{ needs.deploy-preview.outputs.deployment-url }}
           runs: 1
@@ -192,10 +192,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Download static assets
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           artifact-ids: ${{ needs.acceptance_tests.outputs.artifact_id }}
           path: public
@@ -221,7 +221,7 @@ jobs:
 
     steps:
       - name: Run Audit
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
         with:
           urls: ${{ needs.deploy.outputs.deployment-url }}
           runs: 1
