@@ -69,7 +69,7 @@
 		"@vitejs/plugin-react": "5.2.0",
 		"@vitest/browser-playwright": "4.1.10",
 		"@vitest/coverage-v8": "4.1.10",
-		"axe-core": "4.12.1",
+		"axe-core": "4.13.0",
 		"happy-dom": "20.11.1",
 		"inquirer": "14.0.2",
 		"lefthook": "2.1.10",
