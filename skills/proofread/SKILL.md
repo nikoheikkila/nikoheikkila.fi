@@ -53,7 +53,7 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 -   Consistent tense within sections
 -   Proper punctuation and capitalization
 -   No orphaned or incomplete sentences
--   Headings use sentence case (not title case) in body text — only the frontmatter `title` is title-cased
+-   Headings (including `##` body headings) use title case, matching the frontmatter `title` casing rules
 -   Code terms in backticks when referenced inline
 
 **Markdown conventions:**
