@@ -17,6 +17,18 @@ test.describe
 			await expect(postTitle).toBeVisible();
 		});
 
+		test("when I view it, then the hero image should be decorative", async ({ page }) => {
+			const heroImage = page.locator("img[data-main-image]");
+
+			await test.step("When the hero image has rendered", async () => {
+				await expect(heroImage).toBeVisible();
+			});
+
+			await test.step("Then it should carry an empty alt attribute", async () => {
+				await expect(heroImage).toHaveAttribute("alt", "");
+			});
+		});
+
 		test("when I view it, then I should see a subscribe box", async ({ page }) => {
 			const subscribeBox = page.getByTestId("rss-subscribe");
 			await expect(subscribeBox).toBeVisible();
@@ -108,11 +120,16 @@ test.describe
 			await expect(page).toHaveURL(/about/);
 		});
 
-		test("when I view it, then it should display the accessible cover image", async ({ page }) => {
+		test("when I view it, then it should display the cover image as decorative", async ({ page }) => {
 			const heroImage = page.locator("img[data-main-image]");
 
-			await expect(heroImage).toBeVisible();
-			await expect(heroImage).toHaveAttribute("alt");
+			await test.step("When the cover image has rendered", async () => {
+				await expect(heroImage).toBeVisible();
+			});
+
+			await test.step("Then it should carry an empty alt attribute", async () => {
+				await expect(heroImage).toHaveAttribute("alt", "");
+			});
 		});
 
 		test("Cover image on pages resolves to a real, successfully-loaded image", async ({ page }) => {

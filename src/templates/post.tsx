@@ -34,7 +34,6 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 	const excerpt = data.markdownRemark?.frontmatter?.excerpt ?? "";
 
 	const repository = data.site?.siteMetadata?.repository ?? "";
-	const title = data.site?.siteMetadata?.title ?? "";
 
 	const previous = pageContext.previous;
 	const next = pageContext.next;
@@ -47,7 +46,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 	const coverImage: IGatsbyImageData | undefined = cover?.gatsbyImageData;
 
 	return (
-		<Layout cover={coverImage} title={title} type={LayoutType.SINGLE}>
+		<Layout cover={coverImage} type={LayoutType.SINGLE}>
 			<PostHeader
 				author={author}
 				datePublished={datePublished}

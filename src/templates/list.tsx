@@ -20,7 +20,7 @@ const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {
 	const nodes = edges.map((_) => _.node);
 
 	return (
-		<Layout title={title} type={LayoutType.LIST}>
+		<Layout type={LayoutType.LIST}>
 			<h1 className="visuallyHidden">{title}</h1>
 			<Cover title={title} url="/" />
 			<BlogHeader />

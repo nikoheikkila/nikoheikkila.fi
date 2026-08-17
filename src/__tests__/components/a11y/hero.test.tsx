@@ -1,6 +1,5 @@
 import { describe, expect, test } from "vitest";
 import { render } from "vitest-browser-react";
-import { page } from "vitest/browser";
 import React from "react";
 import Hero from "../../../components/hero";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
@@ -21,16 +20,18 @@ const createMockImage = (): IGatsbyImageData => ({
 
 describe("Hero Accessibility", () => {
 	test("passes axe scan", async () => {
-		const { container } = await render(<Hero alt="A beautiful landscape" data={createMockImage()} />);
+		const { container } = await render(<Hero data={createMockImage()} />);
 
 		await expect(container).toHaveNoA11yViolations();
 	});
 
-	test("image has alt text matching the alt prop", async () => {
-		const altText = "A beautiful landscape photo";
-		await render(<Hero alt={altText} data={createMockImage()} />);
+	test("image is decorative and exposes no accessible name", async () => {
+		const { container } = await render(<Hero data={createMockImage()} />);
 
-		const image = page.getByAltText(altText);
-		await expect.element(image).toBeInTheDocument();
+		const image = container.querySelector("img");
+
+		expect(image).not.toBeNull();
+		expect(image).toHaveAttribute("alt", "");
+		expect(image).not.toHaveAccessibleName();
 	});
 });

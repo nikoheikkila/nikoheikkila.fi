@@ -8,7 +8,7 @@ const title = "Page Not Found";
 
 const NotFound: React.FC<PageProps> = () => {
 	return (
-		<Layout title={title} type={LayoutType.SINGLE}>
+		<Layout type={LayoutType.SINGLE}>
 			<h1>🤖 You have erred, but it is human</h1>
 
 			<p>

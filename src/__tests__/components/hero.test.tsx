@@ -1,6 +1,5 @@
 import { describe, expect, test } from "vitest";
 import { render } from "vitest-browser-react";
-import { page } from "vitest/browser";
 import React from "react";
 import Hero from "../../components/hero";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
@@ -22,26 +21,22 @@ const createMockImage = (): IGatsbyImageData => ({
 describe("Hero Component", () => {
 	const mockImageData = createMockImage();
 
-	test("renders hero image with correct alt text", async () => {
-		const altText = "Beautiful landscape photo";
-		await render(<Hero alt={altText} data={mockImageData} />);
+	// GatsbyImage mock renders a regular img tag; a decorative image has no
+	// accessible name to query by, so reach for it through the container.
+	test("renders the hero image as decorative with an empty alt attribute", async () => {
+		const { container } = await render(<Hero data={mockImageData} />);
 
-		const image = page.getByAltText(altText);
-		await expect.element(image).toBeInTheDocument();
+		const image = container.querySelector("img");
+
+		expect(image).not.toBeNull();
+		expect(image).toHaveAttribute("alt", "");
 	});
 
 	test("applies correct loading strategy", async () => {
-		await render(<Hero alt="Test image" data={mockImageData} />);
+		const { container } = await render(<Hero data={mockImageData} />);
 
-		const image = page.getByAltText("Test image");
-		await expect.element(image).toHaveAttribute("loading", "eager");
-	});
+		const image = container.querySelector("img");
 
-	test("renders GatsbyImage component", async () => {
-		await render(<Hero alt="Styled image" data={mockImageData} />);
-
-		// GatsbyImage mock renders a regular img tag
-		const image = page.getByAltText("Styled image");
-		await expect.element(image).toBeInTheDocument();
+		expect(image).toHaveAttribute("loading", "eager");
 	});
 });

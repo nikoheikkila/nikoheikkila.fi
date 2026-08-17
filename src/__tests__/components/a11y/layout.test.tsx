@@ -18,43 +18,27 @@ vi.mock("../../../search/components/useSearch", () => ({
 
 describe("Layout Accessibility", () => {
 	test("passes axe scan", async () => {
-		const { container } = await render(
-			<Layout title="Test page" type={LayoutType.LIST}>
-				{[<p key="1">Content</p>]}
-			</Layout>,
-		);
+		const { container } = await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
 		await expect(container).toHaveNoA11yViolations();
 	});
 
 	test("skip link targets main-content anchor", async () => {
-		await render(
-			<Layout title="Test page" type={LayoutType.LIST}>
-				{[<p key="1">Content</p>]}
-			</Layout>,
-		);
+		await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
 		const skipLink = page.getByRole("link", { name: /skip to main content/i });
 		await expect.element(skipLink).toHaveAttribute("href", "#main-content");
 	});
 
 	test("main landmark has id main-content", async () => {
-		const { container } = await render(
-			<Layout title="Test page" type={LayoutType.LIST}>
-				{[<p key="1">Content</p>]}
-			</Layout>,
-		);
+		const { container } = await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
 		const main = container.querySelector("main#main-content");
 		expect(main).not.toBeNull();
 	});
 
 	test("skip link is the first focusable element in the DOM", async () => {
-		const { container } = await render(
-			<Layout title="Test page" type={LayoutType.LIST}>
-				{[<p key="1">Content</p>]}
-			</Layout>,
-		);
+		const { container } = await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
 		const focusable = container.querySelectorAll<HTMLElement>(
 			'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',

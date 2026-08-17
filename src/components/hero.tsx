@@ -3,12 +3,11 @@ import React from "react";
 
 interface HeroProps {
 	readonly data: IGatsbyImageData;
-	readonly alt: string;
 }
 
-const Hero: React.FunctionComponent<HeroProps> = ({ data, alt }) => (
+const Hero: React.FunctionComponent<HeroProps> = ({ data }) => (
 	<GatsbyImage
-		alt={alt}
+		alt=""
 		fetchPriority="high"
 		image={data}
 		loading="eager"

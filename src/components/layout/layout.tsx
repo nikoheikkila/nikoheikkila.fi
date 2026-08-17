@@ -12,12 +12,11 @@ import { LayoutType } from "./types";
 
 interface LayoutProps {
 	type: LayoutType;
-	title: string;
 	cover?: IGatsbyImageData;
 	children: Array<ReactNode>;
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, children }) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({ type, cover, children }) => {
 	const { query, setQuery, results, isModalOpen, submitSearch, closeModal } = useSearch();
 
 	return (
@@ -29,7 +28,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, title, cover, chil
 			<SearchBar onSubmit={submitSearch} query={query} setQuery={setQuery} />
 			{cover ? (
 				<header style={{ textAlign: "center" }}>
-					<Hero alt={title} data={cover} />
+					<Hero data={cover} />
 				</header>
 			) : null}
 			{type === LayoutType.LIST && (
