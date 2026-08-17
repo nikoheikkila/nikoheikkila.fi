@@ -201,7 +201,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 				}}
 				language={language}
 				lineNumberStyle={{
-					opacity: 0.3,
+					color: "#8a9ba8",
 					textAlign: "center",
 				}}
 				lineProps={getLineProps}
