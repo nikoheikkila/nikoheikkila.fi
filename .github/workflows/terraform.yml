@@ -13,6 +13,9 @@ on:
       - "infra/cloudflare/**"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   plan:
     name: Terraform Plan
