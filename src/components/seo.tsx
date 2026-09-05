@@ -28,7 +28,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const pageURL = url === "/" ? siteURL : url;
 	const siteTitle = String(meta?.title);
 	const author = String(meta?.author?.name);
-	const metaDescription = String(description || meta?.description).replace("\n", " ");
+	const metaDescription = String(description || meta?.description).replaceAll("\n", " ");
 	const locale = lang === "en" ? "en_GB" : "fi_FI";
 	const imageUrl = String(image ? siteURL + image?.original?.src : meta?.cover);
 	const isPost = type === "post";
