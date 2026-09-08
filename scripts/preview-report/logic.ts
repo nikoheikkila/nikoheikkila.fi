@@ -124,7 +124,7 @@ export const buildSuccessCommentBody = (params: {
 }): string =>
 	[
 		STATUS_MARKER,
-		"### Preview deployment succeeded",
+		"### 🚀 Preview deployment succeeded",
 		"",
 		`[Open preview](${params.url})`,
 		"",
