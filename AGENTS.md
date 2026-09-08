@@ -57,6 +57,7 @@ Load `testing` skill when you need to work with unit, component, or acceptance t
 
 - **Terraform only** — Wrangler is not used. Two root modules: `infra/cloudflare/` (zone, DNS, R2, redirects, Worker custom domain) and `infra/site/` (the site itself: build output uploaded to R2, served by a Worker). Shared inputs (`infra/.env`, `infra/cloudflare.tfvars`) live one level up, outside both module directories. See the terraform skill for commands and provider quirks.
 - **Environments are Terraform workspaces**: every pull request gets a preview (worker `blog-pr-<n>` at `https://blog-pr-<n>.yo-062.workers.dev`) deployed by CI and destroyed automatically when the PR closes; merging to `main` deploys production (worker `blog` on `nikoheikkila.fi`).
+- **Preview status is posted as a PR comment**: a separate `workflow_run` reporter (`.github/workflows/preview-comment.yml`, logic in `scripts/preview-report.ts` / `scripts/preview-report/logic.ts`) updates one sticky comment with the preview link on success or the failed step on failure. It runs with its own read/write token so it also works for fork and Dependabot PRs, whose `pull_request` runs only ever get a read-only token.
 - **Secrets**: 1Password (`op run --env-file='.env'`) locally; `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_R2_ACCESS_KEY_ID`/`SECRET` GitHub secrets in CI.
 
 ## Key Conventions

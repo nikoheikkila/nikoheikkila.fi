@@ -1,0 +1,51 @@
+name: Preview Deployment Comment
+
+# A separate reporter, rather than a step in `ci.yml`, so pull requests from
+# forks and Dependabot — whose `pull_request` runs only ever get a read-only
+# token — can still get a comment: `workflow_run` runs in the base repository
+# with this workflow's own permissions, never the PR's.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    name: Report Preview Deployment
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.event == 'pull_request'
+    # Serialises reporting per source branch so two overlapping runs for the
+    # same PR can never race on the same sticky comment.
+    concurrency:
+      group: preview-comment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
+    steps:
+      # Trusted, default-branch checkout only — never the PR head, its cache,
+      # or its dependencies. Credentials are not persisted since this job
+      # never needs to push.
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Report preview deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+          EVENT_NAME: ${{ github.event.workflow_run.event }}
+        run: task ci:report

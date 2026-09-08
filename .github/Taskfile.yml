@@ -1,0 +1,9 @@
+version: "3"
+
+# Tasks here are only ever meant to run inside GitHub Actions, not on a
+# developer machine — keeping them in their own namespace makes that explicit.
+tasks:
+  report:
+    desc: Report a pull request's preview deployment status as a sticky PR comment (CI only)
+    cmds:
+      - bun run scripts/preview-report.ts

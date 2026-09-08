@@ -14,6 +14,10 @@ includes:
     taskfile: ./infra/site/Taskfile.yml
     dir: ./infra/site
 
+  ci:
+    taskfile: ./.github/Taskfile.yml
+    dir: .
+
 tasks:
   new:
     desc: Scaffold a new post or page
