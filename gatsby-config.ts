@@ -4,9 +4,9 @@ import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
 import { socialLinks } from "./src/utils/social";
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = (environment: string | undefined): boolean => environment === "production";
 
-const config: GatsbyConfig = {
+export const createConfig = (environment: string | undefined): GatsbyConfig => ({
 	flags: {
 		PRESERVE_FILE_DOWNLOAD_CACHE: true,
 	},
@@ -114,7 +114,7 @@ const config: GatsbyConfig = {
 		"gatsby-plugin-sitemap",
 	].concat(
 		// Load the PWA service worker only in production to enhance the development experience.
-		isProduction ? ["gatsby-plugin-offline"] : [],
+		isProduction(environment) ? ["gatsby-plugin-offline"] : [],
 	),
 	siteMetadata: {
 		author: {
@@ -130,6 +130,8 @@ const config: GatsbyConfig = {
 		social: socialLinks,
 	},
 	trailingSlash: "always",
-};
+});
+
+const config = createConfig(process.env.NODE_ENV);
 
 export default config;
