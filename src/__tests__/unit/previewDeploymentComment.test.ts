@@ -5,6 +5,8 @@ import {
 	type PullRequestAssociation,
 	type WorkflowJob,
 	BOT_LOGIN,
+	DEFAULT_WORKER_SERVICE_NAME,
+	DEFAULT_WORKERS_DEV_SUBDOMAIN,
 	META_PREFIX,
 	META_SUFFIX,
 	STATUS_MARKER,
@@ -20,10 +22,14 @@ import {
 	parseStoredMetadata,
 	resolvePullRequestForCommit,
 	shouldReplace,
-	validatePreviewUrl,
 } from "../../../scripts/preview-report/logic";
 
-const expectation = { workerServiceName: "blog", workersDevSubdomain: "yo-062" };
+const expectation = {
+	workerServiceName: DEFAULT_WORKER_SERVICE_NAME,
+	workersDevSubdomain: DEFAULT_WORKERS_DEV_SUBDOMAIN,
+};
+const previewUrl = (prNumber: number): string =>
+	`https://${DEFAULT_WORKER_SERVICE_NAME}-pr-${prNumber}.${DEFAULT_WORKERS_DEV_SUBDOMAIN}.workers.dev`;
 
 const job = (overrides: Partial<WorkflowJob> = {}): WorkflowJob => ({
 	name: "Deploy to Preview",
@@ -123,23 +129,9 @@ describe("resolvePullRequestForCommit", () => {
 	});
 });
 
-describe("buildExpectedPreviewOrigin / validatePreviewUrl", () => {
+describe("buildExpectedPreviewOrigin", () => {
 	test("builds the predictable preview origin", () => {
-		expect(buildExpectedPreviewOrigin(42, expectation)).toBe("https://blog-pr-42.yo-062.workers.dev");
-	});
-
-	test("accepts the exact origin and a trailing slash", () => {
-		expect(validatePreviewUrl("https://blog-pr-42.yo-062.workers.dev", 42, expectation)).toBe(true);
-		expect(validatePreviewUrl("https://blog-pr-42.yo-062.workers.dev/", 42, expectation)).toBe(true);
-	});
-
-	test.each([
-		["http://blog-pr-42.yo-062.workers.dev", "wrong protocol"],
-		["https://blog-pr-43.yo-062.workers.dev", "wrong PR number"],
-		["https://evil.example.com", "wrong host entirely"],
-		["https://blog-pr-42.yo-062.workers.dev.evil.com", "host suffix attack"],
-	])("rejects %s (%s)", (url) => {
-		expect(validatePreviewUrl(url, 42, expectation)).toBe(false);
+		expect(buildExpectedPreviewOrigin(42, expectation)).toBe(previewUrl(42));
 	});
 });
 
@@ -192,14 +184,14 @@ describe("comment bodies", () => {
 
 	test("success body links the preview and embeds machine-readable metadata", () => {
 		const body = buildSuccessCommentBody({
-			url: "https://blog-pr-42.yo-062.workers.dev",
+			url: previewUrl(42),
 			headSha: "abcdef1234567",
 			jobUrl: "https://github.com/o/r/actions/runs/1/job/1",
 			metadata: meta,
 		});
 
 		expect(body).toContain(STATUS_MARKER);
-		expect(body).toContain("[Open preview](https://blog-pr-42.yo-062.workers.dev)");
+		expect(body).toContain(`[Open preview](${previewUrl(42)})`);
 		expect(body).toContain("`abcdef1`");
 		expect(body).toContain("[Deployment logs](https://github.com/o/r/actions/runs/1/job/1)");
 		expect(parseStoredMetadata(body)).toStrictEqual(meta);
