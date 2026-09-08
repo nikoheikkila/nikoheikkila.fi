@@ -120,6 +120,11 @@ tasks:
       - bunx playwright init-agents --loop=claude
       - bunx playwright install {{ .args }}
 
+  preview:report:
+    desc: Report a pull request's preview deployment status as a sticky PR comment (CI only)
+    cmds:
+      - bun run scripts/preview-report.ts
+
   dev:
     desc: Serve the Gatsby development site
     cmds:
