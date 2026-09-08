@@ -34,6 +34,8 @@ describe("Helpers", () => {
 			[{ pathname: "/about" }, "/"],
 			[{ pathname: "/about", state: {} }, "/"],
 			[{ pathname: "/about", state: { other: "value" } }, "/"],
+			[{ pathname: "/about", state: { previous: undefined } }, "/"],
+			[{ pathname: "/about", state: { previous: "" } }, ""],
 		])("given route %o, returns %s", (route, expected) => {
 			expect(Helpers.getPreviousPage(route)).toBe(expected);
 		});
@@ -63,6 +65,9 @@ describe("Helpers", () => {
 			[{ pathname: "/2/article" }, false],
 			[{ pathname: "/blog/1" }, false],
 			[{ pathname: "" }, false],
+			[{ pathname: "/-1" }, false],
+			[{ pathname: "/1.5" }, false],
+			[{ pathname: "/2a" }, false],
 		])("given route %o, returns %s", (route, expected) => {
 			expect(Helpers.isIndex(route)).toBe(expected);
 		});

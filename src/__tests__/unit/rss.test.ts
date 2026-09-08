@@ -95,5 +95,76 @@ describe("RSS", () => {
 
 			expect(entry.url).toBe("");
 		});
+
+		test("uses only the slug when the site URL is missing", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: { edges: [{ node: { fields: { slug: "/blog/orphan/" } } }] },
+					site: { siteMetadata: {} },
+				},
+			};
+
+			expect(RSS.serialize(data)[0].url).toBe("/blog/orphan/");
+		});
+
+		test("uses only the site URL when the slug is missing", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: { edges: [{ node: {} }] },
+					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
+				},
+			};
+
+			expect(RSS.serialize(data)[0].url).toBe("https://www.nikoheikkila.fi");
+		});
+
+		test("leaves every optional field undefined for a sparse node", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: { edges: [{ node: {} }] },
+					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
+				},
+			};
+
+			expect(RSS.serialize(data)).toStrictEqual([
+				{
+					url: "https://www.nikoheikkila.fi",
+					language: undefined,
+					title: undefined,
+					description: undefined,
+					date: undefined,
+					guid: undefined,
+					author: undefined,
+					custom_elements: [{ "content:encoded": undefined }],
+				},
+			]);
+		});
+
+		test("serializes multiple posts in the queried order", () => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: {
+						edges: [
+							{ node: { fields: { slug: "/blog/newest/" }, frontmatter: { title: "Newest" } } },
+							{ node: { fields: { slug: "/blog/oldest/" }, frontmatter: { title: "Oldest" } } },
+						],
+					},
+					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
+				},
+			};
+
+			expect(RSS.serialize(data).map((entry) => [entry.title, entry.url])).toStrictEqual([
+				["Newest", "https://www.nikoheikkila.fi/blog/newest/"],
+				["Oldest", "https://www.nikoheikkila.fi/blog/oldest/"],
+			]);
+		});
+	});
+
+	describe(".rssQuery", () => {
+		test("requests the fields the serializer reads, excluding pages", () => {
+			expect(RSS.rssQuery).toContain("allMarkdownRemark");
+			expect(RSS.rssQuery).toContain('type: {ne: "page"}');
+			expect(RSS.rssQuery).toContain("contentDigest");
+		});
 	});
 });
