@@ -2,51 +2,78 @@ import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import type { CreateNodeArgs, Node } from "gatsby";
 import config from "../gatsby-config";
 
-interface OnCreateNodeArgs extends CreateNodeArgs {
-	node: Node & {
-		frontmatter: Queries.MarkdownRemarkFrontmatter;
-	};
+interface MarkdownNode extends Node {
+	frontmatter?: Queries.MarkdownRemarkFrontmatter | null;
 }
 
-const onCreateNodes = async ({
-	node,
-	actions: { createNode, createNodeField },
-	getCache,
-	getNode,
-	createNodeId,
-}: OnCreateNodeArgs) => {
-	if (!isMarkdownNode(node)) {
-		return;
-	}
+interface OnCreateNodeArgs {
+	node: Node;
+	actions: Pick<CreateNodeArgs["actions"], "createNode" | "createNodeField">;
+	getCache: CreateNodeArgs["getCache"];
+	getNode: CreateNodeArgs["getNode"];
+	createNodeId: CreateNodeArgs["createNodeId"];
+}
 
-	const { id, frontmatter } = node;
-	const hero = String(frontmatter.hero ?? config.siteMetadata?.cover);
+interface RemoteFileArgs {
+	url: string;
+	parentNodeId: string;
+	createNode: CreateNodeArgs["actions"]["createNode"];
+	createNodeId: CreateNodeArgs["createNodeId"];
+	getCache: CreateNodeArgs["getCache"];
+}
 
-	const fileNode = await createRemoteFileNode({
-		url: hero,
-		parentNodeId: id,
-		createNode,
-		createNodeId,
-		getCache,
-	});
+interface FilePathArgs {
+	node: Node;
+	getNode: CreateNodeArgs["getNode"];
+}
 
-	if (fileNode) {
-		createNodeField({
-			node,
-			name: "hero",
-			value: fileNode.id,
+export interface NodeDependencies {
+	downloadHero: (args: RemoteFileArgs) => Promise<{ id: string } | null>;
+	resolveFilePath: (args: FilePathArgs) => string;
+	defaultHero: unknown;
+}
+
+export const createOnCreateNodes =
+	({ downloadHero, resolveFilePath, defaultHero }: NodeDependencies) =>
+	async ({ node, actions: { createNode, createNodeField }, getCache, getNode, createNodeId }: OnCreateNodeArgs) => {
+		if (!isMarkdownNode(node)) {
+			return;
+		}
+
+		const { id, frontmatter } = node;
+		const hero = String(frontmatter?.hero ?? defaultHero);
+
+		const fileNode = await downloadHero({
+			url: hero,
+			parentNodeId: id,
+			createNode,
+			createNodeId,
+			getCache,
 		});
-	}
 
-	const value = createFilePath({ node, getNode });
+		if (fileNode) {
+			createNodeField({
+				node,
+				name: "hero",
+				value: fileNode.id,
+			});
+		}
 
-	createNodeField({
-		name: "slug",
-		node,
-		value,
-	});
-};
+		const value = resolveFilePath({ node, getNode });
 
-const isMarkdownNode = (node: Node): boolean => node.internal.type === "MarkdownRemark";
+		createNodeField({
+			name: "slug",
+			node,
+			value,
+		});
+	};
+
+const isMarkdownNode = (node: Node): node is MarkdownNode => node.internal.type === "MarkdownRemark";
+
+const onCreateNodes = createOnCreateNodes({
+	downloadHero: createRemoteFileNode,
+	resolveFilePath: createFilePath,
+	defaultHero: config.siteMetadata?.cover,
+});
 
 export default onCreateNodes;
