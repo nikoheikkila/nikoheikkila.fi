@@ -14,6 +14,10 @@ includes:
     taskfile: ./infra/site/Taskfile.yml
     dir: ./infra/site
 
+  ci:
+    taskfile: ./.github/Taskfile.yml
+    dir: .
+
 tasks:
   new:
     desc: Scaffold a new post or page
@@ -119,11 +123,6 @@ tasks:
     cmds:
       - bunx playwright init-agents --loop=claude
       - bunx playwright install {{ .args }}
-
-  preview:report:
-    desc: Report a pull request's preview deployment status as a sticky PR comment (CI only)
-    cmds:
-      - bun run scripts/preview-report.ts
 
   dev:
     desc: Serve the Gatsby development site

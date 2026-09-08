@@ -48,4 +48,4 @@ jobs:
           HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
           EVENT_NAME: ${{ github.event.workflow_run.event }}
-        run: task preview:report
+        run: task ci:report
