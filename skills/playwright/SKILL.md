@@ -50,8 +50,6 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 
 ### Required Practices
 
-**Critical:** These are mandatory practices to follow.
-
 - ✅ Use `test.step()` to organize test actions and improve reporting
 - ✅ Create fixtures objects for test-specific configuration values
 - ✅ Use `await expect(locator).toBeVisible()` for auto-retrying assertions
@@ -64,8 +62,6 @@ test.describe.parallel("Given I visit the page using a mobile browser", () => {
 - ✅ Always assert `null`/`undefined` possibilities explicitly (e.g. `expect(response).not.toBeNull()`, `expect(src).not.toBeNull()`) instead of narrowing with `if`.
 
 ### Anti-Patterns
-
-**Critical:** Avoid these at all costs.
 
 - ❌ `page.waitForTimeout()` - Never use hard-coded timeouts
 - ❌ `page.locator(".css-class")` - Avoid CSS selectors when possible
