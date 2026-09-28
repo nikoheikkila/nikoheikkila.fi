@@ -30,8 +30,12 @@ describe("PostHeader Component", () => {
 	test("renders the byline with the estimated reading time", async () => {
 		await render(<PostHeader {...defaultProps} />);
 
-		const readingTime = page.getByText(/minutes? read/, { exact: false });
-		await expect.element(readingTime).toBeInTheDocument();
-		await expect.element(readingTime).toHaveTextContent("☕️");
+		// Find the element containing reading time text
+		const readingTimeText = `${defaultProps.timeToRead} minutes read`;
+		const readingTimeElement = page.getByText(readingTimeText, { exact: false });
+		await expect.element(readingTimeElement).toBeInTheDocument();
+
+		// Verify the element's full text: emoji, exact time value, and minute label
+		expect(readingTimeElement.element().textContent).toBe(`☕️ ${defaultProps.timeToRead} minutes read`);
 	});
 });
