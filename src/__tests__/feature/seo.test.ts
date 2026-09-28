@@ -65,14 +65,22 @@ test.describe("Given I open a blog post page", () => {
 
 	test("When I parse the script[type='application/ld+json'] contents", async ({ page }) => {
 		const jsonLd = page.locator("script[type='application/ld+json']").first();
-		const rawContent = await jsonLd.textContent();
+
+		// The schema script is injected with ScriptStrategy.idle, so it can lag behind
+		// the client-side navigation performed in beforeEach. Poll until its contents
+		// reflect the current page instead of reading it once right after navigating.
+		let structuredData: StructuredDataEntry[] = [];
 
 		await test.step("Then it should be valid JSON", async () => {
-			expect(rawContent).toBeTruthy();
-			expect(() => JSON.parse(rawContent ?? "")).not.toThrow();
-		});
+			await expect(async () => {
+				const rawContent = await jsonLd.textContent();
+				expect(rawContent).toBeTruthy();
+				structuredData = JSON.parse(rawContent ?? "");
 
-		const structuredData: StructuredDataEntry[] = JSON.parse(rawContent ?? "");
+				const website = structuredData.find((entry) => entry["@type"] === "WebSite");
+				expect(new URL(website?.url ?? "").pathname).toBe(new URL(page.url()).pathname);
+			}).toPass();
+		});
 
 		await test.step("And it should contain a WebSite entry whose url matches the page", async () => {
 			expect(Array.isArray(structuredData)).toBe(true);
