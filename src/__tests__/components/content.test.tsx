@@ -86,12 +86,15 @@ describe("Content Component", () => {
 
 		// Caption contains Picture: text and click instruction
 		const pictureLabel = page.getByText("Picture:");
-		const altTextLabel = page.getByText("Alt text");
 		const clickInstruction = page.getByText("Click for a larger version.");
 
 		await expect.element(pictureLabel).toBeInTheDocument();
-		await expect.element(altTextLabel).toBeInTheDocument();
 		await expect.element(clickInstruction).toBeInTheDocument();
+
+		// Verify alt text is in the caption by checking the caption element's text content
+		// Find the caption by looking for the Picture: label's parent caption element
+		const captionElement = pictureLabel.element().closest("span[class*='caption']");
+		expect(captionElement?.textContent).toContain("Alt text");
 	});
 
 	test("handles images without alt text", async () => {
@@ -114,7 +117,7 @@ describe("Content Component", () => {
 		const articleElement = article.element();
 		const iframe = articleElement.querySelector("iframe");
 
-		expect(iframe).toBeDefined();
+		expect(iframe).not.toBeNull();
 		expect(iframe?.getAttribute("src")).toBe("https://youtube.com/embed/test");
 	});
 
