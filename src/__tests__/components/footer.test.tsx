@@ -9,6 +9,17 @@ vi.mock("../../graphql/footer", () => ({
 	getFooterLinks: vi.fn(),
 }));
 
+/** Asserts that the link's sibling icon renders with the given FontAwesome icon name (and pack prefix, if given). */
+function expectIconFor(link: ReturnType<typeof page.getByRole>, iconName: string, prefix?: string) {
+	const parent = link.element().parentElement;
+	expect(parent).not.toBeNull();
+
+	const selector = prefix
+		? `svg[aria-hidden="true"][data-icon="${iconName}"][data-prefix="${prefix}"]`
+		: `svg[aria-hidden="true"][data-icon="${iconName}"]`;
+	expect(parent?.querySelector(selector)).not.toBeNull();
+}
+
 describe("Footer Component", () => {
 	test("renders RSS feed link", async () => {
 		const { getFooterLinks } = await import("../../graphql/footer.js");
@@ -19,9 +30,9 @@ describe("Footer Component", () => {
 					social: [
 						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "Twitter",
-							url: "https://twitter.com/testuser",
-							icon: "twitter",
+							name: "Bluesky",
+							url: "https://bsky.social/testuser",
+							icon: "bluesky",
 						},
 						{
 							name: "LinkedIn",
@@ -35,8 +46,9 @@ describe("Footer Component", () => {
 
 		await render(<Footer />);
 
-		const rssLink = page.getByRole("link", { name: /rss/i });
+		const rssLink = page.getByRole("link", { name: "RSS", exact: true });
 		await expect.element(rssLink).toBeInTheDocument();
+		expect(rssLink.element().getAttribute("href")).toBe("/feed.xml");
 	});
 
 	test("renders RSS icon", async () => {
@@ -48,9 +60,9 @@ describe("Footer Component", () => {
 					social: [
 						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "Twitter",
-							url: "https://twitter.com/testuser",
-							icon: "twitter",
+							name: "Bluesky",
+							url: "https://bsky.social/testuser",
+							icon: "bluesky",
 						},
 						{
 							name: "LinkedIn",
@@ -64,12 +76,8 @@ describe("Footer Component", () => {
 
 		await render(<Footer />);
 
-		// Check that the footer contains RSS icon and link
-		const footer = page.getByRole("contentinfo");
-		await expect.element(footer).toBeInTheDocument();
-
-		const rssElements = page.getByText(/rss/i).all();
-		expect(rssElements.length).toBeGreaterThan(0);
+		const rssLink = page.getByRole("link", { name: "RSS", exact: true });
+		expectIconFor(rssLink, "rss");
 	});
 
 	test("renders all social media links", async () => {
@@ -81,9 +89,9 @@ describe("Footer Component", () => {
 					social: [
 						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "Twitter",
-							url: "https://twitter.com/testuser",
-							icon: "twitter",
+							name: "Bluesky",
+							url: "https://bsky.social/testuser",
+							icon: "bluesky",
 						},
 						{
 							name: "LinkedIn",
@@ -97,13 +105,17 @@ describe("Footer Component", () => {
 
 		await render(<Footer />);
 
-		const githubLink = page.getByRole("link", { name: /github/i });
-		const twitterLink = page.getByRole("link", { name: /twitter/i });
-		const linkedinLink = page.getByRole("link", { name: /linkedin/i });
+		const githubLink = page.getByRole("link", { name: "GitHub", exact: true });
+		const blueskyLink = page.getByRole("link", { name: "Bluesky", exact: true });
+		const linkedinLink = page.getByRole("link", { name: "LinkedIn", exact: true });
 
 		await expect.element(githubLink).toBeInTheDocument();
-		await expect.element(twitterLink).toBeInTheDocument();
+		await expect.element(blueskyLink).toBeInTheDocument();
 		await expect.element(linkedinLink).toBeInTheDocument();
+
+		expect(githubLink.element().getAttribute("href")).toBe("https://github.com/testuser");
+		expect(blueskyLink.element().getAttribute("href")).toBe("https://bsky.social/testuser");
+		expect(linkedinLink.element().getAttribute("href")).toBe("https://linkedin.com/in/testuser");
 	});
 
 	test("renders social media icons", async () => {
@@ -115,9 +127,9 @@ describe("Footer Component", () => {
 					social: [
 						{ name: "GitHub", url: "https://github.com/testuser", icon: "github" },
 						{
-							name: "Twitter",
-							url: "https://twitter.com/testuser",
-							icon: "twitter",
+							name: "Bluesky",
+							url: "https://bsky.social/testuser",
+							icon: "bluesky",
 						},
 						{
 							name: "LinkedIn",
@@ -131,16 +143,11 @@ describe("Footer Component", () => {
 
 		await render(<Footer />);
 
-		// Check that we have all the social icons by checking for multiple elements
-		const githubElements = page.getByText("github").all();
-		const twitterElements = page.getByText("twitter").all();
-		const linkedinElements = page.getByText("linkedin").all();
-		const rssElements = page.getByText(/rss/i).all();
-
-		expect(githubElements.length).toBeGreaterThan(0);
-		expect(twitterElements.length).toBeGreaterThan(0);
-		expect(linkedinElements.length).toBeGreaterThan(0);
-		expect(rssElements.length).toBeGreaterThan(0);
+		// Verify each social link has the correct icon
+		expectIconFor(page.getByRole("link", { name: "GitHub", exact: true }), "github", "fab");
+		expectIconFor(page.getByRole("link", { name: "Bluesky", exact: true }), "bluesky", "fab");
+		expectIconFor(page.getByRole("link", { name: "LinkedIn", exact: true }), "linkedin", "fab");
+		expectIconFor(page.getByRole("link", { name: "RSS", exact: true }), "rss");
 	});
 
 	test("handles missing social links gracefully", async () => {
@@ -156,16 +163,16 @@ describe("Footer Component", () => {
 
 		await render(<Footer />);
 
-		const rssLink = page.getByRole("link", { name: /rss/i });
+		const rssLink = page.getByRole("link", { name: "RSS", exact: true });
 		await expect.element(rssLink).toBeInTheDocument();
 
 		// Should only have RSS, no social links
-		const githubLink = page.getByText("github");
-		const twitterLink = page.getByText("twitter");
-		const linkedinLink = page.getByText("linkedin");
+		const githubLink = page.getByRole("link", { name: "GitHub", exact: true });
+		const blueskyLink = page.getByRole("link", { name: "Bluesky", exact: true });
+		const linkedinLink = page.getByRole("link", { name: "LinkedIn", exact: true });
 
 		await expect.element(githubLink).not.toBeInTheDocument();
-		await expect.element(twitterLink).not.toBeInTheDocument();
+		await expect.element(blueskyLink).not.toBeInTheDocument();
 		await expect.element(linkedinLink).not.toBeInTheDocument();
 	});
 
@@ -178,7 +185,7 @@ describe("Footer Component", () => {
 					social: [
 						{ name: "GitHub", url: "https://github.com/test", icon: "github" },
 						{ name: null, url: "https://example.com", icon: "" },
-						{ name: "Twitter", url: null, icon: "twitter" },
+						{ name: "Bluesky", url: null, icon: "bluesky" },
 					],
 				},
 			},
@@ -187,11 +194,20 @@ describe("Footer Component", () => {
 		await render(<Footer />);
 
 		// Only valid links should render
-		const githubLink = page.getByRole("link", { name: /github/i });
+		const githubLink = page.getByRole("link", { name: "GitHub", exact: true });
 		await expect.element(githubLink).toBeInTheDocument();
 
 		// Invalid links should not render
-		const twitterLink = page.getByRole("link", { name: /twitter/i });
-		await expect.element(twitterLink).not.toBeInTheDocument();
+		const blueskyLink = page.getByRole("link", { name: "Bluesky", exact: true });
+		await expect.element(blueskyLink).not.toBeInTheDocument();
+
+		// Verify that only the valid GitHub link is rendered (entry with null name excluded)
+		const allLinks = page.getByRole("link").all();
+		const socialLinks = allLinks.filter((link) => {
+			const href = link.element().getAttribute("href");
+			return href && !href.includes("/feed.xml");
+		});
+		expect(socialLinks).toHaveLength(1);
+		expect(socialLinks[0].element().getAttribute("href")).toBe("https://github.com/test");
 	});
 });
