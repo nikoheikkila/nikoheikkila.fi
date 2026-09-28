@@ -5,5 +5,6 @@ export default defineConfig({
 		name: "unit",
 		include: ["src/__tests__/unit/**/*.test.{ts,tsx}", "infra/site/*.test.ts"],
 		environment: "node",
+		setupFiles: ["./src/__tests__/matchers.unit.ts"],
 	},
 });

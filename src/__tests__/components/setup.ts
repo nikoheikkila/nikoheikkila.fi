@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import React from "react";
-import "./a11y";
+import "../matchers";
 
 // Declare types for Gatsby globals
 declare global {
