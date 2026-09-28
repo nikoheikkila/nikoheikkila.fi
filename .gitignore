@@ -61,6 +61,7 @@ drafts
 /src/__tests__/feature/screenshots/
 /src/__tests__/components/__screenshots__
 /.vitest-attachments
+/.vitest/
 
 # Obsidian
 content/.obsidian/workspace*
