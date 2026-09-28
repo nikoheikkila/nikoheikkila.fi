@@ -103,7 +103,7 @@
 		"character-entities": "2.0.2",
 		"character-entities-html4": "2.1.0",
 		"character-entities-legacy": "3.0.0",
-		"playwright-core": "1.62.1"
+		"playwright-core": "1.63.0"
 	},
 	"trustedDependencies": [
 		"@parcel/watcher",
