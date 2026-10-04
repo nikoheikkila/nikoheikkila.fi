@@ -1,0 +1,37 @@
+name: Renovate Auto-Fix
+
+# Invokes the reusable Claude fix workflow when CI fails on a Renovate pull request.
+# `workflow_run` always executes from the default branch.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  fix:
+    name: Fix Failing Renovate PR
+    # Same-repo Renovate branches only. CI runs triggered by Claude's own pushes
+    # have a different actor, so they never re-enter this workflow.
+    if: >-
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.actor.login == 'renovate[bot]' &&
+      startsWith(github.event.workflow_run.head_branch, 'renovate/') &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      github.event.workflow_run.pull_requests[0] != null
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+      actions: read
+    uses: ./.github/workflows/claude-fix-ci.yml
+    with:
+      run-id: ${{ github.event.workflow_run.id }}
+      pr-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+      head-branch: ${{ github.event.workflow_run.head_branch }}
+      head-sha: ${{ github.event.workflow_run.head_sha }}
+    secrets:
+      claude-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

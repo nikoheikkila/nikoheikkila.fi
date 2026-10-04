@@ -1,0 +1,186 @@
+name: Claude Fix CI
+
+# Reusable workflow: Claude diagnoses a failed CI run, pushes a fix commit to the
+# same branch, and comments on the pull request.
+#
+# ⚠️ SECURITY NOTE
+# This checks out the PR branch and runs its code with write permissions and the
+# Claude secret. Only call it for trusted, same-repository branches.
+
+on:
+  workflow_call:
+    inputs:
+      run-id:
+        description: ID of the failed workflow run
+        type: number
+        required: true
+      pr-number:
+        description: Pull request number
+        type: number
+        required: true
+      head-branch:
+        description: Pull request head branch
+        type: string
+        required: true
+      head-sha:
+        description: Commit SHA that the failed run tested
+        type: string
+        required: true
+    secrets:
+      claude-token:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  fix:
+    name: Fix Failing CI with Claude
+    runs-on: ubuntu-latest
+    concurrency:
+      group: claude-fix-ci-${{ inputs.pr-number }}
+      cancel-in-progress: false
+    permissions:
+      contents: write # Required for Claude to push commits
+      pull-requests: write # Required for Claude to comment on PRs
+      id-token: write # Required for Claude Code OIDC authentication
+      actions: read # Required for reading workflow run logs
+    env:
+      GH_REPO: ${{ github.repository }}
+      RUN_ID: ${{ inputs.run-id }}
+      PR_NUMBER: ${{ inputs.pr-number }}
+      HEAD_BRANCH: ${{ inputs.head-branch }}
+      HEAD_SHA: ${{ inputs.head-sha }}
+    steps:
+      # One attempt per push: skip if the branch moved on (a newer run decides)
+      # or if the latest commit is already Claude's.
+      - name: Check whether a fix attempt is needed
+        id: guard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          read -r current_sha author < <(
+            gh api "repos/${GH_REPO}/commits/${HEAD_BRANCH}" --jq '[.sha, .commit.author.name] | @tsv'
+          )
+          if [[ "$current_sha" != "$HEAD_SHA" ]]; then
+            echo "Branch moved from ${HEAD_SHA} to ${current_sha}; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$author" == "claude[bot]" || "$author" == "claude" ]]; then
+            echo "Head commit is already authored by Claude; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        if: steps.guard.outputs.skip != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.head-sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup environment
+        if: steps.guard.outputs.skip != 'true'
+        uses: ./.github/actions/setup-environment
+
+      # LEFTHOOK=0 stops `bun install` from registering git hooks that would run
+      # the full test suite on Claude's push.
+      - name: Install dependencies
+        if: steps.guard.outputs.skip != 'true'
+        uses: ./.github/actions/install-dependencies
+        env:
+          LEFTHOOK: "0"
+
+      - name: Collect failure context
+        if: steps.guard.outputs.skip != 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "${RUNNER_TEMP}/ci-failure"
+          gh run view "$RUN_ID" --json jobs \
+            --jq '.jobs[] | select(.conclusion == "failure") | "- \(.name): \(.url)"' \
+            > "${RUNNER_TEMP}/ci-failure/jobs.md"
+          gh run view "$RUN_ID" --log-failed > "${RUNNER_TEMP}/ci-failure/failed.log"
+
+      - name: Run Claude Code
+        id: claude
+        if: steps.guard.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@6b082c41935b4c8a3b8b0ef85ba4ba4d9eeb8975 # v1.0.189
+        timeout-minutes: 60
+        env:
+          LEFTHOOK: "0"
+        with:
+          claude_code_oauth_token: ${{ secrets.claude-token }}
+          allowed_bots: renovate[bot]
+          additional_permissions: |
+            actions: read
+          claude_args: |
+            --allowedTools "Read,Edit,Write,Glob,Grep,Bash"
+            --json-schema '{
+              "type": "object",
+              "properties": {
+                "fixed": {"type": "boolean"},
+                "root_cause": {"type": "string"},
+                "summary": {"type": "string"},
+                "verification": {"type": "string"},
+                "commit_sha": {"type": "string"}
+              },
+              "required": ["fixed", "root_cause", "summary", "commit_sha"]
+            }'
+          prompt: |
+            CI failed on pull request #${{ inputs.pr-number }} (branch `${{ inputs.head-branch }}`).
+            Failed run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ inputs.run-id }}
+            Failed jobs: ${{ runner.temp }}/ci-failure/jobs.md
+            Failed job logs (may be large; search them rather than reading whole): ${{ runner.temp }}/ci-failure/failed.log
+
+            1. Run `task -a` to list all tasks. Find the root cause from the logs and reproduce
+               it with the matching task.
+            2. Make the smallest fix. Prefer adapting code to the updated dependency over
+               pinning or downgrading it. Follow CLAUDE.md. Never edit `content/`, `infra/`,
+               `.github/workflows/`, or generated files.
+            3. If the failure is infrastructural, flaky, or secret-related (deploy, Lighthouse,
+               network), or cannot be fixed safely, make no commit and return `fixed: false`.
+            4. Otherwise verify the fix, make one conventional commit (header up to 100 chars,
+               e.g. `fix(deps): adapt to <package> <version>`) and run
+               `git push origin HEAD:${{ inputs.head-branch }}`. Never force-push or rebase.
+            5. Return the structured result; `commit_sha` is the full 40-character SHA of the
+               commit you pushed, or an empty string if you made none. Do not comment on the
+               PR yourself.
+
+      - name: Comment on pull request
+        if: ${{ !cancelled() && steps.guard.outputs.skip != 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESULT: ${{ steps.claude.outputs.structured_output }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Claude's own report is not proof: the push may have been rejected.
+          # Pushed means: the reported commit descends from the failed commit and is
+          # reachable from the branch. Any API failure counts as not pushed.
+          valid=false
+          if [[ -n "$RESULT" ]] && jq -e 'type == "object"' <<< "$RESULT" > /dev/null 2>&1; then
+            valid=true
+          fi
+          pushed=false
+          commit_sha=$(jq -r '.commit_sha // empty' <<< "${RESULT:-null}" 2>/dev/null || true)
+          if [[ "$commit_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            descends=$(gh api "repos/${GH_REPO}/compare/${HEAD_SHA}...${commit_sha}" --jq '.status' 2>/dev/null || true)
+            on_branch=$(gh api "repos/${GH_REPO}/compare/${commit_sha}...${HEAD_BRANCH}" --jq '.status' 2>/dev/null || true)
+            if [[ "$descends" == "ahead" && ( "$on_branch" == "ahead" || "$on_branch" == "identical" ) ]]; then
+              pushed=true
+            fi
+          fi
+          {
+            if [[ "$valid" == "true" ]] && jq -e '.fixed == true' <<< "$RESULT" > /dev/null && [[ "$pushed" == "true" ]]; then
+              jq -r '"🤖 **Claude pushed a fix** (`\(.commit_sha // "unknown")`)\n\n**Root cause:** \(.root_cause)\n\n**Fix:** \(.summary)\n\n**Verification:** \(.verification // "n/a")"' <<< "$RESULT"
+            elif [[ "$valid" == "true" ]]; then
+              [[ "$pushed" == "true" ]] || echo "No new commit reached the branch."
+              jq -r '"🤖 **Claude could not fix this automatically.**\n\n**Root cause:** \(.root_cause)\n\n\(.summary)"' <<< "$RESULT"
+            else
+              echo "🤖 **Claude could not complete the fix attempt.** See the workflow run for details."
+            fi
+            printf '\n[Workflow run](%s)\n' "$RUN_URL"
+          } > "${RUNNER_TEMP}/comment.md"
+          gh pr comment "$PR_NUMBER" --body-file "${RUNNER_TEMP}/comment.md"
