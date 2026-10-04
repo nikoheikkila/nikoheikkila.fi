@@ -1,3 +1,6 @@
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
@@ -10,7 +13,11 @@ export default defineConfig({
 		setupFiles: ["./src/__tests__/components/setup.ts"],
 		browser: {
 			enabled: true,
-			provider: playwright(),
+			provider: playwright({
+				// Workaround for macOS 27 TCC blocking Firefox's shared app-data dir, remove once on Firefox 158+.
+				// https://github.com/microsoft/playwright/issues/42768
+				launchOptions: { env: { ...process.env, CFFIXED_USER_HOME: mkdtempSync(join(tmpdir(), "firefox-")) } },
+			}),
 			instances: [
 				{ browser: "chromium", name: "Component Tests (Chromium)" },
 				{ browser: "firefox", name: "Component Tests (Firefox)" },
