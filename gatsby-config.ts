@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from "gatsby";
-import { disallowedCrawlers, generatePolicies } from "./src/utils/robots";
 import { rssQuery, serialize } from "./src/utils/rss";
 import { socialLinks } from "./src/utils/social";
 
@@ -81,13 +80,6 @@ export const createConfig = (environment: string | undefined): GatsbyConfig => (
 				theme_color: "#663399",
 			},
 			resolve: "gatsby-plugin-manifest",
-		},
-		{
-			options: {
-				output: "/robots.txt",
-				policy: generatePolicies(disallowedCrawlers),
-			},
-			resolve: "gatsby-plugin-robots-txt",
 		},
 		{
 			options: {

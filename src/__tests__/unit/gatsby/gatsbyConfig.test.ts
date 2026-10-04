@@ -1,7 +1,6 @@
 import type { GatsbyConfig, PluginRef } from "gatsby";
 import { describe, expect, test } from "vitest";
 import config, { createConfig } from "../../../../gatsby-config";
-import { disallowedCrawlers, generatePolicies } from "../../../utils/robots";
 import { rssQuery, serialize } from "../../../utils/rss";
 import { socialLinks } from "../../../utils/social";
 
@@ -53,13 +52,6 @@ describe("createConfig", () => {
 			expect(feeds).toStrictEqual([
 				expect.objectContaining({ match: "^/blog/", output: "/rss.xml", query: rssQuery, serialize }),
 			]);
-		});
-
-		test("disallows every known AI crawler in robots.txt", () => {
-			expect(optionsOf(createConfig("production"), "gatsby-plugin-robots-txt")).toStrictEqual({
-				output: "/robots.txt",
-				policy: generatePolicies(disallowedCrawlers),
-			});
 		});
 
 		test("sources content from the content directory", () => {
