@@ -1,23 +1,4 @@
-export const searchQuery = `{
-  allMarkdownRemark(
-    sort: {frontmatter: {date: DESC}}
-    filter: {frontmatter: {type: {ne: "page"}}}
-  ) {
-    nodes {
-      id
-      fields {
-        slug
-      }
-      excerpt(pruneLength: 200)
-      frontmatter {
-        title
-        date
-        author
-        excerpt
-      }
-    }
-  }
-}`;
+import { Index } from "flexsearch";
 
 interface SearchNode {
 	id: string;
@@ -31,15 +12,13 @@ interface SearchNode {
 	};
 }
 
-interface SearchQueryResult {
-	data: {
-		allMarkdownRemark: {
-			nodes: SearchNode[];
-		};
+export interface SearchData {
+	allMarkdownRemark: {
+		nodes: SearchNode[];
 	};
 }
 
-export const searchNormalizer = ({ data }: SearchQueryResult) =>
+export const searchNormalizer = ({ data }: { data: SearchData }) =>
 	data.allMarkdownRemark.nodes.map((node) => ({
 		id: node.id,
 		slug: node.fields.slug,
@@ -47,3 +26,13 @@ export const searchNormalizer = ({ data }: SearchQueryResult) =>
 		excerpt: node.frontmatter.excerpt || node.excerpt,
 		date: node.frontmatter.date,
 	}));
+
+export type SearchDoc = ReturnType<typeof searchNormalizer>[number];
+
+export const createSearchIndex = (documents: SearchDoc[]) => {
+	const index = new Index({ tokenize: "forward" });
+	documents.forEach(({ title, excerpt }, id) => {
+		index.add(id, `${title} ${excerpt}`);
+	});
+	return (query: string): SearchDoc[] => index.search(query).map((id) => documents[Number(id)]);
+};

@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { useCallback, useState } from "react";
-import { useFlexSearch } from "react-use-flexsearch";
+import { useCallback, useMemo, useState } from "react";
+import { createSearchIndex, type SearchData, searchNormalizer } from "..";
 import type { SearchResultData } from "./searchResult";
 
 interface SearchState {
@@ -9,23 +9,34 @@ interface SearchState {
 }
 
 export const useSearch = () => {
-	const { localSearchPosts } = useStaticQuery<{
-		localSearchPosts: { index: string; store: Record<string, SearchResultData> };
-	}>(graphql`
+	const data = useStaticQuery<SearchData>(graphql`
 		query SearchIndex {
-			localSearchPosts {
-				index
-				store
+			allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { type: { ne: "page" } } }) {
+				nodes {
+					id
+					fields {
+						slug
+					}
+					excerpt(pruneLength: 200)
+					frontmatter {
+						title
+						date
+						author
+						excerpt
+					}
+				}
 			}
 		}
 	`);
+
+	const search = useMemo(() => createSearchIndex(searchNormalizer({ data })), [data]);
 
 	const [state, setState] = useState<SearchState>({
 		query: "",
 		isModalOpen: false,
 	});
 
-	const results = useFlexSearch(state.query, localSearchPosts.index, localSearchPosts.store) as SearchResultData[];
+	const results: SearchResultData[] = useMemo(() => search(state.query), [search, state.query]);
 
 	const setQuery = useCallback((query: string) => {
 		setState((prev) => ({ ...prev, query }));

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { searchNormalizer, searchQuery } from "../../search";
+import { createSearchIndex, searchNormalizer } from "../../search";
 
 interface NodeInit {
 	id?: string;
@@ -86,10 +86,43 @@ describe("searchNormalizer", () => {
 	});
 });
 
-describe("searchQuery", () => {
-	test("requests the fields the normalizer reads, excluding pages", () => {
-		expect(searchQuery).toContain("allMarkdownRemark");
-		expect(searchQuery).toContain('type: {ne: "page"}');
-		expect(searchQuery).toContain("pruneLength: 200");
+describe("createSearchIndex", () => {
+	test("finds a document by a title prefix", () => {
+		const [react, vitest] = normalize([
+			node({ id: "1", title: "Understanding React", excerpt: "Components" }),
+			node({ id: "2", title: "Testing with Vitest", excerpt: "Assertions" }),
+		]);
+		const search = createSearchIndex([react, vitest]);
+
+		const results = search("Underst");
+
+		expect(results).toStrictEqual([react]);
+	});
+
+	test("finds a document by a term present only in the excerpt", () => {
+		const [react, vitest] = normalize([
+			node({ id: "1", title: "Understanding React", excerpt: "Components" }),
+			node({ id: "2", title: "Testing with Vitest", excerpt: "Assertions" }),
+		]);
+		const search = createSearchIndex([react, vitest]);
+
+		const results = search("Assertions");
+
+		expect(results).toStrictEqual([vitest]);
+	});
+
+	test("returns no results when nothing matches", () => {
+		const search = createSearchIndex(normalize([node({ title: "Understanding React", excerpt: "Components" })]));
+
+		expect(search("Kubernetes")).toStrictEqual([]);
+	});
+
+	test.each([
+		["empty", ""],
+		["whitespace-only", "   "],
+	])("returns no results for an %s query", (_description, query) => {
+		const search = createSearchIndex(normalize([node({ title: "Understanding React", excerpt: "Components" })]));
+
+		expect(search(query)).toStrictEqual([]);
 	});
 });
