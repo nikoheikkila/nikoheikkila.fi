@@ -1,6 +1,6 @@
 ---
 name: troubleshooting
-description: Known gotchas for GraphQL/type generation, GatsbyImage+flexbox, FlexSearch version pinning, dev server issues, and CI/deployment surprises (silently skipped PR workflows, stripped ETag headers, Terraform quirks). Load when debugging a build, layout, dev server, or CI/deployment problem in this repo.
+description: Known gotchas for GraphQL/type generation, GatsbyImage+flexbox, FlexSearch version constraints, dev server issues, and CI/deployment surprises (silently skipped PR workflows, stripped ETag headers, Terraform quirks). Load when debugging a build, layout, dev server, or CI/deployment problem in this repo.
 ---
 
 ### Common Build Issues
@@ -13,7 +13,7 @@ description: Known gotchas for GraphQL/type generation, GatsbyImage+flexbox, Fle
 ### Image & Layout Issues
 
 -   **GatsbyImage + flexbox**: Do not use `display: flex` on elements wrapping `GatsbyImage`. It breaks the visibility/loading mechanism (image stays `visibility: hidden`). Use `text-align: center` instead — constrained-layout `GatsbyImage` renders as `inline-block`.
--   **FlexSearch version**: `gatsby-plugin-local-search` and `react-use-flexsearch` require FlexSearch 0.6.x API (`FlexSearch.create()`, `.import()`, `.export()`). FlexSearch 0.8.x has an incompatible API. Pin to `flexsearch@0.6.32`.
+-   **FlexSearch version**: `gatsby-plugin-local-search` and `react-use-flexsearch` require FlexSearch 0.6.x API (`FlexSearch.create()`, `.import()`, `.export()`). FlexSearch 0.8.x has an incompatible API. Do not add `flexsearch` as a direct dependency; the plugins resolve their own `0.6.32`.
 
 ### Development Server Issues
 
