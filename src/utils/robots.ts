@@ -1,7 +1,9 @@
+import { EOL } from "node:os";
+
 /**
  * @see https://github.com/itgalaxy/generate-robotstxt#usage
  */
-interface Policy {
+export interface Policy {
 	userAgent: string;
 	disallow: string;
 	allow?: string;
@@ -118,3 +120,11 @@ export const generatePolicies = (agents: Set<string>): Policy[] => {
 		userAgent: agent,
 	}));
 };
+
+export const formatRobotsTxt = (policies: Policy[], siteUrl: string): string => {
+	const groups = policies.map((policy) => `User-agent: ${policy.userAgent}${EOL}Disallow: ${policy.disallow}`);
+	return `${groups.join(`${EOL}${EOL}`)}${EOL}Sitemap: ${siteUrl}/sitemap-index.xml${EOL}Host: ${siteUrl}${EOL}`;
+};
+
+export const buildRobotsTxt = (siteUrl: string): string =>
+	formatRobotsTxt(generatePolicies(disallowedCrawlers), siteUrl);

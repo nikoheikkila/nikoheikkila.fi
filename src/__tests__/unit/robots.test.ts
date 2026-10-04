@@ -1,5 +1,6 @@
+import { EOL } from "node:os";
 import { describe, expect, test } from "vitest";
-import { generatePolicies } from "../../utils/robots";
+import { formatRobotsTxt, generatePolicies } from "../../utils/robots";
 
 describe("Robots", () => {
 	test("returns empty policy list when agent data missing", () => {
@@ -32,5 +33,24 @@ describe("Robots", () => {
 				userAgent: "ClaudeBot",
 			},
 		]);
+	});
+
+	test("formats policies and sitemap into robots.txt content", () => {
+		const policies = generatePolicies(new Set(["A", "B"]));
+
+		const result = formatRobotsTxt(policies, "https://nikoheikkila.fi");
+
+		expect(result).toBe(
+			[
+				"User-agent: A",
+				"Disallow: /",
+				"",
+				"User-agent: B",
+				"Disallow: /",
+				"Sitemap: https://nikoheikkila.fi/sitemap-index.xml",
+				"Host: https://nikoheikkila.fi",
+				"",
+			].join(EOL),
+		);
 	});
 });
