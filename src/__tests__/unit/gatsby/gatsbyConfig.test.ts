@@ -1,7 +1,6 @@
 import type { GatsbyConfig, PluginRef } from "gatsby";
 import { describe, expect, test } from "vitest";
 import config, { createConfig } from "../../../../gatsby-config";
-import { searchNormalizer, searchQuery } from "../../../search";
 import { disallowedCrawlers, generatePolicies } from "../../../utils/robots";
 import { rssQuery, serialize } from "../../../utils/rss";
 import { socialLinks } from "../../../utils/social";
@@ -44,13 +43,8 @@ describe("createConfig", () => {
 	});
 
 	describe("content pipeline wiring", () => {
-		test("indexes the local search engine with the shared query and normalizer", () => {
-			expect(optionsOf(createConfig("production"), "gatsby-plugin-local-search")).toMatchObject({
-				engine: "flexsearch",
-				normalizer: searchNormalizer,
-				query: searchQuery,
-				ref: "id",
-			});
+		test("does not register the local search plugin", () => {
+			expect(names(createConfig("production"))).not.toContain("gatsby-plugin-local-search");
 		});
 
 		test("builds the RSS feed from the shared query and serializer", () => {

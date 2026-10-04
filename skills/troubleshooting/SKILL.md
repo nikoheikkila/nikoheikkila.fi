@@ -13,7 +13,7 @@ description: Known gotchas for GraphQL/type generation, GatsbyImage+flexbox, Fle
 ### Image & Layout Issues
 
 -   **GatsbyImage + flexbox**: Do not use `display: flex` on elements wrapping `GatsbyImage`. It breaks the visibility/loading mechanism (image stays `visibility: hidden`). Use `text-align: center` instead — constrained-layout `GatsbyImage` renders as `inline-block`.
--   **FlexSearch version**: `gatsby-plugin-local-search` and `react-use-flexsearch` require FlexSearch 0.6.x API (`FlexSearch.create()`, `.import()`, `.export()`). FlexSearch 0.8.x has an incompatible API. Do not add `flexsearch` as a direct dependency; the plugins resolve their own `0.6.32`.
+-   **FlexSearch version**: Site search uses FlexSearch 0.8 directly (`createSearchIndex` in `src/search/index.ts`, built client-side in `useSearch`). `gatsby-plugin-local-search` and `react-use-flexsearch` (which required the 0.6.x API) are no longer used — do not reintroduce them.
 
 ### Development Server Issues
 
