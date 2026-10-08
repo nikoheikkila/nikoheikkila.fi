@@ -63,8 +63,8 @@
 		"@types/react-dom": "19.3.0",
 		"@types/react-syntax-highlighter": "15.5.13",
 		"@vitejs/plugin-react": "6.1.1",
-		"@vitest/browser-playwright": "5.0.2",
-		"@vitest/coverage-v8": "5.0.2",
+		"@vitest/browser-playwright": "5.0.3",
+		"@vitest/coverage-v8": "5.0.3",
 		"axe-core": "4.13.0",
 		"happy-dom": "20.14.5",
 		"inquirer": "14.2.2",
@@ -72,7 +72,7 @@
 		"lighthouse": "13.5.0",
 		"snyk": "1.1307.4",
 		"typescript": "7.0.2",
-		"vitest": "5.0.2",
+		"vitest": "5.0.3",
 		"vitest-browser-react": "2.3.0"
 	},
 	"engines": {
