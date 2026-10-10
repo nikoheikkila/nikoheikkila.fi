@@ -32,7 +32,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4
         with:
-          terraform_version: 1.13.5
+          terraform_version: v1.16.5
 
       - name: Cache Terraform providers
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
@@ -89,7 +89,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4
         with:
-          terraform_version: 1.13.5
+          terraform_version: v1.16.5
 
       - name: Cache Terraform providers
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
