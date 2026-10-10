@@ -67,7 +67,7 @@
 		"@vitest/coverage-v8": "5.0.3",
 		"axe-core": "4.13.0",
 		"happy-dom": "20.14.5",
-		"inquirer": "14.2.2",
+		"inquirer": "14.2.3",
 		"lefthook": "2.1.16",
 		"lighthouse": "13.5.0",
 		"snyk": "1.1307.4",
