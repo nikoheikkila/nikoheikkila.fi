@@ -107,7 +107,7 @@ jobs:
       - name: Run Claude Code
         id: claude
         if: steps.guard.outputs.skip != 'true'
-        uses: anthropics/claude-code-action@6b082c41935b4c8a3b8b0ef85ba4ba4d9eeb8975 # v1.0.189
+        uses: anthropics/claude-code-action@1d6de8cb0c237e7c15e9e1bdf973826ebae490cc # v1.0.248
         timeout-minutes: 60
         env:
           LEFTHOOK: "0"
