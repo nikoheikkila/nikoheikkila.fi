@@ -41,7 +41,7 @@
         "@actions/core": "3.0.1",
         "@axe-core/playwright": "4.13.0",
         "@biomejs/biome": "2.5.15",
-        "@cloudflare/workers-types": "5.20260928.1",
+        "@cloudflare/workers-types": "5.20261008.1",
         "@commitlint/cli": "21.2.3",
         "@commitlint/config-conventional": "21.2.3",
         "@happy-dom/global-registrator": "20.14.5",
@@ -387,7 +387,7 @@
 
     "@builder.io/partytown": ["@builder.io/partytown@0.7.6", "", { "bin": { "partytown": "bin/partytown.cjs" } }, "sha512-snXIGNiZpqjno3XYQN2lbBB+05hsQR/LSttbtIW1c0gmZ7Kh/DIo0YrxlDxCDulAMFPFM8J+4voLwvYepSj3sw=="],
 
-    "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20260928.1", "", {}, "sha512-B/El15v5HqZyuyfR7Z0W443iA6Ml4nZjaR8rgHyW612r8reO+1JaDKtNbP3CPdzVIM2egp98by3NlpMm5pKbcg=="],
+    "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20261008.1", "", {}, "sha512-Ya6zuPTAQPka+Mn5rMI5f8Zl5bihhm+ytqhHiMzMgpLDGrD24A1k/Z/JPSBIqhIC0bx0AclgYyoZoRs6UWVlmw=="],
 
     "@commitlint/cli": ["@commitlint/cli@21.2.3", "", { "dependencies": { "@commitlint/config-conventional": "^21.2.3", "@commitlint/format": "^21.2.3", "@commitlint/lint": "^21.2.3", "@commitlint/load": "^21.2.3", "@commitlint/read": "^21.2.3", "@commitlint/types": "^21.2.3", "tinyexec": "^1.0.0", "yargs": "^18.0.0" }, "bin": { "commitlint": "cli.js" } }, "sha512-5yOX6IRjcrIReCxpyAd04hgI/yhUMpVBJ/ouwFV0wk9yx5+fYRDWZWJ5h55Tbedgfol+5m2mU5nqzbB8g3v0vQ=="],
 
