@@ -1,0 +1,23 @@
+{
+	"lint-checker": {
+		"PostToolUse": [
+			{
+				"matcher": "write_to_file|replace_file_content",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "./scripts/lint.sh"
+					}
+				]
+			}
+		]
+	},
+	"test-checker": {
+		"Stop": [
+			{
+				"type": "command",
+				"command": "./scripts/test.sh"
+			}
+		]
+	}
+}

@@ -8,6 +8,7 @@ description: Instructions for using Playwright to test the blog. Use this when y
 - **Location**: Playwright tests are located under `src/__tests__/feature/`
 - **Strategy**: Tests primary user flows and critical functionality
 - **Configuration**: `playwright.config.ts` with local/CI environments
+- **Specialized Agents**: Subagent workflows for planning, generating, and healing tests are in [references/agents.md](./references/agents.md)
 
 ## Test Design Guidelines
 
