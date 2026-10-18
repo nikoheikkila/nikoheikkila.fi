@@ -30,6 +30,7 @@
 		"gatsby-source-filesystem": "5.16.0",
 		"gatsby-transformer-remark": "6.16.0",
 		"gatsby-transformer-sharp": "5.16.0",
+		"pele": "1.6.0",
 		"react": "19.3.0",
 		"react-dom": "19.3.0",
 		"react-markdown": "10.1.0",

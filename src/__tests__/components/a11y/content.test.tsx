@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import { render } from "vitest-browser-react";
 import React from "react";
 import Content from "../../../components/post/content";
+import { renderMermaid } from "../../../mermaid/index";
 
 describe("Content Accessibility", () => {
 	test("passes axe scan for simple markdown", async () => {
@@ -33,5 +34,28 @@ describe("Content Accessibility", () => {
 		await expect(container).toHaveNoA11yViolations({
 			rules: { "color-contrast": { enabled: false } },
 		});
+	});
+
+	test("passes axe scan for a post with a flowchart and a sequence diagram", async () => {
+		const markdown = [
+			"```mermaid",
+			"flowchart LR",
+			"  accTitle: Build pipeline",
+			"  accDescr: A commit triggers a build, which then deploys.",
+			"  A[Commit] --> B[Build] --> C[Deploy]",
+			"```",
+			"",
+			"```mermaid",
+			"sequenceDiagram",
+			"  accTitle: Login handshake",
+			"  accDescr: The client sends credentials and the server replies with a token.",
+			"  Client->>Server: Credentials",
+			"  Server-->>Client: Token",
+			"```",
+		].join("\n");
+		const output = renderMermaid(markdown, { filePath: "content/blog/mermaid-a11y-test.md", lineOffset: 0 });
+		const { container } = await render(<Content content={output} />);
+
+		await expect(container).toHaveNoA11yViolations();
 	});
 });

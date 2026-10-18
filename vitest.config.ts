@@ -21,6 +21,7 @@ export default defineConfig({
 				"gatsby-config.ts",
 				"src/utils/**/*.ts",
 				"src/search/index.ts",
+				"src/mermaid/index.ts",
 				"src/components/layout/socialIcons.ts",
 				"infra/site/worker.ts",
 			],

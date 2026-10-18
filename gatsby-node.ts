@@ -4,6 +4,7 @@ import onCreatePages from "./gatsby/onCreatePages";
 import onCreateNodes from "./gatsby/onCreateNodes";
 import onCreateWebpackConfigHook from "./gatsby/onCreateWebpackConfig";
 import onPostBuildHook from "./gatsby/onPostBuild";
+import onCreateResolvers from "./gatsby/onCreateResolvers";
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = onCreateSchemaCustomization;
 
@@ -14,3 +15,5 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = onCreateNodes;
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = onCreateWebpackConfigHook;
 
 export const onPostBuild: GatsbyNode["onPostBuild"] = onPostBuildHook;
+
+export const createResolvers: GatsbyNode["createResolvers"] = onCreateResolvers;

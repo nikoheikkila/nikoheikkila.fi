@@ -1,6 +1,27 @@
 @use "../../styles/variables";
 
 .content {
+	--pele-font: "Synonym", #{variables.$fontFamily};
+	--pele-bg: #{variables.$darkBg};
+	--pele-fg: #{variables.$darkFg};
+	--pele-muted: #{variables.$darkSecondaryFg};
+	--pele-line: #{variables.$teal};
+	--pele-surface: #{variables.$darkSecondaryBg};
+	--pele-surface-alt: #{variables.$almostBlack};
+	--pele-border: #{variables.$teal};
+	--pele-accent: #{variables.$tealText};
+
+	@media (prefers-color-scheme: light) {
+		--pele-bg: #{variables.$lightBg};
+		--pele-fg: #{variables.$lightFg};
+		--pele-muted: #{variables.$lightSecondaryFg};
+		--pele-line: #{variables.$lightBlue};
+		--pele-surface: #{variables.$lightSecondaryBg};
+		--pele-surface-alt: #{variables.$lightGray};
+		--pele-border: #{variables.$lightBlue};
+		--pele-accent: #{variables.$lightTeal};
+	}
+
 	h1,
 	h2,
 	h3,

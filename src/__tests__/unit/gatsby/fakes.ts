@@ -1,4 +1,5 @@
 import type { Actions, Node, NodeInput, Page, SliceInput } from "gatsby";
+import type { MarkdownResolvers } from "../../../../gatsby/onCreateResolvers";
 
 /**
  * Hand-written recording fakes for the Gatsby actions and reporter members the
@@ -59,6 +60,14 @@ export class SchemaActions {
 
 	public readonly createTypes: Actions["createTypes"] = (types): void => {
 		this.types.push(types);
+	};
+}
+
+export class ResolverActions {
+	public readonly resolvers: MarkdownResolvers[] = [];
+
+	public readonly createResolvers = (resolvers: MarkdownResolvers): void => {
+		this.resolvers.push(resolvers);
 	};
 }
 

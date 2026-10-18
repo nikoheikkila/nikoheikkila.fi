@@ -25,7 +25,7 @@ type PostProps = PageProps<Queries.PostQuery, PageContext, LocationState>;
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 	const slug = data.markdownRemark?.fields?.slug ?? "";
 	const hero = data.markdownRemark?.hero;
-	const body = data.markdownRemark?.rawMarkdownBody ?? "";
+	const body = data.markdownRemark?.renderedBody ?? "";
 	const timeToRead = data.markdownRemark?.timeToRead ?? 0;
 
 	const author = data.markdownRemark?.frontmatter?.author ?? "";
@@ -93,7 +93,7 @@ export const pageQuery = graphql`
 				slug
 			}
 			excerpt(pruneLength: 160)
-			rawMarkdownBody
+			renderedBody
 			timeToRead
 			hero {
 				childImageSharp {
