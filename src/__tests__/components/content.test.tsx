@@ -3,6 +3,7 @@ import { render } from "vitest-browser-react";
 import { page } from "vitest/browser";
 import React from "react";
 import Content from "../../components/post/content";
+import { renderMermaid } from "../../mermaid";
 
 describe("Content Component", () => {
 	test("renders simple markdown content", async () => {
@@ -227,5 +228,29 @@ def hello():
 
 		const quoteText = page.getByText(/Quote with/);
 		await expect.element(quoteText).toBeInTheDocument();
+	});
+});
+
+describe("Mermaid diagrams", () => {
+	test("renders a mermaid block as an inline diagram named by its accTitle", async () => {
+		const title = "Deployment pipeline";
+		const markdown = [
+			"```mermaid",
+			"flowchart LR",
+			`  accTitle: ${title}`,
+			"  accDescr: Code moves from commit to production",
+			"  A[Commit] --> B[Production]",
+			"```",
+			"",
+		].join("\n");
+		const output = renderMermaid(markdown, { filePath: "content/blog/mermaid-test.md", lineOffset: 0 });
+
+		await render(<Content content={output} />);
+
+		await expect.element(page.getByRole("img", { name: title })).toBeVisible();
+		await expect.element(page.getByRole("article")).toBeInTheDocument();
+		await expect.element(page.getByRole("article").getByRole("region")).not.toBeInTheDocument();
+		await expect.element(page.getByText("flowchart LR")).not.toBeInTheDocument();
+		await expect.element(page.getByText("accTitle:")).not.toBeInTheDocument();
 	});
 });

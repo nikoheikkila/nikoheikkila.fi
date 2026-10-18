@@ -1,6 +1,35 @@
 import { describe, expect, test, vi } from "vitest";
 import { renderMermaid } from "../../mermaid";
 
+expect.extend({
+	toHaveNamedImageRootSvg(received: string) {
+		const rootTag = received.match(/<svg\b[^>]*>/)?.[0] ?? "";
+		const problems = [
+			rootTag.includes('role="img"') ? "" : 'root <svg> lacks role="img"',
+			rootTag.includes("graphics-document") ? "root <svg> still has role graphics-document" : "",
+			rootTag.includes("aria-labelledby=") ? "" : "root <svg> lacks aria-labelledby",
+			rootTag.includes("aria-describedby=") ? "" : "root <svg> lacks aria-describedby",
+		].filter((problem) => problem !== "");
+
+		return {
+			pass: problems.length === 0,
+			message: () =>
+				problems.length === 0
+					? `expected root <svg> not to be a named image, got: ${rootTag}`
+					: `${problems.join("; ")}; root tag: ${rootTag}`,
+		};
+	},
+});
+
+declare module "vitest" {
+	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
+		toHaveNamedImageRootSvg(): void;
+	}
+	interface AsymmetricMatchersContaining {
+		toHaveNamedImageRootSvg(): void;
+	}
+}
+
 const fence = "```";
 
 const post = (...diagram: string[]) =>
@@ -28,6 +57,33 @@ describe("renderMermaid", () => {
 		expect(output).toMatch(/<title[^>]*>Login flow<\/title>/);
 		expect(output).not.toContain(`${fence}mermaid`);
 	});
+
+	test.each([
+		["flowchart", loginDiagram, "Login flow", "How a reader signs in"],
+		[
+			"sequenceDiagram",
+			[
+				"sequenceDiagram",
+				"  accTitle: Login sequence",
+				"  accDescr: The messages exchanged when a reader signs in",
+				"  Reader->>Site: Sign in",
+				"  Site-->>Reader: Welcome back",
+			],
+			"Login sequence",
+			"The messages exchanged when a reader signs in",
+		],
+	])(
+		"renders a %s block as a root svg with role img, named by its accTitle and described by its accDescr",
+		(_type, diagram, accTitle, accDescr) => {
+			const body = post(...diagram);
+
+			const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+			expect(output).toHaveNamedImageRootSvg();
+			expect(output).toMatch(new RegExp(`<title[^>]*>${accTitle}</title>`));
+			expect(output).toMatch(new RegExp(`<desc[^>]*>${accDescr}</desc>`));
+		},
+	);
 
 	test("fails the build naming the post file and accTitle when a diagram has no accTitle", () => {
 		const body = post("flowchart TD", "  accDescr: How a reader signs in", "  A[Start] --> B[End]");

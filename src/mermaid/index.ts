@@ -71,7 +71,7 @@ const renderDiagram = (source: Line[], location: RenderMermaidOptions, openerLin
 	requireAttribute(diagram, "accDescr", location.filePath);
 	const renderOptions = { idPrefix: `mermaid-${location.lineOffset + openerLine}`, fontFamily: BODY_FONT_FAMILY };
 	try {
-		return render(diagram, renderOptions).svg;
+		return render(diagram, renderOptions).svg.replace('role="graphics-document document"', 'role="img"');
 	} catch (error) {
 		if (error instanceof PeleError) {
 			throw locatedError(location, openerLine + error.line, error.message);
