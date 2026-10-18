@@ -162,4 +162,75 @@ describe("renderMermaid", () => {
 			vi.resetModules();
 		}
 	});
+
+	test("gives every id across two diagrams in one post a unique value", () => {
+		const body = [
+			"# A post",
+			"",
+			`${fence}mermaid`,
+			"flowchart TD",
+			"  accTitle: Login flow",
+			"  accDescr: How a reader signs in",
+			"  A[Start] --> B[End]",
+			fence,
+			"",
+			`${fence}mermaid`,
+			"flowchart TD",
+			"  accTitle: Logout flow",
+			"  accDescr: How a reader signs out",
+			"  C[Begin] --> D[Finish]",
+			fence,
+		].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		const ids = Array.from(output.matchAll(/\sid="([^"]+)"/g), (match) => match[1]);
+		expect(ids.length).toBeGreaterThan(0);
+		expect(new Set(ids).size).toBe(ids.length);
+	});
+
+	test("labels use the site body font family", () => {
+		const bodyFontFamily = [
+			"&quot;Synonym&quot;",
+			"-apple-system",
+			"BlinkMacSystemFont",
+			"&quot;Segoe UI&quot;",
+			"Roboto",
+			"Helvetica",
+			"Arial",
+			"sans-serif",
+			"&quot;Apple Color Emoji&quot;",
+			"&quot;Segoe UI Emoji&quot;",
+			"&quot;Segoe UI Symbol&quot;",
+		].join(", ");
+		const body = post(...loginDiagram);
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toContain(bodyFontFamily);
+	});
+
+	test("leaves a typescript code block unchanged", () => {
+		const body = ["# A post", "", `${fence}typescript`, "const a: number = 1;", fence, ""].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
+
+	test("leaves a body without code blocks unchanged", () => {
+		const body = "# A post\n\nJust some prose.\n";
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
+
+	test("leaves a block tagged Mermaid, with a capital M, unchanged", () => {
+		const body = [`${fence}Mermaid`, ...loginDiagram, fence].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
 });

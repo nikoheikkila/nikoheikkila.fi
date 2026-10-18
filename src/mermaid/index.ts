@@ -18,6 +18,8 @@ interface Fence {
 
 const FENCE = /^ {0,3}(`{3,}|~{3,})(.*)$/;
 const CLOSING_FENCE = /^ {0,3}(`{3,}|~{3,})[ \t]*$/;
+const BODY_FONT_FAMILY =
+	'"Synonym", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 
 // A final line without "\n" keeps any trailing "\r" in its text, so fence matching strips it explicitly.
 const stripCarriageReturn = (text: string): string => text.replace(/\r$/, "");
@@ -67,8 +69,9 @@ const renderDiagram = (source: Line[], location: RenderMermaidOptions, openerLin
 	}
 	requireAttribute(diagram, "accTitle", location.filePath);
 	requireAttribute(diagram, "accDescr", location.filePath);
+	const renderOptions = { idPrefix: `mermaid-${location.lineOffset + openerLine}`, fontFamily: BODY_FONT_FAMILY };
 	try {
-		return render(diagram).svg;
+		return render(diagram, renderOptions).svg;
 	} catch (error) {
 		if (error instanceof PeleError) {
 			throw locatedError(location, openerLine + error.line, error.message);
