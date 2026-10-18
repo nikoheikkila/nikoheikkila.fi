@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { renderMermaid } from "../../mermaid";
 
 const fence = "```";
@@ -95,8 +95,16 @@ describe("renderMermaid", () => {
 		expect(output).toContain("<svg");
 	});
 
-	test("copies an unclosed mermaid fence through unchanged", () => {
+	test("fails the build naming the post file and line when a mermaid fence is never closed", () => {
 		const body = ["Intro", "", `${fence}mermaid`, ...loginDiagram].join("\n");
+
+		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
+
+		expect(render).toThrow(/^content\/blog\/x\.md:13: /);
+	});
+
+	test("copies an unclosed code fence that is not mermaid through unchanged", () => {
+		const body = ["Intro", "", `${fence}typescript`, "const a = 1;"].join("\n");
 
 		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
@@ -115,5 +123,43 @@ describe("renderMermaid", () => {
 		const output = renderMermaid("", { filePath: "content/blog/x.md", lineOffset: 0 });
 
 		expect(output).toBe("");
+	});
+
+	test("names the post file and file line when Pele rejects a diagram", () => {
+		const body = post("flowchart TD", "  accTitle: Login flow", "  accDescr: How a reader signs in", "  A -->");
+
+		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
+
+		expect(render).toThrow(/^content\/blog\/x\.md:18:/);
+	});
+
+	test("fails the build naming the post file, line and emptiness when a mermaid block has no source", () => {
+		const body = ["Intro", "", `${fence}mermaid`, fence].join("\n");
+
+		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
+
+		expect(render).toThrow(/^content\/blog\/x\.md:13: mermaid diagram is empty$/);
+	});
+
+	test("rethrows an error from Pele that is not a PeleError unchanged", async () => {
+		vi.doMock("pele", () => ({
+			render: () => {
+				throw new Error("boom");
+			},
+			PeleError: class extends Error {},
+		}));
+
+		try {
+			vi.resetModules();
+			const mocked = await import("../../mermaid/index.js");
+			const body = post(...loginDiagram);
+
+			const render = () => mocked.renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+			expect(render).toThrow(/^boom$/);
+		} finally {
+			vi.doUnmock("pele");
+			vi.resetModules();
+		}
 	});
 });

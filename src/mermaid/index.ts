@@ -1,4 +1,4 @@
-import { render } from "pele";
+import { PeleError, render } from "pele";
 
 export interface RenderMermaidOptions {
 	filePath: string;
@@ -57,14 +57,27 @@ const requireAttribute = (diagram: string, attribute: "accTitle" | "accDescr", f
 	}
 };
 
-const renderDiagram = (source: Line[], filePath: string): string => {
+const locatedError = (location: RenderMermaidOptions, bodyLine: number, message: string): Error =>
+	new Error(`${location.filePath}:${location.lineOffset + bodyLine}: ${message}`);
+
+const renderDiagram = (source: Line[], location: RenderMermaidOptions, openerLine: number): string => {
 	const diagram = source.map(({ text }) => stripCarriageReturn(text)).join("\n");
-	requireAttribute(diagram, "accTitle", filePath);
-	requireAttribute(diagram, "accDescr", filePath);
-	return render(diagram).svg;
+	if (diagram.trim() === "") {
+		throw locatedError(location, openerLine, "mermaid diagram is empty");
+	}
+	requireAttribute(diagram, "accTitle", location.filePath);
+	requireAttribute(diagram, "accDescr", location.filePath);
+	try {
+		return render(diagram).svg;
+	} catch (error) {
+		if (error instanceof PeleError) {
+			throw locatedError(location, openerLine + error.line, error.message);
+		}
+		throw error;
+	}
 };
 
-function* segments(lines: Line[], filePath: string): Generator<string> {
+function* segments(lines: Line[], location: RenderMermaidOptions): Generator<string> {
 	let i = 0;
 	while (i < lines.length) {
 		const fence = parseOpeningFence(lines[i].text);
@@ -73,17 +86,21 @@ function* segments(lines: Line[], filePath: string): Generator<string> {
 			i++;
 			continue;
 		}
+		const isDiagram = fence.info === "mermaid";
 		const close = findClosingFence(lines, fence, i + 1);
 		if (close === -1) {
+			if (isDiagram) {
+				throw locatedError(location, i + 1, "mermaid fence is not closed");
+			}
 			yield copy(lines.slice(i));
 			return;
 		}
-		yield fence.info === "mermaid"
-			? renderDiagram(lines.slice(i + 1, close), filePath) + lines[close].end
+		yield isDiagram
+			? renderDiagram(lines.slice(i + 1, close), location, i + 1) + lines[close].end
 			: copy(lines.slice(i, close + 1));
 		i = close + 1;
 	}
 }
 
 export const renderMermaid = (body: string, options: RenderMermaidOptions): string =>
-	Array.from(segments(splitLines(body), options.filePath)).join("");
+	Array.from(segments(splitLines(body), options)).join("");
