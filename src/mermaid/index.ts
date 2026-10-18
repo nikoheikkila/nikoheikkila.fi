@@ -91,10 +91,10 @@ function* segments(lines: Line[], location: RenderMermaidOptions): Generator<str
 		}
 		const isDiagram = fence.info === "mermaid";
 		const close = findClosingFence(lines, fence, i + 1);
+		if (close === -1 && isDiagram) {
+			throw locatedError(location, i + 1, "mermaid fence is not closed");
+		}
 		if (close === -1) {
-			if (isDiagram) {
-				throw locatedError(location, i + 1, "mermaid fence is not closed");
-			}
 			yield copy(lines.slice(i));
 			return;
 		}

@@ -165,6 +165,10 @@ Manual checks:
   diagrams in dark mode, light mode, and at 375 px.
 - **M2 (feed and bundle):** after M1's build, the RSS entry shows the source as code, and
   `grep PeleError public/*.js` finds nothing.
+- **M3 (existing posts):** after M1's build, a handful of existing posts with varied content
+  (code blocks, raw HTML, images, tables) are compared with Playwright MCP against the same
+  pages on production (nikoheikkila.fi). They look the same: the switch from
+  `rawMarkdownBody` to `renderedBody` must not change non-Mermaid markup.
 
 ## 5. Task Decomposition
 
@@ -175,8 +179,8 @@ Manual checks:
   it, `task typegen`, unit test with the existing Gatsby fakes.
 - **T3 Styling and component tests**: Input: T2. Output: `--pele-*` mapping in
   `content.module.scss`, component tests C1–C4.
-- **T4 Example post and verification**: Input: T3. Output: uncommitted example post, M1
-  and M2 done, post-change build duration recorded.
+- **T4 Example post and verification**: Input: T3. Output: uncommitted example post, M1,
+  M2 and M3 done, post-change build duration recorded.
 
 ## Later slices
 
@@ -232,3 +236,5 @@ Manual checks:
 - 2026-10-18 Gate F4: component tests call the module in the browser runner; no hard-coded SVG.
 - 2026-10-18 Module path changed by human: `src/mermaid/index.ts` (domain-based directory); added to coverage include.
 - 2026-10-18 Validation gate passed. Status: ready.
+- 2026-10-18 M3 added (human): manually compare a handful of existing posts with production,
+  because the template switches from `rawMarkdownBody` to `renderedBody`.
