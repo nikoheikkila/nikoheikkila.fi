@@ -26,6 +26,7 @@
         "gatsby-source-filesystem": "5.16.0",
         "gatsby-transformer-remark": "6.16.0",
         "gatsby-transformer-sharp": "5.16.0",
+        "pele": "1.6.0",
         "react": "19.3.0",
         "react-dom": "19.3.0",
         "react-markdown": "10.1.0",
@@ -2696,6 +2697,8 @@
     "pathe": ["pathe@2.0.3", "", {}, "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="],
 
     "peek-readable": ["peek-readable@4.1.0", "", {}, "sha512-ZI3LnwUv5nOGbQzD9c2iDG6toheuXSZP5esSHBjopsXH4dg19soufvpUGA3uohi5anFtGb2lhAVdHzH6R/Evvg=="],
+
+    "pele": ["pele@1.6.0", "", {}, "sha512-VfAiVItsOGlGhvnBfphdT28VCG7mXMZxQNOwAGsCtxI2ztbUsT39MraEOYjsapLxVETkdUZscm0DdotYDQMLdw=="],
 
     "physical-cpu-count": ["physical-cpu-count@2.0.0", "", {}, "sha512-rxJOljMuWtYlvREBmd6TZYanfcPhNUKtGDZBjBBS8WG1dpN2iwPsRJZgQqN/OtJuiQckdRFOfzogqJClTrsi7g=="],
 
