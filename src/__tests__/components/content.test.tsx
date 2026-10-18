@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { page } from "vitest/browser";
 import React from "react";
@@ -252,5 +252,73 @@ describe("Mermaid diagrams", () => {
 		await expect.element(page.getByRole("article").getByRole("region")).not.toBeInTheDocument();
 		await expect.element(page.getByText("flowchart LR")).not.toBeInTheDocument();
 		await expect.element(page.getByText("accTitle:")).not.toBeInTheDocument();
+	});
+
+	describe("narrow viewport", () => {
+		let originalWidth = 0;
+		let originalHeight = 0;
+
+		beforeEach(() => {
+			originalWidth = window.innerWidth;
+			originalHeight = window.innerHeight;
+		});
+
+		afterEach(async () => {
+			await page.viewport(originalWidth, originalHeight);
+		});
+
+		test("fits a wide diagram within the article at a 375 px viewport without horizontal page scroll", async () => {
+			const title = "Wide deployment pipeline";
+			const markdown = [
+				"```mermaid",
+				"flowchart LR",
+				`  accTitle: ${title}`,
+				"  accDescr: Code moves through many stages from commit to production",
+				"  A[Commit] --> B[Build] --> C[Lint] --> D[Unit tests] --> E[Package] --> F[Staging] --> G[Acceptance tests] --> H[Production]",
+				"```",
+				"",
+			].join("\n");
+			const output = renderMermaid(markdown, { filePath: "content/blog/mermaid-narrow-test.md", lineOffset: 0 });
+
+			await page.viewport(375, 667);
+			expect(window.innerWidth).toBe(375);
+			await render(<Content content={output} />);
+
+			const diagram = page.getByRole("img", { name: title });
+			await expect.element(diagram).toBeVisible();
+
+			const diagramWidth = diagram.element().getBoundingClientRect().width;
+			const articleWidth = page.getByRole("article").element().getBoundingClientRect().width;
+
+			expect(diagramWidth).toBeLessThanOrEqual(articleWidth);
+			expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(document.documentElement.clientWidth);
+		});
+	});
+
+	test("sets diagram labels in the site body font (specs/mermaid-diagrams.md: Diagram labels use the site font)", async () => {
+		const title = "Font mapped pipeline";
+		const markdown = [
+			"```mermaid",
+			"flowchart LR",
+			`  accTitle: ${title}`,
+			"  accDescr: Code moves from commit to production",
+			"  A[Commit] --> B[Production]",
+			"```",
+			"",
+		].join("\n");
+		const output = renderMermaid(markdown, { filePath: "content/blog/mermaid-font-test.md", lineOffset: 0 });
+
+		await render(<Content content={output} />);
+
+		const article = page.getByRole("article");
+		const diagram = page.getByRole("img", { name: title });
+		await expect.element(article).toBeInTheDocument();
+		await expect.element(diagram).toBeInTheDocument();
+
+		const mappedFont = getComputedStyle(article.element()).getPropertyValue("--pele-font");
+		const labelFont = getComputedStyle(diagram.element()).fontFamily;
+
+		expect(mappedFont).toContain("Synonym");
+		expect(labelFont).toContain("Synonym");
 	});
 });

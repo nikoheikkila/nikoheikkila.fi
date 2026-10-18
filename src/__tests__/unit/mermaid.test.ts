@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import { renderMermaid } from "../../mermaid";
 
 expect.extend({
@@ -197,15 +197,20 @@ describe("renderMermaid", () => {
 		expect(render).toThrow(/^content\/blog\/x\.md:13: mermaid diagram is empty$/);
 	});
 
-	test("rethrows an error from Pele that is not a PeleError unchanged", async () => {
-		vi.doMock("pele", () => ({
-			render: () => {
-				throw new Error("boom");
-			},
-			PeleError: class extends Error {},
-		}));
+	describe("when Pele throws a non-PeleError", () => {
+		afterEach(() => {
+			vi.doUnmock("pele");
+			vi.resetModules();
+		});
 
-		try {
+		test("rethrows an error from Pele that is not a PeleError unchanged", async () => {
+			vi.doMock("pele", () => ({
+				render: () => {
+					throw new Error("boom");
+				},
+				PeleError: class extends Error {},
+			}));
+
 			vi.resetModules();
 			const mocked = await import("../../mermaid/index.js");
 			const body = post(...loginDiagram);
@@ -213,10 +218,7 @@ describe("renderMermaid", () => {
 			const render = () => mocked.renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
 			expect(render).toThrow(/^boom$/);
-		} finally {
-			vi.doUnmock("pele");
-			vi.resetModules();
-		}
+		});
 	});
 
 	test("gives every id across two diagrams in one post a unique value", () => {
