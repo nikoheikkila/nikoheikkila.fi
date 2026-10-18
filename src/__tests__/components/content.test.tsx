@@ -1,7 +1,7 @@
+import React from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { page } from "vitest/browser";
-import React from "react";
 import Content from "../../components/post/content";
 import { renderMermaid } from "../../mermaid";
 
@@ -295,7 +295,7 @@ describe("Mermaid diagrams", () => {
 		});
 	});
 
-	test("sets diagram labels in the site body font (specs/mermaid-diagrams.md: Diagram labels use the site font)", async () => {
+	test("sets diagram labels in the site body font", async () => {
 		const title = "Font mapped pipeline";
 		const markdown = [
 			"```mermaid",
