@@ -1,6 +1,6 @@
 # Specification: Render Mermaid diagrams in articles as SVG
 
-Status: ready
+Status: done
 Type: feature
 Feature file: feature/mermaid-diagrams.feature
 
@@ -238,3 +238,11 @@ Manual checks:
 - 2026-10-18 Validation gate passed. Status: ready.
 - 2026-10-18 M3 added (human): manually compare a handful of existing posts with production,
   because the template switches from `rawMarkdownBody` to `renderedBody`.
+- 2026-10-18 T0: clean `task build` 26 s on main (9e5776d).
+- 2026-10-18 Role (human): Pele's root `role="graphics-document document"` is replaced with
+  `role="img"`.
+- 2026-10-18 C4 discarded: colour-scheme emulation does not work per test in Firefox. Theme
+  colours are verified by M1 only.
+- 2026-10-18 T4: clean `task build` 26 s after the change, with the example post. M1, M2 and
+  M3 passed. Six existing posts match production. Pre-existing and not caused by this change: at
+  375 px the search form makes every page scroll horizontally, on production too.
