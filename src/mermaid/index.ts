@@ -23,7 +23,7 @@ const CLOSING_FENCE = /^ {0,3}(`{3,}|~{3,})[ \t]*$/;
 const stripCarriageReturn = (text: string): string => text.replace(/\r$/, "");
 
 const splitLines = (body: string): Line[] =>
-	Array.from(body.matchAll(/[^\n]*\n|[^\n]+$/g), ([part]) => {
+	Array.from(body.matchAll(/(?:[^\n]*\n)|(?:[^\n]+$)/g), ([part]) => {
 		const end = /\r?\n$/.exec(part)?.[0] ?? "";
 		return { text: part.slice(0, part.length - end.length), end };
 	});
@@ -38,8 +38,8 @@ const parseOpeningFence = (text: string): Fence | undefined => {
 };
 
 const closes = (fence: Fence, text: string): boolean => {
-	const match = CLOSING_FENCE.exec(stripCarriageReturn(text));
-	return match !== null && match[1][0] === fence.char && match[1].length >= fence.length;
+	const marker = CLOSING_FENCE.exec(stripCarriageReturn(text))?.[1] ?? "";
+	return marker.startsWith(fence.char) && marker.length >= fence.length;
 };
 
 const findClosingFence = (lines: Line[], fence: Fence, start: number): number => {
@@ -64,25 +64,26 @@ const renderDiagram = (source: Line[], filePath: string): string => {
 	return render(diagram).svg;
 };
 
-export const renderMermaid = (body: string, options: RenderMermaidOptions): string => {
-	const lines = splitLines(body);
-	let out = "";
+function* segments(lines: Line[], filePath: string): Generator<string> {
 	let i = 0;
 	while (i < lines.length) {
 		const fence = parseOpeningFence(lines[i].text);
 		if (!fence) {
-			out += copy([lines[i]]);
+			yield copy([lines[i]]);
 			i++;
 			continue;
 		}
 		const close = findClosingFence(lines, fence, i + 1);
-		if (close === -1) return out + copy(lines.slice(i));
-		if (fence.info === "mermaid") {
-			out += renderDiagram(lines.slice(i + 1, close), options.filePath) + lines[close].end;
-		} else {
-			out += copy(lines.slice(i, close + 1));
+		if (close === -1) {
+			yield copy(lines.slice(i));
+			return;
 		}
+		yield fence.info === "mermaid"
+			? renderDiagram(lines.slice(i + 1, close), filePath) + lines[close].end
+			: copy(lines.slice(i, close + 1));
 		i = close + 1;
 	}
-	return out;
-};
+}
+
+export const renderMermaid = (body: string, options: RenderMermaidOptions): string =>
+	Array.from(segments(splitLines(body), options.filePath)).join("");
