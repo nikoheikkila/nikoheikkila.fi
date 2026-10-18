@@ -55,7 +55,7 @@
 		"@sindresorhus/slugify": "3.0.1",
 		"@testing-library/dom": "10.4.2",
 		"@testing-library/react": "16.3.3",
-		"@testing-library/user-event": "14.6.7",
+		"@testing-library/user-event": "14.6.8",
 		"@types/bun": "1.4.2",
 		"@types/inquirer": "9.0.10",
 		"@types/node": "26.6.4",
