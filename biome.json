@@ -40,6 +40,16 @@
 			"bracketSpacing": true
 		}
 	},
+	"markdown": {
+		"formatter": {
+			"enabled": false
+		}
+	},
+	"yaml": {
+		"formatter": {
+			"bracketSpacing": false
+		}
+	},
 	"linter": {
 		"enabled": true,
 		"domains": {
@@ -50,6 +60,10 @@
 		"rules": {
 			"preset": "recommended",
 			"style": {
+				"useConsistentTestIt": {
+					"level": "error",
+					"options": { "function": "test", "withinDescribe": "test" }
+				},
 				"noParameterAssign": "error",
 				"useAsConstAssertion": "error",
 				"useDefaultParameterLast": "error",

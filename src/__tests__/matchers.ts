@@ -1,10 +1,25 @@
 import type { RunOptions } from "axe-core";
 import axe from "axe-core";
 import { expect } from "vitest";
+import type { Locator } from "vitest/browser";
 
 const DEFAULT_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 expect.extend({
+	toHaveSiblingIcon(received: Locator, iconName: string, prefix?: string) {
+		const selector = prefix
+			? `svg[aria-hidden="true"][data-icon="${iconName}"][data-prefix="${prefix}"]`
+			: `svg[aria-hidden="true"][data-icon="${iconName}"]`;
+		const pass = received.element().parentElement?.querySelector(selector) != null;
+
+		return {
+			pass,
+			message: () =>
+				pass
+					? `Expected the link not to have a sibling icon "${iconName}" but one was found`
+					: `Expected the link to have a sibling icon "${iconName}"${prefix ? ` from the "${prefix}" pack` : ""} but none was found`,
+		};
+	},
 	async toHaveNoA11yViolations(received: HTMLElement, options: RunOptions = {}) {
 		const { runOnly, ...restOptions } = options;
 
@@ -52,5 +67,6 @@ expect.extend({
 declare module "vitest" {
 	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
 		toHaveNoA11yViolations(options?: RunOptions): Promise<void>;
+		toHaveSiblingIcon(iconName: string, prefix?: string): void;
 	}
 }

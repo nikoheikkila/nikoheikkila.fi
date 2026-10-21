@@ -12,7 +12,6 @@
 	}
 
 	@include variables.for-tablet-portrait-up() {
-		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 50vw;
 	}
 
@@ -91,7 +90,6 @@
 	}
 
 	@include variables.for-tablet-portrait-up() {
-		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		width: 50vw;
 	}
 

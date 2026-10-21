@@ -30,7 +30,7 @@ test.describe("Given I'm on a blog post that has both older and newer neighbouri
 	for (const rel of ["next", "prev"] as const) {
 		test(`When I capture the ${rel} content link's href and click it`, async ({ page }) => {
 			const link = page.locator(`a[rel="${rel}"]`);
-			const linkText = (await link.innerText()).trim();
+			const linkText = (await link.textContent())?.trim() ?? "";
 
 			await test.step("Then the browser should navigate to the captured href", async () => {
 				const href = await link.getAttribute("href");

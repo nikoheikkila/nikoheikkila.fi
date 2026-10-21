@@ -23,7 +23,6 @@
 	}
 
 	@include variables.for-tablet-portrait-up() {
-		/* biome-ignore lint/suspicious/noDuplicateProperties: intentional responsive breakpoints */
 		grid-template-columns: repeat(2, 1fr);
 	}
 

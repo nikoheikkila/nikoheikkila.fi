@@ -9,17 +9,6 @@ vi.mock("../../graphql/footer", () => ({
 	getFooterLinks: vi.fn(),
 }));
 
-/** Asserts that the link's sibling icon renders with the given FontAwesome icon name (and pack prefix, if given). */
-function expectIconFor(link: ReturnType<typeof page.getByRole>, iconName: string, prefix?: string) {
-	const parent = link.element().parentElement;
-	expect(parent).not.toBeNull();
-
-	const selector = prefix
-		? `svg[aria-hidden="true"][data-icon="${iconName}"][data-prefix="${prefix}"]`
-		: `svg[aria-hidden="true"][data-icon="${iconName}"]`;
-	expect(parent?.querySelector(selector)).not.toBeNull();
-}
-
 describe("Footer Component", () => {
 	test("renders RSS feed link", async () => {
 		const { getFooterLinks } = await import("../../graphql/footer.js");
@@ -77,7 +66,7 @@ describe("Footer Component", () => {
 		await render(<Footer />);
 
 		const rssLink = page.getByRole("link", { name: "RSS", exact: true });
-		expectIconFor(rssLink, "rss");
+		expect(rssLink).toHaveSiblingIcon("rss");
 	});
 
 	test("renders all social media links", async () => {
@@ -144,10 +133,10 @@ describe("Footer Component", () => {
 		await render(<Footer />);
 
 		// Verify each social link has the correct icon
-		expectIconFor(page.getByRole("link", { name: "GitHub", exact: true }), "github", "fab");
-		expectIconFor(page.getByRole("link", { name: "Bluesky", exact: true }), "bluesky", "fab");
-		expectIconFor(page.getByRole("link", { name: "LinkedIn", exact: true }), "linkedin", "fab");
-		expectIconFor(page.getByRole("link", { name: "RSS", exact: true }), "rss");
+		expect(page.getByRole("link", { name: "GitHub", exact: true })).toHaveSiblingIcon("github", "fab");
+		expect(page.getByRole("link", { name: "Bluesky", exact: true })).toHaveSiblingIcon("bluesky", "fab");
+		expect(page.getByRole("link", { name: "LinkedIn", exact: true })).toHaveSiblingIcon("linkedin", "fab");
+		expect(page.getByRole("link", { name: "RSS", exact: true })).toHaveSiblingIcon("rss");
 	});
 
 	test("handles missing social links gracefully", async () => {
