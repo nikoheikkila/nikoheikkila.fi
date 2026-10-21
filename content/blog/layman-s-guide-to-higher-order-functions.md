@@ -73,38 +73,24 @@ const warn = (msg: string): boolean => {
 type Validator = (password: string) => boolean;
 
 const longEnough = (password: string, minLength = 12) =>
-	password.length >= minLength ||
-	warn(`Password should contain ${minLength} or more characters.`);
+	password.length >= minLength || warn(`Password should contain ${minLength} or more characters.`);
 
 const hasUpperCase = (password: string) =>
-	/[A-Z]+/.test(password) ||
-	warn("Password should have at least one uppercase letter.");
+	/[A-Z]+/.test(password) || warn("Password should have at least one uppercase letter.");
 
 const hasLowerCase = (password: string) =>
-	/[a-z]+/.test(password) ||
-	warn("Password should have at least one lowercase letter.");
+	/[a-z]+/.test(password) || warn("Password should have at least one lowercase letter.");
 
-const hasNumbers = (password: string) =>
-	/[0-9]+/.test(password) ||
-	warn("Password should have at least one number.");
+const hasNumbers = (password: string) => /[0-9]+/.test(password) || warn("Password should have at least one number.");
 
 const validator =
 	(...fns: Validator[]) =>
 	(password: string) =>
 		fns.every((fn) => fn(password));
 
-const isValidPassword = validator(
-	longEnough,
-	hasUpperCase,
-	hasLowerCase,
-	hasNumbers,
-);
+const isValidPassword = validator(longEnough, hasUpperCase, hasLowerCase, hasNumbers);
 
-const validPasswords = [
-	"passwordpassword",
-	"Passwordpassword",
-	"Passwordpassword1",
-].filter(isValidPassword);
+const validPasswords = ["passwordpassword", "Passwordpassword", "Passwordpassword1"].filter(isValidPassword);
 
 console.log("Valid passwords are:", validPasswords);
 // Valid passwords are: ['Passwordpassword1']

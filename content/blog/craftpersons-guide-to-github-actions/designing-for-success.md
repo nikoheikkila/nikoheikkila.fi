@@ -29,16 +29,16 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 try {
-  const nameToGreet = core.getInput("who-to-greet");
-  core.info(`Hello ${nameToGreet}!`);
+	const nameToGreet = core.getInput("who-to-greet");
+	core.info(`Hello ${nameToGreet}!`);
 
-  const time = new Date().toTimeString();
-  core.setOutput("time", time);
+	const time = new Date().toTimeString();
+	core.setOutput("time", time);
 
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  core.info(`The event payload: ${payload}`);
+	const payload = JSON.stringify(github.context.payload, undefined, 2);
+	core.info(`The event payload: ${payload}`);
 } catch (error) {
-  core.setFailed(error.message);
+	core.setFailed(error.message);
 }
 ```
 
@@ -88,14 +88,14 @@ The fix is simpler than you might think. Let's separate business logic from infr
 ```javascript
 // action.mjs
 export function run({ core, github, date }) {
-  const nameToGreet = core.getInput("who-to-greet");
-  core.info(`Hello ${nameToGreet}!`);
+	const nameToGreet = core.getInput("who-to-greet");
+	core.info(`Hello ${nameToGreet}!`);
 
-  const time = date.toTimeString();
-  core.info(`The current time is ${time}`);
+	const time = date.toTimeString();
+	core.info(`The current time is ${time}`);
 
-  const payload = github.payload.dump();
-  core.info(`The event payload: ${payload}`);
+	const payload = github.payload.dump();
+	core.info(`The event payload: ${payload}`);
 }
 ```
 
@@ -103,12 +103,12 @@ export function run({ core, github, date }) {
 // index.mjs
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import * as action from './action.js';
+import * as action from "./action.js";
 
 try {
-  action.run({ core, github, date: new Date() });
+	action.run({ core, github, date: new Date() });
 } catch (error) {
-  core.setFailed(error.message);
+	core.setFailed(error.message);
 }
 ```
 

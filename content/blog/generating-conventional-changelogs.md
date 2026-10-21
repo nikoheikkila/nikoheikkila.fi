@@ -26,7 +26,6 @@ changes v1.0.0
 ## `v1.0.0`
 
 Write your release notes on this line.
-
 -   docs: add a security policy (_Niko Heikkilä_) (d02e70a)
 -   fix(security): upgrade Python packages (_Niko Heikkilä_) (bbb0861)
 -   fix(tests): replace parameter message with matches in pytest.raises (_Niko Heikkilä_) (9161cf9)

@@ -135,10 +135,7 @@ In brief, POMs are regular classes that are instantiated with a `Page` object re
 Using a POM, the following operation of signing a user in...
 
 ```typescript
-await Promise.all([
-	page.fill("data-test-id=username", username),
-	page.fill("data-test-id=password", password),
-]);
+await Promise.all([page.fill("data-test-id=username", username), page.fill("data-test-id=password", password)]);
 
 await page.click("data-test-id=login");
 ```
@@ -189,9 +186,7 @@ test("test", async ({ page }) => {
 
 	// Click text=Random article
 	await page.locator("text=Random article").click();
-	await expect(page).toHaveURL(
-		"https://en.wikipedia.org/wiki/Howie_Schwarzman",
-	);
+	await expect(page).toHaveURL("https://en.wikipedia.org/wiki/Howie_Schwarzman");
 
 	// Click text=Main page
 	await page.locator("text=Main page").click();

@@ -57,7 +57,11 @@
 		},
 		"formatter": {
 			"enabled": true,
-			"formatEmbeds": false
+			"formatEmbeds": true,
+			"lineWidth": 120
+		},
+		"linter": {
+			"enabled": true
 		}
 	},
 	"yaml": {

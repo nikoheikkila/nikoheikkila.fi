@@ -90,13 +90,13 @@ We could now build the Docker image and run it from our terminal using the stand
 version: "3"
 
 services:
-    web:
-        build: "."
-        image: "nikoheikkila/nikoheikkila.fi"
-        container_name: "web-nginx"
-        restart: "unless-stopped"
-        ports:
-            - "8080:8080"
+  web:
+    build: "."
+    image: "nikoheikkila/nikoheikkila.fi"
+    container_name: "web-nginx"
+    restart: "unless-stopped"
+    ports:
+      - "8080:8080"
 ```
 
 Nothing too fancy here. We declare a service called `web` which builds the `Dockerfile` in our project root and tags it with a custom name. The restart policy of `unless-stopped` will keep restarting our container unless we explicitly halt it. As the last rule, we bind our host machine's port 8080 to the same port exposed in the container.

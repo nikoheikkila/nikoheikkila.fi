@@ -35,11 +35,11 @@ build:
   generates:
     - dist/index.js
   cmd: >
-      bun build bin/index.ts
-      --production
-      --target node
-      --outdir dist
-      --format esm
+    bun build bin/index.ts
+    --production
+    --target node
+    --outdir dist
+    --format esm
 ```
 
 This builds our TypeScript entry point into a minified Node.js script in modern ESM format.
@@ -67,57 +67,57 @@ Despite covering a lot of ground with existing tests, we still need to verify th
 
 ```yaml
 name: Acceptance Tests
-  
-on:  
-  pull_request:  
-    branches: [main]  
-  push:  
+
+on:
+  pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
-env:  
-  original: "Hello, World!"  
+env:
+  original: "Hello, World!"
   transformed: "Uryyb, Jbeyq!"
 
 jobs:
-  test-unit: 
+  test-unit:
     # Unit, property-based, and mutation tests
     ...
 
-  test-local-action:  
-    name: Test local action  
-    permissions:  
-      contents: read  
-    strategy:  
-      matrix:  
-        runner: [ubuntu-latest, macos-latest, windows-latest]  
-    runs-on: ${{ matrix.runner }}  
-    
-    steps:  
-      - name: Checkout  
-        uses: actions/checkout@v5  
-    
-      - name: Test with valid input  
-        uses: ./  
-        id: valid  
-        with:  
-          string: ${{ env.original }}  
-    
-      - name: Fail if output is incorrect  
-        if: steps.valid.outputs.result != env.transformed  
-        run: |  
+  test-local-action:
+    name: Test local action
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Test with valid input
+        uses: ./
+        id: valid
+        with:
+          string: ${{ env.original }}
+
+      - name: Fail if output is incorrect
+        if: steps.valid.outputs.result != env.transformed
+        run: |
           echo "::error::Expected result of transformation was '${{ env.transformed }}', but got '${{ steps.valid.outputs.result }}'"  
           exit 1  
-    
-      - name: Test with empty input  
-        uses: ./  
-        id: invalid  
-        continue-on-error: true  
-        with:  
-          string: ""  
-    
-      - name: Fail if empty input succeeds  
-        if: steps.invalid.outcome != 'failure'  
-        run: |  
+
+      - name: Test with empty input
+        uses: ./
+        id: invalid
+        continue-on-error: true
+        with:
+          string: ""
+
+      - name: Fail if empty input succeeds
+        if: steps.invalid.outcome != 'failure'
+        run: |
           echo "::error::Expected action to fail when given empty input, but it succeeded."  
           exit 1
 ```
@@ -143,58 +143,58 @@ Here's the workflow:
 
 ```yaml
 jobs:
- test-unit: ...
- test-local-action: ...
+  test-unit: ...
+  test-local-action: ...
 
- release:
-   name: Release
-   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-   needs: [test-unit, test-local-action]
-   runs-on: ubuntu-latest
-   permissions:
-     contents: write
-   
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v5  
-       with:  
-         fetch-depth: 0  
-   
-     - name: Determine next version  
-       id: version  
-       uses: mathieudutour/github-tag-action@v6.2  
-       with:  
-         github_token: ${{ secrets.GITHUB_TOKEN }}  
-         default_bump: patch  
-         create_annotated_tag: true
-         dry_run: true
-   
-     - name: Release new version  
-       if: steps.version.outputs.new_version != steps.version.outputs.previous_version  
-       run: |  
-         function push() {  
-           local tag="$1"  
-           git tag -fa "$tag" -m "Release $tag"  
-           git push origin "$tag" --force    
-         }  
-           
-         git config user.name "$USERNAME"  
-         git config user.email "$EMAIL"  
-           
-         push "$TAG"  
-         push "$(echo "$TAG" | cut -d . -f 1)"  
-         push "$(echo "$TAG" | cut -d . -f 1-2)"  
-           
-         gh release create "$TAG" \
-           --title "Release $TAG" \
-           --notes "$CHANGELOG" \
-           --verify-tag  
-       env:
-         USERNAME: github-actions[bot]  
-         EMAIL: github-actions[bot]@users.noreply.github.com  
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-         TAG: ${{ steps.version.outputs.new_tag }}  
-         CHANGELOG: ${{ steps.version.outputs.changelog }}
+  release:
+    name: Release
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test-unit, test-local-action]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine next version
+        id: version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch
+          create_annotated_tag: true
+          dry_run: true
+
+      - name: Release new version
+        if: steps.version.outputs.new_version != steps.version.outputs.previous_version
+        run: |
+          function push() {  
+            local tag="$1"  
+            git tag -fa "$tag" -m "Release $tag"  
+            git push origin "$tag" --force    
+          }  
+            
+          git config user.name "$USERNAME"  
+          git config user.email "$EMAIL"  
+            
+          push "$TAG"  
+          push "$(echo "$TAG" | cut -d . -f 1)"  
+          push "$(echo "$TAG" | cut -d . -f 1-2)"  
+            
+          gh release create "$TAG" \
+            --title "Release $TAG" \
+            --notes "$CHANGELOG" \
+            --verify-tag  
+        env:
+          USERNAME: github-actions[bot]
+          EMAIL: github-actions[bot]@users.noreply.github.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.version.outputs.new_tag }}
+          CHANGELOG: ${{ steps.version.outputs.changelog }}
 ```
 
 We use [mathieudutour/github-tag-action](https://github.com/mathieudutour/github-tag-action) to parse the next version from Conventional Commit messages. It runs in dry-run mode to generate the version without actually pushing it. If your organisation bans external actions, you'll need to implement version logic with a custom action yourself.
@@ -209,30 +209,30 @@ The release is tagged and pushed. But we're not done yet. We need one final chec
 
 ```yaml
 jobs:
- test-unit: ...
- test-local-action: ...
- release: ...
+  test-unit: ...
+  test-local-action: ...
+  release: ...
 
- test-tagged-action:
-   name: Test tagged action  
-   runs-on: ubuntu-latest
-   needs: [release]  
-   permissions:  
-     contents: read  
-   
-   steps:  
-     - name: Test happy case
-       uses: nikoheikkila/rot-13-action@v1  
-       id: valid  
-       with:  
-         string: ${{ env.original }}  
-   
-     - name: Test sad case
-       uses: nikoheikkila/rot-13-action@v1  
-       id: invalid  
-       continue-on-error: true
-       with:  
-         string: ""  
+  test-tagged-action:
+    name: Test tagged action
+    runs-on: ubuntu-latest
+    needs: [release]
+    permissions:
+      contents: read
+
+    steps:
+      - name: Test happy case
+        uses: nikoheikkila/rot-13-action@v1
+        id: valid
+        with:
+          string: ${{ env.original }}
+
+      - name: Test sad case
+        uses: nikoheikkila/rot-13-action@v1
+        id: invalid
+        continue-on-error: true
+        with:
+          string: ""
 ```
 
 Notice the critical difference from earlier verification: we reference the action using `nikoheikkila/rot-13-action@v1`, not `./`. This tests exactly what users will run.

@@ -24,8 +24,7 @@ To demonstrate this, let's write a quick curried function that formats a sum of 
 
 ```typescript
 type Formatter<T> = (a: T) => (b: T) => string;
-const numberFormatter: Formatter<number> = (decimals) => (euros) =>
-	euros.toFixed(decimals).replace(/\./, ",") + " €";
+const numberFormatter: Formatter<number> = (decimals) => (euros) => euros.toFixed(decimals).replace(/\./, ",") + " €";
 
 // Partial application to store our precision
 const toCurrencyString = numberFormatter(2);

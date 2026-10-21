@@ -70,33 +70,33 @@ These tests arrange the action with predefined input, execute it, assert the out
 
 ```javascript
 it.each([
-  ["A", "N"],
-  ["M", "Z"],
-  ["N", "A"],
-  ["Z", "M"],
-  ["a", "n"],
-  ["m", "z"],
-  ["n", "a"],
-  ["z", "m"],
-  ["HELLO", "URYYB"],
-  ["WORLD", "JBEYQ"],
-  ["ROT13", "EBG13"],
-  ["123", "123"],
-  ["!@#$%", "!@#$%"],
-  ["Hello, World!", "Uryyb, Jbeyq!"],
-  ["Héllo", "Uéyyb"],
-  ["🔒 secret", "🔒 frperg"],
-  ["Тест", "Тест"],
-  ["مرحبا", "مرحبا"],
-  ["こんにちは", "こんにちは"],
+	["A", "N"],
+	["M", "Z"],
+	["N", "A"],
+	["Z", "M"],
+	["a", "n"],
+	["m", "z"],
+	["n", "a"],
+	["z", "m"],
+	["HELLO", "URYYB"],
+	["WORLD", "JBEYQ"],
+	["ROT13", "EBG13"],
+	["123", "123"],
+	["!@#$%", "!@#$%"],
+	["Hello, World!", "Uryyb, Jbeyq!"],
+	["Héllo", "Uéyyb"],
+	["🔒 secret", "🔒 frperg"],
+	["Тест", "Тест"],
+	["مرحبا", "مرحبا"],
+	["こんにちは", "こんにちは"],
 ])("transforms %s to %s", (input, expectedResult) => {
- core.setInput("string", input);
+	core.setInput("string", input);
 
- action.run();
+	action.run();
 
- const actualResult = core.getOutput("result");
- expect(actualResult).toBe(expectedResult);
- expect(core.eventsOf("info")).toContain(`${input} -> ${expectedResult}`);
+	const actualResult = core.getOutput("result");
+	expect(actualResult).toBe(expectedResult);
+	expect(core.eventsOf("info")).toContain(`${input} -> ${expectedResult}`);
 });
 ```
 
@@ -104,22 +104,18 @@ Edge cases matter, too. While the ROT-13 transformation of an empty string is te
 
 ```javascript
 it("fails with empty string input", () => {
-  const input = "";
-  core.setInput("string", input);
+	const input = "";
+	core.setInput("string", input);
 
-  expect(() => action.run()).toThrowError(
-    "input field 'string' cannot be empty",
-  );
+	expect(() => action.run()).toThrowError("input field 'string' cannot be empty");
 });
 
 it("fails with input exceeding 1 MB", () => {
-  const maxSize = 1024 * 1024;
-  const input = "*".repeat(maxSize + 1);
-  core.setInput("string", input);
+	const maxSize = 1024 * 1024;
+	const input = "*".repeat(maxSize + 1);
+	core.setInput("string", input);
 
-  expect(() => action.run()).toThrowError(
-    `input field 'string' cannot exceed ${maxSize} characters`,
-  );
+	expect(() => action.run()).toThrowError(`input field 'string' cannot exceed ${maxSize} characters`);
 });
 ```
 
@@ -143,9 +139,9 @@ A property-based test in fast-check is elegant:
 type Predicate = (s: string) => boolean;
 
 it("does not change text length", () => {
- const preservesLength: Predicate = (s) => transform(s).length === s.length;
+	const preservesLength: Predicate = (s) => transform(s).length === s.length;
 
- assert(property(string(), preservesLength));
+	assert(property(string(), preservesLength));
 });
 ```
 
@@ -161,9 +157,9 @@ Testing the inverse property is equally straightforward:
 
 ```typescript
 it("is its own inverse", () => {
- const isItsOwnInverse: Predicate = (s) => transform(transform(s)) === s;
+	const isItsOwnInverse: Predicate = (s) => transform(transform(s)) === s;
 
- assert(property(string(), isItsOwnInverse));
+	assert(property(string(), isItsOwnInverse));
 });
 ```
 
@@ -171,26 +167,24 @@ Sometimes we need to constrain inputs to test-specific properties. Fast-check's 
 
 ```typescript
 it("preserves uppercase", () => {
- const isUpperCase: Predicate = (s) => s === s.toUpperCase();
- const preservesUpperCase: Predicate = (s) =>
-  [...transform(s)].every(isUpperCase);
+	const isUpperCase: Predicate = (s) => s === s.toUpperCase();
+	const preservesUpperCase: Predicate = (s) => [...transform(s)].every(isUpperCase);
 
- assert(property(string().filter(isUpperCase), preservesUpperCase));
+	assert(property(string().filter(isUpperCase), preservesUpperCase));
 });
 
 it("preserves lowercase", () => {
- const isLowerCase: Predicate = (s) => s === s.toLowerCase();
- const preservesLowercase: Predicate = (s) =>
-  [...transform(s)].every(isLowerCase);
+	const isLowerCase: Predicate = (s) => s === s.toLowerCase();
+	const preservesLowercase: Predicate = (s) => [...transform(s)].every(isLowerCase);
 
- assert(property(string().filter(isLowerCase), preservesLowercase));
+	assert(property(string().filter(isLowerCase), preservesLowercase));
 });
 
 it("only transforms alphabetic characters", () => {
- const isSpecialCharacter: Predicate = (s) => !/[A-Za-z]/.test(s);
- const skipsTransformation: Predicate = (s) => transform(s) === s;
+	const isSpecialCharacter: Predicate = (s) => !/[A-Za-z]/.test(s);
+	const skipsTransformation: Predicate = (s) => transform(s) === s;
 
- assert(property(string().filter(isSpecialCharacter), skipsTransformation));
+	assert(property(string().filter(isSpecialCharacter), skipsTransformation));
 });
 ```
 
