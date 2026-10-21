@@ -13,7 +13,6 @@ Both in my work and personal life, I've used a plethora of project management to
 Trello's semi-agile default flow (_To Do_ → _Doing_ → _Done_) is easy, but especially for me, it comes with a clear risk of not starting the actual work on tasks. Happily (or sadly) the cards linger on my evergrowing _To Do_ list.
 
 What I prefer to use instead, is a popular method commonly referred to as the [Eisenhower Matrix][2]. In brief, it consists of four categories (or lists in Trello). They are following:
-
 1. **Do Now:** Do these next or as soon as possible.
 2. **Decide:** You don't need to do these right now but do set a due date in the near future.
 3. **Delegate:** Don't waste your brainpower on these, find out if someone else can help instead.

@@ -23,7 +23,6 @@ When solving a large problem, the important approach is to **divide and conquer*
 ## Anatomy of a Higher-Order Function
 
 A _higher-order function_ is defined to have either of the following two properties:
-
 1. It takes one or more functions as its arguments
 2. It returns another function (a _closure_)
 
@@ -45,7 +44,6 @@ Solving problems in a declarative way is a perfect demonstration of divide and c
 ## Use Case: Password Validation
 
 Assume we are given a user password for validation. Our function should return `true` if the password is valid, and `false` otherwise. We have received the following requirements for validating passwords:
-
 -   password must contain 12 or more characters
 -   password must contain at least one uppercase and one lowercase character
 -   password must contain at least one number

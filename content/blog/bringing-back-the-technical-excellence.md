@@ -23,7 +23,6 @@ Complex design often comes directly from complex business requirements. We might
 Complex implementation, therefore, is a direct consequence of complex design. However, the effects of complex implementations become more detrimental via their ability to feed themselves and keep on growing during the software lifecycle.
 
 The common culprits for complex implementations are the following:
-
 -   teams are not abiding by the technical excellence and software craftspersonship — also known as having **immature senior engineers** in the team
 -   too high (100 %) utilisation rates keeping everyone as busy as possible therefore stifling innovation
 -   severe blindness towards the wastes in the development process
@@ -130,7 +129,6 @@ Yes, but... using TDD, we can't write tests for the existing code by definition,
 When we are writing tests for the existing production code, we often find it difficult. As a result, our design likely contains serious flaws, usually caused by a lack of continuous refactoring, which has not played a significant role due to a lack of tests as a safety net.
 
 Fortunately, we can practise test-driven development also for the existing code by following the steps below.
-
 1. In the codebase, locate the code (_behaviour_) you want to test
 2. Comment out the code as if it never existed in the first place
 3. Write a failing test
@@ -140,7 +138,6 @@ Fortunately, we can practise test-driven development also for the existing code 
 7. Refactor until the code satisfies your taste
 
 There are many good resources written about refactoring. I tend to follow [the four rules of simple design](https://martinfowler.com/bliki/BeckDesignRules.html) by **Kent Beck**:
-
 -   make the tests pass
 -   refactor until the intention is clear
 -   remove duplication where feasible
@@ -163,7 +160,6 @@ Let's assume that through rigorous testing and refactoring efforts, our codebase
 What do we miss? Documentation!
 
 When studying a codebase for the first time, I often reach for three different types of documentation:
-
 1. How do I install and run this application locally?
 2. What features does it have, and how do I use them?
 3. What past decisions have affected the design of this application and the way it works today?
@@ -171,7 +167,6 @@ When studying a codebase for the first time, I often reach for three different t
 ### Read Me, Read Me
 
 We should ensure we have a **README** file in the project root for the first task. This is the front page of your documentation in modern version control systems, which people consult first. As a bare minimum, it should contain the following information.
-
 -   How to install the application
 -   How to start the application
 -   How to test the application manually
@@ -209,7 +204,6 @@ Some developers are keenly obsessed with keeping the version control history lin
 Thus, we should use [Architectural Decision Records](https://adr.github.io) instead.
 
 ADRs capture a single decision that has significant consequences towards the design and implementation of the product for the foreseeable future. Typically, they include but are not limited to:
-
 -   title of the decision
 -   status (proposed, accepted, rejected, or superseded by another ADR)
 -   context (why did we have to discuss this?)

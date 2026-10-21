@@ -23,7 +23,6 @@ Working with micro-commits requires tremendous self-discipline. So, unsurprising
 That being said, before working with micro-commits, you should be experienced in writing practical automated tests that are essentially [**FIRST**](https://scribe.rip/pragmatic-programmers/unit-tests-are-first-fast-isolated-repeatable-self-verifying-and-timely-a83e8070698e): fast, isolated, repeatable, self-verifying, and timely.
 
 When I work with micro-commits, I typically follow the steps below.
-
 1. Set the goal
 2. If tests pass, save the progress; otherwise, revert to a last known good state
 3. Wrap up the task

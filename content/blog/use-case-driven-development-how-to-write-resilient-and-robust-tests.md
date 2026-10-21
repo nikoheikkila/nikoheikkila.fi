@@ -3,7 +3,7 @@ title: "Use Case Driven Development: How to Write Resilient and Robust Tests"
 author: Niko Heikkilä
 lang: en
 excerpt: |
-    Do you want your automated tests to be resilient? Do you hate when your tests break when you refactor or rewrite parts of the functionality? High-level end-to-end tests guarantee this, but their problems arise from flakiness and slowness.
+  Do you want your automated tests to be resilient? Do you hate when your tests break when you refactor or rewrite parts of the functionality? High-level end-to-end tests guarantee this, but their problems arise from flakiness and slowness.
 type: post
 date: 2022-08-20
 hero: null
@@ -36,13 +36,11 @@ Therefore — and this is where it becomes fascinating — for an old-fashioned 
 How does the test pyramid fit in the picture for these two schools?
 
 **Test Pyramid for Mockists:**
-
 -   few end-to-end tests for the whole application
 -   some integration tests for each class integrating with another class
 -   many unit tests for each singular class
 
 **Test Pyramid for Classicists:**
-
 -   few end-to-end tests for the primary UX flow
 -   some integration tests connecting multiple use cases
 -   many unit tests for each singular use case
@@ -60,7 +58,6 @@ A mockist can write 1000 unit tests targeting the implementation details and cha
 Are you convinced now? Then you are probably wondering how we define and test use cases.
 
 Suppose we are building an expense tracker to monitor our daily budget. As a simple **CRUD** application following the [**Hexagonal Architecture**](https://alistair.cockburn.us/hexagonal-architecture/) design pattern, we are likely to support the following use cases:
-
 -   add new expense(s)
 -   search expenses
 -   archive expense(s)
@@ -77,7 +74,7 @@ Eventually, I discovered the structure of how my application works through sever
 
 When I test the use cases, I verify that I receive the expected amount of domain models with expected data. The internal data and methods within the models are not valuable to my tests. This is a great approach to foster a clean public interface to your application by practising information hiding and making your modules deep. If you're into measuring test coverage, you are delighted to know that it remains high because I'm also transitively covering the domain models.
 
-This is what I practice today: I write many unit tests for each use case and cover the end-to-end flows with some browser-based UI tests or API tests. There's little reason to add integration tests in-between. It's also perfectly valid to call my end-to-end tests integration tests. Following the paradigm, my test pyramid resembles a *test hourglass*, a silly name. Moreover, it's a poor hourglass because its bottom is larger than its top.
+This is what I practice today: I write many unit tests for each use case and cover the end-to-end flows with some browser-based UI tests or API tests. There's little reason to add integration tests in-between. It's also perfectly valid to call my end-to-end tests integration tests. Following the paradigm, my test pyramid resembles a _test hourglass_, a silly name. Moreover, it's a poor hourglass because its bottom is larger than its top.
 
 Don't become too dogmatic with test pyramids, trophies, hourglasses, or elephants, as those will ultimately shackle you.
 

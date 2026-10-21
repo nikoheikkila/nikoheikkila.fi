@@ -5,6 +5,7 @@ When developing complex test suites or debugging flaky/failing tests, specialize
 ## Agent Profiles
 
 ### 1. `playwright-test-planner`
+
 - **Purpose**: Creates comprehensive end-to-end test plans for features and pages.
 - **Workflow**:
   1. Explore interface and user flows using browser navigation tools or Playwright MCP tools (`planner_setup_page`, `browser_*`).
@@ -12,6 +13,7 @@ When developing complex test suites or debugging flaky/failing tests, specialize
   3. Output structured markdown test plans into `specs/`.
 
 ### 2. `playwright-test-generator`
+
 - **Purpose**: Generates automated Playwright test specifications from approved test plans.
 - **Workflow**:
   1. Read the scenario specification from `specs/`.
@@ -19,6 +21,7 @@ When developing complex test suites or debugging flaky/failing tests, specialize
   3. Generate self-contained, typed Playwright test files following the structural guidelines in [SKILL.md](../SKILL.md).
 
 ### 3. `playwright-test-healer`
+
 - **Purpose**: Diagnoses, debugs, and repairs failing Playwright tests.
 - **Workflow**:
   1. Execute tests to capture failure details and stack traces.

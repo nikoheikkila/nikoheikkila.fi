@@ -1,4 +1,5 @@
 ---
+
 name: testing
 description: Testing guidance for working with Vitest and Playwright. Use this skill before running tests, writing new
 tests, debugging tests, or any test-related reasoning task.

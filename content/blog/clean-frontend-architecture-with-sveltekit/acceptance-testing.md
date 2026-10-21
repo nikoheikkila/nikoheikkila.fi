@@ -19,7 +19,6 @@ In the future, Playwright ships with [first-class support for component tests](h
 Do note that writing about the acceptance testing deliberately late in the series does not mean I have written these tests late after the production code. On the contrary, following test-driven development with acceptance testing is possible and incredibly rewarding.
 
 A simple test-guided workflow with a SvelteKit application goes as follows:
-
 1. I specify an expectation for a page route in the form of a test.
 2. The test fails, so I implement the page and see the test pass.
 3. Next, I write a test that expects the page to have relevant content.
@@ -40,7 +39,6 @@ Having these slow tests around does not mean you should skip them. Many browser-
 Furthermore, end-to-end tests act magnificently as _smoke tests_ I can run after each deployment to verify the site was deployed correctly. Should any smoke test fail, I can instruct my delivery pipeline to fail the build and prevent publishing the new changes to users. Given that your infrastructure supports decoupling web application deployments from public releases, you should consider this method for complex frontend applications. If it doesn't, modernise your infrastructure.
 
 Given a photo browsing application, what tests do I focus on with Playwright? The list below describes the scenarios.
-
 -   **Landing page**
     -   defines English as the content language
     -   declares a page title in HTML
@@ -95,7 +93,6 @@ Hence, I can not stress enough how dangerous the path of attempting to maintain 
 ## Testing the Views
 
 Since we want to keep our acceptance test suite robust, I must write fine-grained [tests for my Svelte views](https://github.com/nikoheikkila/photo-browser/tree/main/tests/components). These are and are not the same as routes. The list below describes the scenarios.
-
 -   **Landing view**
     -   counts the number of photos per album
     -   photos link to their respective pages

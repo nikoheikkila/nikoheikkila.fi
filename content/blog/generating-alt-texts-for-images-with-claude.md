@@ -71,17 +71,8 @@ through discussions with Claude while I give it references to a few reputable so
 If you're an accessibility specialist, you will undoubtedly spot room for improvement in the skill, so take it for a spin,
 and do improve it freely.
 
-[^1]:
-    A pull request adding optional AI-generated alt text to Mastodon was
-    [closed](https://github.com/mastodon/mastodon/pull/34244) because the maintainers don't want to delegate
-    functionality to external LLMs. Third-party clients such as Ice Cubes, browser extensions for Bluesky, and fediverse
-    bots such as [Altbot](https://github.com/micr0-dev/AltBot) can fill the gap instead, but I'd rather have them
-    integrated in the apps themselves. Keep your jack, then!
+[^1]: A pull request adding optional AI-generated alt text to Mastodon was [closed](https://github.com/mastodon/mastodon/pull/34244) because the maintainers don't want to delegate functionality to external LLMs. Third-party clients such as Ice Cubes, browser extensions for Bluesky, and fediverse bots such as [Altbot](https://github.com/micr0-dev/AltBot) can fill the gap instead, but I'd rather have them integrated in the apps themselves. Keep your jack, then!
 
-[^2]:
-    The plugin should be portable to other AI platforms with a few modifications. Let me know if you're interested in
-    doing that.
+[^2]: The plugin should be portable to other AI platforms with a few modifications. Let me know if you're interested in doing that.
 
-[^3]:
-    The directory change via `pushd` is necessary because `@` notation in the prompt resolve paths relative to the
-    working directory. Thus, `@$filename` finds the image only while I'm in the correct directory.
+[^3]: The directory change via `pushd` is necessary because `@` notation in the prompt resolve paths relative to the working directory. Thus, `@$filename` finds the image only while I'm in the correct directory.

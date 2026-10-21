@@ -3,12 +3,10 @@
 -   [Contributing to nikoheikkila.fi](#contributing-to-nikoheikkilafi)
     -   [Contributing](#contributing)
         -   [Where to Contribute](#where-to-contribute)
-        -   [How to Contribute](#how-to-contribute)
-    -   [Contribution Guidelines](#contribution-guidelines)
+        -   [How to Contribute](#how-to-contribute) - [Contribution Guidelines](#contribution-guidelines)
         -   [Create an Issue](#create-an-issue)
         -   [Clean Code With Tests](#clean-code-with-tests)
-        -   [Create a Pull Request](#create-a-pull-request)
-    -   [The Bottom Line](#the-bottom-line)
+        -   [Create a Pull Request](#create-a-pull-request) - [The Bottom Line](#the-bottom-line)
 
 ## Contributing
 

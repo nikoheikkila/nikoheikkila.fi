@@ -11,7 +11,6 @@ hero: https://r2.nikoheikkila.fi/my-vibe-coding-workflow.jpg
 Ha, got you there, did I?
 
 For once, the title of my blog post intentionally deceives you. Well, as a matter of fact I do have a vibe-coding workflow. It goes like this.
-
 1. Define the different cycles of test-driven development (red, green, refactor) as [skills](https://github.com/nikoheikkila/agents).
 2. Pick a thin slice of functionality and write a Markdown-formatted BDD specification for it **by hand** (gasp!)
 3. Commit the specification in case I need to revert.
@@ -22,12 +21,12 @@ For once, the title of my blog post intentionally deceives you. Well, as a matte
 8. Commit the changes in case I need to revert.
 9. Ask the agent to follow the TDD Refactor skill and refactor the code to improve design.
 10. If the tests pass, commit the changes. Otherwise, revert and repeat the previous step.
-11. Complete the cycle by refactoring by hand because it just *is* faster, safer, and more convenient than by prompting.
+11. Complete the cycle by refactoring by hand because it just _is_ faster, safer, and more convenient than by prompting.
 12. Commit the changes and squash where needed.
 13. Run mutation tests along with other checks to verify the code is ready to ship.
 14. Push the changes.
 
-Out of the 14 steps above, at least 10 contain phases where I run shell commands or edit the code myself. Furthermore, in *all* the steps I'm reading and grasping the code. If I don't understand code, I will rewrite it. I've made a promise not to ship code I don't understand.
+Out of the 14 steps above, at least 10 contain phases where I run shell commands or edit the code myself. Furthermore, in _all_ the steps I'm reading and grasping the code. If I don't understand code, I will rewrite it. I've made a promise not to ship code I don't understand.
 
 Due to constant failures and getting stuck on a "doom loop", keeping the coding agents on a short leash is the only sustainable way of working with them. Even then, the game is mostly about discarding the output and intervening, which I can happily do often because I save my work often — that is, every time my tests pass.
 
@@ -35,7 +34,7 @@ There are times I do receive viable suggestions from agents and it's safe to say
 
 **Indeed, this is probably the least sexy and hype-worthy way of delivering software in 2026.** You won't find this post in your AI feeds because it won't sell. You won't see the sharp-dressed tech bros and vibe-coding aficionados in X sharing this because those people understand little about software engineering. All they care about is selling snake oil brochures and telling how to orchestrate massive parallel agent swarms to crunch down a waterfall backlog of items with faulty assumptions.
 
-I'm very much shaking my head regarding the recent unhinged buzz around creating waterfall-style specifications for agents to execute and then running away to the beach. Notably, in these cases I've seen agents reportedly work for hours producing software that does *not* work, be it a web browser not rendering anything or a C compiler unable to compile a simple Hello World program. It might be just me, but I would expect the software handed to me by a worker bee to... work.
+I'm very much shaking my head regarding the recent unhinged buzz around creating waterfall-style specifications for agents to execute and then running away to the beach. Notably, in these cases I've seen agents reportedly work for hours producing software that does _not_ work, be it a web browser not rendering anything or a C compiler unable to compile a simple Hello World program. It might be just me, but I would expect the software handed to me by a worker bee to... work.
 
 So, while the vibers seemingly continue to "ralph" (don't ask me) broken software and cataclysmically boost the climate crisis further, you will find me using the agents responsibly and in small iterations.
 

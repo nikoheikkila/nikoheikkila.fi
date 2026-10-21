@@ -32,7 +32,7 @@ The whole hiring process was a breeze with all the interviews being held remotel
 
 Having said goodbye to **Paytrail** in Jyväskylä and getting ample time relocating to Tampere, I cycled to the office located in the heart of the town next to Tammerkoski rapids.
 
-I was greeted by my supervisor and people from the Human Care team (people are not *resources* here), grabbed coffee, and received the laptop and phone. I was also assigned a _FutuBuddy_, whose role was to tour me through the office and introduce me the ways of working during the first week.
+I was greeted by my supervisor and people from the Human Care team (people are not _resources_ here), grabbed coffee, and received the laptop and phone. I was also assigned a _FutuBuddy_, whose role was to tour me through the office and introduce me the ways of working during the first week.
 
 Some companies pick the first project for a newcomer to work from the day one accepting no alternative points of view. However, Futurice presented me with a selection of viable projects to see what was the most interesting. I chose to join a team responsible for the maintenance and small-scope development of existing projects. This line of work was rather familiar to me, and I mused it might help me settle myself best to a new environment both culturally and technically.
 
@@ -44,7 +44,7 @@ A particular manifestation of trust in Futurice is the relationship with your su
 
 This is a question I'm asked by my colleagues almost daily — and it's okay, don't think otherwise.
 
-The life in consultancy sure is a lot different than in a single-product organization. Most notably, you're not limited to the one and only technology stack. A lot of the choices depend on the client you're serving and who's experienced with what in your close team. I ended up working with React, TypeScript, and Node which are tightly in my comfort zone, but I could have also sought for Golang, Java, or Kotlin projects. There are even some Clojure shenanigans for all the *lispy* people. Anything goes as long as I don't find myself locked alone in a closet working with an ancient COBOL infrastructure!
+The life in consultancy sure is a lot different than in a single-product organization. Most notably, you're not limited to the one and only technology stack. A lot of the choices depend on the client you're serving and who's experienced with what in your close team. I ended up working with React, TypeScript, and Node which are tightly in my comfort zone, but I could have also sought for Golang, Java, or Kotlin projects. There are even some Clojure shenanigans for all the _lispy_ people. Anything goes as long as I don't find myself locked alone in a closet working with an ancient COBOL infrastructure!
 
 The technological variety has its downsides as well. People work in many different projects, so mutual conventions are rarely established, and people might choose tools on a whim. Two teams could be using, for example, AWS services in very different, although practical, ways. Having an exceptional taste for knowledge sharing, I'm eagerly waiting to formulate and share the best practices between projects and trying to improve the ways of working. So far, the people have been supporting towards that end.
 

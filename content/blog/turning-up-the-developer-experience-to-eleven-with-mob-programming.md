@@ -6,7 +6,7 @@ type: post
 date: 2022-08-08
 hero: https://r2.nikoheikkila.fi/turning-up-the-developer-experience-to-eleven-with-mob-programming.webp
 excerpt: |
-    My team and I have now practised mob programming for half a year. Transitioning from working asynchronously and integrating changes late in the process to working synchronously and integrating continuously has not been without pain. However, in the end, the benefits have far outweighed the detriments.
+  My team and I have now practised mob programming for half a year. Transitioning from working asynchronously and integrating changes late in the process to working synchronously and integrating continuously has not been without pain. However, in the end, the benefits have far outweighed the detriments.
 ---
 
 _This post was originally published in [Futurice blog](https://futurice.com/blog/mob-programming)._
@@ -29,8 +29,7 @@ Up until now, the team has been working conveniently together. However, next, th
 
 Soloing based on feature branching and pull requests has established itself as a status quo in many teams, with developers often unable to see any other alternative. One culprit is that many developers I’ve spoken to perceive pull requests as the only mechanism for code review, which is far from the truth.
 
-The problem with soloing is how it negatively affects the flow efficiency by contributing to the following types of process waste (*muda* in Lean):
-
+The problem with soloing is how it negatively affects the flow efficiency by contributing to the following types of process waste (_muda_ in Lean):
 1. [**Delays**](#delays)
 2. [**Queues**](#queues)
 3. [**Defects**](#defects)
@@ -42,7 +41,7 @@ The problem with soloing is how it negatively affects the flow efficiency by con
 
 Process delays emerge when the system is already utilised at its maximum capacity and can't accept new work. If all the developers are working on their tasks, they should finish them before starting new ones. However, quality processes dictate that it's impossible to complete a task without it passing through a quality gate, which in software development is often a code review.
 
-Therefore, developers must also review the work of others. They must drop their current task, accept a new task, complete it, and finally return to their original task. When this context-switching is repeated multiple times a day, the team's *throughput* suffers and the *lead time* of a single task increases. What was previously estimated as the task's duration is no longer even remotely accurate. Some developers realise the effect of delays and add the necessary buffer to their estimates, but that hardly solves the bottleneck problem.
+Therefore, developers must also review the work of others. They must drop their current task, accept a new task, complete it, and finally return to their original task. When this context-switching is repeated multiple times a day, the team's _throughput_ suffers and the _lead time_ of a single task increases. What was previously estimated as the task's duration is no longer even remotely accurate. Some developers realise the effect of delays and add the necessary buffer to their estimates, but that hardly solves the bottleneck problem.
 
 In lean software development, **lead time** is how long it takes for a task to move from the backlog to being done, and **throughput** is the average number of tasks the team can complete in a unit of time. Here's a [helpful description](https://toggl.com/track/littles-law/) of the terms using tacos as examples.
 
@@ -68,7 +67,7 @@ When the team has been working on several tasks concurrently, their changes are 
 
 Delays and queues inherently contribute to larger batch sizes, which are also orders of magnitude more difficult to review properly without context. Thus, the risk of releasing defects through shallowly inspected code grows higher.
 
-As a remedy, teams often react to increased error rates in production by adding more quality gates, which unfortunately do not resolve the underlying problems. In some cases, teams may even become afraid to ship frequently and begin to hold back on releases, thus skyrocketing the batch sizes even further. The *catch-22* of big batches has started.
+As a remedy, teams often react to increased error rates in production by adding more quality gates, which unfortunately do not resolve the underlying problems. In some cases, teams may even become afraid to ship frequently and begin to hold back on releases, thus skyrocketing the batch sizes even further. The _catch-22_ of big batches has started.
 
 ### Overproduction
 
@@ -118,17 +117,15 @@ However, our learning was slow due to many workflow issues.
 
 Our initial ways of working followed the earlier described scatter-gather model. We were three developers — two from Futurice and one from the client side — working on three or more tasks simultaneously across multiple repositories. If you've read this far, you can probably guess what problems we had, but allow me to explain.
 
-We created *busywork*: lots of work but poor results: high output but low outcomes.
+We created _busywork_: lots of work but poor results: high output but low outcomes.
 
 Despite our best planning efforts, tasks took several days to complete because the code review process was a bottleneck. In addition, inspecting the code days after it was written made it nearly impossible for the reviewer to understand the surrounding context and the author's decisions. This, in turn, delayed the delivery. Unsurprisingly, the most often used phrases in code review comments were:
-
 -   _"Can you explain to me what this line of code does here?"_
 -   _"Can you add a comment here to explain the code?"_
 -   _"Why was this line removed?"_
 -   _"Should we use function X instead?"_
 
 Before advancing further, we also required sign-offs through approved code reviews from our lead developer. Because the lead developer was fully utilised both with their tasks and reviews, the feedback loops grew incredibly long. Returning to a code you wrote earlier became tremendously painful. When switching context from another task to a previous one, the thoughts often were:
-
 -   _"What was I thinking then?"_
 -   _"How should I improve my code now?"_
 -   _"I need to complete the other task because I need code from that feature branch."_
@@ -167,7 +164,7 @@ However, instant code reviews don't automatically mean we always produce perfect
 
 We often need to improve our earlier code, so we simply return to it and conduct the necessary refactoring. We don't ask anyone's permission to refactor our code because it's our duty and responsibility as professional software engineers to keep the codebase in mint condition. As a result of refactoring at every opportunity, the design of our software is constantly improving in short iterations.
 
-We have also applied *behaviour-driven development* (BDD) to our process, which makes it easy to verify whether regression defects appeared after the latest changes. With BDD, we define the application's initial state, actions, and post-conditions of our logic and write it as an automated test before implementing the logic. If you've encountered _Given-When-Then_ or _Arrange-Act-Assert_ methods while writing tests, you're familiar with BDD.
+We have also applied _behaviour-driven development_ (BDD) to our process, which makes it easy to verify whether regression defects appeared after the latest changes. With BDD, we define the application's initial state, actions, and post-conditions of our logic and write it as an automated test before implementing the logic. If you've encountered _Given-When-Then_ or _Arrange-Act-Assert_ methods while writing tests, you're familiar with BDD.
 
 ### Less Knowledge Gaps, More Knowledge Transfer Practising
 
@@ -179,7 +176,7 @@ Thanks to mob programming, we are always synchronised. So if we need to demonstr
 
 ### Less Passive Meetings, More Collaboration
 
-You might say: *"A-ha! But you're always in a meeting because of mob programming!"*. To which I say: yes, our so-called *meetings* have become more efficient.
+You might say: _"A-ha! But you're always in a meeting because of mob programming!"_. To which I say: yes, our so-called _meetings_ have become more efficient.
 
 Our daily stand-up meetings transformed from the old-fashioned pattern of reporting the individual statuses towards planning what we should do today as a team to achieve our sprint goals. Of course, we still have sprint planning, reviews, and retrospectives, but those have become easier because we communicate and collaborate better.
 
@@ -237,7 +234,7 @@ We still tend to work late. We are not at our best when the clock hits four in t
 
 We also noticed that sometimes our attention tends to wander off. People who were not driving started browsing the Internet instead of participating. So, we agreed to mute our notifications, define goals for each session (e.g. one task completed, have a break), and allow everyone equal time to drive and navigate others.
 
-As a rule of thumb, we have been using 10 minutes as a typical rotation length, after which the driver becomes a navigator, and the next driver is picked. However, the strict time limit often feels too rigid. So we have also experimented with ping-pong rotations in *test-driven development* (TDD) style, where one person writes a test, and another makes it pass before writing the next test. Sometimes it's better than a fixed timer, and as a bonus, it forces us to design our solutions through tests, which helps maintainability.
+As a rule of thumb, we have been using 10 minutes as a typical rotation length, after which the driver becomes a navigator, and the next driver is picked. However, the strict time limit often feels too rigid. So we have also experimented with ping-pong rotations in _test-driven development_ (TDD) style, where one person writes a test, and another makes it pass before writing the next test. Sometimes it's better than a fixed timer, and as a bonus, it forces us to design our solutions through tests, which helps maintainability.
 
 ### Loose Specifications
 
@@ -269,7 +266,7 @@ Any attempt to improve the asynchronous code review experience is an illusion if
 
 The only way to improve the situation is to find the constraint and drive a stake through its heart. Teams practising mob programming effectively also tend to remove constraints easily.
 
-Finally, I'm closing this article with a famous *Systems Thinking* quote from **Russell L. Ackoff**, which is particularly fit for mob programming:
+Finally, I'm closing this article with a famous _Systems Thinking_ quote from **Russell L. Ackoff**, which is particularly fit for mob programming:
 
 > "A system is never the sum of its parts; it’s the product of their interaction."
 

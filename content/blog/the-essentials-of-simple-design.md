@@ -8,10 +8,9 @@ date: 2022-06-27
 hero: null
 ---
 
-Few rules in designing clean code have been as crucial for me as **Kent Beck's** *four rules of simple design*. To jog your memory, they are as follows:
+Few rules in designing clean code have been as crucial for me as **Kent Beck's** _four rules of simple design_. To jog your memory, they are as follows:
 
 Well-designed code…
-
 -   passes the tests
 -   reveals intention
 -   has no duplication

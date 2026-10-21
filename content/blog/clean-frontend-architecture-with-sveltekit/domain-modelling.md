@@ -37,7 +37,6 @@ Fortunately, there's a strategy which I see too rarely used in the real world. I
 One of the more valuable libraries following this strategy is [**Zod**](https://zod.dev/), but there are many alternatives with a repertoire focusing from pure objects to HTML form validation.
 
 In the case of photos, we want to verify that:
-
 -   Both photo and album IDs are positive integers.
 -   Photo title is not empty.
 -   Links to the full-size photo and its thumbnail are valid URL _value objects_.

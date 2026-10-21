@@ -74,7 +74,6 @@ end
 ```
 
 The core of this tool is, naturally, `git-log` which is a powerful tool for finding out what's going on in your projects. Here we use it to print a compact one-liner log formatting each message with a custom pattern where:
-
 -   `%s` is the commit title
 -   `%aN` is the commit author's name respecting the `.mailmap` file if there's one
 -   `%h` is the commit hash in a short format

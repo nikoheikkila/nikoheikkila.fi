@@ -44,7 +44,6 @@ Example snippet below shows a custom component renderer outputting a link to Goo
 See how components can include other components like `<OutboundLink>` in this case. This makes composition of user interfaces a breeze.
 
 Building your blog with Gatsby has many remarkable advantages over traditional dynamic web applications:
-
 -   Your blog becomes a single page app (SPA) meaning the site feels like a unified page despite hundreds of posts spread across separate URLs.
 -   All the content lives within your repository. You'll never have to worry about data loss again unless you're drunken and decide to delete your remote repository along with all the local clones of it - in which case your Internet license should be revoked indefinitely.
 -   Markdown is the purest, most beautiful form of writing which I use to document my work every day. The important part is that you don't have to mess with WordPress HTML blocks or the new Gutenberg editor.

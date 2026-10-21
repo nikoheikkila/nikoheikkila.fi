@@ -84,7 +84,6 @@ Still, today we struggle to produce quality software mainly because we are eager
 Harmful software can take our job, money, and even life in the worst case without strict adherence to quality. As of today, there is no way to live without software; a significant disaster is waiting to happen. Fortunately, we can still mitigate the worst by following Martin's oath.
 
 The oath in 10 commandments is published in Martin's latest book _Clean Craftsmanship: Disciplines, Standards, and Ethics_. A brief version of it is as follows:
-
 1. I will not produce harmful code.
 2. The code that I produce will always be my best work.
 3. I will produce, with each release, a quick, sure, and repeatable proof that every element of the code works as it should.
@@ -107,7 +106,6 @@ According to David Neal, there are two common misconceptions about leadership. F
 I would add that the most crucial type of leadership is how you lead yourself. Doing it well enables me to lead others, too.
 
 I found the talk resonated with me because I felt stuck at one point in my career, more or less. I had become a task ninja, a to-do-machine who shared little about anything between tasks and projects. So I had to try changing that. Then I noticed that great things began to happen when I led myself to:
-
 -   joining online communities
 -   attending meetups and conferences
 -   mentoring and teaching other people

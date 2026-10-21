@@ -10,7 +10,6 @@ description: Instructions for managing the Cloudflare infrastructure with Terraf
 Everything is managed with Terraform and the Cloudflare provider across **two root modules with separate state**:
 
 `infra/cloudflare/` — long-lived core infrastructure:
-
 - **Zone**: Domain configuration for `nikoheikkila.fi`
 - **DNS**: Records defined in YAML (`dns.yml`) for easier maintenance
 - **R2 Storage**: Blog assets bucket with custom domain (`r2.nikoheikkila.fi`)
@@ -18,7 +17,6 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 - **State Backend**: Stored in the Cloudflare R2 bucket `terraform`
 
 `infra/site/` — the site deployment (changes on every merge and per pull request):
-
 - **Static files**: Gatsby build output (`public/`) uploaded to a per-environment R2 bucket via `aws_s3_object`
 - **Worker**: `worker.ts` (compiled to `worker.js` by Bun — a gitignored build artifact) serves the bucket with trailing-slash canonicalisation, conditional/range requests, and the path redirects bundled from `redirects.json`
 - **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (worker `blog-pr-<n>`, bucket `site-pr-<n>`) at `https://blog-pr-<n>.yo-062.workers.dev`
@@ -27,7 +25,6 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
 
 Inputs shared by both modules live at the common parent, `infra/`, not inside either module directory — each module references them with `../` (see `OP_ARGS`/`TFVARS` in each `Taskfile.yml`):
-
 - `infra/.env` — 1Password CLI references for `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
 - `infra/cloudflare.tfvars` — variables described under [Infrastructure Variables](#infrastructure-variables) below
 
@@ -52,10 +49,9 @@ task site:deploy                    # Production (default workspace) — CI's jo
 ```
 
 Site module guardrails to know about:
-
 - A plan/apply fails with a precondition error if `public/` is missing — run `task build` first. `worker.js` is compiled automatically by the `site:build` task dependency; never edit it by hand.
 - `site:destroy` and `site:ci:destroy` refuse the `default` workspace, so previews cannot destroy production.
-- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:destroy -- -auto-approve` breaks: `{{.CLI_ARGS}}` is appended to *every* terraform invocation in the task, including `workspace select`). For a non-interactive destroy use the CI task with 1Password: `cd infra/site && op run --env-file='../.env' -- task ci:destroy WORKSPACE=pr-123`.
+- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:destroy -- -auto-approve` breaks: `{{.CLI_ARGS}}` is appended to _every_ terraform invocation in the task, including `workspace select`). For a non-interactive destroy use the CI task with 1Password: `cd infra/site && op run --env-file='../.env' -- task ci:destroy WORKSPACE=pr-123`.
 - R2 does not implement AWS flexible checksums; the site Taskfile exports `AWS_REQUEST_CHECKSUM_CALCULATION=when_required` and `AWS_RESPONSE_CHECKSUM_VALIDATION=when_required`. Raw `terraform` invocations outside the Taskfile need those variables too.
 
 ### CI deployment flow
@@ -67,7 +63,6 @@ See all commands by running `task -a` in the `infra/cloudflare/` directory.
 ## Infrastructure Variables
 
 Terraform variables are configured in `infra/cloudflare.tfvars`:
-
 - **`account_id`** (required): CloudFlare account ID (32-char hex)
 - **`domain`** (optional): Primary domain (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
@@ -88,7 +83,6 @@ The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) a
 5. **Verify**: Check DNS propagation
 
 **Important DNS Considerations**:
-
 - Email records (MX, SPF, DKIM, DMARC) affect deliverability
 - TTL=1 means "auto" (Cloudflare-managed)
 - Proxied records hide origin IP but require valid SSL
@@ -133,14 +127,13 @@ Subdomain redirects are managed via `infra/cloudflare/redirects.yml` and applied
 
 ```yaml
 redirects:
-  - from: subdomain        # subdomain prefix, e.g. "cv" → cv.nikoheikkila.fi
-    to: "https://..."      # redirect target URL
-    status: 301            # HTTP status code
-    preserve_path: true    # optional: appends request path to target (default: false)
+  - from: subdomain # subdomain prefix, e.g. "cv" → cv.nikoheikkila.fi
+    to: "https://..." # redirect target URL
+    status: 301 # HTTP status code
+    preserve_path: true # optional: appends request path to target (default: false)
 ```
 
 **Key constraints to be aware of:**
-
 - **One ruleset per phase per zone**: Cloudflare allows only one `cloudflare_ruleset` resource per phase. All redirect rules (including the www→root redirect) are merged into the single `cloudflare_ruleset.www_redirect` resource via `local.redirect_rules` in `locals.tf`. Never create a second ruleset for the same phase.
 - **Proxied DNS required**: Each redirect subdomain needs a proxied CNAME record pointing to the root domain so Cloudflare intercepts traffic before it reaches the origin. These are created automatically from `redirects.yml` by `cloudflare_dns_record.redirects` in `dns.tf`.
 - **DNS conflict filter**: Entries whose `from` key already exists in `dns_config.dns_records` (i.e. `dns.yml`) are excluded from `cloudflare_dns_record.redirects` to prevent duplicate record conflicts. This is how the `www` entry coexists in both files.
@@ -151,7 +144,6 @@ redirects:
 `infra/site/worker.test.ts` unit-tests `worker.ts` purely through its public `fetch(request, env)` entry point — no unexported helpers are tested directly, and no Workers runtime emulator (`@cloudflare/vitest-pool-workers`, `miniflare`, `wrangler`) is installed. It runs as part of the `unit` Vitest project (`vitest.unit.config.ts` includes `infra/site/*.test.ts`) via `task test:unit`, and is type-checked by `lint:site` (`infra/site/tsconfig.json`'s `include` is `["*.ts"]`, so any new flat `.ts` file in that directory is picked up automatically).
 
 Patterns worth reusing if this Worker (or another one) grows more tests:
-
 - **Import the source with an explicit `.ts` extension**: `import worker from "./worker.ts"`, not `"./worker"`. The directory also holds the gitignored, previously-compiled `worker.js`; an extensionless import can resolve to that stale bundle instead of the source depending on what happens to exist on disk. `allowImportingTsExtensions: true` in `infra/site/tsconfig.json` permits this.
 - **Fake `R2Bucket` fully, not partially**: implement all members with a plain `: R2Bucket` annotation — no `as unknown as R2Bucket` cast. Stub the members the Worker never calls (`put`, `createMultipartUpload`, `resumeMultipartUpload`, `delete`, `list`) with correctly-typed functions that throw. This catches typos in the fake itself instead of silently compiling them away.
 - **`R2Bucket.get()` is overloaded** (a required-`onlyIf` overload returning `R2ObjectBody | R2Object | null`, and an optional-`onlyIf` overload returning `R2ObjectBody | null`). A single loosely-typed arrow function can't satisfy both — its return type ends up too wide for the stricter overload. Declare `get` using TS's function-overload pattern instead (two signatures matching the interface exactly, followed by one implementation), inside a factory so it can still close over the fake's backing store.
@@ -217,7 +209,6 @@ task run -- output
 ```
 
 Available outputs:
-
 - `zone_id`: CloudFlare zone ID
 - `zone_name`: Domain name
 - `r2_bucket_id`: R2 bucket identifier

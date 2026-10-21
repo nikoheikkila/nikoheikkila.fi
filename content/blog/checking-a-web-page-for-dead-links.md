@@ -17,7 +17,6 @@ You can grab the full source code [here][gh], but follow along as we build this 
 ## Requirements
 
 By thinking this through, I was able to formulate the acceptance criteria for our MVP program:
-
 1. We need a program which takes a URL as an argument, visits it, and all the links within it.
 2. Link traversal should end after the first page, or the second level of traversal to avoid long-running tasks.
 3. The program displays the list of links in a fashion that it's easy to catch possible dead links. It means we should colour the terminal output.
@@ -213,7 +212,6 @@ With that in mind, I hope you have enjoyed what you've read, and we meet again i
 ## Further Reading
 
 As a closing note, below are some resources I found useful when learning how to Go.
-
 -   [Go By Example](https://gobyexample.com/); contains plenty of annotated code snippets for performing basic and advanced tasks.
 -   [GoDocs](https://godoc.org/); for the core API documentation.
 -   [Official Go Extension for VS Code](https://github.com/Microsoft/vscode-go); huge praise to Microsoft for developing this extension and making writing Go a smooth process. No heavy IDEs needed here either.

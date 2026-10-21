@@ -9,7 +9,6 @@ This directory contains Terraform configuration for managing the complete Cloudf
 ### DNS Management (`dns.tf`, `dns.yml`)
 
 DNS records are managed using a hybrid approach:
-
 - **Configuration**: YAML file (`dns.yml`) for easy maintenance
 - **Deployment**: Terraform reads YAML and creates Cloudflare DNS records
 - **Zone**: `nikoheikkila.fi` (ID available via `terraform output zone_id`)
@@ -33,7 +32,6 @@ DNS records are managed using a hybrid approach:
 ### Site Deployment (`../site/`)
 
 A separate Terraform root module deploying the built static site:
-
 - **Static files**: Gatsby build output (`public/`) uploaded to an R2 bucket through the
   S3-compatible API (`aws_s3_object`)
 - **Worker**: `../site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
@@ -93,7 +91,6 @@ A separate Terraform root module deploying the built static site:
 ### Variables
 
 The following variables can be configured in `../cloudflare.tfvars`:
-
 - **`account_id`** (required): CloudFlare account ID (32-character hex string)
 - **`domain`** (optional): Primary domain name (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
@@ -106,7 +103,6 @@ All variables except `account_id` have sensible defaults and typically don't nee
 ### Outputs
 
 The following outputs are available after applying the configuration:
-
 - **`zone_id`**: CloudFlare zone ID
 - **`zone_name`**: Domain name
 - **`r2_bucket_id`**: R2 bucket identifier
@@ -120,7 +116,6 @@ View outputs with: `task run -- output` or `terraform output`
 ### Secrets Management
 
 All sensitive credentials are managed via **1Password**:
-
 - `CLOUDFLARE_API_TOKEN`: API token for Terraform provider
 - `AWS_ACCESS_KEY_ID`: R2 access key for state backend
 - `AWS_SECRET_ACCESS_KEY`: R2 secret key for state backend

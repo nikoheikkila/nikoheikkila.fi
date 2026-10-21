@@ -75,7 +75,6 @@ Then again, you may find your drive elsewhere, but science has shown that, where
 After finding your drive, you should make regular checks regarding the level of autonomy, mastery, and purpose at your work. Have the levels increased or decreased during the past six months?
 
 To close, here are a couple of questions for your next feedback and development session.
-
 -   What has changed in your work regarding the task, time, team, and technique? Has the change been for better, or for worse?
 -   Have you noticed any new obstacles preventing your autonomy? How can you finish your work without hanging onto dependencies?
 -   When was the last time you learned a new skill? Were you able to apply it to a particular problem?

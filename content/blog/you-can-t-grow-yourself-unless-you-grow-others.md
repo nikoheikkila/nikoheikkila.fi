@@ -64,7 +64,7 @@ Chances are they have been only thinking it through themselves without proper fe
 
 I have always enjoyed recognising the process bottlenecks in my vicinity and trying to optimise them. Unfortunately, some of my ideas have been shot and even ridiculed in public channels in the far past. People have stated that it couldn't possibly work the way I have imagined. While the others might have had a grain of truth in their words, their approach was not encouraging.
 
-Luckily, I was born with a strong head and resilience (what in Finland we call *sisu*), so the mental damage has been minimal. However, for others, aggressive approaches might even end up terminating promising careers.
+Luckily, I was born with a strong head and resilience (what in Finland we call _sisu_), so the mental damage has been minimal. However, for others, aggressive approaches might even end up terminating promising careers.
 
 As a mentor, I must always keep in mind [_reciprocity_](https://en.wikipedia.org/wiki/Reciprocity_%28social_psychology%29) from social psychology.
 
@@ -75,7 +75,6 @@ Wonder why that co-worker has been ignoring you or acting offensively? It might 
 ### Don't Feed Them with a Spoon, Challenge
 
 Sometimes mentees approach with simple questions. Instead of doing their homework and spoon-feeding answers, mentors ask follow-up questions.
-
 -   **Where is the documentation located?** Where have you looked? Who have you asked?
 -   **How can I make my code cleaner?** Do you see any repeating patterns that could be abstracted to a shared function or library?
 -   **Niko is writing crappy code, and it's killing me!** What are **you** going to do about it? How can I help to solve this problem without firing Niko?
@@ -121,7 +120,6 @@ Naturally, as human beings, everything we speak of doesn't have to be profession
 ## Traits of a Great Mentor
 
 Finally, here is a non-exhaustive list of traits that matter when developing yourself as a mentor.
-
 -   **Knowledge.** What experience and skills do you possess. How extensive is your professional background?
 -   **Authority.** Who are you? Why should people listen to you? Do other people know what you have achieved?
 -   **Confidence.** How confidently can you express your ideas and solutions?

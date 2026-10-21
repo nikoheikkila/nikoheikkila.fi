@@ -9,7 +9,6 @@ Accept a path to the Markdown file needing review. If the user omitted the path,
 specific file or all the files under `content/` directory.
 
 Review the received Markdown content for writing quality across the following criteria:
-
 1. Text must be grammatically correct British English unless different language is specified in the frontmatter.
 2. Text must be captivating to the reader and follow a creative prose style.
 3. Frontmatter metadata must be valid.
@@ -36,7 +35,6 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 | `hero`    | yes      | string or null | URL to cover image or `null`                    |
 
 **Validation rules:**
-
 -   `type: post` files must be in `content/blog/` (flat file or directory with `index.md`)
 -   `type: page` files must be in `content/` root
 -   `date` must be a valid ISO 8601 date and should not be in the future
@@ -47,7 +45,6 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 ### 2. Grammar and Style
 
 **Writing conventions to check:**
-
 -   Clear, concise prose; avoid filler words and unnecessary jargon
 -   Active voice preferred over passive voice
 -   Consistent tense within sections
@@ -57,7 +54,6 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 -   Code terms in backticks when referenced inline
 
 **Markdown conventions:**
-
 -   Use `##` for top-level sections within a post (the `title` frontmatter field renders as `<h1>`)
 -   Fenced code blocks with language identifiers (e.g., ` ```typescript `)
 -   Links use descriptive text, not bare URLs or "click here"
@@ -82,7 +78,6 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 -   **Language field**: Affects OpenGraph locale tag — verify it matches the actual content language
 
 **RSS feed impact:**
-
 -   Only `type: post` content appears in the RSS feed (pages are filtered out)
 -   The `excerpt` field is used as the RSS item description
 -   The full HTML content is included as `content:encoded`

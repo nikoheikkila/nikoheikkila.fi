@@ -8,16 +8,15 @@ date: 2022-05-08
 hero: null
 ---
 
-**Developer:** *"Hey, could you review my PR? I had this fantastic idea about X the other day, so I decided to give it a go. I think it turned out to be pretty good. What do you think?"*
+**Developer:** _"Hey, could you review my PR? I had this fantastic idea about X the other day, so I decided to give it a go. I think it turned out to be pretty good. What do you think?"_
 
-**Reviewer:** *"Ehm, but that's not what we had planned. Did you design this by yourself? Did you stop and think about performance at all? Where are the tests? In any case, who would ever need to use this? And what's that new module intended to do, hmm? Oh, that's an obvious security hole…."*
+**Reviewer:** _"Ehm, but that's not what we had planned. Did you design this by yourself? Did you stop and think about performance at all? Where are the tests? In any case, who would ever need to use this? And what's that new module intended to do, hmm? Oh, that's an obvious security hole…."_
 
-**Developer:** *"... [weeps in silence, then sighs] Okay, fair points, I guess I'll go and fix these."*
+**Developer:** _"... [weeps in silence, then sighs] Okay, fair points, I guess I'll go and fix these."_
 
-**Developer (thinking):** *"I worked on this all week already. Screw this project and this team."*
+**Developer (thinking):** _"I worked on this all week already. Screw this project and this team."_
 
 We are often tempted by grand visions of features we see as must-haves in product development. Thus, we strive to drive our impeccable vision to fulfilment. However, this is always a crucial point to stop and rethink the following:
-
 -   What value will my idea add to the product?
 -   Did a user ask for it?
 -   Do we need it now?
@@ -35,6 +34,6 @@ Efficient collaboration practices and shorter feedback loops nurture team psycho
 
 It's a powerful question with many sides, but one without a correct answer.
 
-Generally, feedback from one person to another is worth every penny. But, respectively, input from the code to a developer is essential too. The key is to understand that feedback *must* occur in small batches as a continuous process. You should not ask for feedback only right before a 1-on-1 performance review, and your code should not wait for a sprint to end before being deployed to production for real live feedback.
+Generally, feedback from one person to another is worth every penny. But, respectively, input from the code to a developer is essential too. The key is to understand that feedback _must_ occur in small batches as a continuous process. You should not ask for feedback only right before a 1-on-1 performance review, and your code should not wait for a sprint to end before being deployed to production for real live feedback.
 
 Small batches. Both in design and implementation. Everywhere. All of the time.

@@ -8,7 +8,7 @@ date: 2021-05-23
 hero: https://r2.nikoheikkila.fi/when-to-pair-program-and-when-to-go-solo.jpg
 ---
 
-I recently finished reading [*Practical Remote Pair Programming* by **Adrian Bolboacă**](https://www.goodreads.com/book/show/57518328-practical-remote-pair-programming). In the description, the author promises to teach you the structure, organisation, communication, and tools for making (remote) pair programming successful in your (distributed) team.
+I recently finished reading [_Practical Remote Pair Programming_ by **Adrian Bolboacă**](https://www.goodreads.com/book/show/57518328-practical-remote-pair-programming). In the description, the author promises to teach you the structure, organisation, communication, and tools for making (remote) pair programming successful in your (distributed) team.
 
 Pair programming is complicated. Despite that, I've been practising and advocating it for a while, trying to build solid habits around it. Thus, the book naturally caught my eye. Besides, today most of the programming work is remote, making the book a timely publication.
 
@@ -39,7 +39,6 @@ The next time your team gets a new member, do not only throw entry-level tasks a
 Like many others, I started my career studying computer science in study groups. The fundamental programming classes I attended always involved exercises. Often we would solve the given problems together, sitting next to the same computer sharing the same keyboard.
 
 In the book, the author references the four levels of knowledge related to a concept known as _staff liquidity_. These describe the skills you possess about the current system or parts of it. They are as follows.
-
 1. _"I know nothing!"_ (beginner)
 2. _"I can run it"_ (intermediate)
 3. _"I can tweak and fix bugs"_ (advanced)
@@ -101,7 +100,7 @@ If the whole development organisation is on fire and people hate working with ea
 
 ### Expecting a Formal Code Review After Pairing
 
-Some developers accustomed to the ways of working in highly bureaucratic, process-oriented, and hierarchical cultures adamantly state that pairing is no substitute for a formal code review. It is further reasoned by saying that a third person with *fresh eyes* is supposed to catch all the mistakes you and your pair have made.
+Some developers accustomed to the ways of working in highly bureaucratic, process-oriented, and hierarchical cultures adamantly state that pairing is no substitute for a formal code review. It is further reasoned by saying that a third person with _fresh eyes_ is supposed to catch all the mistakes you and your pair have made.
 
 In these situations, ask how the third developer — who has no context or deep understanding of the problem at hand — could review the solution any better? Asynchronous ways of working have instilled the notion that we must always invite an outsider to scan our code. Contrary, the code review is most useful coming from peers who understand the context and problem. They are your pairs.
 
@@ -127,7 +126,7 @@ This section shall briefly describe small tricks that have helped me whether pai
 
 During pairing, we usually share the same codebase, which means that version control tools cannot accurately determine who has done what. It is not always crucial to attribute commits to specific authors. After all, the team should have _collective ownership_ of the solution. However, it is a good practice to give credit where it is due.
 
-This can be done with a technique called *ensemble commits*, in which you simply write the name and email of your pair in the commit message footer. See the example below.
+This can be done with a technique called _ensemble commits_, in which you simply write the name and email of your pair in the commit message footer. See the example below.
 
 ```plain
 feat(api): add a new route '/films' for fetching IMDb data
@@ -178,13 +177,12 @@ If you're using Wi-Fi, move as close to the router as comfortable. Plugin the Et
 In this post, I outlined many benefits, pitfalls and practical tips to ease your journey into pairing. However, the critical question is: when should I pair?
 
 It is not always easy to decide. In my experience, there are specific tasks that are often better solo. These include but are not limited to:
-
 -   deploying builds and running scripts
 -   documenting existing features and writing simple instructions
 -   checking if a reported bug can be reproduced
 -   doing mundane and routine tasks, which should be automated, anyway
 
-For all other tasks that require levelling knowledge, learning new concepts, or solving challenging problems, the answer is often *yes*. You should always be ready to pair.
+For all other tasks that require levelling knowledge, learning new concepts, or solving challenging problems, the answer is often _yes_. You should always be ready to pair.
 
 If you need more help to get started with pairing, read the book. You can also contact me for coaching. Let us make the development world better by working together.
 

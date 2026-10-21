@@ -128,11 +128,10 @@ Our unit tests now pass with 100% coverage. Time to celebrate? Not quite. Tradit
 ## Property-Based Testing: Testing What You Can't Imagine
 
 Think about the essential properties of ROT-13 transformation:
-
-* **Length preservation:** transformation doesn't alter the input length
-* **Inverse operation:** applying ROT-13 twice returns the original string
-* **Case preservation:** uppercase letters stay uppercase, lowercase letters stay lowercase
-* **Character selectivity:** only alphabetic characters rotate
+- **Length preservation:** transformation doesn't alter the input length
+- **Inverse operation:** applying ROT-13 twice returns the original string
+- **Case preservation:** uppercase letters stay uppercase, lowercase letters stay lowercase
+- **Character selectivity:** only alphabetic characters rotate
 
 You could write hundreds of example-based tests to cover these properties and still miss a myriad of edge cases. Even LLMs would struggle to generate comprehensive enough examples.
 
@@ -240,11 +239,10 @@ Setting up mutation testing for our GitHub Action is straightforward with [Stryk
 ```
 
 Key configuration points:
-
-* **Command runner:** Specifies the test command. We use Bun, but any test runner works.
-* **Checkers:** TypeScript checker eliminates mutants that cause type errors, saving time.
-* **Mutate:** Defines which source files to mutate. Be specific: mutating tests or dependencies wastes time.
-* **Thresholds:** We set all thresholds to 100%, meaning anything less than perfect fails the build.
+- **Command runner:** Specifies the test command. We use Bun, but any test runner works.
+- **Checkers:** TypeScript checker eliminates mutants that cause type errors, saving time.
+- **Mutate:** Defines which source files to mutate. Be specific: mutating tests or dependencies wastes time.
+- **Thresholds:** We set all thresholds to 100%, meaning anything less than perfect fails the build.
 
 The high/low thresholds control report colours (green/yellow/red), but since ours are identical, we get either green or failure. There is no middle ground.
 
@@ -253,11 +251,10 @@ Mutation tests add only a few seconds to our test suite, making them perfect for
 ## Conclusion
 
 Building quality into GitHub Actions requires discipline, but the payoff is worth it. Follow this testing pyramid:
-
-* Start with unit tests using test-driven development
-* Add property-based tests to uncover edge cases you'd never think to write
-* Verify with mutation testing to ensure your tests actually test what they claim to test
-* Add a few workflow tests to verify your action is callable
+- Start with unit tests using test-driven development
+- Add property-based tests to uncover edge cases you'd never think to write
+- Verify with mutation testing to ensure your tests actually test what they claim to test
+- Add a few workflow tests to verify your action is callable
 
 The foundation for all of this is writing actions that do one thing well. Simple logic is more straightforward to test than complex logic. Introduce these practices early, ideally before writing much production code. Retrofitting quality is always more difficult.
 

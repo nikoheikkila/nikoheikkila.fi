@@ -17,7 +17,6 @@ The works of [**Wes Bos**](https://wesbos.com/uses/) inspired this page. If you 
 I regularly work from home, so a functional office setup is something you shouldn't be a cheapskate about.
 
 Therefore, I work with...
-
 -   **MacBook Pro 2023** with M3 Pro CPU and 36 GB RAM for all my personal and work needs.
 -   [**Autonomous Standing Desk**](https://www.autonomous.ai/standing-desks/smartdesk-2-home) since getting up off my ass helps me stay more alert when feeling drowsy.
 -   [**Lenovo ThinkVision P27u-20 27-inch 4K display**](https://www.lenovo.com/fi/fi/p/accessories-and-software/monitors/professional/62cbrat6eu). I used to have a curved monitor, but decided that a sharp Retina display for coding is ultimately better.

@@ -56,7 +56,6 @@ Obviously, our end case doesn't mean we stop writing tests at this point. Instea
 ## Boundaries and Exceptions
 
 Next, we can write more test cases for the following boundary scenarios:
-
 -   One employee, but no billable projects = no invoices
 -   One project, but no staffed employees = no invoices (or a _blank_ invoice with zero total sum depending on the requirements)
 

@@ -27,7 +27,6 @@ Enough talk. How does one implement a gateway?
 Both my actual and fake implementation need to implement the same interface below to reap the full benefits of dependency injection. In Typescript, interfaces are trivial to write if you have any experience with C# or Java.
 
 I'm going to declare methods for the following:
-
 -   fetching all the photos
 -   fetching a single photo by ID
 -   fetching photos by album ID

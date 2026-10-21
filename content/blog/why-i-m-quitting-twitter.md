@@ -19,7 +19,6 @@ When a new wave of federated social networks (or "fediverse") spearheaded by _[M
 So as of today, I will no longer update my Twitter account. It's going to be hard and I might have regrets which means I won't delete my account yet. Instead, I've set up a _cross-posting_ bridge from my English Mastodon account to Twitter. Don't bother replying to me because I won't be logging in to check my mentions anymore.
 
 If you're interested in my content, here's a list of social accounts I'm still active in addition to this blog:
-
 - [_DEV.to_](https://dev.to/nikoheikkila) for my longer posts of which most appear on this blog as well.
 - [_Instagram_](https://www.instagram.com/nikoheikkila/) for all the photos I take until I figure out a better place to host them.
 - [_Fosstodon_](https://fosstodon.org/@nikoheikkila) for my short posts in English.

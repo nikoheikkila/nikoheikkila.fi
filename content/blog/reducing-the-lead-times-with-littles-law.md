@@ -12,7 +12,7 @@ There's a fascinating law of mathematical theory applicable to agile software de
 
 First, let's define the terms.
 
-**Work in progress** (WIP) is the number of backlog items the team is currently working on. These items are not yielding value for the customer. WIP can be determined by counting those cards in your project board that are not in the *Backlog* column and not in the *Done* column but somewhere in between.
+**Work in progress** (WIP) is the number of backlog items the team is currently working on. These items are not yielding value for the customer. WIP can be determined by counting those cards in your project board that are not in the _Backlog_ column and not in the _Done_ column but somewhere in between.
 
 **Throughput** is the measured amount of backlog items a team can complete in a fixed period, which is usually a day.
 
@@ -49,7 +49,6 @@ Note that the latter two roles don't often require separate people because devel
 ## Increasing the Throughput
 
 There are three actions a company can do to increase its teams throughput.
-
 1. Hire more people, but not too much (consider [a two-pizza team](https://jasoncrawford.org/two-pizza-teams) 🍕🍕 the maximum size – leaving the exact number for you to decide).
 2. Make the team more proficient by fostering [Extreme Programming principles](https://en.wikipedia.org/wiki/Extreme_programming#Principles).
 3. Eliminate patterns of waste (see below).
@@ -78,7 +77,7 @@ Our product owners maintain huge backlogs with more user stories than needed for
 
 ### 3. Waiting, Delays, and Handoffs
 
-We are maintaining a slow and unstable regression test suite relying on external integrations. Running it keeps us waiting for results due to constant failures. Additionally, the build server is shared with other teams and maintained by a fantasy creature referred to as the *DevOps Engineer*. Why not use on-demand testing environments, or even better: run all the tests locally?
+We are maintaining a slow and unstable regression test suite relying on external integrations. Running it keeps us waiting for results due to constant failures. Additionally, the build server is shared with other teams and maintained by a fantasy creature referred to as the _DevOps Engineer_. Why not use on-demand testing environments, or even better: run all the tests locally?
 
 For the better part of the lead time, the code is waiting for someone to review it. Some features require review from a senior developer who is at the moment drinking mojitos in Bali. Align the team's skills so knowledge gaps can't happen.
 

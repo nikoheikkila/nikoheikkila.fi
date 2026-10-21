@@ -23,7 +23,6 @@ Below, I've listed a few characteristics that describe the different realities p
 ## In the Desert…
 
 Software engineers are generally stressed and underperforming while working because…
-
 -   From the management's point of view, they need to be constantly supervised and steered in the right direction.
 -   They cannot deliver software within the desired timeframe but must obey predefined release schedules.
 -   Their backlogs are filled with bug reports from stakeholders, and they struggle to find time to fix those.
@@ -47,7 +46,6 @@ Feeling familiar? In that case, there's always time to start walking towards the
 ## In the Forest…
 
 Software engineers are generally relaxed and effective while working because…
-
 -   They are autonomous, empowered and self-organising.
 -   They deliver working software daily.
 -   They practice a zero-bugs policy, meaning defects are fixed as soon as they're found.

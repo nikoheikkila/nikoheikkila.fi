@@ -21,7 +21,6 @@ Here's what I learned: the difference between fragile scripts and reliable autom
 ## What You'll Learn
 
 This series demonstrates how to build GitHub Actions that are:
-
 - **Testable:** Run comprehensive tests locally in seconds, not minutes.
 - **Maintainable:** Separate business logic from infrastructure concerns using clean architecture.
 - **Reliable:** Achieve confidence through unit tests, property-based tests, and mutation testing.
@@ -38,7 +37,6 @@ I've prepared an [example repository](https://github.com/nikoheikkila/rot-13-act
 ## Series Chapters
 
 I have divided the series into three focused chapters, each building on the previous one:
-
 - **Chapter 1:** [Designing for Success](/blog/craftpersons-guide-to-github-actions/designing-for-success)
 - **Chapter 2:** [Scaling Up the Testing](/blog/craftpersons-guide-to-github-actions/scaling-up-the-testing)
 - **Chapter 3:** [Building and Releasing](/blog/craftpersons-guide-to-github-actions/building-and-releasing)

@@ -13,7 +13,6 @@ To developers, the command line is a natural environment for daily work. It make
 Try opening an uncustomized Bash shell on your machine and you will likely be greeted with a very unhelpful _prompt_ (the text before your cursor) reading something like `bash-5.0$`. This only indicates you're running Bash shell version 5.0 which is the least useful information when opening the terminal.
 
 What is useful enough information to include in the prompt then? I've gotten used to demanding the following information depending on the circumstances:
-
 -   current working directory
 -   current Git branch
 -   current username if logged in to a remote machine or doing superuser stuff

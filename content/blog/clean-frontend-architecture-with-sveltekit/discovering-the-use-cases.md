@@ -29,7 +29,6 @@ The above is not an exhaustive list of what you can do with Typicode API, but fo
 > Do note that with a real-world product, you should define user stories by discussing with stakeholders instead of inspecting existing behaviour from an external service. Technical people defining the features they want to deliver without conversing with the right people is a great way to waste money.
 
 **As a gallery visitor, I want to:**
-
 -   browse a gallery of thumbnails on the landing page
 -   view full-size photos
 -   share links to my favourite photos
@@ -39,7 +38,6 @@ The above is not an exhaustive list of what you can do with Typicode API, but fo
 How does the above map to technical use cases?
 
 **Given the stories above, I need to:**
-
 -   load all the photos and thumbnails
 -   load a single photo by ID
 -   load a single album by ID
@@ -100,7 +98,6 @@ One of the reasons for writing this guide is that I have seen too many frontend 
 Some special utility libraries, such as **React Query**, endorse it as a best practice. In this fashion, components fetch data and render their HTML based on whether the internal state of a query is pending, rejected, or fulfilled. It does this so you don't have to touch the global state[^2]. But I'm afraid of no state, and neither should you be!
 
 I don't recommend having components responsible for querying data because their responsibility is already in presenting the data. More accurately, components need only receive data from view models, format it, and output it to the screen. Instead, I advise you to follow either of the three following ways:
-
 1. Render the data on the server and pass it to components as a view model, as shown in this guide.
 2. Use a state management library that supports dispatching actions (e.g. _Redux_ or _MobX_), deriving view models from the state, and passing them to components as properties.
 3. Mix 1 and 2 above, but be careful.

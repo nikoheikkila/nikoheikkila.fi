@@ -12,7 +12,7 @@ There is one thing uniting the people working in tech. Computers. Fresh from the
 
 Whether it be the ecological disaster caused by chasing after fancy new hardware, receiving authorized devices for client work, or switching laptops due to expiring leases, working as a professional software developer means you often find yourself in front of a fresh desktop.
 
-The sweet plastic smell of unboxing a new laptop typically becomes a sour, pungent stench of sweating and installing software via countless hours spent next to a terminal or browser. Some years ago, I decided to cut the crap and stop wasting those hours. As a result, I initially wrote my personal setup script with Bash, which I recently rewrote for Node.js using Google's unofficial yet robust *zx* scripting toolkit.
+The sweet plastic smell of unboxing a new laptop typically becomes a sour, pungent stench of sweating and installing software via countless hours spent next to a terminal or browser. Some years ago, I decided to cut the crap and stop wasting those hours. As a result, I initially wrote my personal setup script with Bash, which I recently rewrote for Node.js using Google's unofficial yet robust _zx_ scripting toolkit.
 
 In brief, the script executes a post-install step after installing dependencies (a seriously great feature in the Node.js ecosystem) and checks whether my new machine is running macOS, Linux, or Windows. It then proceeds to install necessary packages, configure my shell prompt, and tweak other details.
 

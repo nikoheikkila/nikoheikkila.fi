@@ -37,7 +37,6 @@ The most notable impediments to optimizing value streams and team flow have been
 Mary and Tom Poppendieck, in their book [Lean Software Development: An Agile Toolkit](http://www.amazon.com/Lean-Software-Development-Agile-Toolkit/dp/0321150783), popularised the mapping of different types of Lean waste to software delivery impediments.
 
 According to the Poppendiecks, the primary waste in our work includes:
-
 - **Partially done work** (work-in-progress) or every backlog item sitting in the work queue between the backlog and production.
 - **Overproduction**, or all the extra features we write while solving the problem.
 - **Relearning and reworking** involved for the backlog items moving back and forth between inspection points.

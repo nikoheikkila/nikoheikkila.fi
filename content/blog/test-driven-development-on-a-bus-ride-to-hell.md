@@ -6,8 +6,8 @@ type: post
 date: 2022-09-17
 hero: https://r2.nikoheikkila.fi/test-driven-development-on-a-bus-ride-to-hell.jpg
 excerpt: |
-    Want to learn TDD while saving innocent civilians from dying?
-    Hop on board the bus!
+  Want to learn TDD while saving innocent civilians from dying?
+  Hop on board the bus!
 ---
 
 I'm going to admit something: I had trouble understanding test-driven development (TDD) and it took me a long time to get over it.
@@ -19,7 +19,6 @@ So I tried to practice TDD from time to time. I failed again and again.
 Driving the design of my code through tests was intimidating and challenging. However, when I finally understood that I was working with too massive batches (_commits_) and started to radically look at decreasing the feedback loop, it got gradually easier. Today, I use TDD for _almost_ all the code I write.
 
 You may be stuck in that particular quagmire too. Chances are you are asking yourself the following questions:
-
 -   how can I split this feature into smaller tasks?
 -   what test should I write first?
 -   how do I organise my test code?
@@ -42,7 +41,6 @@ You don't necessarily need to have watched the fantastic Oscar-winning film [**S
 > "When a young Los Angeles police department, Special Weapons and Tactics (SWAT) officer called Jack Traven angers retired Atlanta police department bomb squad member Howard Payne, by foiling his attempt at taking hostages stuck in an elevator with a bomb, Payne in retaliation arms a bus with a bomb that will explode if it drops below 50 miles per hour. With the help of spunky passenger Annie, Jack and his partner Detective Harry Temple try to save the people on the bus before the bomb goes off, while also trying to figure out how Payne is monitoring them."
 
 We can extract the following testable acceptance criteria from the film's storyline.
-
 -   [ ] The bus accepts passengers on board.
 -   [ ] The bus can accelerate $v_0 \to v_1$ mph, where $v_1 > v_0$.
 -   [ ] The bus can decelerate from $v_1 \to v_2$, where $v_2 < v_1$.
@@ -481,7 +479,6 @@ class Bus:
 ## Red-green cycles are done — time to refactor
 
 Looks like we are done here. Time to mark the feature as done and go home? Absolutely not!
-
 -   [x] The bus accepts passengers on board.
 -   [x] The bus can accelerate $v_0 \to v_1$ mph, where $v_1 > v_0$.
 -   [x] The bus can decelerate from $v_1 \to v_2$, where $v_2 < v_1$.
@@ -588,7 +585,6 @@ def test_hero_can_save_the_day_from_bus_explosion(
 ```
 
 **What did we do?**
-
 -   Use test fixtures to inject the bus, the driver, and the hero into our tests. I recommended using injectable test fixtures in any test framework you are using to keep the setup phase thin and tests readable.
 -   Arranged the test code to _Arrange-Act-Assert_ blocks for improved readability.
 
@@ -710,7 +706,6 @@ class Bus:
 ```
 
 **What did we do?**
-
 -   Replace the boolean flags controlling the `Bomb` state with a standard integer enumeration.
 -   Save the trigger speed of 50 miles per hour as a constant to the `Bomb` class.
 -   Convert the regular `Bomb` and `Passenger` classes to Python's data classes and eliminate the redundant constructors.
@@ -721,7 +716,6 @@ class Bus:
 Our bus is clearly an MVP, but it successfully transports people somewhere, even though endangering their lives.
 
 What else could we build with our tests? Below are some suggestions, which I leave unimplemented for the sake of this tutorial's brevity.
-
 -   The bus explicitly has a driver and cannot travel without one.
 -   The bus has a maximum speed it can travel.
 -   The bus cannot travel at a negative speed.

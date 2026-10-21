@@ -62,7 +62,6 @@ Some might argue that scripts need not be readable as they only include so-calle
 Writing good Bash scripts takes years of practice. It's not a fruitless path should you choose to follow it but requires a special set of tools and skills to generate value. To not fail with Bash there are two important pieces of advice to adopt.
 
 The first advice is to use the [unofficial Bash strict mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/) to avoid unnecessary debugging. It consists of two lines making your script behave in the following way:
-
 -   The script exits immediately upon encountering an error (`-e` flag)
 -   The script exits immediately upon encountering an undefined variable (`-u` flag)
 -   The script exits immediately when one or more calls in a piped statement fail (`pipefail` option)
@@ -91,7 +90,6 @@ If built-in language features are not enough there are handy frameworks created 
 ## How I Did It
 
 As an example, I present a [script I wrote for creating quick drafts for this Gatsby site](https://github.com/nikoheikkila/nikoheikkila.fi/blob/master/new.ts). The script is written in Javascript and has the following features which would be difficult or even foolish to implement with Bash:
-
 -   Interactive prompts and ability to pass given data through validator functions
 -   Transforming sentences to SEO-friendly slugs (eg. `Blog Post Title` to `blog-post-title`)
 -   Coloring terminal output without using weird ANSI codes

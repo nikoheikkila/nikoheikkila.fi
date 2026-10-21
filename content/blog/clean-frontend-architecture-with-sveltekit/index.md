@@ -25,7 +25,6 @@ Functional programming enthusiasts know that when our design is free of side eff
 However, a clean design does not require a software engineer to have PhD in mathematical analysis and functional programming, although it might help. Clean design only requires writing clean code, which is irrelevant to your chosen paradigm. Clean code is perfectly doable by mixing object-oriented[^2], imperative, and functional paradigms — this is where purists stop reading the guide in nausea.
 
 As a software engineer, I witness the following chain of problems regularly in myself and others:
-
 -   Developers like writing code because it's a creative and fulfilling activity.
 -   Developers dislike design because it's time-consuming.
 -   Design is time-consuming because it takes time to master, and there are not enough accessible guides.

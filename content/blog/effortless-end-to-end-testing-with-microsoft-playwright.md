@@ -15,7 +15,6 @@ In my job, I stumble upon projects where there are _zero_ tests, or a project is
 During the maintenance phase, new layers of code are added on top of the existing cruft, making things worse. Fear of breaking things prevents refactoring, and hence the code quality keeps dropping.
 
 Software maintenance and lifecycle management are complicated. As maintainers, we are often tempted to heroically rescue the project by adding all the missing tests or rewriting the whole project from scratch. No budget will ever be given for such a crazy thing. Fortunately, we can follow certain practices:
-
 -   adding tests whenever writing new functions, methods, or classes
 -   adding tests before refactoring a unit of code
 -   studying the business logic and writing end-to-end tests for it
@@ -25,7 +24,6 @@ In this post, I explain the latter -- **end-to-end tests** -- which I've found t
 ## Anatomy of an End-to-End Test
 
 End-to-end tests (abbreviated as E2E from now on) instead of unit and integration tests cover user-facing flows and business requirements defined for the application since its planning phase started. These include, for example:
-
 -   booking a hotel room online
 -   adding products to the basket, viewing them, and checking out the purchase on an e-commerce website
 -   ...and many more
@@ -86,7 +84,6 @@ As a developer from Finland, I can say **Nokia** has had a significant impact on
 Typically, Robot tests are written in a quirky tabular keyword syntax advertised as accessible to even non-developers -- which it certainly is not, I dare to say. Robot tests almost always become a jumbled mess of keywords and external Python libraries without rigorous engineering practices. In a worst-case scenario, as the test suite complexity grows over time, people start neglecting it and what is left is a pit of obsolete tests that worked five years ago, but the application has lived on and changed a lot since then.
 
 The solution is two-fold:
-
 1. End the Cold War, and bring QA and developers together
 2. Throw away the Robot framework
 
@@ -123,7 +120,6 @@ You can also use any third-party NPM modules in your tests. For example, the [`f
 ### Configuration
 
 If you choose to use the first-party test runner, you get to configure your tests in a single TypeScript file. The configurable features are documented and well. Some of the most helpful ones are:
-
 -   adjusting test timeouts in case of particularly slow web servers
 -   specifying multiple projects with separate configurations and running them with `playwright test --project <name>`
 -   specifying multiple reporters -- generally, you want console and HTML reporting, but there are more, or you can roll your own
@@ -212,7 +208,6 @@ Obviously, randomness is a terrible feature in tests, so you should not expect a
 Writing tests is never enough if they only run locally. Playwright supports most build platforms out of the box, including **Azure Pipelines**, **GitLab CI**, and **GitHub Actions**. In my [kickstarter repository][kickstarter], I have defined a concise yet powerful GitHub Actions workflow that runs E2E tests across different browsers and operating systems.
 
 Generally, a delivery pipeline has the following steps:
-
 -   clone the repository
 -   install dependencies
 -   build the application with a production-like configuration

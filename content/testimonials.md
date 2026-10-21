@@ -6,6 +6,7 @@ type: page
 title: "Testimonials: The Wall of Recognition"
 excerpt: Here is a collection of kind words people have said about me and my work over the years. If you ever get to work with me, I'm fairly confident you will find these agreeable.
 ---
+
 ### What People I've Worked With Say
 
 _Niko has a creative and problem-solving personality with a desire to learn and try new. He took responsibilities in design and technical decision-making exceptionally rapidly. In addition to that, Niko has had a role of Team Lead being charge of outcomes of a sub-team of our development organisation. Once our company decided to hand over some services to another unit, Niko was in a key and a diverse role in this transition delivering successfully executed assignments in knowledge transfer, mentoring new development unit in their new work and tons of other tasks._
@@ -41,4 +42,3 @@ _Niko has made the project better by: refactoring, improving and bringing new id
 <center>***</center>
 
 _Niko Brings fresh ideas to our culture, promotes critical thinking on AI, masters software development practices_
-

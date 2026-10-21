@@ -13,7 +13,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["**", "!content/**/*", "!skills/**/*", "!.agents/skills/**/*", "!.mcp.json"]
+		"includes": ["**", "!.mcp.json"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -41,8 +41,12 @@
 		}
 	},
 	"markdown": {
+		"parser": {
+			"frontmatter": true
+		},
 		"formatter": {
-			"enabled": false
+			"enabled": true,
+			"formatEmbeds": false
 		}
 	},
 	"yaml": {

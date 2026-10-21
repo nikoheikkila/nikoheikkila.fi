@@ -20,7 +20,7 @@ There are too many places to mention, but I'll list a few here:
 
 Furthermore, I'm a big fan of [**Mailbrew**](https://mailbrew.com/), which allows me to subscribe to different services and newsletters to receive weekly content digests. I've set it up to deliver a daily digest every morning at 7:00 and a weekly digest every Sunday at 9:00. Perfect finite browsing with the morning coffee.
 
-I've come to a remarkable revelation through content digests: nothing beats the *slow* web. It's the place where you embrace calmness—no rush to be the first to see, hear and share something. Instead, you'll take it nice and slow and enjoy a well-curated content delivered to you deliberately late. Later is better than now, and the mental health effect of the said life in contrast to a hectic refreshing of the Hacker News and Reddit is irreplaceable. Take it from someone who used to commit F5 frenzy on significant outlets and subscribed to all the good RSS feeds[1] everywhere.
+I've come to a remarkable revelation through content digests: nothing beats the _slow_ web. It's the place where you embrace calmness—no rush to be the first to see, hear and share something. Instead, you'll take it nice and slow and enjoy a well-curated content delivered to you deliberately late. Later is better than now, and the mental health effect of the said life in contrast to a hectic refreshing of the Hacker News and Reddit is irreplaceable. Take it from someone who used to commit F5 frenzy on significant outlets and subscribed to all the good RSS feeds[1] everywhere.
 
 Finally, if you decide to learn something, do it no sooner than [_just in time_](/blog/fight-the-inner-impostor-with-just-in-time-learning/).
 

@@ -26,27 +26,29 @@ description: Instructions for using Playwright to test the blog. Use this when y
 // Required imports and fixture structure
 import { test, expect, type Page } from "@playwright/test";
 
-test.describe.parallel("Given I want to test feature X", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("/target-page");
-  });
+test.describe
+	.parallel("Given I want to test feature X", () => {
+		test.beforeEach(async ({ page }) => {
+			await page.goto("/target-page");
+		});
 
-  test("when I perform action Y, then outcome Z should occur", async ({ page }) => {
-    await test.step("Descriptive step name", async () => {
-      // Test implementation
-    });
-  });
-});
+		test("when I perform action Y, then outcome Z should occur", async ({ page }) => {
+			await test.step("Descriptive step name", async () => {
+				// Test implementation
+			});
+		});
+	});
 
 // For mobile test suites, configure viewport at the describe level
-test.describe.parallel("Given I visit the page using a mobile browser", () => {
-  test.use({
-    hasTouch: true,
-    viewport: { width: 375, height: 667 },
-  });
+test.describe
+	.parallel("Given I visit the page using a mobile browser", () => {
+		test.use({
+			hasTouch: true,
+			viewport: { width: 375, height: 667 },
+		});
 
-  // Tests here run with mobile viewport
-});
+		// Tests here run with mobile viewport
+	});
 ```
 
 ### Required Practices
@@ -97,9 +99,9 @@ import { AxeBuilder } from "@axe-core/playwright";
 const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 test("page passes WCAG 2.2 AA", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
-  expect(results.violations).toEqual([]);
+	await page.goto("/", { waitUntil: "networkidle" });
+	const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+	expect(results.violations).toEqual([]);
 });
 ```
 
@@ -116,14 +118,14 @@ Notes:
 ```typescript
 // Test pagination with proper edge case handling
 const fixtures = {
-  postsPerPage: 30,
-  pagination: { minimumPostsOnPage: 1 }
+	postsPerPage: 30,
+	pagination: { minimumPostsOnPage: 1 },
 };
 
 // Check for dynamic pagination states
 const nextPageExists = (await nextPageLink.count()) > 0;
 if (nextPageExists) {
-  await expect(nextPageLink).toBeVisible();
+	await expect(nextPageLink).toBeVisible();
 }
 ```
 
@@ -148,20 +150,20 @@ import type { Page, Locator } from "@playwright/test";
 
 // Handle popup windows for external links
 export const toExternalSiteByClicking = async (page: Page, locator: Locator): Promise<Page> => {
-  const popupPromise = page.waitForEvent("popup");
-  await locator.click();
-  const popup = await popupPromise;
-  await popup.waitForLoadState("load");
-  return popup;
+	const popupPromise = page.waitForEvent("popup");
+	await locator.click();
+	const popup = await popupPromise;
+	await popup.waitForLoadState("load");
+	return popup;
 };
 
 // Navigate to an internal page by clicking a link
 export const toInternalPageByClicking = async (page: Page, locator: Locator): Promise<void> => {
-  await Promise.all([page.waitForURL(/\//), locator.click()]);
+	await Promise.all([page.waitForURL(/\//), locator.click()]);
 };
 ```
 
-**Gotcha**: `toInternalPageByClicking`'s wait pattern (`/\//`) matches almost any URL, including the page you're already on. If you don't know the destination URL ahead of time (e.g. clicking into a dynamically-discovered post), `page.waitForURL(/\//)` can resolve immediately against the *current* URL instead of waiting for the click's navigation to finish, and the test proceeds against a stale page. When the destination isn't a known, specific pattern, capture the link's `href` and `page.goto()` it directly instead of using this helper.
+**Gotcha**: `toInternalPageByClicking`'s wait pattern (`/\//`) matches almost any URL, including the page you're already on. If you don't know the destination URL ahead of time (e.g. clicking into a dynamically-discovered post), `page.waitForURL(/\//)` can resolve immediately against the _current_ URL instead of waiting for the click's navigation to finish, and the test proceeds against a stale page. When the destination isn't a known, specific pattern, capture the link's `href` and `page.goto()` it directly instead of using this helper.
 
 #### Content Validation
 

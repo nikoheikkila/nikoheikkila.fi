@@ -6,7 +6,6 @@ description: Reflect on recent context, obstacles, and workarounds to update pro
 # Reflect and Learn from Current or Past Context
 
 When this skill is activated, follow the steps below:
-
 1. Recall the project memory and task context.
 2. Study the changes made in this session.
 3. Make note of any friction, obstacles, and workarounds you encountered while working on this task.

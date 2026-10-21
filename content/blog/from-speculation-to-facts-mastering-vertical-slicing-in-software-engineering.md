@@ -27,7 +27,6 @@ It is typical for frontend engineers to develop their user interfaces by couplin
 Horizontal slicing is an attractive yet dangerous path that can ultimately manifest in delays and, in some cases, even destroy your business' profitability. To prevent this, many agile experts recommend changing the direction of slicing from horizontal to vertical.
 
 Reflecting on the example above, the team must **work together on the entire technology stack** to make the vertical slicing work. This exposes the team to two inevitable and hard-to-swallow facts:
-
 1. You cannot deliver quality outcomes as promised when working in isolation.
 2. You must be comfortable working with the entire technology stack.
 
@@ -52,7 +51,6 @@ I've seen many user stories that capture the discussion directly into the accept
 **As a customer, I want to manage my profile settings to keep my personal information current.**
 
 Where the acceptance criteria state that:
-
 1. Customers can view all current profile information on a single page.
 2. Customers can edit their name, email, phone number, and address.
 

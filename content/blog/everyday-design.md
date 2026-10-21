@@ -3,9 +3,9 @@ title: Everyday Design
 author: Niko Heikkilä
 lang: en
 excerpt: >
-    Why do most developers struggle while changing code?
-    The answer lies in how we think about software design.
-    Learn how focusing on behavioural thinking can elevate your code quality.
+  Why do most developers struggle while changing code?
+  The answer lies in how we think about software design.
+  Learn how focusing on behavioural thinking can elevate your code quality.
 type: post
 date: 2025-11-25
 hero: null
@@ -134,7 +134,6 @@ A software engineer practising clean design writes the tests for the second snip
 The entire activity takes minutes. However, the speed matters less than understanding why most developers revert to everyday design. Many developers I've worked with explain that they need to visualise the solution mentally, load it into their editor, and see if it works. Or rather, whether it doesn't immediately crash.
 
 This experimental approach is perfectly sensible due to its scientific nature:
-
 - First, we set up the experiment.
 - Next, we run it.
 - Finally, we verify the hypothesis.
@@ -144,7 +143,6 @@ However, clean design works differently. One could even say it works in an unsci
 The first obstacle: we must stop thinking imperatively and focus on declarative specification, or _behaviour_.
 
 That is, instead of thinking through the following steps:
-
 - Ask the user for the first input, and store it.
 - Ask the user for the second input, and store it.
 - Compare the inputs.
@@ -155,7 +153,6 @@ That is, instead of thinking through the following steps:
 You must turn it upside down:
 
 For all numbers $(a, b)$, the following behaviour is valid:
-
 - Given $a > b$, return _"The first value is bigger"_.
 - Given $a < b$, return _"The second value is bigger"_.
 - Given $a = b$, return _"The values are equal"_.
@@ -169,7 +166,6 @@ However, if you conflate behaviour with verbatim instructions, infrastructure de
 What matters is how declaring the behaviour makes you think of test cases instead of instructions, empowering you to start writing the tests immediately.
 
 When you start writing tests, you work in this strange, unscientific, backwards reality where you:
-
 - State the hypothesis — even though it's always correct.
 - Run the experiment.
 - Set up the experiment.

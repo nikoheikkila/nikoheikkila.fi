@@ -10,11 +10,11 @@ hero: null
 
 Recently, on LinkedIn, I shared [my unapologetic opinion](https://www.linkedin.com/feed/update/urn:li:activity:6935143806799392768/) that you're not **a professional software developer** if you don't care to write automated tests to verify your code.
 
-Some people took this into their hearts and decided to call me out as a gatekeeper, actively seeking to harm the industry. Remember that I said nothing about fresh developers who haven't *yet* learned to write tests. My gripe is for the experienced developers who boldly declare writing tests will only cost you time while you seek to cash an exit from the next ample startup opportunity. I find few attitudes more repulsive than this. I sincerely hope developers working in health, automobile, financial, or energy sectors will never learn to think like certain startup hobbyists lest our society collapse.
+Some people took this into their hearts and decided to call me out as a gatekeeper, actively seeking to harm the industry. Remember that I said nothing about fresh developers who haven't _yet_ learned to write tests. My gripe is for the experienced developers who boldly declare writing tests will only cost you time while you seek to cash an exit from the next ample startup opportunity. I find few attitudes more repulsive than this. I sincerely hope developers working in health, automobile, financial, or energy sectors will never learn to think like certain startup hobbyists lest our society collapse.
 
-Leaving the random commenters be, it made me wonder that it is common to mistake a professional software developer as one who gets paid for writing code. That is a shallow bar and heavily disrespects the people who work *professionally*. For example, I know and respect many open-source developers who might have little to no income from paid jobs. Yet, their outcomes enable a lot of commercial software development to exist in the first place.
+Leaving the random commenters be, it made me wonder that it is common to mistake a professional software developer as one who gets paid for writing code. That is a shallow bar and heavily disrespects the people who work _professionally_. For example, I know and respect many open-source developers who might have little to no income from paid jobs. Yet, their outcomes enable a lot of commercial software development to exist in the first place.
 
-Thus, being a professional means conveying a degree of *professionalism* through your work.
+Thus, being a professional means conveying a degree of _professionalism_ through your work.
 
 A practical guide to looking towards professionalism above all is [**The Manifesto for Software Craftsmanship**](https://manifesto.softwarecraftsmanship.org/), where the first sentence nails it:
 
@@ -42,7 +42,7 @@ Many developers explain that they can't bother collaborating with others because
 
 Moreover, you need a community around you that learns from the knowledge you share and nurtures your growth. Then, as a professional or growing to be one, you can write blogs, make videos, present in front of a live audience, and mentor the less experienced ones.
 
-Finally, I find **Kent Beck's** definition in the book *Extreme Programming Explained (1999)* particularly apt.
+Finally, I find **Kent Beck's** definition in the book _Extreme Programming Explained (1999)_ particularly apt.
 
 > Extreme Programming is about social change. It is about being open about what we are capable of doing and then doing it. And allowing and expecting others to do the same. It is about getting past our adolescent surety that "I know better than everyone else and all I need is to be left alone to be the greatest". It is about finding our adult place in the larger world, **finding our place in the community** including the realm of business/work. It is about the process of becoming more of our best selves and, in the process, our best as developers. And, it is about writing great code that is really good for business.
 
@@ -54,6 +54,6 @@ Being a trusted partner to people has the additional karma effect. When you most
 
 ---
 
-The points above might leave you thinking, did I now describe what a *senior software developer* should be? Perhaps not. I've found it unproductive to divide developers into seniors and juniors as it may fool us to look solely for the experience in years.
+The points above might leave you thinking, did I now describe what a _senior software developer_ should be? Perhaps not. I've found it unproductive to divide developers into seniors and juniors as it may fool us to look solely for the experience in years.
 
 Some developers have 20 years of experience backed by a professionalist attitude, and then some developers have one year of experience 20 times, with a hobbyist attitude. So which one do you aspire to be?

@@ -68,7 +68,7 @@ For example, I can tell the agent to aim for high test coverage through mutation
 
 > Let's stop kidding ourselves about how good our human first cuts are.
 
-On the contrary, these first stabs at solutions written by humans are often *good enough* since they represent our understanding of the problem that can still remain limited. We professional engineers work agilely, delivering the least amount of code, asking for feedback, and iterating until the problem is solved.
+On the contrary, these first stabs at solutions written by humans are often _good enough_ since they represent our understanding of the problem that can still remain limited. We professional engineers work agilely, delivering the least amount of code, asking for feedback, and iterating until the problem is solved.
 
 Agents, however, crank out the maximum amount of code, hallucinating additional aspects of the problem's very nature. What they come up with requires excessive editing insofar that inviting a human to rewrite it starts to feel like a compelling alternative.
 
@@ -78,7 +78,7 @@ A significant attraction of software engineering is the constant development of 
 
 Sure, the supervisor job is easy on paper, but is it fun? Controversially, our work should be fun. Telling people to settle as Taylorist factory line workers during office hours and save all the fun in their free time is as fresh an attitude as Fortran is for writing applications. When given an option, I doubt most people would sit 40 hours a week in front of a computer writing detailed implementation plans. Instead, it sounds like a dystopian scenario in an Isaac Asimov novel. I, for one, would rather migrate to Svalbard and become a fisherman.
 
-If you're not convinced about what drives people forward, I recommend reading the [*Drive*](https://www.danpink.com/books/drive/) by **Daniel H. Pink** and specifically the role of purpose as an intrinsic motivator.
+If you're not convinced about what drives people forward, I recommend reading the [_Drive_](https://www.danpink.com/books/drive/) by **Daniel H. Pink** and specifically the role of purpose as an intrinsic motivator.
 
 > As a mid-late career coder, I've come to appreciate mediocrity. You should be so lucky to have it flowing almost effortlessly from a tap. We all write mediocre code. Mediocre code: often fine. Not all code is equally important. Some code should be mediocre. Maximum effort on a random unit test? You're doing something wrong. Your team lead should correct you.
 
@@ -104,7 +104,6 @@ As of writing this, the best use case for AI is to whip up a spike. An experimen
 Whether you read the above counterarguments or skipped through here doesn't matter.
 
 Here's a summarised list of everything that still requires improvement regarding agentic programming.
-
 - Never take a rule for granted. Agents are more than willing to bend and break them.
 - The more rules you impose on agents, the less they obey you. Talk about a robot uprising!
 - Agents get stuck easily, retrying the wrong fix again and again.

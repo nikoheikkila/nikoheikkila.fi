@@ -29,7 +29,6 @@ After a moment of pure blissful selfishness, extend your thinking to your collea
 Attracting followers is all about listing benefits. However, at this point, you don't need a massive cult standing behind you. A few like-minded colleagues who can help review and refine the plan is enough.
 
 Carry on by writing short and long term goals down in a bullet list. For instance, **Sophie Alpert** has written a comprehensive article on _[Increment](https://increment.com/open-source/the-benefits-and-costs-of-corporate-open-source/)_ about the benefits and costs open-source brought to React project. Add to the list my short-term benefits that companies enjoy by adopting open-source as part of their toolchain.
-
 -   Open-source is a cost-effective and flexible way to adopt new technologies without risking vendor lock-in. Importing a dependency and changing it later is trivial if your software architecture is built upon **SOLID** principles, namely the _[Dependency Inversion](https://stackify.com/dependency-inversion-principle/)_ principle.
 -   It builds morale and reputation among developers and helps retain them in the company for longer. We all love a degree of variety in our work.
 -   Public projects benefit from the increase in quality and security. Remember the **Linus Torvalds'** law: "Given enough eyeballs, all bugs are shallow".
@@ -37,7 +36,6 @@ Carry on by writing short and long term goals down in a bullet list. For instanc
 -   It's an excellent excuse to clean up the code and documentation of older projects before open-sourcing them. Throw bad commit history away where necessary.
 
 Likewise, there's much long-term fruit to harvest.
-
 -   A company emerging as an open-source champion drives more tech-savvy people to use their products which generates more revenue.
 -   More tech-savvy users mean improved quality through contributions, which again generates more marketability, users, and revenue. Looks like we have a profit loop here!
 -   Talent acquisition becomes easier as well-known regular contributors become potential hires. Note that many people prefer to be _drive-by_ contributors who only contribute once and then vanish — keep a close eye on your regulars and feature them in your repository.
@@ -58,7 +56,6 @@ Whatever the approach you need to take, a well-versed letter accompanied by a sp
 ### Make It Solid
 
 When communicating a cultural change, define the status quo*.* It's useful to address the following:
-
 -   where your company stands at the moment compared to your competitors
 -   what are you missing out by not contributing to the open-source
 -   what do your business and culture benefit from the change (see above)
@@ -117,7 +114,6 @@ No one must skip from the agreed flow. Employees with write permissions to the p
 ### Enter the Boards
 
 GitHub supports organization boards which can be used to manage a variety of tasks going on in your organization. I recommend the following two boards, but feel free to make more as needed.
-
 -   One board for issues, or _Bug Tracker_
 -   One board for pull requests, or _Contributions Tracker_
 
@@ -126,7 +122,6 @@ If you've used **Trello** or **Jira**, these boards are not that different. You 
 ### Triaging Issues with a Bug Tracker
 
 For the bug tracker, set up a basic board for _triaging_ issues. Triaging in this context means categorizing the incoming issues by their priority (high vs low) or closing them. Prepare one column for each label.
-
 -   _Needs Triage_
 -   _High Priority_
 -   _Low Priority_
@@ -143,7 +138,6 @@ Don't bother setting any middle stages like a _Normal_ priority between _High_ a
 ### Monitoring the Contributions
 
 For the contributions tracker, set up an automated Kanban board with following columns. You may pick different names depending on your needs.
-
 -   _In Progress_ for PRs marked as drafts or implementing review suggestions
 -   _In Review_ for PRs being actively reviewed
 -   _Ready for Merge_ for PRs that have passed testing

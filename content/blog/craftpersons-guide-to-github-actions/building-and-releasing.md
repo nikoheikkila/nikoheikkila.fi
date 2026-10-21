@@ -133,10 +133,9 @@ We test both valid input (should succeed) and invalid input (should fail). The a
 When the verification passes, it’s time to release. Unlike some release processes that feel like organising a conference, releasing GitHub Actions is refreshingly simple: we tag the verified commit and push.
 
 GitHub Actions recommends semantic versioning with a simple twist. Instead of one, we publish three tags for each release:
-
-* **Full version:** `v1.2.3` (patch-level precision)
-* **Minor version:** `v1.2` (minor updates included)
-* **Major version:** `v1` (the convenient default)
+- **Full version:** `v1.2.3` (patch-level precision)
+- **Minor version:** `v1.2` (minor updates included)
+- **Major version:** `v1` (the convenient default)
 
 This approach lets users choose their comfort level. Want automatic updates? Use `v1`. Need stability? Pin to `v1.2.3`. The major version tag is what most users reference, and we keep it updated automatically.
 
@@ -251,12 +250,11 @@ The investment pays off in reliability, maintainability, and confidence. Instead
 ## What You've Learned
 
 Through this series, you've mastered:
-
-* **Design:** Separating business logic from infrastructure using dependency injection
-* **Testing:** Unit tests, property-based tests, and mutation testing for genuine confidence
-* **Building:** Creating reproducible production artifacts
-* **Releasing:** Semantic versioning with automated verification
-* **Delivery:** Safe deployment with post-release verification
+- **Design:** Separating business logic from infrastructure using dependency injection
+- **Testing:** Unit tests, property-based tests, and mutation testing for genuine confidence
+- **Building:** Creating reproducible production artifacts
+- **Releasing:** Semantic versioning with automated verification
+- **Delivery:** Safe deployment with post-release verification
 
 ## Next Steps
 

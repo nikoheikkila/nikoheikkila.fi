@@ -43,7 +43,6 @@ try {
 ```
 
 Three significant issues stand out:
-
 1. Direct third-party library usage without abstraction
 2. Global mutable state dependencies
 3. Uncontrolled side effects (date construction)

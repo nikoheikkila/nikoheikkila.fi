@@ -11,7 +11,6 @@ scenario design. Your expertise includes functional testing, edge case identific
 planning.
 
 You will:
-
 1. **Navigate and Explore**
    - Invoke the `planner_setup_page` tool once to set up page before using any other tools
    - Explore the browser snapshot

@@ -14,7 +14,7 @@ excerpt: Walk another mile and make the code review a joyful experience.
 
 Many of us have been there. A software project with significant business value should ship to end-users as soon as possible. But, unfortunately, the budget has run over. Management is throwing a furious fit. Developers are doing their best to sustain and control damage by explaining that the features are being reviewed and tested, but all they need is a little more time.
 
-Rapid feature delivery is impossible when code reviews become a blocker, which they often are because of our inability to *shift left* (move events earlier in the process instead of later).
+Rapid feature delivery is impossible when code reviews become a blocker, which they often are because of our inability to _shift left_ (move events earlier in the process instead of later).
 
 Some developers' comfort zone is buried under noise-cancelling headphones working on a feature isolated from the rest of the world. After a couple of days, the feature is "finished", and a pull request is submitted for peers to scrutinise. However, an effective code review can't occur because the changeset is made of inconceivable hunks of code totalling over **1000 changed lines**.
 
@@ -24,7 +24,7 @@ Feeling the insufferable pressure from management, another developer takes a qui
 
 **Legacy code is born when we fail to build quality in.**
 
-All those moments where we play a safe bet and write another page of technical debt explaining how we had a tight schedule. Surely, we can pay back the technical debt later. So in a sense, we can, but we *won't*.
+All those moments where we play a safe bet and write another page of technical debt explaining how we had a tight schedule. Surely, we can pay back the technical debt later. So in a sense, we can, but we _won't_.
 
 I've done this too many times and always felt ashamed, profoundly questioning my professionality. This post will explain how you can avoid these pitfalls and make code review a pleasant part of the development experience.
 
@@ -38,7 +38,7 @@ Pull requests have their place in open-source development where trust doesn't ex
 
 When the development happens asynchronously, developers work on their tasks and are forced to wait until their peers are available for review. Naturally, this incentivises starting new tasks before previous ones have been finished. It's a trait rooted in our mind that we should keep ourselves busy, lest a judging eye of the management might find us slacking and not working. However, the more tasks we start, the more context-switching penalties we suffer, and the slower our velocity become.
 
-Fortunately, the great minds of the *Extreme Programming* community have had a solution to this for a long time: **test-driven development** and **pair/mob programming**. To achieve the most effective form of code review, we should use linters to check our code style, write the minimum amount of code to make tests pass, and finally use ~~a rubber-duck~~ a teammate to verify our design. All this should happen at the same time, in the same space, on the same computer.
+Fortunately, the great minds of the _Extreme Programming_ community have had a solution to this for a long time: **test-driven development** and **pair/mob programming**. To achieve the most effective form of code review, we should use linters to check our code style, write the minimum amount of code to make tests pass, and finally use ~~a rubber-duck~~ a teammate to verify our design. All this should happen at the same time, in the same space, on the same computer.
 
 I've written extensively about [the benefits and pitfalls of pairing](/blog/when-to-pair-program-and-when-to-go-solo), so suffice to say here that the best code reviews take place instantly after a single line has been written.
 
@@ -50,7 +50,7 @@ The unfortunate truth is that defects will occur despite our best intentions. Th
 
 Defects are much easier to find from micro-commits, and they are effortless to revert where needed. For example, I've lost count of how many times [`git bisect`](https://git-scm.com/docs/git-bisect) has saved the day because I've used micro-commits.
 
-Practising Continuous Integration dictates that we should push to the trunk at least daily — I prefer multiple times a day. However, developers sometimes reject this notion stating that their changes are too large and risky to integrate *now*. Hence, they stash their batches in branches, allowing them to grow in size and become more challenging to review.
+Practising Continuous Integration dictates that we should push to the trunk at least daily — I prefer multiple times a day. However, developers sometimes reject this notion stating that their changes are too large and risky to integrate _now_. Hence, they stash their batches in branches, allowing them to grow in size and become more challenging to review.
 
 A reinforcement loop where we are forced to write large batches because we're afraid of integrating reveals a malodorous design smell. The task you took wasn't correctly broken into subtasks, and it likely contains dependencies to other developers (or teams) work. Unfortunately, it's too late for us to fix lousy design during a code review, but we can monitor and improve for the future by limiting the scope and writing smaller user stories.
 
@@ -76,11 +76,11 @@ Instead of scrutiny, we should use code review for mentoring. Instead of telling
 
 ## Trust the Infinitely Improvable Code
 
-Similarly, as an avid gatekeeper, it took me a lot of time to understand that the code written by others is not inherently faulty. The code might not meet my expectations of good design, but that's rarely an issue. All the code is *infinitely improvable*, and our responsibility as developers is to improve it.
+Similarly, as an avid gatekeeper, it took me a lot of time to understand that the code written by others is not inherently faulty. The code might not meet my expectations of good design, but that's rarely an issue. All the code is _infinitely improvable_, and our responsibility as developers is to improve it.
 
 As arguments arise in code reviews, it's important to practice humility and not push your solution too firmly. By saying that, do I mean that code review doesn't matter? No, but it's to be used wisely. Likely, the code reviewed to be acceptable now wouldn't pass the same inspection in six months.
 
-Keeping the code easy to change allows us to refactor it to better serve our purpose long after writing. There's no need to expect perfect software to emerge during a code review when we can perpetually grow it. That is what makes software *soft*.
+Keeping the code easy to change allows us to refactor it to better serve our purpose long after writing. There's no need to expect perfect software to emerge during a code review when we can perpetually grow it. That is what makes software _soft_.
 
 ---
 

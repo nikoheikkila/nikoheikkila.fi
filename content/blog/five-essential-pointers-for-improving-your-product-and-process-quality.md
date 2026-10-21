@@ -19,10 +19,9 @@ Among other things, keeping everyone 100 % utilised on their tasks weakens the k
 Like many businesses, we are often afraid of situations where everyone is not working on something meaningful and try to address it by creating more work to do. Instead of focusing on idle hands, remember to concentrate on a steady flow of value from idea to production.
 
 It's advisable to establish relevant KPI metrics to monitor this. For example, suitable candidates are:
-
--   *Lead time* — how long does a user request (ticket) take to be delivered?
--   *Throughput* — how many tickets can a team deliver in time?
--   *Wait-to-processing ratio* — how much of its measured lead time does the ticket spend waiting for processing rather than being processed?
+-   _Lead time_ — how long does a user request (ticket) take to be delivered?
+-   _Throughput_ — how many tickets can a team deliver in time?
+-   _Wait-to-processing ratio_ — how much of its measured lead time does the ticket spend waiting for processing rather than being processed?
 
 See what is possible to measure in your chosen issue tracker software and consider implementing it. One good option is to place strict WIP limits on the Kanban board. If a WIP limit is hit, the team must focus on finishing existing work instead of starting new. Stop starting and start finishing!
 
@@ -51,7 +50,6 @@ This also applies to automated tests: often, it's an excellent option to provide
 It's very tempting in a high-pressure hotfix situation to analyse the root cause of a bug, fire up a debugger, fix the leak, and ship it. However, the most crucial step of the process is defining proper reproduction steps as an automated test.
 
 The workflow is deceptively simple:
-
 -   Write a test exposing the bug.
 -   See the test fail.
 -   Change the code to fix the defect.

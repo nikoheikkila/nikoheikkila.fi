@@ -39,7 +39,6 @@ Finally, regarding development experience, I recommend using Task or a similar b
 If you look at [the package definition](https://github.com/nikoheikkila/photo-browser/blob/main/package.json) of the Photo Browser, you see that I haven't added any NPM scripts for handling the mundane tasks. Instead, I've accustomed to using the following tasks while developing _any_ project.
 
 In my [Taskfile](https://github.com/nikoheikkila/photo-browser/blob/main/Taskfile.yaml), I define:
-
 -   `task install` to install third-party dependencies and set the application up for development. This is run as a dependency for all the later tasks.
 -   `task format` to format the codebase according to the used style guide.
 -   `task lint` to run static analysis to find code smells lingering in the codebase.
@@ -60,7 +59,6 @@ You might also wonder why I am not using Make since it's already bundled in most
 Since I'm using GitHub, the obvious solution is to use their Actions pipelines. As indicated previously, I run all my build and test steps with Task, which helps me to change the CI/CD provider more flexibly in case I need to do so[^pl].
 
 In my [main workflow](https://github.com/nikoheikkila/photo-browser/blob/main/.github/workflows/test.yml), I run the following steps:
-
 -   Check out the changes, set up Node.js, and install the required dependencies.
 -   Check the codebase formatting with Prettier.
 -   Run the static analysis with ESLint.
@@ -84,7 +82,6 @@ Throughout the software lifecycle, it's crucial to maintain the stability and ro
 Many teams tend to set up the pipeline and forget it during the project's early days. However, continuous delivery requires disciplined maintenance and monitoring of your live application and pipelines. Unfortunately, people can easily forget the pipeline once they get it working, and then later on, they need to investigate why it takes an hour or more to finish.
 
 I recently worked on a small maintenance task for the Photo Browser updating the dependencies and pruning the obsolete ones. Having completed that, I deployed my changes to production and made a note of how long each test in the pipeline took:
-
 -   Unit tests: 3 seconds
 -   Svelte view tests: 6 seconds
 -   Playwright tests: 31 seconds
@@ -103,7 +100,6 @@ Paraphrasing perhaps my favourite Linus Torvalds quote: _talk is cheap, show me 
 ## Conclusion
 
 You have now read the final part of the guide. To sum up the guide in terms of non-functional requirements, the clean architecture and its supporting practices such as continuous delivery enables you to build applications that:
-
 -   enjoy effortless maintainability due to robust testability
 -   are not tightly coupled to specific frameworks or auxiliary devices
 -   are less expensive to change whenever stakeholders uncover new needs

@@ -60,7 +60,6 @@ have burned. In that case, it's your responsibility to stand up and act — by f
 When the tools we use grow more potent at both destroying and improving us, it's crucial to build healthy processes and
 ways of working. Below is a simple checklist to go through in case you're feeling fatigued or long for the joy of coding
 to return.
-
 1. Sleep at least eight hours each night.
    Everything below in the list is moot if you fail at this.
 2. Keep drinking water and eat small meals throughout the day.

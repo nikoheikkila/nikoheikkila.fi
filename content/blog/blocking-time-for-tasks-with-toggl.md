@@ -57,7 +57,6 @@ Toggl web app has a nifty calendar view which is ideal for drawing blocks of tim
 ## Why Command-Line? Why Not?
 
 However, one thing I was missing from Toggl was a performant terminal app. So, as a hobby project and because my current employer sponsors the personal time spent in open-source, I started writing one. Enter [**Hours**](https://github.com/nikoheikkila/hours). It's a lightweight, single-binary, open-source terminal companion for Toggl written in **Go**. At the moment, Hours ships the following features:
-
 -   listing the saved time entries in various formats using the public Toggl API
 -   styling the plain text output with `termenv`
 -   converting the output to Markdown, JSON, and CSV allowing you to post-process data with other scripts
