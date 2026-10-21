@@ -62,7 +62,12 @@
 	},
 	"yaml": {
 		"formatter": {
-			"bracketSpacing": false
+			"enabled": true,
+			"bracketSpacing": false,
+			"lineWidth": 120
+		},
+		"linter": {
+			"enabled": true
 		}
 	},
 	"linter": {
