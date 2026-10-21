@@ -40,6 +40,17 @@
 			"bracketSpacing": true
 		}
 	},
+	"css": {
+		"parser": {
+			"cssModules": true
+		},
+		"formatter": {
+			"enabled": true
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
 	"markdown": {
 		"parser": {
 			"frontmatter": true
