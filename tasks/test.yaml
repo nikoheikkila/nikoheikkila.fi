@@ -1,0 +1,62 @@
+version: "3"
+
+tasks:
+  unit:
+    desc: Run unit tests
+    deps: [":install"]
+    cmds:
+      - bunx vitest run --project=unit --coverage {{ .CLI_ARGS }}
+
+  unit:watch:
+    desc: Run unit tests in watch mode
+    deps: [":install"]
+    interactive: true
+    cmds:
+      - bunx vitest watch --project=unit
+
+  component:
+    desc: Run component tests
+    deps: [":install", playwright]
+    cmds:
+      - bunx vitest run --project=component {{ .CLI_ARGS }}
+
+  component:watch:
+    desc: Run component tests in watch mode
+    deps: [":install", playwright]
+    interactive: true
+    cmds:
+      - bunx vitest watch --project=component
+
+  mutation:
+    desc: Run mutation tests over the whole backend
+    deps: [":install"]
+    cmds:
+      - bunx stryker run {{ .CLI_ARGS }}
+
+  mutation:incremental:
+    desc: Run mutation tests, reusing results for unchanged code and tests
+    deps: [":install"]
+    cmds:
+      - bunx stryker run --incremental {{ .CLI_ARGS }}
+
+  mutation:diff:
+    desc: Run mutation tests on backend files changed against a base branch (default origin HEAD)
+    deps: [":install"]
+    cmds:
+      - bun run scripts/stryker-diff.ts {{ .CLI_ARGS }}
+
+  e2e:
+    desc: Run end-to-end tests
+    deps: [":install", playwright]
+    cmds:
+      - bunx bddgen test
+      - bunx playwright test {{.CLI_ARGS}}
+
+  playwright:
+    desc: Install Playwright browsers
+    internal: true
+    run: once
+    vars:
+      args: '{{ .args | default "--with-deps chromium firefox webkit" }}'
+    cmds:
+      - bunx playwright install {{ .args }}

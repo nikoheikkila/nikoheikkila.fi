@@ -1,0 +1,25 @@
+version: "3"
+
+tasks:
+  style:
+    desc: Check formatting and lint rules
+    deps: [":install"]
+    cmds:
+      - bunx biome check .
+
+  types:
+    desc: Type-check the application and deployment scripts
+    deps: [":install", ":typegen"]
+    cmds:
+      - bunx tsc --noEmit
+      - task: site
+
+  site:
+    desc: Type-check the site deployment scripts
+    internal: true
+    sources:
+      - infra/site/*.ts
+      - infra/site/tsconfig.json
+      - infra/site/redirects.json
+    cmds:
+      - bunx tsc --noEmit --project infra/site
