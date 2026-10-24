@@ -59,7 +59,7 @@ task test:unit:watch
 task test:component:watch
 
 # Run specific e2e test
-task test:e2e -- src/__tests__/feature/index.test.ts
+task test:e2e -- test/@seo/search-and-sharing.feature.spec.js
 
 # Run e2e tests with UI mode
 task test:e2e -- --ui

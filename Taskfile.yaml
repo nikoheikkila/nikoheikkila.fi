@@ -122,7 +122,6 @@ tasks:
     vars:
       args: '{{ .args | default "--with-deps chromium firefox webkit" }}'
     cmds:
-      - bunx playwright init-agents --loop=claude
       - bunx playwright install {{ .args }}
 
   dev:

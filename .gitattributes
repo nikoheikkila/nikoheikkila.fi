@@ -16,5 +16,4 @@
 
 # Generated files
 .mcp.json		linguist-generated=true
-.agents/agents	linguist-generated=true
 test/**/*.js	linguist-generated=true
