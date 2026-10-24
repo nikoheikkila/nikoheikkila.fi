@@ -127,8 +127,8 @@ describe("SearchModal Component", () => {
 		await userEvent.keyboard("{ArrowDown}");
 
 		const resultElements = page.getByRole("article").all();
-		await expect.element(resultElements[0]).toHaveClass(/resultItemActive/);
-		await expect.element(resultElements[1]).not.toHaveClass(/resultItemActive/);
+		await expect.element(resultElements[0]).toHaveAttribute("aria-current", "true");
+		await expect.element(resultElements[1]).not.toHaveAttribute("aria-current");
 	});
 
 	test("moves highlight with ArrowDown and ArrowUp", async () => {
@@ -142,10 +142,10 @@ describe("SearchModal Component", () => {
 		await userEvent.keyboard("{ArrowDown}");
 
 		const resultElements = page.getByRole("article").all();
-		await expect.element(resultElements[1]).toHaveClass(/resultItemActive/);
+		await expect.element(resultElements[1]).toHaveAttribute("aria-current", "true");
 
 		await userEvent.keyboard("{ArrowUp}");
-		await expect.element(resultElements[0]).toHaveClass(/resultItemActive/);
+		await expect.element(resultElements[0]).toHaveAttribute("aria-current", "true");
 	});
 
 	test("wraps highlight around when reaching the end", async () => {
@@ -160,6 +160,6 @@ describe("SearchModal Component", () => {
 		await userEvent.keyboard("{ArrowDown}");
 
 		const resultElements = page.getByRole("article").all();
-		await expect.element(resultElements[0]).toHaveClass(/resultItemActive/);
+		await expect.element(resultElements[0]).toHaveAttribute("aria-current", "true");
 	});
 });

@@ -16,7 +16,10 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FunctionComponent<SearchResultProps> = ({ result, isActive }) => (
-	<article className={`${styles.resultItem} ${isActive ? styles.resultItemActive : ""}`}>
+	<article
+		aria-current={isActive ? "true" : undefined}
+		className={`${styles.resultItem} ${isActive ? styles.resultItemActive : ""}`}
+	>
 		<BlogLink className={styles.resultTitle} href={result.slug}>
 			{result.title}
 		</BlogLink>
