@@ -17,10 +17,7 @@ const baseConfiguration: PlaywrightTestConfig = {
 	fullyParallel: true,
 	reporter: "list",
 	snapshotPathTemplate: "{testDir}/snapshots/{testFilePath}/{arg}{ext}",
-	projects: [
-		{ name: "Acceptance Tests", testDir: "src/__tests__/feature" },
-		{ name: "BDD", testDir: bddTestDir },
-	],
+	projects: [{ name: "Acceptance Tests", testDir: bddTestDir }],
 	use: {
 		baseURL,
 		ignoreHTTPSErrors: true,
