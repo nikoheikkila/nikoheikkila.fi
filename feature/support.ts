@@ -32,6 +32,16 @@ const openers: Record<string, (page: Page) => Promise<void>> = {
 	"Uses page": async (page) => {
 		await page.goto("/uses/", { waitUntil: "networkidle" });
 	},
+	"middle post": async (page) => {
+		await page.goto("/", { waitUntil: "networkidle" });
+		const secondPostLink = page.getByRole("article").nth(1).getByRole("link").first();
+		await Promise.all([page.waitForURL(/\/blog\//), secondPostLink.click()]);
+	},
+	"oldest post": async (page) => {
+		await openers["last index page"]?.(page);
+		const oldestPostLink = page.getByRole("article").last().getByRole("link").first();
+		await Promise.all([page.waitForURL(/\/blog\//), oldestPostLink.click()]);
+	},
 	"latest post": async (page) => {
 		await page.goto("/", { waitUntil: "networkidle" });
 		const latestPostLink = page.getByRole("article").first().getByRole("link").first();
@@ -70,5 +80,21 @@ export class Responses {
 		}
 
 		return this.response;
+	}
+}
+
+export class Destination {
+	private href: string | undefined;
+
+	public remember(href: string): void {
+		this.href = href;
+	}
+
+	public get expected(): string {
+		if (this.href === undefined) {
+			throw new Error("No destination has been remembered");
+		}
+
+		return this.href;
 	}
 }
