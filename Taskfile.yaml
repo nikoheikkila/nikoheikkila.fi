@@ -112,6 +112,7 @@ tasks:
     desc: Run end-to-end tests
     deps: [install, playwright]
     cmds:
+      - bunx bddgen test
       - bunx playwright test {{.CLI_ARGS}}
 
   playwright:
