@@ -74,7 +74,6 @@
 		"lefthook": "2.1.16",
 		"lighthouse": "13.5.0",
 		"playwright-bdd": "9.2.1",
-		"snyk": "1.1308.1",
 		"typescript": "7.0.2",
 		"vitest": "5.0.5",
 		"vitest-browser-react": "2.3.0"
@@ -96,7 +95,6 @@
 		"build": "bun run gatsby build --log-pages --write-to-file",
 		"prepare": "lefthook install"
 	},
-	"snyk": true,
 	"version": "1.0.0",
 	"trustedDependencies": [
 		"@parcel/watcher",
