@@ -1,4 +1,4 @@
-import links from "./social.json";
+import links from "./socialLinks.json";
 
 export type SocialLink = {
 	readonly name: string;
