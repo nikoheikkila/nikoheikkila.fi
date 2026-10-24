@@ -34,13 +34,11 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, cover, children })
 			{type === LayoutType.LIST && (
 				<ListContainer>
 					<section>{children}</section>
-					<Slice alias="footer" />
 				</ListContainer>
 			)}
 			{type === LayoutType.SINGLE && (
 				<SinglePostContainer>
 					<section>{children}</section>
-					<Slice alias="footer" />
 				</SinglePostContainer>
 			)}
 			<SearchModal isModalOpen={isModalOpen} onClose={closeModal} query={query} results={results} />
