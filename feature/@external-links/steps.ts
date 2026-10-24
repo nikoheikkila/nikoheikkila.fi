@@ -1,35 +1,27 @@
 import { expect } from "@playwright/test";
 import { Then, When } from "../fixtures";
-import { lookup } from "../support";
 
-const destinations: Record<string, RegExp> = {
-	GitHub: /^https:\/\/github\.com\//,
-	LinkedIn: /^https:\/\/(www\.)?linkedin\.com\//,
-};
+const externalSites = /^https:\/\/(github\.com|(www\.)?linkedin\.com)\//;
 
-const views: Record<string, RegExp> = {
-	"GitHub text editor": /\/edit\/main\/content\/|%2Fedit%2Fmain%2Fcontent%2F/,
-	"GitHub commits listing": /\/commits\/main\/content\/|%2Fcommits%2Fmain%2Fcontent%2F/,
-};
+When("the visitor follows the external {string} link", async ({ page, popup }, name: string) => {
+	await page.context().route(externalSites, (route) => route.fulfill({ body: "" }));
+	const [tab] = await Promise.all([page.waitForEvent("popup"), page.getByRole("link", { name }).click()]);
 
-const originals: Record<string, RegExp> = {
-	"latest post": /\/blog\//,
-};
-
-When("the visitor follows the {string} link", async ({ page, tabs }, name: string) => {
-	const [popup] = await Promise.all([page.waitForEvent("popup"), page.getByRole("link", { name }).click()]);
-
-	tabs.remember(popup);
+	popup.remember(tab);
 });
 
-Then("{string} opens in a new tab", async ({ tabs }, destination: string) => {
-	await expect(tabs.opened).toHaveURL(lookup(destinations, destination));
+Then("the GitHub text editor opens in a new tab", async ({ popup }) => {
+	await expect(popup.value).toHaveURL(/^https:\/\/github\.com\/.*\/edit\/main\/content\//);
 });
 
-Then("the visitor sees the {string}", async ({ tabs }, view: string) => {
-	await expect(tabs.opened).toHaveURL(lookup(views, view));
+Then("the GitHub commits listing opens in a new tab", async ({ popup }) => {
+	await expect(popup.value).toHaveURL(/^https:\/\/github\.com\/.*\/commits\/main\/content\//);
 });
 
-Then("the {string} is open in the original tab", async ({ page }, name: string) => {
-	await expect(page).toHaveURL(lookup(originals, name));
+Then("LinkedIn opens in a new tab", async ({ popup }) => {
+	await expect(popup.value).toHaveURL(/^https:\/\/(www\.)?linkedin\.com\//);
+});
+
+Then("the latest post is open in the original tab", async ({ page }) => {
+	await expect(page).toHaveURL(/\/blog\//);
 });

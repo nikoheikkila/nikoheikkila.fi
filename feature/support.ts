@@ -1,4 +1,4 @@
-import type { APIResponse, Locator, Page, Response } from "@playwright/test";
+import type { Locator, Page, Response } from "@playwright/test";
 
 export const lookup = <T>(registry: Record<string, T>, name: string): T => {
 	const entry = registry[name];
@@ -15,13 +15,24 @@ export const viewports: Record<string, { width: number; height: number }> = {
 	phone: { width: 375, height: 667 },
 };
 
-const goto = async (page: Page, path: string): Promise<void> => {
-	await page.goto(path, { waitUntil: "networkidle" });
+export const goto = (page: Page, path: string): Promise<Response | null> =>
+	page.goto(path, { waitUntil: "networkidle" });
+
+const links: Record<string, (page: Page) => Locator> = {
+	Home: (page) => page.getByRole("link", { name: "Home" }),
+	"next index page": (page) => page.getByRole("link", { name: /Next Page/ }),
+	"previous index page": (page) => page.getByRole("link", { name: /Previous Page/ }),
+	"older post": (page) => page.locator('a[rel="prev"]'),
+	"newer post": (page) => page.locator('a[rel="next"]'),
+	"RSS feed": (page) => page.getByRole("link", { name: "RSS feed" }),
+	"footer RSS": (page) => page.getByRole("contentinfo").getByRole("link", { name: "RSS" }),
 };
+
+export const link = (page: Page, name: string): Locator => lookup(links, name)(page);
 
 const gotoLastIndexPage = async (page: Page): Promise<void> => {
 	await goto(page, "/");
-	const nextPage = page.getByRole("link", { name: /Next Page/ });
+	const nextPage = link(page, "next index page");
 
 	while (await nextPage.isVisible()) {
 		await goto(page, (await nextPage.getAttribute("href")) ?? "/");
@@ -32,7 +43,7 @@ const openPost = async (page: Page, article: Locator): Promise<void> => {
 	await Promise.all([page.waitForURL(/\/blog\//), article.getByRole("link").first().click()]);
 };
 
-const openers: Record<string, (page: Page) => Promise<void>> = {
+const openers: Record<string, (page: Page) => Promise<unknown>> = {
 	"home page": (page) => goto(page, "/"),
 	"second index page": (page) => goto(page, "/2/"),
 	"last index page": gotoLastIndexPage,
@@ -52,7 +63,9 @@ const openers: Record<string, (page: Page) => Promise<void>> = {
 	},
 };
 
-export const openPage = async (page: Page, name: string): Promise<void> => lookup(openers, name)(page);
+export const openPage = async (page: Page, name: string): Promise<void> => {
+	await lookup(openers, name)(page);
+};
 
 export const sidebarMenu = (page: Page) => page.getByRole("navigation", { name: "Main" }).getByRole("link").first();
 
@@ -60,66 +73,20 @@ export const toggleSidebarMenu = async (page: Page): Promise<void> => {
 	await page.getByRole("button", { name: /(Open|Close) menu/ }).click();
 };
 
-export class Tabs {
-	private popup: Page | undefined;
+export class Remembered<T> {
+	private remembered: { value: T } | undefined;
 
-	public remember(page: Page): void {
-		this.popup = page;
+	public constructor(private readonly description: string) {}
+
+	public remember(value: T): void {
+		this.remembered = { value };
 	}
 
-	public get opened(): Page {
-		if (this.popup === undefined) {
-			throw new Error("No new tab has been opened");
+	public get value(): T {
+		if (this.remembered === undefined) {
+			throw new Error(`No ${this.description} has been remembered`);
 		}
 
-		return this.popup;
-	}
-}
-
-export class Responses {
-	private response: APIResponse | undefined;
-
-	public remember(response: APIResponse): void {
-		this.response = response;
-	}
-
-	public get received(): APIResponse {
-		if (this.response === undefined) {
-			throw new Error("No response has been fetched");
-		}
-
-		return this.response;
-	}
-}
-
-export class Destination {
-	private href: string | undefined;
-
-	public remember(href: string): void {
-		this.href = href;
-	}
-
-	public get expected(): string {
-		if (this.href === undefined) {
-			throw new Error("No destination has been remembered");
-		}
-
-		return this.href;
-	}
-}
-
-export class Visit {
-	private response: Response | null | undefined;
-
-	public remember(response: Response | null): void {
-		this.response = response;
-	}
-
-	public get status(): number {
-		if (this.response === undefined || this.response === null) {
-			throw new Error("No page has been visited");
-		}
-
-		return this.response.status();
+		return this.remembered.value;
 	}
 }

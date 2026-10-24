@@ -32,7 +32,7 @@ Feature: Site navigation
     Given the visitor is browsing on a "<device>"
     And the visitor is on the "home page"
     When the visitor follows the "footer RSS" link
-    Then the visitor is on the "RSS feed"
+    Then the visitor arrives at the linked page
 
     Examples:
       | device  |

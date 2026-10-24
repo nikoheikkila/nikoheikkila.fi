@@ -1,18 +1,26 @@
+import type { APIResponse, Page, Response } from "@playwright/test";
 import { createBdd, test as base } from "playwright-bdd";
-import { Destination, Responses, Tabs, Visit } from "./support";
+import { Remembered } from "./support";
 
-export const test = base.extend<{ tabs: Tabs; responses: Responses; destination: Destination; visit: Visit }>({
-	tabs: async ({}, use) => {
-		await use(new Tabs());
+type Fixtures = {
+	popup: Remembered<Page>;
+	fetched: Remembered<APIResponse>;
+	destination: Remembered<string>;
+	visit: Remembered<Response | null>;
+};
+
+export const test = base.extend<Fixtures>({
+	popup: async ({}, use) => {
+		await use(new Remembered("new tab"));
+	},
+	fetched: async ({}, use) => {
+		await use(new Remembered("fetched response"));
 	},
 	destination: async ({}, use) => {
-		await use(new Destination());
+		await use(new Remembered("destination"));
 	},
 	visit: async ({}, use) => {
-		await use(new Visit());
-	},
-	responses: async ({}, use) => {
-		await use(new Responses());
+		await use(new Remembered("visited page"));
 	},
 });
 

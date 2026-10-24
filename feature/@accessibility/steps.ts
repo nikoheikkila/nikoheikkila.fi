@@ -5,7 +5,6 @@ import { Given, Then } from "../fixtures";
 const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 const skipLink = (page: Page) => page.getByRole("link", { name: /skip to main content/i });
-const mainContent = (page: Page) => page.locator("#main-content");
 
 Given("the skip link is focused", async ({ page }) => {
 	await skipLink(page).focus();
@@ -22,7 +21,7 @@ Then("the skip link is focused", async ({ page }) => {
 });
 
 Then("the main content is in view", async ({ page }) => {
-	await expect(mainContent(page)).toBeInViewport();
+	await expect(page.getByRole("main")).toBeInViewport();
 });
 
 Then("the page address points to the main content", async ({ page }) => {

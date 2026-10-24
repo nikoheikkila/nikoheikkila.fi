@@ -15,7 +15,7 @@ Feature: Post listing
     Given the visitor is browsing on a "<device>"
     And the visitor is on the "home page"
     When the visitor follows the "next index page" link
-    Then the visitor is on the "second index page"
+    Then the visitor is at "/2/"
 
     Examples:
       | device  |
@@ -26,7 +26,7 @@ Feature: Post listing
     Given the visitor is browsing on a "<device>"
     And the visitor is on the "second index page"
     When the visitor follows the "previous index page" link
-    Then the visitor is on the "home page"
+    Then the visitor is at "/"
 
     Examples:
       | device  |

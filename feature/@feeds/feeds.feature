@@ -3,13 +3,13 @@ Feature: Feeds and crawler files
   and find them through search engines.
 
   Scenario: RSS feed is a valid XML document
-    When the visitor fetches the "RSS feed"
+    When the visitor fetches "/rss.xml"
     Then the response is a valid XML document
 
   Scenario: Sitemap is a valid XML document
-    When the visitor fetches the "sitemap"
+    When the visitor fetches "/sitemap-index.xml"
     Then the response is a valid XML document
 
   Scenario: Crawler rules match the approved version
-    When the visitor fetches the "crawler rules"
+    When the visitor fetches "/robots.txt"
     Then the response matches the approved version

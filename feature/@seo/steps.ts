@@ -39,24 +39,17 @@ const findStructuredData = async (page: Page, type: string): Promise<StructuredD
 };
 
 Then("the page {string} matches the post {string}", async ({ page }, property: string, detail: string) => {
-	await expect(async () => {
-		const actual = await lookup(properties, property)(page);
+	const expected = await lookup(postDetails, detail)(page);
 
-		expect(actual).not.toBe("");
-		expect(actual).toBe(await lookup(postDetails, detail)(page));
-	}).toPass();
+	await expect.poll(() => lookup(properties, property)(page)).toBe(expected);
 });
 
 Then("the page {string} is {string}", async ({ page }, property: string, expected: string) => {
-	await expect(async () => {
-		expect(await lookup(properties, property)(page)).toBe(expected);
-	}).toPass();
+	await expect.poll(() => lookup(properties, property)(page)).toBe(expected);
 });
 
 Then("the page {string} is not empty", async ({ page }, property: string) => {
-	await expect(async () => {
-		expect(await lookup(properties, property)(page)).not.toBe("");
-	}).toPass();
+	await expect.poll(() => lookup(properties, property)(page)).not.toBe("");
 });
 
 Then("the structured data names the website at the post address", async ({ page }) => {

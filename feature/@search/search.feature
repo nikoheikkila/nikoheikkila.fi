@@ -21,7 +21,7 @@ Feature: Post search
     Given the visitor is browsing on a "<device>"
     And the visitor has searched for "software"
     When the visitor follows the first search result link
-    Then the visitor is on the "post page"
+    Then the visitor is on a post page
     And the search results are hidden
 
     Examples:
@@ -33,7 +33,7 @@ Feature: Post search
     Given the visitor has searched for "software"
     And the first search result is focused
     When the visitor presses "Enter"
-    Then the visitor is on the "post page"
+    Then the visitor is on a post page
 
   Scenario Outline: Dismissing the search results
     Given the visitor has searched for "software"
