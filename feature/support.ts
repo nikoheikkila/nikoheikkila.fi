@@ -10,6 +10,11 @@ export const lookup = <T>(registry: Record<string, T>, name: string): T => {
 	return entry;
 };
 
+export const viewports: Record<string, { width: number; height: number }> = {
+	desktop: { width: 1280, height: 800 },
+	phone: { width: 375, height: 667 },
+};
+
 const openers: Record<string, (page: Page) => Promise<void>> = {
 	"home page": async (page) => {
 		await page.goto("/", { waitUntil: "networkidle" });

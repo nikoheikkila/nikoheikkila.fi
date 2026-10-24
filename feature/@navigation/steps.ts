@@ -1,12 +1,7 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 import { socialLinks } from "../../src/utils/social";
 import { Given, Then, When } from "../fixtures";
-import { lookup, openPage } from "../support";
-
-const viewports: Record<string, { width: number; height: number }> = {
-	desktop: { width: 1280, height: 800 },
-	phone: { width: 375, height: 667 },
-};
+import { lookup, openPage, viewports } from "../support";
 
 const menuLinks = (page: Page) => page.getByRole("navigation", { name: "Main" }).getByRole("link").first();
 const menuToggle = (page: Page) => page.getByRole("button", { name: /(Open|Close) menu/ });

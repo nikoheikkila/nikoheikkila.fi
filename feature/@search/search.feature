@@ -3,9 +3,9 @@ Feature: Post search
 
   Scenario Outline: Searching for a known term lists matching posts
     Given the visitor is browsing on a "<device>"
-    And the visitor is on the "home page"
+    And the visitor is on the "Home" page
     When the visitor searches for "software"
-    Then the search results list matching posts
+    Then the visitor sees the search results
 
     Examples:
       | device  |
@@ -13,16 +13,16 @@ Feature: Post search
       | phone   |
 
   Scenario: Searching for an unknown term reports no results
-    Given the visitor is on the "home page"
+    Given the visitor is on the "Home" page
     When the visitor searches for "xyznonexistent123"
-    Then the search results report that no posts match
+    Then the visitor sees a "no results message"
 
   Scenario Outline: Opening a search result
     Given the visitor is browsing on a "<device>"
-    And search results for "software" are shown
-    When the visitor opens the first search result
-    Then the visitor is reading a post
-    And the search results are closed
+    And the visitor has searched for "software"
+    When the visitor follows the first search result link
+    Then the visitor lands on the "post" page
+    And the "search results" are hidden
 
     Examples:
       | device  |
@@ -30,17 +30,17 @@ Feature: Post search
       | phone   |
 
   Scenario: Opening a search result with the keyboard
-    Given search results for "software" are shown
-    When the visitor moves to the first search result with the arrow keys
-    And the visitor confirms the choice with Enter
-    Then the visitor is reading a post
+    Given the visitor has searched for "software"
+    And the first search result is focused
+    When the visitor presses "Enter"
+    Then the visitor lands on the "post" page
 
   Scenario Outline: Dismissing the search results
-    Given search results for "software" are shown
+    Given the visitor has searched for "software"
     When the visitor dismisses the search results by "<method>"
-    Then the search results are closed
+    Then the "search results" are hidden
 
     Examples:
-      | method                   |
-      | pressing Escape          |
-      | clicking outside of them |
+      | method                 |
+      | pressing Escape        |
+      | clicking outside focus |
