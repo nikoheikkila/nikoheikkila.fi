@@ -156,7 +156,78 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		expect(render).toThrow(/^content\/blog\/x\.md:13: /);
+		// An Error instance, unlike a regex, also fails when a non-Error value such as `undefined` is thrown.
+		expect(render).toThrow(new Error("content/blog/x.md:13: mermaid fence is not closed"));
+	});
+
+	test.each([
+		["indented by four spaces", `    ${fence}`],
+		["followed by an info string", `${fence} text`],
+		["made of tildes for a backtick fence", "~~~"],
+	])("does not close a mermaid fence with a fence-like line %s", (_description, closer) => {
+		const body = [`${fence}mermaid`, ...loginDiagram, closer].join("\n");
+
+		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(render).toThrow(/mermaid fence is not closed$/);
+	});
+
+	test("leaves a mermaid fence indented by four spaces as code", () => {
+		const body = [`    ${fence}mermaid`, ...loginDiagram, `    ${fence}`].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
+
+	test("leaves a mermaid fence inside a longer code block as code even after a shorter fence line", () => {
+		const body = ["````markdown", fence, `${fence}mermaid`, ...loginDiagram, fence, "````"].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
+
+	test("leaves a mermaid fence inside a tilde code block whose info string has a backtick as code", () => {
+		const body = ["~~~markdown `inline`", `${fence}mermaid`, ...loginDiagram, fence, "~~~"].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toBe(body);
+	});
+
+	test("converts a mermaid block that follows a backtick line whose info string has a backtick", () => {
+		const body = [`${fence}markdown \`inline\``, `${fence}mermaid`, ...loginDiagram, fence].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toContain("<svg");
+	});
+
+	test("converts a mermaid block whose closing fence ends the post with a bare carriage return", () => {
+		const body = [`${fence}mermaid`, ...loginDiagram, `${fence}\r`].join("\n");
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
+
+		expect(output).toMatch(/<\/svg>\r$/);
+	});
+
+	test("fails the build as empty when a mermaid block has only whitespace", () => {
+		const body = [`${fence}mermaid`, "   ", fence].join("\n");
+
+		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
+
+		expect(render).toThrow(/^content\/blog\/x\.md:11: mermaid diagram is empty$/);
+	});
+
+	test("prefixes every diagram id with the file line of its opening fence", () => {
+		const body = post(...loginDiagram);
+
+		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
+
+		const ids = Array.from(output.matchAll(/\sid="([^"]+)"/g), (match) => match[1]);
+		expect(ids.length).toBeGreaterThan(0);
+		expect(ids.filter((id) => !id.startsWith("mermaid-13"))).toStrictEqual([]);
 	});
 
 	test("copies an unclosed code fence that is not mermaid through unchanged", () => {

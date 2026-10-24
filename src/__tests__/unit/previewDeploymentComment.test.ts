@@ -133,6 +133,10 @@ describe("buildExpectedPreviewOrigin", () => {
 	test("builds the predictable preview origin", () => {
 		expect(buildExpectedPreviewOrigin(42, expectation)).toBe(previewUrl(42));
 	});
+
+	test("defaults to the Worker name and workers.dev subdomain provisioned by Terraform", () => {
+		expect(buildExpectedPreviewOrigin(42, expectation)).toBe("https://blog-pr-42.yo-062.workers.dev");
+	});
 });
 
 describe("escapeInlineCode", () => {
@@ -140,8 +144,16 @@ describe("escapeInlineCode", () => {
 		expect(escapeInlineCode("`) malicious [link](javascript:alert(1))")).not.toContain("`");
 	});
 
-	test("collapses newlines to spaces", () => {
-		expect(escapeInlineCode("Deploy\nStep")).toBe("Deploy Step");
+	test("replaces backticks with single quotes", () => {
+		expect(escapeInlineCode("run `task build`")).toBe("run 'task build'");
+	});
+
+	test.each([
+		["a newline", "Deploy\nStep"],
+		["a CRLF line ending", "Deploy\r\nStep"],
+		["consecutive blank lines", "Deploy\n\n\nStep"],
+	])("collapses %s to a single space", (_description, name) => {
+		expect(escapeInlineCode(name)).toBe("Deploy Step");
 	});
 
 	test("truncates excessively long names", () => {
@@ -149,6 +161,15 @@ describe("escapeInlineCode", () => {
 		const result = escapeInlineCode(long);
 		expect(result.length).toBeLessThan(500);
 		expect(result.endsWith("…")).toBe(true);
+	});
+
+	test("keeps a name of exactly the maximum length intact", () => {
+		const atLimit = "a".repeat(200);
+		expect(escapeInlineCode(atLimit)).toBe(atLimit);
+	});
+
+	test("truncates a name one character over the maximum length", () => {
+		expect(escapeInlineCode("a".repeat(201))).toBe(`${"a".repeat(200)}…`);
 	});
 
 	test("falls back to a non-empty placeholder when the input is blank", () => {
@@ -163,6 +184,16 @@ describe("findFailedStep", () => {
 				{ name: "Checkout", conclusion: "success" },
 				{ name: "Deploy", conclusion: "failure" },
 				{ name: "Post Deploy", conclusion: "cancelled" },
+			],
+		});
+		expect(findFailedStep(target)).toBe("Deploy");
+	});
+
+	test("skips steps that have not concluded yet", () => {
+		const target = job({
+			steps: [
+				{ name: "Pending", conclusion: null },
+				{ name: "Deploy", conclusion: "failure" },
 			],
 		});
 		expect(findFailedStep(target)).toBe("Deploy");
@@ -210,6 +241,50 @@ describe("comment bodies", () => {
 		expect(body).not.toContain("`) </code>");
 		expect(parseStoredMetadata(body)).toStrictEqual(meta);
 	});
+
+	test("success body renders the full comment layout", () => {
+		const body = buildSuccessCommentBody({
+			url: previewUrl(42),
+			headSha: "abcdef1234567",
+			jobUrl: "https://github.com/o/r/actions/runs/1/job/1",
+			metadata: meta,
+		});
+
+		expect(body).toBe(
+			[
+				"<!-- preview-deployment-status:v1 -->",
+				"### 🚀 Preview deployment succeeded",
+				"",
+				"[Open preview](https://blog-pr-42.yo-062.workers.dev)",
+				"",
+				"Commit: `abcdef1` | [Deployment logs](https://github.com/o/r/actions/runs/1/job/1)",
+				"",
+				'<!-- preview-deployment-meta:{"runId":100,"runNumber":10,"runAttempt":1} -->',
+			].join("\n"),
+		);
+	});
+
+	test("failure body renders the full comment layout", () => {
+		const body = buildFailureCommentBody({
+			stepName: "Deploy",
+			headSha: "abcdef1234567",
+			jobUrl: "https://github.com/o/r/actions/runs/1/job/1",
+			metadata: meta,
+		});
+
+		expect(body).toBe(
+			[
+				"<!-- preview-deployment-status:v1 -->",
+				"### Preview deployment failed",
+				"",
+				"Failed during **`Deploy`**.",
+				"",
+				"Commit: `abcdef1` | [Deployment logs](https://github.com/o/r/actions/runs/1/job/1)",
+				"",
+				'<!-- preview-deployment-meta:{"runId":100,"runNumber":10,"runAttempt":1} -->',
+			].join("\n"),
+		);
+	});
 });
 
 describe("findStickyComment", () => {
@@ -224,6 +299,15 @@ describe("findStickyComment", () => {
 
 	test("ignores the marker from a non-bot author", () => {
 		expect(findStickyComment([comment({ user: { login: "someone-else" }, body: STATUS_MARKER })])).toBeUndefined();
+	});
+
+	test("ignores the marker from a deleted (ghost) author", () => {
+		expect(findStickyComment([comment({ user: null, body: STATUS_MARKER })])).toBeUndefined();
+	});
+
+	test("recognises the GitHub Actions bot as the comment owner", () => {
+		const target = comment({ user: { login: "github-actions[bot]" }, body: STATUS_MARKER });
+		expect(findStickyComment([target])).toBe(target);
 	});
 });
 
@@ -244,6 +328,30 @@ describe("parseStoredMetadata", () => {
 
 	test("returns undefined when required fields are missing", () => {
 		expect(parseStoredMetadata(`${META_PREFIX}${JSON.stringify({ runId: 1 })}${META_SUFFIX}`)).toBeUndefined();
+	});
+
+	test("returns undefined when the metadata marker is never closed", () => {
+		expect(parseStoredMetadata(`${META_PREFIX}${JSON.stringify(metadata())}.`)).toBeUndefined();
+	});
+
+	test("ignores metadata-shaped JSON behind a different marker", () => {
+		expect(
+			parseStoredMetadata(`<!-- preview-deployment-run:${JSON.stringify(metadata())}${META_SUFFIX}`),
+		).toBeUndefined();
+	});
+
+	test.each([
+		["null", null],
+		["a number", 5],
+		["a string", "runId"],
+		["an array", [100, 10, 1]],
+	])("returns undefined when the stored JSON is %s", (_description, value) => {
+		expect(parseStoredMetadata(`${META_PREFIX}${JSON.stringify(value)}${META_SUFFIX}`)).toBeUndefined();
+	});
+
+	test.each(["runId", "runNumber", "runAttempt"])("returns undefined when %s is not a number", (field) => {
+		const stored = { ...metadata(), [field]: "1" };
+		expect(parseStoredMetadata(`${META_PREFIX}${JSON.stringify(stored)}${META_SUFFIX}`)).toBeUndefined();
 	});
 });
 

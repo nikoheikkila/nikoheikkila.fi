@@ -1,3 +1,5 @@
+import links from "./social.json";
+
 export type SocialLink = {
 	readonly name: string;
 	readonly icon: string;
@@ -11,30 +13,4 @@ export type SocialLink = {
  * Every `icon` here needs a matching definition in
  * `src/components/layout/socialIcons.ts`.
  */
-export const socialLinks: readonly SocialLink[] = [
-	{
-		name: "Bluesky",
-		icon: "bluesky",
-		url: "https://short.nikoheikkila.fi",
-	},
-	{
-		name: "LinkedIn",
-		icon: "linkedin",
-		url: "https://cv.nikoheikkila.fi",
-	},
-	{
-		name: "GitHub",
-		icon: "github",
-		url: "https://git.nikoheikkila.fi",
-	},
-	{
-		name: "Telegram",
-		icon: "telegram",
-		url: "https://telegram.nikoheikkila.fi",
-	},
-	{
-		name: "Signal",
-		icon: "signal-messenger",
-		url: "https://signal.nikoheikkila.fi",
-	},
-];
+export const socialLinks: readonly SocialLink[] = links;

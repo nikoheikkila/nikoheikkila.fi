@@ -16,18 +16,16 @@ interface Fence {
 	info: string;
 }
 
-const FENCE = /^ {0,3}(`{3,}|~{3,})(.*)$/;
+const FENCE = /^ {0,3}(`{3,}|~{3,})(.*)/;
 const CLOSING_FENCE = /^ {0,3}(`{3,}|~{3,})[ \t]*$/;
 const BODY_FONT_FAMILY =
 	'"Synonym", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 
-// A final line without "\n" keeps any trailing "\r" in its text, so fence matching strips it explicitly.
-const stripCarriageReturn = (text: string): string => text.replace(/\r$/, "");
-
+// A final line without "\n" can still end in "\r", which belongs to its ending rather than its text.
 const splitLines = (body: string): Line[] =>
-	Array.from(body.matchAll(/(?:[^\n]*\n)|(?:[^\n]+$)/g), ([part]) => {
-		const end = /\r?\n$/.exec(part)?.[0] ?? "";
-		return { text: part.slice(0, part.length - end.length), end };
+	body.split(/(?<=\n)/).map((part) => {
+		const text = part.replace(/\r?\n?$/, "");
+		return { text, end: part.slice(text.length) };
 	});
 
 const parseOpeningFence = (text: string): Fence | undefined => {
@@ -40,8 +38,8 @@ const parseOpeningFence = (text: string): Fence | undefined => {
 };
 
 const closes = (fence: Fence, text: string): boolean => {
-	const marker = CLOSING_FENCE.exec(stripCarriageReturn(text))?.[1] ?? "";
-	return marker.startsWith(fence.char) && marker.length >= fence.length;
+	const match = CLOSING_FENCE.exec(text);
+	return match !== null && match[1][0] === fence.char && match[1].length >= fence.length;
 };
 
 const findClosingFence = (lines: Line[], fence: Fence, start: number): number => {
@@ -63,7 +61,7 @@ const locatedError = (location: RenderMermaidOptions, bodyLine: number, message:
 	new Error(`${location.filePath}:${location.lineOffset + bodyLine}: ${message}`);
 
 const renderDiagram = (source: Line[], location: RenderMermaidOptions, openerLine: number): string => {
-	const diagram = source.map(({ text }) => stripCarriageReturn(text)).join("\n");
+	const diagram = source.map(({ text }) => text).join("\n");
 	if (diagram.trim() === "") {
 		throw locatedError(location, openerLine, "mermaid diagram is empty");
 	}

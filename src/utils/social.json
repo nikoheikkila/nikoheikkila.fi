@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Bluesky",
+		"icon": "bluesky",
+		"url": "https://short.nikoheikkila.fi"
+	},
+	{
+		"name": "LinkedIn",
+		"icon": "linkedin",
+		"url": "https://cv.nikoheikkila.fi"
+	},
+	{
+		"name": "GitHub",
+		"icon": "github",
+		"url": "https://git.nikoheikkila.fi"
+	},
+	{
+		"name": "Telegram",
+		"icon": "telegram",
+		"url": "https://telegram.nikoheikkila.fi"
+	},
+	{
+		"name": "Signal",
+		"icon": "signal-messenger",
+		"url": "https://signal.nikoheikkila.fi"
+	}
+]

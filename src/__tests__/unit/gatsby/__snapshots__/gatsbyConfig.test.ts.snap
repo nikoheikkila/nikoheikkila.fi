@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`createConfig > matches the reviewed site configuration 1`] = `
+{
+  "flags": {
+    "PRESERVE_FILE_DOWNLOAD_CACHE": true,
+  },
+  "graphqlTypegen": {
+    "generateOnBuild": true,
+  },
+  "plugins": [
+    "gatsby-plugin-image",
+    "gatsby-transformer-sharp",
+    {
+      "options": {
+        "defaults": {
+          "breakpoints": [
+            750,
+            1080,
+            1920,
+          ],
+        },
+      },
+      "resolve": "gatsby-plugin-sharp",
+    },
+    {
+      "options": {
+        "plugins": [
+          {
+            "options": {
+              "icon": false,
+            },
+            "resolve": "gatsby-remark-autolink-headers",
+          },
+          "gatsby-remark-smartypants",
+        ],
+      },
+      "resolve": "gatsby-transformer-remark",
+    },
+    {
+      "options": {
+        "name": "blog",
+        "path": "./content",
+      },
+      "resolve": "gatsby-source-filesystem",
+    },
+    {
+      "options": {
+        "feeds": [
+          {
+            "match": "^/blog/",
+            "output": "/rss.xml",
+            "query": "{
+  allMarkdownRemark(
+    limit: 1000
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {type: {ne: "page"}}}
+  ) {
+    edges {
+      node {
+        excerpt
+        html
+        internal {
+          contentDigest
+        }
+        fields {
+          slug
+        }
+        frontmatter {
+          author
+          date
+          lang
+          title
+          type
+        }
+      }
+    }
+  }
+}",
+            "serialize": [Function],
+            "title": "RSS Feed | Niko Heikkilä",
+          },
+        ],
+        "query": "{
+                    site {
+                        siteMetadata {
+                            title
+                            description
+                            siteUrl
+                            site_url: siteUrl
+                        }
+                    }
+                }",
+      },
+      "resolve": "gatsby-plugin-feed",
+    },
+    {
+      "options": {
+        "background_color": "#ffffff",
+        "crossOrigin": "use-credentials",
+        "display": "standalone",
+        "icon": "./static/favicon.png",
+        "name": "Niko Heikkilä",
+        "short_name": "nikoheikkila",
+        "start_url": "/",
+        "theme_color": "#663399",
+      },
+      "resolve": "gatsby-plugin-manifest",
+    },
+    {
+      "options": {
+        "sassOptions": {
+          "includePaths": [
+            "./src/styles",
+          ],
+          "silenceDeprecations": [
+            "legacy-js-api",
+          ],
+        },
+      },
+      "resolve": "gatsby-plugin-sass",
+    },
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-offline",
+  ],
+  "siteMetadata": {
+    "author": {
+      "name": "Niko Heikkilä",
+    },
+    "cover": "https://r2.nikoheikkila.fi/cover.png",
+    "description": "Making work and life better for modern software engineers.",
+    "language": "en",
+    "repository": "https://github.com/nikoheikkila/nikoheikkila.fi",
+    "rss": "/feed",
+    "siteUrl": "https://nikoheikkila.fi",
+    "social": [
+      {
+        "icon": "bluesky",
+        "name": "Bluesky",
+        "url": "https://short.nikoheikkila.fi",
+      },
+      {
+        "icon": "linkedin",
+        "name": "LinkedIn",
+        "url": "https://cv.nikoheikkila.fi",
+      },
+      {
+        "icon": "github",
+        "name": "GitHub",
+        "url": "https://git.nikoheikkila.fi",
+      },
+      {
+        "icon": "telegram",
+        "name": "Telegram",
+        "url": "https://telegram.nikoheikkila.fi",
+      },
+      {
+        "icon": "signal-messenger",
+        "name": "Signal",
+        "url": "https://signal.nikoheikkila.fi",
+      },
+    ],
+    "title": "Niko Heikkilä",
+  },
+  "trailingSlash": "always",
+}
+`;

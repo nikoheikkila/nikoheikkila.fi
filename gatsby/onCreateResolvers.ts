@@ -40,6 +40,8 @@ export const createOnCreateResolvers =
 		});
 	};
 
-const onCreateResolvers = createOnCreateResolvers({ readFile: readFileSync });
+export const resolverDependencies: ResolverDependencies = { readFile: readFileSync };
+
+const onCreateResolvers = createOnCreateResolvers(resolverDependencies);
 
 export default onCreateResolvers;

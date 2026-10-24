@@ -70,10 +70,14 @@ export const createOnCreateNodes =
 
 const isMarkdownNode = (node: Node): node is MarkdownNode => node.internal.type === "MarkdownRemark";
 
-const onCreateNodes = createOnCreateNodes({
+const { siteMetadata = {} } = config;
+
+export const nodeDependencies: NodeDependencies = {
 	downloadHero: createRemoteFileNode,
 	resolveFilePath: createFilePath,
-	defaultHero: config.siteMetadata?.cover,
-});
+	defaultHero: siteMetadata.cover,
+};
+
+const onCreateNodes = createOnCreateNodes(nodeDependencies);
 
 export default onCreateNodes;

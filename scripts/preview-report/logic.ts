@@ -149,6 +149,13 @@ export const buildFailureCommentBody = (params: {
 export const findStickyComment = (comments: IssueComment[]): IssueComment | undefined =>
 	comments.find((comment) => comment.user?.login === BOT_LOGIN && comment.body.includes(STATUS_MARKER));
 
+const METADATA_KEYS = ["runId", "runNumber", "runAttempt"] as const;
+
+const isDeploymentMetadata = (value: unknown): value is DeploymentMetadata =>
+	typeof value === "object" &&
+	value !== null &&
+	METADATA_KEYS.every((key) => typeof Reflect.get(value, key) === "number");
+
 export const parseStoredMetadata = (body: string): DeploymentMetadata | undefined => {
 	const start = body.indexOf(META_PREFIX);
 
@@ -163,23 +170,15 @@ export const parseStoredMetadata = (body: string): DeploymentMetadata | undefine
 		return undefined;
 	}
 
+	let parsed: unknown;
+
 	try {
-		const parsed: unknown = JSON.parse(body.slice(jsonStart, end));
-
-		if (
-			typeof parsed === "object" &&
-			parsed !== null &&
-			typeof (parsed as DeploymentMetadata).runId === "number" &&
-			typeof (parsed as DeploymentMetadata).runNumber === "number" &&
-			typeof (parsed as DeploymentMetadata).runAttempt === "number"
-		) {
-			return parsed as DeploymentMetadata;
-		}
-
-		return undefined;
+		parsed = JSON.parse(body.slice(jsonStart, end));
 	} catch {
-		return undefined;
+		// Malformed JSON leaves `parsed` undefined, which the shape check below rejects.
 	}
+
+	return isDeploymentMetadata(parsed) ? parsed : undefined;
 };
 
 /**
@@ -192,9 +191,8 @@ export const shouldReplace = (stored: DeploymentMetadata | undefined, candidate:
 		return true;
 	}
 
-	if (candidate.runNumber !== stored.runNumber) {
-		return candidate.runNumber > stored.runNumber;
-	}
-
-	return candidate.runAttempt >= stored.runAttempt;
+	return (
+		candidate.runNumber > stored.runNumber ||
+		(candidate.runNumber === stored.runNumber && candidate.runAttempt >= stored.runAttempt)
+	);
 };
