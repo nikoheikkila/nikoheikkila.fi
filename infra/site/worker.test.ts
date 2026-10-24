@@ -154,6 +154,7 @@ describe("Worker", () => {
 			const response = await worker.fetch(request("/", { method }), site.env);
 
 			expect(response.status).toBe(405);
+			expect(await response.text()).toBe("Method Not Allowed");
 			expect(response.headers.get("allow")).toBe("GET, HEAD");
 			expect(site.gets).toStrictEqual([]);
 			expect(site.heads).toStrictEqual([]);
@@ -167,6 +168,7 @@ describe("Worker", () => {
 			const response = await worker.fetch(request("/%"), site.env);
 
 			expect(response.status).toBe(400);
+			expect(await response.text()).toBe("Bad Request");
 			expect(site.gets).toStrictEqual([]);
 		});
 	});

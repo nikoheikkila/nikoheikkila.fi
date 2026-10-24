@@ -1,8 +1,15 @@
 import { EOL } from "node:os";
 import { describe, expect, test } from "vitest";
-import { formatRobotsTxt, generatePolicies } from "../../utils/robots";
+import { buildRobotsTxt, formatRobotsTxt, generatePolicies } from "../../utils/robots";
 
 describe("Robots", () => {
+	test.each(["anthropic-ai", "ChatGPT-User", "Claude-SearchBot", "PerplexityBot"])(
+		"disallows the %s crawler from the whole site",
+		(agent) => {
+			expect(buildRobotsTxt("https://nikoheikkila.fi")).toContain(`User-agent: ${agent}${EOL}Disallow: /${EOL}`);
+		},
+	);
+
 	test("returns empty policy list when agent data missing", () => {
 		const result = generatePolicies(new Set());
 

@@ -76,3 +76,7 @@ playwright-report/
 
 # Gatsby types
 gatsby-types.d.ts
+
+# Stryker
+.stryker-tmp/
+reports/

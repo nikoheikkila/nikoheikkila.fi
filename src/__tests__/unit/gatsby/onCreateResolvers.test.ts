@@ -1,5 +1,10 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
-import { createOnCreateResolvers, type MarkdownSource } from "../../../../gatsby/onCreateResolvers";
+import {
+	createOnCreateResolvers,
+	type MarkdownSource,
+	resolverDependencies,
+} from "../../../../gatsby/onCreateResolvers";
 import { ResolverActions } from "./fakes";
 
 const fence = "```";
@@ -44,6 +49,25 @@ describe("onCreateResolvers", () => {
 
 		expect(String(rendered)).toContain("<svg");
 		expect(String(rendered)).not.toContain(`${fence}mermaid`);
+	});
+
+	test("reads the post file as UTF-8 text", () => {
+		const reads: [string, BufferEncoding][] = [];
+		const actions = new ResolverActions();
+		createOnCreateResolvers({
+			readFile: (path, encoding) => {
+				reads.push([path, encoding]);
+				return file;
+			},
+		})({ createResolvers: actions.createResolvers });
+
+		actions.resolvers[0]?.MarkdownRemark.renderedBody.resolve({ fileAbsolutePath: filePath, rawMarkdownBody: body });
+
+		expect(reads).toStrictEqual([[filePath, "utf8"]]);
+	});
+
+	test("the default hook reads posts from the file system", () => {
+		expect(resolverDependencies).toStrictEqual({ readFile: readFileSync });
 	});
 
 	test("reports a syntax error at its line in the post file, counting the frontmatter lines", () => {

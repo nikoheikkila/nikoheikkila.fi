@@ -93,7 +93,7 @@ export const createOnCreatePages =
 		edges.forEach((post, index) => {
 			const slug = post.node.fields?.slug;
 
-			if (!slug || slug.length === 0) {
+			if (!slug) {
 				return;
 			}
 

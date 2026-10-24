@@ -41,6 +41,10 @@ describe("createConfig", () => {
 		});
 	});
 
+	test("matches the reviewed site configuration", () => {
+		expect(createConfig("production")).toMatchSnapshot();
+	});
+
 	describe("content pipeline wiring", () => {
 		test("does not register the local search plugin", () => {
 			expect(names(createConfig("production"))).not.toContain("gatsby-plugin-local-search");

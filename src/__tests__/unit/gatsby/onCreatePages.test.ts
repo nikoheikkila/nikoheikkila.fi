@@ -184,6 +184,15 @@ describe("onCreatePages", () => {
 			expect(actions.pathsFor(blogPost)).toHaveLength(32);
 		});
 
+		test("creates a detail page but no index page for content without frontmatter", async () => {
+			const { actions } = await run({
+				data: { allMarkdownRemark: { edges: [{ node: { fields: { slug: "/untitled/" }, frontmatter: null } }] } },
+			});
+
+			expect(actions.pathsFor(blogPost)).toStrictEqual(["/untitled/"]);
+			expect(actions.pathsFor(blogIndex)).toStrictEqual([]);
+		});
+
 		test("paginates posts whose slugs were skipped for detail pages", async () => {
 			const { actions } = await run(resultOf(Array.from({ length: 31 }, () => edge({ slug: "" }))));
 

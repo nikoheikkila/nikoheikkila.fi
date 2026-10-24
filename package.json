@@ -54,6 +54,8 @@
 		"@nikoheikkila/playwright-github-actions-reporter": "2.2.0",
 		"@playwright/test": "1.64.1",
 		"@sindresorhus/slugify": "3.0.1",
+		"@stryker-mutator/core": "10.1.1",
+		"@stryker-mutator/vitest-runner": "10.1.1",
 		"@testing-library/dom": "10.4.2",
 		"@testing-library/react": "16.3.3",
 		"@testing-library/user-event": "14.6.8",

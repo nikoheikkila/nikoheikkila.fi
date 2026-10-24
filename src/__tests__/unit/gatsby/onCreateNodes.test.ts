@@ -1,6 +1,7 @@
 import type { CreateNodeArgs, Node } from "gatsby";
+import { createFilePath, createRemoteFileNode } from "gatsby-source-filesystem";
 import { describe, expect, test } from "vitest";
-import { createOnCreateNodes, type NodeDependencies } from "../../../../gatsby/onCreateNodes";
+import { createOnCreateNodes, type NodeDependencies, nodeDependencies } from "../../../../gatsby/onCreateNodes";
 import { NodeActions } from "./fakes";
 
 type RemoteFileArgs = Parameters<NodeDependencies["downloadHero"]>[0];
@@ -203,6 +204,14 @@ describe("onCreateNodes", () => {
 			await expect(invoke).rejects.toThrow("network down");
 			expect(actions.fields).toHaveLength(0);
 			expect(file.calls).toHaveLength(0);
+		});
+	});
+
+	test("the default hook downloads heroes and resolves slugs with Gatsby, falling back to the site cover", () => {
+		expect(nodeDependencies).toStrictEqual({
+			downloadHero: createRemoteFileNode,
+			resolveFilePath: createFilePath,
+			defaultHero: "https://r2.nikoheikkila.fi/cover.png",
 		});
 	});
 

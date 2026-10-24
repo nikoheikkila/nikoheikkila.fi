@@ -49,7 +49,7 @@ Load `styling` skill when you need to work with SASS/SCSS styling in this projec
 
 ### Testing Approach
 
-Load `testing` skill when you need to work with unit, component, or acceptance tests in this project.
+Load `testing` skill when you need to work with unit, component, acceptance, or mutation tests in this project.
 
 #### Acceptance Tests (Playwright BDD)
 

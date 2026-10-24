@@ -140,6 +140,31 @@ describe("RSS", () => {
 			]);
 		});
 
+		test.each([
+			["a missing edge", undefined],
+			["an edge without a node", {}],
+		])("serializes %s as an entry with only the site URL", (_description, edge) => {
+			const data: RSS.Serializable = {
+				query: {
+					allMarkdownRemark: { edges: [edge] },
+					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
+				},
+			};
+
+			expect(RSS.serialize(data)).toStrictEqual([
+				{
+					url: "https://www.nikoheikkila.fi",
+					language: undefined,
+					title: undefined,
+					description: undefined,
+					date: undefined,
+					guid: undefined,
+					author: undefined,
+					custom_elements: [{ "content:encoded": undefined }],
+				},
+			]);
+		});
+
 		test("serializes multiple posts in the queried order", () => {
 			const data: RSS.Serializable = {
 				query: {
