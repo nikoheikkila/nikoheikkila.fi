@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import type { APIResponse, Page } from "@playwright/test";
 
 export const lookup = <T>(registry: Record<string, T>, name: string): T => {
 	const entry = registry[name];
@@ -45,5 +45,21 @@ export class Tabs {
 		}
 
 		return this.popup;
+	}
+}
+
+export class Responses {
+	private response: APIResponse | undefined;
+
+	public remember(response: APIResponse): void {
+		this.response = response;
+	}
+
+	public get received(): APIResponse {
+		if (this.response === undefined) {
+			throw new Error("No response has been fetched");
+		}
+
+		return this.response;
 	}
 }

@@ -1,10 +1,12 @@
 import { createBdd, test as base } from "playwright-bdd";
-import { Tabs } from "./support";
+import { Responses, Tabs } from "./support";
 
-export const test = base.extend<{ tabs: Tabs }>({
-	// biome-ignore lint/correctness/noEmptyPattern: Playwright requires a destructured first argument
+export const test = base.extend<{ tabs: Tabs; responses: Responses }>({
 	tabs: async ({}, use) => {
 		await use(new Tabs());
+	},
+	responses: async ({}, use) => {
+		await use(new Responses());
 	},
 });
 

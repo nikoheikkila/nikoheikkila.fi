@@ -101,5 +101,11 @@
 			}
 		}
 	},
+	"overrides": [
+		{
+			"includes": ["feature/fixtures.ts"],
+			"linter": { "rules": { "correctness": { "noEmptyPattern": "off" } } }
+		}
+	],
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true }
 }
