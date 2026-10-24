@@ -1,4 +1,4 @@
-import type { APIResponse, Page } from "@playwright/test";
+import type { APIResponse, Page, Response } from "@playwright/test";
 
 export const lookup = <T>(registry: Record<string, T>, name: string): T => {
 	const entry = registry[name];
@@ -96,5 +96,21 @@ export class Destination {
 		}
 
 		return this.href;
+	}
+}
+
+export class Visit {
+	private response: Response | null | undefined;
+
+	public remember(response: Response | null): void {
+		this.response = response;
+	}
+
+	public get status(): number {
+		if (this.response === undefined || this.response === null) {
+			throw new Error("No page has been visited");
+		}
+
+		return this.response.status();
 	}
 }
