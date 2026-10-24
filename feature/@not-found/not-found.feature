@@ -11,4 +11,4 @@ Feature: Page not found
   Scenario: Returning home from the 404 page
     Given the visitor is on a "missing page"
     When the visitor follows the "Home" link
-    Then the visitor lands on the "Home" page
+    Then the visitor is on the "home page"

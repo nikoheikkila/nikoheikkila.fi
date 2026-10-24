@@ -16,11 +16,11 @@ Feature: Accessibility
   Scenario: Skip link appears on the first Tab press
     Given the visitor is on the "home page"
     When the visitor presses "Tab"
-    Then the "Skip to main content link" is "focused"
+    Then the skip link is focused
 
   Scenario: Skip link jumps to the main content
     Given the visitor is on the "home page"
-    And the "Skip to main content link" is "focused"
+    And the skip link is focused
     When the visitor presses "Enter"
-    Then the "main content" is "in view"
-    And the page address points to the "main content"
+    Then the main content is in view
+    And the page address points to the main content

@@ -1,27 +1,14 @@
 import { AxeBuilder } from "@axe-core/playwright";
-import { expect, type Locator, type Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import { Given, Then } from "../fixtures";
-import { lookup } from "../support";
 
 const WCAG_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
-const elements: Record<string, (page: Page) => Locator> = {
-	"Skip to main content link": (page) => page.getByRole("link", { name: /skip to main content/i }),
-	"main content": (page) => page.locator("#main-content"),
-};
+const skipLink = (page: Page) => page.getByRole("link", { name: /skip to main content/i });
+const mainContent = (page: Page) => page.locator("#main-content");
 
-const assertions: Record<string, (locator: Locator) => Promise<void>> = {
-	focused: (locator) => expect(locator).toBeFocused(),
-	"in view": (locator) => expect(locator).toBeInViewport(),
-};
-
-const fragments: Record<string, RegExp> = {
-	"main content": /#main-content$/,
-};
-
-Given("the {string} is {string}", async ({ page }, element: string, state: string) => {
-	expect(state).toBe("focused");
-	await lookup(elements, element)(page).focus();
+Given("the skip link is focused", async ({ page }) => {
+	await skipLink(page).focus();
 });
 
 Then("the page has no accessibility violations", async ({ page }) => {
@@ -30,10 +17,14 @@ Then("the page has no accessibility violations", async ({ page }) => {
 	expect(results.violations).toEqual([]);
 });
 
-Then("the {string} is {string}", async ({ page }, element: string, state: string) => {
-	await lookup(assertions, state)(lookup(elements, element)(page));
+Then("the skip link is focused", async ({ page }) => {
+	await expect(skipLink(page)).toBeFocused();
 });
 
-Then("the page address points to the {string}", async ({ page }, element: string) => {
-	await expect(page).toHaveURL(lookup(fragments, element));
+Then("the main content is in view", async ({ page }) => {
+	await expect(mainContent(page)).toBeInViewport();
+});
+
+Then("the page address points to the main content", async ({ page }) => {
+	await expect(page).toHaveURL(/#main-content$/);
 });

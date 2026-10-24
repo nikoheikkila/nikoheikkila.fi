@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
-import { Given, Then, When } from "../fixtures";
-import { lookup, openPage } from "../support";
+import { Then, When } from "../fixtures";
+import { lookup } from "../support";
 
 const destinations: Record<string, RegExp> = {
 	GitHub: /^https:\/\/github\.com\//,
@@ -15,11 +15,6 @@ const views: Record<string, RegExp> = {
 const originals: Record<string, RegExp> = {
 	"latest post": /\/blog\//,
 };
-
-Given("the visitor has the sidebar menu open", async ({ page }) => {
-	await openPage(page, "home page");
-	await page.getByRole("button", { name: "Open menu" }).click();
-});
 
 When("the visitor follows the {string} link", async ({ page, tabs }, name: string) => {
 	const [popup] = await Promise.all([page.waitForEvent("popup"), page.getByRole("link", { name }).click()]);

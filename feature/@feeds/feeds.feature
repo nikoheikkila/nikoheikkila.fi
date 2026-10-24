@@ -4,12 +4,12 @@ Feature: Feeds and crawler files
 
   Scenario: RSS feed is a valid XML document
     When the visitor fetches the "RSS feed"
-    Then the response is "valid XML"
+    Then the response is a valid XML document
 
   Scenario: Sitemap is a valid XML document
     When the visitor fetches the "sitemap"
-    Then the response is "valid XML"
+    Then the response is a valid XML document
 
   Scenario: Crawler rules match the approved version
     When the visitor fetches the "crawler rules"
-    Then the response is "the approved version"
+    Then the response matches the approved version

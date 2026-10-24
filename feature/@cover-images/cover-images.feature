@@ -3,8 +3,8 @@ Feature: Cover images
 
   Scenario Outline: Cover image is decorative
     When the visitor opens the "<page>"
-    Then the visitor sees the "cover image"
-    And the "cover image" is "hidden from screen readers"
+    Then the visitor sees the cover image
+    And the cover image is hidden from screen readers
 
     Examples:
       | page        |
@@ -13,4 +13,4 @@ Feature: Cover images
 
   Scenario: Page cover image loads
     When the visitor opens the "About page"
-    Then the "cover image" is "loaded"
+    Then the cover image is loaded

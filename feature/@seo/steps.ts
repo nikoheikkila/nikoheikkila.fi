@@ -17,7 +17,7 @@ const properties: Record<string, (page: Page) => Promise<string>> = {
 	title: (page) => page.title(),
 	"search description": meta("description"),
 	"link preview title": meta("og:title"),
-	"link preview address": meta("og:url"),
+	"link preview address": async (page) => pathOf(await meta("og:url")(page)),
 	"link preview type": meta("og:type"),
 	"link preview author": meta("article:author"),
 	"link preview image protocol": async (page) =>
@@ -27,71 +27,50 @@ const properties: Record<string, (page: Page) => Promise<string>> = {
 const postDetails: Record<string, (page: Page) => Promise<string>> = {
 	excerpt: async (page) => (await page.getByTestId("post-excerpt").textContent()) ?? "",
 	heading: async (page) => (await page.getByRole("heading", { level: 1 }).textContent()) ?? "",
-	link: async (page) => page.url(),
+	link: async (page) => pathOf(page.url()),
 };
 
-const expectations: Record<string, (actual: string) => void> = {
-	"non-empty": (actual) => expect(actual).toBeTruthy(),
+// The schema script is injected with ScriptStrategy.idle, so it can lag behind client-side navigation.
+const findStructuredData = async (page: Page, type: string): Promise<StructuredDataEntry | undefined> => {
+	const raw = await page.locator("script[type='application/ld+json']").first().textContent();
+	const entries: StructuredDataEntry[] = JSON.parse(raw ?? "[]");
+
+	return entries.find((entry) => entry["@type"] === type);
 };
 
-const comparisons: Record<string, (actual: string, expected: string) => void> = {
-	"link preview address": (actual, expected) => expect(pathOf(actual)).toBe(pathOf(expected)),
-};
-
-const structuredData = async (page: Page): Promise<StructuredDataEntry[]> => {
-	let entries: StructuredDataEntry[] = [];
-
-	// The schema script is injected with ScriptStrategy.idle, so it can lag behind client-side navigation.
+Then("the page {string} matches the post {string}", async ({ page }, property: string, detail: string) => {
 	await expect(async () => {
-		const raw = await page.locator("script[type='application/ld+json']").first().textContent();
-		entries = JSON.parse(raw ?? "");
+		const actual = await lookup(properties, property)(page);
 
-		const website = entries.find((entry) => entry["@type"] === "WebSite");
-		expect(pathOf(website?.url ?? "")).toBe(pathOf(page.url()));
-	}).toPass();
-
-	return entries;
-};
-
-const sections: Record<string, (page: Page) => Promise<StructuredDataEntry[]>> = {
-	"structured data": structuredData,
-};
-
-Then("the page description matches the post {string}", async ({ page }, name: string) => {
-	await expect(async () => {
-		const description = await lookup(properties, "search description")(page);
-
-		expect(description).toBeTruthy();
-		expect(description).toBe(await lookup(postDetails, name)(page));
-	}).toPass();
-});
-
-Then("the page {string} matches the post {string}", async ({ page }, property: string, name: string) => {
-	const compare = comparisons[property] ?? ((a: string, e: string) => expect(a).toBe(e));
-
-	await expect(async () => {
-		compare(await lookup(properties, property)(page), await lookup(postDetails, name)(page));
+		expect(actual).not.toBe("");
+		expect(actual).toBe(await lookup(postDetails, detail)(page));
 	}).toPass();
 });
 
 Then("the page {string} is {string}", async ({ page }, property: string, expected: string) => {
-	const verify = expectations[expected] ?? ((value: string) => expect(value).toBe(expected));
-
 	await expect(async () => {
-		verify(await lookup(properties, property)(page));
+		expect(await lookup(properties, property)(page)).toBe(expected);
 	}).toPass();
 });
 
-Then("the page {string} includes website name at the post address", async ({ page }, name: string) => {
-	const entries = await lookup(sections, name)(page);
-	const website = entries.find((entry) => entry["@type"] === "WebSite");
-
-	expect(pathOf(website?.url ?? "")).toBe(pathOf(page.url()));
+Then("the page {string} is not empty", async ({ page }, property: string) => {
+	await expect(async () => {
+		expect(await lookup(properties, property)(page)).not.toBe("");
+	}).toPass();
 });
 
-Then("the page {string} includes a breadcrumb trail", async ({ page }, name: string) => {
-	const entries = await lookup(sections, name)(page);
-	const breadcrumbs = entries.find((entry) => entry["@type"] === "BreadcrumbList");
+Then("the structured data names the website at the post address", async ({ page }) => {
+	await expect(async () => {
+		const website = await findStructuredData(page, "WebSite");
 
-	expect(breadcrumbs?.itemListElement?.length).toBeGreaterThan(0);
+		expect(pathOf(website?.url ?? "")).toBe(pathOf(page.url()));
+	}).toPass();
+});
+
+Then("the structured data includes a breadcrumb trail", async ({ page }) => {
+	await expect(async () => {
+		const breadcrumbs = await findStructuredData(page, "BreadcrumbList");
+
+		expect(breadcrumbs?.itemListElement?.length).toBeGreaterThan(0);
+	}).toPass();
 });

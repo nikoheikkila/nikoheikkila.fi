@@ -2,24 +2,10 @@ import { expect, type Locator, type Page } from "@playwright/test";
 import { Then, When } from "../fixtures";
 import { lookup } from "../support";
 
-const olderPostLink = (page: Page) => page.locator('a[rel="prev"]');
-const newerPostLink = (page: Page) => page.locator('a[rel="next"]');
-
-const rssLink = (page: Page) => page.getByRole("link", { name: "RSS feed" });
-
-const elements: Record<string, (page: Page) => Locator> = {
-	"older post link": olderPostLink,
-	"newer post link": newerPostLink,
-};
-
 const links: Record<string, (page: Page) => Locator> = {
-	"older post": olderPostLink,
-	"newer post": newerPostLink,
-	"RSS feed": rssLink,
-};
-
-const headings: Record<string, (page: Page) => Promise<string>> = {
-	"post title": (page) => page.title(),
+	"older post": (page) => page.locator('a[rel="prev"]'),
+	"newer post": (page) => page.locator('a[rel="next"]'),
+	"RSS feed": (page) => page.getByRole("link", { name: "RSS feed" }),
 };
 
 When("the visitor follows the {string} link", async ({ page, destination }, name: string) => {
@@ -28,25 +14,21 @@ When("the visitor follows the {string} link", async ({ page, destination }, name
 	await link.click();
 });
 
-Then("the visitor sees the {string}", async ({ page }, name: string) => {
-	await expect(lookup(elements, name)(page)).toBeVisible();
-});
-
 Then("the visitor sees the {string} link", async ({ page }, name: string) => {
 	await expect(lookup(links, name)(page)).toBeVisible();
 });
 
-Then("the visitor sees the {string} as main heading", async ({ page }, name: string) => {
+Then("the visitor does not see the {string} link", async ({ page }, name: string) => {
+	await expect(lookup(links, name)(page)).toHaveCount(0);
+});
+
+Then("the visitor sees the post title as the main heading", async ({ page }) => {
 	const heading = page.getByRole("heading", { level: 1 });
 
 	await expect(heading).toBeVisible();
-	expect(await lookup(headings, name)(page)).toContain(await heading.textContent());
+	expect(await page.title()).toContain(await heading.textContent());
 });
 
-Then("the visitor does not see the {string}", async ({ page }, name: string) => {
-	await expect(lookup(elements, name)(page)).toHaveCount(0);
-});
-
-Then("the visitor is on the {string}", async ({ page, destination }, _name: string) => {
+Then("the visitor arrives at the linked page", async ({ page, destination }) => {
 	await expect(page).toHaveURL(destination.expected);
 });

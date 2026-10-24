@@ -4,7 +4,7 @@ Feature: Reading posts
   Scenario: Home page allows navigating to a post
     Given the visitor is on the "home page"
     When the visitor opens the "latest post"
-    Then the visitor sees the "post title" as main heading
+    Then the visitor sees the post title as the main heading
 
   Scenario: Posts can be subscribed to via RSS
     Given the visitor is on the "home page"
@@ -14,5 +14,5 @@ Feature: Reading posts
   Scenario: Subscribing to the RSS feed from a post
     Given the visitor is on the "latest post"
     When the visitor follows the "RSS feed" link
-    Then the visitor is on the "RSS feed"
+    Then the visitor arrives at the linked page
 

@@ -1,4 +1,4 @@
-import type { APIResponse, Page, Response } from "@playwright/test";
+import type { APIResponse, Locator, Page, Response } from "@playwright/test";
 
 export const lookup = <T>(registry: Record<string, T>, name: string): T => {
 	const entry = registry[name];
@@ -15,46 +15,50 @@ export const viewports: Record<string, { width: number; height: number }> = {
 	phone: { width: 375, height: 667 },
 };
 
-const openers: Record<string, (page: Page) => Promise<void>> = {
-	"home page": async (page) => {
-		await page.goto("/", { waitUntil: "networkidle" });
-	},
-	"second index page": async (page) => {
-		await page.goto("/2/", { waitUntil: "networkidle" });
-	},
-	"last index page": async (page) => {
-		await page.goto("/", { waitUntil: "networkidle" });
-		const nextPage = page.getByRole("link", { name: /Next Page/ });
+const goto = async (page: Page, path: string): Promise<void> => {
+	await page.goto(path, { waitUntil: "networkidle" });
+};
 
-		while (await nextPage.isVisible()) {
-			const href = await nextPage.getAttribute("href");
-			await page.goto(href ?? "/", { waitUntil: "networkidle" });
-		}
-	},
-	"About page": async (page) => {
-		await page.goto("/about/", { waitUntil: "networkidle" });
-	},
-	"Uses page": async (page) => {
-		await page.goto("/uses/", { waitUntil: "networkidle" });
+const gotoLastIndexPage = async (page: Page): Promise<void> => {
+	await goto(page, "/");
+	const nextPage = page.getByRole("link", { name: /Next Page/ });
+
+	while (await nextPage.isVisible()) {
+		await goto(page, (await nextPage.getAttribute("href")) ?? "/");
+	}
+};
+
+const openPost = async (page: Page, article: Locator): Promise<void> => {
+	await Promise.all([page.waitForURL(/\/blog\//), article.getByRole("link").first().click()]);
+};
+
+const openers: Record<string, (page: Page) => Promise<void>> = {
+	"home page": (page) => goto(page, "/"),
+	"second index page": (page) => goto(page, "/2/"),
+	"last index page": gotoLastIndexPage,
+	"About page": (page) => goto(page, "/about/"),
+	"Uses page": (page) => goto(page, "/uses/"),
+	"latest post": async (page) => {
+		await goto(page, "/");
+		await openPost(page, page.getByRole("article").first());
 	},
 	"middle post": async (page) => {
-		await page.goto("/", { waitUntil: "networkidle" });
-		const secondPostLink = page.getByRole("article").nth(1).getByRole("link").first();
-		await Promise.all([page.waitForURL(/\/blog\//), secondPostLink.click()]);
+		await goto(page, "/");
+		await openPost(page, page.getByRole("article").nth(1));
 	},
 	"oldest post": async (page) => {
-		await openers["last index page"]?.(page);
-		const oldestPostLink = page.getByRole("article").last().getByRole("link").first();
-		await Promise.all([page.waitForURL(/\/blog\//), oldestPostLink.click()]);
-	},
-	"latest post": async (page) => {
-		await page.goto("/", { waitUntil: "networkidle" });
-		const latestPostLink = page.getByRole("article").first().getByRole("link").first();
-		await Promise.all([page.waitForURL(/\/blog\//), latestPostLink.click()]);
+		await gotoLastIndexPage(page);
+		await openPost(page, page.getByRole("article").last());
 	},
 };
 
 export const openPage = async (page: Page, name: string): Promise<void> => lookup(openers, name)(page);
+
+export const sidebarMenu = (page: Page) => page.getByRole("navigation", { name: "Main" }).getByRole("link").first();
+
+export const toggleSidebarMenu = async (page: Page): Promise<void> => {
+	await page.getByRole("button", { name: /(Open|Close) menu/ }).click();
+};
 
 export class Tabs {
 	private popup: Page | undefined;

@@ -4,7 +4,7 @@ Feature: Search engine and link previews
 
   Scenario: Post description matches its excerpt
     When the visitor opens the "latest post"
-    Then the page description matches the post "excerpt"
+    Then the page "search description" matches the post "excerpt"
 
   Scenario: Link preview matches the post
     When the visitor opens the "latest post"
@@ -19,10 +19,10 @@ Feature: Search engine and link previews
 
   Scenario: Structured data describes the post
     When the visitor opens the "latest post"
-    Then the page "structured data" includes website name at the post address
-    And the page "structured data" includes a breadcrumb trail
+    Then the structured data names the website at the post address
+    And the structured data includes a breadcrumb trail
 
   Scenario: Home page has a title and a description
     When the visitor opens the "home page"
-    Then the page "title" is "non-empty"
-    And the page "search description" is "non-empty"
+    Then the page "title" is not empty
+    And the page "search description" is not empty

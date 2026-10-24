@@ -3,7 +3,7 @@ Feature: Post search
 
   Scenario Outline: Searching for a known term lists matching posts
     Given the visitor is browsing on a "<device>"
-    And the visitor is on the "Home" page
+    And the visitor is on the "home page"
     When the visitor searches for "software"
     Then the visitor sees the search results
 
@@ -13,16 +13,16 @@ Feature: Post search
       | phone   |
 
   Scenario: Searching for an unknown term reports no results
-    Given the visitor is on the "Home" page
+    Given the visitor is on the "home page"
     When the visitor searches for "xyznonexistent123"
-    Then the visitor sees a "no results message"
+    Then the visitor sees a no results message
 
   Scenario Outline: Opening a search result
     Given the visitor is browsing on a "<device>"
     And the visitor has searched for "software"
     When the visitor follows the first search result link
-    Then the visitor lands on the "post" page
-    And the "search results" are hidden
+    Then the visitor is on the "post page"
+    And the search results are hidden
 
     Examples:
       | device  |
@@ -33,12 +33,12 @@ Feature: Post search
     Given the visitor has searched for "software"
     And the first search result is focused
     When the visitor presses "Enter"
-    Then the visitor lands on the "post" page
+    Then the visitor is on the "post page"
 
   Scenario Outline: Dismissing the search results
     Given the visitor has searched for "software"
     When the visitor dismisses the search results by "<method>"
-    Then the "search results" are hidden
+    Then the search results are hidden
 
     Examples:
       | method                 |

@@ -8,13 +8,6 @@ const files: Record<string, string> = {
 	"crawler rules": "/robots.txt",
 };
 
-const validXMLHeader = /^<\?xml version="1.0" encoding="UTF-8"\?>/;
-
-const expectations: Record<string, (body: string) => void> = {
-	"valid XML": (body) => expect(body).toMatch(validXMLHeader),
-	"the approved version": (body) => expect(body).toMatchSnapshot("robots.txt"),
-};
-
 When("the visitor fetches the {string}", async ({ request, responses }, name: string) => {
 	const response = await request.get(lookup(files, name));
 
@@ -22,6 +15,10 @@ When("the visitor fetches the {string}", async ({ request, responses }, name: st
 	responses.remember(response);
 });
 
-Then("the response is {string}", async ({ responses }, expectation: string) => {
-	lookup(expectations, expectation)(await responses.received.text());
+Then("the response is a valid XML document", async ({ responses }) => {
+	expect(await responses.received.text()).toMatch(/^<\?xml version="1.0" encoding="UTF-8"\?>/);
+});
+
+Then("the response matches the approved version", async ({ responses }) => {
+	expect(await responses.received.text()).toMatchSnapshot("robots.txt");
 });

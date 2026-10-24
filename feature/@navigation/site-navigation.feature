@@ -4,8 +4,8 @@ Feature: Site navigation
   Scenario Outline: Opening the sidebar menu
     Given the visitor is browsing on a "<device>"
     And the visitor is on the "home page"
-    When the visitor opens the "sidebar menu"
-    Then the visitor sees the "sidebar menu"
+    When the visitor opens the sidebar menu
+    Then the visitor sees the sidebar menu
 
     Examples:
       | device  |
@@ -14,9 +14,9 @@ Feature: Site navigation
 
   Scenario Outline: Closing the sidebar menu by clicking outside it
     Given the visitor is browsing on a "<device>"
-    And the visitor has the "sidebar menu" open
-    When the visitor clicks outside the "sidebar menu"
-    Then the "sidebar menu" is "closed"
+    And the visitor has the sidebar menu open
+    When the visitor clicks outside the sidebar menu
+    Then the sidebar menu is closed
 
     Examples:
       | device  |
@@ -25,8 +25,8 @@ Feature: Site navigation
 
   Scenario: Footer links to the author's social profiles
     Given the visitor is on the "home page"
-    When the visitor scrolls to the "footer"
-    Then the visitor sees the "social profile links"
+    When the visitor scrolls to the footer
+    Then the visitor sees the social profile links
 
   Scenario Outline: Subscribing to the RSS feed from the footer
     Given the visitor is browsing on a "<device>"
