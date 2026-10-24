@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"skills": {
+		"playwright-bdd": {
+			"source": "vitalets/playwright-bdd",
+			"sourceType": "github",
+			"skillPath": "skills/playwright-bdd/SKILL.md",
+			"computedHash": "db55c68596e2f328b4c08a85c50304a5ff941ad950922582dbf5ea316bc46f08"
+		}
+	}
+}
