@@ -31,3 +31,19 @@ const openers: Record<string, (page: Page) => Promise<void>> = {
 };
 
 export const openPage = async (page: Page, name: string): Promise<void> => lookup(openers, name)(page);
+
+export class Tabs {
+	private popup: Page | undefined;
+
+	public remember(page: Page): void {
+		this.popup = page;
+	}
+
+	public get opened(): Page {
+		if (this.popup === undefined) {
+			throw new Error("No new tab has been opened");
+		}
+
+		return this.popup;
+	}
+}

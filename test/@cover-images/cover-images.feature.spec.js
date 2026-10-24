@@ -1,5 +1,5 @@
 // Generated from: feature/@cover-images/cover-images.feature
-import { test } from "playwright-bdd";
+import { test } from "../../feature/fixtures.ts";
 
 test.describe('Cover images', () => {
 

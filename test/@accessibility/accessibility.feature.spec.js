@@ -1,5 +1,5 @@
 // Generated from: feature/@accessibility/accessibility.feature
-import { test } from "playwright-bdd";
+import { test } from "../../feature/fixtures.ts";
 
 test.describe('Accessibility', () => {
 
