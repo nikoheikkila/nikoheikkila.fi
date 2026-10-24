@@ -1,15 +1,26 @@
 import { defineConfig, type PlaywrightTestConfig } from "@playwright/test";
+import { defineBddConfig } from "playwright-bdd";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
 const isPipeline = process.env.CI !== undefined;
 const gitHubActionsReporter = "@nikoheikkila/playwright-github-actions-reporter";
 
+const bddTestDir = defineBddConfig({
+	features: "feature/**/*.feature",
+	featuresRoot: "feature",
+	steps: "feature/**/*.ts",
+	outputDir: "test",
+	matchKeywords: true,
+});
+
 const baseConfiguration: PlaywrightTestConfig = {
-	name: "Acceptance Tests",
 	fullyParallel: true,
 	reporter: "list",
 	snapshotPathTemplate: "{testDir}/snapshots/{testFilePath}/{arg}{ext}",
-	testDir: "src/__tests__/feature",
+	projects: [
+		{ name: "Acceptance Tests", testDir: "src/__tests__/feature" },
+		{ name: "BDD", testDir: bddTestDir },
+	],
 	use: {
 		baseURL,
 		ignoreHTTPSErrors: true,
