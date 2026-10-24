@@ -1,0 +1,33 @@
+import type { Page } from "@playwright/test";
+
+export const lookup = <T>(registry: Record<string, T>, name: string): T => {
+	const entry = registry[name];
+
+	if (entry === undefined) {
+		throw new Error(`Unknown name "${name}". Known names: ${Object.keys(registry).join(", ")}`);
+	}
+
+	return entry;
+};
+
+const openers: Record<string, (page: Page) => Promise<void>> = {
+	"home page": async (page) => {
+		await page.goto("/", { waitUntil: "networkidle" });
+	},
+	"second index page": async (page) => {
+		await page.goto("/2/", { waitUntil: "networkidle" });
+	},
+	"About page": async (page) => {
+		await page.goto("/about/", { waitUntil: "networkidle" });
+	},
+	"Uses page": async (page) => {
+		await page.goto("/uses/", { waitUntil: "networkidle" });
+	},
+	"latest post": async (page) => {
+		await page.goto("/", { waitUntil: "networkidle" });
+		const latestPostLink = page.getByRole("article").first().getByRole("link").first();
+		await Promise.all([page.waitForURL(/\/blog\//), latestPostLink.click()]);
+	},
+};
+
+export const openPage = async (page: Page, name: string): Promise<void> => lookup(openers, name)(page);

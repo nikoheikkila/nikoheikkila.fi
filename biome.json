@@ -13,7 +13,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["**", "!.mcp.json", "!.agents/agents"]
+		"includes": ["**", "!.mcp.json", "!.agents/agents", "!test/**/*.js"]
 	},
 	"formatter": {
 		"enabled": true,
