@@ -11,16 +11,16 @@ test.describe('Moving between posts', () => {
 
   test.describe('Following a link to a neighbouring post', () => {
 
-    test('Example #1', { tag: ['@post'] }, async ({ Given, When, Then, page }) => { 
+    test('Example #1', { tag: ['@post'] }, async ({ Given, When, Then, destination, page }) => { 
       await Given('the visitor is on the "middle post"', null, { page }); 
-      await When('the visitor follows the "older post" link', null, { page }); 
-      await Then('the visitor is on the "older post"', null, { page }); 
+      await When('the visitor follows the "older post" link', null, { destination, page }); 
+      await Then('the visitor is on the "older post"', null, { destination, page }); 
     });
 
-    test('Example #2', { tag: ['@post'] }, async ({ Given, When, Then, page }) => { 
+    test('Example #2', { tag: ['@post'] }, async ({ Given, When, Then, destination, page }) => { 
       await Given('the visitor is on the "middle post"', null, { page }); 
-      await When('the visitor follows the "newer post" link', null, { page }); 
-      await Then('the visitor is on the "newer post"', null, { page }); 
+      await When('the visitor follows the "newer post" link', null, { destination, page }); 
+      await Then('the visitor is on the "newer post"', null, { destination, page }); 
     });
 
   });
