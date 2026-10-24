@@ -17,6 +17,15 @@ const openers: Record<string, (page: Page) => Promise<void>> = {
 	"second index page": async (page) => {
 		await page.goto("/2/", { waitUntil: "networkidle" });
 	},
+	"last index page": async (page) => {
+		await page.goto("/", { waitUntil: "networkidle" });
+		const nextPage = page.getByRole("link", { name: /Next Page/ });
+
+		while (await nextPage.isVisible()) {
+			const href = await nextPage.getAttribute("href");
+			await page.goto(href ?? "/", { waitUntil: "networkidle" });
+		}
+	},
 	"About page": async (page) => {
 		await page.goto("/about/", { waitUntil: "networkidle" });
 	},
