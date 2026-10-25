@@ -30,7 +30,11 @@ export class BasePage {
 	}
 
 	public async openPost(article: Locator): Promise<void> {
-		await Promise.all([this.page.waitForURL(/\/blog\//), article.getByRole("link").first().click()]);
+		const title = (await article.getByRole("heading").textContent()) ?? "";
+
+		await article.getByRole("link").first().click();
+		await expect(this.page).toHaveURL(/\/blog\//);
+		await expect(this.page.getByRole("heading", { level: 1, name: title.trim() })).toBeVisible();
 	}
 
 	@Given("the visitor is browsing on a desktop")
