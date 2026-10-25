@@ -1,4 +1,4 @@
-import { defineConfig, type PlaywrightTestConfig } from "@playwright/test";
+import { defineConfig, devices, type PlaywrightTestConfig } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
 
 const baseURL = process.env.APP_URL || "http://localhost:8000";
@@ -17,7 +17,12 @@ const baseConfiguration: PlaywrightTestConfig = {
 	fullyParallel: true,
 	reporter: "list",
 	snapshotPathTemplate: "{testDir}/snapshots/{testFilePath}/{arg}{ext}",
-	projects: [{ name: "Acceptance Tests", testDir: bddTestDir }],
+	projects: [
+		{ name: "chromium", testDir: bddTestDir, use: { ...devices["Desktop Chrome"] } },
+		{ name: "firefox", testDir: bddTestDir, use: { ...devices["Desktop Firefox"] } },
+		// Like Safari, WebKit moves Tab focus only between form controls unless "tab to links" is enabled.
+		{ name: "webkit", testDir: bddTestDir, grepInvert: /@tabs-to-links/, use: { ...devices["Desktop Safari"] } },
+	],
 	use: {
 		baseURL,
 		ignoreHTTPSErrors: true,

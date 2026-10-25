@@ -15,6 +15,7 @@ Feature: Accessibility
       | Now page          |
       | Testimonials page |
 
+  @tabs-to-links
   Scenario: Skip link appears on the first Tab press
     Given the visitor is on the home page
     When the visitor presses "Tab"
