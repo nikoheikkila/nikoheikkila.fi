@@ -83,3 +83,5 @@ reports/
 
 # Playwright BDD generated files
 test/**/*.spec.js
+!test/snapshots/
+!test/snapshots/**
