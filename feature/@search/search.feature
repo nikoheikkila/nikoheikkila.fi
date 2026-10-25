@@ -41,6 +41,17 @@ Feature: Post search
     Then the search results are hidden
 
     Examples:
-      | method                 |
-      | pressing Escape        |
-      | clicking outside focus |
+      | method                    |
+      | pressing Escape           |
+      | clicking outside focus    |
+      | clicking the close button |
+
+  Scenario: Submitting an empty search shows no results
+    Given the visitor is on the home page
+    When the visitor submits an empty search
+    Then the search results are hidden
+
+  Scenario: Focus returns to the search box after dismissing the results
+    Given the visitor has searched for "software"
+    When the visitor presses "Escape"
+    Then the search box is focused

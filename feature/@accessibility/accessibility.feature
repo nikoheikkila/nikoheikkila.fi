@@ -12,6 +12,8 @@ Feature: Accessibility
       | latest post       |
       | About page        |
       | Uses page         |
+      | Now page          |
+      | Testimonials page |
 
   Scenario: Skip link appears on the first Tab press
     Given the visitor is on the home page
@@ -24,3 +26,16 @@ Feature: Accessibility
     When the visitor presses "Enter"
     Then the main content is in view
     And the page address points to the main content
+
+  Scenario: Open search results meet WCAG 2.2 AA
+    Given the visitor has searched for "software"
+    Then the page has no accessibility violations
+
+  Scenario: Open sidebar menu meets WCAG 2.2 AA
+    Given the visitor has the sidebar menu open
+    Then the page has no accessibility violations
+
+  Scenario: Keyboard focus stays inside the open search results
+    Given the visitor has searched for "software"
+    When the visitor presses "Shift+Tab"
+    Then focus stays within the search results

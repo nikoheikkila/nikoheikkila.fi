@@ -73,6 +73,18 @@ export class BasePage {
 		await this.goto("/uses/");
 	}
 
+	@Given("the visitor is on the Now page")
+	@When("the visitor opens the Now page")
+	public async openNowPage(): Promise<void> {
+		await this.goto("/now/");
+	}
+
+	@Given("the visitor is on the Testimonials page")
+	@When("the visitor opens the Testimonials page")
+	public async openTestimonialsPage(): Promise<void> {
+		await this.goto("/testimonials/");
+	}
+
 	@Given("the visitor is on the latest post")
 	@When("the visitor opens the latest post")
 	public async openLatestPost(): Promise<void> {
@@ -92,6 +104,11 @@ export class BasePage {
 	public async openOldestPost(): Promise<void> {
 		await this.gotoLastIndexPage();
 		await this.openPost(this.articles.last());
+	}
+
+	@Given("the visitor opens the first post on the page")
+	public async openFirstPostOnPage(): Promise<void> {
+		await this.openPost(this.articles.first());
 	}
 
 	@Given("the visitor has the sidebar menu open")
@@ -159,18 +176,46 @@ export class BasePage {
 		await this.follow(this.footerRssLink);
 	}
 
+	@When("the visitor follows the cover image link")
+	public async followCoverImageLink(): Promise<void> {
+		await this.follow(this.page.locator("a[rel='home']"));
+	}
+
+	@When("the visitor follows the link to the author's story")
+	public async followAuthorStoryLink(): Promise<void> {
+		await this.follow(this.page.getByRole("link", { name: "the longer story of me" }));
+	}
+
+	@When("the visitor follows the link back to the posts")
+	public async followBackToPostsLink(): Promise<void> {
+		await this.follow(this.page.getByRole("link", { name: "Back to posts" }));
+	}
+
+	@When("the visitor follows the {string} link in the sidebar menu")
+	public async followSidebarMenuLink(name: string): Promise<void> {
+		await this.follow(this.page.getByRole("navigation", { name: "Main" }).getByRole("link", { name }));
+	}
+
 	@When("the visitor follows the external {string} link")
 	public async followExternalLink(name: string): Promise<void> {
 		const externalSites = /^https:\/\/(github\.com|(www\.)?linkedin\.com)\//;
 
 		await this.page.context().route(externalSites, (route) => route.fulfill({ body: "" }));
-		const [tab] = await Promise.all([this.page.waitForEvent("popup"), this.page.getByRole("link", { name }).click()]);
+		const [tab] = await Promise.all([
+			this.page.waitForEvent("popup"),
+			this.page.getByRole("link", { name: new RegExp(`${name}$`) }).click(),
+		]);
 
 		this.popup.remember(tab);
 	}
 
 	@When("the visitor opens the sidebar menu")
 	public async openSidebarMenu(): Promise<void> {
+		await this.toggleSidebarMenu();
+	}
+
+	@When("the visitor closes the sidebar menu")
+	public async closeSidebarMenu(): Promise<void> {
 		await this.toggleSidebarMenu();
 	}
 
@@ -191,6 +236,11 @@ export class BasePage {
 		await this.search(term);
 	}
 
+	@When("the visitor submits an empty search")
+	public async submitEmptySearch(): Promise<void> {
+		await this.search("");
+	}
+
 	@When("the visitor follows the first search result link")
 	public async followFirstSearchResult(): Promise<void> {
 		await this.searchResults.first().getByRole("link").click();
@@ -206,12 +256,24 @@ export class BasePage {
 		await this.page.getByRole("button", { name: /dismiss search results/i }).click({ position: { x: 10, y: 10 } });
 	}
 
-	@When("the visitor fetches {string}")
-	public async fetch(path: string): Promise<void> {
-		const response = await this.page.request.get(path);
+	@When("the visitor dismisses the search results by clicking the close button")
+	public async dismissSearchResultsByCloseButton(): Promise<void> {
+		await this.searchResultsDialog.getByRole("button", { name: "Close search results" }).click();
+	}
 
-		await expect(response).toBeOK();
-		this.fetched.remember(response);
+	@When("a feed reader fetches the RSS feed")
+	public async fetchRssFeed(): Promise<void> {
+		await this.fetch("/rss.xml");
+	}
+
+	@When("a search engine fetches the sitemap")
+	public async fetchSitemap(): Promise<void> {
+		await this.fetch("/sitemap-index.xml");
+	}
+
+	@When("a crawler fetches the crawler rules")
+	public async fetchCrawlerRules(): Promise<void> {
+		await this.fetch("/robots.txt");
 	}
 
 	@Then("the visitor sees a link to the next index page")
@@ -249,9 +311,25 @@ export class BasePage {
 		await expect(this.newerPostLink).toBeVisible();
 	}
 
-	@Then("the visitor is at {string}")
-	public async expectPath(path: string): Promise<void> {
-		await expect(this.page).toHaveURL(path);
+	@Then("the visitor sees no link to the newer post")
+	public async expectNoNewerPostLink(): Promise<void> {
+		await expect(this.newerPostLink).toHaveCount(0);
+	}
+
+	@Then("the visitor is at the home page")
+	@Then("the home page is open in the original tab")
+	public async expectHomePage(): Promise<void> {
+		await expect(this.page).toHaveURL("/");
+	}
+
+	@Then("the visitor is at the second index page")
+	public async expectSecondIndexPage(): Promise<void> {
+		await expect(this.page).toHaveURL("/2/");
+	}
+
+	@Then("the visitor is at the About page")
+	public async expectAboutPage(): Promise<void> {
+		await expect(this.page).toHaveURL("/about/");
 	}
 
 	@Then("the visitor arrives at the linked page")
@@ -289,6 +367,16 @@ export class BasePage {
 	@Then("the search results are hidden")
 	public async expectSearchResultsHidden(): Promise<void> {
 		await expect(this.searchResultsDialog).toBeHidden();
+	}
+
+	@Then("the search box is focused")
+	public async expectSearchBoxFocused(): Promise<void> {
+		await expect(this.searchBox).toBeFocused();
+	}
+
+	@Then("focus stays within the search results")
+	public async expectFocusWithinSearchResults(): Promise<void> {
+		await expect(this.searchResultsDialog.locator(":focus")).toHaveCount(1);
 	}
 
 	@Then("the page has no accessibility violations")
@@ -343,12 +431,18 @@ export class BasePage {
 		await expect(this.popup.value).toHaveURL(/^https:\/\/github\.com\/.*\/commits\/main\/content\//);
 	}
 
+	@Then("the author's GitHub profile opens in a new tab")
+	public async expectGitHubProfile(): Promise<void> {
+		await expect(this.popup.value).toHaveURL(/^https:\/\/github\.com\/nikoheikkila\/?$/);
+	}
+
 	@Then("LinkedIn opens in a new tab")
 	public async expectLinkedIn(): Promise<void> {
 		await expect(this.popup.value).toHaveURL(/^https:\/\/(www\.)?linkedin\.com\//);
 	}
 
-	@Then("the response is a valid XML document")
+	@Then("the RSS feed is well-formed")
+	@Then("the sitemap is well-formed")
 	public async expectXmlDocument(): Promise<void> {
 		expect(await this.fetched.value.text()).toMatch(/^<\?xml version="1.0" encoding="UTF-8"\?>/);
 	}
@@ -356,6 +450,14 @@ export class BasePage {
 	@Then("the response matches the approved version")
 	public async expectApprovedResponse(): Promise<void> {
 		expect(await this.fetched.value.text()).toMatchSnapshot("robots.txt");
+	}
+
+	@Then("the newest item in the feed is the latest post")
+	public async expectLatestPostInFeed(): Promise<void> {
+		const [, newestTitle] = /<item><title><!\[CDATA\[(.*?)\]\]>/.exec(await this.fetched.value.text()) ?? ["", ""];
+
+		await this.goto("/");
+		await expect(this.articles.first().getByRole("heading")).toHaveText(newestTitle);
 	}
 
 	@Then("the page title is not empty")
@@ -424,6 +526,17 @@ export class BasePage {
 		return this.searchResultsDialog.getByRole("article");
 	}
 
+	private get searchBox(): Locator {
+		return this.page.getByRole("search").getByRole("searchbox", { name: /search posts/i });
+	}
+
+	private async fetch(path: string): Promise<void> {
+		const response = await this.page.request.get(path);
+
+		await expect(response).toBeOK();
+		this.fetched.remember(response);
+	}
+
 	private async follow(link: Locator): Promise<void> {
 		this.destination.remember((await link.getAttribute("href")) ?? "");
 		await link.click();
@@ -434,10 +547,8 @@ export class BasePage {
 	}
 
 	private async search(term: string): Promise<void> {
-		const searchInput = this.page.getByRole("search").getByRole("searchbox", { name: /search posts/i });
-
-		await searchInput.fill(term);
-		await searchInput.press("Enter");
+		await this.searchBox.fill(term);
+		await this.searchBox.press("Enter");
 	}
 
 	private async expectSearchResults(): Promise<void> {

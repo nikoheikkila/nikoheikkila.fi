@@ -8,15 +8,15 @@ import { BasePage } from "./BasePage";
 export class NotFoundPage extends BasePage {
 	private readonly visit = new Remembered<Response | null>("visited page");
 
-	@Given("the visitor is on {string}")
-	@When("the visitor lands on {string}")
-	public async navigateTo(path: string): Promise<void> {
-		this.visit.remember(await this.goto(path));
+	@Given("the visitor is on a page that does not exist")
+	@When("the visitor opens a page that does not exist")
+	public async openMissingPage(): Promise<void> {
+		this.visit.remember(await this.goto("/this-page-does-not-exist/"));
 	}
 
-	@Then("the response status is {int}")
-	public async expectStatus(status: number): Promise<void> {
-		expect(this.visit.value?.status()).toBe(status);
+	@Then("search engines are told the page does not exist")
+	public async expectNotFoundStatus(): Promise<void> {
+		expect(this.visit.value?.status()).toBe(404);
 	}
 
 	@Then("the page title is {string}")
@@ -29,8 +29,8 @@ export class NotFoundPage extends BasePage {
 		await expect(this.page.getByRole("heading", { name: heading })).toBeVisible();
 	}
 
-	@Then("the visitor sees a text {string}")
-	public async expectText(text: string): Promise<void> {
-		await expect(this.page.getByText(text)).toBeVisible();
+	@Then("the visitor sees that the content was not found")
+	public async expectContentNotFoundReason(): Promise<void> {
+		await expect(this.page.getByText("ERR_CONTENT_NOT_FOUND")).toBeVisible();
 	}
 }

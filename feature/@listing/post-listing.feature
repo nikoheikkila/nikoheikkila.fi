@@ -15,7 +15,7 @@ Feature: Post listing
     Given the visitor is browsing on a <device>
     And the visitor is on the home page
     When the visitor follows the link to the next index page
-    Then the visitor is at "/2/"
+    Then the visitor is at the second index page
 
     Examples:
       | device  |
@@ -26,7 +26,7 @@ Feature: Post listing
     Given the visitor is browsing on a <device>
     And the visitor is on the second index page
     When the visitor follows the link to the previous index page
-    Then the visitor is at "/"
+    Then the visitor is at the home page
 
     Examples:
       | device  |
@@ -50,3 +50,7 @@ Feature: Post listing
     When the visitor opens the second index page
     Then the visitor sees a link to the previous index page
     And the visitor sees a link to the next index page
+
+  Scenario: Listed posts show when they were published and how long they take to read
+    When the visitor opens the home page
+    Then each listed post shows its publication date and reading time

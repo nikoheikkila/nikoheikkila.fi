@@ -19,6 +19,13 @@ export class PostPage extends BasePage {
 		await expect.poll(() => this.page.title()).toContain(await heading.textContent());
 	}
 
+	@Then("the visitor sees who wrote the post, when, and how long it takes to read")
+	public async expectAuthorDateAndReadingTime(): Promise<void> {
+		await expect(this.page.getByTestId("post-author")).toHaveText(/^By \S/);
+		await expect(this.page.getByTestId("post-date")).toHaveText(/\w+ \d{1,2}, \d{4}/);
+		await expect(this.page.getByTestId("post-ttr")).toHaveText(/\d+ minutes? read/);
+	}
+
 	@Then("the visitor is on a post page")
 	@Then("the latest post is open in the original tab")
 	public async expectPostPage(): Promise<void> {
@@ -46,9 +53,14 @@ export class PostPage extends BasePage {
 		await expect.poll(address).toBe(this.pathOf(this.page.url()));
 	}
 
-	@Then("the link preview type is {string}")
-	public async expectLinkPreviewType(type: string): Promise<void> {
-		await expect(this.metaTag("og:type")).toHaveAttribute("content", type);
+	@Then("the link preview presents the post as an article")
+	public async expectLinkPreviewArticle(): Promise<void> {
+		await expect(this.metaTag("og:type")).toHaveAttribute("content", "article");
+	}
+
+	@Then("the link preview presents the page as a website")
+	public async expectLinkPreviewWebsite(): Promise<void> {
+		await expect(this.metaTag("og:type")).toHaveAttribute("content", "website");
 	}
 
 	@Then("the link preview author is {string}")
@@ -56,12 +68,12 @@ export class PostPage extends BasePage {
 		await expect(this.metaTag("article:author")).toHaveAttribute("content", author);
 	}
 
-	@Then("the link preview image is served over HTTPS")
+	@Then("the link preview image is served securely")
 	public async expectLinkPreviewImageOverHttps(): Promise<void> {
 		await expect(this.metaTag("og:image")).toHaveAttribute("content", /^https:\/\//);
 	}
 
-	@Then("the structured data names the website at the post address")
+	@Then("search engines see the post as part of the website")
 	public async expectWebsiteStructuredData(): Promise<void> {
 		await expect(async () => {
 			const website = await this.findStructuredData("WebSite");
@@ -70,7 +82,7 @@ export class PostPage extends BasePage {
 		}).toPass();
 	}
 
-	@Then("the structured data includes a breadcrumb trail")
+	@Then("search engines see a breadcrumb trail to the post")
 	public async expectBreadcrumbStructuredData(): Promise<void> {
 		await expect(async () => {
 			const breadcrumbs = await this.findStructuredData("BreadcrumbList");

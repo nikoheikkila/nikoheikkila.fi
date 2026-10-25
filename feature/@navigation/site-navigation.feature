@@ -38,3 +38,23 @@ Feature: Site navigation
       | device  |
       | desktop |
       | phone   |
+
+  Scenario: Visiting a page from the sidebar menu
+    Given the visitor has the sidebar menu open
+    When the visitor follows the "The Story" link in the sidebar menu
+    Then the visitor is at the About page
+
+  Scenario: Closing the sidebar menu with the menu button
+    Given the visitor has the sidebar menu open
+    When the visitor closes the sidebar menu
+    Then the sidebar menu is closed
+
+  Scenario: Cover image leads back to the home page
+    Given the visitor is on the second index page
+    When the visitor follows the cover image link
+    Then the visitor is at the home page
+
+  Scenario: Reading the author's story from the home page
+    Given the visitor is on the home page
+    When the visitor follows the link to the author's story
+    Then the visitor is at the About page

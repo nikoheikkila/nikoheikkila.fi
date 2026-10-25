@@ -9,4 +9,10 @@ export class HomePage extends BasePage {
 	public async expectPostCount(count: number): Promise<void> {
 		await expect(this.articles).toHaveCount(count);
 	}
+
+	@Then("each listed post shows its publication date and reading time")
+	public async expectPublicationDateAndReadingTime(): Promise<void> {
+		await expect(this.articles.first()).toBeVisible();
+		await expect(this.articles.filter({ hasNotText: /\w+ \d{1,2}, \d{4}[\s\S]*\d+ minutes? read/ })).toHaveCount(0);
+	}
 }

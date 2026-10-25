@@ -13,16 +13,20 @@ Feature: Search engine and link previews
 
   Scenario: Link preview presents the post as an article
     When the visitor opens the latest post
-    Then the link preview type is "article"
+    Then the link preview presents the post as an article
     And the link preview author is "Niko Heikkilä"
-    And the link preview image is served over HTTPS
+    And the link preview image is served securely
 
-  Scenario: Structured data describes the post
+  Scenario: Search engines understand the post's place on the website
     When the visitor opens the latest post
-    Then the structured data names the website at the post address
-    And the structured data includes a breadcrumb trail
+    Then search engines see the post as part of the website
+    And search engines see a breadcrumb trail to the post
 
   Scenario: Home page has a title and a description
     When the visitor opens the home page
     Then the page title is not empty
     And the search description is not empty
+
+  Scenario: Link preview presents a page as a website
+    When the visitor opens the About page
+    Then the link preview presents the page as a website

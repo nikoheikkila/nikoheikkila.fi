@@ -20,3 +20,8 @@ Feature: Moving between posts
     When the visitor opens the oldest post
     Then the visitor sees no link to the older post
     And the visitor sees a link to the newer post
+
+  Scenario: Latest post links only to an older post
+    When the visitor opens the latest post
+    Then the visitor sees a link to the older post
+    And the visitor sees no link to the newer post

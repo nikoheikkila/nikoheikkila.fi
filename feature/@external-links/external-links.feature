@@ -17,3 +17,9 @@ Feature: External links
     Given the visitor has the sidebar menu open
     When the visitor follows the external "Skills" link
     Then LinkedIn opens in a new tab
+
+  Scenario: Footer social profile opens in a new tab
+    Given the visitor is on the home page
+    When the visitor follows the external "GitHub" link
+    Then the author's GitHub profile opens in a new tab
+    And the home page is open in the original tab
