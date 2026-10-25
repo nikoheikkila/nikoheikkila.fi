@@ -90,15 +90,23 @@ export const createOnCreatePages =
 		 */
 		const { edges = [] } = data.allMarkdownRemark;
 
-		edges.forEach((post, index) => {
+		const posts = edges.filter((edge) => edge.node.frontmatter?.type === "post");
+		const linked = posts.filter((edge) => edge.node.fields?.slug);
+		const neighbours = new Map(
+			linked.map((edge, index) => [
+				edge,
+				{ previous: linked[index + 1]?.node ?? null, next: linked[index - 1]?.node ?? null },
+			]),
+		);
+
+		edges.forEach((post) => {
 			const slug = post.node.fields?.slug;
 
 			if (!slug) {
 				return;
 			}
 
-			const previous = index === edges.length - 1 ? null : edges[index + 1].node;
-			const next = index === 0 ? null : edges[index - 1].node;
+			const { previous, next } = neighbours.get(post) ?? { previous: null, next: null };
 
 			createPage({
 				path: slug,
@@ -113,7 +121,6 @@ export const createOnCreatePages =
 		 * a site structure where '/' is the first page and subsequent pages will
 		 * be '/{2...m}' where m is the maximum number of posts.
 		 */
-		const posts = edges.filter((page) => page.node.frontmatter?.type === "post");
 		const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
 		Array.from({ length: numberOfPages }).forEach((_, i) => {

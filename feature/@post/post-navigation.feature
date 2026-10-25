@@ -25,3 +25,8 @@ Feature: Moving between posts
     When the visitor opens the latest post
     Then the visitor sees a link to the older post
     And the visitor sees no link to the newer post
+
+  Scenario: Standalone page has no post navigation
+    When the visitor opens the Testimonials page
+    Then the visitor sees no link to the older post
+    And the visitor sees no link to the newer post

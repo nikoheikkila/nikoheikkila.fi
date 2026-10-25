@@ -138,18 +138,42 @@ describe("onCreatePages", () => {
 			]);
 		});
 
-		test("keeps skipped nodes as neighbours of the surrounding posts", async () => {
+		test("links posts to the nearest posts, skipping a standalone page", async () => {
+			const edges = [edge({ slug: "/a/" }), edge({ slug: "/testimonials/", type: "page" }), edge({ slug: "/b/" })];
+			const { actions } = await run(resultOf(edges));
+
+			const postPages = actions.pages.filter((page) => page.component === blogPost && page.path !== "/testimonials/");
+
+			expect(postPages.map((page) => page.context)).toStrictEqual([
+				{ slug: "/a/", previous: edges[2].node, next: null },
+				{ slug: "/b/", previous: null, next: edges[0].node },
+			]);
+		});
+
+		test("never uses a slug-less node as a neighbour", async () => {
 			const edges = [edge({ slug: "/first/" }), edge({ slug: "" }), edge({ slug: "/last/" })];
 			const { actions } = await run(resultOf(edges));
 
 			expect(actions.pathsFor(blogPost)).toStrictEqual(["/first/", "/last/"]);
-			expect(actions.pages[0].context).toStrictEqual({ slug: "/first/", previous: edges[1].node, next: null });
+			expect(actions.pages[0].context).toStrictEqual({ slug: "/first/", previous: edges[2].node, next: null });
 		});
 
 		test("creates detail pages for non-post content too", async () => {
 			const { actions } = await run(resultOf([edge({ slug: "/about/", type: "page" })]));
 
 			expect(actions.pathsFor(blogPost)).toStrictEqual(["/about/"]);
+		});
+
+		test.each<[string, string, string | null]>([
+			["a standalone page", "/testimonials/", "page"],
+			["an untyped slugged node", "/cv/", null],
+		])("gives %s no neighbours", async (_, slug, type) => {
+			const edges = [edge({ slug: "/a/" }), edge({ slug, type }), edge({ slug: "/b/" })];
+			const { actions } = await run(resultOf(edges));
+
+			expect(actions.pages.filter((page) => page.path === slug).map((page) => page.context)).toStrictEqual([
+				{ slug, previous: null, next: null },
+			]);
 		});
 	});
 
