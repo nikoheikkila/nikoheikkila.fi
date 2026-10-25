@@ -15,6 +15,8 @@ Feature: Accessibility
       | Now page          |
       | Testimonials page |
 
+  # WebKit, like Safari, does not move Tab focus to links, so the webkit project skips this tag.
+  @tabs-to-links
   Scenario: Skip link appears on the first Tab press
     Given the visitor is on the home page
     When the visitor presses "Tab"

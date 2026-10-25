@@ -1,4 +1,4 @@
-import { expect } from "@playwright/test";
+import { expect, type Locator } from "@playwright/test";
 import { Fixture, Then } from "playwright-bdd/decorators";
 import type { test } from "../fixtures";
 import { BasePage } from "./BasePage";
@@ -21,9 +21,11 @@ export class PostPage extends BasePage {
 
 	@Then("the visitor sees who wrote the post, when, and how long it takes to read")
 	public async expectAuthorDateAndReadingTime(): Promise<void> {
-		await expect(this.page.getByTestId("post-author")).toHaveText(/^By \S/);
-		await expect(this.page.getByTestId("post-date")).toHaveText(/\w+ \d{1,2}, \d{4}/);
-		await expect(this.page.getByTestId("post-ttr")).toHaveText(/\d+ minutes? read/);
+		const byline = this.paragraphs.filter({ hasText: /^By .+ minutes? read$/ });
+
+		await expect.soft(byline).toHaveText(/^By \S/);
+		await expect.soft(byline).toHaveText(/\w+ \d{1,2}, \d{4}/);
+		await expect.soft(byline).toHaveText(/\d+ minutes? read$/);
 	}
 
 	@Then("the visitor is on a post page")
@@ -34,7 +36,7 @@ export class PostPage extends BasePage {
 
 	@Then("the search description matches the post excerpt")
 	public async expectSearchDescriptionMatchesExcerpt(): Promise<void> {
-		const excerpt = (await this.page.getByTestId("post-excerpt").textContent()) ?? "";
+		const excerpt = (await this.paragraphs.first().textContent()) ?? "";
 
 		await expect(this.metaTag("description")).toHaveAttribute("content", excerpt);
 	}
@@ -89,6 +91,14 @@ export class PostPage extends BasePage {
 
 			expect(breadcrumbs?.itemListElement?.length).toBeGreaterThan(0);
 		}).toPass();
+	}
+
+	private get main(): Locator {
+		return this.page.getByRole("main");
+	}
+
+	private get paragraphs(): Locator {
+		return this.main.getByRole("paragraph");
 	}
 
 	private pathOf(address: string): string {

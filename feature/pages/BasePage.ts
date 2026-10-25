@@ -24,13 +24,17 @@ export class BasePage {
 	public async gotoLastIndexPage(): Promise<void> {
 		await this.goto("/");
 
-		while (await this.nextIndexPageLink.isVisible()) {
-			await this.goto((await this.nextIndexPageLink.getAttribute("href")) ?? "/");
-		}
+		const lastPage = /\/(\d+)\)/.exec((await this.nextIndexPageLink.textContent()) ?? "")?.at(1);
+
+		await this.goto(`/${lastPage}/`);
 	}
 
 	public async openPost(article: Locator): Promise<void> {
-		await Promise.all([this.page.waitForURL(/\/blog\//), article.getByRole("link").first().click()]);
+		const title = (await article.getByRole("heading").textContent()) ?? "";
+
+		await article.getByRole("link").first().click();
+		await expect(this.page).toHaveURL(/\/blog\//);
+		await expect(this.page.getByRole("heading", { level: 1, name: title.trim() })).toBeVisible();
 	}
 
 	@Given("the visitor is browsing on a desktop")
@@ -178,7 +182,7 @@ export class BasePage {
 
 	@When("the visitor follows the cover image link")
 	public async followCoverImageLink(): Promise<void> {
-		await this.follow(this.page.locator("a[rel='home']"));
+		await this.follow(this.page.getByRole("link", { name: /— Home$/ }));
 	}
 
 	@When("the visitor follows the link to the author's story")

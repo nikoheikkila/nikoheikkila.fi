@@ -11,24 +11,20 @@ interface HeaderProps {
 }
 
 const PostHeader: FunctionComponent<HeaderProps> = ({ title, excerpt, author, datePublished, timeToRead }) => (
-	<header className={styles.header} data-testid="post-header">
+	<header className={styles.header}>
 		<h1 className={styles.title}>{title}</h1>
 
 		{!!excerpt && (
-			<section data-testid="post-excerpt">
+			<section>
 				<p className={styles.excerpt}>{excerpt}</p>
 			</section>
 		)}
 
 		<section>
 			<p className={styles.meta}>
-				{!!author && (
-					<span className={styles.author} data-testid="post-author">
-						By {author} /{" "}
-					</span>
-				)}
-				{!!datePublished && <span data-testid="post-date">{datePublished} / </span>}
-				<span data-testid="post-ttr">{formatReadingTime(timeToRead)}</span>
+				{!!author && <span className={styles.author}>By {author} / </span>}
+				{!!datePublished && <span>{datePublished} / </span>}
+				<span>{formatReadingTime(timeToRead)}</span>
 			</p>
 		</section>
 	</header>
