@@ -93,8 +93,12 @@ export class PostPage extends BasePage {
 		}).toPass();
 	}
 
+	private get main(): Locator {
+		return this.page.getByRole("main");
+	}
+
 	private get paragraphs(): Locator {
-		return this.page.getByRole("main").getByRole("paragraph");
+		return this.main.getByRole("paragraph");
 	}
 
 	private pathOf(address: string): string {

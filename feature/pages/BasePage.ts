@@ -24,7 +24,7 @@ export class BasePage {
 	public async gotoLastIndexPage(): Promise<void> {
 		await this.goto("/");
 
-		const [, lastPage] = /\/(\d+)\)/.exec((await this.nextIndexPageLink.textContent()) ?? "") ?? ["", ""];
+		const lastPage = /\/(\d+)\)/.exec((await this.nextIndexPageLink.textContent()) ?? "")?.at(1);
 
 		await this.goto(`/${lastPage}/`);
 	}
