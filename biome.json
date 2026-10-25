@@ -103,6 +103,10 @@
 	},
 	"overrides": [
 		{
+			"includes": ["feature/**", "playwright.config.ts"],
+			"linter": { "rules": { "nursery": { "noFloatingPromises": "error" } } }
+		},
+		{
 			"includes": ["feature/fixtures.ts"],
 			"linter": { "rules": { "correctness": { "noEmptyPattern": "off" } } }
 		}
