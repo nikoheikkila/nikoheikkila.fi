@@ -3,16 +3,16 @@ import { test } from "../../feature/fixtures.ts";
 
 test.describe('Reading posts', () => {
 
-  test('Home page allows navigating to a post', { tag: ['@post'] }, async ({ Given, When, Then, page }) => { 
-    await Given('the visitor is on the "home page"', null, { page }); 
-    await When('the visitor opens the "latest post"', null, { page }); 
-    await Then('the visitor sees the post title as the main heading', null, { page }); 
+  test('Home page allows navigating to a post', { tag: ['@post'] }, async ({ Given, When, Then, postPage }) => { 
+    await Given('the visitor is on the home page', null, { postPage }); 
+    await When('the visitor opens the latest post', null, { postPage }); 
+    await Then('the visitor sees the post title as the main heading', null, { postPage }); 
   });
 
-  test('Subscribing to the RSS feed from a post', { tag: ['@post'] }, async ({ Given, When, Then, destination, page }) => { 
-    await Given('the visitor is on the "latest post"', null, { page }); 
-    await When('the visitor follows the "RSS feed" link', null, { destination, page }); 
-    await Then('the visitor arrives at the linked page', null, { destination, page }); 
+  test('Subscribing to the RSS feed from a post', { tag: ['@post'] }, async ({ Given, When, Then, basePage }) => { 
+    await Given('the visitor is on the latest post', null, { basePage }); 
+    await When('the visitor follows the RSS feed link', null, { basePage }); 
+    await Then('the visitor arrives at the linked page', null, { basePage }); 
   });
 
 });
@@ -26,6 +26,6 @@ test.use({
 });
 
 const bddFileData = [ // bdd-data-start
-  {"pwTestLine":6,"pickleLine":4,"tags":["@post"],"steps":[{"pwStepLine":7,"gherkinStepLine":5,"keywordType":"Context","textWithKeyword":"Given the visitor is on the \"home page\"","stepMatchArguments":[{"group":{"start":22,"value":"\"home page\"","children":[{"start":23,"value":"home page","children":[{}]},{"children":[{}]}]},"parameterTypeName":"string"}]},{"pwStepLine":8,"gherkinStepLine":6,"keywordType":"Action","textWithKeyword":"When the visitor opens the \"latest post\"","stepMatchArguments":[{"group":{"start":22,"value":"\"latest post\"","children":[{"start":23,"value":"latest post","children":[{}]},{"children":[{}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":7,"keywordType":"Outcome","textWithKeyword":"Then the visitor sees the post title as the main heading","stepMatchArguments":[]}]},
-  {"pwTestLine":12,"pickleLine":9,"tags":["@post"],"steps":[{"pwStepLine":13,"gherkinStepLine":10,"keywordType":"Context","textWithKeyword":"Given the visitor is on the \"latest post\"","stepMatchArguments":[{"group":{"start":22,"value":"\"latest post\"","children":[{"start":23,"value":"latest post","children":[{}]},{"children":[{}]}]},"parameterTypeName":"string"}]},{"pwStepLine":14,"gherkinStepLine":11,"keywordType":"Action","textWithKeyword":"When the visitor follows the \"RSS feed\" link","stepMatchArguments":[{"group":{"start":24,"value":"\"RSS feed\"","children":[{"start":25,"value":"RSS feed","children":[{}]},{"children":[{}]}]},"parameterTypeName":"string"}]},{"pwStepLine":15,"gherkinStepLine":12,"keywordType":"Outcome","textWithKeyword":"Then the visitor arrives at the linked page","stepMatchArguments":[]}]},
+  {"pwTestLine":6,"pickleLine":4,"tags":["@post"],"steps":[{"pwStepLine":7,"gherkinStepLine":5,"keywordType":"Context","textWithKeyword":"Given the visitor is on the home page","pomFixtureName":"postPage","stepMatchArguments":[]},{"pwStepLine":8,"gherkinStepLine":6,"keywordType":"Action","textWithKeyword":"When the visitor opens the latest post","pomFixtureName":"postPage","stepMatchArguments":[]},{"pwStepLine":9,"gherkinStepLine":7,"keywordType":"Outcome","textWithKeyword":"Then the visitor sees the post title as the main heading","pomFixtureName":"postPage","stepMatchArguments":[]}]},
+  {"pwTestLine":12,"pickleLine":9,"tags":["@post"],"steps":[{"pwStepLine":13,"gherkinStepLine":10,"keywordType":"Context","textWithKeyword":"Given the visitor is on the latest post","pomFixtureName":"basePage","stepMatchArguments":[]},{"pwStepLine":14,"gherkinStepLine":11,"keywordType":"Action","textWithKeyword":"When the visitor follows the RSS feed link","pomFixtureName":"basePage","stepMatchArguments":[]},{"pwStepLine":15,"gherkinStepLine":12,"keywordType":"Outcome","textWithKeyword":"Then the visitor arrives at the linked page","pomFixtureName":"basePage","stepMatchArguments":[]}]},
 ]; // bdd-data-end

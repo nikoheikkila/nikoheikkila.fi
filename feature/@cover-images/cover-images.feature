@@ -2,7 +2,7 @@ Feature: Cover images
   Posts and pages open with a cover image that decorates the page without distracting screen reader users.
 
   Scenario Outline: Cover image is decorative
-    When the visitor opens the "<page>"
+    When the visitor opens the <page>
     Then the visitor sees the cover image
     And the cover image is hidden from screen readers
 
@@ -12,5 +12,5 @@ Feature: Cover images
       | About page  |
 
   Scenario: Page cover image loads
-    When the visitor opens the "About page"
+    When the visitor opens the About page
     Then the cover image is loaded

@@ -10,5 +10,5 @@ Feature: Page not found
 
   Scenario: Returning home from the 404 page
     Given the visitor is on "/this-page-does-not-exist/"
-    When the visitor follows the "Home" link
+    When the visitor follows the link to the home page
     Then the visitor is at "/"

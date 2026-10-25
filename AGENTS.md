@@ -54,7 +54,7 @@ Load `testing` skill when you need to work with unit, component, acceptance, or 
 #### Acceptance Tests (Playwright BDD)
 
 Acceptance tests are Gherkin scenarios executed by Playwright through [`playwright-bdd`](https://vitalets.github.io/playwright-bdd/). Load the `playwright-bdd` skill when changing user-observable behaviour and the `playwright` skill when writing or debugging step definitions.
-- **Source of truth is `feature/`**: scenarios live in `feature/@<domain>/*.feature`, step definitions in `feature/@<domain>/steps.ts` (scoped to that directory's features by its `@<domain>` tag), cross-domain steps in `feature/shared-steps.ts`, the `Given`/`When`/`Then` builders and custom fixtures in `feature/fixtures.ts`, and page openers and state holders in `feature/support.ts`.
+- **Source of truth is `feature/`**: scenarios live in `feature/@<domain>/*.feature`, step definitions are decorator-based Page Object Models in `feature/pages/` (`BasePage` for steps common to every page, extended by `HomePage`, `PostPage`, and `NotFoundPage`), registered as fixtures in `feature/fixtures.ts`, with viewports and the `Remembered` state holder in `feature/support.ts`.
 - **`test/` is generated output**: `bunx bddgen` (configured by `defineBddConfig` in `playwright.config.ts`) compiles every feature into `test/@<domain>/<name>.feature.spec.js`. The generated specs are committed, so regenerate and commit them together with any `feature/` change. Never edit them by hand — `bddgen` deletes and rewrites every `test/**/*.spec.js` on each run.
 - **Snapshot baselines survive regeneration**: `test/snapshots/` is hand-maintained and keyed by generated spec path.
 - **Run with `task test:e2e`**: it runs `bddgen` before `playwright test` against the production build on port 8000 (`task build` first). Narrow a run by passing generated spec paths or tags, e.g. `task test:e2e -- test/@seo/` or `task test:e2e -- --grep @seo`.
@@ -88,7 +88,7 @@ Load `git` skill ALWAYS before invoking `git` in this repository.
 - **Components**: PascalCase for React components
 - **Utilities**: camelCase for utility functions
 - **Content**: kebab-case for markdown files
-- **Tests**: `*.test.ts` or `*.test.tsx` suffix for unit and component test files; acceptance tests are `kebab-case.feature` files plus `steps.ts` under `feature/@<domain>/`
+- **Tests**: `*.test.ts` or `*.test.tsx` suffix for unit and component test files; acceptance tests are `kebab-case.feature` files under `feature/@<domain>/` plus PascalCase page models under `feature/pages/`
 - **Styles**: `*.module.scss` for component-scoped styles
 
 ## Troubleshooting

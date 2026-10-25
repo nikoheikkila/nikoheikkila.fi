@@ -1,27 +1,27 @@
-import type { APIResponse, Page, Response } from "@playwright/test";
-import { createBdd, test as base } from "playwright-bdd";
-import { Remembered } from "./support";
+import { test as base } from "playwright-bdd";
+import { BasePage } from "./pages/BasePage";
+import { HomePage } from "./pages/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { PostPage } from "./pages/PostPage";
 
 type Fixtures = {
-	popup: Remembered<Page>;
-	fetched: Remembered<APIResponse>;
-	destination: Remembered<string>;
-	visit: Remembered<Response | null>;
+	basePage: BasePage;
+	homePage: HomePage;
+	postPage: PostPage;
+	notFoundPage: NotFoundPage;
 };
 
 export const test = base.extend<Fixtures>({
-	popup: async ({}, use) => {
-		await use(new Remembered("new tab"));
+	basePage: async ({ page }, use) => {
+		await use(new BasePage(page));
 	},
-	fetched: async ({}, use) => {
-		await use(new Remembered("fetched response"));
+	homePage: async ({ page }, use) => {
+		await use(new HomePage(page));
 	},
-	destination: async ({}, use) => {
-		await use(new Remembered("destination"));
+	postPage: async ({ page }, use) => {
+		await use(new PostPage(page));
 	},
-	visit: async ({}, use) => {
-		await use(new Remembered("visited page"));
+	notFoundPage: async ({ page }, use) => {
+		await use(new NotFoundPage(page));
 	},
 });
-
-export const { Given, When, Then } = createBdd(test);
