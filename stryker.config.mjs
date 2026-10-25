@@ -5,8 +5,12 @@ export default {
 	// Browser Mode component tests are out of reach for the Vitest runner, so this extends the Node "unit" project only.
 	vitest: { configFile: "vitest.stryker.config.ts" },
 	coverageAnalysis: "perTest",
-	reporters: ["clear-text", "progress", "html", "json"],
-	clearTextReporter: { logTests: false },
+	// The progress reporter appends a line every 10s on CI, so only use it in an interactive terminal.
+	reporters: process.env.CI ? ["clear-text", "html", "json"] : ["clear-text", "progress", "html", "json"],
+	// The per-test listing under "All tests" is the bulk of the output; the score table and survivors are enough.
+	clearTextReporter: { reportTests: false, logTests: false },
+	// Don't print the static-mutant hint on every run.
+	warnings: { slow: false },
 	// Every mutant must be killed: a survivor fails the run.
 	thresholds: { high: 100, low: 100, break: 100 },
 	// Mirrors the coverage `include` list in vitest.config.ts — add new backend files to both.
