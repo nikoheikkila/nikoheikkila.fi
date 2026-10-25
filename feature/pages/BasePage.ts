@@ -24,9 +24,9 @@ export class BasePage {
 	public async gotoLastIndexPage(): Promise<void> {
 		await this.goto("/");
 
-		while (await this.nextIndexPageLink.isVisible()) {
-			await this.goto((await this.nextIndexPageLink.getAttribute("href")) ?? "/");
-		}
+		const [, lastPage] = /\/(\d+)\)/.exec((await this.nextIndexPageLink.textContent()) ?? "") ?? ["", ""];
+
+		await this.goto(`/${lastPage}/`);
 	}
 
 	public async openPost(article: Locator): Promise<void> {
@@ -178,7 +178,7 @@ export class BasePage {
 
 	@When("the visitor follows the cover image link")
 	public async followCoverImageLink(): Promise<void> {
-		await this.follow(this.page.locator("a[rel='home']"));
+		await this.follow(this.page.getByRole("link", { name: /— Home$/ }));
 	}
 
 	@When("the visitor follows the link to the author's story")
