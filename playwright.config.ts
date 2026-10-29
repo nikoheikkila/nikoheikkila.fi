@@ -29,6 +29,9 @@ const baseConfiguration: PlaywrightTestConfig = {
 		screenshot: "only-on-failure",
 		trace: "retain-on-failure",
 		video: "retain-on-failure",
+		// Isolates tests from a suspected WebKit race between offline-plugin worker installation and client
+		// navigation (unconfirmed as a production root cause); the production build keeps the worker.
+		serviceWorkers: "block",
 	},
 };
 
