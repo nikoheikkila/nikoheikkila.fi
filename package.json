@@ -50,7 +50,7 @@
 		"@cloudflare/workers-types": "5.20260928.1",
 		"@commitlint/cli": "21.2.4",
 		"@commitlint/config-conventional": "21.2.4",
-		"@happy-dom/global-registrator": "20.14.6",
+		"@happy-dom/global-registrator": "21.0.4",
 		"@nikoheikkila/playwright-github-actions-reporter": "2.2.0",
 		"@playwright/test": "1.64.1",
 		"@sindresorhus/slugify": "3.0.1",
