@@ -129,13 +129,13 @@ html {
 	*::before,
 	*::after {
 		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
-		animation-duration: 0.01ms !important;
-		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
-		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
 		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
 		transition-duration: 0.01ms !important;
 		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
-		scroll-behavior: auto !important;
+		animation-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: required to override high-specificity animation declarations for accessibility (WCAG 2.3.3) */
+		animation-iteration-count: 1 !important;
 	}
 }
 
