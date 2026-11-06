@@ -27,13 +27,20 @@ Project is packaged with Biome formatter, Bun unit tests, and Playwright automat
 task test
 ```
 
+## 🚦 Delivery Pipeline
+
+Content and code changes follow the workflow below:
+
+![Delivery Pipeline: unit, component and mutation tests plus a build run in parallel; the build feeds acceptance tests on three browsers; once all pass, pull requests deploy a preview and pushes to main deploy production, each followed by a Lighthouse audit.](docs/ci-flow.svg)
+
 ## 👤 Author
 
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
-- Github: [@nikoheikkila](https://github.com/nikoheikkila)
-- Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
-- DEV: [nikoheikkila](https://dev.to/nikoheikkila)
-- LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
+
+-   Github: [@nikoheikkila](https://github.com/nikoheikkila)
+-   Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
+-   DEV: [nikoheikkila](https://dev.to/nikoheikkila)
+-   LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
 ## 🤝 Contributing
 

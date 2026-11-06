@@ -1,0 +1,81 @@
+<svg aria-labelledby="t d" font-family="'Segoe Print','Comic Sans MS',-apple-system,Helvetica,Arial,sans-serif" height="460" role="img" viewBox="0 0 1200 460" width="1200" xmlns="http://www.w3.org/2000/svg" >
+  <title id="t">CI pipeline flow</title>
+  <desc id="d">A push to main or a pull request starts unit, component and mutation tests plus a build in parallel. The build feeds acceptance tests on three browsers. When all pass, pull requests deploy a preview followed by a Lighthouse audit, and pushes to main deploy production followed by a Lighthouse audit.</desc>
+  <defs>
+    <marker id="a" markerHeight="8" markerWidth="8" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10" >
+      <path d="M0 0L10 5L0 10z" fill="#495057"/>
+    </marker>
+  </defs>
+  <rect fill="#ffffff" height="460" rx="12" width="1200" />
+  <text fill="#212529" font-size="22" font-weight="bold" text-anchor="middle" x="600" y="32" >CI Workflow (.github/workflows/ci.yml)</text>
+
+  <!-- arrows -->
+  <g fill="none" marker-end="url(#a)" stroke="#495057" stroke-width="2" >
+    <path d="M160 260 L220 100"/>
+    <path d="M160 260 L220 190"/>
+    <path d="M160 260 L220 280"/>
+    <path d="M160 260 L220 390"/>
+    <path d="M400 100 L690 100"/>
+    <path d="M400 190 L690 190"/>
+    <path d="M400 280 L690 280"/>
+    <path d="M400 390 L450 390"/>
+    <path d="M650 390 L690 390"/>
+    <path d="M710 150 L750 150"/>
+    <path d="M710 350 L750 350"/>
+    <path d="M950 150 L1000 150"/>
+    <path d="M950 350 L1000 350"/>
+  </g>
+
+  <!-- trigger -->
+  <rect fill="#ffd43b" height="90" rx="10" stroke="#495057" stroke-width="2" width="140" x="20" y="215" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="90" y="245" >Trigger</text>
+  <text fill="#212529" font-size="13" text-anchor="middle" x="90" y="267" >push to main</text>
+  <text fill="#212529" font-size="13" text-anchor="middle" x="90" y="285" >pull request</text>
+
+  <!-- parallel jobs -->
+  <g fill="#a5d8ff" stroke="#495057" stroke-width="2">
+    <rect height="70" rx="10" width="180" x="220" y="65" />
+    <rect height="70" rx="10" width="180" x="220" y="155" />
+    <rect height="70" rx="10" width="180" x="220" y="245" />
+    <rect height="70" rx="10" width="180" x="220" y="355" />
+  </g>
+  <g fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" >
+    <text x="310" y="95">Unit Tests</text>
+    <text x="310" y="185">Component Tests</text>
+    <text x="310" y="275">Mutation Tests</text>
+    <text x="310" y="385">Build</text>
+  </g>
+  <g fill="#495057" font-size="12" text-anchor="middle" >
+    <text x="310" y="115">+ lint style</text>
+    <text x="310" y="205">Vitest</text>
+    <text x="310" y="295">Stryker</text>
+    <text x="310" y="405">site + type-check</text>
+  </g>
+
+  <!-- acceptance -->
+  <rect fill="#a5d8ff" height="70" rx="10" stroke="#495057" stroke-width="2" width="200" x="450" y="355" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="550" y="385" >Acceptance Tests</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="550" y="405" >chromium · firefox · webkit</text>
+
+  <!-- join gate -->
+  <rect fill="#868e96" height="360" rx="6" stroke="#495057" stroke-width="2" width="20" x="690" y="65" />
+  <text fill="#495057" font-size="12" text-anchor="middle" x="700" y="450" >all green</text>
+
+  <!-- deploys -->
+  <rect fill="#b2f2bb" height="70" rx="10" stroke="#495057" stroke-width="2" width="200" x="750" y="115" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="850" y="145" >Deploy to Preview</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="850" y="165" >pull requests only</text>
+
+  <rect fill="#b2f2bb" height="70" rx="10" stroke="#495057" stroke-width="2" width="200" x="750" y="315" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="850" y="345" >Deploy to Production</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="850" y="365" >push to main only</text>
+
+  <!-- lighthouse -->
+  <rect fill="#d0bfff" height="70" rx="10" stroke="#495057" stroke-width="2" width="180" x="1000" y="115" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="1090" y="145" >Lighthouse</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="1090" y="165" >audit preview</text>
+
+  <rect fill="#d0bfff" height="70" rx="10" stroke="#495057" stroke-width="2" width="180" x="1000" y="315" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="1090" y="345" >Lighthouse</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="1090" y="365" >audit production</text>
+</svg>
