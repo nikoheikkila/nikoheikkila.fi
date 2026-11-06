@@ -1,0 +1,81 @@
+<svg aria-labelledby="t d" font-family="'Segoe Print','Comic Sans MS',-apple-system,Helvetica,Arial,sans-serif" height="340" role="img" viewBox="0 0 1300 340" width="1300" xmlns="http://www.w3.org/2000/svg" >
+  <title id="t">Terraform workflow flow</title>
+  <desc id="d">A pull request, a push to main or a manual run that touches infra/cloudflare starts the plan job: set up Terraform, cache and Task, run init and validate, create the plan, then publish it to the job summary and upload it as an artifact. Only a push to main continues to the deploy job, which downloads the plan, runs init and applies it. Pull requests and manual runs stop after the plan.</desc>
+  <defs>
+    <marker id="a" markerHeight="8" markerWidth="8" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10" >
+      <path d="M0 0L10 5L0 10z" fill="#495057"/>
+    </marker>
+  </defs>
+  <rect fill="#ffffff" height="340" rx="12" width="1300" />
+  <text fill="#212529" font-size="22" font-weight="bold" text-anchor="middle" x="650" y="32" >Terraform Workflow (.github/workflows/terraform.yml)</text>
+
+  <!-- job groups -->
+  <g fill="none" stroke="#868e96" stroke-dasharray="6 4" stroke-width="2" >
+    <rect height="150" rx="12" width="700" x="190" y="85" />
+    <rect height="150" rx="12" width="220" x="1070" y="85" />
+  </g>
+  <g fill="#495057" font-size="13" font-style="italic" >
+    <text x="204" y="104">plan job</text>
+    <text x="1084" y="104">deploy job</text>
+  </g>
+
+  <!-- arrows -->
+  <g fill="none" marker-end="url(#a)" stroke="#495057" stroke-width="2" >
+    <path d="M160 170 L200 170"/>
+    <path d="M350 170 L380 170"/>
+    <path d="M520 170 L550 170"/>
+    <path d="M690 170 L720 170"/>
+    <path d="M880 170 L910 170"/>
+    <path d="M1040 170 L1080 170"/>
+    <path d="M975 225 L975 270"/>
+  </g>
+
+  <!-- trigger -->
+  <rect fill="#ffd43b" height="100" rx="10" stroke="#495057" stroke-width="2" width="140" x="20" y="120" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="90" y="148" >Trigger</text>
+  <g fill="#212529" font-size="12" text-anchor="middle" >
+    <text x="90" y="168">pull request</text>
+    <text x="90" y="184">push to main</text>
+    <text x="90" y="200">manual run</text>
+  </g>
+  <text fill="#495057" font-size="11" text-anchor="middle" x="90" y="240" >infra/cloudflare/**</text>
+
+  <!-- plan job steps -->
+  <g fill="#a5d8ff" stroke="#495057" stroke-width="2">
+    <rect height="80" rx="10" width="150" x="200" y="130" />
+    <rect height="80" rx="10" width="140" x="380" y="130" />
+    <rect height="80" rx="10" width="140" x="550" y="130" />
+    <rect height="80" rx="10" width="160" x="720" y="130" />
+  </g>
+  <g fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" >
+    <text x="275" y="165">Setup</text>
+    <text x="450" y="165">Init</text>
+    <text x="620" y="165">Plan</text>
+    <text x="800" y="165">Publish</text>
+  </g>
+  <g fill="#495057" font-size="12" text-anchor="middle" >
+    <text x="275" y="185">Terraform, cache, Task</text>
+    <text x="450" y="185">init + validate</text>
+    <text x="620" y="185">tfplan + plan.txt</text>
+    <text x="800" y="185">job summary</text>
+    <text x="800" y="201">+ tfplan artifact</text>
+  </g>
+
+  <!-- decision -->
+  <path d="M975 115 L1040 170 L975 225 L910 170 z" fill="#ffec99" stroke="#495057" stroke-width="2" />
+  <text fill="#212529" font-size="13" font-weight="bold" text-anchor="middle" x="975" y="166" >push to</text>
+  <text fill="#212529" font-size="13" font-weight="bold" text-anchor="middle" x="975" y="182" >main?</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="1060" y="160" >yes</text>
+  <text fill="#495057" font-size="12" x="987" y="252" >no</text>
+
+  <!-- deploy -->
+  <rect fill="#b2f2bb" height="80" rx="10" stroke="#495057" stroke-width="2" width="190" x="1085" y="130" />
+  <text fill="#212529" font-size="16" font-weight="bold" text-anchor="middle" x="1180" y="165" >Deploy</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="1180" y="185" >download tfplan</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="1180" y="201" >init + apply</text>
+
+  <!-- stop -->
+  <rect fill="#e9ecef" height="46" rx="10" stroke="#495057" stroke-width="2" width="220" x="865" y="275" />
+  <text fill="#212529" font-size="14" font-weight="bold" text-anchor="middle" x="975" y="296" >Stop after plan</text>
+  <text fill="#495057" font-size="12" text-anchor="middle" x="975" y="312" >pull request or manual run</text>
+</svg>

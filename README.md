@@ -33,6 +33,10 @@ Content and code changes follow the workflow below:
 
 ![Delivery Pipeline: unit, component and mutation tests plus a build run in parallel; the build feeds acceptance tests on three browsers; once all pass, pull requests deploy a preview and pushes to main deploy production, each followed by a Lighthouse audit.](docs/ci-flow.svg)
 
+Infrastructure changes with Terrafrom follow a separate workflow:
+
+![Terraform Pipeline: pull requests, pushes to main and manual runs plan the change (setup, init and validate, plan, publish summary and artifact); only pushes to main continue to download the plan and apply it.](docs/terraform-flow.svg)
+
 ## 👤 Author
 
 **Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
