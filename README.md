@@ -31,7 +31,7 @@ task test
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: unit, component and mutation tests plus a build run in parallel; the build feeds acceptance tests on three browsers; once all pass, pull requests deploy a preview and pushes to main deploy production, each followed by a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: one install job shares dependencies with unit, component and mutation tests plus a build that run in parallel; the build feeds acceptance tests on three browsers; once all pass, pull requests deploy a preview and pushes to main deploy production, each followed by a Lighthouse audit.](docs/ci-flow.svg)
 
 Infrastructure changes with Terrafrom follow a separate workflow:
 
