@@ -48,7 +48,7 @@
         "@happy-dom/global-registrator": "21.0.4",
         "@nikoheikkila/playwright-github-actions-reporter": "2.2.0",
         "@playwright/test": "1.64.1",
-        "@sindresorhus/slugify": "3.0.1",
+        "@sindresorhus/slugify": "4.0.0",
         "@stryker-mutator/core": "10.1.1",
         "@stryker-mutator/vitest-runner": "10.1.1",
         "@testing-library/dom": "10.4.2",
@@ -863,9 +863,9 @@
 
     "@sindresorhus/merge-streams": ["@sindresorhus/merge-streams@4.0.0", "", {}, "sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ=="],
 
-    "@sindresorhus/slugify": ["@sindresorhus/slugify@3.0.1", "", { "dependencies": { "@sindresorhus/transliterate": "^2.0.0", "escape-string-regexp": "^5.0.0" } }, "sha512-N1oPvN6sytRKZCskv0L+vSyvnUYi9JplPXZ90lT6EBsijjHrUdoXttb0Lna6pw1TWMe8vlajQnLDtU9KYHqtDg=="],
+    "@sindresorhus/slugify": ["@sindresorhus/slugify@4.0.0", "", { "dependencies": { "@sindresorhus/transliterate": "^3.0.0", "escape-string-regexp": "^5.0.0" } }, "sha512-/5oEBXpUWCHxaQqcvQE8bLj6JD7KkMkJFy6UxSAETgy2RAZ09VxUo6XFl4YHksORImmdFUvNguwFKDVRP0ZxHQ=="],
 
-    "@sindresorhus/transliterate": ["@sindresorhus/transliterate@2.3.1", "", {}, "sha512-gVaaGtKYMYAMmI8buULVH3A2TXVJ98QiwGwI7ddrWGuGidGC2uRt4FHs22+8iROJ0QTzju9CuMjlVsrvpqsdhA=="],
+    "@sindresorhus/transliterate": ["@sindresorhus/transliterate@3.0.0", "", {}, "sha512-mqOUtMxpY419WtwwYw1EX865Oh+QWpa37yhGLXNmVc6d91wsBYLG51TgSePqrdnCSnTJn2AygX+35StK86tNOA=="],
 
     "@socket.io/component-emitter": ["@socket.io/component-emitter@3.1.2", "", {}, "sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA=="],
 
