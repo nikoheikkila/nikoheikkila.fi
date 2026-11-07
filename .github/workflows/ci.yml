@@ -48,11 +48,15 @@ jobs:
         run: task test:unit
 
   component_tests:
-    name: Component Tests
+    name: Component Tests (${{ matrix.browser }})
     runs-on: ubuntu-latest
     concurrency:
-      group: ci-component-${{ github.event.pull_request.number || github.ref }}
+      group: ci-component-${{ matrix.browser }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
 
     steps:
       - name: Checkout repository
@@ -65,7 +69,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
 
       - name: Run component tests
-        run: task test:component
+        run: task test:component args='--with-deps --only-shell ${{ matrix.browser }}' -- --browser=${{ matrix.browser }}
 
   mutation_tests:
     name: Mutation Tests
