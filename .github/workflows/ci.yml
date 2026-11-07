@@ -22,11 +22,11 @@ permissions:
   contents: read
 
 jobs:
-  unit_tests:
-    name: Unit Tests
+  install:
+    name: Install
     runs-on: ubuntu-latest
     concurrency:
-      group: ci-unit-${{ github.event.pull_request.number || github.ref }}
+      group: ci-install-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
     steps:
@@ -41,6 +41,36 @@ jobs:
         with:
           save-cache: "true"
 
+      - name: Archive dependencies
+        run: tar -czf node_modules.tar.gz node_modules
+
+      - name: Upload dependencies
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: dependencies
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+          path: node_modules.tar.gz
+
+  unit_tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: [install]
+    concurrency:
+      group: ci-unit-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Restore dependencies
+        uses: ./.github/actions/restore-dependencies
+
       - name: Lint Code Style
         run: task lint:style
 
@@ -50,6 +80,7 @@ jobs:
   component_tests:
     name: Component Tests
     runs-on: ubuntu-latest
+    needs: [install]
     concurrency:
       group: ci-component-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -61,8 +92,8 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup-environment
 
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+      - name: Restore dependencies
+        uses: ./.github/actions/restore-dependencies
 
       - name: Run component tests
         run: task test:component
@@ -70,6 +101,7 @@ jobs:
   mutation_tests:
     name: Mutation Tests
     runs-on: ubuntu-latest
+    needs: [install]
     concurrency:
       group: ci-mutation-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -81,8 +113,8 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup-environment
 
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+      - name: Restore dependencies
+        uses: ./.github/actions/restore-dependencies
 
       - name: Run mutation tests
         run: task test:mutation
@@ -98,6 +130,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    needs: [install]
     concurrency:
       group: ci-build-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -111,8 +144,8 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup-environment
 
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+      - name: Restore dependencies
+        uses: ./.github/actions/restore-dependencies
 
       - name: Restore Gatsby build output
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
@@ -183,8 +216,8 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup-environment
 
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+      - name: Restore dependencies
+        uses: ./.github/actions/restore-dependencies
 
       - name: Download static assets
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
