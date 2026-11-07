@@ -1,6 +1,6 @@
 <svg aria-labelledby="t d" font-family="'Segoe Print','Comic Sans MS',-apple-system,Helvetica,Arial,sans-serif" height="460" role="img" viewBox="0 0 1200 460" width="1200" xmlns="http://www.w3.org/2000/svg" >
   <title id="t">CI pipeline flow</title>
-  <desc id="d">A push to main or a pull request starts unit, component and mutation tests plus a build in parallel. The build feeds acceptance tests on three browsers. When all pass, pull requests deploy a preview followed by a Lighthouse audit, and pushes to main deploy production followed by a Lighthouse audit.</desc>
+  <desc id="d">A push to main or a pull request starts unit tests, component tests on three browsers, mutation tests plus a build in parallel. The build feeds acceptance tests on three browsers. When all pass, pull requests deploy a preview followed by a Lighthouse audit, and pushes to main deploy production followed by a Lighthouse audit.</desc>
   <defs>
     <marker id="a" markerHeight="8" markerWidth="8" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10" >
       <path d="M0 0L10 5L0 10z" fill="#495057"/>
@@ -47,7 +47,7 @@
   </g>
   <g fill="#495057" font-size="12" text-anchor="middle" >
     <text x="310" y="115">+ lint style</text>
-    <text x="310" y="205">Vitest</text>
+    <text x="310" y="205">chromium · firefox · webkit</text>
     <text x="310" y="295">Stryker</text>
     <text x="310" y="405">site + type-check</text>
   </g>
