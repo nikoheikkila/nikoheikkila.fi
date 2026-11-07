@@ -1,0 +1,15 @@
+name: Restore Dependencies
+description: Downloads the node_modules archive produced by the `install` job and extracts it
+
+runs:
+  using: composite
+  steps:
+    - name: Download dependencies
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+      with:
+        name: dependencies
+
+    # Artifacts drop symlinks and file modes, both of which node_modules/.bin relies on.
+    - name: Extract dependencies
+      shell: bash
+      run: tar -xzf node_modules.tar.gz && rm node_modules.tar.gz
