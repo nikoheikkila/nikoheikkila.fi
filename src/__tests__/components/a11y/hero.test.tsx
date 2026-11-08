@@ -18,7 +18,7 @@ const createMockImage = (): IGatsbyImageData => ({
 	width: 800,
 });
 
-describe("Hero Accessibility", () => {
+describe("hero accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<Hero data={createMockImage()} />);
 

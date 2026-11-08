@@ -25,37 +25,49 @@ const gatsby = Bun.spawn({
 
 let typesGenerated = false;
 const decoder = new TextDecoder();
+const typesFile = Bun.file("src/gatsby-types.d.ts");
 
-const readStdout = async () => {
+/**
+ * The codegen log line announces the *start* of codegen; the file lands at
+ * the end. Allow 10s so a cold filesystem doesn't fail spuriously.
+ */
+const waitForTypesFile = async (attemptsLeft = 100): Promise<boolean> => {
+	if (attemptsLeft === 0) {
+		return false;
+	}
+
+	if (await typesFile.exists()) {
+		return true;
+	}
+
+	await Bun.sleep(100);
+	return waitForTypesFile(attemptsLeft - 1);
+};
+
+const waitForCodegen = async (): Promise<boolean> => {
 	for await (const chunk of gatsby.stdout) {
-		const output = decoder.decode(chunk);
-
-		if (output.includes("Generating GraphQL and TypeScript types")) {
-			const typesFile = Bun.file("src/gatsby-types.d.ts");
-			// The log line announces the *start* of codegen; the file lands at
-			// the end. Allow 10s so a cold filesystem doesn't fail spuriously.
-			const maxAttempts = 100;
-			let attempts = 0;
-
-			while (attempts < maxAttempts) {
-				if (await typesFile.exists()) {
-					typesGenerated = true;
-					console.log("✅ Types generated successfully!");
-					gatsby.kill("SIGTERM");
-					break;
-				}
-				await Bun.sleep(100);
-				attempts++;
-			}
-
-			if (attempts >= maxAttempts) {
-				console.warn("⚠️  Types file not found after polling, killing process anyway");
-				gatsby.kill("SIGTERM");
-			}
-
-			break;
+		if (decoder.decode(chunk).includes("Generating GraphQL and TypeScript types")) {
+			return true;
 		}
 	}
+
+	return false;
+};
+
+const readStdout = async () => {
+	if (!(await waitForCodegen())) {
+		return;
+	}
+
+	typesGenerated = await waitForTypesFile();
+
+	if (typesGenerated) {
+		console.log("✅ Types generated successfully!");
+	} else {
+		console.warn("⚠️  Types file not found after polling, killing process anyway");
+	}
+
+	gatsby.kill("SIGTERM");
 };
 
 const readStderr = async () => {
@@ -67,19 +79,28 @@ const readStderr = async () => {
 	}
 };
 
-readStdout();
-readStderr();
+const reportStreamFailure = (error: unknown) => {
+	console.error(error);
+};
 
-const exitCode = await gatsby.exited;
+readStdout().catch(reportStreamFailure);
+readStderr().catch(reportStreamFailure);
 
-if (typesGenerated) {
-	process.exit(0);
-}
+const resolveExitCode = (gatsbyExitCode: number): number => {
+	if (typesGenerated) {
+		return 0;
+	}
 
-if (exitCode === 0) {
-	console.error("❌ Types were not generated");
-	process.exit(1);
-} else {
-	console.error(`❌ Gatsby exited with code ${exitCode}`);
-	process.exit(exitCode);
-}
+	if (gatsbyExitCode === 0) {
+		console.error("❌ Types were not generated");
+		return 1;
+	}
+
+	console.error(`❌ Gatsby exited with code ${gatsbyExitCode}`);
+	return gatsbyExitCode;
+};
+
+const exitCode = resolveExitCode(await gatsby.exited);
+
+// biome-ignore lint/nursery/noProcessExit: Gatsby's worker processes can keep the piped streams open after it exits
+process.exit(exitCode);

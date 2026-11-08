@@ -12,7 +12,7 @@ export class HomePage extends BasePage {
 
 	@Then("each listed post shows its publication date and reading time")
 	public async expectPublicationDateAndReadingTime(): Promise<void> {
-		await expect(this.articles.first()).toBeVisible();
-		await expect(this.articles.filter({ hasNotText: /\w+ \d{1,2}, \d{4}[\s\S]*\d+ minutes? read/ })).toHaveCount(0);
+		await expect(this.articles).not.toHaveCount(0);
+		await expect(this.articles.filter({ hasNotText: /\w+ \d{1,2}, \d{4}[\s\S]*\d+ minutes? read/u })).toHaveCount(0);
 	}
 }

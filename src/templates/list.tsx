@@ -8,7 +8,10 @@ import Pagination from "../components/blog/pagination";
 import SEO from "../components/seo";
 import { Cover } from "../components/blog/cover";
 
-type PageContext = { currentPage: number; numberOfPages: number };
+interface PageContext {
+	currentPage: number;
+	numberOfPages: number;
+}
 type IndexProps = PageProps<Queries.IndexQuery, PageContext>;
 
 const Index: React.FC<IndexProps> = ({ data, location, pageContext }) => {

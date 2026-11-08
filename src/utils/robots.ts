@@ -17,16 +17,15 @@ export interface Policy {
  */
 export const disallowedCrawlers = new Set(crawlers);
 
-export const generatePolicies = (agents: Set<string>): Policy[] => {
-	return [...agents].map((agent) => ({
+export const generatePolicies = (agents: Set<string>): Policy[] =>
+	[...agents].map((agent) => ({
 		disallow: "/",
 		userAgent: agent,
 	}));
-};
 
 export const formatRobotsTxt = (policies: Policy[], siteUrl: string): string => {
 	const groups = policies.map((policy) => `User-agent: ${policy.userAgent}${EOL}Disallow: ${policy.disallow}`);
-	return `${groups.join(`${EOL}${EOL}`)}${EOL}Sitemap: ${siteUrl}/sitemap-index.xml${EOL}Host: ${siteUrl}${EOL}`;
+	return `${groups.join(EOL.repeat(2))}${EOL}Sitemap: ${siteUrl}/sitemap-index.xml${EOL}Host: ${siteUrl}${EOL}`;
 };
 
 export const buildRobotsTxt = (siteUrl: string): string =>

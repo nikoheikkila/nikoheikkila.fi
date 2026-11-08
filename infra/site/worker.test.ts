@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import redirectsJson from "./redirects.json";
+import redirectsJson from "./redirects.json" with { type: "json" };
 import worker from "./worker.ts";
 
 interface Env {
@@ -90,35 +90,35 @@ const createSite = (objects: Record<string, FakeObjectInit> = {}, failure?: Erro
 		options: R2GetOptions & { onlyIf: R2Conditional | Headers },
 	): Promise<R2ObjectBody | R2Object | null>;
 	function get(key: string, options?: R2GetOptions): Promise<R2ObjectBody | null>;
-	async function get(key: string, options?: R2GetOptions): Promise<R2ObjectBody | R2Object | null> {
+	function get(key: string, options?: R2GetOptions): Promise<R2ObjectBody | R2Object | null> {
 		gets.push({ key, options });
 
 		if (failure !== undefined) {
-			throw failure;
+			return Promise.reject(failure);
 		}
 
 		const init = store.get(key);
 		if (init === undefined) {
-			return null;
+			return Promise.resolve(null);
 		}
 
 		const metadata = metadataOf(key, init);
 
-		return init.body === undefined ? metadata : bodyOf(metadata, init.body);
+		return Promise.resolve(init.body === undefined ? metadata : bodyOf(metadata, init.body));
 	}
 
 	const bucket: R2Bucket = {
 		get,
-		async head(key: string) {
+		head(key: string) {
 			heads.push(key);
 
 			if (failure !== undefined) {
-				throw failure;
+				return Promise.reject(failure);
 			}
 
 			const init = store.get(key);
 
-			return init === undefined ? null : metadataOf(key, init);
+			return Promise.resolve(init === undefined ? null : metadataOf(key, init));
 		},
 		put: notImplemented("put"),
 		createMultipartUpload: notImplemented("createMultipartUpload"),
@@ -146,7 +146,7 @@ const headersOf = (value: R2Conditional | R2Range | Headers | undefined): Header
 	return value;
 };
 
-describe("Worker", () => {
+describe("worker", () => {
 	describe("method handling", () => {
 		test.each(["POST", "PUT", "DELETE", "PATCH", "OPTIONS"])("rejects %s requests with 405", async (method) => {
 			const site = createSite();
@@ -214,7 +214,7 @@ describe("Worker", () => {
 		});
 	});
 
-	describe("R2 request options", () => {
+	describe("r2 request options", () => {
 		test("forwards the request headers as the conditional and omits the range", async () => {
 			const site = createSite({ "style.css": { body: "body {}" } });
 

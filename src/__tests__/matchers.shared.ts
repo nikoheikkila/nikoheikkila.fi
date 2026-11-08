@@ -5,7 +5,7 @@ import type { SocialLink } from "../utils/social";
  * Shared logic for toProvideIconsFor matcher.
  * Checks that all icons in the provided list are registered and are from the "fab" (brands) pack.
  */
-export function checkIconsProvided(received: IconDefinition[], links: ReadonlyArray<SocialLink>) {
+export const checkIconsProvided = (received: IconDefinition[], links: readonly SocialLink[]) => {
 	const provided = new Set(received.map((icon) => `${icon.prefix}:${icon.iconName}`));
 	const missingDetails = links.flatMap((link) => {
 		const fabKey = `fab:${link.icon}`;
@@ -38,4 +38,4 @@ export function checkIconsProvided(received: IconDefinition[], links: ReadonlyAr
 					);
 				},
 	};
-}
+};

@@ -4,7 +4,7 @@ import React from "react";
 import Content from "../../../components/post/content";
 import { renderMermaid } from "../../../mermaid/index";
 
-describe("Content Accessibility", () => {
+describe("content accessibility", () => {
 	test("passes axe scan for simple markdown", async () => {
 		const { container } = await render(<Content content="A simple paragraph." />);
 

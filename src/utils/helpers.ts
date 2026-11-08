@@ -22,9 +22,10 @@ export const formatReadingTime = (minutes: number): string => {
  * Index page is either the home page or any page with path `/n`
  * where `n` is a natural number > 0.
  */
-export const isIndex = ({ pathname }: Route): boolean => /^\/\d*$/.test(pathname);
+export const isIndex = ({ pathname }: Route): boolean => /^\/\d*$/u.test(pathname);
 export const getPreviousPage = ({ state }: Route): string => state?.previous ?? "/";
-export const combinePaths = (...paths: string[]): string => paths.join("").replaceAll(/([^:]\/)\/+/g, "$1");
+export const combinePaths = (...paths: string[]): string =>
+	paths.join("").replaceAll(/(?<prefix>[^:]\/)\/+/gu, "$<prefix>");
 
 const formatCups = (minutes: number, icon = "☕️"): string => {
 	const maxCups = 5;

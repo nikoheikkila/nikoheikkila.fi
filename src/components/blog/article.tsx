@@ -16,39 +16,37 @@ interface ArticleCardProps {
 }
 
 interface ArticleViewProps {
-	nodes: ReadonlyArray<Partial<Queries.MarkdownRemark>>;
+	nodes: readonly Partial<Queries.MarkdownRemark>[];
 	readonly location: Location;
 }
 
-export const ArticleView: React.FC<ArticleViewProps> = ({ nodes, location }) => {
-	return (
-		<>
-			<h2 className={styles.header}>Latest Articles</h2>
-			<hr />
-			<section className={styles.view}>
-				{nodes.map((node) => {
-					const slug = node.fields?.slug || "";
-					const title = node.frontmatter?.title || "";
-					const excerpt = node.excerpt || "";
-					const timeToRead = node.timeToRead || 0;
-					const date = DateTime.toDisplay(node.frontmatter?.date);
+export const ArticleView: React.FC<ArticleViewProps> = ({ nodes, location }) => (
+	<>
+		<h2 className={styles.header}>Latest Articles</h2>
+		<hr />
+		<section className={styles.view}>
+			{nodes.map((node) => {
+				const slug = node.fields?.slug || "";
+				const title = node.frontmatter?.title || "";
+				const excerpt = node.excerpt || "";
+				const timeToRead = node.timeToRead || 0;
+				const date = DateTime.toDisplay(node.frontmatter?.date);
 
-					return (
-						<ArticleCard
-							date={date}
-							excerpt={excerpt}
-							key={slug}
-							location={location}
-							slug={slug}
-							timeToRead={timeToRead}
-							title={title}
-						/>
-					);
-				})}
-			</section>
-		</>
-	);
-};
+				return (
+					<ArticleCard
+						date={date}
+						excerpt={excerpt}
+						key={slug}
+						location={location}
+						slug={slug}
+						timeToRead={timeToRead}
+						title={title}
+					/>
+				);
+			})}
+		</section>
+	</>
+);
 
 export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	title,
@@ -57,19 +55,17 @@ export const ArticleCard: FunctionComponent<ArticleCardProps> = ({
 	date,
 	timeToRead,
 	location,
-}) => {
-	return (
-		<article className={styles.card}>
-			<h3 className={styles.title}>
-				<Link state={{ previous: location.pathname }} to={slug}>
-					{title}
-				</Link>
-			</h3>
-			<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
-			<Excerpt content={excerpt} />
-		</article>
-	);
-};
+}) => (
+	<article className={styles.card}>
+		<h3 className={styles.title}>
+			<Link state={{ previous: location.pathname }} to={slug}>
+				{title}
+			</Link>
+		</h3>
+		<ArticleMetaData date={date} timeToRead={timeToRead || 0} />
+		<Excerpt content={excerpt} />
+	</article>
+);
 
 const ArticleMetaData = ({ date, timeToRead }: { date: string; timeToRead: number }) => (
 	<p>

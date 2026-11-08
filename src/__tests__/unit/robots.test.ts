@@ -2,7 +2,7 @@ import { EOL } from "node:os";
 import { describe, expect, test } from "vitest";
 import { buildRobotsTxt, formatRobotsTxt, generatePolicies } from "../../utils/robots";
 
-describe("Robots", () => {
+describe("robots", () => {
 	test.each(["anthropic-ai", "ChatGPT-User", "Claude-SearchBot", "PerplexityBot"])(
 		"disallows the %s crawler from the whole site",
 		(agent) => {

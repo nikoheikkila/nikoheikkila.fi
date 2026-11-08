@@ -4,7 +4,7 @@ import { page } from "vitest/browser";
 import React from "react";
 import PostNavigation from "../../../components/post/navigation";
 
-describe("PostNavigation Accessibility", () => {
+describe("post navigation accessibility", () => {
 	test("passes axe scan with both links", async () => {
 		const { container } = await render(
 			<PostNavigation
@@ -24,7 +24,7 @@ describe("PostNavigation Accessibility", () => {
 			/>,
 		);
 
-		const prevLink = page.getByRole("link", { name: /previous post/i });
+		const prevLink = page.getByRole("link", { name: /previous post/iu });
 		await expect.element(prevLink).toBeInTheDocument();
 	});
 
@@ -36,7 +36,7 @@ describe("PostNavigation Accessibility", () => {
 			/>,
 		);
 
-		const nextLink = page.getByRole("link", { name: /next post/i });
+		const nextLink = page.getByRole("link", { name: /next post/iu });
 		await expect.element(nextLink).toBeInTheDocument();
 	});
 });

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import * as Helpers from "../../utils/helpers";
 
-describe("Helpers", () => {
+describe("helpers", () => {
 	describe(".formatReadingTime()", () => {
 		test.each([
 			[0, ""],

@@ -3,7 +3,7 @@ import * as DateTime from "../../utils/datetime";
 
 const february = new Date(2022, 1, 1);
 
-describe("DateTime", () => {
+describe("datetime", () => {
 	afterEach(() => {
 		vi.useRealTimers();
 	});

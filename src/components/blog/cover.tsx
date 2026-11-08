@@ -10,10 +10,8 @@ interface CoverProps {
 // biome-ignore lint/style/useComponentExportOnlyModules: StaticImage requires this
 export const src = "https://r2.nikoheikkila.fi/cover.png";
 
-export const Cover: React.FunctionComponent<CoverProps> = ({ title, url }) => {
-	return (
-		<Link aria-label={`${title} — Home`} rel="home" style={{ display: "block", textAlign: "center" }} to={url}>
-			<StaticImage alt="" fetchPriority="high" height={630} placeholder="blurred" src={src} width={1200} />
-		</Link>
-	);
-};
+export const Cover: React.FunctionComponent<CoverProps> = ({ title, url }) => (
+	<Link aria-label={`${title} — Home`} rel="home" style={{ display: "block", textAlign: "center" }} to={url}>
+		<StaticImage alt="" fetchPriority="high" height={630} placeholder="blurred" src={src} width={1200} />
+	</Link>
+);

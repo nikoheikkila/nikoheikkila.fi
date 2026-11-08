@@ -7,17 +7,19 @@ const DEFAULT_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 expect.extend({
 	toHaveSiblingIcon(received: Locator, iconName: string, prefix?: string) {
-		const selector = prefix
+		const hasPrefix = prefix !== undefined;
+		const selector = hasPrefix
 			? `svg[aria-hidden="true"][data-icon="${iconName}"][data-prefix="${prefix}"]`
 			: `svg[aria-hidden="true"][data-icon="${iconName}"]`;
-		const pass = received.element().parentElement?.querySelector(selector) != null;
+		const pack = hasPrefix ? ` from the "${prefix}" pack` : "";
+		const pass = Boolean(received.element().parentElement?.querySelector(selector));
 
 		return {
 			pass,
 			message: () =>
 				pass
 					? `Expected the link not to have a sibling icon "${iconName}" but one was found`
-					: `Expected the link to have a sibling icon "${iconName}"${prefix ? ` from the "${prefix}" pack` : ""} but none was found`,
+					: `Expected the link to have a sibling icon "${iconName}"${pack} but none was found`,
 		};
 	},
 	async toHaveNoA11yViolations(received: HTMLElement, options: RunOptions = {}) {
@@ -31,7 +33,7 @@ expect.extend({
 					...restOptions,
 				}),
 				new Promise<never>((_, reject) => {
-					timeoutId = setTimeout(() => reject(new Error("axe-core accessibility scan timed out after 10s")), 10000);
+					timeoutId = setTimeout(() => reject(new Error("axe-core accessibility scan timed out after 10s")), 10_000);
 				}),
 			]);
 
@@ -55,7 +57,9 @@ expect.extend({
 		} finally {
 			// axe-core has no cancellation API, so we can't fully stop a scan that times out.
 			// Clearing the timer at minimum prevents resource leaks after normal resolution.
-			if (timeoutId !== undefined) clearTimeout(timeoutId);
+			if (timeoutId !== undefined) {
+				clearTimeout(timeoutId);
+			}
 		}
 	},
 });
@@ -66,7 +70,7 @@ expect.extend({
 // but fail at runtime with "unknown matcher" error.
 declare module "vitest" {
 	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
-		toHaveNoA11yViolations(options?: RunOptions): Promise<void>;
-		toHaveSiblingIcon(iconName: string, prefix?: string): void;
+		toHaveNoA11yViolations: (options?: RunOptions) => Promise<void>;
+		toHaveSiblingIcon: (iconName: string, prefix?: string) => void;
 	}
 }

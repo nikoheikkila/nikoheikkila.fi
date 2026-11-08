@@ -8,7 +8,11 @@ export const viewports = {
 export class Remembered<T> {
 	private remembered: { value: T } | undefined;
 
-	public constructor(private readonly description: string) {}
+	private readonly description: string;
+
+	public constructor(description: string) {
+		this.description = description;
+	}
 
 	public remember(value: T): void {
 		this.remembered = { value };

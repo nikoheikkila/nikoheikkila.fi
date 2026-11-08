@@ -4,7 +4,7 @@ import { page } from "vitest/browser";
 import React from "react";
 import Pagination from "../../../components/blog/pagination";
 
-describe("Pagination Accessibility", () => {
+describe("pagination accessibility", () => {
 	test("passes axe scan on first page", async () => {
 		const { container } = await render(<Pagination currentPage={1} numberOfPages={5} />);
 
@@ -20,14 +20,14 @@ describe("Pagination Accessibility", () => {
 	test("previous link has rel=prev and discernible name", async () => {
 		await render(<Pagination currentPage={3} numberOfPages={5} />);
 
-		const prevLink = page.getByRole("link", { name: /previous page/i });
+		const prevLink = page.getByRole("link", { name: /previous page/iu });
 		await expect.element(prevLink).toHaveAttribute("rel", "prev");
 	});
 
 	test("next link has rel=next and discernible name", async () => {
 		await render(<Pagination currentPage={3} numberOfPages={5} />);
 
-		const nextLink = page.getByRole("link", { name: /next page/i });
+		const nextLink = page.getByRole("link", { name: /next page/iu });
 		await expect.element(nextLink).toHaveAttribute("rel", "next");
 	});
 });

@@ -34,9 +34,9 @@ const resultOf = (edges: ReturnType<typeof edge>[]): PageQueryResult => ({
 
 const queryStub = (result: PageQueryResult) => {
 	const queries: string[] = [];
-	const graphql: PageQuery = async (query) => {
+	const graphql: PageQuery = (query) => {
 		queries.push(query);
-		return result;
+		return Promise.resolve(result);
 	};
 
 	return { graphql, queries };
@@ -60,6 +60,13 @@ describe("onCreatePages", () => {
 			expect(reporter.panics).toStrictEqual(["Error while running GraphQL query in createPages."]);
 			expect(actions.pages).toHaveLength(0);
 			expect(actions.slices).toHaveLength(0);
+		});
+
+		test("treats null errors as a successful query", async () => {
+			const { actions, reporter } = await run({ errors: null, data: resultOf(posts(1)).data });
+
+			expect(reporter.panics).toHaveLength(0);
+			expect(actions.pages).not.toHaveLength(0);
 		});
 
 		test("panics and creates nothing when the query returns no data", async () => {

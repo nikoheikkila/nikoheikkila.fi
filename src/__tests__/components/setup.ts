@@ -2,19 +2,11 @@ import { vi } from "vitest";
 import React from "react";
 import "../matchers";
 
-// Declare types for Gatsby globals
-declare global {
-	var ___loader: {
-		enqueue: () => void;
-		hovering: () => void;
-	};
-}
-
 // Mock Gatsby's loader to prevent prefetch errors in tests
-globalThis.___loader = {
-	enqueue: () => {},
-	hovering: () => {},
-};
+Reflect.set(globalThis, "___loader", {
+	enqueue: () => undefined,
+	hovering: () => undefined,
+});
 
 // Set document-level attributes required by axe-core in component tests
 document.documentElement.setAttribute("lang", "en");
@@ -40,7 +32,7 @@ vi.mock("gatsby", () => ({
 
 const originalWarn = console.warn;
 console.warn = (...args: unknown[]) => {
-	const message = args[0];
+	const [message] = args;
 	// Suppress specific warnings that are expected in test environment
 	if (
 		typeof message === "string" &&
@@ -63,10 +55,6 @@ interface StaticImageProps {
 interface GatsbyImageProps {
 	alt: string;
 	className?: string;
-	style?: React.CSSProperties;
-	objectFit?: React.CSSProperties["objectFit"];
-	objectPosition?: React.CSSProperties["objectPosition"];
-	imgStyle?: React.CSSProperties;
 	loading?: "lazy" | "eager";
 }
 
@@ -74,19 +62,6 @@ interface GatsbyImageProps {
 vi.mock("gatsby-plugin-image", () => ({
 	StaticImage: ({ alt, src, className, style, loading }: StaticImageProps) =>
 		React.createElement("img", { alt, src, className, style, loading }),
-	GatsbyImage: ({ alt, className, style, objectFit, objectPosition, imgStyle, loading }: GatsbyImageProps) => {
-		// GatsbyImage receives styling props that shouldn't be passed to img element
-		const mergedStyle = {
-			...style,
-			...imgStyle,
-			objectFit,
-			objectPosition,
-		};
-		return React.createElement("img", {
-			alt,
-			className,
-			style: mergedStyle,
-			loading,
-		});
-	},
+	GatsbyImage: ({ alt, className, loading }: GatsbyImageProps) =>
+		React.createElement("img", { alt, className, loading }),
 }));

@@ -61,7 +61,7 @@ export interface PreviewUrlExpectation {
 
 /** Skip: no genuine deployment attempt happened. Anything else is reportable. */
 export const classifyConclusion = (conclusion: string | null | undefined): DeploymentOutcome => {
-	if (conclusion == null || conclusion === "skipped" || conclusion === "cancelled") {
+	if (conclusion === null || conclusion === undefined || conclusion === "skipped" || conclusion === "cancelled") {
 		return "skip";
 	}
 
@@ -101,11 +101,11 @@ export const buildExpectedPreviewOrigin = (prNumber: number, expectation: Previe
 
 /** Neutralises Markdown/HTML breakout characters in untrusted job/step names. */
 export const escapeInlineCode = (text: string): string => {
-	const singleLine = text.replace(/[\r\n]+/g, " ").trim();
+	const singleLine = text.replace(/[\r\n]+/gu, " ").trim();
 	const truncated =
 		singleLine.length > MAX_STEP_NAME_LENGTH ? `${singleLine.slice(0, MAX_STEP_NAME_LENGTH)}…` : singleLine;
 
-	return truncated.replace(/`/g, "'") || DEPLOY_JOB_NAME;
+	return truncated.replace(/`/gu, "'") || DEPLOY_JOB_NAME;
 };
 
 export const findFailedStep = (job: WorkflowJob): string | undefined =>
@@ -156,6 +156,14 @@ const isDeploymentMetadata = (value: unknown): value is DeploymentMetadata =>
 	value !== null &&
 	METADATA_KEYS.every((key) => typeof Reflect.get(value, key) === "number");
 
+const parseJson = (text: string): unknown => {
+	try {
+		return JSON.parse(text);
+	} catch {
+		// Malformed JSON yields `undefined`, which the metadata shape check rejects.
+	}
+};
+
 export const parseStoredMetadata = (body: string): DeploymentMetadata | undefined => {
 	const start = body.indexOf(META_PREFIX);
 
@@ -170,13 +178,7 @@ export const parseStoredMetadata = (body: string): DeploymentMetadata | undefine
 		return undefined;
 	}
 
-	let parsed: unknown;
-
-	try {
-		parsed = JSON.parse(body.slice(jsonStart, end));
-	} catch {
-		// Malformed JSON leaves `parsed` undefined, which the shape check below rejects.
-	}
+	const parsed = parseJson(body.slice(jsonStart, end));
 
 	return isDeploymentMetadata(parsed) ? parsed : undefined;
 };

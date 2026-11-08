@@ -3,7 +3,7 @@ import { renderMermaid } from "../../mermaid";
 
 expect.extend({
 	toHaveNamedImageRootSvg(received: string) {
-		const rootTag = received.match(/<svg\b[^>]*>/)?.[0] ?? "";
+		const rootTag = /<svg\b[^>]*>/u.exec(received)?.[0] ?? "";
 		const problems = [
 			rootTag.includes('role="img"') ? "" : 'root <svg> lacks role="img"',
 			rootTag.includes("graphics-document") ? "root <svg> still has role graphics-document" : "",
@@ -23,10 +23,10 @@ expect.extend({
 
 declare module "vitest" {
 	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
-		toHaveNamedImageRootSvg(): void;
+		toHaveNamedImageRootSvg: () => void;
 	}
 	interface AsymmetricMatchersContaining {
-		toHaveNamedImageRootSvg(): void;
+		toHaveNamedImageRootSvg: () => void;
 	}
 }
 
@@ -53,8 +53,8 @@ describe("renderMermaid", () => {
 
 		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		expect(output).toMatch(/<svg[^>]*class="pele/);
-		expect(output).toMatch(/<title[^>]*>Login flow<\/title>/);
+		expect(output).toMatch(/<svg[^>]*class="pele/u);
+		expect(output).toMatch(/<title[^>]*>Login flow<\/title>/u);
 		expect(output).not.toContain(`${fence}mermaid`);
 	});
 
@@ -80,8 +80,8 @@ describe("renderMermaid", () => {
 			const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
 			expect(output).toHaveNamedImageRootSvg();
-			expect(output).toMatch(new RegExp(`<title[^>]*>${accTitle}</title>`));
-			expect(output).toMatch(new RegExp(`<desc[^>]*>${accDescr}</desc>`));
+			expect(output).toMatch(new RegExp(`<title[^>]*>${accTitle}</title>`, "u"));
+			expect(output).toMatch(new RegExp(`<desc[^>]*>${accDescr}</desc>`, "u"));
 		},
 	);
 
@@ -90,7 +90,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		expect(render).toThrow(/content\/blog\/x\.md.*accTitle|accTitle.*content\/blog\/x\.md/s);
+		expect(render).toThrow(/content\/blog\/x\.md.*accTitle|accTitle.*content\/blog\/x\.md/su);
 	});
 
 	test("fails the build naming the post file and accDescr when a diagram has no accDescr", () => {
@@ -98,7 +98,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		expect(render).toThrow(/content\/blog\/x\.md.*accDescr|accDescr.*content\/blog\/x\.md/s);
+		expect(render).toThrow(/content\/blog\/x\.md.*accDescr|accDescr.*content\/blog\/x\.md/su);
 	});
 
 	test("leaves a mermaid fence that sits inside a longer code block as code", () => {
@@ -169,7 +169,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		expect(render).toThrow(/mermaid fence is not closed$/);
+		expect(render).toThrow(/mermaid fence is not closed$/u);
 	});
 
 	test("leaves a mermaid fence indented by four spaces as code", () => {
@@ -209,7 +209,7 @@ describe("renderMermaid", () => {
 
 		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		expect(output).toMatch(/<\/svg>\r$/);
+		expect(output).toMatch(/<\/svg>\r$/u);
 	});
 
 	test("fails the build as empty when a mermaid block has only whitespace", () => {
@@ -217,7 +217,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		expect(render).toThrow(/^content\/blog\/x\.md:11: mermaid diagram is empty$/);
+		expect(render).toThrow(/^content\/blog\/x\.md:11: mermaid diagram is empty$/u);
 	});
 
 	test("prefixes every diagram id with the file line of its opening fence", () => {
@@ -225,7 +225,7 @@ describe("renderMermaid", () => {
 
 		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		const ids = Array.from(output.matchAll(/\sid="([^"]+)"/g), (match) => match[1]);
+		const ids = Array.from(output.matchAll(/\sid="(?<id>[^"]+)"/gu), (match) => match.groups?.id ?? "");
 		expect(ids.length).toBeGreaterThan(0);
 		expect(ids.filter((id) => !id.startsWith("mermaid-13"))).toStrictEqual([]);
 	});
@@ -257,7 +257,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		expect(render).toThrow(/^content\/blog\/x\.md:18:/);
+		expect(render).toThrow(/^content\/blog\/x\.md:18:/u);
 	});
 
 	test("fails the build naming the post file, line and emptiness when a mermaid block has no source", () => {
@@ -265,7 +265,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		expect(render).toThrow(/^content\/blog\/x\.md:13: mermaid diagram is empty$/);
+		expect(render).toThrow(/^content\/blog\/x\.md:13: mermaid diagram is empty$/u);
 	});
 
 	describe("when Pele throws a non-PeleError", () => {
@@ -288,7 +288,7 @@ describe("renderMermaid", () => {
 
 			const render = () => mocked.renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-			expect(render).toThrow(/^boom$/);
+			expect(render).toThrow(/^boom$/u);
 		});
 	});
 
@@ -313,7 +313,7 @@ describe("renderMermaid", () => {
 
 		const output = renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 0 });
 
-		const ids = Array.from(output.matchAll(/\sid="([^"]+)"/g), (match) => match[1]);
+		const ids = Array.from(output.matchAll(/\sid="(?<id>[^"]+)"/gu), (match) => match.groups?.id ?? "");
 		expect(ids.length).toBeGreaterThan(0);
 		expect(new Set(ids).size).toBe(ids.length);
 	});

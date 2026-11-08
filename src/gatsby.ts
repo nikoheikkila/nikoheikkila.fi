@@ -1,10 +1,10 @@
 /* Custom types to support Gatsby internals */
 
-import type { GatsbyLinkProps } from "gatsby-link";
+import type { GatsbyLinkProps } from "gatsby";
 
-export type State = {
+export interface State {
 	previous?: string;
 	next?: string;
-};
+}
 
 export type Route = Location & GatsbyLinkProps<State>;

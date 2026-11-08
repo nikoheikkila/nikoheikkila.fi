@@ -12,7 +12,7 @@ const defaultProps = {
 	timeToRead: 7,
 };
 
-describe("PostHeader Accessibility", () => {
+describe("post header accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<PostHeader {...defaultProps} />);
 

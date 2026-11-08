@@ -13,7 +13,7 @@ const createMockSearchResult = (overrides = {}) => ({
 	...overrides,
 });
 
-describe("SearchModal Accessibility", () => {
+describe("search modal accessibility", () => {
 	test("passes axe scan when open with results", async () => {
 		const results = [createMockSearchResult()];
 		const { container } = await render(
@@ -27,7 +27,7 @@ describe("SearchModal Accessibility", () => {
 		const results = [createMockSearchResult()];
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="test" results={results} />);
 
-		const dialog = page.getByRole("dialog", { name: /search results/i });
+		const dialog = page.getByRole("dialog", { name: /search results/iu });
 		await expect.element(dialog).toBeInTheDocument();
 	});
 
@@ -35,7 +35,7 @@ describe("SearchModal Accessibility", () => {
 		const results = [createMockSearchResult()];
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="test" results={results} />);
 
-		const backdrop = page.getByRole("button", { name: /dismiss search results/i });
+		const backdrop = page.getByRole("button", { name: /dismiss search results/iu });
 		await expect.element(backdrop).toBeInTheDocument();
 	});
 

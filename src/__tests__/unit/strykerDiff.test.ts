@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { parseNulSeparated, selectMutationTargets, toMutateArgument } from "../../../scripts/stryker-diff/logic";
 
-describe("Stryker diff", () => {
+describe("stryker diff", () => {
 	describe(".parseNulSeparated()", () => {
 		test.each<[string, string, string[]]>([
 			["empty output", "", []],

@@ -4,7 +4,7 @@ import { page } from "vitest/browser";
 import React from "react";
 import BlogHeader from "../../../components/blog/header";
 
-describe("BlogHeader Accessibility", () => {
+describe("blog header accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<BlogHeader />);
 

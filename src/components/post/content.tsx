@@ -27,6 +27,7 @@ import remarkMath from "remark-math";
 import makeTitleCase from "title";
 import { BlogLink } from "../elements";
 import * as styles from "./content.module.scss";
+import "katex/dist/katex.min.css";
 
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("diff", diff);
@@ -45,8 +46,6 @@ SyntaxHighlighter.registerLanguage("svelte", xml); // Use XML for Svelte (simila
 SyntaxHighlighter.registerLanguage("typescript", typescript);
 SyntaxHighlighter.registerLanguage("yaml", yaml);
 
-import "katex/dist/katex.min.css";
-
 interface ContentProps {
 	content: string;
 }
@@ -55,16 +54,18 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 	<article className={styles.content}>
 		<ReactMarkdown
 			components={{
-				iframe: ({ title, ...props }) => {
-					return (
-						<section className={styles.video}>
-							<iframe title={title ?? "Embedded media"} {...props} />
-						</section>
-					);
-				},
+				iframe: ({ title, ...props }) => (
+					<section className={styles.video}>
+						<iframe title={title ?? "Embedded media"} {...props} />
+					</section>
+				),
 				img: ({ src, alt, ...props }) => {
-					if (!src) return null;
-					if (!alt || alt.length === 0) console.warn(`Alternative text not specified for image with URL: ${src}`);
+					if (!src) {
+						return null;
+					}
+					if (!alt || alt.length === 0) {
+						console.warn(`Alternative text not specified for image with URL: ${src}`);
+					}
 
 					return (
 						<BlogLink className={styles.photoframe} href={src}>
@@ -93,12 +94,11 @@ const Content: React.FC<ContentProps> = ({ content }) => (
 				},
 				code({ className, children, ...props }) {
 					// Check if it's inline code by looking at the node type
-					const match = /language-(\w+)/.exec(className || "");
-					const [, language] = Array.from(match || []);
+					const language = /language-(?<language>\w+)/u.exec(className ?? "")?.groups?.language;
 					const childrenArray = Array.isArray(children) ? children : [children];
 
 					// If there's no language specified, treat as inline code
-					if (!language) {
+					if (language === undefined) {
 						return (
 							<InlineCode className={className} {...props}>
 								{childrenArray}
@@ -149,11 +149,14 @@ interface CodeBlockProps {
 	children?: ReactNode[];
 }
 
+const NO_LINES: number[] = [];
+const NO_CHILDREN: ReactNode[] = [];
+
 const CodeBlock: React.FC<CodeBlockProps> = ({
 	language,
-	addedLines = [],
-	removedLines = [],
-	children = [],
+	addedLines = NO_LINES,
+	removedLines = NO_LINES,
+	children = NO_CHILDREN,
 	...props
 }) => {
 	// Convert children to string safely
@@ -206,13 +209,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 				}}
 				lineProps={getLineProps}
 				role="region"
-				showLineNumbers
+				showLineNumbers={true}
 				style={nightOwl}
 				tabIndex={0}
-				wrapLines
+				wrapLines={true}
 				{...props}
 			>
-				{childString.replace(/\n$/, "")}
+				{childString.replace(/\n$/u, "")}
 			</SyntaxHighlighter>
 		</section>
 	);
@@ -223,12 +226,10 @@ interface InlineCodeProps {
 	children: ReactNode[];
 }
 
-const InlineCode: React.FC<InlineCodeProps> = ({ className, children, ...props }) => {
-	return (
-		<code className={className} {...props}>
-			{children}
-		</code>
-	);
-};
+const InlineCode: React.FC<InlineCodeProps> = ({ className, children, ...props }) => (
+	<code className={className} {...props}>
+		{children}
+	</code>
+);
 
 export default Content;

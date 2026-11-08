@@ -1,10 +1,10 @@
 import links from "./socialLinks.json";
 
-export type SocialLink = {
+export interface SocialLink {
 	readonly name: string;
 	readonly icon: string;
 	readonly url: string;
-};
+}
 
 /**
  * Social links published in `siteMetadata`. Kept out of `gatsby-config.ts` so

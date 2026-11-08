@@ -14,18 +14,18 @@ const createMockSearchResult = (overrides = {}) => ({
 	...overrides,
 });
 
-describe("SearchBar Component", () => {
+describe("search bar component", () => {
 	test("renders search input with correct aria-label", async () => {
 		await render(<SearchBar onSubmit={vi.fn()} query="" setQuery={vi.fn()} />);
 
-		const input = page.getByRole("searchbox", { name: /search posts/i });
+		const input = page.getByRole("searchbox", { name: /search posts/iu });
 		await expect.element(input).toBeInTheDocument();
 	});
 
 	test("displays current query value", async () => {
 		await render(<SearchBar onSubmit={vi.fn()} query="test query" setQuery={vi.fn()} />);
 
-		const input = page.getByRole("searchbox", { name: /search posts/i });
+		const input = page.getByRole("searchbox", { name: /search posts/iu });
 		await expect.element(input).toHaveValue("test query");
 	});
 
@@ -33,7 +33,7 @@ describe("SearchBar Component", () => {
 		const onSubmit = vi.fn();
 		await render(<SearchBar onSubmit={onSubmit} query="test" setQuery={vi.fn()} />);
 
-		await page.getByRole("searchbox", { name: /search posts/i }).click();
+		await page.getByRole("searchbox", { name: /search posts/iu }).click();
 		await userEvent.keyboard("{Enter}");
 
 		expect(onSubmit).toHaveBeenCalled();
@@ -43,14 +43,14 @@ describe("SearchBar Component", () => {
 		const setQuery = vi.fn();
 		await render(<SearchBar onSubmit={vi.fn()} query="" setQuery={setQuery} />);
 
-		const input = page.getByRole("searchbox", { name: /search posts/i });
+		const input = page.getByRole("searchbox", { name: /search posts/iu });
 		await input.fill("hello");
 
 		expect(setQuery).toHaveBeenCalled();
 	});
 });
 
-describe("SearchModal Component", () => {
+describe("search modal component", () => {
 	test("does not render when isModalOpen is false", async () => {
 		await render(<SearchModal isModalOpen={false} onClose={vi.fn()} query="" results={[]} />);
 
@@ -62,7 +62,7 @@ describe("SearchModal Component", () => {
 		const results = [createMockSearchResult()];
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="test" results={results} />);
 
-		const modal = page.getByRole("dialog", { name: /search results/i });
+		const modal = page.getByRole("dialog", { name: /search results/iu });
 		await expect.element(modal).toBeInTheDocument();
 	});
 
@@ -82,7 +82,7 @@ describe("SearchModal Component", () => {
 	test("shows empty state when no results found", async () => {
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="nonexistent" results={[]} />);
 
-		const noResults = page.getByText(/no results/i);
+		const noResults = page.getByText(/no results/iu);
 		await expect.element(noResults).toBeInTheDocument();
 	});
 
@@ -91,7 +91,7 @@ describe("SearchModal Component", () => {
 		const results = [createMockSearchResult()];
 		await render(<SearchModal isModalOpen={true} onClose={onClose} query="test" results={results} />);
 
-		const backdrop = page.getByRole("button", { name: /dismiss search results/i });
+		const backdrop = page.getByRole("button", { name: /dismiss search results/iu });
 		await backdrop.click({ position: { x: 5, y: 5 } });
 
 		expect(onClose).toHaveBeenCalled();
@@ -113,7 +113,7 @@ describe("SearchModal Component", () => {
 		const results = [createMockSearchResult({ slug: "/blog/my-post/" })];
 		await render(<SearchModal isModalOpen={true} onClose={vi.fn()} query="test" results={results} />);
 
-		const link = page.getByRole("link", { name: /test post title/i });
+		const link = page.getByRole("link", { name: /test post title/iu });
 		await expect.element(link).toHaveAttribute("href", "/blog/my-post/");
 	});
 

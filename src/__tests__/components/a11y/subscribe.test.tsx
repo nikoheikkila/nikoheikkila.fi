@@ -11,17 +11,17 @@ const configWithRss: GatsbyConfig = {
 	},
 };
 
-describe("Subscribe Accessibility", () => {
+describe("subscribe accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<Subscribe config={configWithRss} />);
 
 		await expect(container).toHaveNoA11yViolations();
 	});
 
-	test("RSS link has an accessible name", async () => {
+	test("the RSS link has an accessible name", async () => {
 		await render(<Subscribe config={configWithRss} />);
 
-		const rssLink = page.getByRole("link", { name: /rss feed/i });
+		const rssLink = page.getByRole("link", { name: /rss feed/iu });
 		await expect.element(rssLink).toBeInTheDocument();
 	});
 });

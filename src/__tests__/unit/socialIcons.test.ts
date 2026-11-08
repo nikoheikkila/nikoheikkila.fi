@@ -17,7 +17,7 @@ describe("socialIcons", () => {
 
 		expect(() => {
 			expect(socialIcons).toProvideIconsFor(missingIconLink);
-		}).toThrow(/Missing brand icon\(s\): mastodon\./);
+		}).toThrow(/Missing brand icon\(s\): mastodon\./u);
 	});
 
 	test("reports icons registered under wrong prefix as effectively missing", () => {
@@ -32,6 +32,6 @@ describe("socialIcons", () => {
 
 		expect(() => {
 			expect([wrongPrefixIcon]).toProvideIconsFor(link);
-		}).toThrow(/mastodon \(registered, but not under the "fab" brands pack\)/);
+		}).toThrow(/mastodon \(registered, but not under the "fab" brands pack\)/u);
 	});
 });

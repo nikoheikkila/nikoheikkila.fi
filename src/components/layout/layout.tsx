@@ -8,12 +8,13 @@ import { useSearch } from "../../search/components/useSearch";
 import Hero from "../hero";
 import { ListContainer, SinglePostContainer } from "./container";
 import { Slice } from "gatsby";
+import * as styles from "./layout.module.scss";
 import { LayoutType } from "./types";
 
 interface LayoutProps {
 	type: LayoutType;
 	cover?: IGatsbyImageData;
-	children: Array<ReactNode>;
+	children: ReactNode[];
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ type, cover, children }) => {
@@ -27,7 +28,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ type, cover, children })
 			<Slice alias="sidebar" />
 			<SearchBar onSubmit={submitSearch} query={query} setQuery={setQuery} />
 			{cover ? (
-				<header style={{ textAlign: "center" }}>
+				<header className={styles.cover}>
 					<Hero data={cover} />
 				</header>
 			) : null}

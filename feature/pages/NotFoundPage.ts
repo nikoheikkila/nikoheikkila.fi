@@ -15,7 +15,7 @@ export class NotFoundPage extends BasePage {
 	}
 
 	@Then("search engines are told the page does not exist")
-	public async expectNotFoundStatus(): Promise<void> {
+	public expectNotFoundStatus(): void {
 		expect(this.visit.value?.status()).toBe(404);
 	}
 

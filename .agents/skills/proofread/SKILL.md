@@ -84,7 +84,7 @@ Every Markdown file must have valid YAML frontmatter with these fields:
 
 ## File Placement Rules
 
-```
+```text
 content/
 ├── about.md              # type: page (standalone pages at root)
 └── blog/                 # type: post (all blog posts here)

@@ -50,14 +50,10 @@ interface HeroStubInit {
 
 const heroStub = ({ file = { id: "file-1" }, error }: HeroStubInit = {}) => {
 	const calls: RemoteFileArgs[] = [];
-	const downloadHero: NodeDependencies["downloadHero"] = async (args) => {
+	const downloadHero: NodeDependencies["downloadHero"] = (args) => {
 		calls.push(args);
 
-		if (error) {
-			throw error;
-		}
-
-		return file;
+		return error === undefined ? Promise.resolve(file) : Promise.reject(error);
 	};
 
 	return { downloadHero, calls };
@@ -73,7 +69,7 @@ const filePathStub = (value = "/blog/post/") => {
 	return { resolveFilePath, calls };
 };
 
-const run = async (node: Node, hero = heroStub(), file = filePathStub()) => {
+const run = (node: Node, hero = heroStub(), file = filePathStub()) => {
 	const actions = new NodeActions();
 
 	const invoke = createOnCreateNodes({
@@ -95,7 +91,7 @@ describe("onCreateNodes", () => {
 	test("ignores nodes that are not Markdown", async () => {
 		const hero = heroStub();
 		const file = filePathStub();
-		const { actions, invoke } = await run(otherNode(), hero, file);
+		const { actions, invoke } = run(otherNode(), hero, file);
 
 		await invoke;
 
@@ -106,7 +102,7 @@ describe("onCreateNodes", () => {
 
 	describe("hero image", () => {
 		test("downloads the frontmatter hero when one is set", async () => {
-			const { hero, invoke } = await run(markdownNode({ hero: "https://example.invalid/custom.png" }));
+			const { hero, invoke } = run(markdownNode({ hero: "https://example.invalid/custom.png" }));
 
 			await invoke;
 
@@ -117,7 +113,7 @@ describe("onCreateNodes", () => {
 			["an absent hero", {}],
 			["a null hero", { hero: null }],
 		])("falls back to the default cover for %s", async (_description, frontmatter) => {
-			const { hero, invoke } = await run(markdownNode(frontmatter));
+			const { hero, invoke } = run(markdownNode(frontmatter));
 
 			await invoke;
 
@@ -131,7 +127,7 @@ describe("onCreateNodes", () => {
 				parent: null,
 				children: [],
 			};
-			const { hero, invoke } = await run(node);
+			const { hero, invoke } = run(node);
 
 			await invoke;
 
@@ -139,7 +135,7 @@ describe("onCreateNodes", () => {
 		});
 
 		test("forwards the parent node id and the Gatsby callbacks", async () => {
-			const { actions, hero, invoke } = await run(markdownNode());
+			const { actions, hero, invoke } = run(markdownNode());
 
 			await invoke;
 
@@ -152,7 +148,7 @@ describe("onCreateNodes", () => {
 
 		test("creates a hero field pointing at the downloaded file", async () => {
 			const node = markdownNode();
-			const { actions, invoke } = await run(node, heroStub({ file: { id: "downloaded" } }));
+			const { actions, invoke } = run(node, heroStub({ file: { id: "downloaded" } }));
 
 			await invoke;
 
@@ -160,7 +156,7 @@ describe("onCreateNodes", () => {
 		});
 
 		test("skips only the hero field when nothing was downloaded", async () => {
-			const { actions, invoke } = await run(markdownNode(), heroStub({ file: null }));
+			const { actions, invoke } = run(markdownNode(), heroStub({ file: null }));
 
 			await invoke;
 
@@ -171,7 +167,7 @@ describe("onCreateNodes", () => {
 	describe("slug", () => {
 		test("creates the slug field from the resolved file path", async () => {
 			const node = markdownNode();
-			const { actions, invoke } = await run(node, heroStub(), filePathStub("/blog/hello/"));
+			const { actions, invoke } = run(node, heroStub(), filePathStub("/blog/hello/"));
 
 			await invoke;
 
@@ -180,7 +176,7 @@ describe("onCreateNodes", () => {
 
 		test("passes the node and getNode to the path resolver", async () => {
 			const node = markdownNode();
-			const { file, invoke } = await run(node);
+			const { file, invoke } = run(node);
 
 			await invoke;
 
@@ -188,7 +184,7 @@ describe("onCreateNodes", () => {
 		});
 
 		test("is still created when the hero download yields nothing", async () => {
-			const { actions, file, invoke } = await run(markdownNode(), heroStub({ file: null }));
+			const { actions, file, invoke } = run(markdownNode(), heroStub({ file: null }));
 
 			await invoke;
 
@@ -199,7 +195,7 @@ describe("onCreateNodes", () => {
 
 	describe("download failures", () => {
 		test("propagates the error without creating any field", async () => {
-			const { actions, file, invoke } = await run(markdownNode(), heroStub({ error: new Error("network down") }));
+			const { actions, file, invoke } = run(markdownNode(), heroStub({ error: new Error("network down") }));
 
 			await expect(invoke).rejects.toThrow("network down");
 			expect(actions.fields).toHaveLength(0);
@@ -216,7 +212,7 @@ describe("onCreateNodes", () => {
 	});
 
 	test("never creates nodes itself", async () => {
-		const { actions, invoke } = await run(markdownNode());
+		const { actions, invoke } = run(markdownNode());
 
 		await invoke;
 

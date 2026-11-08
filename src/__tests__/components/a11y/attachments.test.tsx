@@ -12,31 +12,31 @@ const defaultProps = {
 	},
 };
 
-describe("PostAttachments Accessibility", () => {
+describe("post attachments accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<PostAttachments {...defaultProps} />);
 
 		await expect(container).toHaveNoA11yViolations();
 	});
 
-	test("Back link has accessible name", async () => {
+	test("back link has accessible name", async () => {
 		await render(<PostAttachments {...defaultProps} />);
 
-		const backLink = page.getByRole("link", { name: /back to posts/i });
+		const backLink = page.getByRole("link", { name: /back to posts/iu });
 		await expect.element(backLink).toBeInTheDocument();
 	});
 
-	test("Edit link has accessible name", async () => {
+	test("edit link has accessible name", async () => {
 		await render(<PostAttachments {...defaultProps} />);
 
-		const editLink = page.getByRole("link", { name: /edit page/i });
+		const editLink = page.getByRole("link", { name: /edit page/iu });
 		await expect.element(editLink).toBeInTheDocument();
 	});
 
-	test("History link has accessible name", async () => {
+	test("history link has accessible name", async () => {
 		await render(<PostAttachments {...defaultProps} />);
 
-		const historyLink = page.getByRole("link", { name: /view history/i });
+		const historyLink = page.getByRole("link", { name: /view history/iu });
 		await expect.element(historyLink).toBeInTheDocument();
 	});
 });

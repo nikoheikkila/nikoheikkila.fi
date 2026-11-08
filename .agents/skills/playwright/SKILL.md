@@ -107,7 +107,7 @@ public async expectNoAccessibilityViolations(): Promise<void> {
 ```
 
 Notes:
-- `BasePage.goto()` navigates with `waitUntil: "networkidle"` so React has hydrated and all styles are applied before the scan.
+- `BasePage.goto()` waits for Gatsby's `onInitialClientRender` performance mark and the idle-strategy JSON-LD script, so React has hydrated before the scan.
 - The `region` rule is tagged `best-practice`, not WCAG — it does **not** run with the WCAG tag filter above.
 - Disable a specific rule only when it produces a documented false positive: `.disableRules(["rule-id"])`.
 - E2E scans test the full page with production CSS; they catch color-contrast issues that component tests cannot (component tests lack `main.scss`).
@@ -128,6 +128,6 @@ Notes:
 - **E2E test failures**: Ensure a production build exists and is served from <http://localhost:8000>
 - **Component changes**: Always run `task build` after modifying React components before running E2E tests
 - **Test timeouts**: 60s per test in CI, Playwright default locally
-- **Clicks do nothing**: page not hydrated yet — navigate with `waitUntil: "networkidle"` (`BasePage.goto()` already does)
+- **Clicks do nothing**: page not hydrated yet — navigate with `BasePage.goto()`, which waits for Gatsby's `onInitialClientRender` performance mark and the idle-strategy JSON-LD script
 - **API tests (robots.txt, sitemap)**: These files are only generated in production builds
 - **Service workers are blocked suite-wide**: `playwright.config.ts` sets `serviceWorkers: "block"` to isolate tests from a suspected WebKit race between `gatsby-plugin-offline` installing its worker and client navigation (a failed page-data fetch makes Gatsby fall back to a full document load, dropping `Link` state). The suite therefore has no runtime coverage of the offline worker. An offline scenario needs a dedicated tag-filtered project with `serviceWorkers: "allow"`, and that tag excluded from the other projects via `grepInvert` (combine it with webkit's existing `@tabs-to-links` pattern rather than replacing it) — never `test.use()` in generated specs. Blocked registration can log a Playwright warning and a caught Gatsby registration error; inspect those rather than suppressing console errors

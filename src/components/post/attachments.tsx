@@ -13,26 +13,24 @@ interface AttachmentProps {
 	};
 }
 
-const PostAttachments: FunctionComponent<AttachmentProps> = ({ previous, urls }) => {
-	return (
-		<section className={styles.attachments}>
-			<p>
-				<Link rel="back" to={previous ?? "/"}>
-					<FontAwesomeIcon aria-hidden="true" icon={faUndo} /> Back to posts
-				</Link>
+const PostAttachments: FunctionComponent<AttachmentProps> = ({ previous, urls }) => (
+	<section className={styles.attachments}>
+		<p>
+			<Link rel="back" to={previous ?? "/"}>
+				<FontAwesomeIcon aria-hidden="true" icon={faUndo} /> Back to posts
+			</Link>
 
-				<BlogLink href={urls.edit}>
-					<FontAwesomeIcon aria-hidden="true" icon={faEdit} />
-					Edit Page
-				</BlogLink>
+			<BlogLink href={urls.edit}>
+				<FontAwesomeIcon aria-hidden="true" icon={faEdit} />
+				Edit Page
+			</BlogLink>
 
-				<BlogLink href={urls.history}>
-					<FontAwesomeIcon aria-hidden="true" icon={faHistory} />
-					View History
-				</BlogLink>
-			</p>
-		</section>
-	);
-};
+			<BlogLink href={urls.history}>
+				<FontAwesomeIcon aria-hidden="true" icon={faHistory} />
+				View History
+			</BlogLink>
+		</p>
+	</section>
+);
 
 export default PostAttachments;

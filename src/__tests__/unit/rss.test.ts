@@ -1,17 +1,17 @@
 import { describe, expect, test } from "vitest";
-import * as RSS from "../../utils/rss";
+import * as Rss from "../../utils/rss";
 
-describe("RSS", () => {
+describe("rss feed", () => {
 	describe(".serialize()", () => {
 		test("serializes an empty object", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [] },
 					site: { siteMetadata: {} },
 				},
 			};
 
-			const actual = RSS.serialize(data);
+			const actual = Rss.serialize(data);
 			const expected: unknown[] = [];
 
 			expect(actual).toStrictEqual(expected);
@@ -19,7 +19,7 @@ describe("RSS", () => {
 
 		test("serializes a valid query object", () => {
 			const contentDigest = "e71faeed61b358a14ba16b3d3ff47967";
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: {
 						edges: [
@@ -50,7 +50,7 @@ describe("RSS", () => {
 				},
 			};
 
-			const actual = RSS.serialize(data);
+			const actual = Rss.serialize(data);
 
 			const expected = [
 				{
@@ -73,60 +73,60 @@ describe("RSS", () => {
 		});
 
 		test("returns an empty array when there are no edges", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: {},
 					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
 				},
 			};
 
-			expect(RSS.serialize(data)).toStrictEqual([]);
+			expect(Rss.serialize(data)).toStrictEqual([]);
 		});
 
 		test("falls back to an empty URL when the site URL and slug are missing", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [{ node: {} }] },
 					site: { siteMetadata: {} },
 				},
 			};
 
-			const [entry] = RSS.serialize(data);
+			const [entry] = Rss.serialize(data);
 
 			expect(entry.url).toBe("");
 		});
 
 		test("uses only the slug when the site URL is missing", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [{ node: { fields: { slug: "/blog/orphan/" } } }] },
 					site: { siteMetadata: {} },
 				},
 			};
 
-			expect(RSS.serialize(data)[0].url).toBe("/blog/orphan/");
+			expect(Rss.serialize(data)[0].url).toBe("/blog/orphan/");
 		});
 
 		test("uses only the site URL when the slug is missing", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [{ node: {} }] },
 					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
 				},
 			};
 
-			expect(RSS.serialize(data)[0].url).toBe("https://www.nikoheikkila.fi");
+			expect(Rss.serialize(data)[0].url).toBe("https://www.nikoheikkila.fi");
 		});
 
 		test("leaves every optional field undefined for a sparse node", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [{ node: {} }] },
 					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
 				},
 			};
 
-			expect(RSS.serialize(data)).toStrictEqual([
+			expect(Rss.serialize(data)).toStrictEqual([
 				{
 					url: "https://www.nikoheikkila.fi",
 					language: undefined,
@@ -144,14 +144,14 @@ describe("RSS", () => {
 			["a missing edge", undefined],
 			["an edge without a node", {}],
 		])("serializes %s as an entry with only the site URL", (_description, edge) => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: { edges: [edge] },
 					site: { siteMetadata: { siteUrl: "https://www.nikoheikkila.fi" } },
 				},
 			};
 
-			expect(RSS.serialize(data)).toStrictEqual([
+			expect(Rss.serialize(data)).toStrictEqual([
 				{
 					url: "https://www.nikoheikkila.fi",
 					language: undefined,
@@ -166,7 +166,7 @@ describe("RSS", () => {
 		});
 
 		test("serializes multiple posts in the queried order", () => {
-			const data: RSS.Serializable = {
+			const data: Rss.Serializable = {
 				query: {
 					allMarkdownRemark: {
 						edges: [
@@ -178,7 +178,7 @@ describe("RSS", () => {
 				},
 			};
 
-			expect(RSS.serialize(data).map((entry) => [entry.title, entry.url])).toStrictEqual([
+			expect(Rss.serialize(data).map((entry) => [entry.title, entry.url])).toStrictEqual([
 				["Newest", "https://www.nikoheikkila.fi/blog/newest/"],
 				["Oldest", "https://www.nikoheikkila.fi/blog/oldest/"],
 			]);
@@ -187,9 +187,9 @@ describe("RSS", () => {
 
 	describe(".rssQuery", () => {
 		test("requests the fields the serializer reads, excluding pages", () => {
-			expect(RSS.rssQuery).toContain("allMarkdownRemark");
-			expect(RSS.rssQuery).toContain('type: {ne: "page"}');
-			expect(RSS.rssQuery).toContain("contentDigest");
+			expect(Rss.rssQuery).toContain("allMarkdownRemark");
+			expect(Rss.rssQuery).toContain('type: {ne: "page"}');
+			expect(Rss.rssQuery).toContain("contentDigest");
 		});
 	});
 });

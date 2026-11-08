@@ -70,14 +70,12 @@ interface BasicMetaProps {
 	description: string;
 }
 
-const BasicMeta: React.FC<BasicMetaProps> = ({ title, description }) => {
-	return (
-		<>
-			<title>{title}</title>
-			<meta content={description} name="description" />
-		</>
-	);
-};
+const BasicMeta: React.FC<BasicMetaProps> = ({ title, description }) => (
+	<>
+		<title>{title}</title>
+		<meta content={description} name="description" />
+	</>
+);
 
 interface OpenGraphProps {
 	siteURL: string;

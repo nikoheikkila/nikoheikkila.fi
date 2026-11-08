@@ -9,7 +9,7 @@ vi.mock("../../graphql/footer", () => ({
 	getFooterLinks: vi.fn(),
 }));
 
-describe("Footer Component", () => {
+describe("footer component", () => {
 	test("renders RSS feed link", async () => {
 		const { getFooterLinks } = await import("../../graphql/footer.js");
 		vi.mocked(getFooterLinks).mockReturnValue({

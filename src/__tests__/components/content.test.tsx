@@ -5,7 +5,7 @@ import { page } from "vitest/browser";
 import Content from "../../components/post/content";
 import { renderMermaid } from "../../mermaid";
 
-describe("Content Component", () => {
+describe("content component", () => {
 	test("renders simple markdown content", async () => {
 		const markdown = "This is a simple paragraph";
 		await render(<Content content={markdown} />);
@@ -131,8 +131,8 @@ describe("Content Component", () => {
 		await expect.element(diffLabel).toBeInTheDocument();
 
 		// Check that the diff lines are rendered
-		const addedLine = page.getByText(/\+ const added = true;/);
-		const removedLine = page.getByText(/- const removed = false;/);
+		const addedLine = page.getByText(/\+ const added = true;/u);
+		const removedLine = page.getByText(/- const removed = false;/u);
 
 		await expect.element(addedLine).toBeInTheDocument();
 		await expect.element(removedLine).toBeInTheDocument();
@@ -186,7 +186,7 @@ describe("Content Component", () => {
 		await render(<Content content={markdown} />);
 
 		// Without language, it should render as inline code
-		const codeText = page.getByText(/plain text code/);
+		const codeText = page.getByText(/plain text code/u);
 		await expect.element(codeText).toBeInTheDocument();
 	});
 
@@ -226,12 +226,12 @@ def hello():
 		const list = page.getByRole("list");
 		await expect.element(list).toBeInTheDocument();
 
-		const quoteText = page.getByText(/Quote with/);
+		const quoteText = page.getByText(/Quote with/u);
 		await expect.element(quoteText).toBeInTheDocument();
 	});
 });
 
-describe("Mermaid diagrams", () => {
+describe("mermaid diagrams", () => {
 	test("renders a mermaid block as an inline diagram named by its accTitle", async () => {
 		const title = "Deployment pipeline";
 		const markdown = [

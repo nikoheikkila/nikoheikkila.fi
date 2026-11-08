@@ -3,11 +3,13 @@ import { Fixture, Then } from "playwright-bdd/decorators";
 import type { test } from "../fixtures";
 import { BasePage } from "./BasePage";
 
-type StructuredDataEntry = {
+interface StructuredDataEntry {
 	"@type": string;
 	url?: string;
 	itemListElement?: unknown[];
-};
+}
+
+const pathOf = (address: string): string => new URL(address).pathname;
 
 @Fixture<typeof test>("postPage")
 export class PostPage extends BasePage {
@@ -21,24 +23,25 @@ export class PostPage extends BasePage {
 
 	@Then("the visitor sees who wrote the post, when, and how long it takes to read")
 	public async expectAuthorDateAndReadingTime(): Promise<void> {
-		const byline = this.paragraphs.filter({ hasText: /^By .+ minutes? read$/ });
+		const byline = this.paragraphs.filter({ hasText: /^By .+ minutes? read$/u });
 
-		await expect.soft(byline).toHaveText(/^By \S/);
-		await expect.soft(byline).toHaveText(/\w+ \d{1,2}, \d{4}/);
-		await expect.soft(byline).toHaveText(/\d+ minutes? read$/);
+		await expect.soft(byline).toHaveText(/^By \S/u);
+		await expect.soft(byline).toHaveText(/\w+ \d{1,2}, \d{4}/u);
+		await expect.soft(byline).toHaveText(/\d+ minutes? read$/u);
 	}
 
 	@Then("the visitor is on a post page")
 	@Then("the latest post is open in the original tab")
 	public async expectPostPage(): Promise<void> {
-		await expect(this.page).toHaveURL(/\/blog\//);
+		await expect(this.page).toHaveURL(/\/blog\//u);
 	}
 
 	@Then("the search description matches the post excerpt")
 	public async expectSearchDescriptionMatchesExcerpt(): Promise<void> {
-		const excerpt = (await this.paragraphs.first().textContent()) ?? "";
+		const description = (await this.metaTag("description").getAttribute("content")) ?? "";
 
-		await expect(this.metaTag("description")).toHaveAttribute("content", excerpt);
+		expect(description).not.toBe("");
+		await expect(this.main.getByText(description, { exact: true })).toBeVisible();
 	}
 
 	@Then("the link preview title matches the post heading")
@@ -50,9 +53,9 @@ export class PostPage extends BasePage {
 
 	@Then("the link preview address matches the post address")
 	public async expectLinkPreviewAddressMatchesPost(): Promise<void> {
-		const address = async () => this.pathOf((await this.metaTag("og:url").getAttribute("content")) ?? "");
+		const address = async () => pathOf((await this.metaTag("og:url").getAttribute("content")) ?? "");
 
-		await expect.poll(address).toBe(this.pathOf(this.page.url()));
+		await expect.poll(address).toBe(pathOf(this.page.url()));
 	}
 
 	@Then("the link preview presents the post as an article")
@@ -72,7 +75,7 @@ export class PostPage extends BasePage {
 
 	@Then("the link preview image is served securely")
 	public async expectLinkPreviewImageOverHttps(): Promise<void> {
-		await expect(this.metaTag("og:image")).toHaveAttribute("content", /^https:\/\//);
+		await expect(this.metaTag("og:image")).toHaveAttribute("content", /^https:\/\//u);
 	}
 
 	@Then("search engines see the post as part of the website")
@@ -80,7 +83,7 @@ export class PostPage extends BasePage {
 		await expect(async () => {
 			const website = await this.findStructuredData("WebSite");
 
-			expect(this.pathOf(website?.url ?? "")).toBe(this.pathOf(this.page.url()));
+			expect(pathOf(website?.url ?? "")).toBe(pathOf(this.page.url()));
 		}).toPass();
 	}
 
@@ -101,14 +104,13 @@ export class PostPage extends BasePage {
 		return this.main.getByRole("paragraph");
 	}
 
-	private pathOf(address: string): string {
-		return new URL(address).pathname;
-	}
-
 	// The schema script is injected with ScriptStrategy.idle, so it can lag behind client-side navigation.
 	private async findStructuredData(type: string): Promise<StructuredDataEntry | undefined> {
-		const raw = await this.page.locator("script[type='application/ld+json']").first().textContent();
-		const entries: StructuredDataEntry[] = JSON.parse(raw ?? "[]");
+		const scripts = await this.page.locator("script[type='application/ld+json']").allTextContents();
+		const entries = scripts.flatMap((raw) => {
+			const parsed: StructuredDataEntry[] = JSON.parse(raw);
+			return parsed;
+		});
 
 		return entries.find((entry) => entry["@type"] === type);
 	}

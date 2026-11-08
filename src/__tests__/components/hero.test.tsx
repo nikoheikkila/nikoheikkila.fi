@@ -18,7 +18,7 @@ const createMockImage = (): IGatsbyImageData => ({
 	width: 800,
 });
 
-describe("Hero Component", () => {
+describe("hero component", () => {
 	const mockImageData = createMockImage();
 
 	// GatsbyImage mock renders a regular img tag; a decorative image has no

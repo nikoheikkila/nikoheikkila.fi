@@ -3,7 +3,7 @@ import { render } from "vitest-browser-react";
 import React from "react";
 import BlogHeader from "../../components/blog/header";
 
-describe("BlogHeader Component", () => {
+describe("blog header component", () => {
 	test("renders profile image with correct alt text", async () => {
 		const { container } = await render(<BlogHeader />);
 

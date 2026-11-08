@@ -1,4 +1,4 @@
-import { faRss, type IconName } from "@fortawesome/free-solid-svg-icons";
+import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { socialIcons } from "./socialIcons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -26,11 +26,15 @@ const Footer: React.FunctionComponent = () => {
 			</span>
 
 			{social.map((link) => {
-				if (!link?.name || !link?.url) return null;
+				if (!(link?.name && link?.url)) {
+					return null;
+				}
+
+				const icon = socialIcons.find((candidate) => candidate.iconName === link.icon);
 
 				return (
 					<span key={link.name}>
-						<FontAwesomeIcon aria-hidden="true" icon={["fab", link.icon as IconName]} />
+						{icon === undefined ? null : <FontAwesomeIcon aria-hidden="true" icon={icon} />}
 						<BlogLink href={link.url}>{link.name}</BlogLink>
 					</span>
 				);

@@ -4,12 +4,12 @@ import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { PostPage } from "./pages/PostPage";
 
-type Fixtures = {
+interface Fixtures {
 	basePage: BasePage;
 	homePage: HomePage;
 	postPage: PostPage;
 	notFoundPage: NotFoundPage;
-};
+}
 
 export const test = base.extend<Fixtures>({
 	basePage: async ({ page }, use) => {

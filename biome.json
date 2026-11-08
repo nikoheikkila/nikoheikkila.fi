@@ -1,115 +1,274 @@
 {
 	"$schema": "node_modules/@biomejs/biome/configuration_schema.json",
 	"assist": {
-		"enabled": true,
 		"actions": {
 			"source": {
 				"organizeImports": "off",
 				"useSortedAttributes": "on",
-				"useSortedKeys": "off",
 				"useSortedProperties": "on"
 			}
 		}
 	},
 	"files": {
-		"ignoreUnknown": true,
 		"includes": ["**", "!.mcp.json", "!docs", "!test"]
 	},
 	"formatter": {
-		"enabled": true,
-		"useEditorconfig": true,
-		"formatWithErrors": false,
-		"indentStyle": "tab",
-		"indentWidth": 2,
-		"lineEnding": "lf",
-		"lineWidth": 120,
-		"attributePosition": "auto",
-		"bracketSpacing": true
+		"lineWidth": 120
 	},
 	"javascript": {
-		"jsxRuntime": "reactClassic",
-		"formatter": {
-			"jsxQuoteStyle": "double",
-			"quoteProperties": "asNeeded",
-			"trailingCommas": "all",
-			"semicolons": "always",
-			"arrowParentheses": "always",
-			"bracketSameLine": false,
-			"quoteStyle": "double",
-			"attributePosition": "auto",
-			"bracketSpacing": true
-		}
-	},
-	"css": {
-		"parser": {
-			"cssModules": true
-		},
-		"formatter": {
-			"enabled": true
-		},
-		"linter": {
-			"enabled": true
-		}
+		"jsxRuntime": "reactClassic"
 	},
 	"markdown": {
 		"parser": {
 			"frontmatter": true
-		},
-		"formatter": {
-			"enabled": true,
-			"formatEmbeds": true,
-			"lineWidth": 120
-		},
-		"linter": {
-			"enabled": true
 		}
 	},
 	"yaml": {
 		"formatter": {
-			"enabled": true,
-			"bracketSpacing": false,
-			"lineWidth": 120
-		},
-		"linter": {
-			"enabled": true
+			"bracketSpacing": false
 		}
 	},
 	"linter": {
-		"enabled": true,
 		"domains": {
-			"project": "recommended",
-			"react": "all",
 			"test": "all"
 		},
 		"rules": {
-			"preset": "recommended",
+			"preset": "all",
+			"nursery": "error",
 			"style": {
+				"noContinue": "error",
+				"noDefaultExport": "off",
+				"noEnum": "error",
+				"noExcessiveClassesPerFile": "error",
+				"noExcessiveLinesPerFile": "error",
+				"noHexColors": "off",
+				"noImplicitBoolean": "error",
+				"noIncrementDecrement": "error",
+				"noInferrableTypes": "error",
+				"noInlineStyles": "error",
+				"noJsxLiterals": "off",
+				"noMagicNumbers": "off",
+				"noParameterAssign": "error",
+				"noParameterProperties": "error",
+				"noProcessEnv": "off",
+				"noReactNativeLiteralColors": "off",
+				"noTernary": "off",
+				"noUnusedTemplateLiteral": "error",
+				"noUselessElse": "error",
+				"useAsConstAssertion": "error",
+				"useAtIndex": "error",
+				"useBlockStatements": "error",
+				"useConsistentArrayType": "error",
+				"useConsistentArrowReturn": "error",
+				"useConsistentMemberAccessibility": {
+					"level": "error",
+					"options": {
+						"accessibility": "explicit"
+					}
+				},
+				"useConsistentMethodSignatures": "error",
 				"useConsistentTestIt": {
 					"level": "error",
-					"options": { "function": "test", "withinDescribe": "test" }
+					"options": {
+						"function": "test",
+						"withinDescribe": "test"
+					}
 				},
-				"noParameterAssign": "error",
-				"useAsConstAssertion": "error",
+				"useConsistentTypeDefinitions": "error",
 				"useDefaultParameterLast": "error",
+				"useDefaultSwitchClause": "error",
+				"useDestructuring": "error",
 				"useEnumInitializers": "error",
+				"useExplicitLengthCheck": "error",
+				"useExportsLast": "off",
+				"useImportsFirst": "error",
+				"useNamedCaptureGroup": "error",
+				"useNamingConvention": {
+					"level": "error",
+					"options": {
+						"strictCase": false,
+						"conventions": [
+							{
+								"selector": {
+									"kind": "objectLiteralMember"
+								},
+								"formats": ["camelCase", "PascalCase", "CONSTANT_CASE", "snake_case"]
+							},
+							{
+								"selector": {
+									"kind": "typeMember"
+								},
+								"formats": ["camelCase", "PascalCase", "CONSTANT_CASE", "snake_case"]
+							}
+						]
+					}
+				},
+				"useNumberNamespace": "error",
+				"useNumericSeparators": "error",
 				"useSelfClosingElements": "error",
 				"useSingleVarDeclarator": "error",
-				"noUnusedTemplateLiteral": "error",
-				"useNumberNamespace": "error",
-				"noInferrableTypes": "error",
-				"noUselessElse": "error"
+				"useThisInClassMethods": "error",
+				"useUnicodeRegex": "error",
+				"useVarsOnTop": "error"
+			},
+			"security": {
+				"noSecrets": "off"
+			},
+			"complexity": {
+				"noExcessiveCognitiveComplexity": "error",
+				"noExcessiveLinesPerFunction": {
+					"level": "error",
+					"options": {
+						"maxLines": 75,
+						"skipBlankLines": true
+					}
+				},
+				"noForEach": "error",
+				"noImplicitCoercions": "error",
+				"useMaxParams": "error",
+				"useSimplifiedLogicExpression": "error"
+			},
+			"correctness": {
+				"noGlobalDirnameFilename": "error",
+				"noNodejsModules": "off",
+				"noProcessGlobal": "off",
+				"noReactNativeRawText": "off",
+				"noSolidDestructuredProps": "off",
+				"noUnresolvedImports": "off",
+				"useImageSize": "off",
+				"useImportExtensions": "off",
+				"useJsonImportAttributes": "off",
+				"useQwikValidLexicalScope": "off"
+			},
+			"performance": {
+				"noAwaitInLoops": "error",
+				"noImgElement": "off",
+				"noNamespaceImport": "off",
+				"useSolidForComponent": "off",
+				"useTopLevelRegex": "off"
+			},
+			"suspicious": {
+				"noConsole": {
+					"level": "error",
+					"options": {
+						"allow": ["error", "warn"]
+					}
+				},
+				"noEmptyBlockStatements": "error",
+				"noEmptySource": "error",
+				"noEqualsToNull": "error",
+				"noPlaywrightNetworkidle": "error",
+				"noReactSpecificProps": "off",
+				"useAwait": "error",
+				"useBaseline": "off"
 			}
 		}
 	},
 	"overrides": [
 		{
-			"includes": ["feature/**", "playwright.config.ts"],
-			"linter": { "rules": { "nursery": { "noFloatingPromises": "error" } } }
+			"includes": ["**"],
+			"linter": {
+				"rules": {
+					"nursery": {
+						"noBunModules": "off",
+						"noExcessiveStatementsPerFunction": {
+							"level": "error",
+							"options": {
+								"max": 20
+							}
+						},
+						"noNull": "off",
+						"noUnusedClasses": "off",
+						"useExplicitReturnType": "off",
+						"useExplicitType": "off",
+						"useLayeredStyles": "off",
+						"useLogicalProperties": "off",
+						"useReactFunctionComponentDefinition": {
+							"level": "error",
+							"options": {
+								"namedComponents": "arrowFunction"
+							}
+						},
+						"useTailwindStaticClassStrings": "off",
+						"useTopLevelHeading": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"src/components/**",
+				"src/graphql/**",
+				"src/pages/**",
+				"src/search/**",
+				"src/templates/**",
+				"src/utils/**",
+				"!src/utils/robots.ts",
+				"infra/site/worker.ts"
+			],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noNodejsModules": "error",
+						"noProcessGlobal": "error"
+					},
+					"style": {
+						"noProcessEnv": "error"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["scripts/**", "new.ts", "src/__tests__/components/setup.ts"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsole": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["src/__tests__/**", "**/*.test.ts", "**/*.test.tsx", "feature/**"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noExcessiveLinesPerFunction": "off"
+					},
+					"nursery": {
+						"noExcessiveStatementsPerFunction": "off"
+					},
+					"style": {
+						"noExcessiveClassesPerFile": "off",
+						"noExcessiveLinesPerFile": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["infra/site/**"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"useJsonImportAttributes": "error"
+					}
+				}
+			}
 		},
 		{
 			"includes": ["feature/fixtures.ts"],
-			"linter": { "rules": { "correctness": { "noEmptyPattern": "off" } } }
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noEmptyPattern": "off"
+					}
+				}
+			}
 		}
 	],
-	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true }
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	}
 }

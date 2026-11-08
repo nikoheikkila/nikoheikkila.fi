@@ -13,13 +13,13 @@ import config from "../../gatsby-config";
 import * as DateTime from "../utils/datetime";
 import { combinePaths } from "../utils/helpers";
 
-type PageContext = {
+interface PageContext {
 	previous: Queries.MarkdownRemark;
 	next: Queries.MarkdownRemark;
-};
-type LocationState = {
+}
+interface LocationState {
 	previous?: string;
-};
+}
 type PostProps = PageProps<Queries.PostQuery, PageContext, LocationState>;
 
 const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
@@ -35,8 +35,7 @@ const Post: React.FC<PostProps> = ({ data, location, pageContext }) => {
 
 	const repository = data.site?.siteMetadata?.repository ?? "";
 
-	const previous = pageContext.previous;
-	const next = pageContext.next;
+	const { previous, next } = pageContext;
 	const datePublished = DateTime.toDisplay(date);
 	const postSlug = slug.slice(1, slug.length - 1);
 	const editUrl = `${repository}/edit/main/content/${postSlug}.md`;

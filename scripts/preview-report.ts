@@ -20,6 +20,7 @@
  */
 import {
 	type DeploymentMetadata,
+	type DeploymentOutcome,
 	type IssueComment,
 	type PreviewUrlExpectation,
 	type PullRequestAssociation,
@@ -41,6 +42,14 @@ import {
 
 const GITHUB_API = "https://api.github.com";
 const USER_AGENT = "nikoheikkila.fi-preview-reporter";
+const PAGE_SIZE = 100;
+
+/** The authenticated repository every GitHub API call in this script targets. */
+interface Repository {
+	token: string;
+	owner: string;
+	repo: string;
+}
 
 const env = (name: string): string => {
 	const value = process.env[name];
@@ -54,11 +63,11 @@ const env = (name: string): string => {
 
 /** Workflow commands GitHub Actions renders as annotations on the job summary. */
 const logWarning = (message: string): void => {
-	console.log(`::warning::${message.replace(/\r?\n/g, " ")}`);
+	console.log(`::warning::${message.replace(/\r?\n/gu, " ")}`);
 };
 
 const logError = (message: string): void => {
-	console.log(`::error::${message.replace(/\r?\n/g, " ")}`);
+	console.log(`::error::${message.replace(/\r?\n/gu, " ")}`);
 };
 
 const githubFetch = async (token: string, apiPath: string, init: RequestInit = {}): Promise<Response> => {
@@ -85,73 +94,67 @@ const paginate = async <Item, Envelope>(
 	token: string,
 	apiPath: string,
 	unwrap: (envelope: Envelope) => Item[],
+	page = 1,
 ): Promise<Item[]> => {
-	const items: Item[] = [];
-	let page = 1;
+	const separator = apiPath.includes("?") ? "&" : "?";
+	const response = await githubFetch(token, `${apiPath}${separator}per_page=${PAGE_SIZE}&page=${page}`);
+	const envelope: Envelope = await response.json();
+	const batch = unwrap(envelope);
 
-	for (;;) {
-		const separator = apiPath.includes("?") ? "&" : "?";
-		const response = await githubFetch(token, `${apiPath}${separator}per_page=100&page=${page}`);
-		const batch = unwrap((await response.json()) as Envelope);
-		items.push(...batch);
-
-		if (batch.length < 100) {
-			return items;
-		}
-
-		page += 1;
+	if (batch.length < PAGE_SIZE) {
+		return batch;
 	}
+
+	return [...batch, ...(await paginate(token, apiPath, unwrap, page + 1))];
 };
 
-const listWorkflowJobs = (token: string, owner: string, repo: string, runId: string, attempt: string) =>
+const listWorkflowJobs = ({ token, owner, repo }: Repository, runId: string, attempt: string) =>
 	paginate<WorkflowJob, { jobs: WorkflowJob[] }>(
 		token,
 		`/repos/${owner}/${repo}/actions/runs/${runId}/attempts/${attempt}/jobs`,
 		(envelope) => envelope.jobs,
 	);
 
-const listPullRequestsForCommit = (token: string, owner: string, repo: string, sha: string) =>
+const listPullRequestsForCommit = ({ token, owner, repo }: Repository, sha: string) =>
 	paginate<PullRequestAssociation, PullRequestAssociation[]>(
 		token,
 		`/repos/${owner}/${repo}/commits/${sha}/pulls`,
 		(envelope) => envelope,
 	);
 
-const getPullRequestState = async (token: string, owner: string, repo: string, number: number): Promise<string> => {
+const getPullRequestState = async ({ token, owner, repo }: Repository, number: number): Promise<string> => {
 	const response = await githubFetch(token, `/repos/${owner}/${repo}/pulls/${number}`);
-	const pr = (await response.json()) as { state: string };
+	const pr: { state: string } = await response.json();
 
 	return pr.state;
 };
 
-const listIssueComments = (token: string, owner: string, repo: string, number: number) =>
+const listIssueComments = ({ token, owner, repo }: Repository, number: number) =>
 	paginate<IssueComment, IssueComment[]>(
 		token,
 		`/repos/${owner}/${repo}/issues/${number}/comments`,
 		(envelope) => envelope,
 	);
 
-const createIssueComment = (token: string, owner: string, repo: string, number: number, body: string) =>
+const createIssueComment = ({ token, owner, repo }: Repository, number: number, body: string) =>
 	githubFetch(token, `/repos/${owner}/${repo}/issues/${number}/comments`, {
 		method: "POST",
 		body: JSON.stringify({ body }),
 	});
 
-const updateIssueComment = (token: string, owner: string, repo: string, commentId: number, body: string) =>
+const updateIssueComment = ({ token, owner, repo }: Repository, commentId: number, body: string) =>
 	githubFetch(token, `/repos/${owner}/${repo}/issues/comments/${commentId}`, {
 		method: "PATCH",
 		body: JSON.stringify({ body }),
 	});
 
 const writeStickyComment = async (
-	token: string,
-	owner: string,
-	repo: string,
+	repository: Repository,
 	prNumber: number,
 	body: string,
 	metadata: DeploymentMetadata,
 ): Promise<void> => {
-	const comments = await listIssueComments(token, owner, repo, prNumber);
+	const comments = await listIssueComments(repository, prNumber);
 	const existing = findStickyComment(comments);
 	const storedMetadata = existing ? parseStoredMetadata(existing.body) : undefined;
 
@@ -161,32 +164,118 @@ const writeStickyComment = async (
 	}
 
 	if (existing) {
-		await updateIssueComment(token, owner, repo, existing.id, body);
+		await updateIssueComment(repository, existing.id, body);
 	} else {
-		await createIssueComment(token, owner, repo, prNumber, body);
+		await createIssueComment(repository, prNumber, body);
 	}
 };
 
-const main = async (): Promise<void> => {
-	const token = env("GITHUB_TOKEN");
+/** Facts about the finished `CI` run, all taken from the `workflow_run` event. */
+interface RunContext {
+	repository: Repository;
+	runId: string;
+	runAttempt: string;
+	runNumber: number;
+	headSha: string;
+	headRepoFullName: string;
+	eventName: string;
+	expectation: PreviewUrlExpectation;
+}
+
+const readRunContext = (): RunContext => {
 	const [owner, repo] = env("GITHUB_REPOSITORY").split("/");
-	const runId = env("RUN_ID");
-	const runAttempt = env("RUN_ATTEMPT");
-	const runNumber = Number(env("RUN_NUMBER"));
-	const headSha = env("HEAD_SHA");
-	const headRepoFullName = env("HEAD_REPOSITORY");
-	const eventName = env("EVENT_NAME");
-	const expectation: PreviewUrlExpectation = {
-		workerServiceName: process.env.WORKER_SERVICE_NAME || DEFAULT_WORKER_SERVICE_NAME,
-		workersDevSubdomain: process.env.WORKERS_DEV_SUBDOMAIN || DEFAULT_WORKERS_DEV_SUBDOMAIN,
+
+	return {
+		repository: { token: env("GITHUB_TOKEN"), owner, repo },
+		runId: env("RUN_ID"),
+		runAttempt: env("RUN_ATTEMPT"),
+		runNumber: Number(env("RUN_NUMBER")),
+		headSha: env("HEAD_SHA"),
+		headRepoFullName: env("HEAD_REPOSITORY"),
+		eventName: env("EVENT_NAME"),
+		expectation: {
+			workerServiceName: process.env.WORKER_SERVICE_NAME || DEFAULT_WORKER_SERVICE_NAME,
+			workersDevSubdomain: process.env.WORKERS_DEV_SUBDOMAIN || DEFAULT_WORKERS_DEV_SUBDOMAIN,
+		},
 	};
+};
+
+/** Resolves the open pull request the run's head commit belongs to, logging why when there is none. */
+const findOpenPullRequest = async ({
+	repository,
+	headSha,
+	headRepoFullName,
+}: RunContext): Promise<number | undefined> => {
+	const candidates = await listPullRequestsForCommit(repository, headSha);
+	const prNumber = resolvePullRequestForCommit(candidates, headSha, headRepoFullName);
+
+	if (prNumber === undefined) {
+		console.log("Skipping: could not uniquely resolve the pull request for this commit.");
+		return undefined;
+	}
+
+	const prState = await getPullRequestState(repository, prNumber);
+
+	if (prState !== "open") {
+		console.log(`Skipping: pull request #${prNumber} is "${prState}", not open.`);
+		return undefined;
+	}
+
+	return prNumber;
+};
+
+const buildComment = (
+	context: RunContext,
+	outcome: DeploymentOutcome,
+	deployJob: WorkflowJob | undefined,
+	prNumber: number,
+): { body: string; metadata: DeploymentMetadata } => {
+	const { repository, runId, runAttempt, runNumber, headSha, expectation } = context;
+	const jobUrl =
+		deployJob?.html_url ?? `https://github.com/${repository.owner}/${repository.repo}/actions/runs/${runId}`;
+	const metadata: DeploymentMetadata = { runId: Number(runId), runNumber, runAttempt: Number(runAttempt) };
+
+	if (outcome === "success") {
+		const url = buildExpectedPreviewOrigin(prNumber, expectation);
+
+		return { body: buildSuccessCommentBody({ url, headSha, jobUrl, metadata }), metadata };
+	}
+
+	const stepName = (deployJob && findFailedStep(deployJob)) ?? deployJob?.name ?? "Deploy to Preview";
+
+	return { body: buildFailureCommentBody({ stepName, headSha, jobUrl, metadata }), metadata };
+};
+
+/**
+ * Fork PRs never receive deployment secrets, so a real deployment cannot
+ * have succeeded. Trusting this would let a PR-controlled workflow forge
+ * a "success" comment with an arbitrary link.
+ */
+const isForgedSuccess = ({ repository, headRepoFullName }: RunContext, outcome: DeploymentOutcome): boolean => {
+	const baseRepoFullName = `${repository.owner}/${repository.repo}`;
+	const isFork = !isSameRepository(headRepoFullName, baseRepoFullName);
+
+	if (outcome === "success" && isFork) {
+		logWarning(
+			`Ignoring a "success" conclusion from fork ${headRepoFullName}: forks cannot receive deployment secrets, ` +
+				"so this cannot be a genuine deployment.",
+		);
+		return true;
+	}
+
+	return false;
+};
+
+const main = async (): Promise<void> => {
+	const context = readRunContext();
+	const { repository, eventName } = context;
 
 	if (eventName !== "pull_request") {
 		console.log(`Skipping: originating event was "${eventName}", not "pull_request".`);
 		return;
 	}
 
-	const jobs = await listWorkflowJobs(token, owner, repo, runId, runAttempt);
+	const jobs = await listWorkflowJobs(repository, context.runId, context.runAttempt);
 	const deployJob = findDeploymentJob(jobs);
 	const outcome = classifyConclusion(deployJob?.conclusion);
 
@@ -195,54 +284,23 @@ const main = async (): Promise<void> => {
 		return;
 	}
 
-	const baseRepoFullName = `${owner}/${repo}`;
-	const isFork = !isSameRepository(headRepoFullName, baseRepoFullName);
-
-	if (outcome === "success" && isFork) {
-		// Fork PRs never receive deployment secrets, so a real deployment cannot
-		// have succeeded. Trusting this would let a PR-controlled workflow forge
-		// a "success" comment with an arbitrary link.
-		logWarning(
-			`Ignoring a "success" conclusion from fork ${headRepoFullName}: forks cannot receive deployment secrets, ` +
-				"so this cannot be a genuine deployment.",
-		);
+	if (isForgedSuccess(context, outcome)) {
 		return;
 	}
 
-	const candidates = await listPullRequestsForCommit(token, owner, repo, headSha);
-	const prNumber = resolvePullRequestForCommit(candidates, headSha, headRepoFullName);
+	const prNumber = await findOpenPullRequest(context);
 
 	if (prNumber === undefined) {
-		console.log("Skipping: could not uniquely resolve the pull request for this commit.");
 		return;
 	}
 
-	const prState = await getPullRequestState(token, owner, repo, prNumber);
+	const { body, metadata } = buildComment(context, outcome, deployJob, prNumber);
 
-	if (prState !== "open") {
-		console.log(`Skipping: pull request #${prNumber} is "${prState}", not open.`);
-		return;
-	}
-
-	const jobUrl = deployJob?.html_url ?? `https://github.com/${owner}/${repo}/actions/runs/${runId}`;
-	const metadata: DeploymentMetadata = { runId: Number(runId), runNumber, runAttempt: Number(runAttempt) };
-
-	let body: string;
-
-	if (outcome === "success") {
-		const url = buildExpectedPreviewOrigin(prNumber, expectation);
-
-		body = buildSuccessCommentBody({ url, headSha, jobUrl, metadata });
-	} else {
-		const stepName = (deployJob && findFailedStep(deployJob)) ?? deployJob?.name ?? "Deploy to Preview";
-		body = buildFailureCommentBody({ stepName, headSha, jobUrl, metadata });
-	}
-
-	await writeStickyComment(token, owner, repo, prNumber, body, metadata);
+	await writeStickyComment(repository, prNumber, body, metadata);
 	console.log(`Reported preview deployment ${outcome} for pull request #${prNumber}.`);
 };
 
 main().catch((error: unknown) => {
 	logError(error instanceof Error ? error.message : String(error));
-	process.exit(1);
+	process.exitCode = 1;
 });

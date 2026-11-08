@@ -23,7 +23,7 @@ const setupFooterLinks = async () => {
 	});
 };
 
-describe("Footer Accessibility", () => {
+describe("footer accessibility", () => {
 	test("passes axe scan", async () => {
 		await setupFooterLinks();
 		const { container } = await render(<Footer />);
@@ -31,11 +31,11 @@ describe("Footer Accessibility", () => {
 		await expect(container).toHaveNoA11yViolations();
 	});
 
-	test("RSS link has accessible name", async () => {
+	test("the RSS link has an accessible name", async () => {
 		await setupFooterLinks();
 		await render(<Footer />);
 
-		const rssLink = page.getByRole("link", { name: /rss/i });
+		const rssLink = page.getByRole("link", { name: /rss/iu });
 		await expect.element(rssLink).toBeInTheDocument();
 	});
 
@@ -43,8 +43,8 @@ describe("Footer Accessibility", () => {
 		await setupFooterLinks();
 		await render(<Footer />);
 
-		const githubLink = page.getByRole("link", { name: /github/i });
-		const linkedinLink = page.getByRole("link", { name: /linkedin/i });
+		const githubLink = page.getByRole("link", { name: /github/iu });
+		const linkedinLink = page.getByRole("link", { name: /linkedin/iu });
 
 		await expect.element(githubLink).toBeInTheDocument();
 		await expect.element(linkedinLink).toBeInTheDocument();

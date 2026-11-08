@@ -138,7 +138,7 @@ describe("onCreateResolvers", () => {
 		const closingFenceLine =
 			postFile
 				.split("\n")
-				.map((line) => line.replace(/\r$/, ""))
+				.map((line) => line.replace(/\r$/u, ""))
 				.lastIndexOf(fence) + 1;
 
 		const resolve = () => actions.resolvers[0]?.MarkdownRemark.renderedBody.resolve(source);

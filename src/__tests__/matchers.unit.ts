@@ -4,16 +4,16 @@ import type { SocialLink } from "../utils/social";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 expect.extend({
-	toProvideIconsFor(received: IconDefinition[], links: ReadonlyArray<SocialLink>) {
+	toProvideIconsFor(received: IconDefinition[], links: readonly SocialLink[]) {
 		return checkIconsProvided(received, links);
 	},
 });
 
 declare module "vitest" {
 	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
-		toProvideIconsFor(links: ReadonlyArray<SocialLink>): void;
+		toProvideIconsFor: (links: readonly SocialLink[]) => void;
 	}
 	interface AsymmetricMatchersContaining {
-		toProvideIconsFor(links: ReadonlyArray<SocialLink>): void;
+		toProvideIconsFor: (links: readonly SocialLink[]) => void;
 	}
 }

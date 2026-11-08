@@ -11,7 +11,7 @@ vi.mock("../../../graphql/pages", () => ({
 	],
 }));
 
-describe("Menu Accessibility", () => {
+describe("menu accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<Menu />);
 
@@ -21,7 +21,7 @@ describe("Menu Accessibility", () => {
 	test("nav has aria-label Main", async () => {
 		await render(<Menu />);
 
-		const nav = page.getByRole("navigation", { name: /main/i });
+		const nav = page.getByRole("navigation", { name: /main/iu });
 		await expect.element(nav).toBeInTheDocument();
 	});
 

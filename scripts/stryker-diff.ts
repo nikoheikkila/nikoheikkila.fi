@@ -7,6 +7,7 @@
  * Only committed changes are compared (`<base>...HEAD`), so a dirty working tree is refused rather
  * than silently leaving staged, unstaged or untracked work out of the run.
  */
+import Bun from "bun";
 import config from "../stryker.config.mjs";
 import { parseNulSeparated, selectMutationTargets, toMutateArgument } from "./stryker-diff/logic";
 
@@ -20,32 +21,34 @@ const detectDefaultBranch = (): string => {
 	return head.ok ? head.stdout.trim() : "main";
 };
 
-const base = process.argv[2] ?? detectDefaultBranch();
+const run = (base: string): number => {
+	if (git("status", "--porcelain").stdout !== "") {
+		console.error(
+			`Refusing to run: the working tree is dirty. ${base}...HEAD only covers committed changes, so commit or stash first.`,
+		);
+		return 1;
+	}
 
-if (git("status", "--porcelain").stdout !== "") {
-	console.error(
-		`Refusing to run: the working tree is dirty. ${base}...HEAD only covers committed changes, so commit or stash first.`,
-	);
-	process.exit(1);
-}
+	const diff = git("diff", "--name-only", "-z", "--diff-filter=ACMRTUXB", `${base}...HEAD`);
 
-const diff = git("diff", "--name-only", "-z", "--diff-filter=ACMRTUXB", `${base}...HEAD`);
+	if (!diff.ok) {
+		return 1;
+	}
 
-if (!diff.ok) {
-	process.exit(1);
-}
+	const targets = selectMutationTargets(parseNulSeparated(diff.stdout), config.mutate ?? []);
 
-const targets = selectMutationTargets(parseNulSeparated(diff.stdout), config.mutate ?? []);
+	if (targets.length === 0) {
+		console.log(`No production files changed against ${base}; nothing to mutate.`);
+		return 0;
+	}
 
-if (targets.length === 0) {
-	console.log(`No production files changed against ${base}; nothing to mutate.`);
-	process.exit(0);
-}
+	console.log(`Mutating ${targets.length} file(s) changed against ${base}:\n${targets.join("\n")}`);
 
-console.log(`Mutating ${targets.length} file(s) changed against ${base}:\n${targets.join("\n")}`);
+	const stryker = Bun.spawnSync(["node_modules/.bin/stryker", "run", "--mutate", toMutateArgument(targets)], {
+		stdio: ["inherit", "inherit", "inherit"],
+	});
 
-const stryker = Bun.spawnSync(["node_modules/.bin/stryker", "run", "--mutate", toMutateArgument(targets)], {
-	stdio: ["inherit", "inherit", "inherit"],
-});
+	return stryker.exitCode ?? 1;
+};
 
-process.exit(stryker.exitCode ?? 1);
+process.exitCode = run(process.argv[2] ?? detectDefaultBranch());

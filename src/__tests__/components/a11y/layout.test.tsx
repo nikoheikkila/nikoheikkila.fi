@@ -16,7 +16,7 @@ vi.mock("../../../search/components/useSearch", () => ({
 	}),
 }));
 
-describe("Layout Accessibility", () => {
+describe("layout accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
@@ -26,7 +26,7 @@ describe("Layout Accessibility", () => {
 	test("skip link targets main-content anchor", async () => {
 		await render(<Layout type={LayoutType.LIST}>{[<p key="1">Content</p>]}</Layout>);
 
-		const skipLink = page.getByRole("link", { name: /skip to main content/i });
+		const skipLink = page.getByRole("link", { name: /skip to main content/iu });
 		await expect.element(skipLink).toHaveAttribute("href", "#main-content");
 	});
 
@@ -43,6 +43,6 @@ describe("Layout Accessibility", () => {
 		const focusable = container.querySelectorAll<HTMLElement>(
 			'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
 		);
-		expect(focusable[0]).toHaveProperty("href", expect.stringMatching(/#main-content$/));
+		expect(focusable[0]).toHaveProperty("href", expect.stringMatching(/#main-content$/u));
 	});
 });

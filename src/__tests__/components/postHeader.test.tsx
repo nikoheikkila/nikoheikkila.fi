@@ -12,7 +12,7 @@ const defaultProps = {
 	timeToRead: 7,
 };
 
-describe("PostHeader Component", () => {
+describe("post header component", () => {
 	test("renders the byline with the author", async () => {
 		await render(<PostHeader {...defaultProps} />);
 

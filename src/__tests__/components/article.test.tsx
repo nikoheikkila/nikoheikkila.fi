@@ -4,24 +4,26 @@ import { page } from "vitest/browser";
 import React from "react";
 import { ArticleCard, ArticleView } from "../../components/blog/article";
 
-const createMockLocation = (pathname = "/"): Location =>
-	({
+const createMockLocation = (pathname = "/"): Location => {
+	const href = `https://example.com${pathname}`;
+
+	return {
 		hash: "",
 		host: "example.com",
 		hostname: "example.com",
-		href: `https://example.com${pathname}`,
-		key: "default",
+		href,
 		origin: "https://example.com",
 		pathname,
 		port: "",
 		protocol: "https:",
 		search: "",
-		state: null,
-		ancestorOrigins: {} as DOMStringList,
-		assign: () => {},
-		reload: () => {},
-		replace: () => {},
-	}) as Location;
+		ancestorOrigins: globalThis.location.ancestorOrigins,
+		assign: () => undefined,
+		reload: () => undefined,
+		replace: () => undefined,
+		toString: () => href,
+	};
+};
 
 const createMockPost = (overrides = {}) => ({
 	excerpt: "This is a test post excerpt",
@@ -43,7 +45,7 @@ const createMockPost = (overrides = {}) => ({
 	timeToRead: 5,
 });
 
-describe("ArticleCard Component", () => {
+describe("article card component", () => {
 	const mockLocation = createMockLocation("/blog");
 
 	const defaultProps = {
@@ -102,7 +104,7 @@ describe("ArticleCard Component", () => {
 	});
 });
 
-describe("ArticleView Component", () => {
+describe("article view component", () => {
 	const mockLocation = createMockLocation("/");
 
 	test("renders section header", async () => {

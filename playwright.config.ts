@@ -21,7 +21,7 @@ const baseConfiguration: PlaywrightTestConfig = {
 		{ name: "chromium", testDir: bddTestDir, use: { ...devices["Desktop Chrome"] } },
 		{ name: "firefox", testDir: bddTestDir, use: { ...devices["Desktop Firefox"] } },
 		// Like Safari, WebKit moves Tab focus only between form controls unless "tab to links" is enabled.
-		{ name: "webkit", testDir: bddTestDir, grepInvert: /@tabs-to-links/, use: { ...devices["Desktop Safari"] } },
+		{ name: "webkit", testDir: bddTestDir, grepInvert: /@tabs-to-links/u, use: { ...devices["Desktop Safari"] } },
 	],
 	use: {
 		baseURL,

@@ -26,7 +26,7 @@ describe("onPostBuild", () => {
 
 		const groups = [...disallowedCrawlers].map((agent) => `User-agent: ${agent}${EOL}Disallow: /`);
 		expect(written).toBe(
-			`${groups.join(`${EOL}${EOL}`)}${EOL}Sitemap: https://nikoheikkila.fi/sitemap-index.xml${EOL}Host: https://nikoheikkila.fi${EOL}`,
+			`${groups.join(EOL.repeat(2))}${EOL}Sitemap: https://nikoheikkila.fi/sitemap-index.xml${EOL}Host: https://nikoheikkila.fi${EOL}`,
 		);
 	});
 });

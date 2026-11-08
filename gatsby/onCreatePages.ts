@@ -39,12 +39,77 @@ export interface PagesArgs {
 
 const postsPerPage = 30;
 
+type CreatePage = PagesArgs["actions"]["createPage"];
+type CreateSlice = PagesArgs["actions"]["createSlice"];
+
+const createSlices = (sliceDefinitions: SliceInput[], createSlice: CreateSlice): void => {
+	for (const { id, component, context = {} } of sliceDefinitions) {
+		createSlice({
+			id,
+			context,
+			component: path.resolve("src", "components", "layout", component),
+		});
+	}
+};
+
+/**
+ * Create blog posts by looping all page objects to the createPage() function,
+ * linking each post to its chronological neighbours.
+ */
+const createPostPages = (edges: PageEdge[], posts: PageEdge[], createPage: CreatePage): void => {
+	const blogPost = path.resolve("./src/templates/post.tsx");
+	const linked = posts.filter((edge) => edge.node.fields?.slug);
+	const neighbours = new Map(
+		linked.map((edge, index) => [
+			edge,
+			{ previous: linked[index + 1]?.node ?? null, next: linked[index - 1]?.node ?? null },
+		]),
+	);
+
+	for (const post of edges) {
+		const slug = post.node.fields?.slug ?? "";
+
+		if (slug !== "") {
+			const { previous, next } = neighbours.get(post) ?? { previous: null, next: null };
+
+			createPage({
+				path: slug,
+				component: blogPost,
+				context: { slug, previous, next },
+			});
+		}
+	}
+};
+
+/**
+ * Create index page by filtering the actual blog posts from all page
+ * objects and creating an index-based array of those. Result will be
+ * a site structure where '/' is the first page and subsequent pages will
+ * be '/{2...m}' where m is the maximum number of posts.
+ */
+const createIndexPages = (posts: PageEdge[], createPage: CreatePage): void => {
+	const blogIndex = path.resolve("./src/templates/list.tsx");
+	const numberOfPages = Math.ceil(posts.length / postsPerPage);
+
+	Array.from({ length: numberOfPages }).forEach((_, i) => {
+		const currentPage = i + 1;
+
+		createPage({
+			path: i === 0 ? "/" : `/${currentPage}`,
+			component: blogIndex,
+			context: {
+				limit: postsPerPage,
+				skip: i * postsPerPage,
+				numberOfPages,
+				currentPage,
+			},
+		});
+	});
+};
+
 export const createOnCreatePages =
 	(sliceDefinitions: SliceInput[]) =>
 	async ({ graphql, reporter, actions: { createPage, createSlice } }: PagesArgs) => {
-		const blogIndex = path.resolve("./src/templates/list.tsx");
-		const blogPost = path.resolve("./src/templates/post.tsx");
-
 		const { data, errors } = await graphql(`
 		{
 			allMarkdownRemark(
@@ -66,7 +131,7 @@ export const createOnCreatePages =
 		}
 	`);
 
-		if (errors) {
+		if (errors !== undefined && errors !== null) {
 			reporter.panicOnBuild("Error while running GraphQL query in createPages.");
 			return;
 		}
@@ -76,67 +141,13 @@ export const createOnCreatePages =
 			return;
 		}
 
-		for (const { id, component, context = {} } of sliceDefinitions) {
-			createSlice({
-				id,
-				context,
-				component: path.resolve("src", "components", "layout", component),
-			});
-		}
+		createSlices(sliceDefinitions, createSlice);
 
-		/**
-		 * Create blog posts by first querying all page objects from GraphQL
-		 * and then looping them to the createPage() function.
-		 */
 		const { edges = [] } = data.allMarkdownRemark;
-
 		const posts = edges.filter((edge) => edge.node.frontmatter?.type === "post");
-		const linked = posts.filter((edge) => edge.node.fields?.slug);
-		const neighbours = new Map(
-			linked.map((edge, index) => [
-				edge,
-				{ previous: linked[index + 1]?.node ?? null, next: linked[index - 1]?.node ?? null },
-			]),
-		);
 
-		edges.forEach((post) => {
-			const slug = post.node.fields?.slug;
-
-			if (!slug) {
-				return;
-			}
-
-			const { previous, next } = neighbours.get(post) ?? { previous: null, next: null };
-
-			createPage({
-				path: slug,
-				component: blogPost,
-				context: { slug, previous, next },
-			});
-		});
-
-		/**
-		 * Create index page by filtering the actual blog posts from all page
-		 * objects and creating an index-based array of those. Result will be
-		 * a site structure where '/' is the first page and subsequent pages will
-		 * be '/{2...m}' where m is the maximum number of posts.
-		 */
-		const numberOfPages = Math.ceil(posts.length / postsPerPage);
-
-		Array.from({ length: numberOfPages }).forEach((_, i) => {
-			const currentPage = i + 1;
-
-			createPage({
-				path: i === 0 ? "/" : `/${currentPage}`,
-				component: blogIndex,
-				context: {
-					limit: postsPerPage,
-					skip: i * postsPerPage,
-					numberOfPages,
-					currentPage,
-				},
-			});
-		});
+		createPostPages(edges, posts, createPage);
+		createIndexPages(posts, createPage);
 	};
 
 const onCreatePages = createOnCreatePages(slices);

@@ -10,11 +10,11 @@ interface SearchModalProps {
 	onClose: () => void;
 }
 
-type ModalHeaderProps = {
+interface ModalHeaderProps {
 	query: string;
 	resultCount: number;
 	onClose: () => void;
-};
+}
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({ query, resultCount, onClose }) => (
 	<div className={styles.modalHeader}>
@@ -27,12 +27,12 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ query, resultCount, onClose }
 	</div>
 );
 
-type ResultListProps = {
+interface ResultListProps {
 	results: SearchResultData[];
 	query: string;
 	activeIndex: number;
 	activeRef: React.Ref<HTMLDivElement>;
-};
+}
 
 const ResultList: React.FC<ResultListProps> = ({ results, query, activeIndex, activeRef }) =>
 	results.length > 0 ? (
@@ -49,16 +49,32 @@ const ResultList: React.FC<ResultListProps> = ({ results, query, activeIndex, ac
 
 const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
+const trapFocus = (event: KeyboardEvent, modal: HTMLElement | null): void => {
+	const focusable = Array.from(modal?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR) ?? []);
+	const [first] = focusable;
+	const last = focusable.at(-1);
+	const edge = event.shiftKey ? first : last;
+	const wrapTo = event.shiftKey ? last : first;
+
+	if (wrapTo === undefined || document.activeElement !== edge) {
+		return;
+	}
+
+	event.preventDefault();
+	wrapTo.focus();
+};
+
 const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, results, query, onClose }) => {
 	const [activeIndex, setActiveIndex] = useState(-1);
+	const [indexedResults, setIndexedResults] = useState(results);
 	const activeRef = useRef<HTMLDivElement>(null);
 	const modalRef = useRef<HTMLDivElement>(null);
 	const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: reset active index when results change
-	useEffect(() => {
+	if (indexedResults !== results) {
+		setIndexedResults(results);
 		setActiveIndex(-1);
-	}, [results]);
+	}
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: scroll active result into view when index changes
 	useEffect(() => {
@@ -70,35 +86,24 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 			previouslyFocusedRef.current?.focus();
 			return;
 		}
-		previouslyFocusedRef.current = document.activeElement as HTMLElement;
+		previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 		const firstFocusable = modalRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
 		firstFocusable?.focus();
 	}, [isModalOpen]);
 
 	useEffect(() => {
-		if (!isModalOpen) return;
+		if (!isModalOpen) {
+			return;
+		}
 
 		const handleKeyDown = (e: KeyboardEvent) => {
 			switch (e.key) {
 				case "Escape":
 					onClose();
 					break;
-				case "Tab": {
-					const focusable = modalRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
-					if (!focusable || focusable.length === 0) break;
-					const first = focusable[0];
-					const last = focusable[focusable.length - 1];
-					if (e.shiftKey) {
-						if (document.activeElement === first) {
-							e.preventDefault();
-							last.focus();
-						}
-					} else if (document.activeElement === last) {
-						e.preventDefault();
-						first.focus();
-					}
+				case "Tab":
+					trapFocus(e, modalRef.current);
 					break;
-				}
 				case "ArrowDown":
 					e.preventDefault();
 					setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
@@ -113,6 +118,8 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 						navigate(results[activeIndex].slug);
 					}
 					break;
+				default:
+					break;
 			}
 		};
 
@@ -120,7 +127,9 @@ const SearchModal: React.FunctionComponent<SearchModalProps> = ({ isModalOpen, r
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [isModalOpen, onClose, results, activeIndex]);
 
-	if (!isModalOpen) return null;
+	if (!isModalOpen) {
+		return null;
+	}
 
 	return (
 		<>

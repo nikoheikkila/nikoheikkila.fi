@@ -5,10 +5,14 @@ import slugify from "@sindresorhus/slugify";
 import inquirer, { type PromptModule } from "inquirer";
 import makeTitleCase from "title";
 import config from "./gatsby-config";
-import type { SiteSiteMetadata as Meta } from "./src/types";
 import * as DateTime from "./src/utils/datetime";
 
-const meta = config.siteMetadata as Meta;
+interface Meta {
+	author?: { name?: string };
+	language?: string;
+}
+
+const meta: Meta = config.siteMetadata ?? {};
 
 interface PromptAttributes {
 	readonly title: string;
@@ -20,9 +24,13 @@ interface PromptAttributes {
 	readonly cover: string | null;
 }
 
-const isValidCheckBoxAnswer = (answers: string[]): boolean | string => {
-	if (answers.length < 1) return "Choose either type!";
-	if (answers.length > 1) return "Choose only one type!";
+const isValidCheckBoxAnswer = (answers: string[]) => {
+	if (answers.length === 0) {
+		return "Choose either type!";
+	}
+	if (answers.length > 1) {
+		return "Choose only one type!";
+	}
 	return true;
 };
 
@@ -40,13 +48,13 @@ const newPost = async () => {
 				type: "input",
 				name: "author",
 				message: "Author: ",
-				default: meta?.author?.name,
+				default: meta.author?.name,
 			},
 			{
 				type: "input",
 				name: "language",
 				message: "Language (en, fi, sv): ",
-				default: meta?.language,
+				default: meta.language,
 			},
 			{
 				type: "input",
@@ -81,15 +89,11 @@ const newPost = async () => {
 				message: "URL of the cover image: ",
 				default: "null",
 				validate: (input: string) => {
-					if (input === "null") return true;
-
-					try {
-						new URL(input);
-					} catch {
-						return "Enter a valid URL";
+					if (input === "null") {
+						return true;
 					}
 
-					return true;
+					return URL.canParse(input) || "Enter a valid URL";
 				},
 			},
 		]);
@@ -100,7 +104,10 @@ const newPost = async () => {
 	const { title, type, excerpt, author, cover, date, language } = prompt;
 	const postType = Array.isArray(type) ? type[0] : type;
 
-	const targetFile = path.join(__dirname, `content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`);
+	const targetFile = path.join(
+		import.meta.dirname,
+		`content/${postType === "post" ? "blog/" : ""}${slugify(title)}.md`,
+	);
 
 	const frontMatterBlock = `---
 title: ${makeTitleCase(title)}

@@ -4,7 +4,7 @@ import { page } from "vitest/browser";
 import React from "react";
 import { Cover } from "../../../components/blog/cover";
 
-describe("Cover Accessibility", () => {
+describe("cover accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<Cover title="My Blog" url="/" />);
 
@@ -14,7 +14,7 @@ describe("Cover Accessibility", () => {
 	test("wrapping link has an accessible name from aria-label", async () => {
 		await render(<Cover title="My Blog" url="/" />);
 
-		const link = page.getByRole("link", { name: /my blog/i });
+		const link = page.getByRole("link", { name: /my blog/iu });
 		await expect.element(link).toBeInTheDocument();
 	});
 

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`BlogHeader Component > renders profile image with correct alt text 1`] = `
+exports[`blog header component > renders profile image with correct alt text 1`] = `
 <div>
   <header>
     <section

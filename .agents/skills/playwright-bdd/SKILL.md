@@ -104,7 +104,7 @@ More details on scoped steps: https://vitalets.github.io/playwright-bdd/#/writin
 
 **Example structure with scoped steps**
 
-```
+```text
 features/
 ├── fixtures.ts
 ├── @homepage/

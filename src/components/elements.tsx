@@ -9,14 +9,17 @@ interface BlogLinkProps {
 }
 
 export const BlogLink: React.FC<BlogLinkProps> = ({ href, children, ...props }) => {
-	if (!href) return <span {...props}>{children}</span>;
+	if (!href) {
+		return <span {...props}>{children}</span>;
+	}
 
-	if (isInternalLink(href))
+	if (isInternalLink(href)) {
 		return (
 			<Link to={href} {...props}>
 				{children}
 			</Link>
 		);
+	}
 
 	return (
 		<a href={href} rel="noopener noreferrer" target="_blank" {...props}>
@@ -25,4 +28,4 @@ export const BlogLink: React.FC<BlogLinkProps> = ({ href, children, ...props }) 
 	);
 };
 
-const isInternalLink = (href: string): boolean => /^[#/](?!\/)/.test(href);
+const isInternalLink = (href: string): boolean => /^[#/](?!\/)/u.test(href);

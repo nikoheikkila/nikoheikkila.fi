@@ -54,7 +54,9 @@ export default defineConfig({
 				{
 					name: "js-as-jsx",
 					transform(code, id) {
-						if (id.endsWith(".js")) return { code, map: null, moduleType: "jsx" };
+						if (id.endsWith(".js")) {
+							return { code, map: null, moduleType: "jsx" };
+						}
 					},
 				},
 			],

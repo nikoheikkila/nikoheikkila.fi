@@ -4,24 +4,26 @@ import { page } from "vitest/browser";
 import React from "react";
 import { ArticleCard } from "../../../components/blog/article";
 
-const createMockLocation = (pathname = "/"): Location =>
-	({
+const createMockLocation = (pathname = "/"): Location => {
+	const href = `https://example.com${pathname}`;
+
+	return {
 		hash: "",
 		host: "example.com",
 		hostname: "example.com",
-		href: `https://example.com${pathname}`,
-		key: "default",
+		href,
 		origin: "https://example.com",
 		pathname,
 		port: "",
 		protocol: "https:",
 		search: "",
-		state: null,
-		ancestorOrigins: {} as DOMStringList,
-		assign: () => {},
-		reload: () => {},
-		replace: () => {},
-	}) as Location;
+		ancestorOrigins: globalThis.location.ancestorOrigins,
+		assign: () => undefined,
+		reload: () => undefined,
+		replace: () => undefined,
+		toString: () => href,
+	};
+};
 
 const defaultProps = {
 	date: "January 1, 2024",
@@ -32,7 +34,7 @@ const defaultProps = {
 	title: "Test Article Title",
 };
 
-describe("ArticleCard Accessibility", () => {
+describe("article card accessibility", () => {
 	test("passes axe scan", async () => {
 		const { container } = await render(<ArticleCard {...defaultProps} />);
 
