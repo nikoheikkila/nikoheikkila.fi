@@ -48,7 +48,9 @@ $menuPaddingLeft: 20px;
 	overflow-y: auto;
 	background: variables.$almostBlack;
 	transform: translateX(-100%);
-	transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
+	transition:
+		transform 0.3s ease-in-out,
+		visibility 0s 0.3s;
 
 	a {
 		display: block;
@@ -81,5 +83,7 @@ $menuPaddingLeft: 20px;
 .menuOpen {
 	visibility: visible;
 	transform: translateX(0);
-	transition: transform 0.3s ease-in-out, visibility 0s;
+	transition:
+		transform 0.3s ease-in-out,
+		visibility 0s;
 }
