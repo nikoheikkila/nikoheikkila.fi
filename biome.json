@@ -19,6 +19,9 @@
 		"jsxRuntime": "reactClassic"
 	},
 	"markdown": {
+		"formatter": {
+			"enabled": false
+		},
 		"parser": {
 			"frontmatter": true
 		}
@@ -177,7 +180,9 @@
 								"max": 20
 							}
 						},
+						"noArrayForEach": "off",
 						"noNull": "off",
+						"noSyncMethods": "off",
 						"noUnusedClasses": "off",
 						"useExplicitReturnType": "off",
 						"useExplicitType": "off",
@@ -189,6 +194,9 @@
 								"namedComponents": "arrowFunction"
 							}
 						},
+						"useNullishCoalescing": "off",
+						"usePackageJsonCpu": "off",
+						"useStrictBooleanExpressions": "off",
 						"useTailwindStaticClassStrings": "off",
 						"useTopLevelHeading": "off"
 					}

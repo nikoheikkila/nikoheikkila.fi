@@ -7,7 +7,7 @@ import { socialLinks } from "../../../utils/social";
 const plugins = (candidate: GatsbyConfig): PluginRef[] => candidate.plugins ?? [];
 
 const names = (candidate: GatsbyConfig): string[] =>
-	plugins(candidate).map((plugin) => (typeof plugin === "string" ? plugin : (plugin.resolve ?? "")));
+	plugins(candidate).map((plugin) => (typeof plugin === "string" ? plugin : plugin.resolve));
 
 const optionsOf = (candidate: GatsbyConfig, resolve: string): Record<string, unknown> => {
 	const plugin = plugins(candidate).find((entry) => typeof entry !== "string" && entry.resolve === resolve);
