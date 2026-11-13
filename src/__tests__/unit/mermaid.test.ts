@@ -257,7 +257,7 @@ describe("renderMermaid", () => {
 
 		const render = () => renderMermaid(body, { filePath: "content/blog/x.md", lineOffset: 10 });
 
-		expect(render).toThrow(/^content\/blog\/x\.md:18:/u);
+		expect(render).toThrow(/^content\/blog\/x\.md:17:/u);
 	});
 
 	test("fails the build naming the post file, line and emptiness when a mermaid block has no source", () => {

@@ -88,11 +88,11 @@ describe("onCreateResolvers", () => {
 		const source: MarkdownSource = { fileAbsolutePath: filePath, rawMarkdownBody };
 		const actions = new ResolverActions();
 		createOnCreateResolvers({ readFile: () => postFile })({ createResolvers: actions.createResolvers });
-		const closingFenceLine = postFile.split("\n").lastIndexOf(fence) + 1;
+		const errorLine = postFile.split("\n").lastIndexOf(fence);
 
 		const resolve = () => actions.resolvers[0]?.MarkdownRemark.renderedBody.resolve(source);
 
-		expect(resolve).toThrow(`${filePath}:${closingFenceLine}:`);
+		expect(resolve).toThrow(`${filePath}:${errorLine}:`);
 	});
 
 	test("reports a syntax error at its file line when the post has no frontmatter", () => {
@@ -110,11 +110,11 @@ describe("onCreateResolvers", () => {
 		const source: MarkdownSource = { fileAbsolutePath: filePath, rawMarkdownBody: postFile };
 		const actions = new ResolverActions();
 		createOnCreateResolvers({ readFile: () => postFile })({ createResolvers: actions.createResolvers });
-		const closingFenceLine = postFile.split("\n").lastIndexOf(fence) + 1;
+		const errorLine = postFile.split("\n").lastIndexOf(fence);
 
 		const resolve = () => actions.resolvers[0]?.MarkdownRemark.renderedBody.resolve(source);
 
-		expect(resolve).toThrow(`${filePath}:${closingFenceLine}:`);
+		expect(resolve).toThrow(`${filePath}:${errorLine}:`);
 	});
 
 	test("reports a syntax error at its file line when the post uses CRLF line endings", () => {
@@ -135,14 +135,13 @@ describe("onCreateResolvers", () => {
 		const source: MarkdownSource = { fileAbsolutePath: filePath, rawMarkdownBody };
 		const actions = new ResolverActions();
 		createOnCreateResolvers({ readFile: () => postFile })({ createResolvers: actions.createResolvers });
-		const closingFenceLine =
-			postFile
-				.split("\n")
-				.map((line) => line.replace(/\r$/u, ""))
-				.lastIndexOf(fence) + 1;
+		const errorLine = postFile
+			.split("\n")
+			.map((line) => line.replace(/\r$/u, ""))
+			.lastIndexOf(fence);
 
 		const resolve = () => actions.resolvers[0]?.MarkdownRemark.renderedBody.resolve(source);
 
-		expect(resolve).toThrow(`${filePath}:${closingFenceLine}:`);
+		expect(resolve).toThrow(`${filePath}:${errorLine}:`);
 	});
 });
