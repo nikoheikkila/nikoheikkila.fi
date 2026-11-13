@@ -4,8 +4,8 @@
  * Reports the outcome of a pull request's preview deployment as a single,
  * sticky PR comment.
  *
- * Runs in `.github/workflows/preview-comment.yml`, a separate `workflow_run`
- * reporter triggered after `CI` completes. That indirection exists so PRs
+ * Runs as the `report` job of `.github/workflows/preview.yml`, a `workflow_run`
+ * workflow triggered after `CI` completes, which also deploys the preview. That indirection exists so PRs
  * from forks and Dependabot — whose `pull_request` runs only ever get a
  * read-only token — can still be commented on, without ever handing a
  * write-scoped token to a job that executes PR-controlled code.
@@ -25,7 +25,7 @@ import {
 	type PreviewUrlExpectation,
 	type PullRequestAssociation,
 	type WorkflowJob,
-	DEFAULT_WORKER_SERVICE_NAME,
+	DEFAULT_PREVIEW_WORKER_NAME,
 	DEFAULT_WORKERS_DEV_SUBDOMAIN,
 	buildExpectedPreviewOrigin,
 	buildFailureCommentBody,
@@ -194,7 +194,7 @@ const readRunContext = (): RunContext => {
 		headRepoFullName: env("HEAD_REPOSITORY"),
 		eventName: env("EVENT_NAME"),
 		expectation: {
-			workerServiceName: process.env.WORKER_SERVICE_NAME || DEFAULT_WORKER_SERVICE_NAME,
+			previewWorkerName: process.env.PREVIEW_WORKER_NAME || DEFAULT_PREVIEW_WORKER_NAME,
 			workersDevSubdomain: process.env.WORKERS_DEV_SUBDOMAIN || DEFAULT_WORKERS_DEV_SUBDOMAIN,
 		},
 	};

@@ -3,7 +3,9 @@
 #
 # Environments are modelled as Terraform workspaces:
 #   - default   → production (worker "blog", bucket "site", custom domain from ../cloudflare/workers.tf)
-#   - pr-<n>    → pull request preview (worker "blog-pr-<n>", bucket "site-pr-<n>", workers.dev URL)
+#   - pr-<n>    → pull request preview (bucket "site-pr-<n>" only; the Worker code is uploaded outside
+#                 Terraform as a version of the shared "blog-preview" Worker with preview alias "pr-<n>",
+#                 because the provider cannot set a version's preview alias — see the wrangler_config output)
 
 terraform {
   required_version = ">= 1.13.5, < 2.0.0"

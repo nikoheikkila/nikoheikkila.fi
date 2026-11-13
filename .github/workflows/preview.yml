@@ -1,0 +1,173 @@
+name: Preview
+
+# Deploys a pull request's preview and reports it as a sticky PR comment.
+#
+# Trust boundary: `workflow_run` always runs this file, and the checkout, from
+# the default branch — never the PR's workflow, Taskfiles, scripts or actions.
+# The PR's `CI` run contributes only data: the built site and the bundled
+# Worker, uploaded as artifacts and never executed here. The Worker bundle
+# runs only inside the `blog-preview` Worker on Cloudflare, bound to the PR's
+# own bucket by configuration generated from this trusted checkout.
+#
+# The `preview` environment holds the preview Cloudflare token and only
+# allows deployments from `main`, so `pull_request` runs (ref
+# `refs/pull/<n>/merge`) can never read it, even if a PR edits this file.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  resolve:
+    name: Resolve Pull Request
+    runs-on: ubuntu-latest
+    # Fork PRs get no preview, as before: their artifacts must never be
+    # deployed with a credential.
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      number: ${{ steps.pr.outputs.number }}
+
+    steps:
+      # The PR number comes from the GitHub API for the run's head commit,
+      # never from artifact content; head SHA and repository must both match.
+      - name: Resolve pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+        run: |
+          numbers=$(gh api "repos/$REPOSITORY/commits/$HEAD_SHA/pulls" --jq \
+            "[.[] | select(.state == \"open\" and .head.sha == \"$HEAD_SHA\" and (.head.repo.full_name | ascii_downcase) == (\"$HEAD_REPOSITORY\" | ascii_downcase)) | .number]")
+          if [ "$(jq 'length' <<< "$numbers")" != "1" ]; then
+            echo "::notice::Skipping: no unique open pull request for $HEAD_SHA ($numbers)."
+            exit 0
+          fi
+          number=$(jq '.[0]' <<< "$numbers")
+          [[ "$number" =~ ^[0-9]+$ ]] || { echo "::error::Unexpected pull request number: $number"; exit 1; }
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: Deploy to Preview
+    runs-on: ubuntu-latest
+    needs: [resolve]
+    if: needs.resolve.outputs.number != ''
+    environment:
+      name: preview
+      url: ${{ steps.deploy.outputs.url }}
+    outputs:
+      deployment-url: ${{ steps.deploy.outputs.url }}
+    concurrency:
+      group: deploy-preview-${{ needs.resolve.outputs.number }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      # Default-branch checkout: everything executed below is trusted code.
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+
+      # Downloaded outside the workspace so PR data can never shadow a
+      # trusted file.
+      - name: Download static assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: static-assets
+          path: ${{ runner.temp }}/site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download preview Worker
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: preview-worker
+          path: ${{ runner.temp }}/worker
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy
+        id: deploy
+        uses: ./.github/actions/terraform-site
+        with:
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          r2-secret-access-key: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          workspace: pr-${{ needs.resolve.outputs.number }}
+          dist-dir: ${{ runner.temp }}/site
+          worker-dir: ${{ runner.temp }}/worker
+
+  lighthouse:
+    name: Lighthouse Audit for Preview
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    env:
+      LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.workflow_run.head_sha }}
+
+    steps:
+      - name: Run Audit
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          urls: ${{ needs.deploy.outputs.deployment-url }}
+          runs: 1
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  report:
+    name: Report Preview Deployment
+    runs-on: ubuntu-latest
+    needs: [resolve, deploy]
+    if: always() && github.event.workflow_run.event == 'pull_request'
+    # Serialises reporting per source branch so two overlapping runs for the
+    # same PR can never race on the same sticky comment.
+    concurrency:
+      group: preview-comment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
+    steps:
+      # Trusted, default-branch checkout only. Credentials are not persisted
+      # since this job never needs to push.
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      # The deploy job's outcome is read from this run. RUN_NUMBER stays the
+      # CI run number so comment ordering is continuous with comments written
+      # before the preview deploy moved out of CI.
+      - name: Report preview deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+          EVENT_NAME: ${{ github.event.workflow_run.event }}
+        run: task ci:report

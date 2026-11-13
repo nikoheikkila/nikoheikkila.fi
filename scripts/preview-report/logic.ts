@@ -11,8 +11,8 @@ export const STATUS_MARKER = "<!-- preview-deployment-status:v1 -->";
 export const META_PREFIX = "<!-- preview-deployment-meta:";
 export const META_SUFFIX = " -->";
 export const BOT_LOGIN = "github-actions[bot]";
-// Must match infra/site/variables.tf's worker_service_name / workers_dev_subdomain defaults.
-export const DEFAULT_WORKER_SERVICE_NAME = "blog";
+// Must match infra/site/variables.tf's preview_worker_name / workers_dev_subdomain defaults.
+export const DEFAULT_PREVIEW_WORKER_NAME = "blog-preview";
 export const DEFAULT_WORKERS_DEV_SUBDOMAIN = "yo-062";
 const MAX_STEP_NAME_LENGTH = 200;
 
@@ -55,7 +55,7 @@ export interface DeploymentMetadata {
 }
 
 export interface PreviewUrlExpectation {
-	workerServiceName: string;
+	previewWorkerName: string;
 	workersDevSubdomain: string;
 }
 
@@ -97,7 +97,7 @@ export const resolvePullRequestForCommit = (
 };
 
 export const buildExpectedPreviewOrigin = (prNumber: number, expectation: PreviewUrlExpectation): string =>
-	`https://${expectation.workerServiceName}-pr-${prNumber}.${expectation.workersDevSubdomain}.workers.dev`;
+	`https://pr-${prNumber}-${expectation.previewWorkerName}.${expectation.workersDevSubdomain}.workers.dev`;
 
 /** Neutralises Markdown/HTML breakout characters in untrusted job/step names. */
 export const escapeInlineCode = (text: string): string => {

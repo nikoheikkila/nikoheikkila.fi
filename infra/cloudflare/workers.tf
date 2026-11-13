@@ -14,3 +14,29 @@ resource "cloudflare_workers_custom_domain" "blog" {
     ignore_changes = [environment]
   }
 }
+
+# Shared preview Worker. Each pull request uploads a version of it with
+# preview alias pr-<n> (see ../site), using a token that is Editor on this
+# Worker only, and Editor cannot create Workers, so the Worker is created here.
+# The deployed placeholder never serves a preview; preview versions are never
+# deployed, so they don't drift from this content.
+resource "cloudflare_workers_script" "preview" {
+  account_id         = var.account_id
+  script_name        = var.preview_worker_name
+  main_module        = "worker.js"
+  compatibility_date = "2025-11-12"
+  content            = <<-JS
+    export default {
+      fetch: () => new Response("Not found: open a pull request preview URL instead.", { status: 404 }),
+    };
+  JS
+}
+
+# Preview alias URLs (pr-<n>-blog-preview.<subdomain>.workers.dev) require the
+# workers.dev route and Preview URLs to be enabled on the Worker.
+resource "cloudflare_workers_script_subdomain" "preview" {
+  account_id       = var.account_id
+  script_name      = cloudflare_workers_script.preview.script_name
+  enabled          = true
+  previews_enabled = true
+}

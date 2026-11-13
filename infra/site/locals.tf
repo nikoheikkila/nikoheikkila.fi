@@ -4,7 +4,7 @@
 locals {
   is_production = terraform.workspace == "default"
   suffix        = local.is_production ? "" : "-${terraform.workspace}"
-  worker_name   = "${var.worker_service_name}${local.suffix}"
+  worker_name   = local.is_production ? var.worker_service_name : var.preview_worker_name
   bucket_name   = "site${local.suffix}"
 
   files = fileset(var.dist_dir, "**")

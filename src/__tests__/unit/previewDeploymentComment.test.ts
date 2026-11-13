@@ -5,7 +5,7 @@ import {
 	type PullRequestAssociation,
 	type WorkflowJob,
 	BOT_LOGIN,
-	DEFAULT_WORKER_SERVICE_NAME,
+	DEFAULT_PREVIEW_WORKER_NAME,
 	DEFAULT_WORKERS_DEV_SUBDOMAIN,
 	META_PREFIX,
 	META_SUFFIX,
@@ -25,11 +25,11 @@ import {
 } from "../../../scripts/preview-report/logic";
 
 const expectation = {
-	workerServiceName: DEFAULT_WORKER_SERVICE_NAME,
+	previewWorkerName: DEFAULT_PREVIEW_WORKER_NAME,
 	workersDevSubdomain: DEFAULT_WORKERS_DEV_SUBDOMAIN,
 };
 const previewUrl = (prNumber: number): string =>
-	`https://${DEFAULT_WORKER_SERVICE_NAME}-pr-${prNumber}.${DEFAULT_WORKERS_DEV_SUBDOMAIN}.workers.dev`;
+	`https://pr-${prNumber}-${DEFAULT_PREVIEW_WORKER_NAME}.${DEFAULT_WORKERS_DEV_SUBDOMAIN}.workers.dev`;
 
 const job = (overrides: Partial<WorkflowJob> = {}): WorkflowJob => ({
 	name: "Deploy to Preview",
@@ -130,12 +130,12 @@ describe("resolvePullRequestForCommit", () => {
 });
 
 describe("buildExpectedPreviewOrigin", () => {
-	test("builds the predictable preview origin", () => {
+	test("builds the predictable preview alias origin", () => {
 		expect(buildExpectedPreviewOrigin(42, expectation)).toBe(previewUrl(42));
 	});
 
-	test("defaults to the Worker name and workers.dev subdomain provisioned by Terraform", () => {
-		expect(buildExpectedPreviewOrigin(42, expectation)).toBe("https://blog-pr-42.yo-062.workers.dev");
+	test("defaults to the pr-<n> alias of the shared blog-preview Worker", () => {
+		expect(buildExpectedPreviewOrigin(42, expectation)).toBe("https://pr-42-blog-preview.yo-062.workers.dev");
 	});
 });
 
@@ -255,7 +255,7 @@ describe("comment bodies", () => {
 				"<!-- preview-deployment-status:v1 -->",
 				"### 🚀 Preview deployment succeeded",
 				"",
-				"[Open preview](https://blog-pr-42.yo-062.workers.dev)",
+				"[Open preview](https://pr-42-blog-preview.yo-062.workers.dev)",
 				"",
 				"Commit: `abcdef1` | [Deployment logs](https://github.com/o/r/actions/runs/1/job/1)",
 				"",
