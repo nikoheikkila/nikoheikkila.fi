@@ -2,11 +2,14 @@
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
 		"config:best-practices",
+		"helpers:pinGitHubActionDigestsToSemver",
+		"security:openssf-scorecard",
 		":automergeBranch",
 		":automergeMinor",
 		":automergeRequireAllStatusChecks",
 		":combinePatchMinorReleases",
 		":dependencyDashboard",
+		// Lock file maintenance bumps transitive dependencies in bulk, bypassing the per-package release cooldown.
 		":maintainLockFilesDisabled"
 	],
 	"enabledManagers": [
@@ -18,7 +21,41 @@
 	"schedule": [
 		"every weekend"
 	],
-	"customManagers": [],
+	// Hijacked releases are usually detected and yanked within days: never propose anything younger than a week.
+	"minimumReleaseAge": "7 days",
+	// Do not even create a branch until the release age check passes.
+	"internalChecksFilter": "strict",
+	// Never run package lifecycle scripts inside Renovate.
+	"ignoreScripts": true,
+	"rangeStrategy": "pin",
+	"osvVulnerabilityAlerts": true,
+	"dependencyDashboard": {
+		"osvVulnerabilitySummary": "unresolved"
+	},
+	// Security fixes skip the schedule and cooldown, but always need a human review.
+	"vulnerabilityAlerts": {
+		"enabled": true,
+		"labels": [
+			"security"
+		],
+		"schedule": [
+			"at any time"
+		],
+		"minimumReleaseAge": null,
+		"automerge": false
+	},
+	"customManagers": [
+		{
+			"customType": "regex",
+			"description": "Update versions annotated with `# renovate: datasource=… depName=…` in workflows and composite actions",
+			"managerFilePatterns": [
+				"/(^|/)\\.github/(workflows|actions)/.+\\.ya?ml$/"
+			],
+			"matchStrings": [
+				"#\\s*renovate:\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)\\s+[\\w-]+:\\s*[\"']?(?<currentValue>[^\\s\"']+)"
+			]
+		}
+	],
 	"packageRules": [
 		{
 			"extends": [
@@ -31,6 +68,13 @@
 				"major"
 			],
 			"groupName": "Gatsby packages"
+		},
+		{
+			"description": "Bun releases are tagged `bun-vX.Y.Z`",
+			"matchDepNames": [
+				"oven-sh/bun"
+			],
+			"extractVersion": "^bun-v(?<version>.+)$"
 		}
 	]
 }

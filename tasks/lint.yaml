@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 tasks:
@@ -24,3 +25,9 @@ tasks:
       - infra/site/redirects.json
     cmds:
       - bunx tsc --noEmit --project infra/site
+
+  renovate:
+    desc: Lint Renovate configuration
+    sources:
+      - renovate.json5
+    cmd: bunx --package renovate renovate-config-validator --strict renovate.json5
