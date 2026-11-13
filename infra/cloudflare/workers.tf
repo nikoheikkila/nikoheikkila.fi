@@ -19,7 +19,7 @@ resource "cloudflare_workers_custom_domain" "blog" {
 # preview alias pr-<n> (see ../site), using a token that is Editor on this
 # Worker only, and Editor cannot create Workers, so the Worker is created here.
 # The deployed placeholder never serves a preview; preview versions are never
-# deployed, so they don't drift from this content.
+# deployed.
 resource "cloudflare_workers_script" "preview" {
   account_id         = var.account_id
   script_name        = var.preview_worker_name
@@ -30,6 +30,13 @@ resource "cloudflare_workers_script" "preview" {
       fetch: () => new Response("Not found: open a pull request preview URL instead.", { status: 404 }),
     };
   JS
+
+  # The provider reads the latest uploaded version, i.e. the most recent pull
+  # request preview, so its code and bucket binding would otherwise show as drift
+  # and every apply would overwrite them. Terraform only creates this Worker.
+  lifecycle {
+    ignore_changes = [content, bindings]
+  }
 }
 
 # Preview alias URLs (pr-<n>-blog-preview.<subdomain>.workers.dev) require the
