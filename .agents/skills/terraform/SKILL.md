@@ -24,8 +24,13 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 
 Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
 
-Inputs shared by both modules live at the common parent, `infra/`, not inside either module directory — each module references them with `../` (see `OP_ARGS`/`TFVARS` in each `Taskfile.yml`):
-- `infra/.env` — 1Password CLI references for `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
+Credentials are 1Password references in the repository root, each file using the variable names the tools read: `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (see `OP_ARGS` in each `Taskfile.yml`):
+- `.env.infra` — the infra token (account-wide Workers, for the custom domain) and production R2 keys; loaded by `infra/cloudflare`
+- `.env.prod` — the token scoped to `blog` and production R2 keys; loaded by `infra/site`
+
+Previews are deployed and destroyed only by CI; there are no local preview credentials.
+
+Shared Terraform inputs live at the common parent, `infra/` (see `TFVARS`):
 - `infra/cloudflare.tfvars` — variables described under [Infrastructure Variables](#infrastructure-variables) below
 
 ## Infrastructure Commands
@@ -42,16 +47,13 @@ task terraform:deploy      # Apply changes (after careful review)
 
 # Site deployment (infra/site) — requires `task build` first so public/ exists
 task site:validate                  # fmt -check + terraform validate
-task site:plan WORKSPACE=pr-123     # Plan a preview deployment
-task site:deploy WORKSPACE=pr-123   # Apply it (deploys to workers.dev)
-task site:destroy WORKSPACE=pr-123  # Tear a preview down (interactive confirm)
 task site:deploy                    # Production (default workspace) — CI's job; avoid locally
 ```
 
 Site module guardrails to know about:
 - A plan/apply fails with a precondition error if `public/` is missing — run `task build` first. `worker.js` is compiled automatically by the `site:build` task dependency; never edit it by hand.
-- `site:destroy` and `site:ci:destroy` refuse the `default` workspace, so previews cannot destroy production.
-- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:destroy -- -auto-approve` breaks: `{{.CLI_ARGS}}` is appended to _every_ terraform invocation in the task, including `workspace select`). For a non-interactive destroy use the CI task with 1Password: `cd infra/site && op run --env-file='../.env' -- task ci:destroy WORKSPACE=pr-123`.
+- `site:ci:destroy` (CI only) refuses the `default` workspace, so preview cleanup cannot destroy production. There is no local destroy task.
+- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:plan -- -refresh=false` breaks: `{{.CLI_ARGS}}` is appended to _every_ terraform invocation in the task, including `workspace select`).
 - R2 does not implement AWS flexible checksums; the site Taskfile exports `AWS_REQUEST_CHECKSUM_CALCULATION=when_required` and `AWS_RESPONSE_CHECKSUM_VALIDATION=when_required`. Raw `terraform` invocations outside the Taskfile need those variables too.
 
 ### CI deployment flow
@@ -166,7 +168,7 @@ Patterns worth reusing if this Worker (or another one) grows more tests:
 - Check HCL syntax in `.tf` files
 - Verify YAML syntax in `dns.yml`
 - Ensure variable types match definitions
-- `there is no package for ... cached in .terraform/providers` means the local provider cache is stale — re-run `op run --env-file='../.env' -- terraform init` in the module directory
+- `there is no package for ... cached in .terraform/providers` means the local provider cache is stale — re-run `task run command=init` in the module directory
 
 ### Scenario: S3 Operations Return 403 AccessDenied
 
