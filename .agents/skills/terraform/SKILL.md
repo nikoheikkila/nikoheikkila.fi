@@ -19,7 +19,7 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 `infra/site/` — the site deployment (changes on every merge and per pull request):
 - **Static files**: Gatsby build output (`public/`) uploaded to a per-environment R2 bucket via `aws_s3_object`
 - **Worker**: `worker.ts` (compiled to `worker.js` by Bun — a gitignored build artifact) serves the bucket with trailing-slash canonicalisation, conditional/range requests, and the path redirects bundled from `redirects.json`
-- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (worker `blog-pr-<n>`, bucket `site-pr-<n>`) at `https://blog-pr-<n>.yo-062.workers.dev`
+- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (bucket `site-pr-<n>` only; CI uploads a version of the shared worker `blog-preview` with preview alias `pr-<n>` via `task ci:preview:upload`, because the provider cannot set preview aliases) at `https://pr-<n>-blog-preview.yo-062.workers.dev`
 - **Headers policy**: per-object `content_type`/`cache_control` set at upload time in `locals.tf` (replaces the former `static/_headers`)
 
 Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
@@ -56,7 +56,7 @@ Site module guardrails to know about:
 
 ### CI deployment flow
 
-The `.github/actions/terraform-site` composite action (inputs: `workspace`, `operation: deploy|destroy`) runs `task ci:deploy`/`ci:destroy`. `ci.yml` deploys workspace `pr-<n>` on every pull request and `default` on merge to `main`; `preview-cleanup.yml` destroys the PR workspace when it closes. Secrets: `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` (the account-wide R2 token, shared with the state backend).
+The `.github/actions/terraform-site` composite action (inputs: `workspace`, `operation: deploy|destroy`, `dist-dir`, `worker-dir`) runs `task ci:deploy`/`ci:destroy`, plus `ci:preview:upload` for preview deploys. `ci.yml` deploys `default` on merge to `main` (environment `prod`); pull requests only build, and the trusted `workflow_run` workflow `preview.yml` deploys workspace `pr-<n>` from the PR's artifacts (environment `preview`); `preview-cleanup.yml` (`pull_request_target`) destroys the PR workspace when it closes. Secrets: `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` as **environment** secrets in `preview` and `prod`, both restricted to `main` (`prod` also holds `CLOUDFLARE_INFRA_API_TOKEN` for `terraform.yml` deploys: Workers Custom Domains need account-wide Workers Scripts Write); `terraform.yml` plans with the read-only repository secrets `CLOUDFLARE_READ_API_TOKEN` and `R2_STATE_READ_ACCESS_KEY_ID`/`R2_STATE_READ_SECRET` and `-lock=false`. Never give a job that runs PR code a write token.
 
 See all commands by running `task -a` in the `infra/cloudflare/` directory.
 

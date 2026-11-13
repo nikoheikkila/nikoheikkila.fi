@@ -38,8 +38,9 @@ A separate Terraform root module deploying the built static site:
   with trailing-slash canonicalisation, conditional requests, range requests, and path
   redirects (`/feed` → `/rss.xml`)
 - **Environments**: Terraform workspaces — `default` deploys production (worker `blog`,
-  bucket `site`), `pr-<n>` deploys a pull request preview (worker `blog-pr-<n>`,
-  bucket `site-pr-<n>`, served from `workers.dev`)
+  bucket `site`), `pr-<n>` deploys a pull request preview (bucket `site-pr-<n>`; CI then uploads
+  a version of the shared worker `blog-preview` with preview alias `pr-<n>`, served at
+  `https://pr-<n>-blog-preview.yo-062.workers.dev`)
 - **Caching and content types**: set per object at upload time (see `../site/locals.tf`),
   replacing the previous `_headers` and `_redirects` files
 
@@ -81,10 +82,11 @@ A separate Terraform root module deploying the built static site:
      R2 backend, so preview deployments never touch production or core infrastructure
      state
 
-3. **Terraform Only**:
+3. **Terraform First**:
    - The Cloudflare provider cannot upload Workers static assets (that flow requires
-     Wrangler), so the site is served from R2 instead — every part of the deployment
-     is plain Terraform with no extra tooling
+     Wrangler), so the site is served from R2 instead
+   - The provider also cannot set a version's preview alias, so previews are uploaded with
+     `wrangler versions upload --preview-alias` using the `wrangler_config` output of `../site/`
 
 ## Configuration
 
@@ -162,7 +164,8 @@ The CloudFlare Worker hosting the site is deployed by GitHub Actions for preview
 through the `../site/` module. To deploy manually from a local build:
 
 ```bash
-# Preview (workspace pr-<n>)
+# Preview (workspace pr-<n>): uploads the bucket only; the Worker version is uploaded
+# by CI (`task ci:preview:upload` in ../site), whose token is limited to `blog-preview`
 task site:plan WORKSPACE=pr-123
 task site:deploy WORKSPACE=pr-123
 
