@@ -28,6 +28,7 @@ tasks:
 
   renovate:
     desc: Lint Renovate configuration
+    deps: [":install"]
     sources:
       - renovate.json5
-    cmd: bunx --package renovate renovate-config-validator --strict renovate.json5
+    cmd: bunx renovate-config-validator --strict --no-global renovate.json5

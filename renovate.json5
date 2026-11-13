@@ -29,9 +29,7 @@
 	"ignoreScripts": true,
 	"rangeStrategy": "pin",
 	"osvVulnerabilityAlerts": true,
-	"dependencyDashboard": {
-		"osvVulnerabilitySummary": "unresolved"
-	},
+	"dependencyDashboardOSVVulnerabilitySummary": "unresolved",
 	// Security fixes skip the schedule and cooldown, but always need a human review.
 	"vulnerabilityAlerts": {
 		"enabled": true,
@@ -75,6 +73,17 @@
 				"oven-sh/bun"
 			],
 			"extractVersion": "^bun-v(?<version>.+)$"
+		},
+		{
+			"description": "The config validator must not get ahead of the schema the hosted Renovate app runs",
+			"matchManagers": [
+				"bun"
+			],
+			"matchDepNames": [
+				"renovate"
+			],
+			"minimumReleaseAge": "30 days",
+			"automerge": false
 		}
 	]
 }

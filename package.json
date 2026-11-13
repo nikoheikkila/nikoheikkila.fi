@@ -76,6 +76,7 @@
 		"lefthook": "2.2.2",
 		"lighthouse": "13.6.0",
 		"playwright-bdd": "9.2.1",
+		"renovate": "44.231.0",
 		"typescript": "7.0.2",
 		"vitest": "5.1.0",
 		"vitest-browser-react": "2.3.0",
@@ -117,6 +118,7 @@
 		"gatsby-plugin-sharp",
 		"gatsby-transformer-sharp",
 		"gatsby-sharp",
+		"re2",
 		"snyk"
 	]
 }
