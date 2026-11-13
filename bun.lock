@@ -27,7 +27,7 @@
         "gatsby-transformer-remark": "6.16.0",
         "gatsby-transformer-sharp": "5.16.0",
         "katex": "0.19.1",
-        "pele": "1.6.0",
+        "pele": "1.13.0",
         "react": "19.3.1",
         "react-dom": "19.3.1",
         "react-markdown": "10.1.0",
@@ -2798,7 +2798,7 @@
 
     "peek-readable": ["peek-readable@4.1.0", "", {}, "sha512-ZI3LnwUv5nOGbQzD9c2iDG6toheuXSZP5esSHBjopsXH4dg19soufvpUGA3uohi5anFtGb2lhAVdHzH6R/Evvg=="],
 
-    "pele": ["pele@1.6.0", "", {}, "sha512-VfAiVItsOGlGhvnBfphdT28VCG7mXMZxQNOwAGsCtxI2ztbUsT39MraEOYjsapLxVETkdUZscm0DdotYDQMLdw=="],
+    "pele": ["pele@1.13.0", "", {}, "sha512-Ie8UKY9x00MsuR3jO6AzUwzK2Z6MIV3Tf4EDdITiuk8Uaz8K7g0R082WqsqNaSU8DdgkrRvZThzhit83mi/uiw=="],
 
     "physical-cpu-count": ["physical-cpu-count@2.0.0", "", {}, "sha512-rxJOljMuWtYlvREBmd6TZYanfcPhNUKtGDZBjBBS8WG1dpN2iwPsRJZgQqN/OtJuiQckdRFOfzogqJClTrsi7g=="],
 
