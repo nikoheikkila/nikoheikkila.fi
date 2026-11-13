@@ -1,5 +1,5 @@
 name: Deploy site with Terraform
-description: Deploys or destroys a static site environment on Cloudflare Workers and R2 using Terraform
+description: Deploys or destroys a static site environment on Cloudflare Workers and R2 using Terraform (previews add a Wrangler version upload)
 
 inputs:
   cloudflare-api-token:
@@ -19,6 +19,16 @@ inputs:
     description: Terraform operation to run (deploy or destroy)
     required: false
     default: deploy
+  dist-dir:
+    description: Build output to upload, relative to infra/site or absolute
+    required: false
+    default: ../../public
+  worker-dir:
+    description: >-
+      Preview deploys only — directory holding the bundled worker.js to upload as a
+      version of the preview Worker. Requires installed dependencies (wrangler).
+    required: false
+    default: ""
 
 outputs:
   url:
@@ -61,7 +71,21 @@ runs:
         CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
         AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
-      run: task 'ci:${{ inputs.operation }}' WORKSPACE='${{ inputs.workspace }}'
+        WORKSPACE: ${{ inputs.workspace }}
+        DIST_DIR: ${{ inputs.dist-dir }}
+      run: task "ci:${{ inputs.operation }}" WORKSPACE="$WORKSPACE" DIST_DIR="$DIST_DIR"
+
+    - name: Upload preview version
+      if: ${{ inputs.operation == 'deploy' && inputs.workspace != 'default' }}
+      shell: bash
+      working-directory: infra/site
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-secret-access-key }}
+        WORKSPACE: ${{ inputs.workspace }}
+        WORKER_DIR: ${{ inputs.worker-dir }}
+      run: task ci:preview:upload WORKSPACE="$WORKSPACE" WORKER_DIR="$WORKER_DIR"
 
     - name: Read deployment URL
       if: ${{ inputs.operation == 'deploy' }}

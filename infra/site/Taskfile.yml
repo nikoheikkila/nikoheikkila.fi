@@ -5,6 +5,8 @@ vars:
   OP_ARGS: "--env-file='../.env'"
   TFVARS: "../cloudflare.tfvars"
   WORKSPACE: '{{ .WORKSPACE | default "default" }}'
+  # Build output to upload; CI points previews at a downloaded artifact outside the checkout.
+  DIST_DIR: '{{ .DIST_DIR | default "../../public" }}'
   # The ~700 uploaded objects are tiny independent PUT/HEAD calls that
   # parallelise safely well beyond Terraform's default of 10.
   PARALLELISM: 30
@@ -101,7 +103,7 @@ tasks:
     cmds:
       - terraform init
       - terraform workspace select -or-create=true {{ .WORKSPACE }}
-      - terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
+      - terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }} -var="dist_dir={{ .DIST_DIR }}"
 
   ci:destroy:
     desc: Destroy a preview deployment for the given WORKSPACE (CI)
@@ -120,3 +122,25 @@ tasks:
         terraform destroy -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
         terraform workspace select default
         terraform workspace delete {{ .WORKSPACE }}
+
+  ci:preview:upload:
+    desc: Upload WORKER_DIR/worker.js as a version of the preview Worker with preview alias WORKSPACE (CI)
+    preconditions:
+      - sh: test "{{ .WORKSPACE }}" != "default"
+        msg: Production is deployed by Terraform, not as a preview version
+      - sh: test -f "{{ .WORKER_DIR }}/worker.js"
+        msg: "WORKER_DIR must contain the bundled worker.js"
+    requires:
+      vars: [WORKER_DIR]
+    cmds:
+      # The config comes from Terraform state, so the binding is always this
+      # workspace's own bucket. --no-bundle uploads worker.js as-is, and
+      # the binary is the lockfile-pinned one from the trusted checkout.
+      - terraform workspace select {{ .WORKSPACE }}
+      - terraform output -raw wrangler_config > "{{ .WORKER_DIR }}/wrangler.json"
+      - >-
+        ../../node_modules/.bin/wrangler versions upload
+        --config "{{ .WORKER_DIR }}/wrangler.json"
+        --preview-alias {{ .WORKSPACE }}
+        --no-bundle
+        --message "Preview for {{ .WORKSPACE }}"

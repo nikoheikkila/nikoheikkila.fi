@@ -8,6 +8,13 @@ resource "cloudflare_r2_bucket" "site" {
   location      = "EEUR"
   storage_class = "Standard"
   jurisdiction  = "eu"
+
+  lifecycle {
+    precondition {
+      condition     = contains(local.files, "index.html")
+      error_message = "Build output is missing — run `task build` at the repository root before deploying the site."
+    }
+  }
 }
 
 resource "aws_s3_object" "files" {

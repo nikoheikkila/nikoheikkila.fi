@@ -23,6 +23,12 @@ variable "worker_service_name" {
   default     = "blog"
 }
 
+variable "preview_worker_name" {
+  description = "Name of the shared preview Worker; each pull request is uploaded as a version with preview alias pr-<n>"
+  type        = string
+  default     = "blog-preview"
+}
+
 variable "dist_dir" {
   description = "Path to the built static site (Gatsby build output)"
   type        = string
