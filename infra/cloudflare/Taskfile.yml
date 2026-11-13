@@ -68,11 +68,13 @@ tasks:
 
   ci:plan:
     desc: Plan Terraform changes (CI)
+    vars:
+      LOCK: '{{ .LOCK | default "true" }}'
     generates:
       - "{{ .TFPLAN }}"
       - plan.txt
     cmds:
-      - terraform plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
+      - terraform plan -lock={{ .LOCK }} -out={{ .TFPLAN }} -var-file={{ .TFVARS }}
       - terraform show -no-color {{ .TFPLAN }} > plan.txt
 
   ci:deploy:
