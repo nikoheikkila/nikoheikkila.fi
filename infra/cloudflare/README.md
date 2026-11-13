@@ -117,14 +117,13 @@ View outputs with: `task run -- output` or `terraform output`
 
 ### Secrets Management
 
-All sensitive credentials are managed via **1Password**:
-- `CLOUDFLARE_API_TOKEN`: API token for Terraform provider
-- `AWS_ACCESS_KEY_ID`: R2 access key for state backend
-- `AWS_SECRET_ACCESS_KEY`: R2 secret key for state backend
+All sensitive credentials are managed via **1Password** and referenced from `.env.infra` in the
+repository root:
+- `CLOUDFLARE_API_TOKEN`: the infra API token for the Terraform provider
+- `AWS_ACCESS_KEY_ID`: R2 access key for the state backend
+- `AWS_SECRET_ACCESS_KEY`: R2 secret key for the state backend
 
-Secrets are referenced in `.env` file using 1Password CLI references.
-
-Commands are executed with: `op run --env-file="../.env" -- <command>`
+Commands are executed through `task run command='<terraform args>'`, which wraps them in `op run`.
 
 ## Common Tasks
 
@@ -161,18 +160,9 @@ task deploy
 ### Worker Deployment
 
 The CloudFlare Worker hosting the site is deployed by GitHub Actions for preview and production
-through the `../site/` module. To deploy manually from a local build:
+through the `../site/` module. Previews are CI-only. To deploy production manually from a local build:
 
 ```bash
-# Preview (workspace pr-<n>): uploads the bucket only; the Worker version is uploaded
-# by CI (`task ci:preview:upload` in ../site), whose token is limited to `blog-preview`
-task site:plan WORKSPACE=pr-123
-task site:deploy WORKSPACE=pr-123
-
-# Tear the preview down again
-task site:destroy WORKSPACE=pr-123
-
-# Production
 task site:deploy
 ```
 
@@ -181,5 +171,5 @@ task site:deploy
 **⚠️ Use this with CAUTION!** If Terraform state is locked:
 
 ```bash
-op run --env-file="../.env" -- terraform force-unlock <LOCK_ID>
+task run command='force-unlock <LOCK_ID>'
 ```

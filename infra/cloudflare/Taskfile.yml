@@ -2,7 +2,9 @@ version: "3"
 
 vars:
   TFPLAN: "tfplan"
-  OP_ARGS: "--env-file='../.env'"
+  # Infra credentials from the repository root. This module manages the Worker
+  # custom domain and the blog-preview Worker, which need the broader infra token.
+  OP_ARGS: "--env-file='../../.env.infra'"
   TFVARS: "../cloudflare.tfvars"
 
 tasks:

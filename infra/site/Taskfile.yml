@@ -2,9 +2,11 @@ version: "3"
 
 vars:
   TFPLAN: "tfplan"
-  OP_ARGS: "--env-file='../.env'"
   TFVARS: "../cloudflare.tfvars"
   WORKSPACE: '{{ .WORKSPACE | default "default" }}'
+  # Production credentials from the repository root. Previews are deployed and
+  # destroyed only by CI, with the preview environment's blog-preview-scoped token.
+  OP_ARGS: "--env-file='../../.env.prod'"
   # Build output to upload; CI points previews at a downloaded artifact outside the checkout.
   DIST_DIR: '{{ .DIST_DIR | default "../../public" }}'
   # The ~700 uploaded objects are tiny independent PUT/HEAD calls that
@@ -76,26 +78,6 @@ tasks:
       - task: run
         vars:
           command: "apply -parallelism={{ .PARALLELISM }} {{ .TFPLAN }}"
-
-  destroy:
-    desc: Destroy a preview deployment for the given WORKSPACE (local)
-    deps: [init, build]
-    preconditions:
-      - sh: test "{{ .WORKSPACE }}" != "default"
-        msg: Refusing to destroy the production deployment
-    cmds:
-      - task: run
-        vars:
-          command: "workspace select {{ .WORKSPACE }}"
-      - task: run
-        vars:
-          command: "destroy -parallelism={{ .PARALLELISM }} -var-file={{ .TFVARS }}"
-      - task: run
-        vars:
-          command: "workspace select default"
-      - task: run
-        vars:
-          command: "workspace delete {{ .WORKSPACE }}"
 
   ci:deploy:
     desc: Deploy the site for the given WORKSPACE (CI)
