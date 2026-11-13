@@ -94,6 +94,7 @@
     "sharp",
     "gatsby-sharp",
     "gatsby-transformer-sharp",
+    "lefthook",
     "gatsby-cli",
   ],
   "overrides": {

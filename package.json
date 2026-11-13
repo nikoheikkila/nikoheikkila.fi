@@ -108,17 +108,17 @@
 		"core-js",
 		"core-js-pure",
 		"es5-ext",
-		"gatsby-cli",
-		"sharp",
-		"lmdb",
 		"esbuild",
-		"msgpackr-extract",
 		"gatsby",
+		"gatsby-cli",
 		"gatsby-plugin-manifest",
 		"gatsby-plugin-sharp",
-		"gatsby-transformer-sharp",
 		"gatsby-sharp",
+		"gatsby-transformer-sharp",
+		"lefthook",
+		"lmdb",
+		"msgpackr-extract",
 		"re2",
-		"snyk"
+		"sharp"
 	]
 }
