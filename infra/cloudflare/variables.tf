@@ -50,3 +50,9 @@ variable "worker_service_name" {
   type        = string
   default     = "blog"
 }
+
+variable "preview_worker_name" {
+  description = "Name of the shared preview Worker; must match preview_worker_name in ../site"
+  type        = string
+  default     = "blog-preview"
+}
