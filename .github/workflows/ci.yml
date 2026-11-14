@@ -49,6 +49,31 @@ jobs:
       - name: Run unit tests
         run: task test:unit
 
+  workflow_audit:
+    name: Audit Workflows
+    # Uploading SARIF needs `security-events: write`, which fork and Dependabot
+    # pull requests never get.
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Required to check out the repository
+      security-events: write # Required to upload SARIF results to Advanced Security
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run Zizmor
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          persona: auditor
+          config: .github/zizmor.yml
+          advanced-security: true
+
   component_tests:
     name: Component Tests (${{ matrix.browser }})
     runs-on: ubuntu-latest
