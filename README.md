@@ -31,7 +31,7 @@ Run a single layer with `task test:unit`, `task test:component`, `task test:muta
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment. Pushes to main deploy the infrastructure, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
 
 Every Terraform run goes through one reusable workflow:
 

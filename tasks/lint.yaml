@@ -39,5 +39,8 @@ tasks:
       - .github/workflows
       - .github/actions
       - .github/zizmor.yml
+    env:
+      GITHUB_TOKEN:
+        sh: gh auth token
     cmds:
       - zizmor --persona=auditor .github/

@@ -55,7 +55,7 @@ tasks:
 
   lint:
     desc: Lint codebase for style issues
-    deps: [lint:style, lint:types]
+    deps: [lint:style, lint:types, lint:actions]
 
   test:
     desc: Run application test suite

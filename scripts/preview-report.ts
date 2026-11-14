@@ -2,7 +2,8 @@
 
 /**
  * Reports the outcome of a pull request's preview deployment as a single,
- * sticky PR comment.
+ * sticky PR comment and a `Preview Deployment` commit status on the PR head,
+ * which branch protection can require.
  *
  * Runs as the `report` job of `.github/workflows/preview.yml`, a `workflow_run`
  * workflow triggered after `CI` completes, which also deploys the preview. That indirection exists so PRs
@@ -19,20 +20,22 @@
  * real deployment cannot succeed for them).
  */
 import {
+	type CommitStatus,
 	type DeploymentMetadata,
 	type DeploymentOutcome,
+	type DeploymentReport,
 	type IssueComment,
 	type PreviewUrlExpectation,
 	type PullRequestAssociation,
 	type WorkflowJob,
 	DEFAULT_PREVIEW_WORKER_NAME,
 	DEFAULT_WORKERS_DEV_SUBDOMAIN,
-	buildExpectedPreviewOrigin,
+	buildCommitStatus,
 	buildFailureCommentBody,
 	buildSuccessCommentBody,
 	classifyConclusion,
+	describeDeployment,
 	findDeploymentJob,
-	findFailedStep,
 	findStickyComment,
 	isSameRepository,
 	parseStoredMetadata,
@@ -148,6 +151,12 @@ const updateIssueComment = ({ token, owner, repo }: Repository, commentId: numbe
 		body: JSON.stringify({ body }),
 	});
 
+const createCommitStatus = ({ token, owner, repo }: Repository, sha: string, status: CommitStatus) =>
+	githubFetch(token, `/repos/${owner}/${repo}/statuses/${sha}`, {
+		method: "POST",
+		body: JSON.stringify(status),
+	});
+
 const writeStickyComment = async (
 	repository: Repository,
 	prNumber: number,
@@ -225,25 +234,32 @@ const findOpenPullRequest = async ({
 };
 
 const buildComment = (
-	context: RunContext,
-	outcome: DeploymentOutcome,
-	deployJob: WorkflowJob | undefined,
-	prNumber: number,
+	{ runId, runAttempt, runNumber, headSha }: RunContext,
+	{ outcome, previewUrl, jobUrl, stepName }: DeploymentReport,
 ): { body: string; metadata: DeploymentMetadata } => {
-	const { repository, runId, runAttempt, runNumber, headSha, expectation } = context;
-	const jobUrl =
-		deployJob?.html_url ?? `https://github.com/${repository.owner}/${repository.repo}/actions/runs/${runId}`;
 	const metadata: DeploymentMetadata = { runId: Number(runId), runNumber, runAttempt: Number(runAttempt) };
 
 	if (outcome === "success") {
-		const url = buildExpectedPreviewOrigin(prNumber, expectation);
-
-		return { body: buildSuccessCommentBody({ url, headSha, jobUrl, metadata }), metadata };
+		return { body: buildSuccessCommentBody({ url: previewUrl, headSha, jobUrl, metadata }), metadata };
 	}
 
-	const stepName = (deployJob && findFailedStep(deployJob)) ?? deployJob?.name ?? "Deploy to Preview";
-
 	return { body: buildFailureCommentBody({ stepName, headSha, jobUrl, metadata }), metadata };
+};
+
+const publishReport = async (context: RunContext, report: DeploymentReport, prNumber: number): Promise<void> => {
+	const { body, metadata } = buildComment(context, report);
+
+	// Statuses are keyed by commit, so they need no ordering guard. Both writes run even if one fails.
+	const results = await Promise.allSettled([
+		createCommitStatus(context.repository, context.headSha, buildCommitStatus(report)),
+		writeStickyComment(context.repository, prNumber, body, metadata),
+	]);
+	const failed = results.find((result) => result.status === "rejected");
+	if (failed) {
+		throw failed.reason;
+	}
+
+	console.log(`Reported preview deployment ${report.outcome} for pull request #${prNumber}.`);
 };
 
 /**
@@ -294,10 +310,10 @@ const main = async (): Promise<void> => {
 		return;
 	}
 
-	const { body, metadata } = buildComment(context, outcome, deployJob, prNumber);
+	const runUrl = `https://github.com/${repository.owner}/${repository.repo}/actions/runs/${context.runId}`;
+	const report = describeDeployment({ outcome, deployJob, prNumber, expectation: context.expectation, runUrl });
 
-	await writeStickyComment(repository, prNumber, body, metadata);
-	console.log(`Reported preview deployment ${outcome} for pull request #${prNumber}.`);
+	await publishReport(context, report, prNumber);
 };
 
 main().catch((error: unknown) => {

@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
 	type DeploymentMetadata,
+	type DeploymentReport,
 	type IssueComment,
 	type PullRequestAssociation,
 	type WorkflowJob,
@@ -10,10 +11,12 @@ import {
 	META_PREFIX,
 	META_SUFFIX,
 	STATUS_MARKER,
+	buildCommitStatus,
 	buildExpectedPreviewOrigin,
 	buildFailureCommentBody,
 	buildSuccessCommentBody,
 	classifyConclusion,
+	describeDeployment,
 	escapeInlineCode,
 	findDeploymentJob,
 	findFailedStep,
@@ -31,10 +34,12 @@ const expectation = {
 const previewUrl = (prNumber: number): string =>
 	`https://pr-${prNumber}-${DEFAULT_PREVIEW_WORKER_NAME}.${DEFAULT_WORKERS_DEV_SUBDOMAIN}.workers.dev`;
 
+const runUrl = "https://github.com/nikoheikkila/nikoheikkila.fi/actions/runs/1";
+
 const job = (overrides: Partial<WorkflowJob> = {}): WorkflowJob => ({
 	name: "Deploy to Preview",
 	conclusion: "success",
-	html_url: "https://github.com/nikoheikkila/nikoheikkila.fi/actions/runs/1/job/1",
+	html_url: `${runUrl}/job/1`,
 	steps: [],
 	...overrides,
 });
@@ -393,5 +398,81 @@ describe("shouldReplace", () => {
 		expect(shouldReplace(metadata({ runNumber: 10, runAttempt: 1 }), metadata({ runNumber: 10, runAttempt: 1 }))).toBe(
 			true,
 		);
+	});
+});
+
+describe("describeDeployment", () => {
+	test("links the preview derived from the pull request number and the deployment job", () => {
+		expect(
+			describeDeployment({ outcome: "success", deployJob: job(), prNumber: 42, expectation, runUrl }),
+		).toStrictEqual({
+			outcome: "success",
+			previewUrl: previewUrl(42),
+			jobUrl: job().html_url,
+			stepName: "Deploy to Preview",
+		});
+	});
+
+	test("names the failed step of the deployment job", () => {
+		const deployJob = job({ conclusion: "failure", steps: [{ name: "Upload Assets", conclusion: "failure" }] });
+
+		expect(describeDeployment({ outcome: "failure", deployJob, prNumber: 42, expectation, runUrl })).toMatchObject({
+			stepName: "Upload Assets",
+		});
+	});
+
+	test("falls back to the job name when no step failed", () => {
+		const deployJob = job({ name: "Deploy to Preview / Terraform", conclusion: "failure" });
+
+		expect(describeDeployment({ outcome: "failure", deployJob, prNumber: 42, expectation, runUrl })).toMatchObject({
+			stepName: "Deploy to Preview / Terraform",
+		});
+	});
+
+	test("falls back to the workflow run when the deployment job is missing", () => {
+		expect(
+			describeDeployment({ outcome: "failure", deployJob: undefined, prNumber: 42, expectation, runUrl }),
+		).toMatchObject({ jobUrl: runUrl, stepName: "Deploy to Preview" });
+	});
+});
+
+describe("buildCommitStatus", () => {
+	const report = (overrides: Partial<DeploymentReport> = {}): DeploymentReport => ({
+		outcome: "success",
+		previewUrl: previewUrl(42),
+		jobUrl: job().html_url,
+		stepName: "Upload Assets",
+		...overrides,
+	});
+
+	test("a successful deployment links to the preview", () => {
+		expect(buildCommitStatus(report())).toStrictEqual({
+			state: "success",
+			target_url: previewUrl(42),
+			description: "Preview deployed",
+			context: "Preview Deployment",
+		});
+	});
+
+	test("a failed deployment links to the logs and names the failed step", () => {
+		expect(buildCommitStatus(report({ outcome: "failure" }))).toStrictEqual({
+			state: "failure",
+			target_url: job().html_url,
+			description: "Failed during Upload Assets",
+			context: "Preview Deployment",
+		});
+	});
+
+	test("a multiline step name is collapsed to a single line", () => {
+		expect(buildCommitStatus(report({ outcome: "failure", stepName: "Upload\nAssets" })).description).toBe(
+			"Failed during Upload Assets",
+		);
+	});
+
+	test("a long step name is truncated to the GitHub description limit", () => {
+		const { description } = buildCommitStatus(report({ outcome: "failure", stepName: "x".repeat(500) }));
+
+		expect(description).toHaveLength(140);
+		expect(description.endsWith("…")).toBe(true);
 	});
 });

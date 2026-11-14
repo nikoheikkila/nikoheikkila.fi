@@ -97,6 +97,7 @@ jobs:
       contents: read # Required to check out the repository
       actions: read # Required to read the CI and deployment run status
       pull-requests: write # Required to update the sticky preview comment
+      statuses: write # Required to set the Preview Deployment commit status on the pull request head
 
     steps:
       - name: Checkout repository

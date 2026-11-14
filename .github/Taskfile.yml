@@ -4,6 +4,6 @@ version: "3"
 # developer machine — keeping them in their own namespace makes that explicit.
 tasks:
   report:
-    desc: Report a pull request's preview deployment status as a sticky PR comment (CI only)
+    desc: Report a pull request's preview deployment status as a sticky PR comment and a commit status (CI only)
     cmds:
       - bun run scripts/preview-report.ts

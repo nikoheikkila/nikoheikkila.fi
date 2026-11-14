@@ -14,9 +14,14 @@ export const BOT_LOGIN = "github-actions[bot]";
 // Must match infra/site/variables.tf's preview_worker_name / workers_dev_subdomain defaults.
 export const DEFAULT_PREVIEW_WORKER_NAME = "blog-preview";
 export const DEFAULT_WORKERS_DEV_SUBDOMAIN = "yo-062";
+// The commit status name to mark as required in the branch protection rules.
+export const COMMIT_STATUS_CONTEXT = "Preview Deployment";
+// GitHub rejects commit status descriptions longer than this.
+const MAX_COMMIT_STATUS_DESCRIPTION_LENGTH = 140;
 const MAX_STEP_NAME_LENGTH = 200;
 
 export type DeploymentOutcome = "skip" | "success" | "failure";
+export type ReportableOutcome = Exclude<DeploymentOutcome, "skip">;
 
 export interface JobStep {
 	name: string;
@@ -57,6 +62,21 @@ export interface DeploymentMetadata {
 export interface PreviewUrlExpectation {
 	previewWorkerName: string;
 	workersDevSubdomain: string;
+}
+
+/** Facts about a finished deployment shared by the sticky comment and the commit status. */
+export interface DeploymentReport {
+	outcome: ReportableOutcome;
+	previewUrl: string;
+	jobUrl: string;
+	stepName: string;
+}
+
+export interface CommitStatus {
+	state: ReportableOutcome;
+	target_url: string;
+	description: string;
+	context: string;
 }
 
 /** Skip: no genuine deployment attempt happened. Anything else is reportable. */
@@ -101,14 +121,15 @@ export const resolvePullRequestForCommit = (
 export const buildExpectedPreviewOrigin = (prNumber: number, expectation: PreviewUrlExpectation): string =>
 	`https://pr-${prNumber}-${expectation.previewWorkerName}.${expectation.workersDevSubdomain}.workers.dev`;
 
-/** Neutralises Markdown/HTML breakout characters in untrusted job/step names. */
-export const escapeInlineCode = (text: string): string => {
-	const singleLine = text.replace(/[\r\n]+/gu, " ").trim();
-	const truncated =
-		singleLine.length > MAX_STEP_NAME_LENGTH ? `${singleLine.slice(0, MAX_STEP_NAME_LENGTH)}…` : singleLine;
+const toSingleLine = (text: string): string => text.replace(/[\r\n]+/gu, " ").trim();
 
-	return truncated.replace(/`/gu, "'") || DEPLOY_JOB_NAME;
-};
+/** Keeps the first `maxLength` characters, marking a cut with a trailing ellipsis. */
+const truncate = (text: string, maxLength: number): string =>
+	text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
+
+/** Neutralises Markdown/HTML breakout characters in untrusted job/step names. */
+export const escapeInlineCode = (text: string): string =>
+	truncate(toSingleLine(text), MAX_STEP_NAME_LENGTH).replace(/`/gu, "'") || DEPLOY_JOB_NAME;
 
 export const findFailedStep = (job: WorkflowJob): string | undefined =>
 	job.steps.find((step) => step.conclusion !== null && step.conclusion !== "success" && step.conclusion !== "skipped")
@@ -147,6 +168,36 @@ export const buildFailureCommentBody = (params: {
 		"",
 		`${META_PREFIX}${JSON.stringify(params.metadata)}${META_SUFFIX}`,
 	].join("\n");
+
+export const describeDeployment = (params: {
+	outcome: ReportableOutcome;
+	deployJob: WorkflowJob | undefined;
+	prNumber: number;
+	expectation: PreviewUrlExpectation;
+	runUrl: string;
+}): DeploymentReport => ({
+	outcome: params.outcome,
+	previewUrl: buildExpectedPreviewOrigin(params.prNumber, params.expectation),
+	jobUrl: params.deployJob?.html_url ?? params.runUrl,
+	stepName: (params.deployJob && findFailedStep(params.deployJob)) ?? params.deployJob?.name ?? DEPLOY_JOB_NAME,
+});
+
+/**
+ * The status GitHub shows on the pull request head commit. `workflow_run` checks
+ * attach to `main`, so this is the only signal branch protection can require.
+ */
+export const buildCommitStatus = ({ outcome, previewUrl, jobUrl, stepName }: DeploymentReport): CommitStatus => {
+	const succeeded = outcome === "success";
+	// One character is reserved for the ellipsis `truncate` appends.
+	const failure = truncate(`Failed during ${toSingleLine(stepName)}`, MAX_COMMIT_STATUS_DESCRIPTION_LENGTH - 1);
+
+	return {
+		state: outcome,
+		target_url: succeeded ? previewUrl : jobUrl,
+		description: succeeded ? "Preview deployed" : failure,
+		context: COMMIT_STATUS_CONTEXT,
+	};
+};
 
 export const findStickyComment = (comments: IssueComment[]): IssueComment | undefined =>
 	comments.find((comment) => comment.user?.login === BOT_LOGIN && comment.body.includes(STATUS_MARKER));
