@@ -2,12 +2,12 @@
 # Manages zone, DNS, R2 storage, and Workers custom domains
 
 terraform {
-  required_version = ">= 1.13.5, < 2.0.0"
+  required_version = "1.17.2"
 
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5.0"
+      version = "5.28.1"
     }
   }
 
