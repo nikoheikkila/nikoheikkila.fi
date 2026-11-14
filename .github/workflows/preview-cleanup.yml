@@ -10,14 +10,18 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: preview-cleanup-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
 jobs:
   resolve:
     name: Resolve Pull Request
     runs-on: ubuntu-latest
     if: github.event.workflow_run.event == 'pull_request'
     permissions:
-      contents: read
-      pull-requests: read
+      contents: read # Required to call the API for commit metadata
+      pull-requests: read # Required to resolve the closed pull request
     outputs:
       number: ${{ steps.pr.outputs.number }}
 
@@ -50,7 +54,7 @@ jobs:
     concurrency:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
-    uses: ./.github/workflows/terraform.yml
+    uses: $/.github/workflows/terraform.yml
     with:
       module: site
       operation: destroy
@@ -69,7 +73,7 @@ jobs:
     if: needs.resolve.outputs.number != ''
     runs-on: ubuntu-latest
     permissions:
-      actions: write
+      actions: write # Required to delete the pull request's caches
 
     steps:
       - name: Delete caches scoped to this pull request

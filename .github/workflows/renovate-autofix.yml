@@ -62,13 +62,13 @@ jobs:
 
       - name: Setup environment
         if: steps.guard.outputs.skip != 'true'
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       # LEFTHOOK=0 stops `bun install` from registering git hooks that would run
       # the full test suite on Claude's push.
       - name: Install dependencies
         if: steps.guard.outputs.skip != 'true'
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
         env:
           LEFTHOOK: "0"
 

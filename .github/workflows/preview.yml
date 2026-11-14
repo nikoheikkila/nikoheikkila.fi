@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: preview-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
 jobs:
   resolve:
     name: Resolve Pull Request
@@ -17,8 +21,8 @@ jobs:
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
-      contents: read
-      pull-requests: read
+      contents: read # Required to call the API for commit metadata
+      pull-requests: read # Required to resolve the pull request of the CI run
     outputs:
       number: ${{ steps.pr.outputs.number }}
 
@@ -49,9 +53,9 @@ jobs:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
     permissions:
-      contents: read
-      actions: read
-    uses: ./.github/workflows/terraform.yml
+      contents: read # Required to check out the repository
+      actions: read # Required to download artifacts of the CI run
+    uses: $/.github/workflows/terraform.yml
     with:
       module: site
       operation: deploy
@@ -90,9 +94,9 @@ jobs:
       group: preview-comment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
       cancel-in-progress: false
     permissions:
-      contents: read
-      actions: read
-      pull-requests: write
+      contents: read # Required to check out the repository
+      actions: read # Required to read the CI and deployment run status
+      pull-requests: write # Required to update the sticky preview comment
 
     steps:
       - name: Checkout repository
@@ -101,7 +105,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Report preview deployment
         env:

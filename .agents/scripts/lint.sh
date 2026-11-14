@@ -76,7 +76,7 @@ sh | bash)
 esac
 
 if [[ "$EXT" == "yml" || "$EXT" == "yaml" ]] && [[ "$DIR" == *".github/workflows"* ]]; then
-	run_check actionlint "$FILE_PATH"
+	run_check zizmor --persona=auditor "$FILE_PATH"
 fi
 
 # Detect shell scripts without an extension via shebang

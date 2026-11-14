@@ -40,6 +40,11 @@ on:
         description: The deployed site's URL (site/deploy only)
         value: ${{ jobs.terraform.outputs.url }}
 
+# Least privilege; callers may grant more (e.g. `actions: read` to download
+# artifacts of another run), never less than this.
+permissions:
+  contents: read
+
 jobs:
   terraform:
     name: Terraform
@@ -79,7 +84,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4
@@ -165,7 +170,7 @@ jobs:
 
       - name: Install dependencies
         if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
 
       - name: Upload preview version
         if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
