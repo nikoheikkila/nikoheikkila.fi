@@ -68,8 +68,10 @@ export const classifyConclusion = (conclusion: string | null | undefined): Deplo
 	return conclusion === "success" ? "success" : "failure";
 };
 
+// The deploy calls a reusable workflow, whose job GitHub reports as "<caller> / <callee>";
+// a skipped call keeps the bare caller name.
 export const findDeploymentJob = (jobs: WorkflowJob[]): WorkflowJob | undefined =>
-	jobs.find((job) => job.name === DEPLOY_JOB_NAME);
+	jobs.find((job) => job.name === DEPLOY_JOB_NAME || job.name.startsWith(`${DEPLOY_JOB_NAME} / `));
 
 export const isSameRepository = (a: string, b: string): boolean => a.toLowerCase() === b.toLowerCase();
 

@@ -1,65 +1,102 @@
 name: Terraform
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "infra/cloudflare/**"
-  push:
-    branches:
-      - main
-    paths:
-      - "infra/cloudflare/**"
-  workflow_dispatch:
-
-permissions:
-  contents: read
+  workflow_call:
+    inputs:
+      module:
+        description: Root module under infra/ (cloudflare | site)
+        type: string
+        required: true
+      operation:
+        description: plan (cloudflare only) | deploy | destroy (site only)
+        type: string
+        required: true
+      environment:
+        description: GitHub environment holding the credentials (empty for plan)
+        type: string
+        default: ""
+      workspace:
+        description: Terraform workspace of infra/site (default = production, pr-<n> = preview)
+        type: string
+        default: default
+      artifacts-run-id:
+        description: Run to download the build artifacts from (empty = the calling run)
+        type: string
+        default: ""
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: false
+      CLOUDFLARE_R2_ACCESS_KEY_ID:
+        required: false
+      CLOUDFLARE_R2_ACCESS_KEY_SECRET:
+        required: false
+      CLOUDFLARE_INFRA_API_TOKEN:
+        required: false
+    outputs:
+      url:
+        description: The deployed site's URL (site/deploy only)
+        value: ${{ jobs.terraform.outputs.url }}
 
 jobs:
-  plan:
-    name: Terraform Plan
+  terraform:
+    name: Terraform
     runs-on: ubuntu-latest
-    # Runs PR code on pull requests, so it only ever gets read-only credentials:
-    # a read-only API token and an R2 key that can only read the state bucket.
-    # Without write access to state the plan cannot take the lock. A plan made
-    # without the lock is still safe to apply: if state changed in the meantime,
-    # the apply rejects the saved plan as stale.
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ steps.output.outputs.url }}
+    outputs:
+      url: ${{ steps.output.outputs.url }}
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.R2_STATE_READ_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_STATE_READ_SECRET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_READ_API_TOKEN }}
+      # `cloudflare_workers_custom_domain` only accepts account-wide Workers
+      # Scripts Write, so deploying infra/cloudflare uses the broader `prod` token.
+      # The read-only plan has no environment, so it falls back to the token its
+      # caller passes; the site keeps its per-Worker token.
+      CLOUDFLARE_API_TOKEN: ${{ inputs.module == 'cloudflare' && secrets.CLOUDFLARE_INFRA_API_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+      WORKSPACE: ${{ inputs.workspace }}
+      TARGET: ${{ inputs.module }}/${{ inputs.operation }}
 
     steps:
-      - name: Checkout code
+      - name: Reject unsupported module and operation
+        if: ${{ !contains(fromJSON('["cloudflare/plan", "cloudflare/deploy", "site/deploy", "site/destroy"]'), env.TARGET) }}
+        run: |
+          echo "::error::Unsupported module/operation: $TARGET"
+          exit 1
+
+      - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4
         with:
           terraform_version: v1.17.1
+          terraform_wrapper: false
 
       - name: Cache Terraform providers
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ~/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-terraform-providers-${{ hashFiles('infra/cloudflare/.terraform.lock.hcl') }}
+          key: ${{ runner.os }}-terraform-providers-${{ inputs.module }}-${{ hashFiles(format('infra/{0}/.terraform.lock.hcl', inputs.module)) }}
 
       - name: Enable Terraform provider cache
         run: |
           mkdir -p ~/.terraform.d/plugin-cache
           echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >> "$GITHUB_ENV"
 
-      - name: Install Task
-        uses: go-task/setup-task@a00fbb05ce67b35648be3c78cbc9fd85354c757e # v2
+      - name: Plan infrastructure
+        if: env.TARGET == 'cloudflare/plan'
+        run: |
+          task terraform:ci:init
+          task terraform:ci:plan LOCK=false
 
-      - name: Terraform Init
-        run: task terraform:ci:init
-
-      - name: Terraform Plan
-        run: task terraform:ci:plan LOCK=false
-
-      - name: Upload Plan to Summary
+      - name: Publish plan to summary
+        if: env.TARGET == 'cloudflare/plan'
         working-directory: infra/cloudflare
         run: |
           {
@@ -70,58 +107,69 @@ jobs:
             echo "\`\`\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload Terraform Plan
+      # The binary plan holds sensitive values unmasked, and only the
+      # cloudflare/deploy on main consumes it, so pull requests never publish it as an artifact.
+      - name: Upload plan
+        if: env.TARGET == 'cloudflare/plan' && github.event_name != 'pull_request'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: tfplan
           path: infra/cloudflare/tfplan
           retention-days: 1
 
-  deploy:
-    name: Terraform Deploy
-    runs-on: ubuntu-latest
-    needs: plan
-    if: github.event_name == 'push' && github.ref_name == 'main'
-    # Write credentials live only in the `prod` environment, which admits `main` only.
-    environment: prod
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
-      # A separate, broader token: `cloudflare_workers_custom_domain` only accepts
-      # account-wide Workers Scripts Write. The site deploy keeps its `blog`-only token.
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_INFRA_API_TOKEN }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4
-        with:
-          terraform_version: v1.17.1
-
-      - name: Cache Terraform providers
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
-        with:
-          path: ~/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-terraform-providers-${{ hashFiles('infra/cloudflare/.terraform.lock.hcl') }}
-
-      - name: Enable Terraform provider cache
-        run: |
-          mkdir -p ~/.terraform.d/plugin-cache
-          echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >> "$GITHUB_ENV"
-
-      - name: Install Task
-        uses: go-task/setup-task@a00fbb05ce67b35648be3c78cbc9fd85354c757e # v2
-
-      - name: Download Terraform Plan
+      - name: Download plan
+        if: env.TARGET == 'cloudflare/deploy'
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: tfplan
           path: infra/cloudflare/
 
-      - name: Terraform Init
-        run: task terraform:ci:init
+      - name: Deploy infrastructure
+        if: env.TARGET == 'cloudflare/deploy'
+        run: |
+          task terraform:ci:init
+          task terraform:ci:deploy
 
-      - name: Run Terraform Deploy
-        run: task terraform:ci:deploy
+      - name: Download static assets
+        if: env.TARGET == 'site/deploy'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: static-assets
+          path: ${{ runner.temp }}/site
+          run-id: ${{ inputs.artifacts-run-id }}
+          github-token: ${{ inputs.artifacts-run-id && github.token || '' }}
+
+      - name: Deploy site
+        if: env.TARGET == 'site/deploy'
+        env:
+          DIST_DIR: ${{ runner.temp }}/site
+        run: task site:ci:deploy WORKSPACE="$WORKSPACE" DIST_DIR="$DIST_DIR"
+
+      - name: Download preview Worker
+        if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: preview-worker
+          path: ${{ runner.temp }}/worker
+          run-id: ${{ inputs.artifacts-run-id }}
+          github-token: ${{ inputs.artifacts-run-id && github.token || '' }}
+
+      - name: Install dependencies
+        if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
+        uses: ./.github/actions/install-dependencies
+
+      - name: Upload preview version
+        if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
+        env:
+          WORKER_DIR: ${{ runner.temp }}/worker
+        run: task site:ci:preview:upload WORKSPACE="$WORKSPACE" WORKER_DIR="$WORKER_DIR"
+
+      - name: Read deployment URL
+        if: env.TARGET == 'site/deploy'
+        id: output
+        working-directory: infra/site
+        run: echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"
+
+      - name: Destroy site
+        if: env.TARGET == 'site/destroy'
+        run: task site:ci:destroy WORKSPACE="$WORKSPACE"

@@ -31,11 +31,11 @@ Run a single layer with `task test:unit`, `task test:component`, `task test:muta
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: unit tests, component tests on three browsers, mutation tests plus a build run in parallel; the build feeds acceptance tests on three browsers; once all pass, pull requests hand off to the separate Preview workflow, which deploys the preview using only code from main, and pushes to main deploy production, each followed by a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment. Pushes to main deploy the infrastructure, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
 
-Infrastructure changes with Terraform follow a separate workflow:
+Every Terraform run goes through one reusable workflow:
 
-![Terraform Pipeline: pull requests, pushes to main and manual runs plan the change (setup, init and validate, plan, publish summary and artifact); only pushes to main continue to download the plan and apply it.](docs/terraform-flow.svg)
+![Terraform Workflow: called by the CI, Preview and Preview Cleanup workflows; every call checks out the code and sets up Node, Bun, Task and Terraform, then plans, deploys or destroys one module: plan the core infrastructure with read-only credentials on every CI run, deploy that plan in the prod environment on main, deploy the site to production or a pull request preview, or destroy a preview when its pull request closes.](docs/terraform-flow.svg)
 
 ## 👤 Author
 

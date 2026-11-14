@@ -1,7 +1,5 @@
 name: Renovate Auto-Fix
 
-# Invokes the reusable Claude fix workflow when CI fails on a Renovate pull request.
-# `workflow_run` always executes from the default branch.
 on:
   workflow_run:
     workflows: ["CI"]
@@ -12,9 +10,8 @@ permissions:
 
 jobs:
   fix:
-    name: Fix Failing Renovate PR
-    # Same-repo Renovate branches only. CI runs triggered by Claude's own pushes
-    # have a different actor, so they never re-enter this workflow.
+    name: Fix Failing CI with Claude
+    runs-on: ubuntu-latest
     if: >-
       github.event.workflow_run.conclusion == 'failure' &&
       github.event.workflow_run.event == 'pull_request' &&
@@ -22,16 +19,148 @@ jobs:
       startsWith(github.event.workflow_run.head_branch, 'renovate/') &&
       github.event.workflow_run.head_repository.full_name == github.repository &&
       github.event.workflow_run.pull_requests[0] != null
+    concurrency:
+      group: claude-fix-ci-${{ github.event.workflow_run.pull_requests[0].number }}
+      cancel-in-progress: false
     permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
-      actions: read
-    uses: ./.github/workflows/claude-fix-ci.yml
-    with:
-      run-id: ${{ github.event.workflow_run.id }}
-      pr-number: ${{ github.event.workflow_run.pull_requests[0].number }}
-      head-branch: ${{ github.event.workflow_run.head_branch }}
-      head-sha: ${{ github.event.workflow_run.head_sha }}
-    secrets:
-      claude-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      contents: write # Required for Claude to push commits
+      pull-requests: write # Required for Claude to comment on PRs
+      id-token: write # Required for Claude Code OIDC authentication
+      actions: read # Required for reading workflow run logs
+    env:
+      GH_REPO: ${{ github.repository }}
+      RUN_ID: ${{ github.event.workflow_run.id }}
+      PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+      HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - name: Check whether a fix attempt is needed
+        id: guard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          read -r current_sha author < <(
+            gh api "repos/${GH_REPO}/commits/${HEAD_BRANCH}" --jq '[.sha, .commit.author.name] | @tsv'
+          )
+          if [[ "$current_sha" != "$HEAD_SHA" ]]; then
+            echo "Branch moved from ${HEAD_SHA} to ${current_sha}; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$author" == "claude[bot]" || "$author" == "claude" ]]; then
+            echo "Head commit is already authored by Claude; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        if: steps.guard.outputs.skip != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.HEAD_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup environment
+        if: steps.guard.outputs.skip != 'true'
+        uses: ./.github/actions/setup-environment
+
+      # LEFTHOOK=0 stops `bun install` from registering git hooks that would run
+      # the full test suite on Claude's push.
+      - name: Install dependencies
+        if: steps.guard.outputs.skip != 'true'
+        uses: ./.github/actions/install-dependencies
+        env:
+          LEFTHOOK: "0"
+
+      - name: Collect failure context
+        if: steps.guard.outputs.skip != 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "${RUNNER_TEMP}/ci-failure"
+          gh run view "$RUN_ID" --json jobs \
+            --jq '.jobs[] | select(.conclusion == "failure") | "- \(.name): \(.url)"' \
+            > "${RUNNER_TEMP}/ci-failure/jobs.md"
+          gh run view "$RUN_ID" --log-failed > "${RUNNER_TEMP}/ci-failure/failed.log"
+
+      - name: Run Claude Code
+        id: claude
+        if: steps.guard.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@4fa93a88de49bbef68b10eb15aabedf28ca0e1ed # v1.0.271
+        timeout-minutes: 60
+        env:
+          LEFTHOOK: "0"
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          allowed_bots: renovate[bot]
+          additional_permissions: |
+            actions: read
+          claude_args: |
+            --allowedTools "Read,Edit,Write,Glob,Grep,Bash"
+            --json-schema '{
+              "type": "object",
+              "properties": {
+                "fixed": {"type": "boolean"},
+                "root_cause": {"type": "string"},
+                "summary": {"type": "string"},
+                "verification": {"type": "string"},
+                "commit_sha": {"type": "string"}
+              },
+              "required": ["fixed", "root_cause", "summary", "commit_sha"]
+            }'
+          prompt: |
+            CI failed on pull request #${{ env.PR_NUMBER }} (branch `${{ env.HEAD_BRANCH }}`).
+            Failed run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ env.RUN_ID }}
+            Failed jobs: ${{ runner.temp }}/ci-failure/jobs.md
+            Failed job logs (may be large; search them rather than reading whole): ${{ runner.temp }}/ci-failure/failed.log
+
+            1. Run `task -a` to list all tasks. Find the root cause from the logs and reproduce
+               it with the matching task.
+            2. Make the smallest fix. Prefer adapting code to the updated dependency over
+               pinning or downgrading it. Follow CLAUDE.md. Never edit `content/`, `infra/`,
+               `.github/workflows/`, or generated files.
+            3. If the failure is infrastructural, flaky, or secret-related (deploy, Lighthouse,
+               network), or cannot be fixed safely, make no commit and return `fixed: false`.
+            4. Otherwise verify the fix, make one conventional commit (header up to 100 chars,
+               e.g. `fix(deps): adapt to <package> <version>`) and run
+               `git push origin HEAD:${{ env.HEAD_BRANCH }}`. Never force-push or rebase.
+            5. Return the structured result; `commit_sha` is the full 40-character SHA of the
+               commit you pushed, or an empty string if you made none. Do not comment on the
+               PR yourself.
+
+      - name: Comment on pull request
+        if: ${{ !cancelled() && steps.guard.outputs.skip != 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESULT: ${{ steps.claude.outputs.structured_output }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Claude's own report is not proof: the push may have been rejected.
+          # Pushed means: the reported commit descends from the failed commit and is
+          # reachable from the branch. Any API failure counts as not pushed.
+          valid=false
+          if [[ -n "$RESULT" ]] && jq -e 'type == "object"' <<< "$RESULT" > /dev/null 2>&1; then
+            valid=true
+          fi
+          pushed=false
+          commit_sha=$(jq -r '.commit_sha // empty' <<< "${RESULT:-null}" 2>/dev/null || true)
+          if [[ "$commit_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            descends=$(gh api "repos/${GH_REPO}/compare/${HEAD_SHA}...${commit_sha}" --jq '.status' 2>/dev/null || true)
+            on_branch=$(gh api "repos/${GH_REPO}/compare/${commit_sha}...${HEAD_BRANCH}" --jq '.status' 2>/dev/null || true)
+            if [[ "$descends" == "ahead" && ( "$on_branch" == "ahead" || "$on_branch" == "identical" ) ]]; then
+              pushed=true
+            fi
+          fi
+          {
+            if [[ "$valid" == "true" ]] && jq -e '.fixed == true' <<< "$RESULT" > /dev/null && [[ "$pushed" == "true" ]]; then
+              jq -r '"🤖 **Claude pushed a fix** (`\(.commit_sha // "unknown")`)\n\n**Root cause:** \(.root_cause)\n\n**Fix:** \(.summary)\n\n**Verification:** \(.verification // "n/a")"' <<< "$RESULT"
+            elif [[ "$valid" == "true" ]]; then
+              [[ "$pushed" == "true" ]] || echo "No new commit reached the branch."
+              jq -r '"🤖 **Claude could not fix this automatically.**\n\n**Root cause:** \(.root_cause)\n\n\(.summary)"' <<< "$RESULT"
+            else
+              echo "🤖 **Claude could not complete the fix attempt.** See the workflow run for details."
+            fi
+            printf '\n[Workflow run](%s)\n' "$RUN_URL"
+          } > "${RUNNER_TEMP}/comment.md"
+          gh pr comment "$PR_NUMBER" --body-file "${RUNNER_TEMP}/comment.md"
