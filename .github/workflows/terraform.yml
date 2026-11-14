@@ -133,7 +133,7 @@ jobs:
 
       - name: Download plan
         if: env.TARGET == 'cloudflare/deploy'
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: tfplan
           path: infra/cloudflare/
@@ -146,7 +146,7 @@ jobs:
 
       - name: Download static assets
         if: env.TARGET == 'site/deploy'
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: static-assets
           path: ${{ runner.temp }}/site
@@ -161,7 +161,7 @@ jobs:
 
       - name: Download preview Worker
         if: env.TARGET == 'site/deploy' && inputs.workspace != 'default'
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: preview-worker
           path: ${{ runner.temp }}/worker
