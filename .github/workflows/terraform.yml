@@ -23,13 +23,16 @@ on:
         description: Run to download the build artifacts from (empty = the calling run)
         type: string
         default: ""
+    # Callers pass every secret by name, even environment-only ones: for `prod`
+    # and `preview` the job's `environment` then supplies the values. A secret
+    # that isn't passed silently resolves to an empty string.
     secrets:
       CLOUDFLARE_API_TOKEN:
         required: false
       CLOUDFLARE_R2_ACCESS_KEY_ID:
-        required: false
+        required: true
       CLOUDFLARE_R2_ACCESS_KEY_SECRET:
-        required: false
+        required: true
       CLOUDFLARE_INFRA_API_TOKEN:
         required: false
     outputs:
@@ -62,6 +65,12 @@ jobs:
         if: ${{ !contains(fromJSON('["cloudflare/plan", "cloudflare/deploy", "site/deploy", "site/destroy"]'), env.TARGET) }}
         run: |
           echo "::error::Unsupported module/operation: $TARGET"
+          exit 1
+
+      - name: Require credentials
+        if: ${{ !env.CLOUDFLARE_API_TOKEN || !env.AWS_ACCESS_KEY_ID || !env.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          echo "::error::Missing Cloudflare token or R2 keys for $TARGET: pass them from the caller by name."
           exit 1
 
       - name: Checkout repository

@@ -20,6 +20,12 @@ jobs:
       operation: destroy
       environment: preview
       workspace: pr-${{ github.event.pull_request.number }}
+    # Environment secrets must be passed by name; the called job's
+    # `environment` then supplies their values.
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+      CLOUDFLARE_R2_ACCESS_KEY_SECRET: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
 
   purge-caches:
     name: Purge PR Caches

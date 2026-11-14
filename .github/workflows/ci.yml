@@ -224,6 +224,12 @@ jobs:
       module: cloudflare
       operation: deploy
       environment: prod
+    # Environment secrets must be passed by name; the called job's
+    # `environment` then supplies their values.
+    secrets:
+      CLOUDFLARE_INFRA_API_TOKEN: ${{ secrets.CLOUDFLARE_INFRA_API_TOKEN }}
+      CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+      CLOUDFLARE_R2_ACCESS_KEY_SECRET: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
 
   deploy:
     name: Deploy to Production
@@ -236,6 +242,12 @@ jobs:
       module: site
       operation: deploy
       environment: prod
+    # Environment secrets must be passed by name; the called job's
+    # `environment` then supplies their values.
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+      CLOUDFLARE_R2_ACCESS_KEY_SECRET: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
 
   lighthouse:
     name: Lighthouse Audit for Production
