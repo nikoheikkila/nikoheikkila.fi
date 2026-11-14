@@ -1,25 +1,61 @@
 name: Preview Cleanup
 
+# `workflow_run` runs this file from main. The PR number comes from the GitHub
+# API for the closed run's head commit, never from the triggering workflow.
 on:
-  pull_request_target:
-    types: [closed]
+  workflow_run:
+    workflows: ["Pull Request Closed"]
+    types: [completed]
 
 permissions:
   contents: read
 
 jobs:
+  resolve:
+    name: Resolve Pull Request
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.event == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      number: ${{ steps.pr.outputs.number }}
+
+    steps:
+      - name: Resolve pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+        run: |
+          numbers=$(gh api "repos/$REPOSITORY/commits/$HEAD_SHA/pulls" --jq \
+            "[.[] | select(.state == \"closed\" and .head.sha == \"$HEAD_SHA\" and (.head.repo.full_name | ascii_downcase) == (\"$HEAD_REPOSITORY\" | ascii_downcase)) | .number]")
+          if [ "$(jq 'length' <<< "$numbers")" != "1" ]; then
+            echo "::notice::Skipping: no unique closed pull request for $HEAD_SHA ($numbers)."
+            exit 0
+          fi
+          number=$(jq '.[0]' <<< "$numbers")
+          [[ "$number" =~ ^[0-9]+$ ]] || { echo "::error::Unexpected pull request number: $number"; exit 1; }
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
   destroy:
     name: Destroy Preview Deployment
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    needs: [resolve]
+    # Fork PRs never get a preview, so there is nothing to destroy.
+    if: >-
+      needs.resolve.outputs.number != '' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
     concurrency:
-      group: deploy-preview-${{ github.event.pull_request.number }}
+      group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
     uses: ./.github/workflows/terraform.yml
     with:
       module: site
       operation: destroy
       environment: preview
-      workspace: pr-${{ github.event.pull_request.number }}
+      workspace: pr-${{ needs.resolve.outputs.number }}
     # Environment secrets must be passed by name; the called job's
     # `environment` then supplies their values.
     secrets:
@@ -29,6 +65,8 @@ jobs:
 
   purge-caches:
     name: Purge PR Caches
+    needs: [resolve]
+    if: needs.resolve.outputs.number != ''
     runs-on: ubuntu-latest
     permissions:
       actions: write
@@ -38,7 +76,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ needs.resolve.outputs.number }}
         run: |
           gh cache delete --all \
             --ref "refs/pull/$PR_NUMBER/merge" \
