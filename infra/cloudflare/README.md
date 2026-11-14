@@ -141,7 +141,7 @@ task terraform:deploy
 
 ### CI/CD Pipeline
 
-See `.github/workflows/terraform.yml` for CI/CD pipeline details.
+CI plans this module on every run and applies it on `main` before the site deploys: see `.github/workflows/ci.yml` and the reusable `.github/workflows/terraform.yml`.
 
 ### DNS Management
 

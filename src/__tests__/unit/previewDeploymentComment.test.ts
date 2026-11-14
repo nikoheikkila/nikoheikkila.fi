@@ -81,6 +81,15 @@ describe("findDeploymentJob", () => {
 		expect(findDeploymentJob([job({ name: "Unit Tests" }), target])).toBe(target);
 	});
 
+	test("finds the job the reusable Terraform workflow runs for Deploy to Preview", () => {
+		const target = job({ name: "Deploy to Preview / Terraform" });
+		expect(findDeploymentJob([job({ name: "Unit Tests" }), target])).toBe(target);
+	});
+
+	test("ignores jobs whose name only starts like Deploy to Preview", () => {
+		expect(findDeploymentJob([job({ name: "Deploy to Preview Later" })])).toBeUndefined();
+	});
+
 	test("returns undefined when absent", () => {
 		expect(findDeploymentJob([job({ name: "Unit Tests" })])).toBeUndefined();
 	});
