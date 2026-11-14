@@ -120,7 +120,7 @@ jobs:
 
       - name: Upload mutation report
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: mutation-report
           retention-days: 7
@@ -163,7 +163,7 @@ jobs:
 
       - name: Upload preview Worker
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: preview-worker
           retention-days: 1
@@ -171,7 +171,7 @@ jobs:
           path: infra/site/worker.js
 
       - name: Upload static assets
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: static-assets
           retention-days: 1
@@ -182,7 +182,7 @@ jobs:
             !public/chunk-map.json
 
       - name: Upload serve configuration
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: serve-configuration
           retention-days: 1
