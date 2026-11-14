@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/cloudflare/cloudflare" {
   version     = "5.28.1"
-  constraints = "~> 5.0"
+  constraints = "5.28.1"
   hashes = [
     "h1:9YL6g+iEfg3OzX6qSZOYsictVO0fNP09D6jRwIZKwQ0=",
     "h1:GjOKfCmvcyE06fUp5WrAzfCLkTQaCg2Ko/kFlq8OfpM=",
@@ -27,7 +27,7 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
 
 provider "registry.terraform.io/hashicorp/aws" {
   version     = "6.72.0"
-  constraints = "~> 6.0"
+  constraints = "6.72.0"
   hashes = [
     "h1:0lOjN9Ie1fAKZvebj5PIJET/SrK3ouIAhGaSTUmTe8U=",
     "h1:3AYbyqqXadj43NSHVMZ7HmhzqUDKzUqz/PFKoz2zZF4=",

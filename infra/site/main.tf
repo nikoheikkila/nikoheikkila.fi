@@ -8,17 +8,17 @@
 #                 because the provider cannot set a version's preview alias — see the wrangler_config output)
 
 terraform {
-  required_version = ">= 1.13.5, < 2.0.0"
+  required_version = "1.17.2"
 
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5.0"
+      version = "5.28.1"
     }
 
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 6.0"
+      version = "6.72.0"
     }
   }
 
