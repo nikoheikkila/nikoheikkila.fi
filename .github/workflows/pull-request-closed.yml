@@ -9,6 +9,10 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: pull-request-closed-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
 jobs:
   signal:
     name: Signal Preview Cleanup

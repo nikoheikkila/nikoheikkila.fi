@@ -32,12 +32,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
         with:
           save-cache: "true"
 
@@ -58,15 +60,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
 
       - name: Run component tests
-        run: task test:component args='--with-deps --only-shell ${{ matrix.browser }}' -- --browser=${{ matrix.browser }}
+        env:
+          BROWSER: ${{ matrix.browser }}
+        run: task test:component args="--with-deps --only-shell $BROWSER" -- --browser="$BROWSER"
 
   mutation_tests:
     name: Mutation Tests
@@ -75,12 +81,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
 
       - name: Run mutation tests
         run: task test:mutation
@@ -100,12 +108,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
 
       - name: Restore Gatsby build output
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
@@ -176,12 +186,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
-        uses: ./.github/actions/setup-environment
+        uses: $/.github/actions/setup-environment
 
       - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
+        uses: $/.github/actions/install-dependencies
 
       - name: Download static assets
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
@@ -196,14 +208,16 @@ jobs:
           path: .cache
 
       - name: Run E2E Tests
-        run: task test:e2e args='--with-deps ${{ matrix.browser }} ffmpeg' -- --project=${{ matrix.browser }}
+        env:
+          BROWSER: ${{ matrix.browser }}
+        run: task test:e2e args="--with-deps $BROWSER ffmpeg" -- --project="$BROWSER"
 
   terraform_plan:
     name: Terraform Plan
     if: >-
       github.event_name != 'pull_request' ||
       (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]')
-    uses: ./.github/workflows/terraform.yml
+    uses: $/.github/workflows/terraform.yml
     with:
       module: cloudflare
       operation: plan
@@ -217,9 +231,9 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref_name == 'main'
     needs: [unit_tests, component_tests, mutation_tests, build, acceptance_tests, terraform_plan]
     permissions:
-      contents: read
-      actions: read
-    uses: ./.github/workflows/terraform.yml
+      contents: read # Required to check out the repository
+      actions: read # Required for terraform.yml to download artifacts of this run
+    uses: $/.github/workflows/terraform.yml
     with:
       module: cloudflare
       operation: deploy
@@ -235,9 +249,9 @@ jobs:
     name: Deploy to Production
     needs: [deploy_infrastructure]
     permissions:
-      contents: read
-      actions: read
-    uses: ./.github/workflows/terraform.yml
+      contents: read # Required to check out the repository
+      actions: read # Required for terraform.yml to download artifacts of this run
+    uses: $/.github/workflows/terraform.yml
     with:
       module: site
       operation: deploy
