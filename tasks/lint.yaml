@@ -32,3 +32,12 @@ tasks:
     sources:
       - renovate.json5
     cmd: bunx renovate-config-validator --strict --no-global renovate.json5
+
+  actions:
+    desc: Lint GitHub Actions workflows with Zizmor
+    sources:
+      - .github/workflows
+      - .github/actions
+      - .github/zizmor.yml
+    cmds:
+      - zizmor --persona=auditor .github/

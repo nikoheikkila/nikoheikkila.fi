@@ -1,0 +1,23 @@
+# Zizmor configuration. Every ignore documents why the finding is accepted.
+# https://docs.zizmor.sh/configuration/
+rules:
+  # `workflow_run` is the intended design: privileged jobs (previews, cleanup,
+  # Claude fixes) run trusted code from `main` and treat the triggering run's
+  # artifacts strictly as data. They never check out pull request code, are
+  # gated on same-repository heads, and write tokens live only in the
+  # `preview` and `prod` environments (see AGENTS.md "Trust boundary").
+  # `claude.yml` is gated on `@claude` mentions from non-bot senders.
+  dangerous-triggers:
+    ignore:
+      - preview.yml
+      - preview-cleanup.yml
+      - renovate-autofix.yml
+      - claude.yml
+
+  # `CLAUDE_CODE_OAUTH_TOKEN` is a repository secret for the Claude Code action.
+  # A dedicated environment would add an approval and branch gate that these
+  # comment-triggered workflows cannot satisfy, as they run on arbitrary refs.
+  secrets-outside-env:
+    ignore:
+      - claude.yml
+      - renovate-autofix.yml
