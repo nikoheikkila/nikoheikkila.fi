@@ -187,14 +187,14 @@ export const describeDeployment = (params: {
  * attach to `main`, so this is the only signal branch protection can require.
  */
 export const buildCommitStatus = ({ outcome, previewUrl, jobUrl, stepName }: DeploymentReport): CommitStatus => {
-	const succeeded = outcome === "success";
+	const isSuccessful = outcome === "success";
 	// One character is reserved for the ellipsis `truncate` appends.
 	const failure = truncate(`Failed during ${toSingleLine(stepName)}`, MAX_COMMIT_STATUS_DESCRIPTION_LENGTH - 1);
 
 	return {
 		state: outcome,
-		target_url: succeeded ? previewUrl : jobUrl,
-		description: succeeded ? "Preview deployed" : failure,
+		target_url: isSuccessful ? previewUrl : jobUrl,
+		description: isSuccessful ? "Preview deployed" : failure,
 		context: COMMIT_STATUS_CONTEXT,
 	};
 };

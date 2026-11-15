@@ -97,8 +97,8 @@ const newPost = async () => {
 				},
 			},
 		]);
-	} catch (err) {
-		return console.error(err instanceof Error ? err.message : String(err));
+	} catch (error) {
+		return console.error(error instanceof Error ? error.message : String(error));
 	}
 
 	const { title, type, excerpt, author, cover, date, language } = prompt;
@@ -128,6 +128,6 @@ hero: ${cover}
   `);
 };
 
-newPost().catch((err) => {
-	console.error(err);
+newPost().catch((error) => {
+	console.error(error);
 });

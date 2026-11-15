@@ -41,7 +41,7 @@ const parseOpeningFence = (text: string): Fence | undefined => {
 	return { char, length: marker.length, info: info.trim() };
 };
 
-const closes = (fence: Fence, text: string): boolean => {
+const doesClose = (fence: Fence, text: string): boolean => {
 	const groups = CLOSING_FENCE.exec(text)?.groups;
 	if (groups === undefined) {
 		return false;
@@ -53,7 +53,7 @@ const closes = (fence: Fence, text: string): boolean => {
 
 const findClosingFence = (lines: Line[], fence: Fence, start: number): number => {
 	for (let j = start; j < lines.length; j += 1) {
-		if (closes(fence, lines[j].text)) {
+		if (doesClose(fence, lines[j].text)) {
 			return j;
 		}
 	}

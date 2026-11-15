@@ -13,20 +13,20 @@ export const checkIconsProvided = (received: IconDefinition[], links: readonly S
 			return [];
 		}
 		// Check if icon exists under any other prefix
-		const existsUnderOtherPrefix = received.some((i) => i.iconName === link.icon);
-		return [{ icon: link.icon, existsUnderOtherPrefix }];
+		const isRegisteredElsewhere = received.some((i) => i.iconName === link.icon);
+		return [{ icon: link.icon, isRegisteredElsewhere }];
 	});
 
-	const pass = missingDetails.length === 0;
+	const isPassing = missingDetails.length === 0;
 
 	return {
-		pass,
-		message: pass
+		pass: isPassing,
+		message: isPassing
 			? () => `Expected missing icons but every one of [${[...provided].join(", ")}] was provided`
 			: () => {
 					const iconDescriptions = missingDetails
 						.map((detail) =>
-							detail.existsUnderOtherPrefix
+							detail.isRegisteredElsewhere
 								? `${detail.icon} (registered, but not under the "fab" brands pack)`
 								: detail.icon,
 						)

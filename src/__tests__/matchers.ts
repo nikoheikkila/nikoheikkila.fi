@@ -12,12 +12,12 @@ expect.extend({
 			? `svg[aria-hidden="true"][data-icon="${iconName}"][data-prefix="${prefix}"]`
 			: `svg[aria-hidden="true"][data-icon="${iconName}"]`;
 		const pack = hasPrefix ? ` from the "${prefix}" pack` : "";
-		const pass = Boolean(received.element().parentElement?.querySelector(selector));
+		const isPassing = Boolean(received.element().parentElement?.querySelector(selector));
 
 		return {
-			pass,
+			pass: isPassing,
 			message: () =>
-				pass
+				isPassing
 					? `Expected the link not to have a sibling icon "${iconName}" but one was found`
 					: `Expected the link to have a sibling icon "${iconName}"${pack} but none was found`,
 		};
@@ -38,11 +38,11 @@ expect.extend({
 			]);
 
 			const { violations } = results;
-			const pass = violations.length === 0;
+			const isPassing = violations.length === 0;
 
 			return {
-				pass,
-				message: pass
+				pass: isPassing,
+				message: isPassing
 					? () => "Expected accessibility violations but found none"
 					: () => {
 							const details = violations

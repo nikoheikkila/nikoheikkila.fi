@@ -31,7 +31,7 @@ const typesFile = Bun.file("src/gatsby-types.d.ts");
  * The codegen log line announces the *start* of codegen; the file lands at
  * the end. Allow 10s so a cold filesystem doesn't fail spuriously.
  */
-const waitForTypesFile = async (attemptsLeft = 100): Promise<boolean> => {
+const hasTypesFile = async (attemptsLeft = 100): Promise<boolean> => {
 	if (attemptsLeft === 0) {
 		return false;
 	}
@@ -41,10 +41,10 @@ const waitForTypesFile = async (attemptsLeft = 100): Promise<boolean> => {
 	}
 
 	await Bun.sleep(100);
-	return waitForTypesFile(attemptsLeft - 1);
+	return hasTypesFile(attemptsLeft - 1);
 };
 
-const waitForCodegen = async (): Promise<boolean> => {
+const hasStartedCodegen = async (): Promise<boolean> => {
 	for await (const chunk of gatsby.stdout) {
 		if (decoder.decode(chunk).includes("Generating GraphQL and TypeScript types")) {
 			return true;
@@ -55,11 +55,11 @@ const waitForCodegen = async (): Promise<boolean> => {
 };
 
 const readStdout = async () => {
-	if (!(await waitForCodegen())) {
+	if (!(await hasStartedCodegen())) {
 		return;
 	}
 
-	typesGenerated = await waitForTypesFile();
+	typesGenerated = await hasTypesFile();
 
 	if (typesGenerated) {
 		console.log("✅ Types generated successfully!");

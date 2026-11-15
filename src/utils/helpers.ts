@@ -31,7 +31,7 @@ const formatCups = (minutes: number, icon = "☕️"): string => {
 	const maxCups = 5;
 	const estimatedCups = Math.round(minutes / maxCups) || 1;
 	const time = `minute${minutes >= 2 ? "s" : ""}`;
-	const result = new Array<string>(Math.min(estimatedCups, maxCups));
+	const cups = Array.from({ length: Math.min(estimatedCups, maxCups) }, () => icon);
 
-	return `${result.fill(icon).join("")} ${minutes} ${time} read`;
+	return `${cups.join("")} ${minutes} ${time} read`;
 };

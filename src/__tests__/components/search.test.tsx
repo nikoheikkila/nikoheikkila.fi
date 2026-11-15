@@ -36,7 +36,7 @@ describe("search bar component", () => {
 		await page.getByRole("searchbox", { name: /search posts/iu }).click();
 		await userEvent.keyboard("{Enter}");
 
-		expect(onSubmit).toHaveBeenCalled();
+		expect(onSubmit).toHaveBeenCalledWith();
 	});
 
 	test("calls setQuery on typing", async () => {
@@ -46,7 +46,7 @@ describe("search bar component", () => {
 		const input = page.getByRole("searchbox", { name: /search posts/iu });
 		await input.fill("hello");
 
-		expect(setQuery).toHaveBeenCalled();
+		expect(setQuery).toHaveBeenCalledWith(expect.anything());
 	});
 });
 
@@ -94,7 +94,7 @@ describe("search modal component", () => {
 		const backdrop = page.getByRole("button", { name: /dismiss search results/iu });
 		await backdrop.click({ position: { x: 5, y: 5 } });
 
-		expect(onClose).toHaveBeenCalled();
+		expect(onClose).toHaveBeenCalledWith(expect.anything());
 	});
 
 	test("renders correct number of results", async () => {

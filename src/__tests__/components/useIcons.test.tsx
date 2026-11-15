@@ -18,6 +18,6 @@ describe("useIcons Hook", () => {
 
 		purgeIcons();
 
-		expect(libraryResetSpy).toHaveBeenCalled();
+		expect(libraryResetSpy).toHaveBeenCalledWith();
 	});
 });
