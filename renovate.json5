@@ -9,7 +9,6 @@
 		':automergeRequireAllStatusChecks',
 		':combinePatchMinorReleases',
 		':dependencyDashboard',
-		// Lock file maintenance bumps transitive dependencies in bulk, bypassing the per-package release cooldown.
 		':maintainLockFilesDisabled',
 	],
 	enabledManagers: [
@@ -22,16 +21,14 @@
 	schedule: [
 		'every weekend',
 	],
-	// Hijacked releases are usually detected and yanked within days: never propose anything younger than a week.
 	minimumReleaseAge: '7 days',
-	// Do not even create a branch until the release age check passes.
 	internalChecksFilter: 'strict',
-	// Never run package lifecycle scripts inside Renovate.
 	ignoreScripts: true,
 	rangeStrategy: 'pin',
 	osvVulnerabilityAlerts: true,
-	dependencyDashboardOSVVulnerabilitySummary: 'unresolved',
-	// Security fixes skip the schedule and cooldown, but always need a human review.
+	dependencyDashboard: {
+		osvVulnerabilitySummary: 'unresolved',
+	},
 	vulnerabilityAlerts: {
 		enabled: true,
 		labels: [
@@ -79,7 +76,6 @@
 			description: 'Keep the mise Zizmor pin, zizmor-action and its version input in step',
 			matchPackageNames: [
 				'zizmorcore/zizmor',
-				// Each action release only accepts the zizmor versions it ships lock files for.
 				'zizmorcore/zizmor-action',
 			],
 			groupName: 'Zizmor',
