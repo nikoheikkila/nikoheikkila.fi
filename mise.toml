@@ -1,0 +1,17 @@
+# Toolchain for local development (`mise install`) and CI (jdx/mise-action).
+
+[settings]
+# mise.lock records checksums and download URLs; Renovate refreshes it with each update.
+lockfile = true
+# Refuse to install anything that mise.lock does not pin.
+locked = true
+# CI runners and developer Macs.
+lockfile_platforms = ["linux-x64", "macos-arm64"]
+
+[tools]
+# Gatsby needs Node.js to build correctly, even though Bun runs everything else.
+node = "26.13.1"
+bun = "1.4.4"
+task = "3.54.0"
+terraform = "1.17.2"
+zizmor = "1.32.0"
