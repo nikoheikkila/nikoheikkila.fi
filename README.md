@@ -8,9 +8,10 @@ My personal blog. Forked from Gatsby Blog Starter template and inspired here and
 
 ## 🔧 Installation & Usage
 
-Requires [Bun](https://bun.sh) and [Task](https://taskfile.dev). Install dependencies and start the development server like so:
+Requires [Mise](https://mise.jdx.dev) [activated in your shell](https://mise.jdx.dev/getting-started.html#activate-mise), which installs the toolchain pinned in `mise.toml`. Install dependencies and start the development server like so:
 
 ```bash
+mise install
 task install
 task dev
 ```
@@ -35,7 +36,7 @@ Content and code changes follow the workflow below:
 
 Every Terraform run goes through one reusable workflow:
 
-![Terraform Workflow: called by the CI, Preview and Preview Cleanup workflows; every call checks out the code and sets up Node, Bun, Task and Terraform, then plans, deploys or destroys one module: plan the core infrastructure with read-only credentials on every CI run, deploy that plan in the prod environment on main, deploy the site to production or a pull request preview, or destroy a preview when its pull request closes.](docs/terraform-flow.svg)
+![Terraform Workflow: called by the CI, Preview and Preview Cleanup workflows; every call checks out the code and installs the Mise toolchain, then plans, deploys or destroys one module: plan the core infrastructure with read-only credentials on every CI run, deploy that plan in the prod environment on main, deploy the site to production or a pull request preview, or destroy a preview when its pull request closes.](docs/terraform-flow.svg)
 
 ## 👤 Author
 

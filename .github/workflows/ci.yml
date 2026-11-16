@@ -73,6 +73,8 @@ jobs:
           persona: auditor
           config: .github/zizmor.yml
           advanced-security: true
+          # renovate: datasource=github-tags depName=zizmorcore/zizmor
+          version: 1.32.0
 
   component_tests:
     name: Component Tests (${{ matrix.browser }})

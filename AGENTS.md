@@ -19,6 +19,8 @@ This file provides instructions for coding agents when working in this repositor
 
 The project is a Gatsby 5 static site generator for a personal blog built with TypeScript, React 19, and Bun. All tasks are run via `task <name>` — use the taskrunner skill (`/taskrunner`) and run `task -a` for the full command reference.
 
+Tool versions are pinned in `mise.toml`, with checksums in `mise.lock`: run `mise install` locally; CI installs them with `jdx/mise-action`. After changing `mise.toml`, run `mise lock` and keep both files in the same commit.
+
 ## Architecture Overview
 
 The key architectural decisions are described below.

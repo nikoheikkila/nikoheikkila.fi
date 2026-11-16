@@ -14,6 +14,7 @@
 	],
 	"enabledManagers": [
 		"bun",
+		"mise",
 		"github-actions",
 		"terraform",
 		"custom.regex"
@@ -68,11 +69,20 @@
 			"groupName": "Gatsby packages"
 		},
 		{
-			"description": "Bun releases are tagged `bun-vX.Y.Z`",
-			"matchDepNames": [
-				"oven-sh/bun"
+			"description": "Keep the mise Terraform pin and required_version in step",
+			"matchPackageNames": [
+				"hashicorp/terraform"
 			],
-			"extractVersion": "^bun-v(?<version>.+)$"
+			"groupName": "Terraform CLI"
+		},
+		{
+			"description": "Keep the mise Zizmor pin, zizmor-action and its version input in step",
+			"matchPackageNames": [
+				"zizmorcore/zizmor",
+				// Each action release only accepts the zizmor versions it ships lock files for.
+				"zizmorcore/zizmor-action"
+			],
+			"groupName": "Zizmor"
 		},
 		{
 			"description": "The config validator must not get ahead of the schema the hosted Renovate app runs",

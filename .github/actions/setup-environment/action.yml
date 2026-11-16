@@ -1,20 +1,13 @@
 name: Setup Development Environment
-description: Sets up Node.js, Bun, and Task for the workflow
+description: Installs the toolchain pinned in mise.toml with Mise
 
 runs:
   using: composite
   steps:
-    # Despite using Bun, we need Node.js for Gatsby to build correctly.
-    - name: Setup Node.js
-      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+    - name: Install tools with Mise
+      uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
       with:
-        node-version: 26.13.1
-
-    - name: Install Bun
-      uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
-      with:
-        # renovate: datasource=github-releases depName=oven-sh/bun
-        bun-version: 1.4.4
-
-    - name: Install Task
-      uses: go-task/setup-task@a00fbb05ce67b35648be3c78cbc9fd85354c757e # v2
+        # renovate: datasource=github-releases depName=jdx/mise
+        version: 2026.11.4
+        # `workflow_run` jobs share main's cache scope and may handle pull request content, so they only read the cache.
+        cache_save: ${{ github.event_name != 'workflow_run' }}
