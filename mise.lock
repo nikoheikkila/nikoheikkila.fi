@@ -70,6 +70,23 @@ url = "https://releases.hashicorp.com/terraform/1.17.2/terraform_1.17.2_linux_am
 checksum = "sha256:da0c7ef278a911347862758e7573a5907365e66485c2637cf5c217c5e227992e"
 url = "https://releases.hashicorp.com/terraform/1.17.2/terraform_1.17.2_darwin_arm64.zip"
 
+[[tools.vale]]
+version = "3.27.0"
+backend = "aqua:vale-cli/vale"
+specifiers = ["3.27.0"]
+
+[tools.vale."platforms.linux-x64"]
+checksum = "sha256:c80d62f6bce87b81843ac5b512a26e63213927b957adba0a64fc594570da2000"
+checksum_source = "mise-versions"
+url = "https://github.com/vale-cli/vale/releases/download/v3.27.0/vale_3.27.0_Linux_64-bit.tar.gz"
+url_api = "https://api.github.com/repos/vale-cli/vale/releases/assets/740781554"
+
+[tools.vale."platforms.macos-arm64"]
+checksum = "sha256:91bcd6352a832e5995a61dde73ee6367c5006669c6efa4091e0404ec8d7dd7e3"
+checksum_source = "mise-versions"
+url = "https://github.com/vale-cli/vale/releases/download/v3.27.0/vale_3.27.0_macOS_arm64.tar.gz"
+url_api = "https://api.github.com/repos/vale-cli/vale/releases/assets/740781550"
+
 [[tools.zizmor]]
 version = "1.32.0"
 backend = "aqua:zizmorcore/zizmor"

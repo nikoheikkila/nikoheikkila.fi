@@ -10,7 +10,7 @@
 		}
 	},
 	"files": {
-		"includes": ["**", "!.mcp.json", "!docs", "!test"]
+		"includes": ["**", "!.mcp.json", "!docs", "!test", "!.vale"]
 	},
 	"formatter": {
 		"lineWidth": 120
