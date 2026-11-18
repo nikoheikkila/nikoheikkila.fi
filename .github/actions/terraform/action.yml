@@ -1,0 +1,186 @@
+name: Terraform
+description: >-
+  Plans, deploys or destroys a Terraform root module under infra/. The calling job checks out
+  the repository and declares the GitHub environment that supplies the credentials.
+
+inputs:
+  module:
+    description: Root module under infra/ (cloudflare | site)
+    required: true
+  operation:
+    description: plan (cloudflare only) | deploy | destroy (site only)
+    required: true
+  workspace:
+    description: Terraform workspace of infra/site (default = production, pr-<n> = preview)
+    default: default
+  artifacts-run-id:
+    description: Run to download the build artifacts from (empty = the calling run)
+    default: ""
+  cloudflare-api-token:
+    description: Cloudflare API token for the module
+    required: true
+  r2-access-key-id:
+    description: R2 access key ID for the Terraform state bucket
+    required: true
+  r2-access-key-secret:
+    description: R2 secret access key for the Terraform state bucket
+    required: true
+
+outputs:
+  url:
+    description: The deployed site's URL (site/deploy only)
+    value: ${{ steps.output.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Reject unsupported module and operation
+      if: ${{ !contains(fromJSON('["cloudflare/plan", "cloudflare/deploy", "site/deploy", "site/destroy"]'), format('{0}/{1}', inputs.module, inputs.operation)) }}
+      shell: bash
+      env:
+        TARGET: ${{ inputs.module }}/${{ inputs.operation }}
+      run: |
+        echo "::error::Unsupported module/operation: $TARGET"
+        exit 1
+
+    - name: Require credentials
+      if: ${{ !inputs.cloudflare-api-token || !inputs.r2-access-key-id || !inputs.r2-access-key-secret }}
+      shell: bash
+      env:
+        TARGET: ${{ inputs.module }}/${{ inputs.operation }}
+      run: |
+        echo "::error::Missing Cloudflare token or R2 keys for $TARGET: check the job's environment secrets."
+        exit 1
+
+    - name: Setup environment
+      uses: $/.github/actions/setup-environment
+
+    - name: Cache Terraform providers
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+      with:
+        path: ~/.terraform.d/plugin-cache
+        key: ${{ runner.os }}-terraform-providers-${{ inputs.module }}-${{ hashFiles(format('infra/{0}/.terraform.lock.hcl', inputs.module)) }}
+
+    # A constant path, never input from the triggering event.
+    - name: Enable Terraform provider cache
+      shell: bash
+      run: | # zizmor: ignore[github-env]
+        mkdir -p ~/.terraform.d/plugin-cache
+        echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >> "$GITHUB_ENV"
+
+    - name: Plan infrastructure
+      if: ${{ inputs.module == 'cloudflare' && inputs.operation == 'plan' }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+      run: |
+        task terraform:ci:init
+        task terraform:ci:plan LOCK=false
+
+    - name: Publish plan to summary
+      if: ${{ inputs.module == 'cloudflare' && inputs.operation == 'plan' }}
+      shell: bash
+      working-directory: infra/cloudflare
+      run: |
+        {
+          echo "## Terraform Plan"
+          echo ""
+          echo "\`\`\`terraform"
+          cat plan.txt
+          echo "\`\`\`"
+        } >> "$GITHUB_STEP_SUMMARY"
+
+    # The binary plan holds sensitive values unmasked, and only the
+    # cloudflare/deploy on main consumes it, so pull requests never publish it as an artifact.
+    - name: Upload plan
+      if: ${{ inputs.module == 'cloudflare' && inputs.operation == 'plan' && github.event_name != 'pull_request' }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+      with:
+        name: tfplan
+        path: infra/cloudflare/tfplan
+        if-no-files-found: error
+        retention-days: 1
+
+    - name: Download plan
+      if: ${{ inputs.module == 'cloudflare' && inputs.operation == 'deploy' }}
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+      with:
+        name: tfplan
+        path: infra/cloudflare/
+
+    - name: Deploy infrastructure
+      if: ${{ inputs.module == 'cloudflare' && inputs.operation == 'deploy' }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+      run: |
+        task terraform:ci:init
+        task terraform:ci:deploy
+
+    - name: Download static assets
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' }}
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+      with:
+        name: static-assets
+        path: ${{ runner.temp }}/site
+        run-id: ${{ inputs.artifacts-run-id }}
+        github-token: ${{ inputs.artifacts-run-id && github.token || '' }}
+
+    - name: Deploy site
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+        WORKSPACE: ${{ inputs.workspace }}
+        DIST_DIR: ${{ runner.temp }}/site
+      run: task site:ci:deploy WORKSPACE="$WORKSPACE" DIST_DIR="$DIST_DIR"
+
+    - name: Download preview Worker
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' && inputs.workspace != 'default' }}
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+      with:
+        name: preview-worker
+        path: ${{ runner.temp }}/worker
+        run-id: ${{ inputs.artifacts-run-id }}
+        github-token: ${{ inputs.artifacts-run-id && github.token || '' }}
+
+    - name: Install dependencies
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' && inputs.workspace != 'default' }}
+      uses: $/.github/actions/install-dependencies
+
+    - name: Upload preview version
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' && inputs.workspace != 'default' }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+        WORKSPACE: ${{ inputs.workspace }}
+        WORKER_DIR: ${{ runner.temp }}/worker
+      run: task site:ci:preview:upload WORKSPACE="$WORKSPACE" WORKER_DIR="$WORKER_DIR"
+
+    - name: Read deployment URL
+      if: ${{ inputs.module == 'site' && inputs.operation == 'deploy' }}
+      id: output
+      shell: bash
+      working-directory: infra/site
+      env:
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+      run: echo "url=$(terraform output -raw url)" >> "$GITHUB_OUTPUT"
+
+    - name: Destroy site
+      if: ${{ inputs.module == 'site' && inputs.operation == 'destroy' }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.r2-access-key-secret }}
+        WORKSPACE: ${{ inputs.workspace }}
+      run: task site:ci:destroy WORKSPACE="$WORKSPACE"
