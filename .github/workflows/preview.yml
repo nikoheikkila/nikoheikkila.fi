@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+
 concurrency:
   group: preview-${{ github.event.workflow_run.id }}
   cancel-in-progress: false
@@ -15,11 +19,12 @@ concurrency:
 jobs:
   resolve:
     name: Resolve Pull Request
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     if: >-
-      github.event.workflow_run.event == 'pull_request' &&
+      ${{ github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_repository.full_name == github.repository
+      github.event.workflow_run.head_repository.full_name == github.repository }}
     permissions:
       contents: read # Required to call the API for commit metadata
       pull-requests: read # Required to resolve the pull request of the CI run
@@ -48,30 +53,44 @@ jobs:
   deploy:
     name: Deploy to Preview
     needs: [resolve]
-    if: needs.resolve.outputs.number != ''
+    if: ${{ needs.resolve.outputs.number != '' }}
     concurrency:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment:
+      name: preview
+      url: ${{ steps.terraform.outputs.url }}
     permissions:
       contents: read # Required to check out the repository
       actions: read # Required to download artifacts of the CI run
-    uses: $/.github/workflows/terraform.yml
-    with:
-      module: site
-      operation: deploy
-      environment: preview
-      workspace: pr-${{ needs.resolve.outputs.number }}
-      artifacts-run-id: ${{ github.event.workflow_run.id }}
-    # Environment secrets must be passed by name; the called job's
-    # `environment` then supplies their values.
-    secrets:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-      CLOUDFLARE_R2_ACCESS_KEY_SECRET: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+    outputs:
+      url: ${{ steps.terraform.outputs.url }}
+
+    steps:
+      # Checks out main: the pull request's build artifacts are data, never code.
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Deploy preview
+        id: terraform
+        uses: $/.github/actions/terraform
+        with:
+          module: site
+          operation: deploy
+          workspace: pr-${{ needs.resolve.outputs.number }}
+          artifacts-run-id: ${{ github.event.workflow_run.id }}
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          r2-access-key-secret: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
 
   lighthouse:
     name: Lighthouse Audit for Preview
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     needs: [deploy]
     env:
       LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.event.workflow_run.head_sha }}
@@ -87,9 +106,10 @@ jobs:
 
   report:
     name: Report Preview Deployment
-    runs-on: ubuntu-latest
-    needs: [resolve, deploy]
-    if: always() && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    needs: [deploy]
+    if: ${{ always() && github.event.workflow_run.event == 'pull_request' }}
     concurrency:
       group: preview-comment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
       cancel-in-progress: false
