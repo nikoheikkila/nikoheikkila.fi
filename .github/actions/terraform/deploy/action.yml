@@ -1,0 +1,98 @@
+name: Terraform deploy
+description: >-
+  Applies a Terraform root module, either from a saved plan artifact or directly, and exposes its non-sensitive
+  outputs as JSON. Requires terraform and jq on PATH. Provider and backend credentials are read from the
+  environment of the calling step.
+
+inputs:
+  working-directory:
+    description: Root module directory
+    required: true
+  var-files:
+    description: Newline-separated -var-file paths, relative to the working directory (ignored with plan-artifact)
+    default: ""
+  vars:
+    description: Newline-separated key=value variables (ignored with plan-artifact)
+    default: ""
+  parallelism:
+    description: Number of concurrent resource operations
+    default: "10"
+  workspace:
+    description: Workspace to select, created when missing (empty = keep the current one)
+    default: ""
+  plan-artifact:
+    description: Artifact name of a saved plan to apply (empty = apply directly with -auto-approve)
+    default: ""
+  plan-file:
+    description: File name of the saved plan, relative to the working directory
+    default: tfplan
+  lock-timeout:
+    description: How long to wait for a state lock held by another run, e.g. a local apply
+    default: 5m
+  emit-outputs:
+    description: Whether to read the root module's outputs into the `outputs` output (true | false)
+    default: "true"
+
+outputs:
+  outputs:
+    description: "JSON object of the root module's non-sensitive outputs, as {name: value}"
+    value: ${{ steps.outputs.outputs.outputs }}
+
+runs:
+  using: composite
+  steps:
+    - name: Download plan
+      if: ${{ inputs.plan-artifact != '' }}
+      uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+      with:
+        name: ${{ inputs.plan-artifact }}
+        path: ${{ inputs.working-directory }}
+
+    - name: Initialize
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: terraform init -input=false
+
+    - name: Select workspace
+      if: ${{ inputs.workspace != '' }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        WORKSPACE: ${{ inputs.workspace }}
+      run: terraform workspace select -or-create=true "$WORKSPACE"
+
+    - name: Apply
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        VAR_FILES: ${{ inputs.var-files }}
+        VARS: ${{ inputs.vars }}
+        PARALLELISM: ${{ inputs.parallelism }}
+        PLAN_ARTIFACT: ${{ inputs.plan-artifact }}
+        PLAN_FILE: ${{ inputs.plan-file }}
+        LOCK_TIMEOUT: ${{ inputs.lock-timeout }}
+      run: |
+        if [ -n "$PLAN_ARTIFACT" ]; then
+          # A saved plan carries its variables.
+          if ! terraform apply -input=false -lock-timeout="$LOCK_TIMEOUT" -parallelism="$PARALLELISM" "$PLAN_FILE"; then
+            echo "::error::Applying the saved plan failed. If the state changed after planning, the plan is stale: re-run all jobs to plan again."
+            exit 1
+          fi
+        else
+          ARGS=()
+          while IFS= read -r line; do
+            if [ -n "$line" ]; then ARGS+=("-var-file=$line"); fi
+          done <<< "$VAR_FILES"
+          while IFS= read -r line; do
+            if [ -n "$line" ]; then ARGS+=("-var=$line"); fi
+          done <<< "$VARS"
+          terraform apply -input=false -auto-approve -lock-timeout="$LOCK_TIMEOUT" -parallelism="$PARALLELISM" "${ARGS[@]}"
+        fi
+
+    - name: Read outputs
+      if: ${{ inputs.emit-outputs == 'true' }}
+      id: outputs
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      # jq -c prints one line, so no heredoc delimiter is needed.
+      run: echo "outputs=$(terraform output -json | jq -c 'map_values(select(.sensitive | not) | .value)')" >> "$GITHUB_OUTPUT"
