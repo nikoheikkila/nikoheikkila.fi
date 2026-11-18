@@ -16,7 +16,9 @@ concurrency:
 jobs:
   signal:
     name: Signal Preview Cleanup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - name: Signal
+        shell: bash
         run: echo "Pull request closed; Preview Cleanup takes over."
