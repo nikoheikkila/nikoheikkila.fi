@@ -21,7 +21,7 @@ concurrency:
 jobs:
   resolve:
     name: Resolve Pull Request
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     if: ${{ github.event.workflow_run.event == 'pull_request' }}
     permissions:
@@ -59,7 +59,7 @@ jobs:
     concurrency:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment: preview
 
@@ -84,7 +84,7 @@ jobs:
     name: Purge PR Caches
     needs: [resolve]
     if: ${{ needs.resolve.outputs.number != '' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       actions: write # Required to delete the pull request's caches

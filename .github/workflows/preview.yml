@@ -19,7 +19,7 @@ concurrency:
 jobs:
   resolve:
     name: Resolve Pull Request
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     if: >-
       ${{ github.event.workflow_run.event == 'pull_request' &&
@@ -57,7 +57,7 @@ jobs:
     concurrency:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment:
       name: preview
@@ -89,7 +89,7 @@ jobs:
 
   lighthouse:
     name: Lighthouse Audit for Preview
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     needs: [deploy]
     env:
@@ -106,7 +106,7 @@ jobs:
 
   report:
     name: Report Preview Deployment
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     needs: [deploy]
     if: ${{ always() && github.event.workflow_run.event == 'pull_request' }}

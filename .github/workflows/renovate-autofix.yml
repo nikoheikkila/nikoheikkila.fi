@@ -15,7 +15,7 @@ defaults:
 jobs:
   fix:
     name: Fix Failing CI with Claude
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 75
     if: >-
       ${{

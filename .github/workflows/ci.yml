@@ -30,7 +30,7 @@ concurrency:
 jobs:
   unit_tests:
     name: Unit Tests
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
 
     steps:
@@ -60,7 +60,7 @@ jobs:
     if: >-
       ${{ github.event_name != 'pull_request' ||
       (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: read # Required to check out the repository
@@ -91,7 +91,7 @@ jobs:
 
   component_tests:
     name: Component Tests (${{ matrix.browser }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     strategy:
       fail-fast: false
@@ -117,7 +117,7 @@ jobs:
 
   mutation_tests:
     name: Mutation Tests
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
 
     steps:
@@ -146,7 +146,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
 
     steps:
@@ -221,7 +221,7 @@ jobs:
 
   acceptance_tests:
     name: Acceptance Tests (${{ matrix.browser }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     needs: [build]
     strategy:
@@ -263,7 +263,7 @@ jobs:
     if: >-
       ${{ github.event_name != 'pull_request' ||
       (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
 
     steps:
@@ -287,7 +287,7 @@ jobs:
     name: Deploy Infrastructure
     if: ${{ github.event_name != 'pull_request' && github.ref_name == 'main' }}
     needs: [unit_tests, component_tests, mutation_tests, acceptance_tests, terraform_plan]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment: prod
     permissions:
@@ -314,7 +314,7 @@ jobs:
   deploy:
     name: Deploy to Production
     needs: [deploy_infrastructure]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment:
       name: prod
@@ -343,7 +343,7 @@ jobs:
 
   lighthouse:
     name: Lighthouse Audit for Production
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     needs: [deploy]
     env:
