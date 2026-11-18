@@ -390,6 +390,8 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 15
     needs: [deploy]
+    # The implicit success() fails when Deploy Infrastructure was skipped upstream.
+    if: ${{ !cancelled() && needs.deploy.result == 'success' }}
     env:
       LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
 
