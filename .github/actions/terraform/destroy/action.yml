@@ -65,7 +65,12 @@ runs:
         terraform init -input=false
         # Listing fails on backend errors, so only a genuinely missing workspace counts as nothing to destroy.
         workspaces="$(terraform workspace list)"
-        if ! sed 's/^[* ]*//' <<< "$workspaces" | grep -Fxq -- "$WORKSPACE"; then
+        found=false
+        while IFS= read -r line; do
+          # Each line is "* <name>" for the current workspace, "  <name>" otherwise.
+          if [ "${line:2}" = "$WORKSPACE" ]; then found=true; fi
+        done <<< "$workspaces"
+        if [ "$found" != true ]; then
           echo "No deployment found for workspace $WORKSPACE; nothing to destroy."
           exit 0
         fi
