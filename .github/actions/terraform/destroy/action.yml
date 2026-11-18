@@ -1,0 +1,81 @@
+name: Terraform destroy
+description: >-
+  Destroys the resources of a Terraform workspace and deletes the workspace, refusing protected workspaces.
+  Requires terraform on PATH. Provider and backend credentials are read from the environment of the calling step.
+
+inputs:
+  working-directory:
+    description: Root module directory
+    required: true
+  var-files:
+    description: Newline-separated -var-file paths, relative to the working directory
+    default: ""
+  vars:
+    description: Newline-separated key=value variables
+    default: ""
+  parallelism:
+    description: Number of concurrent resource operations
+    default: "10"
+  workspace:
+    description: Workspace to destroy
+    required: true
+  lock-timeout:
+    description: How long to wait for a state lock held by another run, e.g. a local apply
+    default: 5m
+  protected-workspaces:
+    description: Newline-separated workspaces that must never be destroyed
+    default: default
+
+runs:
+  using: composite
+  steps:
+    - name: Refuse protected workspaces
+      shell: bash
+      env:
+        WORKSPACE: ${{ inputs.workspace }}
+        PROTECTED: ${{ inputs.protected-workspaces }}
+      run: |
+        if [ -z "$WORKSPACE" ]; then
+          echo "::error::Refusing to destroy: no workspace given."
+          exit 1
+        fi
+        if grep -Fxq -- "$WORKSPACE" <<< "$PROTECTED"; then
+          echo "::error::Refusing to destroy protected workspace: $WORKSPACE"
+          exit 1
+        fi
+
+    - name: Destroy
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        VAR_FILES: ${{ inputs.var-files }}
+        VARS: ${{ inputs.vars }}
+        PARALLELISM: ${{ inputs.parallelism }}
+        WORKSPACE: ${{ inputs.workspace }}
+        LOCK_TIMEOUT: ${{ inputs.lock-timeout }}
+      run: |
+        ARGS=()
+        while IFS= read -r line; do
+          if [ -n "$line" ]; then ARGS+=("-var-file=$line"); fi
+        done <<< "$VAR_FILES"
+        while IFS= read -r line; do
+          if [ -n "$line" ]; then ARGS+=("-var=$line"); fi
+        done <<< "$VARS"
+
+        terraform init -input=false
+        # Listing fails on backend errors, so only a genuinely missing workspace counts as nothing to destroy.
+        workspaces="$(terraform workspace list)"
+        found=false
+        while IFS= read -r line; do
+          # Each line is "* <name>" for the current workspace, "  <name>" otherwise.
+          if [ "${line:2}" = "$WORKSPACE" ]; then found=true; fi
+        done <<< "$workspaces"
+        if [ "$found" != true ]; then
+          echo "No deployment found for workspace $WORKSPACE; nothing to destroy."
+          exit 0
+        fi
+        terraform workspace select "$WORKSPACE"
+        # A failed destroy keeps the workspace, so a re-run resumes where it stopped.
+        terraform destroy -input=false -auto-approve -lock-timeout="$LOCK_TIMEOUT" -parallelism="$PARALLELISM" "${ARGS[@]}"
+        terraform workspace select default
+        terraform workspace delete -lock-timeout="$LOCK_TIMEOUT" "$WORKSPACE"

@@ -62,6 +62,10 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment: preview
+    env:
+      # R2 does not implement the AWS flexible checksum extensions.
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
 
     steps:
       # Checks out main; the closed pull request's code never runs here.
@@ -70,15 +74,23 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup environment
+        uses: $/.github/actions/setup-environment
+
+      - name: Build Worker
+        run: task site:build
+
       - name: Destroy preview
-        uses: $/.github/actions/terraform
+        uses: $/.github/actions/terraform/destroy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
         with:
-          module: site
-          operation: destroy
+          working-directory: infra/site
           workspace: pr-${{ needs.resolve.outputs.number }}
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-          r2-access-key-secret: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          var-files: ../cloudflare.tfvars
+          parallelism: 30
 
   purge-caches:
     name: Purge PR Caches

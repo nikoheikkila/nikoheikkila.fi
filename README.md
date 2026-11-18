@@ -32,11 +32,11 @@ Run a single layer with `task test:unit`, `task test:component`, `task test:muta
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure only when the plan has changes, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
 
-Every Terraform run goes through one composite action:
+Every Terraform run goes through one of three composite actions:
 
-![Terraform Action: used by the CI, Preview and Preview Cleanup workflows from jobs that declare their own environment; the calling job checks out the code, then the action installs the Mise toolchain, then plans, deploys or destroys one module: plan the core infrastructure with read-only credentials on every CI run, deploy that plan in the prod environment on main, deploy the site to production or a pull request preview, or destroy a preview when its pull request closes.](docs/terraform-flow.svg)
+![Terraform Actions: the CI, Preview and Preview Cleanup workflows own the project-specific steps (checkout, toolchain setup, artifacts, Worker build, credentials as environment variables) and call three portable actions. Plan checks and plans the core infrastructure and reports whether changes need applying, deploy applies a saved plan or variables to the core infrastructure, production or a pull request preview, and destroy removes a preview workspace when its pull request closes, refusing protected workspaces.](docs/terraform-flow.svg)
 
 ## 👤 Author
 

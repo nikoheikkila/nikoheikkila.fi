@@ -1,0 +1,84 @@
+name: Terraform plan
+description: >-
+  Checks formatting, validates and plans a Terraform root module, publishes the plan to the job summary and
+  optionally uploads the binary plan as an artifact. Requires terraform and jq on PATH. Provider and backend
+  credentials are read from the environment of the calling step.
+
+inputs:
+  working-directory:
+    description: Root module directory
+    required: true
+  var-files:
+    description: Newline-separated -var-file paths, relative to the working directory
+    default: ""
+  vars:
+    description: Newline-separated key=value variables
+    default: ""
+  parallelism:
+    description: Number of concurrent resource operations
+    default: "10"
+  lock:
+    description: Whether to lock the state during the plan (true | false)
+    default: "true"
+  plan-artifact:
+    description: Artifact name for uploading the binary plan (empty = do not upload)
+    default: ""
+  plan-file:
+    description: File name of the saved plan, relative to the working directory
+    default: tfplan
+
+outputs:
+  needs-apply:
+    description: "true when the plan contains changes, false otherwise"
+    value: ${{ steps.plan.outputs.needs-apply }}
+
+runs:
+  using: composite
+  steps:
+    - name: Plan
+      id: plan
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        VAR_FILES: ${{ inputs.var-files }}
+        VARS: ${{ inputs.vars }}
+        PARALLELISM: ${{ inputs.parallelism }}
+        LOCK: ${{ inputs.lock }}
+        PLAN_FILE: ${{ inputs.plan-file }}
+      run: |
+        ARGS=()
+        while IFS= read -r line; do
+          if [ -n "$line" ]; then ARGS+=("-var-file=$line"); fi
+        done <<< "$VAR_FILES"
+        while IFS= read -r line; do
+          if [ -n "$line" ]; then ARGS+=("-var=$line"); fi
+        done <<< "$VARS"
+
+        terraform init -input=false
+        terraform fmt -recursive -check
+        terraform validate
+
+        terraform plan -input=false -detailed-exitcode -lock="$LOCK" -parallelism="$PARALLELISM" -out="$PLAN_FILE" "${ARGS[@]}" && code=0 || code=$?
+        case "$code" in
+          0) echo "needs-apply=false" >> "$GITHUB_OUTPUT" ;;
+          2) echo "needs-apply=true" >> "$GITHUB_OUTPUT" ;;
+          *) exit "$code" ;;
+        esac
+
+        {
+          echo "## Terraform Plan"
+          echo ""
+          echo "\`\`\`terraform"
+          terraform show -no-color "$PLAN_FILE"
+          echo "\`\`\`"
+        } >> "$GITHUB_STEP_SUMMARY"
+
+    # The binary plan holds sensitive values unmasked: callers upload it only when a later job applies it.
+    - name: Upload plan
+      if: ${{ inputs.plan-artifact != '' }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+      with:
+        name: ${{ inputs.plan-artifact }}
+        path: ${{ inputs.working-directory }}/${{ inputs.plan-file }}
+        if-no-files-found: error
+        retention-days: 1
