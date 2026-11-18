@@ -265,6 +265,8 @@ jobs:
       (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
     runs-on: ubuntu-26.04
     timeout-minutes: 30
+    outputs:
+      needs-apply: ${{ steps.terraform.outputs.needs-apply }}
 
     steps:
       - name: Checkout repository
@@ -272,20 +274,29 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup environment
+        uses: $/.github/actions/setup-environment
+
       # Read-only repository secrets: the plan runs for pull requests, which the
       # `preview` and `prod` environments never admit.
       - name: Plan infrastructure
-        uses: $/.github/actions/terraform
+        id: terraform
+        uses: $/.github/actions/terraform/plan
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_READ_API_TOKEN }} # zizmor: ignore[secrets-outside-env]
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_STATE_READ_ACCESS_KEY_ID }} # zizmor: ignore[secrets-outside-env]
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_STATE_READ_SECRET }} # zizmor: ignore[secrets-outside-env]
         with:
-          module: cloudflare
-          operation: plan
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_READ_API_TOKEN }} # zizmor: ignore[secrets-outside-env]
-          r2-access-key-id: ${{ secrets.R2_STATE_READ_ACCESS_KEY_ID }} # zizmor: ignore[secrets-outside-env]
-          r2-access-key-secret: ${{ secrets.R2_STATE_READ_SECRET }} # zizmor: ignore[secrets-outside-env]
+          working-directory: infra/cloudflare
+          var-files: ../cloudflare.tfvars
+          lock: "false"
+          plan-artifact: ${{ github.event_name != 'pull_request' && 'tfplan' || '' }}
 
   deploy_infrastructure:
     name: Deploy Infrastructure
-    if: ${{ github.event_name != 'pull_request' && github.ref_name == 'main' }}
+    if: >-
+      ${{ github.event_name != 'pull_request' && github.ref_name == 'main' &&
+      needs.terraform_plan.outputs.needs-apply == 'true' }}
     needs: [unit_tests, component_tests, mutation_tests, acceptance_tests, terraform_plan]
     runs-on: ubuntu-26.04
     timeout-minutes: 30
@@ -300,30 +311,41 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup environment
+        uses: $/.github/actions/setup-environment
+
       # `cloudflare_workers_custom_domain` only accepts account-wide Workers
       # Scripts Write, so infra/cloudflare uses the broader infra token.
       - name: Deploy infrastructure
-        uses: $/.github/actions/terraform
+        uses: $/.github/actions/terraform/deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_INFRA_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
         with:
-          module: cloudflare
-          operation: deploy
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_INFRA_API_TOKEN }}
-          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-          r2-access-key-secret: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          working-directory: infra/cloudflare
+          plan-artifact: tfplan
+          emit-outputs: "false"
 
   deploy:
     name: Deploy to Production
     needs: [deploy_infrastructure]
+    # Run even when the infrastructure deploy was skipped (no changes).
+    if: ${{ !cancelled() && !failure() && github.event_name != 'pull_request' && github.ref_name == 'main' }}
     runs-on: ubuntu-26.04
     timeout-minutes: 30
     environment:
       name: prod
-      url: ${{ steps.terraform.outputs.url }}
+      url: ${{ steps.site.outputs.url }}
     permissions:
       contents: read # Required to check out the repository
       actions: read # Required to download artifacts of this run
+    env:
+      # R2 does not implement the AWS flexible checksum extensions.
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
     outputs:
-      url: ${{ steps.terraform.outputs.url }}
+      url: ${{ steps.site.outputs.url }}
 
     steps:
       - name: Checkout repository
@@ -331,15 +353,37 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup environment
+        uses: $/.github/actions/setup-environment
+
+      - name: Download static assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: static-assets
+          path: ${{ runner.temp }}/site
+
+      - name: Build Worker
+        run: task site:build
+
       - name: Deploy site
         id: terraform
-        uses: $/.github/actions/terraform
+        uses: $/.github/actions/terraform/deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
         with:
-          module: site
-          operation: deploy
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-          r2-access-key-secret: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          working-directory: infra/site
+          workspace: default
+          var-files: ../cloudflare.tfvars
+          vars: dist_dir=${{ runner.temp }}/site
+          parallelism: 30
+
+      - name: Read site URL
+        id: site
+        env:
+          OUTPUTS: ${{ steps.terraform.outputs.outputs }}
+        run: echo "url=$(jq -r .url <<< "$OUTPUTS")" >> "$GITHUB_OUTPUT"
 
   lighthouse:
     name: Lighthouse Audit for Production

@@ -61,12 +61,12 @@ jobs:
     timeout-minutes: 30
     environment:
       name: preview
-      url: ${{ steps.terraform.outputs.url }}
+      url: ${{ steps.site.outputs.url }}
     permissions:
       contents: read # Required to check out the repository
       actions: read # Required to download artifacts of the CI run
     outputs:
-      url: ${{ steps.terraform.outputs.url }}
+      url: ${{ steps.site.outputs.url }}
 
     steps:
       # Checks out main: the pull request's build artifacts are data, never code.
@@ -75,17 +75,59 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup environment
+        uses: $/.github/actions/setup-environment
+
+      - name: Download static assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: static-assets
+          path: ${{ runner.temp }}/site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Build Worker
+        run: task site:build
+
       - name: Deploy preview
         id: terraform
-        uses: $/.github/actions/terraform
+        uses: $/.github/actions/terraform/deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
         with:
-          module: site
-          operation: deploy
+          working-directory: infra/site
           workspace: pr-${{ needs.resolve.outputs.number }}
-          artifacts-run-id: ${{ github.event.workflow_run.id }}
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          r2-access-key-id: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-          r2-access-key-secret: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          var-files: ../cloudflare.tfvars
+          vars: dist_dir=${{ runner.temp }}/site
+          parallelism: 30
+
+      - name: Read site URL
+        id: site
+        env:
+          OUTPUTS: ${{ steps.terraform.outputs.outputs }}
+        run: echo "url=$(jq -r .url <<< "$OUTPUTS")" >> "$GITHUB_OUTPUT"
+
+      - name: Download preview Worker
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: preview-worker
+          path: ${{ runner.temp }}/worker
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Install dependencies
+        uses: $/.github/actions/install-dependencies
+
+      - name: Upload preview version
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          WORKSPACE: pr-${{ needs.resolve.outputs.number }}
+          WORKER_DIR: ${{ runner.temp }}/worker
+        run: task site:ci:preview:upload WORKSPACE="$WORKSPACE" WORKER_DIR="$WORKER_DIR"
 
   lighthouse:
     name: Lighthouse Audit for Preview
