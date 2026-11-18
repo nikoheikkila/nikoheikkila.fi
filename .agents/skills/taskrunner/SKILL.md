@@ -109,7 +109,7 @@ task site:plan      # production (default workspace); previews are CI-only
 task site:deploy
 ```
 
-**Gotcha**: only pass `-- <extra args>` to tasks that run a _single_ command. Multi-command tasks (e.g. `site:plan`, `site:ci:destroy`) append `{{.CLI_ARGS}}` to every command they run, so extra flags break intermediate steps like `terraform workspace select`.
+**Gotcha**: only pass `-- <extra args>` to tasks that run a _single_ command. Multi-command tasks (e.g. `site:plan`) append `{{.CLI_ARGS}}` to every command they run, so extra flags break intermediate steps like `terraform workspace select`.
 
 ### After editing infrastructure
 

@@ -79,32 +79,6 @@ tasks:
         vars:
           command: "apply -parallelism={{ .PARALLELISM }} {{ .TFPLAN }}"
 
-  ci:deploy:
-    desc: Deploy the site for the given WORKSPACE (CI)
-    deps: [build]
-    cmds:
-      - terraform init
-      - terraform workspace select -or-create=true {{ .WORKSPACE }}
-      - terraform apply -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }} -var="dist_dir={{ .DIST_DIR }}"
-
-  ci:destroy:
-    desc: Destroy a preview deployment for the given WORKSPACE (CI)
-    deps: [build]
-    preconditions:
-      - sh: test "{{ .WORKSPACE }}" != "default"
-        msg: Refusing to destroy the production deployment
-    cmds:
-      - |
-        set -e
-        terraform init
-        if ! terraform workspace select {{ .WORKSPACE }} 2>/dev/null; then
-          echo "No deployment found for workspace {{ .WORKSPACE }}; nothing to destroy."
-          exit 0
-        fi
-        terraform destroy -parallelism={{ .PARALLELISM }} -auto-approve -var-file={{ .TFVARS }}
-        terraform workspace select default
-        terraform workspace delete {{ .WORKSPACE }}
-
   ci:preview:upload:
     desc: Upload WORKER_DIR/worker.js as a version of the preview Worker with preview alias WORKSPACE (CI)
     preconditions:
