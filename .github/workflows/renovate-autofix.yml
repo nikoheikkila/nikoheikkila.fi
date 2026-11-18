@@ -8,17 +8,24 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   fix:
     name: Fix Failing CI with Claude
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
     if: >-
+      ${{
       github.event.workflow_run.conclusion == 'failure' &&
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.actor.login == 'renovate[bot]' &&
       startsWith(github.event.workflow_run.head_branch, 'renovate/') &&
       github.event.workflow_run.head_repository.full_name == github.repository &&
       github.event.workflow_run.pull_requests[0] != null
+      }}
     concurrency:
       group: claude-fix-ci-${{ github.event.workflow_run.pull_requests[0].number }}
       cancel-in-progress: false
@@ -53,7 +60,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        if: steps.guard.outputs.skip != 'true'
+        if: ${{ steps.guard.outputs.skip != 'true' }}
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ env.HEAD_SHA }}
@@ -61,19 +68,19 @@ jobs:
           persist-credentials: false
 
       - name: Setup environment
-        if: steps.guard.outputs.skip != 'true'
+        if: ${{ steps.guard.outputs.skip != 'true' }}
         uses: $/.github/actions/setup-environment
 
       # LEFTHOOK=0 stops `bun install` from registering git hooks that would run
       # the full test suite on Claude's push.
       - name: Install dependencies
-        if: steps.guard.outputs.skip != 'true'
+        if: ${{ steps.guard.outputs.skip != 'true' }}
         uses: $/.github/actions/install-dependencies
         env:
           LEFTHOOK: "0"
 
       - name: Collect failure context
-        if: steps.guard.outputs.skip != 'true'
+        if: ${{ steps.guard.outputs.skip != 'true' }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,9 +91,17 @@ jobs:
             > "${RUNNER_TEMP}/ci-failure/jobs.md"
           gh run view "$RUN_ID" --log-failed > "${RUNNER_TEMP}/ci-failure/failed.log"
 
+      # The branch name comes from the triggering run, so it stays out of the
+      # prompt: Claude runs a bare `git push` to the upstream set up here.
+      - name: Track pull request branch
+        if: ${{ steps.guard.outputs.skip != 'true' }}
+        run: |
+          git switch --create "$HEAD_BRANCH"
+          git branch --set-upstream-to="origin/$HEAD_BRANCH"
+
       - name: Run Claude Code
         id: claude
-        if: steps.guard.outputs.skip != 'true'
+        if: ${{ steps.guard.outputs.skip != 'true' }}
         uses: anthropics/claude-code-action@4fa93a88de49bbef68b10eb15aabedf28ca0e1ed # v1.0.271
         timeout-minutes: 60
         env:
@@ -110,7 +125,7 @@ jobs:
               "required": ["fixed", "root_cause", "summary", "commit_sha"]
             }'
           prompt: |
-            CI failed on pull request #${{ env.PR_NUMBER }} (branch `${{ env.HEAD_BRANCH }}`).
+            CI failed on pull request #${{ env.PR_NUMBER }}, whose branch is checked out.
             Failed run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ env.RUN_ID }}
             Failed jobs: ${{ runner.temp }}/ci-failure/jobs.md
             Failed job logs (may be large; search them rather than reading whole): ${{ runner.temp }}/ci-failure/failed.log
@@ -123,8 +138,8 @@ jobs:
             3. If the failure is infrastructural, flaky, or secret-related (deploy, Lighthouse,
                network), or cannot be fixed safely, make no commit and return `fixed: false`.
             4. Otherwise verify the fix, make one conventional commit (header up to 100 chars,
-               e.g. `fix(deps): adapt to <package> <version>`) and run
-               `git push origin HEAD:${{ env.HEAD_BRANCH }}`. Never force-push or rebase.
+               e.g. `fix(deps): adapt to <package> <version>`) and run `git push` with no
+               arguments; the branch already tracks its remote. Never force-push or rebase.
             5. Return the structured result; `commit_sha` is the full 40-character SHA of the
                commit you pushed, or an empty string if you made none. Do not comment on the
                PR yourself.
