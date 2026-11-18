@@ -39,8 +39,29 @@ tasks:
       - .github/workflows
       - .github/actions
       - .github/zizmor.yml
+      - .github/actionlint.yml
+    cmds:
+      - task: actionlint
+      - task: zizmor
+
+  actionlint:
+    desc: Lint GitHub Actions workflows with jactionlint
+    internal: true
     env:
       GITHUB_TOKEN:
         sh: gh auth token
-    cmds:
-      - zizmor --persona=auditor .github/
+    cmd: >
+      jactionlint
+      --config-file .github/actionlint.yml
+      --format oneline
+      --online
+      --online-token-env=GITHUB_TOKEN
+      --profile pedantic
+
+  zizmor:
+    desc: Lint GitHub Actions workflows with Zizmor
+    internal: true
+    env:
+      GITHUB_TOKEN:
+        sh: gh auth token
+    cmd: zizmor --persona=auditor .github/
