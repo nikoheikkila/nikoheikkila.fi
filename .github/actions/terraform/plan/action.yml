@@ -76,7 +76,7 @@ runs:
     # The binary plan holds sensitive values unmasked: callers upload it only when a later job applies it.
     - name: Upload plan
       if: ${{ inputs.plan-artifact != '' }}
-      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: ${{ inputs.plan-artifact }}
         path: ${{ inputs.working-directory }}/${{ inputs.plan-file }}
