@@ -2,50 +2,53 @@
 title: Healthcheck for You, Developer
 author: Niko Heikkilä
 lang: en
-excerpt: Research into AI coding and mental health made me ask why coding itself has never burned me out, and what healthy ways of working look like. Let's find out!
+excerpt: Research into AI coding and mental health made me ask why coding itself has never burned me out, and what healthy ways of working look like.
 type: post
 date: 2026-08-15
 hero: https://r2.nikoheikkila.fi/healthcheck-for-you-developer.jpg
 ---
 
-I was watching **Scott Tolinski's** [insightful video on Syntax][tolinski] about the negative mental health effects
+I was watching **Scott Tolinski's** [insightful video on Syntax][tolinski] about the mental health effects
 developers experience while coding with AI. Measuring it against my own experience, I was surprised. I have never felt
 that _coding_, with or without AI, takes a significant toll on my well-being.
 
 While unreasonable client environments, toxic management, and multiple projects juggled at once have driven me close to
 burning out, coding itself has always been a joy.
 
-## Why the Joy Never Left Me
+## Why Coding with AI Never Burned Me Out
 
-Why is that? I suspect it has a lot to do with the _Extreme Programming_ and _Continuous Delivery_ practices I adopted
-aeons ago. You know, the ones the rest of the world is only now catching up with, now that AI has made them compulsory.
+Why is that? I suspect it has a lot to do with the _Extreme Programming_ and
+[_Continuous Delivery_](/blog/the-impractical-continuous-delivery/) practices I adopted aeons ago. You know, the ones
+the rest of the world is only now catching up with, now that AI has made them compulsory.
 
 The way I work supports my well-being directly. In my team, we plan and slice the work to implement only what's
 absolutely necessary. I test my work continuously. After each successful test I save my work as a
 [micro-commit](/blog/a-practical-guide-to-micro-commits/). Then I push the changes and see whether the delivery
 pipeline finds them releasable.
 
-Indeed, I deliberately avoid long sessions based on complex and expensive plans, preferring to hand agents the smallest
+I deliberately avoid long sessions based on complex and expensive plans, preferring to hand agents the smallest
 possible increments to work on.
 
-With my team, we refine user stories aggressively and proactively into [small vertical slices](/blog/from-speculation-to-facts-mastering-vertical-slicing-in-software-engineering/). When we
+We refine user stories aggressively and proactively into [small vertical slices](/blog/from-speculation-to-facts-mastering-vertical-slicing-in-software-engineering/). When we
 spot additional work, we estimate its importance and either defer it to a future story or drop it altogether. This
-keeps the batch size reasonable, but everyone in the team can still understand and reason about the contents of
+keeps the batch size reasonable, so everyone in the team can still understand and reason about the contents of
 delivery.
 
 Before AI, many people I've talked to used to work for several days without committing or testing their work.
 Now they prompt for hours while neglecting the same steps. It seems to me little has been learned from the pre-AI days;
 only the tools got more powerful. Hence, the suffering.
 
+## The Pressure to Do More with AI
+
 In the video, the interviewees describe burning the notorious midnight oil, spending as many tokens as possible,
 neglecting other people, and skimping on sleep, to name but a few. These are all real dangers that can derail your
 career in a matter of months if you don't pay attention.
 
-The corporate world, where the target of AI adoption is to increase AI adoption — yet no one seems to criticise this at
-all — is to blame here. So is the ruthless self-made entrepreneur spirit chasing the next big thing. If you can
-complete a new feature in a fraction of the time with AI, it's natural to think you must assign yourself even more
-work. You do not. Breaking out of the vicious circle of faith in infinite economic growth might be difficult, but its
-benefits are remarkable. It is a topic we must discuss more in political and technological discourse.
+The corporate world is to blame here. Its goal for AI adoption is more AI adoption, yet no one seems to criticise this
+at all. So is the ruthless self-made entrepreneur spirit chasing the next big thing. If you can complete a new feature
+in a fraction of the time with AI, it's natural to think you must assign yourself even more work. You do not. Breaking
+out of the vicious circle of faith in infinite economic growth might be difficult, but its benefits are remarkable. We
+must discuss this more.
 
 I have urged people _not_ to work in this continuously straining factory-line environment, but I've been laughed
 at for failing to see the massive improvements in GDP that AI brings forth. Guilty as charged. I don't see the
@@ -57,9 +60,9 @@ have burned. In that case, it's your responsibility to stand up and act — by f
 
 ## A Checklist for the Fatigued
 
-When the tools we use grow more potent at both destroying and improving us, it's crucial to build healthy processes and
-ways of working. Below is a simple checklist to go through in case you're feeling fatigued or long for the joy of coding
-to return.
+As our tools grow more potent, it's crucial to build healthy ways of working. Below is a simple checklist to go through
+in case you're feeling fatigued or long for the joy of coding to return.
+
 1. Sleep at least eight hours each night.
    Everything below in the list is moot if you fail at this.
 2. Keep drinking water and eat small meals throughout the day.
@@ -78,19 +81,20 @@ to return.
 **Disclaimer:** These tips work for me, and they _might_ work for you. However, none of the above is intended as medical advice,
 so contact a medical professional if issues persist. Doctors are there for you. Use their services!
 
-An additional recommendation I would follow is to limit the total weekly hours to 30.
-The [largest four-day-week trial to date][nature], covering nearly 3,000 workers across 141 organisations and cut to 32 hours
-with no drop in pay, found substantial gains in well-being and no decline in how productive people rated themselves. An
-[Austrian study of a compressed four-day schedule][taylor-francis] saw fatigue and time pressure fall while perceived
-productivity held steady, even though the total hours stayed the same.
+## Shorter Working Weeks
 
-Still, it's an unfortunate reality that today's economy is still steered by people who mistakenly think that putting in
-more hours yields better productivity and profit. If you are an entrepreneur with a sustainable hourly rate, though,
-what are you waiting for?
+An additional recommendation I would follow is to limit the total weekly hours to 30.
+The [largest four-day-week trial to date][nature], covering nearly 3,000 workers across 141 organisations that cut hours
+by about five a week on average with no drop in pay, found substantial gains in well-being and improved self-reported
+work ability. An [Austrian study of a compressed four-day schedule][taylor-francis] saw fatigue and time pressure fall
+while perceived productivity held steady, even though the total hours stayed the same.
+
+Unfortunately, today's economy is still steered by people who mistakenly think that putting in more hours yields better
+productivity and profit. If you are an entrepreneur with a sustainable hourly rate, though, what are you waiting for?
 
 In the end, knowledge work is a long-distance run, not a sprint. The methods allowing us to work more sustainably
 without affecting our mental or physical health will always outrank any notion of increased short-term productivity.
-I think you can't really argue with that from any position.
+You can't argue with that from any position.
 
 ---
 
