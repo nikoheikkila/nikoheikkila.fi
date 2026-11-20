@@ -77,6 +77,11 @@ Acceptance tests are Gherkin scenarios executed by Playwright through [`playwrig
 
 ## Key Conventions
 
+### Content Review
+
+Load the `content-review` skill to review posts. Writing conventions shared by its subagents (voice, what the remark
+pipeline already handles, severity levels, finding ownership) live in `.agents/skills/content-review/references/house-style.md`.
+
 ### Git Workflow
 
 Load `git` skill ALWAYS before invoking `git` in this repository.

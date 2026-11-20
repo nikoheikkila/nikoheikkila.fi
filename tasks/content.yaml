@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  harper:
+    desc: Check Markdown content with Harper
+    requires:
+      vars:
+        - file
+    vars:
+      # Posts mix US and British spelling; pass dialect=british for British posts.
+      dialect: '{{.dialect | default "us"}}'
+    # Compact, colourless output: one line per lint, readable by humans and agents alike.
+    cmd: harper-cli lint --no-color --quiet --format compact --dialect {{shellQuote .dialect}} {{shellQuote .file}}
+
+  vale:
+    desc: Check Markdown content with Vale
+    requires:
+      vars:
+        - file
+    # .vale.ini globs (content/**/*.md) only match repo-relative paths.
+    vars:
+      path: "{{if osIsAbs .file}}{{relPath .ROOT_DIR .file}}{{else}}{{.file}}{{end}}"
+    cmd: vale {{shellQuote .path}}

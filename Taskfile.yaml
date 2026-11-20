@@ -26,6 +26,10 @@ includes:
     taskfile: ./tasks/test.yaml
     dir: .
 
+  content:
+    taskfile: ./tasks/content.yaml
+    dir: .
+
 tasks:
   new:
     desc: Scaffold a new post or page
