@@ -71,7 +71,7 @@
 		"@vitest/coverage-v8": "5.1.0",
 		"axe-core": "4.14.0",
 		"happy-dom": "21.0.4",
-		"inquirer": "14.2.5",
+		"inquirer": "14.3.0",
 		"lefthook": "2.2.2",
 		"lighthouse": "13.6.0",
 		"playwright-bdd": "9.2.1",
