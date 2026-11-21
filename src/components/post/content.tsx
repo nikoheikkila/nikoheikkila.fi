@@ -46,6 +46,12 @@ SyntaxHighlighter.registerLanguage("svelte", xml); // Use XML for Svelte (simila
 SyntaxHighlighter.registerLanguage("typescript", typescript);
 SyntaxHighlighter.registerLanguage("yaml", yaml);
 
+const codeTheme = {
+	...nightOwl,
+	// Night Owl's default comment colour (#637777) has a 3.87:1 contrast ratio, below the WCAG AA minimum of 4.5:1
+	"hljs-comment": { ...nightOwl["hljs-comment"], color: "#8a9ba8" },
+};
+
 interface ContentProps {
 	content: string;
 }
@@ -210,7 +216,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 				lineProps={getLineProps}
 				role="region"
 				showLineNumbers={true}
-				style={nightOwl}
+				style={codeTheme}
 				tabIndex={0}
 				wrapLines={true}
 				{...props}
