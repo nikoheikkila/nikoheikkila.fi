@@ -26,3 +26,5 @@ Fastmail
 dotfiles
 inboxing
 nazified
+Pulumi
+(?i)mise
