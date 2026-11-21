@@ -11,7 +11,6 @@ import Subscribe from "../components/post/subscribe";
 import SEO from "../components/seo";
 import config from "../../gatsby-config";
 import * as DateTime from "../utils/datetime";
-import { combinePaths } from "../utils/helpers";
 
 interface PageContext {
 	previous: Queries.MarkdownRemark;
@@ -124,8 +123,6 @@ export const Head: HeadFC<Queries.Query> = ({ data }) => {
 	const cover = hero?.childImageSharp ?? undefined;
 	const type = data.markdownRemark?.frontmatter?.type ?? "";
 	const slug = data.markdownRemark?.fields?.slug ?? "";
-	const siteUrl = data.site?.siteMetadata?.siteUrl ?? "";
-	const postUrl = combinePaths(siteUrl, slug);
 	const date = data.markdownRemark?.frontmatter?.date ?? "";
 
 	return (
@@ -136,7 +133,7 @@ export const Head: HeadFC<Queries.Query> = ({ data }) => {
 			lang={lang}
 			title={postTitle}
 			type={type}
-			url={postUrl}
+			url={slug}
 		/>
 	);
 };

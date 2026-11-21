@@ -1,6 +1,7 @@
 import React from "react";
 import type { FunctionComponent } from "react";
 import { getSEOData } from "../graphql/seo";
+import { combinePaths } from "../utils/helpers";
 import SchemaOrg from "./schema";
 
 interface SEOProps {
@@ -25,12 +26,14 @@ const SEO: FunctionComponent<SEOProps> = ({
 	const data = getSEOData();
 	const meta = data.site?.siteMetadata;
 	const siteURL = String(meta?.siteUrl);
-	const pageURL = url === "/" ? siteURL : url;
+	const pageURL = combinePaths(siteURL, url);
+	const authorURL = combinePaths(siteURL, "/about/");
 	const siteTitle = String(meta?.title);
 	const author = String(meta?.author?.name);
 	const metaDescription = String(description || meta?.description).replaceAll("\n", " ");
 	const locale = lang === "en" ? "en_GB" : "fi_FI";
-	const imageUrl = String(image ? siteURL + image?.original?.src : meta?.cover);
+	const imageSrc = image?.original?.src;
+	const imageUrl = imageSrc ? siteURL + imageSrc : (meta?.cover ?? undefined);
 	const isPost = type === "post";
 
 	return (
@@ -38,7 +41,7 @@ const SEO: FunctionComponent<SEOProps> = ({
 			<BasicMeta description={metaDescription} title={title} />
 
 			<OpenGraph
-				author={author}
+				authorURL={authorURL}
 				date={datePublished}
 				description={metaDescription}
 				imageUrl={imageUrl}
@@ -85,7 +88,7 @@ interface OpenGraphProps {
 	title: string;
 	description: string;
 	pageURL: string;
-	author: string;
+	authorURL: string;
 	date?: string;
 	imageUrl?: string;
 }
@@ -97,32 +100,31 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
 	title,
 	description,
 	pageURL,
-	author,
+	authorURL,
 	date = "",
-	imageUrl = "",
+	imageUrl,
 }) => {
 	const isPage = type === "page";
 	const isPost = type === "post";
 
 	return (
 		<>
-			<meta content={title} name="og:title" />
-			<meta content={description} name="og:description" />
-			<meta content={imageUrl} name="og:image" />
-			<meta content={title} name="og:image:alt" />
-			<meta content={pageURL} name="og:url" />
-			{isPage && <meta content="website" name="og:type" />}
+			<meta content={title} property="og:title" />
+			<meta content={description} property="og:description" />
+			{imageUrl ? <meta content={imageUrl} property="og:image" /> : null}
+			<meta content={pageURL} property="og:url" />
+			{isPage && <meta content="website" property="og:type" />}
 			{isPost && (
 				<>
-					<meta content="article" name="og:type" />
-					<meta content={date} name="article:published_time" />
-					<meta content={author} name="article:author" />
-					<meta content="Technology" name="article:section" />
+					<meta content="article" property="og:type" />
+					{date ? <meta content={date} property="article:published_time" /> : null}
+					<meta content={authorURL} property="article:author" />
+					<meta content="Technology" property="article:section" />
 				</>
 			)}
 
-			<meta content={locale} name="og:locale" />
-			<meta content={siteTitle} name="og:site_name" />
+			<meta content={locale} property="og:locale" />
+			<meta content={siteTitle} property="og:site_name" />
 		</>
 	);
 };

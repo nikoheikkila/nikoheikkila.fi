@@ -22,6 +22,20 @@ expect.extend({
 					: `Expected the link to have a sibling icon "${iconName}"${pack} but none was found`,
 		};
 	},
+	toHaveMetaProperty(received: Document, property: string, content?: string) {
+		const tag = received.head.querySelector(`meta[property="${property}"]`);
+		const actual = tag?.getAttribute("content");
+		const isPassing = content === undefined ? tag !== null : actual === content;
+		const found = tag ? `"${actual}"` : "none";
+
+		return {
+			pass: isPassing,
+			message: () =>
+				isPassing
+					? `Expected no meta "${property}" matching ${content ?? "any content"} but found "${actual}"`
+					: `Expected meta "${property}" with ${content ?? "any content"} but found ${found}`,
+		};
+	},
 	async toHaveNoA11yViolations(received: HTMLElement, options: RunOptions = {}) {
 		const { runOnly, ...restOptions } = options;
 
@@ -71,6 +85,7 @@ expect.extend({
 declare module "vitest" {
 	interface Assertion<R extends void | Promise<void> = void, T = unknown> {
 		toHaveNoA11yViolations: (options?: RunOptions) => Promise<void>;
+		toHaveMetaProperty: (property: string, content?: string) => void;
 		toHaveSiblingIcon: (iconName: string, prefix?: string) => void;
 	}
 }

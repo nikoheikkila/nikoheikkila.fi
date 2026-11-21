@@ -500,8 +500,20 @@ export class BasePage {
 		await expect(this.metaTag("description")).toHaveAttribute("content", /\S/u);
 	}
 
+	@Then("the link preview address is the full address of the page")
+	public async expectLinkPreviewFullAddress(): Promise<void> {
+		const address = async () => (await this.openGraphTag("og:url").getAttribute("content")) ?? "";
+
+		await expect.poll(address).toMatch(/^https:\/\//u);
+		await expect.poll(async () => new URL(await address()).pathname).toBe(new URL(this.page.url()).pathname);
+	}
+
 	protected metaTag(name: string): Locator {
 		return this.page.locator(`meta[name='${name}']`);
+	}
+
+	protected openGraphTag(property: string): Locator {
+		return this.page.locator(`meta[property='${property}']`);
 	}
 
 	private get nextIndexPageLink(): Locator {

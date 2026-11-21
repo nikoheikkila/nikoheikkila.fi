@@ -14,7 +14,7 @@ Feature: Search engine and link previews
   Scenario: Link preview presents the post as an article
     When the visitor opens the latest post
     Then the link preview presents the post as an article
-    And the link preview author is "Niko Heikkilä"
+    And the link preview author links to the About page
     And the link preview image is served securely
 
   Scenario: Search engines understand the post's place on the website
@@ -30,3 +30,11 @@ Feature: Search engine and link previews
   Scenario: Link preview presents a page as a website
     When the visitor opens the About page
     Then the link preview presents the page as a website
+
+  Scenario: Link preview tags follow the Open Graph protocol
+    When the visitor opens the latest post
+    Then every link preview tag is declared as an Open Graph property
+
+  Scenario: Index page link preview has a full address
+    When the visitor opens the second index page
+    Then the link preview address is the full address of the page
