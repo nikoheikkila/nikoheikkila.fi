@@ -22,7 +22,6 @@ export default {
 		"src/search/index.ts",
 		"src/mermaid/index.ts",
 		"src/components/layout/socialIcons.ts",
-		"infra/site/worker.ts",
 		"scripts/preview-report/logic.ts",
 		"scripts/stryker-diff/logic.ts",
 	],

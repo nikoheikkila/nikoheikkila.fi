@@ -1,5 +1,5 @@
 # Cloudflare Workers configuration
-# The Worker script itself is deployed and managed by the site module (./site)
+# The Worker script is deployed by Wrangler from the repository root (wrangler.jsonc)
 # This resource only manages the custom domain mapping
 resource "cloudflare_workers_custom_domain" "blog" {
   account_id = var.account_id
@@ -16,7 +16,7 @@ resource "cloudflare_workers_custom_domain" "blog" {
 }
 
 # Shared preview Worker. Each pull request creates a Workers Preview pr-<n>
-# of it (see ../site), using a token that is Editor on this
+# of it (see tasks/site.yaml), using a token that is Editor on this
 # Worker only, and Editor cannot create Workers, so the Worker is created here.
 # The deployed placeholder never serves a preview.
 resource "cloudflare_workers_script" "preview" {

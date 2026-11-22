@@ -176,25 +176,14 @@ jobs:
       - name: Type-check
         run: task lint:types
 
-      - name: Bundle preview Worker
-        if: ${{ github.event_name == 'pull_request' }}
-        run: task site:build
-
-      - name: Upload preview Worker
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: preview-worker
-          retention-days: 1
-          if-no-files-found: error
-          path: infra/site/worker.js
-
       - name: Upload static assets
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: static-assets
           retention-days: 1
           if-no-files-found: error
+          # Carries public/.assetsignore to the deploy, which Wrangler reads from the assets directory.
+          include-hidden-files: true
           path: |
             public/
             !public/**/*.js.map
@@ -336,16 +325,10 @@ jobs:
     timeout-minutes: 30
     environment:
       name: prod
-      url: ${{ steps.site.outputs.url }}
+      url: https://${{ github.event.repository.name }}
     permissions:
       contents: read # Required to check out the repository
       actions: read # Required to download artifacts of this run
-    env:
-      # R2 does not implement the AWS flexible checksum extensions.
-      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
-    outputs:
-      url: ${{ steps.site.outputs.url }}
 
     steps:
       - name: Checkout repository
@@ -360,30 +343,13 @@ jobs:
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: static-assets
-          path: ${{ runner.temp }}/site
-
-      - name: Build Worker
-        run: task site:build
+          path: public
 
       - name: Deploy site
-        id: terraform
-        uses: $/.github/actions/terraform/deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
-          TF_VAR_account_id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-        with:
-          working-directory: infra/site
-          workspace: default
-          vars: dist_dir=${{ runner.temp }}/site
-          parallelism: 30
-
-      - name: Read site URL
-        id: site
-        env:
-          OUTPUTS: ${{ steps.terraform.outputs.outputs }}
-        run: echo "url=$(jq -r .url <<< "$OUTPUTS")" >> "$GITHUB_OUTPUT"
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: task site:deploy
 
   lighthouse:
     name: Lighthouse Audit for Production
@@ -399,7 +365,7 @@ jobs:
       - name: Run Audit
         uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
         with:
-          urls: ${{ needs.deploy.outputs.url }}
+          urls: https://${{ github.event.repository.name }}
           runs: 1
           uploadArtifacts: true
           temporaryPublicStorage: true

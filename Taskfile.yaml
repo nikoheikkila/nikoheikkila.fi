@@ -11,8 +11,8 @@ includes:
     dir: ./infra/cloudflare
 
   site:
-    taskfile: ./infra/site/Taskfile.yml
-    dir: ./infra/site
+    taskfile: ./tasks/site.yaml
+    dir: .
 
   ci:
     taskfile: ./.github/Taskfile.yml

@@ -7,5 +7,12 @@ description: Procedures for validating, planning, and deploying the blog and Clo
 
 1. Consult the `terraform` skill.
 2. Run `task terraform:validate` and `task terraform:plan` from the repo root.
-3. If `infra/site/` changed, also run `task site:validate` (a site plan additionally needs `task build` so `public/` exists).
+3. If the site changed (`wrangler.jsonc`, `static/`, or the Gatsby build), run `task build` and `task site:verify`. Production is deployed by CI only.
 4. Show the plan output and summarise what resources would change. Do not apply without explicit confirmation.
+
+## One-time migration from `infra/site/` (remove once done)
+
+The site moved from the Terraform module `infra/site/` to Wrangler. Before merging the PR that removes `infra/site/`:
+1. From `infra/site/` in a checkout of `main` (the directory is gone from this change), in the `default` workspace, run `terraform state rm cloudflare_workers_script.site cloudflare_workers_script_subdomain.site`. Terraform then cannot destroy or overwrite the live `blog` Worker.
+2. Never run `terraform destroy` in `infra/site/`: it would delete the live Worker `blog`.
+3. The legacy buckets `site` and `site-pr-<n>` are deleted only after the soak period and with explicit user approval.
