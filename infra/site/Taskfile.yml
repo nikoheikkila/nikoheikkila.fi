@@ -12,6 +12,8 @@ vars:
   # The ~700 uploaded objects are tiny independent PUT/HEAD calls that
   # parallelise safely well beyond Terraform's default of 10.
   PARALLELISM: 30
+  # Must match preview_worker_name in variables.tf.
+  PREVIEW_WORKER_NAME: blog-preview
 
 # R2 does not implement the AWS flexible checksum extensions used by
 # recent AWS SDKs, so restrict checksums to where they are required.
@@ -79,24 +81,39 @@ tasks:
         vars:
           command: "apply -parallelism={{ .PARALLELISM }} {{ .TFPLAN }}"
 
-  ci:preview:upload:
-    desc: Upload WORKER_DIR/worker.js as a version of the preview Worker with preview alias WORKSPACE (CI)
+  ci:preview:deploy:
+    desc: Deploy WORKER_DIR/worker.js as Workers Preview WORKSPACE of the preview Worker (CI)
     preconditions:
       - sh: test "{{ .WORKSPACE }}" != "default"
-        msg: Production is deployed by Terraform, not as a preview version
+        msg: Production is deployed by Terraform, not as a Workers Preview
       - sh: test -f "{{ .WORKER_DIR }}/worker.js"
         msg: "WORKER_DIR must contain the bundled worker.js"
     requires:
-      vars: [WORKER_DIR]
+      vars: [WORKER_DIR, HEAD_SHA]
     cmds:
       # The config comes from Terraform state, so the binding is always this
-      # workspace's own bucket. --no-bundle uploads worker.js as-is, and
-      # the binary is the Mise-pinned one from the trusted checkout.
+      # workspace's own bucket; --ignore-base-config keeps dashboard settings out.
+      # --tag names the pull request commit; the checkout is main.
       - terraform workspace select {{ .WORKSPACE }}
       - terraform output -raw wrangler_config > "{{ .WORKER_DIR }}/wrangler.json"
       - >-
-        wrangler versions upload
+        wrangler preview
         --config "{{ .WORKER_DIR }}/wrangler.json"
-        --preview-alias {{ .WORKSPACE }}
-        --no-bundle
+        --name {{ .WORKSPACE }}
         --message "Preview for {{ .WORKSPACE }}"
+        --tag {{ trunc 7 .HEAD_SHA }}
+        --ignore-base-config
+
+  ci:preview:delete:
+    desc: Delete the Workers Preview WORKSPACE and all its deployments from the preview Worker, if it exists (CI)
+    preconditions:
+      - sh: test "{{ .WORKSPACE }}" != "default"
+        msg: Production is not a preview
+      - sh: test -n "$CLOUDFLARE_ACCOUNT_ID"
+        msg: CLOUDFLARE_ACCOUNT_ID must be set, or the existence check skips the delete
+    vars:
+      PREVIEW: --worker-name {{ .PREVIEW_WORKER_NAME }} --name {{ .WORKSPACE }}
+    cmds:
+      # Deleting a missing Preview fails: PRs that never deployed have none.
+      - cmd: wrangler preview delete {{ .PREVIEW }} --skip-confirmation
+        if: wrangler preview secret list {{ .PREVIEW }} --json

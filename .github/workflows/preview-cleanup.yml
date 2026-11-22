@@ -109,7 +109,18 @@ jobs:
       - name: Build Worker
         run: task site:build
 
+      # Delete the Preview before its bucket, the reverse of the deploy order.
+      # The bucket is destroyed even if this fails; a re-run or manual dispatch
+      # retries whatever is left.
+      - name: Delete Workers Preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WORKSPACE: pr-${{ needs.resolve.outputs.number }}
+        run: task site:ci:preview:delete WORKSPACE="$WORKSPACE"
+
       - name: Destroy preview
+        if: ${{ !cancelled() }}
         uses: $/.github/actions/terraform/destroy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

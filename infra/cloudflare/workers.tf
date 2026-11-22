@@ -15,11 +15,10 @@ resource "cloudflare_workers_custom_domain" "blog" {
   }
 }
 
-# Shared preview Worker. Each pull request uploads a version of it with
-# preview alias pr-<n> (see ../site), using a token that is Editor on this
+# Shared preview Worker. Each pull request creates a Workers Preview pr-<n>
+# of it (see ../site), using a token that is Editor on this
 # Worker only, and Editor cannot create Workers, so the Worker is created here.
-# The deployed placeholder never serves a preview; preview versions are never
-# deployed.
+# The deployed placeholder never serves a preview.
 resource "cloudflare_workers_script" "preview" {
   account_id         = var.account_id
   script_name        = var.preview_worker_name
@@ -31,15 +30,15 @@ resource "cloudflare_workers_script" "preview" {
     };
   JS
 
-  # The provider reads the latest uploaded version, i.e. the most recent pull
-  # request preview, so its code and bucket binding would otherwise show as drift
+  # The provider reads the latest uploaded version, i.e. a pull request version
+  # from before Workers Previews, so its code and bucket binding would otherwise show as drift
   # and every apply would overwrite them. Terraform only creates this Worker.
   lifecycle {
     ignore_changes = [content, bindings]
   }
 }
 
-# Preview alias URLs (pr-<n>-blog-preview.<subdomain>.workers.dev) require the
+# Workers Preview URLs (pr-<n>-blog-preview.<subdomain>.workers.dev) require the
 # workers.dev route and Preview URLs to be enabled on the Worker.
 resource "cloudflare_workers_script_subdomain" "preview" {
   account_id       = var.account_id

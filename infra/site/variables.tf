@@ -24,7 +24,7 @@ variable "worker_service_name" {
 }
 
 variable "preview_worker_name" {
-  description = "Name of the shared preview Worker; each pull request is uploaded as a version with preview alias pr-<n>"
+  description = "Name of the shared preview Worker; each pull request gets a Workers Preview pr-<n> of it"
   type        = string
   default     = "blog-preview"
 }
