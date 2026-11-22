@@ -41,7 +41,7 @@ jobs:
           HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
         run: |
           numbers=$(gh api "repos/$REPOSITORY/commits/$HEAD_SHA/pulls" --jq \
-            "[.[] | select(.state == \"open\" and .head.sha == \"$HEAD_SHA\" and (.head.repo.full_name | ascii_downcase) == (\"$HEAD_REPOSITORY\" | ascii_downcase)) | .number]")
+            "[.[] | select(.state == \"open\" and .head.sha == \"$HEAD_SHA\" and ((.head.repo.full_name // \"\") | ascii_downcase) ==(\"$HEAD_REPOSITORY\" | ascii_downcase)) | .number]")
           if [ "$(jq 'length' <<< "$numbers")" != "1" ]; then
             echo "::notice::Skipping: no unique open pull request for $HEAD_SHA ($numbers)."
             exit 0

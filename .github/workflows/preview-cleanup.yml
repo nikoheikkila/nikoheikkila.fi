@@ -2,10 +2,18 @@ name: Preview Cleanup
 
 # `workflow_run` runs this file from main. The PR number comes from the GitHub
 # API for the closed run's head commit, never from the triggering workflow.
+# A manual run cleans up a closed PR by number; the `preview` environment
+# admits only runs from main.
 on:
   workflow_run:
     workflows: ["Pull Request Closed"]
     types: [completed]
+  workflow_dispatch:
+    inputs:
+      pull-request:
+        description: Number of the closed pull request whose preview to destroy
+        required: true
+        type: number
 
 permissions:
   contents: read
@@ -15,7 +23,7 @@ defaults:
     shell: bash
 
 concurrency:
-  group: preview-cleanup-${{ github.event.workflow_run.id }}
+  group: preview-cleanup-${{ github.event.workflow_run.id || github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -23,39 +31,60 @@ jobs:
     name: Resolve Pull Request
     runs-on: ubuntu-26.04
     timeout-minutes: 10
-    if: ${{ github.event.workflow_run.event == 'pull_request' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.event == 'pull_request' }}
     permissions:
       contents: read # Required to call the API for commit metadata
       pull-requests: read # Required to resolve the closed pull request
     outputs:
-      number: ${{ steps.pr.outputs.number }}
+      number: ${{ steps.pr.outputs.number || steps.requested.outputs.number }}
 
     steps:
+      - name: Check requested pull request
+        id: requested
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          NUMBER: ${{ inputs.pull-request }}
+        run: |
+          [[ "$NUMBER" =~ ^[0-9]+$ ]] || { echo "::error::Unexpected pull request number: $NUMBER"; exit 1; }
+          state=$(gh api "repos/$REPOSITORY/pulls/$NUMBER" --jq .state)
+          if [ "$state" != closed ]; then
+            echo "::error::Pull request #$NUMBER is $state; only closed pull requests are cleaned up."
+            exit 1
+          fi
+          echo "number=$NUMBER" >> "$GITHUB_OUTPUT"
+
       - name: Resolve pull request
         id: pr
+        if: ${{ github.event_name == 'workflow_run' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
           HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
           HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
         run: |
-          numbers=$(gh api "repos/$REPOSITORY/commits/$HEAD_SHA/pulls" --jq \
-            "[.[] | select(.state == \"closed\" and .head.sha == \"$HEAD_SHA\" and (.head.repo.full_name | ascii_downcase) == (\"$HEAD_REPOSITORY\" | ascii_downcase)) | .number]")
-          if [ "$(jq 'length' <<< "$numbers")" != "1" ]; then
-            echo "::notice::Skipping: no unique closed pull request for $HEAD_SHA ($numbers)."
+          # Look up by head branch: `commits/{sha}/pulls` omits pull requests closed without merging.
+          number=$(gh api --method GET "repos/$REPOSITORY/pulls" \
+            -f state=closed -f base=main -f head="${HEAD_REPOSITORY%%/*}:$HEAD_BRANCH" \
+            -f sort=updated -f direction=desc -f per_page=100 \
+            --jq "[.[] | select(.head.sha == \"$HEAD_SHA\" and ((.head.repo.full_name // \"\") | ascii_downcase) == (\"$HEAD_REPOSITORY\" | ascii_downcase))] | max_by(.closed_at) | .number // empty")
+          if [ -z "$number" ]; then
+            echo "::notice::Skipping: no closed pull request for $HEAD_SHA."
             exit 0
           fi
-          number=$(jq '.[0]' <<< "$numbers")
           [[ "$number" =~ ^[0-9]+$ ]] || { echo "::error::Unexpected pull request number: $number"; exit 1; }
           echo "number=$number" >> "$GITHUB_OUTPUT"
 
   destroy:
     name: Destroy Preview Deployment
     needs: [resolve]
-    # Fork PRs never get a preview, so there is nothing to destroy.
+    # Fork PRs never get a preview, so there is nothing to destroy. A manual run for one finds no workspace.
     if: >-
       ${{ needs.resolve.outputs.number != '' &&
-      github.event.workflow_run.head_repository.full_name == github.repository }}
+      (github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.head_repository.full_name == github.repository) }}
     concurrency:
       group: deploy-preview-${{ needs.resolve.outputs.number }}
       cancel-in-progress: false

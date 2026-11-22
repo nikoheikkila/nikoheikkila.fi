@@ -52,7 +52,7 @@ task site:deploy                    # Production (default workspace) — CI's jo
 
 Site module guardrails to know about:
 - A plan/apply fails with a precondition error if `public/` is missing — run `task build` first. `worker.js` is compiled automatically by the `site:build` task dependency; never edit it by hand.
-- The `terraform/destroy` action (CI only) refuses the workspaces in `protected-workspaces` (default `default`), so preview cleanup cannot destroy production. There is no local destroy task.
+- The `terraform/destroy` action (CI only) refuses the workspaces in `protected-workspaces` (default `default`), so preview cleanup cannot destroy production. There is no local destroy task; to destroy a preview left behind by a closed PR, run the cleanup workflow from main: `gh workflow run preview-cleanup.yml -f pull-request=<n>`.
 - Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:plan -- -refresh=false` breaks: `{{.CLI_ARGS}}` is appended to _every_ terraform invocation in the task, including `workspace select`).
 - R2 does not implement AWS flexible checksums; the site Taskfile exports `AWS_REQUEST_CHECKSUM_CALCULATION=when_required` and `AWS_RESPONSE_CHECKSUM_VALIDATION=when_required`. Raw `terraform` invocations outside the Taskfile need those variables too.
 
