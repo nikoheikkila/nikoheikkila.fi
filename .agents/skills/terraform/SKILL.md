@@ -7,26 +7,22 @@ description: Instructions for managing the Cloudflare infrastructure with Terraf
 
 ## Terraform Configuration
 
-Everything is managed with Terraform and the Cloudflare provider across **two root modules with separate state**:
-
-`infra/cloudflare/` — long-lived core infrastructure:
+Terraform manages the long-lived Cloudflare infrastructure in **one root module, `infra/cloudflare/`**, with remote state:
 - **Zone**: Domain configuration for `nikoheikkila.fi`
 - **DNS**: Records defined in YAML (`dns.yml`) for easier maintenance
 - **R2 Storage**: Blog assets bucket with custom domain (`r2.nikoheikkila.fi`)
-- **Workers**: Custom domain mapping (`nikoheikkila.fi` → service `blog`)
+- **Workers**: Custom domain mapping (`nikoheikkila.fi` → service `blog`) and the shared placeholder Worker `blog-preview` (previews enabled)
 - **State Backend**: Stored in the Cloudflare R2 bucket `terraform`
 
-`infra/site/` — the site deployment (changes on every merge and per pull request):
-- **Static files**: Gatsby build output (`public/`) uploaded to a per-environment R2 bucket via `aws_s3_object`
-- **Worker**: `worker.ts` (compiled to `worker.js` by Bun — a gitignored build artifact) serves the bucket with trailing-slash canonicalisation, conditional/range requests, and the path redirects bundled from `redirects.json`
-- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (bucket `site-pr-<n>` only; the `preview.yml` deploy job creates the Workers Preview `pr-<n>` of the shared worker `blog-preview` with `task site:ci:preview:deploy` after the Terraform deploy, because the provider cannot manage Workers Previews) at `https://pr-<n>-blog-preview.yo-062.workers.dev`
-- **Headers policy**: per-object `content_type`/`cache_control` set at upload time in `locals.tf` (replaces the former `static/_headers`)
+The production Worker `blog` is not Terraform-managed; Terraform only maps the custom domain to it.
 
-Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
+The site is deployed with **Wrangler and Workers static assets**, not Terraform: the Cloudflare provider **cannot upload Workers static assets** (that flow needs an upload-session JWT only Wrangler implements), and it has no Workers Previews resource.
+- **Config**: root `wrangler.jsonc` (Worker `blog`, no `main`; assets from `./public`, `html_handling: "force-trailing-slash"`, `not_found_handling: "404-page"`)
+- **Static files**: `static/_redirects` (`/feed` → `/rss.xml`), `static/_headers` (cache rules) and `static/.assetsignore` (excludes source maps and build stats); Gatsby copies `static/` into `public/`
+- **Previews**: Workers Previews `pr-<n>` of the shared Worker `blog-preview`, at `https://pr-<n>-blog-preview.yo-062.workers.dev`. `preview.yml` deploys them and `preview-cleanup.yml` deletes them when the PR closes. There is no per-PR bucket or Terraform workspace.
 
-Credentials are 1Password references in the repository root, each file using the variable names the tools read: `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (see `OP_ARGS` in each `Taskfile.yml`):
-- `.env.infra` — the infra token (account-wide Workers, for the custom domain) and production R2 keys; loaded by `infra/cloudflare`
-- `.env.prod` — the token scoped to `blog` and production R2 keys; loaded by `infra/site`
+Credentials are 1Password references in the repository root, each file using the variable names the tools read: `CLOUDFLARE_API_TOKEN`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (see `OP_ARGS` in `infra/cloudflare/Taskfile.yml`):
+- `.env.infra` — the infra token (account-wide Workers, for the custom domain) and the R2 keys for the state backend; loaded by `infra/cloudflare`
 
 Previews are deployed and destroyed only by CI; there are no local preview credentials.
 
@@ -34,7 +30,7 @@ The only required input, `account_id`, comes from the GitHub repository variable
 
 ## Infrastructure Commands
 
-Both modules are reachable from the repo root via Taskfile namespaces (`terraform:` and `site:`), or run the same tasks from inside their directories:
+Run the Terraform module from the repo root via the `terraform:` Taskfile namespace, or from `infra/cloudflare/`:
 
 ```bash
 # Core infrastructure (infra/cloudflare/)
@@ -44,20 +40,20 @@ task terraform:validate    # fmt -check + terraform validate
 task terraform:plan        # Plan infrastructure changes
 task terraform:deploy      # Apply changes (after careful review)
 
-# Site deployment (infra/site) — requires `task build` first so public/ exists
-task site:validate                  # fmt -check + terraform validate
-task site:deploy                    # Production (default workspace) — CI's job; avoid locally
+# Site (Wrangler, from the repo root) — site:deploy and site:verify need `task build` first so public/ exists
+task site:verify           # Run the built site locally with wrangler dev
+task site:deploy           # Production Worker blog — CI's job; avoid locally
 ```
 
-Site module guardrails to know about:
-- A plan/apply fails with a precondition error if `public/` is missing — run `task build` first. `worker.js` is compiled automatically by the `site:build` task dependency; never edit it by hand.
-- The `terraform/destroy` action (CI only) refuses the workspaces in `protected-workspaces` (default `default`), so preview cleanup cannot destroy production. There is no local destroy task; to destroy a preview left behind by a closed PR, run the cleanup workflow from main: `gh workflow run preview-cleanup.yml -f pull-request=<n>`.
-- Do **not** pass extra CLI args to multi-command tasks (e.g. `task site:plan -- -refresh=false` breaks: `{{.CLI_ARGS}}` is appended to _every_ terraform invocation in the task, including `workspace select`).
-- R2 does not implement AWS flexible checksums; the site Taskfile exports `AWS_REQUEST_CHECKSUM_CALCULATION=when_required` and `AWS_RESPONSE_CHECKSUM_VALIDATION=when_required`. Raw `terraform` invocations outside the Taskfile need those variables too.
+Previews are CI-only: `task site:preview:deploy` and `task site:preview:delete`.
+
+Guardrails to know about:
+- Do **not** pass extra CLI args to multi-command tasks: `{{.CLI_ARGS}}` is appended to _every_ command the task runs, so extra flags can break the intermediate steps.
+- There is no local destroy task. To delete a preview left behind by a closed PR, run the cleanup workflow from main: `gh workflow run preview-cleanup.yml -f pull-request=<n>`.
 
 ### CI deployment flow
 
-Every Terraform run in CI goes through one of three portable composite actions, `.github/actions/terraform/plan`, `/deploy` and `/destroy`. They run `terraform` directly, assume `terraform` is on `PATH`, and read provider and backend credentials from the calling step's `env:`. Each `action.yml` documents its inputs; `plan` outputs `needs-apply` (from `-detailed-exitcode`) and `deploy` outputs `outputs`, a JSON object of the non-sensitive Terraform outputs. They are composite actions rather than reusable workflows because GitHub only resolves environment secrets in the job that declares the `environment`, so the calling job declares it and passes the secrets as `env:`; jactionlint's `secrets-outside-env` rejects passing them into a reusable workflow. The calling jobs own everything project-specific: checkout, `setup-environment` (mise), downloading `static-assets`, building the Worker (`task site:build`), the R2 checksum variables, reading the site URL from `outputs` and, for previews, the Wrangler Preview deploy (`task site:ci:preview:deploy`). Callers: `ci.yml` plans `infra/cloudflare` on every run with the read-only repository secrets `CLOUDFLARE_READ_API_TOKEN` and `R2_STATE_READ_ACCESS_KEY_ID`/`R2_STATE_READ_SECRET` (`lock: false`); on `main`, Deploy Infrastructure applies the saved plan only when the plan's `needs-apply` is `true`, then Deploy to Production deploys workspace `default` (it runs even when the infrastructure deploy is skipped), both in environment `prod`; the trusted `workflow_run` workflow `preview.yml` deploys workspace `pr-<n>` from the PR's CI artifacts (environment `preview`) and then creates the Workers Preview with Wrangler in the same job; `preview-cleanup.yml` (`workflow_run` after the permissionless `pull-request-closed.yml`) deletes the Preview (`task site:ci:preview:delete`) and destroys the workspace when the PR closes. Each calling job declares its `environment` and passes the secrets as step `env:` : `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` in `preview` and `prod`, both restricted to `main`; `prod` also holds `CLOUDFLARE_INFRA_API_TOKEN`, which Deploy Infrastructure uses as `CLOUDFLARE_API_TOKEN` because Workers Custom Domains need account-wide Workers Scripts Write. Never give a job that runs PR code a write token.
+Every Terraform run in CI goes through one of two portable composite actions, `.github/actions/terraform/plan` and `/deploy`. They run `terraform` directly, assume `terraform` is on `PATH`, and read provider and backend credentials from the calling step's `env:`. Each `action.yml` documents its inputs; `plan` outputs `needs-apply` (from `-detailed-exitcode`). They are composite actions rather than reusable workflows because GitHub only resolves environment secrets in the job that declares the `environment`, so the calling job declares it and passes the secrets as `env:`; jactionlint's `secrets-outside-env` rejects passing them into a reusable workflow. The calling jobs own everything project-specific: checkout, `setup-environment` (mise), downloading `static-assets`, and the Wrangler steps. Callers: `ci.yml` plans `infra/cloudflare` on every run with the read-only repository secrets `CLOUDFLARE_READ_API_TOKEN` and `R2_STATE_READ_ACCESS_KEY_ID`/`R2_STATE_READ_SECRET` (`lock: false`); on `main`, Deploy Infrastructure applies the saved plan only when the plan's `needs-apply` is `true`, then Deploy to Production runs `wrangler deploy` (it runs even when the infrastructure deploy is skipped), both in environment `prod`; the trusted `workflow_run` workflow `preview.yml` deploys the Workers Preview from the PR's `static-assets` artifact (environment `preview`); `preview-cleanup.yml` (`workflow_run` after the permissionless `pull-request-closed.yml`) deletes the Preview with `task site:preview:delete` when the PR closes. Each calling job declares its `environment` and passes the secrets as step `env:`: `CLOUDFLARE_API_TOKEN` in `preview` and `prod`, both restricted to `main`; `prod` also holds `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` for the state backend and `CLOUDFLARE_INFRA_API_TOKEN`, which Deploy Infrastructure uses as `CLOUDFLARE_API_TOKEN` because Workers Custom Domains need account-wide Workers Scripts Write. Never give a job that runs PR code a write token.
 
 See all commands by running `task -a` in the `infra/cloudflare/` directory.
 
@@ -70,10 +66,9 @@ Terraform variables (all but `account_id` keep their defaults):
 - **`r2_bucket_location`** (optional): Bucket location (default: `EEUR`)
 - **`r2_storage_class`** (optional): Storage class (default: `Standard`)
 - **`worker_service_name`** (optional): Worker service name (default: `blog`)
+- **`preview_worker_name`** (optional): Name of the shared preview Worker that Workers Previews are created on (default: `blog-preview`)
 
 All variables have sensible defaults except `account_id`.
-
-The site module reads `account_id` the same way and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
 
 ## DNS Management Workflow
 
@@ -140,24 +135,10 @@ redirects:
 - **DNS conflict filter**: Entries whose `from` key already exists in `dns_config.dns_records` (i.e. `dns.yml`) are excluded from `cloudflare_dns_record.redirects` to prevent duplicate record conflicts. This is how the `www` entry coexists in both files.
 - **`target_url` form**: Use `{ value = "..." }` for static external URLs. Use `{ expression = "concat(\"...\", http.request.uri.path)" }` when `preserve_path: true` to forward the request path. The `preserve_path` field in the YAML controls which form is used.
 
-## Testing the Worker
-
-`infra/site/worker.test.ts` unit-tests `worker.ts` purely through its public `fetch(request, env)` entry point — no unexported helpers are tested directly, and no Workers runtime emulator (`@cloudflare/vitest-pool-workers`, `miniflare`, `wrangler`) is installed. It runs as part of the `unit` Vitest project (`vitest.unit.config.ts` includes `infra/site/*.test.ts`) via `task test:unit`, and is type-checked by `lint:site` (`infra/site/tsconfig.json`'s `include` is `["*.ts"]`, so any new flat `.ts` file in that directory is picked up automatically).
-
-Patterns worth reusing if this Worker (or another one) grows more tests:
-- **Import the source with an explicit `.ts` extension**: `import worker from "./worker.ts"`, not `"./worker"`. The directory also holds the gitignored, previously-compiled `worker.js`; an extensionless import can resolve to that stale bundle instead of the source depending on what happens to exist on disk. `allowImportingTsExtensions: true` in `infra/site/tsconfig.json` permits this.
-- **Fake `R2Bucket` fully, not partially**: implement all members with a plain `: R2Bucket` annotation — no `as unknown as R2Bucket` cast. Stub the members the Worker never calls (`put`, `createMultipartUpload`, `resumeMultipartUpload`, `delete`, `list`) with correctly-typed functions that throw. This catches typos in the fake itself instead of silently compiling them away.
-- **`R2Bucket.get()` is overloaded** (a required-`onlyIf` overload returning `R2ObjectBody | R2Object | null`, and an optional-`onlyIf` overload returning `R2ObjectBody | null`). A single loosely-typed arrow function can't satisfy both — its return type ends up too wide for the stricter overload. Declare `get` using TS's function-overload pattern instead (two signatures matching the interface exactly, followed by one implementation), inside a factory so it can still close over the fake's backing store.
-- **`new Request(url, init)` defaults to the wrong `cf` shape for a fetch handler**: it constructs `Request<unknown, CfProperties<unknown>>` (the outgoing shape), but a Worker's `fetch(request: Request, env)` parameter is inferred as `Request<unknown, IncomingRequestCfProperties<unknown>>` (the incoming shape) via `satisfies ExportedHandler<Env>`. `CfProperties` is a union that includes the narrower outgoing `RequestInitCfProperties`, which isn't assignable to the incoming type — instantiate the generic explicitly: `new Request<unknown, IncomingRequestCfProperties<unknown>>(url, init)`.
-- **A bare `R2Object` (no `body` key at all, not `body: undefined`) simulates R2's conditional-request behaviour**: `respondWith()` in `worker.ts` checks `"body" in object` to decide between 304 and 200/206. The fake doesn't need to implement real ETag/`onlyIf` comparison logic — that's R2's responsibility, not the Worker's — it just needs to be able to return an object shaped either way per test case.
-
 ## Provider Quirks (learned the hard way)
 
-- **No data source for the account workers.dev subdomain**: the Cloudflare provider (v5) exposes only the per-script `cloudflare_workers_script_subdomain`. The account-level subdomain (`yo-062`) is pinned as the `workers_dev_subdomain` variable in `infra/site/variables.tf`; refresh it from `GET /accounts/{account_id}/workers/subdomain` if it ever changes.
-- **AWS provider checksum settings are env vars, not HCL**: `request_checksum_calculation` is rejected as a provider argument in v6 — only `AWS_REQUEST_CHECKSUM_CALCULATION`/`AWS_RESPONSE_CHECKSUM_VALIDATION` environment variables work.
 - **Inspecting provider schemas** (`terraform providers schema -json`) requires a fully initialized backend. To probe resource attributes without credentials, create a scratch directory containing only a `terraform { required_providers { ... } }` stub, run `terraform init` there, and dump the schema from it.
-- **R2 populates `object.range` even for full reads**: the Worker must only answer `206` when the request actually carries a `Range` header (see the comment in `infra/site/worker.ts`).
-- **Cloudflare strips `ETag` from 200 `text/html` responses at the edge**: assets keep their etags and conditional requests still work. Production behaves identically — do not chase this as a Worker bug.
+- **Cloudflare strips `ETag` from 200 `text/html` responses at the edge**: static assets keep their etags and conditional requests still work. Production behaves identically — this is not a bug to chase.
 
 ## Infrastructure Troubleshooting
 
@@ -171,7 +152,7 @@ Patterns worth reusing if this Worker (or another one) grows more tests:
 
 ### Scenario: S3 Operations Return 403 AccessDenied
 
-- The R2 access keys authenticate but lack access to the target bucket: check the R2 API token's bucket scope in the Cloudflare dashboard (it must be account-wide since site buckets are created per pull request)
+- The R2 access keys authenticate but lack access to the `terraform` state bucket: check the R2 API token's bucket scope in the Cloudflare dashboard
 - Diagnostic fallback: S3 credentials can be derived from any Cloudflare API token with R2 permissions (access key = token ID from `/user/tokens/verify`, secret = SHA-256 hex of the token value) to compare scopes
 
 ### Scenario: Plan Contains Unexpected Changes
@@ -198,7 +179,7 @@ Patterns worth reusing if this Worker (or another one) grows more tests:
 
 - `.gitignore` patterns without a leading/middle slash (e.g. `tfplan`, `.terraform/`) cascade into every subdirectory below the `.gitignore` file itself — including a sibling module that merely happens to be nested underneath it at the time.
 - If that `.gitignore` moves (e.g. as part of relocating the module directory that owns it) while a sibling module stays put, the sibling silently loses ignore coverage the moment it's no longer nested underneath — its `.terraform/`, `tfplan`, and compiled bundles start showing as untracked.
-- Fix: give every Terraform root module directory (`infra/cloudflare/`, `infra/site/`) its own `.gitignore` with the standard artifact patterns (`tfplan`, `*.tfplan`, `*.tfstate*`, `.terraform/`, crash logs, override files, `.terraformrc`) rather than relying on a parent's file to cascade down.
+- Fix: give every Terraform root module directory (`infra/cloudflare/`) its own `.gitignore` with the standard artifact patterns (`tfplan`, `*.tfplan`, `*.tfstate*`, `.terraform/`, crash logs, override files, `.terraformrc`) rather than relying on a parent's file to cascade down.
 
 ### Infrastructure Outputs
 
@@ -217,5 +198,3 @@ Available outputs:
 - `r2_custom_domain`: Custom domain for R2 access
 - `worker_custom_domain`: Worker hostname
 - `dns_record_count`: Number of managed DNS records
-
-The site module outputs (per workspace): `url` (deployment URL, read by CI), `worker_name`, and `bucket_name`.

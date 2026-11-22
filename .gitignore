@@ -74,6 +74,9 @@ playwright-report/
 # Taskfile.dev
 .task/
 
+# Wrangler local dev state
+.wrangler/
+
 # Gatsby types
 gatsby-types.d.ts
 

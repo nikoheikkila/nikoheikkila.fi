@@ -95,7 +95,7 @@ task build   # Verify the site builds successfully with the new content
 
 ## Infrastructure & Deployment Tasks
 
-The Terraform modules are exposed as root-level namespaces — no `cd` needed (see the terraform skill for details):
+The Terraform module is exposed as the root-level `terraform:` namespace — no `cd` needed (see the terraform skill for details). The site is deployed with Wrangler from the repo root:
 
 ```bash
 # Core infrastructure (runs in infra/cloudflare/)
@@ -103,17 +103,17 @@ task terraform:validate
 task terraform:plan
 task terraform:deploy
 
-# Site deployment (runs in infra/site; needs `task build` first)
-task site:validate
-task site:plan      # production (default workspace); previews are CI-only
-task site:deploy
+# Site (Wrangler; site:verify and site:deploy need `task build` first)
+task site:verify    # run the built site locally with wrangler dev
+task site:deploy    # production Worker blog — CI's job; avoid locally
 ```
 
-**Gotcha**: only pass `-- <extra args>` to tasks that run a _single_ command. Multi-command tasks (e.g. `site:plan`) append `{{.CLI_ARGS}}` to every command they run, so extra flags break intermediate steps like `terraform workspace select`.
+Previews (`task site:preview:deploy`, `task site:preview:delete`) are CI-only.
+
+**Gotcha**: only pass `-- <extra args>` to tasks that run a _single_ command. Multi-command tasks (e.g. `terraform:init`) append `{{.CLI_ARGS}}` to every command they run, so extra flags can break intermediate steps.
 
 ### After editing infrastructure
 
 ```bash
 task terraform:validate && task terraform:plan    # Validate and preview changes
-task site:validate                                # When infra/site was touched
 ```

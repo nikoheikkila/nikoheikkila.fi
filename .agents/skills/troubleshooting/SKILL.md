@@ -24,6 +24,6 @@ description: Known gotchas for GraphQL/type generation, GatsbyImage+flexbox, Fle
 ### CI & Deployment Issues
 
 -   **PR workflows silently missing**: when a pull request has merge conflicts, GitHub cannot create the merge ref and `pull_request` workflows do not run at all — no failure, just absence (only default-setup CodeQL checks appear). Check `gh pr view <n> --json mergeable` before debugging anything else.
--   **Missing `ETag` on HTML responses**: Cloudflare strips `ETag` from 200 `text/html` responses at the edge on both previews and production. Assets keep their etags and conditional requests still work — this is expected, not a Worker bug.
--   **Terraform provider quirks** (workers.dev subdomain data source, AWS checksum env vars, R2 range behaviour): documented in the terraform skill.
+-   **Missing `ETag` on HTML responses**: Cloudflare strips `ETag` from 200 `text/html` responses at the edge on both previews and production. Static assets keep their etags and conditional requests still work — this is expected, not a bug.
+-   **Terraform provider quirks**: documented in the terraform skill.
 -   **Relocating a Terraform module directory can silently un-ignore its artifacts**: a `.gitignore`'s unanchored patterns (e.g. `tfplan`, `.terraform/`) only cascade into directories actually nested underneath it. Moving the module that owns the `.gitignore` away from a sibling module leaves that sibling's build artifacts untracked — every root module directory needs its own `.gitignore`.

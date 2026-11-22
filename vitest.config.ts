@@ -23,7 +23,6 @@ export default defineConfig({
 				"src/search/index.ts",
 				"src/mermaid/index.ts",
 				"src/components/layout/socialIcons.ts",
-				"infra/site/worker.ts",
 			],
 			exclude: [...coverageConfigDefaults.exclude, "src/__tests__/**"],
 			thresholds: {

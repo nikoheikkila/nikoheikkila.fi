@@ -32,11 +32,11 @@ Run a single layer with `task test:unit`, `task test:component`, `task test:muta
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which deploys the preview from main's code, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure only when the plan has changes, then production, then run a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which runs from main's code, deploys the pull request's build to a Workers Preview with Wrangler, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure only when the plan has changes, then production with Wrangler, then run a Lighthouse audit.](docs/ci-flow.svg)
 
-Every Terraform run goes through one of three composite actions:
+Every Terraform run goes through one of two composite actions:
 
-![Terraform deployment overview, four rows from trigger to Terraform action to target to result. Every pull request and push to main runs plan on the core infrastructure with a read-only token and reports whether changes need applying. A push to main runs deploy: the saved plan is applied to the core infrastructure when it has changes, then the production site goes live. A pull request whose CI succeeds runs deploy into a preview workspace of the site and gets a preview link. Closing the pull request, or a manual run, runs destroy on the preview workspace and removes it, refusing protected workspaces.](docs/terraform-flow.svg)
+![Terraform deployment overview, two rows from trigger to Terraform action to target to result. Every pull request and push to main runs a read-only plan of the core infrastructure and reports whether changes need applying. A push to main applies the saved plan to the core infrastructure when it has changes, so it matches the reviewed plan. The site itself is deployed with Wrangler, outside these actions.](docs/terraform-flow.svg)
 
 ## 👤 Author
 
