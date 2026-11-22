@@ -30,8 +30,7 @@ Credentials are 1Password references in the repository root, each file using the
 
 Previews are deployed and destroyed only by CI; there are no local preview credentials.
 
-Shared Terraform inputs live at the common parent, `infra/` (see `TFVARS`):
-- `infra/cloudflare.tfvars` — variables described under [Infrastructure Variables](#infrastructure-variables) below
+The only required input, `account_id`, comes from the GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` (see [Infrastructure Variables](#infrastructure-variables) below).
 
 ## Infrastructure Commands
 
@@ -64,8 +63,8 @@ See all commands by running `task -a` in the `infra/cloudflare/` directory.
 
 ## Infrastructure Variables
 
-Terraform variables are configured in `infra/cloudflare.tfvars`:
-- **`account_id`** (required): CloudFlare account ID (32-char hex)
+Terraform variables (all but `account_id` keep their defaults):
+- **`account_id`** (required): CloudFlare account ID (32-char hex), read from the GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` as `TF_VAR_account_id` — CI passes it as step `env:`, and each module's `run` task fetches it with `gh variable get`
 - **`domain`** (optional): Primary domain (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
 - **`r2_bucket_location`** (optional): Bucket location (default: `EEUR`)
@@ -74,7 +73,7 @@ Terraform variables are configured in `infra/cloudflare.tfvars`:
 
 All variables have sensible defaults except `account_id`.
 
-The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
+The site module reads `account_id` the same way and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
 
 ## DNS Management Workflow
 
@@ -178,7 +177,7 @@ Patterns worth reusing if this Worker (or another one) grows more tests:
 ### Scenario: Plan Contains Unexpected Changes
 
 - Check if manual changes were made via Cloudflare UI
-- Verify variable values in `infra/cloudflare.tfvars`
+- Verify the `CLOUDFLARE_ACCOUNT_ID` repository variable (`gh variable get CLOUDFLARE_ACCOUNT_ID`)
 - Review git diff to see what changed in code
 - Check for provider version changes
 

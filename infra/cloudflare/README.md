@@ -90,8 +90,9 @@ A separate Terraform root module deploying the built static site:
 
 ### Variables
 
-The following variables can be configured in `../cloudflare.tfvars`:
-- **`account_id`** (required): CloudFlare account ID (32-character hex string)
+The following variables are available:
+- **`account_id`** (required): CloudFlare account ID (32-character hex string), read from the
+  GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` (`TF_VAR_account_id`)
 - **`domain`** (optional): Primary domain name (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
 - **`r2_bucket_location`** (optional): R2 bucket location (default: `EEUR`, options: WNAM, ENAM, WEUR, EEUR, APAC)

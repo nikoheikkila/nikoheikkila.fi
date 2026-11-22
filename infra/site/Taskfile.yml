@@ -2,7 +2,6 @@ version: "3"
 
 vars:
   TFPLAN: "tfplan"
-  TFVARS: "../cloudflare.tfvars"
   WORKSPACE: '{{ .WORKSPACE | default "default" }}'
   # Production credentials from the repository root. Previews are deployed and
   # destroyed only by CI, with the preview environment's blog-preview-scoped token.
@@ -45,6 +44,10 @@ tasks:
 
   run:
     desc: Run Terraform commands
+    env:
+      # The repository variable CI reads too; locally fetched with gh.
+      TF_VAR_account_id:
+        sh: gh variable get CLOUDFLARE_ACCOUNT_ID
     cmd: op run {{ .OP_ARGS }} -- terraform {{ .command }} {{ .CLI_ARGS }}
     requires:
       vars: [command, OP_ARGS]
@@ -71,7 +74,7 @@ tasks:
           command: "workspace select -or-create=true {{ .WORKSPACE }}"
       - task: run
         vars:
-          command: "plan -parallelism={{ .PARALLELISM }} -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
+          command: "plan -parallelism={{ .PARALLELISM }} -out={{ .TFPLAN }}"
 
   deploy:
     desc: Apply the site deployment from plan file (local)

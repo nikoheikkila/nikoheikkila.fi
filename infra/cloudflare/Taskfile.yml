@@ -5,7 +5,6 @@ vars:
   # Infra credentials from the repository root. This module manages the Worker
   # custom domain and the blog-preview Worker, which need the broader infra token.
   OP_ARGS: "--env-file='../../.env.infra'"
-  TFVARS: "../cloudflare.tfvars"
 
 tasks:
   format:
@@ -21,6 +20,10 @@ tasks:
 
   run:
     desc: Run Terraform commands
+    env:
+      # The repository variable CI reads too; locally fetched with gh.
+      TF_VAR_account_id:
+        sh: gh variable get CLOUDFLARE_ACCOUNT_ID
     cmd: op run {{ .OP_ARGS }} -- terraform {{ .command }} {{ .CLI_ARGS }}
     requires:
       vars: [command, OP_ARGS]
@@ -50,7 +53,7 @@ tasks:
     cmd:
       task: run
       vars:
-        command: "plan -out={{ .TFPLAN }} -var-file={{ .TFVARS }}"
+        command: "plan -out={{ .TFPLAN }}"
 
   deploy:
     desc: Apply Terraform changes from plan file (local)

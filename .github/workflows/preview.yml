@@ -96,10 +96,10 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_SECRET }}
+          TF_VAR_account_id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         with:
           working-directory: infra/site
           workspace: pr-${{ needs.resolve.outputs.number }}
-          var-files: ../cloudflare.tfvars
           vars: dist_dir=${{ runner.temp }}/site
           parallelism: 30
 
