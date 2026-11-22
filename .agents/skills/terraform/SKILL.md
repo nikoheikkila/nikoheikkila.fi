@@ -19,7 +19,7 @@ Everything is managed with Terraform and the Cloudflare provider across **two ro
 `infra/site/` — the site deployment (changes on every merge and per pull request):
 - **Static files**: Gatsby build output (`public/`) uploaded to a per-environment R2 bucket via `aws_s3_object`
 - **Worker**: `worker.ts` (compiled to `worker.js` by Bun — a gitignored build artifact) serves the bucket with trailing-slash canonicalisation, conditional/range requests, and the path redirects bundled from `redirects.json`
-- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (bucket `site-pr-<n>` only; the `preview.yml` deploy job uploads a version of the shared worker `blog-preview` with preview alias `pr-<n>` with `task site:ci:preview:upload` after the Terraform deploy, because the provider cannot set preview aliases) at `https://pr-<n>-blog-preview.yo-062.workers.dev`
+- **Environments = Terraform workspaces**: `default` → production (worker `blog`, bucket `site`); `pr-<n>` → preview (bucket `site-pr-<n>` only; the `preview.yml` deploy job creates the Workers Preview `pr-<n>` of the shared worker `blog-preview` with `task site:ci:preview:deploy` after the Terraform deploy, because the provider cannot manage Workers Previews) at `https://pr-<n>-blog-preview.yo-062.workers.dev`
 - **Headers policy**: per-object `content_type`/`cache_control` set at upload time in `locals.tf` (replaces the former `static/_headers`)
 
 Terraform serves the site from R2 because the Cloudflare provider **cannot upload Workers static assets** — that API flow requires an upload-session JWT only Wrangler implements.
@@ -30,8 +30,7 @@ Credentials are 1Password references in the repository root, each file using the
 
 Previews are deployed and destroyed only by CI; there are no local preview credentials.
 
-Shared Terraform inputs live at the common parent, `infra/` (see `TFVARS`):
-- `infra/cloudflare.tfvars` — variables described under [Infrastructure Variables](#infrastructure-variables) below
+The only required input, `account_id`, comes from the GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` (see [Infrastructure Variables](#infrastructure-variables) below).
 
 ## Infrastructure Commands
 
@@ -58,14 +57,14 @@ Site module guardrails to know about:
 
 ### CI deployment flow
 
-Every Terraform run in CI goes through one of three portable composite actions, `.github/actions/terraform/plan`, `/deploy` and `/destroy`. They run `terraform` directly, assume `terraform` is on `PATH`, and read provider and backend credentials from the calling step's `env:`. Each `action.yml` documents its inputs; `plan` outputs `needs-apply` (from `-detailed-exitcode`) and `deploy` outputs `outputs`, a JSON object of the non-sensitive Terraform outputs. They are composite actions rather than reusable workflows because GitHub only resolves environment secrets in the job that declares the `environment`, so the calling job declares it and passes the secrets as `env:`; jactionlint's `secrets-outside-env` rejects passing them into a reusable workflow. The calling jobs own everything project-specific: checkout, `setup-environment` (mise), downloading `static-assets`, building the Worker (`task site:build`), the R2 checksum variables, reading the site URL from `outputs` and, for previews, the Wrangler upload (`task site:ci:preview:upload`). Callers: `ci.yml` plans `infra/cloudflare` on every run with the read-only repository secrets `CLOUDFLARE_READ_API_TOKEN` and `R2_STATE_READ_ACCESS_KEY_ID`/`R2_STATE_READ_SECRET` (`lock: false`); on `main`, Deploy Infrastructure applies the saved plan only when the plan's `needs-apply` is `true`, then Deploy to Production deploys workspace `default` (it runs even when the infrastructure deploy is skipped), both in environment `prod`; the trusted `workflow_run` workflow `preview.yml` deploys workspace `pr-<n>` from the PR's CI artifacts (environment `preview`) and then uploads the preview Worker version with Wrangler in the same job; `preview-cleanup.yml` (`workflow_run` after the permissionless `pull-request-closed.yml`) destroys it when the PR closes. Each calling job declares its `environment` and passes the secrets as step `env:` : `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` in `preview` and `prod`, both restricted to `main`; `prod` also holds `CLOUDFLARE_INFRA_API_TOKEN`, which Deploy Infrastructure uses as `CLOUDFLARE_API_TOKEN` because Workers Custom Domains need account-wide Workers Scripts Write. Never give a job that runs PR code a write token.
+Every Terraform run in CI goes through one of three portable composite actions, `.github/actions/terraform/plan`, `/deploy` and `/destroy`. They run `terraform` directly, assume `terraform` is on `PATH`, and read provider and backend credentials from the calling step's `env:`. Each `action.yml` documents its inputs; `plan` outputs `needs-apply` (from `-detailed-exitcode`) and `deploy` outputs `outputs`, a JSON object of the non-sensitive Terraform outputs. They are composite actions rather than reusable workflows because GitHub only resolves environment secrets in the job that declares the `environment`, so the calling job declares it and passes the secrets as `env:`; jactionlint's `secrets-outside-env` rejects passing them into a reusable workflow. The calling jobs own everything project-specific: checkout, `setup-environment` (mise), downloading `static-assets`, building the Worker (`task site:build`), the R2 checksum variables, reading the site URL from `outputs` and, for previews, the Wrangler Preview deploy (`task site:ci:preview:deploy`). Callers: `ci.yml` plans `infra/cloudflare` on every run with the read-only repository secrets `CLOUDFLARE_READ_API_TOKEN` and `R2_STATE_READ_ACCESS_KEY_ID`/`R2_STATE_READ_SECRET` (`lock: false`); on `main`, Deploy Infrastructure applies the saved plan only when the plan's `needs-apply` is `true`, then Deploy to Production deploys workspace `default` (it runs even when the infrastructure deploy is skipped), both in environment `prod`; the trusted `workflow_run` workflow `preview.yml` deploys workspace `pr-<n>` from the PR's CI artifacts (environment `preview`) and then creates the Workers Preview with Wrangler in the same job; `preview-cleanup.yml` (`workflow_run` after the permissionless `pull-request-closed.yml`) deletes the Preview (`task site:ci:preview:delete`) and destroys the workspace when the PR closes. Each calling job declares its `environment` and passes the secrets as step `env:` : `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_R2_ACCESS_KEY_ID`/`CLOUDFLARE_R2_ACCESS_KEY_SECRET` in `preview` and `prod`, both restricted to `main`; `prod` also holds `CLOUDFLARE_INFRA_API_TOKEN`, which Deploy Infrastructure uses as `CLOUDFLARE_API_TOKEN` because Workers Custom Domains need account-wide Workers Scripts Write. Never give a job that runs PR code a write token.
 
 See all commands by running `task -a` in the `infra/cloudflare/` directory.
 
 ## Infrastructure Variables
 
-Terraform variables are configured in `infra/cloudflare.tfvars`:
-- **`account_id`** (required): CloudFlare account ID (32-char hex)
+Terraform variables (all but `account_id` keep their defaults):
+- **`account_id`** (required): CloudFlare account ID (32-char hex), read from the GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` as `TF_VAR_account_id` — CI passes it as step `env:`, and each module's `run` task fetches it with `gh variable get`
 - **`domain`** (optional): Primary domain (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
 - **`r2_bucket_location`** (optional): Bucket location (default: `EEUR`)
@@ -74,7 +73,7 @@ Terraform variables are configured in `infra/cloudflare.tfvars`:
 
 All variables have sensible defaults except `account_id`.
 
-The site module reuses the same tfvars file (`-var-file=../cloudflare.tfvars`) and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
+The site module reads `account_id` the same way and adds its own variables in `infra/site/variables.tf`: `dist_dir` (default `../../public`), `compatibility_date`, and `workers_dev_subdomain` (the pinned account-level workers.dev subdomain).
 
 ## DNS Management Workflow
 
@@ -178,7 +177,7 @@ Patterns worth reusing if this Worker (or another one) grows more tests:
 ### Scenario: Plan Contains Unexpected Changes
 
 - Check if manual changes were made via Cloudflare UI
-- Verify variable values in `infra/cloudflare.tfvars`
+- Verify the `CLOUDFLARE_ACCOUNT_ID` repository variable (`gh variable get CLOUDFLARE_ACCOUNT_ID`)
 - Review git diff to see what changed in code
 - Check for provider version changes
 

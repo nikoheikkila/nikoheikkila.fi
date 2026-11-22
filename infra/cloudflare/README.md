@@ -37,10 +37,8 @@ A separate Terraform root module deploying the built static site:
 - **Worker**: `../site/worker.ts` (compiled with Bun before Terraform runs) serves the bucket
   with trailing-slash canonicalisation, conditional requests, range requests, and path
   redirects (`/feed` → `/rss.xml`)
-- **Environments**: Terraform workspaces — `default` deploys production (worker `blog`,
-  bucket `site`), `pr-<n>` deploys a pull request preview (bucket `site-pr-<n>`; CI then uploads
-  a version of the shared worker `blog-preview` with preview alias `pr-<n>`, served at
-  `https://pr-<n>-blog-preview.yo-062.workers.dev`)
+- **Environments**: Terraform workspaces — `default` deploys production, `pr-<n>` a pull
+  request preview (see "Hosting Model" in [`AGENTS.md`](../../AGENTS.md))
 - **Caching and content types**: set per object at upload time (see `../site/locals.tf`),
   replacing the previous `_headers` and `_redirects` files
 
@@ -85,15 +83,16 @@ A separate Terraform root module deploying the built static site:
 3. **Terraform First**:
    - The Cloudflare provider cannot upload Workers static assets (that flow requires
      Wrangler), so the site is served from R2 instead
-   - The provider also cannot set a version's preview alias, so previews are uploaded with
-     `wrangler versions upload --preview-alias` using the `wrangler_config` output of `../site/`
+   - The provider also has no Workers Previews resource, so Wrangler creates and deletes
+     previews (see "Hosting Model" in [`AGENTS.md`](../../AGENTS.md))
 
 ## Configuration
 
 ### Variables
 
-The following variables can be configured in `../cloudflare.tfvars`:
-- **`account_id`** (required): CloudFlare account ID (32-character hex string)
+The following variables are available:
+- **`account_id`** (required): CloudFlare account ID (32-character hex string), read from the
+  GitHub repository variable `CLOUDFLARE_ACCOUNT_ID` (`TF_VAR_account_id`)
 - **`domain`** (optional): Primary domain name (default: `nikoheikkila.fi`)
 - **`r2_bucket_name`** (optional): R2 bucket name (default: `blog`)
 - **`r2_bucket_location`** (optional): R2 bucket location (default: `EEUR`, options: WNAM, ENAM, WEUR, EEUR, APAC)

@@ -15,5 +15,8 @@
 *.gz binary
 
 # Generated files
+*.lock 			linguist-generated=true
+*.lock.hcl 		linguist-generated=true
+.mise/locks/**	linguist-generated=true
 .mcp.json		linguist-generated=true
 test/**/*.js	linguist-generated=true

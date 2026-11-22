@@ -48,7 +48,7 @@ Every Terraform run goes through one of three composite actions:
 
 ## 🤝 Contributing
 
-Content can be found under `content/` directory. Edit posts as needed and submit a PR for me to review. Every PR is deployed as a preview version of the `blog-preview` Cloudflare Worker, with the preview link posted as a PR comment. Once approved and merged to the `main` branch, changes are deployed to production.
+Content can be found under `content/` directory. Edit posts as needed and submit a PR for me to review. Every PR is deployed as a Workers Preview of the `blog-preview` Cloudflare Worker, with the preview link posted as a PR comment. Once approved and merged to the `main` branch, changes are deployed to production.
 
 Other contributions to UI, accessibility, React components, security, dependency updates etc. are warmly welcome as well!
 

@@ -1,5 +1,5 @@
 # Cloudflare Worker serving the static site from R2 — production only.
-# Previews never create a Worker: CI uploads a version of the shared
+# Previews never create a Worker: CI creates a Workers Preview "pr-<n>" of the shared
 # "blog-preview" Worker per pull request (see the wrangler_config output),
 # so no credential needs account-wide rights to create Workers.
 # The production custom domain mapping (nikoheikkila.fi → service "blog")

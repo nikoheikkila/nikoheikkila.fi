@@ -108,6 +108,15 @@ url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-x64.tar.gz"
 checksum = "sha256:aec2514ea1ceb2ba52455e9ec65986f6749a06dd759e5db2a72e6889668c9735"
 url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-darwin-arm64.tar.gz"
 
+[[tools."npm:wrangler"]]
+version = "4.156.0"
+aube = { path = ".mise/locks/npm-wrangler/4.156.0", digest = "sha256:4fd066af414f2ce58e0290ab4377f722438acbe65b2f03d62b39bf97c201590b" }
+backend = "npm:wrangler"
+specifiers = ["4.156.0"]
+
+[tools."npm:wrangler".provenance]
+repository = "github.com/cloudflare/workers-sdk"
+
 [[tools.ruff]]
 version = "0.17.5"
 backend = "aqua:astral-sh/ruff"

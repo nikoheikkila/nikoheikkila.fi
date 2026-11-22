@@ -78,8 +78,7 @@
 		"renovate": "44.231.0",
 		"typescript": "7.0.2",
 		"vitest": "5.1.0",
-		"vitest-browser-react": "2.3.0",
-		"wrangler": "4.156.0"
+		"vitest-browser-react": "2.3.0"
 	},
 	"engines": {
 		"node": "v26.13.1"
@@ -107,7 +106,6 @@
 		"core-js",
 		"core-js-pure",
 		"es5-ext",
-		"esbuild",
 		"gatsby",
 		"gatsby-cli",
 		"gatsby-plugin-manifest",
