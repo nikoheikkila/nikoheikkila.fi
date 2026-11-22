@@ -91,11 +91,11 @@ tasks:
     cmds:
       # The config comes from Terraform state, so the binding is always this
       # workspace's own bucket. --no-bundle uploads worker.js as-is, and
-      # the binary is the lockfile-pinned one from the trusted checkout.
+      # the binary is the Mise-pinned one from the trusted checkout.
       - terraform workspace select {{ .WORKSPACE }}
       - terraform output -raw wrangler_config > "{{ .WORKER_DIR }}/wrangler.json"
       - >-
-        ../../node_modules/.bin/wrangler versions upload
+        wrangler versions upload
         --config "{{ .WORKER_DIR }}/wrangler.json"
         --preview-alias {{ .WORKSPACE }}
         --no-bundle
