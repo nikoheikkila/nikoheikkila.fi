@@ -36,15 +36,15 @@ Content and code changes follow the workflow below:
 
 Every Terraform run goes through one of three composite actions:
 
-![Terraform Actions: the CI, Preview and Preview Cleanup workflows own the project-specific steps (checkout, toolchain setup, artifacts, Worker build, credentials as environment variables) and call three portable actions. Plan checks and plans the core infrastructure and reports whether changes need applying, deploy applies a saved plan or variables to the core infrastructure, production or a pull request preview, and destroy removes a preview workspace when its pull request closes, refusing protected workspaces.](docs/terraform-flow.svg)
+![Terraform deployment overview, four rows from trigger to Terraform action to target to result. Every pull request and push to main runs plan on the core infrastructure with a read-only token and reports whether changes need applying. A push to main runs deploy: the saved plan is applied to the core infrastructure when it has changes, then the production site goes live. A pull request whose CI succeeds runs deploy into a preview workspace of the site and gets a preview link. Closing the pull request, or a manual run, runs destroy on the preview workspace and removes it, refusing protected workspaces.](docs/terraform-flow.svg)
 
 ## 👤 Author
 
-**Niko Heikkilä &lt;yo@nikoheikkila.fi&gt;**
+**Niko Heikkilä**
 
--   Github: [@nikoheikkila](https://github.com/nikoheikkila)
--   Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
--   LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
+- Github: [@nikoheikkila](https://github.com/nikoheikkila)
+- Bluesky: [@nikoheikkila.fi](https://bsky.app/profile/nikoheikkila.fi)
+- LinkedIn: [nikoheikkila](https://www.linkedin.com/in/nikoheikkila)
 
 ## 🤝 Contributing
 
