@@ -10,14 +10,6 @@ includes:
     taskfile: ./infra/cloudflare/Taskfile.yml
     dir: ./infra/cloudflare
 
-  site:
-    taskfile: ./tasks/site.yaml
-    dir: .
-
-  ci:
-    taskfile: ./.github/Taskfile.yml
-    dir: .
-
   lint:
     taskfile: ./tasks/lint.yaml
     dir: .
