@@ -1,6 +1,12 @@
 name: Setup Development Environment
 description: Installs the toolchain pinned in mise.toml with Mise
 
+inputs:
+  tools:
+    description: Space-separated tools from mise.toml to install; empty installs all of them
+    required: false
+    default: ""
+
 runs:
   using: composite
   steps:
@@ -9,5 +15,6 @@ runs:
       with:
         # renovate: datasource=github-releases depName=jdx/mise
         version: 2026.11.4
+        install_args: ${{ inputs.tools }}
         # `workflow_run` jobs share main's cache scope and may handle pull request content, so they only read the cache.
         cache_save: ${{ github.event_name != 'workflow_run' }}
