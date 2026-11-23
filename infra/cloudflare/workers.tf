@@ -16,7 +16,7 @@ resource "cloudflare_workers_custom_domain" "blog" {
 }
 
 # Shared preview Worker. Each pull request creates a Workers Preview pr-<n>
-# of it (see tasks/site.yaml), using a token that is Editor on this
+# of it (see Preview Deployment in ci.yml), using a token that is Editor on this
 # Worker only, and Editor cannot create Workers, so the Worker is created here.
 # The deployed placeholder never serves a preview.
 resource "cloudflare_workers_script" "preview" {

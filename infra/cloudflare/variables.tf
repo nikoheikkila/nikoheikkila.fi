@@ -1,5 +1,5 @@
 # Input variables for Cloudflare infrastructure
-# All variables have sensible defaults except account_id which must be provided
+# All variables have sensible defaults except account_id and preview_worker_name, which come from GitHub repository variables
 
 variable "account_id" {
   description = "CloudFlare account ID"
@@ -52,7 +52,11 @@ variable "worker_service_name" {
 }
 
 variable "preview_worker_name" {
-  description = "Name of the shared preview Worker; must match PREVIEW_WORKER_NAME in tasks/site.yaml"
+  description = "Name of the shared preview Worker; the GitHub repository variable PREVIEW_WORKER_NAME, which the workflows read too"
   type        = string
-  default     = "blog-preview"
+
+  validation {
+    condition     = can(regex("^[a-z0-9][a-z0-9-]*$", var.preview_worker_name))
+    error_message = "Preview Worker name must be lowercase letters, digits and hyphens."
+  }
 }
