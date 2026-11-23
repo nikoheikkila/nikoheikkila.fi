@@ -21,9 +21,11 @@ tasks:
   run:
     desc: Run Terraform commands
     env:
-      # The repository variable CI reads too; locally fetched with gh.
+      # The repository variables CI reads too; locally fetched with gh.
       TF_VAR_account_id:
         sh: gh variable get CLOUDFLARE_ACCOUNT_ID
+      TF_VAR_preview_worker_name:
+        sh: gh variable get PREVIEW_WORKER_NAME
     cmd: op run {{ .OP_ARGS }} -- terraform {{ .command }} {{ .CLI_ARGS }}
     requires:
       vars: [command, OP_ARGS]

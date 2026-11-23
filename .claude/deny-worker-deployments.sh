@@ -1,0 +1,1 @@
+../.agents/scripts/deny-worker-deployments.sh

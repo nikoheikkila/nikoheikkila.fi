@@ -31,7 +31,7 @@ DNS records are managed using a hybrid approach:
 
 ### Preview Worker (`workers.tf`)
 
-- **Purpose**: Shared placeholder Worker (`preview_worker_name`, default `blog-preview`) that hosts every pull request preview
+- **Purpose**: Shared placeholder Worker (`preview_worker_name`, `blog-preview`) that hosts every pull request preview
 - **Deployment**: Terraform creates it with a placeholder script that never serves a preview; Wrangler creates each Workers Preview `pr-<n>` of it
 - **Previews**: the workers.dev subdomain and preview URLs are enabled on the Worker
 - **Terraform Resources**: `cloudflare_workers_script.preview`, `cloudflare_workers_script_subdomain.preview`
@@ -55,7 +55,7 @@ The built static site is deployed with Wrangler and Workers static assets, outsi
 ### Worker Code & Configuration
 
 - **Managed via**: Wrangler (`wrangler.jsonc` at the repository root)
-- **Deployment**: `task site:deploy` locally, GitHub Actions in CI
+- **Deployment**: GitHub Actions only (`cloudflare/wrangler-action`)
 - **Configuration**: Compatibility date and assets settings in `wrangler.jsonc`
 
 ### Worker Infrastructure (Custom Domains)
@@ -98,9 +98,10 @@ The following variables are available:
 - **`r2_bucket_location`** (optional): R2 bucket location (default: `EEUR`, options: WNAM, ENAM, WEUR, EEUR, APAC)
 - **`r2_storage_class`** (optional): R2 storage class (default: `Standard`, options: Standard, InfrequentAccess)
 - **`worker_service_name`** (optional): CloudFlare Worker service name (default: `blog`)
-- **`preview_worker_name`** (optional): Name of the shared preview Worker that hosts Workers Previews (default: `blog-preview`)
+- **`preview_worker_name`** (required): Name of the shared preview Worker that hosts Workers Previews, read from the
+  GitHub repository variable `PREVIEW_WORKER_NAME` (`TF_VAR_preview_worker_name`), which the preview workflows read too
 
-All variables except `account_id` have sensible defaults and typically don't need to be changed.
+All other variables have sensible defaults and typically don't need to be changed.
 
 ### Outputs
 
@@ -159,12 +160,7 @@ task deploy
 
 ### Worker Deployment
 
-The CloudFlare Worker hosting the site is deployed with Wrangler by GitHub Actions for preview and
-production (see "Site Deployment" above). Previews are CI-only. To deploy production manually from a local build:
-
-```bash
-task site:deploy
-```
+Only GitHub Actions deploys the Worker: see "Hosting Model" in [`AGENTS.md`](../../AGENTS.md).
 
 ### State Lock Issues
 

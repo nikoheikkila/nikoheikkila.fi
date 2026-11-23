@@ -32,7 +32,7 @@ Run a single layer with `task test:unit`, `task test:component`, `task test:muta
 
 Content and code changes follow the workflow below:
 
-![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests then hand off to the separate Preview workflow, which runs from main's code, deploys the pull request's build to a Workers Preview with Wrangler, runs a Lighthouse audit and posts the link as a pull request comment and a Preview Deployment commit status. Pushes to main deploy the infrastructure only when the plan has changes, then production with Wrangler, then run a Lighthouse audit.](docs/ci-flow.svg)
+![Delivery Pipeline: pull requests, pushes to main and manual runs start unit tests, component tests on three browsers, mutation tests, the Terraform plan and the build in parallel; the build feeds acceptance tests on three browsers. When all pass the pull request is mergeable. Pull requests from this repository then deploy the build to a Workers Preview with the Wrangler GitHub Action and run a Lighthouse audit; Preview Cleanup deletes the preview when the pull request closes. Pushes to main deploy the infrastructure only when the plan has changes, then production with the Wrangler GitHub Action, then run a Lighthouse audit.](docs/ci-flow.svg)
 
 Every Terraform run goes through one of two composite actions:
 
@@ -48,7 +48,7 @@ Every Terraform run goes through one of two composite actions:
 
 ## 🤝 Contributing
 
-Content can be found under `content/` directory. Edit posts as needed and submit a PR for me to review. Every PR is deployed as a Workers Preview of the `blog-preview` Cloudflare Worker, with the preview link posted as a PR comment. Once approved and merged to the `main` branch, changes are deployed to production.
+Content can be found under `content/` directory. Edit posts as needed and submit a PR for me to review. Every PR from this repository is deployed as a Workers Preview of the `blog-preview` Cloudflare Worker, linked from the PR as its `preview` deployment. Once approved and merged to the `main` branch, changes are deployed to production.
 
 Other contributions to UI, accessibility, React components, security, dependency updates etc. are warmly welcome as well!
 

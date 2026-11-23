@@ -85,6 +85,13 @@
 			groupName: 'Zizmor',
 		},
 		{
+			description: 'Keep the mise Wrangler pin and the wranglerVersion input of preview-cleanup.yml in step',
+			matchPackageNames: [
+				'wrangler',
+			],
+			groupName: 'Wrangler',
+		},
+		{
 			description: 'The config validator must not get ahead of the schema the hosted Renovate app runs',
 			matchManagers: [
 				'bun',

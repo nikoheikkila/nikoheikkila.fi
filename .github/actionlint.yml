@@ -59,26 +59,18 @@ config-secrets: null
 # ignoring and is reported by the expired-ignore rule.
 ignores:
   - rule: dangerous-triggers
-    file: .github/workflows/{preview,preview-cleanup,renovate-autofix}.yml
-    reason: >-
-      workflow_run is the intended design: these jobs run trusted code from main, never check out
-      pull request code, treat the triggering run's artifacts as data, and are gated on
-      same-repository heads (AGENTS.md "Trust boundary"). workflow_call would run them inside
-      pull request CI, which the `preview` environment does not admit.
+    file: .github/workflows/renovate-autofix.yml
+    reason: runs main's code on same-repository Renovate heads and never checks out pull request code
   - rule: dangerous-triggers
     file: .github/workflows/claude.yml
     reason: gated on `@claude` mentions from non-bot senders
   - rule: secrets-outside-env
     file: .github/workflows/{claude,renovate-autofix}.yml
-    reason: >-
-      CLAUDE_CODE_OAUTH_TOKEN is a repository secret: an environment would add a branch gate that
-      these comment- and workflow_run-triggered jobs on arbitrary refs cannot satisfy.
+    reason: CLAUDE_CODE_OAUTH_TOKEN is a repository secret; an environment's branch gate would block these runs
   - rule: secrets-outside-env
     file: .github/workflows/ci.yml
     job: terraform_plan
-    reason: >-
-      read-only Cloudflare and R2 state tokens; the plan runs for pull requests, which the
-      `preview` and `prod` environments never admit.
+    reason: read-only tokens for the plan, which runs for pull requests that `prod` never admits
 
 # Controls what permissions are assumed for a caller workflow that declares no
 # "permissions:" block at all when checking reusable workflow calls. Unset, the
