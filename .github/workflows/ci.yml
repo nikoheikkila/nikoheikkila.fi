@@ -265,6 +265,8 @@ jobs:
 
       - name: Setup environment
         uses: $/.github/actions/setup-environment
+        with:
+          tools: terraform jq
 
       # Read-only repository secrets: the plan runs for pull requests, which the
       # `prod` environment never admits.
@@ -383,6 +385,8 @@ jobs:
 
       - name: Setup environment
         uses: $/.github/actions/setup-environment
+        with:
+          tools: terraform
 
       # `cloudflare_workers_custom_domain` only accepts account-wide Workers
       # Scripts Write, so infra/cloudflare uses the broader infra token.
@@ -395,7 +399,6 @@ jobs:
         with:
           working-directory: infra/cloudflare
           plan-artifact: tfplan
-          emit-outputs: "false"
 
   deploy:
     name: Deploy to Production
