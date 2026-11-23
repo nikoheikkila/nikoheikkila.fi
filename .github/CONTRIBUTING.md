@@ -48,7 +48,7 @@ Some existing code may be poorly written or untested, so we must have more scrut
 
 -   Try to keep the pull requests small. A pull request should try its very best to address only a single concern.
 -   Make sure all tests pass and add additional tests for the code you submit.
--   Your pull request is mergeable once every job of the **CI** workflow passes. After that, a preview deployment is posted as a comment on the pull request; check that your changes look right there.
+-   Your pull request is mergeable once every job of the **CI** workflow passes. Pull requests from this repository then get a preview deployment, linked from the pull request as **View deployment**; check that your changes look right there. Pull requests from forks get no preview.
 -   Document your reasoning behind the changes. Explain why you wrote the code in the way you did. The code should explain what it does.
 -   If there's an existing issue related to the pull request, reference to it by adding something like `References/Closes/Fixes/Resolves #305`, where 305 is the issue number. [More info here](https://github.com/blog/1506-closing-issues-via-pull-requests)
 -   If you follow the pull request template, you can't go wrong.
