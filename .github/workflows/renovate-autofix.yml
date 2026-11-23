@@ -49,8 +49,15 @@ jobs:
           read -r current_sha author < <(
             gh api "repos/${GH_REPO}/commits/${HEAD_BRANCH}" --jq '[.sha, .commit.author.name] | @tsv'
           )
+          # Preview deploys and audits fail on Cloudflare problems, which a dependency fix cannot solve.
+          code_failures=$(gh run view "$RUN_ID" --json jobs --jq '[.jobs[]
+            | select(.conclusion == "failure" and .name != "Preview Deployment"
+              and (.name | startswith("Lighthouse Audit for Preview") | not))] | length')
           if [[ "$current_sha" != "$HEAD_SHA" ]]; then
             echo "Branch moved from ${HEAD_SHA} to ${current_sha}; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$code_failures" == "0" ]]; then
+            echo "Only the preview deployment or its audit failed; skipping."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           elif [[ "$author" == "claude[bot]" || "$author" == "claude" ]]; then
             echo "Head commit is already authored by Claude; skipping."
