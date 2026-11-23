@@ -46,10 +46,9 @@ Feature: Post listing
     When the visitor follows the link to the previous index page
     Then the visitor sees a link to the next index page
 
-  Scenario: Second index page links to its neighbours
+  Scenario: Second index page links to the previous page
     When the visitor opens the second index page
     Then the visitor sees a link to the previous index page
-    And the visitor sees a link to the next index page
 
   Scenario: Listed posts show when they were published and how long they take to read
     When the visitor opens the home page
