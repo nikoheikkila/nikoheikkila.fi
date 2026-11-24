@@ -59,6 +59,17 @@
 	],
 	packageRules: [
 		{
+			// Listed first so the more specific groups below (Gatsby, Wrangler) take precedence.
+			description: 'Update all devDependencies in a single pull request',
+			matchManagers: [
+				'bun',
+			],
+			matchDepTypes: [
+				'devDependencies',
+			],
+			groupName: 'devDependencies',
+		},
+		{
 			extends: [
 				'monorepo:gatsby',
 			],
@@ -69,6 +80,76 @@
 				'major',
 			],
 			groupName: 'Gatsby packages',
+		},
+		{
+			description: 'Keep Vitest packages on the same version',
+			matchPackageNames: [
+				'vitest',
+				'@vitest/**',
+				'!@vitest/browser-playwright',
+				'vitest-browser-react',
+			],
+			groupName: 'Vitest',
+		},
+		{
+			description: 'Keep Playwright and its integrations in step',
+			matchPackageNames: [
+				'@playwright/test',
+				'playwright-bdd',
+				'@axe-core/playwright',
+				'@vitest/browser-playwright',
+			],
+			groupName: 'Playwright',
+		},
+		{
+			description: 'Keep React, React DOM and their types in step',
+			matchPackageNames: [
+				'react',
+				'react-dom',
+				'@types/react',
+				'@types/react-dom',
+			],
+			groupName: 'React',
+		},
+		{
+			matchPackageNames: [
+				'@fortawesome/**',
+			],
+			groupName: 'Font Awesome',
+		},
+		{
+			matchPackageNames: [
+				'react-markdown',
+				'remark-*',
+				'rehype-*',
+			],
+			groupName: 'React Markdown',
+		},
+		{
+			matchPackageNames: [
+				'@stryker-mutator/**',
+			],
+			groupName: 'Stryker',
+		},
+		{
+			matchPackageNames: [
+				'@commitlint/**',
+			],
+			groupName: 'Commitlint',
+		},
+		{
+			matchPackageNames: [
+				'happy-dom',
+				'@happy-dom/**',
+			],
+			groupName: 'happy-dom',
+		},
+		{
+			description: 'One pull request for all workflow action updates; the Zizmor group below takes precedence',
+			matchManagers: [
+				'github-actions',
+			],
+			groupName: 'GitHub Actions',
 		},
 		{
 			description: 'Keep the mise Terraform pin and required_version in step',
