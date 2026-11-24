@@ -19,8 +19,10 @@
 		'terraform',
 		'custom.regex',
 	],
+	timezone: 'Europe/Helsinki',
 	schedule: [
-		'every weekend',
+		// Every day between 03:00 and 04:00
+		'after 3am and before 4am',
 	],
 	// Hijacked releases are usually detected and yanked within days: never propose anything younger than a week.
 	minimumReleaseAge: '7 days',
