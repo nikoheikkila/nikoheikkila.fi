@@ -14,7 +14,7 @@ runs:
       uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
       with:
         # renovate: datasource=github-releases depName=jdx/mise
-        version: 2026.11.4
+        version: 2026.11.10
         install_args: ${{ inputs.tools }}
         # `workflow_run` jobs share main's cache scope and may handle pull request content, so they only read the cache.
         cache_save: ${{ github.event_name != 'workflow_run' }}
